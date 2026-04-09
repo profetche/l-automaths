@@ -1,0 +1,13 @@
+{
+  "name": "l-automaths",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "npx babel app.js --presets @babel/preset-react -o app-compiled.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.0",
+    "@babel/cli": "^7.23.0",
+    "@babel/preset-react": "^7.23.0"
+  }
+}
