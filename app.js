@@ -6317,7 +6317,7 @@ function ResultScreen({score,total,catId,onReplay,onHome}) {
 }
 
 // ── Root ───────────────────────────────────────────────────────────────────────
-export default function AutoMaths() {
+function AutoMaths() {
   const katexReady = useKaTeX();
 
   // ── Core quiz state ───────────────────────────────────────────────────────
@@ -6597,4 +6597,11 @@ export default function AutoMaths() {
       </div>
     </>
   );
+}
+
+
+// ── Render ───────────────────────────────────────────────────────────────────
+const domRoot = document.getElementById('root');
+if (domRoot) {
+  ReactDOM.createRoot(domRoot).render(React.createElement(AutoMaths));
 }
