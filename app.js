@@ -2183,6 +2183,47 @@ const DB = {
     ],
   },
 
+
+    // ── Taux moyen ──
+    taux_moyen: [
+      { q: r`\text{2 hausses de }5\%\\[4pt]CM_{\text{global}}=\,?`,
+        choices: [r`1{,}05^2`, `1{,}10`, `2{,}10`, `1{,}025`], a: r`1{,}05^2`,
+        tip: r`CM=1{,}05\times1{,}05=1{,}05^2` },
+      { q: r`CM=1{,}21\text{ sur 2 ans}\\[4pt]\text{Taux moyen annuel}=\,?`,
+        choices: [`10\%`, `21\%`, `5\%`, `0{,}21\%`], a: `10\%`,
+        tip: r`\sqrt{1{,}21}=1{,}1\Rightarrow t=10\%` },
+      { q: r`CM=(1+t)^2=1{,}0609\\[4pt]t=\,?`,
+        choices: [`3\%`, `6\%`, `6{,}09\%`, `9\%`], a: `3\%`,
+        tip: r`\sqrt{1{,}0609}=1{,}03\Rightarrow t=3\%` },
+      { q: r`\text{2 baisses de }10\%\\[4pt]\text{Taux global}=\,?`,
+        choices: [`-19\%`, `-20\%`, `-10\%`, `-18\%`], a: `-19\%`,
+        tip: r`0{,}9^2=0{,}81\Rightarrow-19\%` },
+      { q: r`CM_1=1{,}1\quad CM_2=0{,}9\\[4pt]CM_{\text{global}}=\,?`,
+        choices: [`0{,}99`, `1{,}00`, `1{,}01`, `2{,}00`], a: `0{,}99`,
+        tip: r`CM=1{,}1\times0{,}9=0{,}99` },
+      { q: r`CM=1{,}44\text{ sur 2 ans}\\[4pt]\text{Taux moyen annuel}=\,?`,
+        choices: [`20\%`, `44\%`, `22\%`, `7{,}2\%`], a: `20\%`,
+        tip: r`\sqrt{1{,}44}=1{,}2\Rightarrow t=20\%` },
+    ],
+
+    // ── Indice en base 100 ──
+    indice: [
+      { q: r`\text{Indice}=120\text{ (base }100\text{)}\\[4pt]\text{Taux d'évolution}=\,?`,
+        choices: [`+20\%`, `+120\%`, `+12\%`, `-20\%`], a: `+20\%`,
+        tip: r`\dfrac{120-100}{100}=20\%` },
+      { q: r`\text{Prix : }50\,€\to60\,€\\[4pt]\text{Indice (base }100\text{)}=\,?`,
+        choices: [`120`, `110`, `60`, `160`], a: `120`,
+        tip: r`\dfrac{60}{50}\times100=120` },
+      { q: r`\text{Indice passe de }80\text{ à }100\\[4pt]\text{Taux d'évolution}=\,?`,
+        choices: [`+25\%`, `+20\%`, `-20\%`, `+100\%`], a: `+25\%`,
+        tip: r`\dfrac{100-80}{80}=25\%` },
+      { q: r`\text{Indice en base }100=80\\[4pt]\text{Le prix a :}`,
+        choices: [r`\text{baissé de }20\%`, r`\text{baissé de }80\%`, r`\text{augmenté de }20\%`, r`\text{augmenté de }80\%`],
+        a: r`\text{baissé de }20\%`, tip: r`\dfrac{80-100}{100}=-20\%` },
+      { q: r`\text{Indice}=150\\[4pt]\text{Rapport à la base}=\,?`,
+        choices: [`1{,}5`, `0{,}5`, `50`, `150`], a: `1{,}5`,
+        tip: r`\dfrac{150}{100}=1{,}5` },
+    ],
   // ════ 3. CALCUL NUMÉRIQUE ════════════════════════════════════════════════════
   numerique: {
     decimaux_cm: [
@@ -2704,6 +2745,27 @@ const DB = {
     ],
   },
 
+
+    // ── Manipulation de formules ──
+    manipulation: [
+      { q: r`P=UI\\[4pt]\text{Isoler }I :`,
+        choices: [r`I=\dfrac{P}{U}`, r`I=PU`, r`I=\dfrac{U}{P}`, r`I=P-U`],
+        a: r`I=\dfrac{P}{U}`, tip: r`I=\dfrac{P}{U}` },
+      { q: r`S=\pi r^2\\[4pt]\text{Isoler }r :`,
+        choices: [r`r=\sqrt{\dfrac{S}{\pi}}`, r`r=\dfrac{S}{2\pi}`, r`r=\dfrac{S^2}{\pi}`, r`r=\dfrac{\pi}{S}`],
+        a: r`r=\sqrt{\dfrac{S}{\pi}}`, tip: r`r^2=\dfrac{S}{\pi}\Rightarrow r=\sqrt{\dfrac{S}{\pi}}` },
+      { q: r`V=lwh,\ V=60,\ l=3,\ w=4\\[4pt]h=\,?`,
+        choices: [`5`, `4`, `15`, `20`], a: `5`, tip: r`h=\dfrac{60}{12}=5` },
+      { q: r`d=vt\\[4pt]\text{Isoler }v :`,
+        choices: [r`v=\dfrac{d}{t}`, r`v=dt`, r`v=\dfrac{t}{d}`, r`v=d+t`],
+        a: r`v=\dfrac{d}{t}`, tip: r`v=\dfrac{d}{t}` },
+      { q: r`F=ma\\[4pt]\text{Isoler }a :`,
+        choices: [r`a=\dfrac{F}{m}`, r`a=Fm`, r`a=\dfrac{m}{F}`, r`a=F-m`],
+        a: r`a=\dfrac{F}{m}`, tip: r`a=\dfrac{F}{m}` },
+      { q: r`A=\dfrac{bh}{2}\\[4pt]\text{Isoler }h :`,
+        choices: [r`h=\dfrac{2A}{b}`, r`h=\dfrac{Ab}{2}`, r`h=\dfrac{b}{2A}`, r`h=\dfrac{A}{b^2}`],
+        a: r`h=\dfrac{2A}{b}`, tip: r`h=\dfrac{2A}{b}` },
+    ],
   // ════ 5. PROBABILITÉS ════════════════════════════════════════════════════════
   probabilites: {
     // ── Tableau double entrée — avec visuels ──
@@ -3255,6 +3317,171 @@ const DB = {
     ],
     spe_original: [],
   },
+  // ════ 8. SUITES NUMÉRIQUES ══════════════════════════════════════════════════
+  suites: {
+
+    suites_nature: [
+      { q: r`u_n = 3n + 2\\[4pt]\text{La suite }(u_n)\text{ est :}`,
+        choices: [r`\text{Arithmétique, }r=3`, r`\text{Géométrique, }q=3`, r`\text{Constante}`, r`\text{Géométrique, }q=2`],
+        a: r`\text{Arithmétique, }r=3`, tip: r`u_{n+1}-u_n = 3 \text{ (constante)}` },
+      { q: r`u_n = 5 \times 2^n\\[4pt]\text{La suite }(u_n)\text{ est :}`,
+        choices: [r`\text{Géométrique, }q=2`, r`\text{Arithmétique, }r=5`, r`\text{Constante}`, r`\text{Arithmétique, }r=2`],
+        a: r`\text{Géométrique, }q=2`, tip: r`\dfrac{u_{n+1}}{u_n}=2 \text{ (constante)}` },
+      { q: r`u_0=4,\quad u_{n+1}=u_n+2{,}5\\[4pt]\text{La suite }(u_n)\text{ est :}`,
+        choices: [r`\text{Arithmétique, }r=2{,}5`, r`\text{Géométrique, }q=2{,}5`, r`\text{Constante}`, r`\text{Géométrique, }q=4`],
+        a: r`\text{Arithmétique, }r=2{,}5`, tip: r`u_{n+1}-u_n=2{,}5 \text{ (constante)}` },
+      { q: r`u_0=3,\quad u_{n+1}=3\,u_n\\[4pt]\text{La suite }(u_n)\text{ est :}`,
+        choices: [r`\text{Géométrique, }q=3`, r`\text{Arithmétique, }r=3`, r`\text{Constante}`, r`\text{Arithmétique, }r=9`],
+        a: r`\text{Géométrique, }q=3`, tip: r`\dfrac{u_{n+1}}{u_n}=3 \text{ (constante)}` },
+      { q: r`\text{Suite : }2\ ;\ 6\ ;\ 18\ ;\ 54\\[4pt]\text{La suite est :}`,
+        choices: [r`\text{Géométrique, }q=3`, r`\text{Arithmétique, }r=4`, r`\text{Arithmétique, }r=3`, r`\text{Géométrique, }q=6`],
+        a: r`\text{Géométrique, }q=3`, tip: r`\dfrac{6}{2}=\dfrac{18}{6}=\dfrac{54}{18}=3` },
+      { q: r`u_{n+1} = 1{,}05\,u_n\\[4pt]\text{La suite }(u_n)\text{ est :}`,
+        choices: [r`\text{Géométrique, }q=1{,}05`, r`\text{Arithmétique, }r=1{,}05`, r`\text{Arithmétique, }r=0{,}05`, r`\text{Constante}`],
+        a: r`\text{Géométrique, }q=1{,}05`, tip: r`\dfrac{u_{n+1}}{u_n}=1{,}05` },
+    ],
+
+    suites_termes: [
+      { q: r`\text{Suite arith. :}\ u_0=-1,\ r=3\\[4pt]u_4=\,?`,
+        choices: [`11`, `8`, `12`, `-4`], a: `11`, tip: r`u_4=u_0+4r=-1+12=11` },
+      { q: r`\text{Suite géom. :}\ u_0=5,\ q=2\\[4pt]u_4=\,?`,
+        choices: [`80`, `20`, `40`, `10`], a: `80`, tip: r`u_4=5\times2^4=80` },
+      { q: r`\text{Suite arith. :}\ u_1=20,\ r=-5\\[4pt]u_6=\,?`,
+        choices: [`-5`, `0`, `-25`, `15`], a: `-5`, tip: r`u_6=u_1+5\times(-5)=20-25=-5` },
+      { q: r`\text{Suite géom. :}\ u_0=32,\ q=0{,}5\\[4pt]u_5=\,?`,
+        choices: [`1`, `4`, `2`, `0{,}5`], a: `1`, tip: r`u_5=32\times(0{,}5)^5=1` },
+      { q: r`\text{Suite arith. :}\ u_4=7\text{ et }u_7=19\\[4pt]r=\,?`,
+        choices: [`4`, `12`, `3`, `6`], a: `4`, tip: r`19=7+3r\Rightarrow r=4` },
+      { q: r`\text{Suite géom. :}\ u_3=8\text{ et }u_5=32\\[4pt]q=\,?`,
+        choices: [`2`, `4`, `8`, r`\sqrt{2}`], a: `2`, tip: r`q^2=\dfrac{32}{8}=4\Rightarrow q=2` },
+    ],
+
+    suites_variations: [
+      { q: r`\text{Suite arith., }u_0>0\text{ et }r>0\\[4pt]\text{Elle est :}`,
+        choices: [`croissante`, `décroissante`, `constante`, `alternée`], a: `croissante`,
+        tip: r`r>0\Rightarrow u_{n+1}>u_n` },
+      { q: r`\text{Suite arith., }r=-3\\[4pt]\text{Elle est :}`,
+        choices: [`décroissante`, `croissante`, `constante`, `bornée`], a: `décroissante`,
+        tip: r`r<0\Rightarrow u_{n+1}<u_n` },
+      { q: r`\text{Suite géom., }u_0>0\text{ et }q=1{,}05\\[4pt]\text{Elle est :}`,
+        choices: [`croissante`, `décroissante`, `constante`, `convergente`], a: `croissante`,
+        tip: r`u_0>0\text{ et }q>1\Rightarrow\text{croissante}` },
+      { q: r`\text{Suite géom., }u_0>0\text{ et }0<q<1\\[4pt]\text{Elle est :}`,
+        choices: [`décroissante`, `croissante`, `nulle`, `constante`], a: `décroissante`,
+        tip: r`0<q<1\Rightarrow u_{n+1}=qu_n<u_n` },
+      { q: r`\text{Suite géom., }u_0>0\text{ et }q>1\\[4pt]\lim_{n\to+\infty}u_n=\,?`,
+        choices: [r`+\infty`, r`0`, r`u_0`, r`-\infty`], a: r`+\infty`,
+        tip: r`u_0>0\text{ et }q>1\Rightarrow u_n\to+\infty` },
+    ],
+  },
+
+  // ════ 9. POLYNÔMES DU 2nd DEGRÉ ══════════════════════════════════════════════
+  polynomes: {
+
+    poly2_factorisee: [
+      { q: r`f(x)=3(x-2)(x+5)\\[4pt]\text{Valeur de }a\text{ :}`,
+        choices: [`3`, `-3`, `2`, `5`], a: `3`, tip: r`f(x)=a(x-x_1)(x-x_2)\Rightarrow a=3` },
+      { q: r`f(x)=-2(x-1)(x+4)\\[4pt]\text{Racines de }f\text{ :}`,
+        choices: [r`1\text{ et }{-4}`, r`{-1}\text{ et }4`, r`2\text{ et }{-4}`, r`1\text{ et }4`],
+        a: r`1\text{ et }{-4}`, tip: r`x_1=1\text{ et }x_2=-4` },
+      { q: r`f(x)=(x-3)(x+7)\\[4pt]x_1\text{ et }x_2=\,?`,
+        choices: [r`3\text{ et }{-7}`, r`{-3}\text{ et }7`, r`3\text{ et }7`, r`{-3}\text{ et }{-7}`],
+        a: r`3\text{ et }{-7}`, tip: r`x_1=3\text{ et }x_2=-7` },
+      { q: r`f(x)=-5(x-2)(x-6)\\[4pt]\text{Valeur de }a\text{ :}`,
+        choices: [`-5`, `5`, `2`, `6`], a: `-5`, tip: r`f(x)=a(x-x_1)(x-x_2)\Rightarrow a=-5` },
+      { q: r`a=2,\quad x_1=3,\quad x_2=-1\\[4pt]f(x)=\,?`,
+        choices: [`2(x-3)(x+1)`, `2(x+3)(x-1)`, `2(x-3)(x-1)`, `(x-3)(x+1)`],
+        a: `2(x-3)(x+1)`, tip: r`f(x)=2(x-3)(x-(-1))=2(x-3)(x+1)` },
+      { q: r`f(x)=4(x+2)(x-8)\\[4pt]f(0)=\,?`,
+        choices: [`-64`, `64`, `-16`, `16`], a: `-64`, tip: r`f(0)=4\times2\times(-8)=-64` },
+      { q: r`f(x)=-(x-5)(x+3)\\[4pt]a,\ x_1,\ x_2=\,?`,
+        choices: [r`a=-1,\ x_1=5,\ x_2=-3`, r`a=1,\ x_1=5,\ x_2=3`, r`a=-1,\ x_1=-5,\ x_2=3`, r`a=5,\ x_1=5,\ x_2=-3`],
+        a: r`a=-1,\ x_1=5,\ x_2=-3`, tip: r`f(x)=(-1)(x-5)(x+3)` },
+    ],
+
+    poly_spe_n1: [
+      { q: r`ax^2+bx+c=2x^2-5x+3\\[4pt]a,\ b,\ c=\,?`,
+        choices: [`a=2,\ b=-5,\ c=3`, `a=2,\ b=5,\ c=3`, `a=-2,\ b=5,\ c=3`, `a=2,\ b=-5,\ c=-3`],
+        a: `a=2,\ b=-5,\ c=3`, tip: r`\text{Identifier coeff. de }x^2,x,\text{constante}` },
+      { q: r`-x^2+4x-7=ax^2+bx+c\\[4pt]a=\,?`,
+        choices: [`-1`, `1`, `4`, `-7`], a: `-1`, tip: r`\text{Coefficient de }x^2\text{ : }a=-1` },
+      { q: r`f(x)=3(x-2)(x+5)\\[4pt]a=\,?\ ;\ x_1=\,?\ ;\ x_2=\,?`,
+        choices: [`a=3,\ x_1=2,\ x_2=-5`, `a=3,\ x_1=-2,\ x_2=5`, `a=-3,\ x_1=2,\ x_2=-5`, `a=3,\ x_1=2,\ x_2=5`],
+        a: `a=3,\ x_1=2,\ x_2=-5`, tip: r`a(x-x_1)(x-x_2)\Rightarrow a=3,\ x_1=2,\ x_2=-5` },
+      { q: r`x_1=4\text{ et }x_2=-1\\[4pt]x_1\times x_2=\,?`,
+        choices: [`-4`, `4`, `3`, `-3`], a: `-4`, tip: r`x_1\times x_2=4\times(-1)=-4` },
+      { q: r`a=1,\ x_1=3,\ x_2=5\\[4pt]x_1+x_2=-\dfrac{b}{a}\Rightarrow b=\,?`,
+        choices: [`-8`, `8`, `-15`, `2`], a: `-8`, tip: r`x_1+x_2=8=-\dfrac{b}{1}\Rightarrow b=-8` },
+      { q: r`a=1,\ x_1=2,\ x_2=-3\\[4pt]x_1\times x_2=\dfrac{c}{a}\Rightarrow c=\,?`,
+        choices: [`-6`, `6`, `-1`, `1`], a: `-6`, tip: r`x_1\times x_2=2\times(-3)=-6=c` },
+      { q: r`a=2,\ b=6\\[4pt]x_1+x_2=-\dfrac{b}{a}=\,?`,
+        choices: [`-3`, `3`, `-12`, `12`], a: `-3`, tip: r`x_1+x_2=-\dfrac{6}{2}=-3` },
+    ],
+
+    poly_spe_n2: [
+      { q: r`x^2-5x+6=0\\[4pt]\Delta=b^2-4ac=\,?`,
+        choices: [`1`, `25`, `49`, `-1`], a: `1`, tip: r`\Delta=25-24=1` },
+      { q: r`x^2-4=0\\[4pt]\text{Solutions :}`,
+        choices: [r`x=-2\text{ et }x=2`, r`x=4\text{ et }x=-4`, r`x=2`, `\text{Pas de solution}`],
+        a: r`x=-2\text{ et }x=2`, tip: r`x^2=4\Rightarrow x=\pm2` },
+      { q: r`x^2-6x+9=0\\[4pt]\Delta=\,?`,
+        choices: [`0`, `9`, `36`, `-9`], a: `0`, tip: r`\Delta=36-36=0\Rightarrow\text{une seule racine}` },
+      { q: r`x^2-6x+9=0,\ \Delta=0\\[4pt]\text{Solution double :}`,
+        choices: [`x=3`, `x=-3`, `x=6`, `x=9`], a: `x=3`, tip: r`x=\dfrac{-b}{2a}=\dfrac{6}{2}=3` },
+      { q: r`x^2+1=0\\[4pt]\Delta=\,?`,
+        choices: [`-4`, `4`, `1`, `0`], a: `-4`, tip: r`\Delta=0-4=-4<0\Rightarrow\text{pas de solution}` },
+      { q: r`x^2-5x+6=0,\ \Delta=1\\[4pt]\text{Solutions :}`,
+        choices: [r`x=2\text{ et }x=3`, r`x=1\text{ et }x=6`, r`x=-2\text{ et }x=-3`, r`x=5`],
+        a: r`x=2\text{ et }x=3`, tip: r`x=\dfrac{5\pm1}{2}\Rightarrow x=3\text{ ou }x=2` },
+      { q: r`\Delta<0\Rightarrow\text{l'équation admet :}`,
+        choices: [`\text{aucune solution réelle}`, `\text{deux solutions}`, `\text{une solution double}`, `\text{une solution}`],
+        a: `\text{aucune solution réelle}`, tip: r`\Delta<0\Rightarrow\text{pas de racine réelle}` },
+    ],
+
+    poly_spe_n3: [
+      { q: r`2x^2-7x+3=0\\[4pt]\Delta=\,?`,
+        choices: [`25`, `49`, `-24`, `1`], a: `25`, tip: r`\Delta=49-24=25` },
+      { q: r`2x^2-7x+3=0,\ \Delta=25\\[4pt]\text{Solutions :}`,
+        choices: [r`x=3\text{ et }x=\tfrac{1}{2}`, r`x=7\text{ et }x=3`, r`x=1\text{ et }x=3`, r`x=-3\text{ et }x=-\tfrac{1}{2}`],
+        a: r`x=3\text{ et }x=\tfrac{1}{2}`, tip: r`x=\dfrac{7\pm5}{4}\Rightarrow x=3\text{ ou }x=\tfrac{1}{2}` },
+      { q: r`3x^2-2x-1=0\\[4pt]\Delta=\,?`,
+        choices: [`16`, `4`, `-8`, `10`], a: `16`, tip: r`\Delta=4+12=16` },
+      { q: r`3x^2-2x-1=0,\ \Delta=16\\[4pt]\text{Solutions :}`,
+        choices: [r`x=1\text{ et }x=-\tfrac{1}{3}`, r`x=2\text{ et }x=-1`, r`x=\tfrac{1}{3}\text{ et }x=-1`, r`x=1\text{ et }x=\tfrac{1}{3}`],
+        a: r`x=1\text{ et }x=-\tfrac{1}{3}`, tip: r`x=\dfrac{2\pm4}{6}\Rightarrow x=1\text{ ou }x=-\tfrac{1}{3}` },
+      { q: r`x^2+3x+3=0\\[4pt]\Delta=\,?`,
+        choices: [`-3`, `9`, `3`, `0`], a: `-3`, tip: r`\Delta=9-12=-3<0\Rightarrow\text{pas de solution}` },
+      { q: r`4x^2-4x+1=0\\[4pt]\text{Nature des solutions :}`,
+        choices: [`\text{une solution double}`, `\text{deux solutions}`, `\text{aucune solution}`, `\text{impossible}`],
+        a: `\text{une solution double}`, tip: r`\Delta=16-16=0\Rightarrow x=\dfrac{1}{2}` },
+      { q: r`4x^2-4x+1=0,\ \Delta=0\\[4pt]x=\,?`,
+        choices: [r`\tfrac{1}{2}`, r`\tfrac{1}{4}`, `1`, `4`], a: r`\tfrac{1}{2}`,
+        tip: r`x=\dfrac{-b}{2a}=\dfrac{4}{8}=\dfrac{1}{2}` },
+    ],
+
+    poly_spe_n4: [
+      { q: r`f(x)=x^2-5x+6,\ a>0,\ \Delta>0\\[4pt]\text{Signe de }f\text{ entre les racines :}`,
+        choices: [`\text{négatif}`, `\text{positif}`, `\text{nul}`, `\text{impossible à dire}`],
+        a: `\text{négatif}`, tip: r`a>0\Rightarrow f<0\text{ entre }x_1\text{ et }x_2` },
+      { q: r`f(x)=-x^2+4,\ a<0\\[4pt]\text{Signe de }f\text{ entre les racines :}`,
+        choices: [`\text{positif}`, `\text{négatif}`, `\text{nul}`, `\text{toujours positif}`],
+        a: `\text{positif}`, tip: r`a<0\Rightarrow f>0\text{ entre }x_1\text{ et }x_2` },
+      { q: r`f(x)=x^2+1,\ \Delta<0,\ a>0\\[4pt]\text{Signe de }f\text{ sur }\mathbb{R}:`,
+        choices: [`\text{toujours positif}`, `\text{toujours négatif}`, `\text{change de signe}`, `\text{nul}`],
+        a: `\text{toujours positif}`, tip: r`\Delta<0\text{ et }a>0\Rightarrow f>0\text{ sur }\mathbb{R}` },
+      { q: r`f(x)=2(x-1)(x-5)\\[4pt]\text{Sommet de la parabole en }x=\,?`,
+        choices: [`3`, `1`, `5`, `10`], a: `3`, tip: r`x_s=\dfrac{x_1+x_2}{2}=\dfrac{1+5}{2}=3` },
+      { q: r`f(x)=x^2-6x+5\\[4pt]\text{Minimum de }f=\,?`,
+        choices: [`-4`, `5`, `0`, `6`], a: `-4`, tip: r`x_s=3\Rightarrow f(3)=9-18+5=-4` },
+      { q: r`f(x)=-(x-2)^2+9\\[4pt]\text{Maximum de }f=\,?`,
+        choices: [`9`, `-9`, `4`, `2`], a: `9`, tip: r`a<0\Rightarrow\text{max en }x=2\text{ : }f(2)=9` },
+      { q: r`f(x)=x^2-4x+3,\ x_1=1,\ x_2=3\\[4pt]f(x)<0\text{ pour :}`,
+        choices: [r`x\in]1\,;3[`, r`x\in]-\infty;1[\cup]3;+\infty[`, r`x\in[1\,;3]`, r`\text{jamais}`],
+        a: r`x\in]1\,;3[`, tip: r`a>0\Rightarrow f<0\text{ strictement entre les racines}` },
+    ],
+  },
+
+
 };
 
 // ── Categories ─────────────────────────────────────────────────────────────────
@@ -3262,15 +3489,23 @@ const CATS = [
   { id:"fonctions",    label:"Généralités sur les fonctions", emoji:"📈", color:"#2563EB", grad:"linear-gradient(135deg,#3B82F6,#1D4ED8)", light:"#EFF6FF", border:"#BFDBFE",
     subs:[{id:"lecture_image",label:"Image et antécédent"},{id:"resolution_graphique",label:"Résolution graphique"},{id:"tableau_variations",label:"Tableau de variations"},{id:"tableau_signes",label:"Tableau de signes"},{id:"coeff_directeur_lecture",label:"Coefficient directeur (lecture)"},{id:"equation_droite_lecture",label:"Équation de droite (lecture)"},{id:"calcul_image",label:"Calcul d'image"},{id:"point_courbe",label:"Point sur courbe"},{id:"coeff_directeur_calcul",label:"Coefficient directeur (calcul)"}] },
   { id:"pourcentages", label:"Pourcentages", emoji:"💹", color:"#059669", grad:"linear-gradient(135deg,#10B981,#047857)", light:"#ECFDF5", border:"#A7F3D0",
-    subs:[{id:"proportions",label:"Proportions"},{id:"taux_cm",label:"Taux ↔ CM"},{id:"valeur_finale",label:"Valeur finale / initiale"},{id:"evolutions_successives",label:"Évolutions successives"},{id:"evolution_reciproque",label:"Évolution réciproque"}] },
+    subs:[{id:"proportions",label:"Proportions",level:"stmg"},{id:"taux_cm",label:"Taux ↔ CM",level:"stmg"},{id:"valeur_finale",label:"Valeur finale / initiale",level:"stmg"},{id:"evolutions_successives",label:"Évolutions successives",level:"stmg"},{id:"evolution_reciproque",label:"Évolution réciproque",level:"stmg"},{id:"taux_moyen",label:"Taux moyen",level:"stmg"},{id:"indice",label:"Indice en base 100",level:"stmg"}] },
   { id:"numerique",    label:"Calcul numérique", emoji:"🔢", color:"#7C3AED", grad:"linear-gradient(135deg,#8B5CF6,#6D28D9)", light:"#F5F3FF", border:"#DDD6FE",
     subs:[{id:"decimaux_cm",label:"Décimaux & CM"},{id:"fractions",label:"Fractions"},{id:"puissances",label:"Puissances"},{id:"scientifique",label:"Écriture scientifique"},{id:"conversions",label:"Conversions"},{id:"tables",label:"Tables de multiplication (2→9)"},{id:"racines",label:"Racines carrées",levelPicker:true}] },
   { id:"litteral",     label:"Calcul littéral", emoji:"📐", color:"#DC2626", grad:"linear-gradient(135deg,#EF4444,#B91C1C)", light:"#FEF2F2", border:"#FECACA",
-    subs:[{id:"eq1",label:"Équation 1er degré"},{id:"produit_nul",label:"Équation produit nul"},{id:"eq_x2",label:"x²=a"},{id:"eq_x3",label:"x³=a"},{id:"inequation1",label:"Inéquation 1er degré"},{id:"identites",label:"Développement",levelPicker:true,levelType:"identites"},{id:"factorisation",label:"Factorisation",levelPicker:true,levelType:"factorisation"}] },
+    subs:[{id:"eq1",label:"Équation 1er degré",level:"tc"},{id:"produit_nul",label:"Équation produit nul",level:"tc"},{id:"eq_x2",label:"x²=a",level:"tc"},{id:"eq_x3",label:"x³=a",level:"tc"},{id:"inequation1",label:"Inéquation 1er degré",level:"tc"},{id:"identites",label:"Développement",levelPicker:true,levelType:"identites",level:"tc"},{id:"factorisation",label:"Factorisation",levelPicker:true,levelType:"factorisation",level:"tc"},{id:"manipulation",label:"Manipulation de formules",level:"stmg"}] },
   { id:"probabilites", label:"Probabilités", emoji:"🎲", color:"#D97706", grad:"linear-gradient(135deg,#F59E0B,#B45309)", light:"#FFFBEB", border:"#FDE68A",
     subs:[{id:"tableau",label:"Tableau double entrée"},{id:"tableau_fill",label:"📝 Tableau à compléter"},{id:"arbre",label:"Arbre"},{id:"contraire",label:"Événements contraires"}] },
   { id:"derivation",   label:"Dérivation", emoji:"📉", color:"#0891B2", grad:"linear-gradient(135deg,#06B6D4,#0E7490)", light:"#ECFEFF", border:"#A5F3FC",
     subs:[{id:"lecture_derivee",label:"Lecture graphique du nombre dérivé"},{id:"calcul_derivee",label:"Calcul de dérivées (deg. 2 et 3)"}] },
+  { id:"suites",    label:"Suites numériques", emoji:"🔁", color:"#EA580C", grad:"linear-gradient(135deg,#F97316,#C2410C)", light:"#FFF7ED", border:"#FED7AA",
+    subs:[{id:"suites_nature",label:"Nature d'une suite",level:"spe"},{id:"suites_termes",label:"Calculer un terme",level:"spe"},{id:"suites_variations",label:"Sens de variation",level:"spe"}] },
+  { id:"polynomes", label:"Polynômes du 2nd degré", emoji:"📊", color:"#7C3AED", grad:"linear-gradient(135deg,#A855F7,#6D28D9)", light:"#F5F3FF", border:"#DDD6FE",
+    subs:[{id:"poly2_factorisee",label:"Forme a(x−x₁)(x−x₂)",level:"stmg"},{id:"poly_spe_n1",label:"Niveau 1 — Lecture des formes",level:"spe"},{id:"poly_spe_n2",label:"Niveau 2 — Résolution facile (Δ)",level:"spe"},{id:"poly_spe_n3",label:"Niveau 3 — Résolution difficile",level:"spe"},{id:"poly_spe_n4",label:"Niveau 4 — Signe et parabole",level:"spe"}] },
+,
+  { id:"trigonometrie", label:"Cercle trigonométrique", emoji:"⭕", color:"#0891B2",
+    grad:"linear-gradient(135deg,#06B6D4,#0E7490)", light:"#ECFEFF", border:"#A5F3FC",
+    subs:[{id:"cercle_trigo",label:"Placer un angle sur le cercle",levelPicker:true,levelType:"cercle_trigo",levels:["spe","term"]}] },
 ];
 
 // ── Utils ──────────────────────────────────────────────────────────────────────
@@ -5451,13 +5686,35 @@ function RacinesLevelScreen({catId, qCount, onStart, onBack}) {
   );
 }
 
+const NIVEAU_LABELS = {
+  "sec":  "2nde",
+  "tc":   "1ère — Tronc commun",
+  "stmg": "1ère STMG",
+  "spe":  "1ère Spé",
+  "term": "Terminale Spé",
+};
+const NIVEAU_COLORS = {
+  "sec":  "#0369A1",
+  "tc":   "#2563EB",
+  "stmg": "#059669",
+  "spe":  "#DC2626",
+  "term": "#7C3AED",
+};
+
 function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker}) {
   const cat=getCat(catId);
+  const [niveau,setNiveau]=useState(null);
   const [sel,setSel]=useState([]);
-  // Filter out levelPicker subs from normal selection
+
+  const levelsInCat=[...new Set(cat.subs.map(s=>s.level).filter(Boolean))];
   const normalSubs = cat.subs.filter(s=>!s.levelPicker);
+  const visibleSubs = niveau
+    ? normalSubs.filter(s=>s.level===niveau)
+    : normalSubs;
+
   const toggle=id=>setSel(s=>s.includes(id)?s.filter(x=>x!==id):[...s,id]);
-  const toggleAll=()=>setSel(s=>s.length===normalSubs.length?[]:normalSubs.map(s=>s.id));
+  const toggleAll=()=>setSel(s=>visibleSubs.every(s2=>s.includes(s2.id))?s.filter(id=>!visibleSubs.find(s2=>s2.id===id)):[...new Set([...s,...visibleSubs.map(s2=>s2.id)])]);
+  const allVis=visibleSubs.length>0&&visibleSubs.every(s=>sel.includes(s.id));
   const pool=getSubQ(catId,sel);
   const canStart=sel.length>0&&pool.length>0;
   return (
@@ -5467,10 +5724,37 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker}) {
         <div style={{width:36,height:36,borderRadius:10,background:cat.grad,display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}}>{cat.emoji}</div>
         <h2 style={{fontFamily:"'Nunito',sans-serif",fontSize:18,fontWeight:900,color:"#1E293B"}}>{cat.label}</h2>
       </div>
-      <p style={{color:"#64748B",fontSize:12,marginBottom:10}}>{qCount} questions</p>
-      <button onClick={toggleAll} style={{background:sel.length===normalSubs.length?cat.light:"#F8FAFC",border:`1.5px solid ${sel.length===normalSubs.length?cat.border:"#E2E8F0"}`,borderRadius:10,padding:"7px 12px",cursor:"pointer",fontSize:12,fontWeight:700,color:sel.length===normalSubs.length?cat.color:"#475569",marginBottom:8,textAlign:"left"}}>
-        {sel.length===normalSubs.length?"✅ Tout désélectionner":"☑️ Tout sélectionner"}
-      </button>
+      <p style={{color:"#64748B",fontSize:12,marginBottom:6}}>{qCount} questions</p>
+
+      {levelsInCat.length>0&&(
+        <div style={{display:"flex",gap:5,marginBottom:8,flexWrap:"wrap"}}>
+          <button onClick={()=>{setNiveau(null);setSel([]);}}
+            style={{padding:"4px 10px",borderRadius:20,border:`1.5px solid ${!niveau?"#1E293B":"#E2E8F0"}`,
+              background:!niveau?"#1E293B":"#fff",color:!niveau?"#fff":"#64748B",
+              fontSize:10,fontWeight:700,cursor:"pointer"}}>Tous</button>
+          {["sec","tc","stmg","spe","term"].filter(lv=>levelsInCat.includes(lv)).map(lv=>(
+            <button key={lv} onClick={()=>{setNiveau(lv);setSel([]);}}
+              style={{padding:"4px 10px",borderRadius:20,
+                border:`1.5px solid ${niveau===lv?NIVEAU_COLORS[lv]:"#E2E8F0"}`,
+                background:niveau===lv?NIVEAU_COLORS[lv]:"#fff",
+                color:niveau===lv?"#fff":"#64748B",
+                fontSize:10,fontWeight:700,cursor:"pointer"}}>
+              {NIVEAU_LABELS[lv]}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {visibleSubs.length===0?(
+        <div style={{flex:1,display:"flex",alignItems:"center",justifyContent:"center",flexDirection:"column",gap:10,color:"#94A3B8"}}>
+          <span style={{fontSize:36}}>🎓</span>
+          <span style={{fontSize:13,fontWeight:600,textAlign:"center"}}>Rien pour ce niveau dans cette section… pour l'instant !</span>
+        </div>
+      ):(
+        <>
+          <button onClick={toggleAll} style={{background:allVis?cat.light:"#F8FAFC",border:`1.5px solid ${allVis?cat.border:"#E2E8F0"}`,borderRadius:10,padding:"7px 12px",cursor:"pointer",fontSize:12,fontWeight:700,color:allVis?cat.color:"#475569",marginBottom:8,textAlign:"left"}}>
+            {allVis?"✅ Tout désélectionner":"☑️ Tout sélectionner"}
+          </button>
       <Scroll>
         {cat.subs.map((s,i)=>{
           // Special levelPicker entry — button that opens RacinesLevelScreen
@@ -5500,7 +5784,9 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker}) {
             </button>
           );
         })}
-      </Scroll>
+        </Scroll>
+        </>
+      )}
       <button onClick={()=>canStart&&onStart(pool)} style={{marginTop:10,border:"none",borderRadius:12,padding:"14px",background:canStart?cat.grad:"#E2E8F0",color:canStart?"#fff":"#94A3B8",fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:800,cursor:canStart?"pointer":"not-allowed",flexShrink:0,boxShadow:canStart?`0 5px 16px ${cat.color}44`:"none"}}>
         {canStart?`Démarrer (${Math.min(pool.length,qCount)} questions) →`:"Sélectionne au moins un thème"}
       </button>
@@ -6318,6 +6604,326 @@ function ResultScreen({score,total,catId,onReplay,onHome}) {
 }
 
 // ── Root ───────────────────────────────────────────────────────────────────────
+
+// ════════════════════════════════════════════════════════════════════════════
+// ── CERCLE TRIGONOMÉTRIQUE ── composant auto-contenu ────────────────────────
+// ════════════════════════════════════════════════════════════════════════════
+const PI_TRIGO = Math.PI;
+const r_trigo = String.raw;
+
+const TRIGO_POS = {
+  p0:   { color:"#2563EB", cos:r_trigo`1`,                    sin:r_trigo`0`,                    cosS:"1",       sinS:"0"      },
+  p16:  { color:"#DC2626", cos:r_trigo`\tfrac{\sqrt{3}}{2}`,  sin:r_trigo`\tfrac{1}{2}`,         cosS:"\u221a3/2",sinS:"1/2"   },
+  p14:  { color:"#16A34A", cos:r_trigo`\tfrac{\sqrt{2}}{2}`,  sin:r_trigo`\tfrac{\sqrt{2}}{2}`,  cosS:"\u221a2/2",sinS:"\u221a2/2"},
+  p13:  { color:"#DC2626", cos:r_trigo`\tfrac{1}{2}`,         sin:r_trigo`\tfrac{\sqrt{3}}{2}`,  cosS:"1/2",     sinS:"\u221a3/2"},
+  p12:  { color:"#2563EB", cos:r_trigo`0`,                    sin:r_trigo`1`,                    cosS:"0",       sinS:"1"      },
+  p23:  { color:"#DC2626", cos:r_trigo`-\tfrac{1}{2}`,        sin:r_trigo`\tfrac{\sqrt{3}}{2}`,  cosS:"-1/2",    sinS:"\u221a3/2"},
+  p34:  { color:"#16A34A", cos:r_trigo`-\tfrac{\sqrt{2}}{2}`, sin:r_trigo`\tfrac{\sqrt{2}}{2}`,  cosS:"-\u221a2/2",sinS:"\u221a2/2"},
+  p56:  { color:"#DC2626", cos:r_trigo`-\tfrac{\sqrt{3}}{2}`, sin:r_trigo`\tfrac{1}{2}`,         cosS:"-\u221a3/2",sinS:"1/2"  },
+  p1:   { color:"#2563EB", cos:r_trigo`-1`,                   sin:r_trigo`0`,                    cosS:"-1",      sinS:"0"      },
+  p76:  { color:"#DC2626", cos:r_trigo`-\tfrac{\sqrt{3}}{2}`, sin:r_trigo`-\tfrac{1}{2}`,        cosS:"-\u221a3/2",sinS:"-1/2" },
+  p54:  { color:"#16A34A", cos:r_trigo`-\tfrac{\sqrt{2}}{2}`, sin:r_trigo`-\tfrac{\sqrt{2}}{2}`, cosS:"-\u221a2/2",sinS:"-\u221a2/2"},
+  p43:  { color:"#DC2626", cos:r_trigo`-\tfrac{1}{2}`,        sin:r_trigo`-\tfrac{\sqrt{3}}{2}`, cosS:"-1/2",    sinS:"-\u221a3/2"},
+  p32:  { color:"#2563EB", cos:r_trigo`0`,                    sin:r_trigo`-1`,                   cosS:"0",       sinS:"-1"     },
+  p53:  { color:"#DC2626", cos:r_trigo`\tfrac{1}{2}`,         sin:r_trigo`-\tfrac{\sqrt{3}}{2}`, cosS:"1/2",     sinS:"-\u221a3/2"},
+  p74:  { color:"#16A34A", cos:r_trigo`\tfrac{\sqrt{2}}{2}`,  sin:r_trigo`-\tfrac{\sqrt{2}}{2}`, cosS:"\u221a2/2",sinS:"-\u221a2/2"},
+  p116: { color:"#DC2626", cos:r_trigo`\tfrac{\sqrt{3}}{2}`,  sin:r_trigo`-\tfrac{1}{2}`,        cosS:"\u221a3/2",sinS:"-1/2"  },
+};
+
+const mkt = (dtex, angle, pk, rtex) => ({ displayTex:dtex, angle, reductionTex:rtex||null, ...TRIGO_POS[pk] });
+
+const TRIGO_L1 = [
+  mkt(r_trigo`0`,                0,       "p0"),
+  mkt(r_trigo`\frac{\pi}{6}`,   PI_TRIGO/6,   "p16"),
+  mkt(r_trigo`\frac{\pi}{4}`,   PI_TRIGO/4,   "p14"),
+  mkt(r_trigo`\frac{\pi}{3}`,   PI_TRIGO/3,   "p13"),
+  mkt(r_trigo`\frac{\pi}{2}`,   PI_TRIGO/2,   "p12"),
+  mkt(r_trigo`\frac{2\pi}{3}`,  2*PI_TRIGO/3, "p23"),
+  mkt(r_trigo`\frac{3\pi}{4}`,  3*PI_TRIGO/4, "p34"),
+  mkt(r_trigo`\frac{5\pi}{6}`,  5*PI_TRIGO/6, "p56"),
+  mkt(r_trigo`\pi`,             PI_TRIGO,     "p1"),
+  mkt(r_trigo`\frac{7\pi}{6}`,  7*PI_TRIGO/6, "p76"),
+  mkt(r_trigo`\frac{5\pi}{4}`,  5*PI_TRIGO/4, "p54"),
+  mkt(r_trigo`\frac{4\pi}{3}`,  4*PI_TRIGO/3, "p43"),
+  mkt(r_trigo`\frac{3\pi}{2}`,  3*PI_TRIGO/2, "p32"),
+  mkt(r_trigo`\frac{5\pi}{3}`,  5*PI_TRIGO/3, "p53"),
+  mkt(r_trigo`\frac{7\pi}{4}`,  7*PI_TRIGO/4, "p74"),
+  mkt(r_trigo`\frac{11\pi}{6}`, 11*PI_TRIGO/6,"p116"),
+  mkt(r_trigo`-\frac{\pi}{6}`,  11*PI_TRIGO/6,"p116", r_trigo`-\tfrac{\pi}{6}+2\pi=\tfrac{11\pi}{6}`),
+  mkt(r_trigo`-\frac{\pi}{4}`,  7*PI_TRIGO/4, "p74",  r_trigo`-\tfrac{\pi}{4}+2\pi=\tfrac{7\pi}{4}`),
+  mkt(r_trigo`-\frac{\pi}{2}`,  3*PI_TRIGO/2, "p32",  r_trigo`-\tfrac{\pi}{2}+2\pi=\tfrac{3\pi}{2}`),
+  mkt(r_trigo`-\pi`,            PI_TRIGO,     "p1",   r_trigo`-\pi+2\pi=\pi`),
+];
+
+const TRIGO_L2 = [
+  mkt(r_trigo`\frac{13\pi}{6}`,  PI_TRIGO/6,   "p16",  r_trigo`\tfrac{13\pi}{6}=2\pi+\tfrac{\pi}{6}`),
+  mkt(r_trigo`\frac{9\pi}{4}`,   PI_TRIGO/4,   "p14",  r_trigo`\tfrac{9\pi}{4}=2\pi+\tfrac{\pi}{4}`),
+  mkt(r_trigo`\frac{7\pi}{3}`,   PI_TRIGO/3,   "p13",  r_trigo`\tfrac{7\pi}{3}=2\pi+\tfrac{\pi}{3}`),
+  mkt(r_trigo`\frac{5\pi}{2}`,   PI_TRIGO/2,   "p12",  r_trigo`\tfrac{5\pi}{2}=2\pi+\tfrac{\pi}{2}`),
+  mkt(r_trigo`\frac{8\pi}{3}`,   2*PI_TRIGO/3, "p23",  r_trigo`\tfrac{8\pi}{3}=2\pi+\tfrac{2\pi}{3}`),
+  mkt(r_trigo`\frac{11\pi}{4}`,  3*PI_TRIGO/4, "p34",  r_trigo`\tfrac{11\pi}{4}=2\pi+\tfrac{3\pi}{4}`),
+  mkt(r_trigo`\frac{17\pi}{6}`,  5*PI_TRIGO/6, "p56",  r_trigo`\tfrac{17\pi}{6}=2\pi+\tfrac{5\pi}{6}`),
+  mkt(r_trigo`3\pi`,             PI_TRIGO,     "p1",   r_trigo`3\pi=2\pi+\pi`),
+  mkt(r_trigo`\frac{19\pi}{6}`,  7*PI_TRIGO/6, "p76",  r_trigo`\tfrac{19\pi}{6}=2\pi+\tfrac{7\pi}{6}`),
+  mkt(r_trigo`\frac{13\pi}{4}`,  5*PI_TRIGO/4, "p54",  r_trigo`\tfrac{13\pi}{4}=2\pi+\tfrac{5\pi}{4}`),
+  mkt(r_trigo`-\frac{11\pi}{6}`, PI_TRIGO/6,   "p16",  r_trigo`-\tfrac{11\pi}{6}+2\pi=\tfrac{\pi}{6}`),
+  mkt(r_trigo`-\frac{7\pi}{4}`,  PI_TRIGO/4,   "p14",  r_trigo`-\tfrac{7\pi}{4}+2\pi=\tfrac{\pi}{4}`),
+  mkt(r_trigo`-\frac{5\pi}{3}`,  PI_TRIGO/3,   "p13",  r_trigo`-\tfrac{5\pi}{3}+2\pi=\tfrac{\pi}{3}`),
+  mkt(r_trigo`-\frac{3\pi}{2}`,  PI_TRIGO/2,   "p12",  r_trigo`-\tfrac{3\pi}{2}+2\pi=\tfrac{\pi}{2}`),
+  mkt(r_trigo`-\frac{4\pi}{3}`,  2*PI_TRIGO/3, "p23",  r_trigo`-\tfrac{4\pi}{3}+2\pi=\tfrac{2\pi}{3}`),
+  mkt(r_trigo`-\frac{5\pi}{4}`,  3*PI_TRIGO/4, "p34",  r_trigo`-\tfrac{5\pi}{4}+2\pi=\tfrac{3\pi}{4}`),
+  mkt(r_trigo`-\frac{7\pi}{6}`,  5*PI_TRIGO/6, "p56",  r_trigo`-\tfrac{7\pi}{6}+2\pi=\tfrac{5\pi}{6}`),
+  mkt(r_trigo`-\pi`,             PI_TRIGO,     "p1",   r_trigo`-\pi+2\pi=\pi`),
+  mkt(r_trigo`-\frac{5\pi}{6}`,  7*PI_TRIGO/6, "p76",  r_trigo`-\tfrac{5\pi}{6}+2\pi=\tfrac{7\pi}{6}`),
+  mkt(r_trigo`-\frac{3\pi}{4}`,  5*PI_TRIGO/4, "p54",  r_trigo`-\tfrac{3\pi}{4}+2\pi=\tfrac{5\pi}{4}`),
+];
+
+const TRIGO_L3 = [
+  mkt(r_trigo`\frac{121\pi}{6}`,  PI_TRIGO/6,   "p16",  r_trigo`\tfrac{121\pi}{6}=20\pi+\tfrac{\pi}{6}`),
+  mkt(r_trigo`\frac{81\pi}{4}`,   PI_TRIGO/4,   "p14",  r_trigo`\tfrac{81\pi}{4}=20\pi+\tfrac{\pi}{4}`),
+  mkt(r_trigo`\frac{61\pi}{3}`,   PI_TRIGO/3,   "p13",  r_trigo`\tfrac{61\pi}{3}=20\pi+\tfrac{\pi}{3}`),
+  mkt(r_trigo`\frac{41\pi}{2}`,   PI_TRIGO/2,   "p12",  r_trigo`\tfrac{41\pi}{2}=20\pi+\tfrac{\pi}{2}`),
+  mkt(r_trigo`\frac{62\pi}{3}`,   2*PI_TRIGO/3, "p23",  r_trigo`\tfrac{62\pi}{3}=20\pi+\tfrac{2\pi}{3}`),
+  mkt(r_trigo`\frac{83\pi}{4}`,   3*PI_TRIGO/4, "p34",  r_trigo`\tfrac{83\pi}{4}=20\pi+\tfrac{3\pi}{4}`),
+  mkt(r_trigo`\frac{125\pi}{6}`,  5*PI_TRIGO/6, "p56",  r_trigo`\tfrac{125\pi}{6}=20\pi+\tfrac{5\pi}{6}`),
+  mkt(r_trigo`21\pi`,             PI_TRIGO,     "p1",   r_trigo`21\pi=20\pi+\pi`),
+  mkt(r_trigo`\frac{127\pi}{6}`,  7*PI_TRIGO/6, "p76",  r_trigo`\tfrac{127\pi}{6}=20\pi+\tfrac{7\pi}{6}`),
+  mkt(r_trigo`\frac{85\pi}{4}`,   5*PI_TRIGO/4, "p54",  r_trigo`\tfrac{85\pi}{4}=20\pi+\tfrac{5\pi}{4}`),
+  mkt(r_trigo`-\frac{119\pi}{6}`, PI_TRIGO/6,   "p16",  r_trigo`-\tfrac{119\pi}{6}+20\pi=\tfrac{\pi}{6}`),
+  mkt(r_trigo`-\frac{79\pi}{4}`,  PI_TRIGO/4,   "p14",  r_trigo`-\tfrac{79\pi}{4}+20\pi=\tfrac{\pi}{4}`),
+  mkt(r_trigo`-\frac{59\pi}{3}`,  PI_TRIGO/3,   "p13",  r_trigo`-\tfrac{59\pi}{3}+20\pi=\tfrac{\pi}{3}`),
+  mkt(r_trigo`-\frac{39\pi}{2}`,  PI_TRIGO/2,   "p12",  r_trigo`-\tfrac{39\pi}{2}+20\pi=\tfrac{\pi}{2}`),
+  mkt(r_trigo`-\frac{58\pi}{3}`,  2*PI_TRIGO/3, "p23",  r_trigo`-\tfrac{58\pi}{3}+20\pi=\tfrac{2\pi}{3}`),
+  mkt(r_trigo`-\frac{77\pi}{4}`,  3*PI_TRIGO/4, "p34",  r_trigo`-\tfrac{77\pi}{4}+20\pi=\tfrac{3\pi}{4}`),
+  mkt(r_trigo`-\frac{115\pi}{6}`, 5*PI_TRIGO/6, "p56",  r_trigo`-\tfrac{115\pi}{6}+20\pi=\tfrac{5\pi}{6}`),
+  mkt(r_trigo`-19\pi`,            PI_TRIGO,     "p1",   r_trigo`-19\pi+20\pi=\pi`),
+  mkt(r_trigo`-\frac{113\pi}{6}`, 7*PI_TRIGO/6, "p76",  r_trigo`-\tfrac{113\pi}{6}+20\pi=\tfrac{7\pi}{6}`),
+  mkt(r_trigo`-\frac{75\pi}{4}`,  5*PI_TRIGO/4, "p54",  r_trigo`-\tfrac{75\pi}{4}+20\pi=\tfrac{5\pi}{4}`),
+];
+
+const TRIGO_LEVELS = [
+  { id:1, label:"Niveau 1", sub:"Angles de base du cercle trigonom\u00e9trique", color:"#2563EB", emoji:"\uD83D\uDD35", questions:TRIGO_L1 },
+  { id:2, label:"Niveau 2", sub:"Angles positifs et n\u00e9gatifs",              color:"#DC2626", emoji:"\uD83D\uDD34", questions:TRIGO_L2 },
+  { id:3, label:"Niveau 3", sub:"Grands angles",                                 color:"#7C3AED", emoji:"\uD83D\uDFE3", questions:TRIGO_L3 },
+];
+
+const TRIGO_TOL = 16 * Math.PI / 180;
+const CX_T = 155, CY_T = 155, R_T = 128;
+const pxT = a => CX_T + R_T * Math.cos(a);
+const pyT = a => CY_T - R_T * Math.sin(a);
+
+function trigoAngleDiff(a, b) {
+  let d = Math.abs(a - b) % (2*Math.PI);
+  return d > Math.PI ? 2*Math.PI - d : d;
+}
+
+function toTrigoLabel(tex) {
+  return tex.replace(/\\t?frac\{([^}]+)\}\{([^}]+)\}/g,"$1/$2")
+            .replace(/\\pi/g,"\u03c0").replace(/\\/g,"");
+}
+
+function TrigCircleSVG({ current, onPlace, state, playerAngle, levelColor }) {
+  const svgRef = useRef();
+  const getAngle = useCallback((e) => {
+    const svg = svgRef.current; if(!svg) return null;
+    const rect = svg.getBoundingClientRect();
+    const touch = e.touches?.[0]||e.changedTouches?.[0];
+    const cx = touch?touch.clientX:e.clientX;
+    const cy = touch?touch.clientY:e.clientY;
+    const sc = 310/rect.width;
+    const dx=(cx-rect.left)*sc-CX_T, dy=(cy-rect.top)*sc-CY_T;
+    if(Math.sqrt(dx*dx+dy*dy)<18) return null;
+    let a=Math.atan2(-dy,dx); if(a<0) a+=2*Math.PI; return a;
+  },[]);
+  const handle=useCallback((e)=>{
+    if(state!=="idle") return; e.preventDefault();
+    const a=getAngle(e); if(a!==null) onPlace(a);
+  },[state,getAngle,onPlace]);
+
+  return (
+    <svg ref={svgRef} viewBox="0 0 310 310" width="100%"
+      style={{cursor:state==="idle"?"crosshair":"default",touchAction:"none",display:"block",margin:"0 auto"}}
+      onClick={handle} onTouchEnd={handle}>
+      <rect width="310" height="310" fill="#F8FAFC" rx="14"/>
+      <line x1="18" y1={CY_T} x2="295" y2={CY_T} stroke="#94A3B8" strokeWidth="1.5"/>
+      <line x1={CX_T} y1="18" x2={CX_T} y2="295" stroke="#94A3B8" strokeWidth="1.5"/>
+      <polygon points={`295,${CY_T-4} 302,${CY_T} 295,${CY_T+4}`} fill="#94A3B8"/>
+      <polygon points={`${CX_T-4},18 ${CX_T},11 ${CX_T+4},18`} fill="#94A3B8"/>
+      <circle cx={CX_T} cy={CY_T} r={R_T} fill="none" stroke="#EF4444" strokeWidth="2"/>
+      {TRIGO_L1.slice(0,16).map((p,i)=>(
+        <circle key={i} cx={pxT(p.angle)} cy={pyT(p.angle)} r="5.5" fill={p.color} opacity="0.8"/>
+      ))}
+      <text x={CX_T+R_T+5}   y={CY_T+4}    fontSize="10" fill="#94A3B8">1</text>
+      <text x={CX_T-R_T-14}  y={CY_T+4}    fontSize="10" fill="#94A3B8">-1</text>
+      <text x={CX_T+4}       y={CY_T-R_T-4}fontSize="10" fill="#94A3B8">1</text>
+      <text x={CX_T+4}       y={CY_T+R_T+13}fontSize="10"fill="#94A3B8">-1</text>
+      <text x={CX_T+4}       y={CY_T+13}   fontSize="10" fill="#94A3B8">O</text>
+      {state==="idle"&&<circle cx={CX_T} cy={CY_T} r={R_T} fill="none" stroke={current?.color||levelColor} strokeWidth="14" opacity="0.07"/>}
+      {state==="wrong"&&playerAngle!==null&&(
+        <><circle cx={pxT(playerAngle)} cy={pyT(playerAngle)} r="8" fill="#FBBF24"/>
+          <text x={pxT(playerAngle)} y={pyT(playerAngle)+1} textAnchor="middle" dominantBaseline="middle" fontSize="11" fill="white" fontWeight="bold">\u2717</text></>
+      )}
+      {state!=="idle"&&current&&(()=>{
+        const a=current.angle, ptx=pxT(a), pty=pyT(a), col=current.color;
+        const lx=CX_T+(R_T+19)*Math.cos(a), ly=CY_T-(R_T+19)*Math.sin(a);
+        const anchor=Math.cos(a)>0.1?"start":Math.cos(a)<-0.1?"end":"middle";
+        const dyL=Math.sin(a)>0.1?-4:Math.sin(a)<-0.1?12:4;
+        const cosAnch=Math.cos(a)>0.15?"start":Math.cos(a)<-0.15?"end":"middle";
+        const cosY=Math.sin(a)>=0?CY_T+14:CY_T-6;
+        const sinX=Math.cos(a)>=0?CX_T-5:CX_T+5;
+        const sinAnch=Math.cos(a)>=0?"end":"start";
+        return (<>
+          <path d={`M${CX_T+32},${CY_T} A32,32 0 ${a>Math.PI?1:0},0 ${CX_T+32*Math.cos(a)},${CY_T-32*Math.sin(a)}`} fill="none" stroke={col} strokeWidth="2" opacity="0.7"/>
+          <line x1={CX_T} y1={CY_T} x2={ptx} y2={pty} stroke={col} strokeWidth="1.8" opacity="0.6"/>
+          <line x1={ptx} y1={pty} x2={ptx} y2={CY_T} stroke={col} strokeWidth="1.5" strokeDasharray="5,3" opacity="0.8"/>
+          <line x1={ptx-4} y1={CY_T} x2={ptx+4} y2={CY_T} stroke={col} strokeWidth="2.5" opacity="0.95"/>
+          <text x={ptx} y={cosY} textAnchor={cosAnch} fontSize="10" fontWeight="bold" fill={col} fontFamily="sans-serif">{current.cosS}</text>
+          <line x1={ptx} y1={pty} x2={CX_T} y2={pty} stroke={col} strokeWidth="1.5" strokeDasharray="5,3" opacity="0.8"/>
+          <line x1={CX_T} y1={pty-4} x2={CX_T} y2={pty+4} stroke={col} strokeWidth="2.5" opacity="0.95"/>
+          <text x={sinX} y={pty+1} textAnchor={sinAnch} dominantBaseline="middle" fontSize="10" fontWeight="bold" fill={col} fontFamily="sans-serif">{current.sinS}</text>
+          <circle cx={ptx} cy={pty} r="8" fill={col}/>
+          <text x={ptx} y={pty+1} textAnchor="middle" dominantBaseline="middle" fontSize="11" fill="white" fontWeight="bold">{state==="correct"?"\u2713":"\u2605"}</text>
+          <text x={lx} y={ly+dyL} textAnchor={anchor} fontSize="11" fontWeight="bold" fill={col} fontFamily="serif">{toTrigoLabel(current.displayTex)}</text>
+        </>);
+      })()}
+    </svg>
+  );
+}
+
+function CercleTrigoScreen({onBack}) {
+  const [trigoScreen, setTrigoScreen] = useState("home"); // home | quiz | result
+  const [levelId, setLevelId]         = useState(null);
+  const [queue, setQueue]             = useState([]);
+  const [idx, setIdx]                 = useState(0);
+  const [score, setScore]             = useState(0);
+  const [state, setState]             = useState("idle");
+  const [playerAngle, setPlayer]      = useState(null);
+
+  const level   = TRIGO_LEVELS.find(l=>l.id===levelId);
+  const current = queue[idx];
+
+  const startLevel = (id) => {
+    const lv = TRIGO_LEVELS.find(l=>l.id===id);
+    setLevelId(id);
+    setQueue(shuffle(lv.questions));
+    setIdx(0); setScore(0); setState("idle"); setPlayer(null);
+    setTrigoScreen("quiz");
+  };
+
+  const handlePlace = useCallback((a) => {
+    if(state!=="idle"||!current) return;
+    const ok = trigoAngleDiff(a, current.angle) <= TRIGO_TOL;
+    setPlayer(a); setState(ok?"correct":"wrong");
+    if(ok) setScore(s=>s+1);
+  }, [state, current]);
+
+  const handleNext = () => {
+    if(idx+1>=queue.length){ setTrigoScreen("result"); return; }
+    setIdx(i=>i+1); setState("idle"); setPlayer(null);
+  };
+
+  if(trigoScreen==="home") return (
+    <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",padding:"18px 16px 14px"}}>
+      <Back onClick={onBack}/>
+      <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:16}}>
+        <div style={{width:36,height:36,borderRadius:10,background:"linear-gradient(135deg,#06B6D4,#0E7490)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:18}}>⭕</div>
+        <div>
+          <h2 style={{fontFamily:"'Nunito',sans-serif",fontSize:17,fontWeight:900,color:"#1E293B"}}>Cercle trigonom\u00e9trique</h2>
+          <p style={{fontSize:11,color:"#64748B"}}>Place l\u2019angle sur le cercle \u00b7 20 questions</p>
+        </div>
+      </div>
+      <Scroll>
+        {TRIGO_LEVELS.map(lv=>(
+          <button key={lv.id} onClick={()=>startLevel(lv.id)}
+            style={{padding:"16px 18px",border:"none",borderRadius:16,
+              background:`linear-gradient(135deg,${lv.color},${lv.color}cc)`,
+              color:"#fff",cursor:"pointer",textAlign:"left",
+              boxShadow:`0 3px 14px ${lv.color}33`,marginBottom:4,
+              display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+            <div>
+              <div style={{fontFamily:"'Nunito',sans-serif",fontSize:15,fontWeight:800}}>{lv.emoji} {lv.label}</div>
+              <div style={{fontSize:12,opacity:.85,marginTop:2}}>{lv.sub}</div>
+            </div>
+            <span style={{fontSize:20,opacity:.8}}>\u2192</span>
+          </button>
+        ))}
+      </Scroll>
+    </div>
+  );
+
+  if(trigoScreen==="result") {
+    const pct = score/queue.length;
+    const stars = pct>=.9?3:pct>=.6?2:pct>=.3?1:0;
+    return (
+      <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",padding:"24px 18px",alignItems:"center",justifyContent:"center",gap:14}}>
+        <Sigma emotion={pct>=.75?"love":pct>=.5?"cool":"thinking"} size={140}/>
+        <div style={{fontFamily:"'Nunito',sans-serif",fontSize:22,fontWeight:900,color:"#1E293B"}}>
+          {pct===1?"Parfait !":pct>=.75?"Tr\u00e8s bien !":pct>=.5?"Pas mal !":"\u00c0 retravailler\u2026"}
+        </div>
+        <div style={{display:"flex",gap:4}}>{[1,2,3].map(s=><span key={s} style={{fontSize:32,opacity:s<=stars?1:.18}}>\u2b50</span>)}</div>
+        <div style={{color:"#64748B",fontSize:15,fontWeight:700}}>{score} / {queue.length} correctes</div>
+        <div style={{display:"flex",gap:8,width:"100%"}}>
+          <button onClick={()=>startLevel(levelId)} style={{flex:1,padding:"13px",border:"none",borderRadius:13,
+            background:`linear-gradient(135deg,${level?.color},${level?.color}bb)`,
+            color:"#fff",fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:800,cursor:"pointer"}}>
+            \uD83D\uDD04 Rejouer
+          </button>
+          <button onClick={()=>setTrigoScreen("home")} style={{flex:1,padding:"13px",border:"2px solid #E2E8F0",borderRadius:13,
+            background:"#fff",color:"#64748B",fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:700,cursor:"pointer"}}>
+            \u2190 Niveaux
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",padding:"14px 14px 10px",gap:10}}>
+      <div style={{display:"flex",alignItems:"center",gap:8}}>
+        <button onClick={()=>setTrigoScreen("home")} style={{flexShrink:0,padding:"4px 10px",border:"1.5px solid #E2E8F0",borderRadius:8,background:"#fff",color:"#64748B",fontSize:12,fontWeight:700,cursor:"pointer"}}>\u2190 Retour</button>
+        <div style={{flex:1,height:6,background:"#E2E8F0",borderRadius:99,overflow:"hidden"}}>
+          <div style={{width:`${(idx/queue.length)*100}%`,height:"100%",background:level?.color,borderRadius:99,transition:"width .4s"}}/>
+        </div>
+        <span style={{fontSize:12,color:"#94A3B8",fontWeight:700}}>{idx+1}/{queue.length}</span>
+        <span style={{fontSize:13,fontWeight:800,color:"#F59E0B"}}>\u2726 {score}</span>
+      </div>
+
+      {current&&(
+        <div style={{textAlign:"center",background:"#F0F4FF",borderRadius:14,padding:"10px 14px"}}>
+          <div style={{fontSize:12,color:"#64748B",marginBottom:4}}>Place sur le cercle l\u2019angle</div>
+          <div style={{fontSize:24}}><M tex={current.displayTex}/></div>
+          <div style={{fontSize:10,color:level?.color,fontWeight:700,marginTop:2}}>{level?.label} \u2014 {level?.sub}</div>
+        </div>
+      )}
+
+      {current&&<TrigCircleSVG current={current} onPlace={handlePlace} state={state} playerAngle={playerAngle} levelColor={level?.color}/>}
+
+      {state!=="idle"&&current&&(
+        <div style={{borderRadius:12,padding:"10px 12px",
+          background:state==="correct"?"#ECFDF5":"#FEF2F2",
+          border:`2px solid ${state==="correct"?"#10B981":"#EF4444"}`,
+          display:"flex",flexDirection:"column",gap:5,flexShrink:0}}>
+          <div style={{fontWeight:800,fontSize:13,color:state==="correct"?"#065F46":"#991B1B"}}>
+            {state==="correct"?"\u2705 Exact !":"\u274C La position \u2605 est la bonne"}
+          </div>
+          {current.reductionTex&&<div style={{fontSize:11,color:"#475569",background:"#F1F5F9",borderRadius:7,padding:"4px 8px"}}><M tex={current.reductionTex}/></div>}
+          <div style={{fontSize:12,overflow:"hidden"}}><M tex={r_trigo`\cos\!\left(` + current.displayTex + r_trigo`\right)=` + current.cos}/></div>
+          <div style={{fontSize:12,overflow:"hidden"}}><M tex={r_trigo`\sin\!\left(` + current.displayTex + r_trigo`\right)=` + current.sin}/></div>
+        </div>
+      )}
+
+      {state!=="idle"&&(
+        <button onClick={handleNext} style={{flexShrink:0,padding:"12px",border:"none",borderRadius:12,
+          background:`linear-gradient(135deg,${level?.color},${level?.color}bb)`,
+          color:"#fff",fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:800,cursor:"pointer"}}>
+          {idx+1<queue.length?"Angle suivant \u2192":"Voir mon score \uD83C\uDF89"}
+        </button>
+      )}
+      {state==="idle"&&<div style={{textAlign:"center",fontSize:11,color:"#94A3B8",flexShrink:0}}>\uD83D\uDC46 Appuie sur le cercle pour placer le point</div>}
+    </div>
+  );
+}
+
 function AutoMaths() {
   const katexReady = useKaTeX();
 
@@ -6481,7 +7087,7 @@ function AutoMaths() {
   // ── Standard quiz handlers ────────────────────────────────────────────────
   const hReplay   = () => { setQuestions(shuffle(pool).slice(0,qCount)); setScreen("quiz"); };
   const hHome     = () => { setScreen("home"); setMode(null); setCatId(null); setQuizMode(null); setTrackCat(null); setTrackSub(null); };
-  const hDashboard= () => { setQuizMode(null); setTrackCat(null); setTrackSub(null); setScreen("dashboard"); };
+  const hDashboard= () => { setQuizMode(null); setTrackCat(null); setTrackSub(null); setScreen(profile?"dashboard":"home"); };
   const hMode     = m  => { setMode(m); if(m==="bac") setScreen("bac_subjects"); else if(m==="tester") setScreen("category"); else setScreen("submode"); };
   const hSubmode  = sm => { if(sm==="complet"){const n=mode==="rapide"?20:50;setQCount(n);startQuiz(getAllQ(),n,"submode");}else setScreen("category"); };
   const hCat      = cid=> { setCatId(cid); if(mode==="tester") setScreen("count"); else setScreen("subcategory"); };
@@ -6586,6 +7192,7 @@ function AutoMaths() {
           {screen==="level_picker"  && levelType==="racines"       && <RacinesLevelScreen       catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen("subcategory")}/>}
           {screen==="level_picker"  && levelType==="identites"     && <IdentitesLevelScreen     catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen("subcategory")}/>}
           {screen==="level_picker"  && levelType==="factorisation" && <FactorisationLevelScreen catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen("subcategory")}/>}
+          {screen==="level_picker"  && levelType==="cercle_trigo"  && <CercleTrigoScreen onBack={()=>setScreen("subcategory")}/>}
           {screen==="bac_subjects"   && <BacSubjectScreen onStart={hBacStart} onBack={()=>setScreen("home")}/>}
           {screen==="count"         && <CountScreen     catId={mode==="bac"?null:catId} allMode={mode==="bac"} onCount={hCount} onBack={()=>setScreen(mode==="bac"?"home":"category")}/>}
           {screen==="quiz"          && <QuizScreen      questions={questions} catId={catId||"fonctions"} onFinish={hFinish} onBack={()=>setScreen(prevScreen)}/>}
