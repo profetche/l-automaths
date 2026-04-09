@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>AutoMaths — Tableau de bord professeur</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'DM Sans',sans-serif;background:#F1F5F9;color:#1E293B;min-height:100vh}
+    .header{background:linear-gradient(135deg,#1A1A2E,#0F3460);padding:20px 32px;display:flex;align-items:center;gap:16px}
+    .header h1{font-family:'Nunito',sans-serif;font-weight:900;font-size:24px;color:#fff}
+    .header h1 span{color:#F59E0B}
+    .header p{color:#64748B;font-size:13px;margin-top:2px}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    .grid{display:grid;grid-template-columns:300px 1fr;gap:20px}
+    .card{background:#fff;border-radius:16px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+    .card h2{font-family:'Nunito',sans-serif;font-weight:800;font-size:16px;margin-bottom:14px;color:#1E293B}
+    .btn{padding:10px 18px;border:none;border-radius:10px;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:800;font-size:13px}
+    .btn-primary{background:linear-gradient(135deg,#7C3AED,#5B21B6);color:#fff}
+    .btn-danger{background:#FEF2F2;color:#EF4444;border:1.5px solid #FECACA}
+    .student-card{background:#F8FAFC;border-radius:12px;padding:14px;margin-bottom:10px;border:2px solid #E2E8F0;cursor:pointer;transition:.15s}
+    .student-card:hover{border-color:#7C3AED;background:#F5F3FF}
+    .student-card.active{border-color:#7C3AED;background:#F5F3FF}
+    .badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:99px;font-size:10px;font-weight:700}
+    .progress-bar{height:6px;background:#E2E8F0;border-radius:99px;overflow:hidden;margin:4px 0}
+    .progress-fill{height:100%;border-radius:99px;transition:width .6s ease}
+    .stat-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px}
+    .stat{background:#F8FAFC;border-radius:12px;padding:12px;text-align:center}
+    .stat .val{font-family:'Nunito',sans-serif;font-weight:900;font-size:24px}
+    .stat .lbl{color:#64748B;font-size:10px;text-transform:uppercase;letter-spacing:.5px}
+    .cat-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #F1F5F9}
+    .alert{background:#FEF9C3;border:1.5px solid #FDE68A;border-radius:10px;padding:10px 12px;font-size:12px;color:#92400E;margin-bottom:12px}
+    table{width:100%;border-collapse:collapse;font-size:12px}
+    th{background:#F1F5F9;padding:8px 10px;text-align:left;font-weight:700;color:#64748B;font-size:10px;text-transform:uppercase}
+    td{padding:8px 10px;border-bottom:1px solid #F8FAFC}
+    #dropzone{border:2.5px dashed #CBD5E1;border-radius:14px;padding:32px;text-align:center;color:#94A3B8;cursor:pointer;transition:.2s}
+    #dropzone:hover,#dropzone.drag{border-color:#7C3AED;background:#F5F3FF}
+    input[type=file]{display:none}
+    .empty{text-align:center;padding:40px;color:#94A3B8}
+    @media(max-width:700px){.grid{grid-template-columns:1fr}.stat-grid{grid-template-columns:1fr 1fr}}
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div style="font-size:36px">🤖</div>
+  <div>
+    <h1>l'Auto<span>Maths</span> — Tableau de bord <span style="color:#94A3B8;font-size:16px">Professeur</span></h1>
+    <p>Visualisez les progrès de vos élèves en temps réel</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="grid">
+
+    <!-- LEFT: Student list -->
+    <div>
+      <div class="card" style="margin-bottom:16px">
+        <h2>📥 Importer un élève</h2>
+        <p style="font-size:12px;color:#64748B;margin-bottom:12px">
+          Scannez le QR code de l'élève (depuis son téléphone) ou importez le fichier JSON.
+        </p>
+        <button class="btn btn-primary" onclick="startScan()" style="width:100%;margin-bottom:10px">
+          📷 Scanner le QR code élève
+        </button>
+        <div id="scannerContainer" style="display:none;margin-bottom:10px;border-radius:12px;overflow:hidden;background:#000;position:relative">
+          <video id="qrVideo" style="width:100%;max-height:220px;object-fit:cover;display:block" playsinline></video>
+          <canvas id="qrCanvas" style="display:none"></canvas>
+          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+            width:160px;height:160px;border:3px solid #F59E0B;border-radius:8px;pointer-events:none">
+            <div style="position:absolute;top:-3px;left:-3px;width:20px;height:20px;border-top:4px solid #F59E0B;border-left:4px solid #F59E0B;border-radius:3px 0 0 0"></div>
+            <div style="position:absolute;top:-3px;right:-3px;width:20px;height:20px;border-top:4px solid #F59E0B;border-right:4px solid #F59E0B;border-radius:0 3px 0 0"></div>
+            <div style="position:absolute;bottom:-3px;left:-3px;width:20px;height:20px;border-bottom:4px solid #F59E0B;border-left:4px solid #F59E0B;border-radius:0 0 0 3px"></div>
+            <div style="position:absolute;bottom:-3px;right:-3px;width:20px;height:20px;border-bottom:4px solid #F59E0B;border-right:4px solid #F59E0B;border-radius:0 0 3px 0"></div>
+          </div>
+          <button onclick="stopScan()" style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,.7);border:none;color:#fff;border-radius:8px;padding:5px 10px;cursor:pointer;font-size:12px">✕</button>
+        </div>
+        <div id="scanStatus" style="display:none;text-align:center;font-size:11px;color:#64748B;margin-bottom:8px">
+          🔍 Pointez la caméra vers le QR code de l'élève…
+        </div>
+        <div style="text-align:center;color:#CBD5E1;font-size:11px;margin:8px 0">— ou —</div>
+        <div id="dropzone" onclick="document.getElementById('fileInput').click()">
+          <div style="font-size:24px;margin-bottom:6px">📂</div>
+          <div style="font-weight:700;font-size:13px;margin-bottom:3px">Glisser le fichier JSON</div>
+          <div style="font-size:10px">ou cliquer pour sélectionner</div>
+        </div>
+        <input type="file" id="fileInput" accept=".json" onchange="importFile(event)"/>
+        <button class="btn" style="background:#E2E8F0;width:100%;margin-top:8px" onclick="pasteJSON()">📋 Coller JSON</button>
+      </div>
+
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+          <h2 style="margin:0">👥 Élèves (<span id="count">0</span>)</h2>
+          <button class="btn btn-danger" onclick="clearAll()" style="font-size:11px;padding:6px 10px">Tout effacer</button>
+        </div>
+        <div id="studentList"><div class="empty">Aucun élève importé</div></div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Student detail -->
+    <div>
+      <div id="detailPanel" class="card">
+        <div class="empty">
+          <div style="font-size:48px;margin-bottom:12px">📊</div>
+          <div style="font-weight:700;margin-bottom:6px">Sélectionnez un élève</div>
+          <div style="font-size:12px;color:#CBD5E1">Importez des données élève pour commencer</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Class overview -->
+  <div class="card" style="margin-top:20px">
+    <h2>📈 Vue classe</h2>
+    <div id="classView"><div class="empty" style="padding:20px">Importez au moins un élève</div></div>
+  </div>
+</div>
+
+<script>
+let students = JSON.parse(localStorage.getItem('amTeacher') || '[]');
+let selectedIdx = null;
+
+const CATS = [
+  {id:'fonctions', label:'Fonctions', emoji:'📈', color:'#2563EB'},
+  {id:'pourcentages', label:'Pourcentages', emoji:'💹', color:'#059669'},
+  {id:'numerique', label:'Calcul numérique', emoji:'🔢', color:'#7C3AED'},
+  {id:'litteral', label:'Calcul littéral', emoji:'📐', color:'#DC2626'},
+  {id:'probabilites', label:'Probabilités', emoji:'🎲', color:'#0891B2'},
+  {id:'derivation', label:'Dérivation', emoji:'∂', color:'#EA580C'},
+  {id:'bac', label:'Bac', emoji:'🏆', color:'#B45309'},
+];
+
+function saveStudents() {
+  localStorage.setItem('amTeacher', JSON.stringify(students));
+}
+
+function importFile(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      const data = JSON.parse(ev.target.result);
+      addStudent(data);
+    } catch { alert('Fichier JSON invalide'); }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+}
+
+function pasteJSON() {
+  const txt = prompt('Colle le JSON exporté depuis l\'app :');
+  if (!txt) return;
+  try {
+    const data = JSON.parse(txt);
+    addStudent(data);
+  } catch { alert('JSON invalide'); }
+}
+
+function addStudent(data) {
+  if (!data.profile || !data.profile.name) { alert('Données invalides'); return; }
+  // Check if already exists
+  const existing = students.findIndex(s => s.profile.name === data.profile.name);
+  if (existing >= 0) {
+    students[existing] = data;
+    alert(`Données de ${data.profile.name} mises à jour !`);
+  } else {
+    students.push(data);
+    alert(`${data.profile.name} importé avec succès !`);
+  }
+  saveStudents();
+  render();
+}
+
+function clearAll() {
+  if (confirm('Supprimer tous les élèves ?')) {
+    students = [];
+    selectedIdx = null;
+    saveStudents();
+    render();
+  }
+}
+
+function selectStudent(i) {
+  selectedIdx = i;
+  render();
+}
+
+function getRate(prog) {
+  return prog && prog.pt > 0 ? Math.round(prog.pc / prog.pt * 100) : null;
+}
+
+function getStars(prog) { return prog ? (prog.stars || 0) : 0; }
+
+function render() {
+  document.getElementById('count').textContent = students.length;
+
+  // Student list
+  const listEl = document.getElementById('studentList');
+  if (!students.length) {
+    listEl.innerHTML = '<div class="empty">Aucun élève importé</div>';
+  } else {
+    listEl.innerHTML = students.map((s, i) => {
+      const prog = s.progress || {};
+      const allKeys = Object.keys(prog);
+      const stars = allKeys.reduce((a,k) => a + getStars(prog[k]), 0);
+      const mastered = allKeys.filter(k => getStars(prog[k]) >= 1).length;
+      const xp = s.xp || 0;
+      const streak = s.profile?.streak || 0;
+      return `<div class="student-card ${selectedIdx===i?'active':''}" onclick="selectStudent(${i})">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div style="font-family:'Nunito',sans-serif;font-weight:800;font-size:14px">${s.profile.name}</div>
+          <span class="badge" style="background:#EDE9FE;color:#5B21B6">⚡ ${xp} XP</span>
+        </div>
+        <div style="font-size:10px;color:#94A3B8;margin:3px 0">${s.profile.level?.replace('_',' ')||'?'} · 🔥 ${streak} jours</div>
+        <div style="display:flex;gap:6px;margin-top:6px">
+          <span class="badge" style="background:#F0FDF4;color:#10B981">⭐ ${stars}</span>
+          <span class="badge" style="background:#F0FDF4;color:#10B981">🎯 ${mastered} maîtrisées</span>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  // Detail panel
+  const panel = document.getElementById('detailPanel');
+  if (selectedIdx === null || !students[selectedIdx]) {
+    panel.innerHTML = '<div class="empty"><div style="font-size:48px;margin-bottom:12px">📊</div><div style="font-weight:700">Sélectionnez un élève</div></div>';
+  } else {
+    const s = students[selectedIdx];
+    const prog = s.progress || {};
+    const allKeys = Object.keys(prog);
+    const stars = allKeys.reduce((a,k) => a + getStars(prog[k]), 0);
+    const mastered = allKeys.filter(k => getStars(prog[k]) >= 1).length;
+    const weak = allKeys.filter(k => { const r=getRate(prog[k]); return r!==null&&r<60; })
+      .sort((a,b) => (getRate(prog[a])||100)-(getRate(prog[b])||100)).slice(0,5);
+    const xp = s.xp || 0;
+    const badges = s.badges || [];
+    const lvl = xp>=3000?'👑 Légendaire':xp>=1500?'💎 Maître':xp>=700?'🔥 Expert':xp>=300?'⚡ Confirmé':xp>=100?'📚 Apprenti':'🌱 Recrue';
+
+    panel.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <div>
+          <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:20px">${s.profile.name}</div>
+          <div style="color:#64748B;font-size:12px;margin-top:2px">${s.profile.level?.replace(/_/g,' ')} · ${lvl}</div>
+        </div>
+        <button class="btn btn-danger" onclick="removeStudent(${selectedIdx})" style="font-size:11px">Supprimer</button>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat"><div class="val" style="color:#F59E0B">⚡ ${xp}</div><div class="lbl">XP total</div></div>
+        <div class="stat"><div class="val" style="color:#10B981">⭐ ${stars}</div><div class="lbl">Étoiles</div></div>
+        <div class="stat"><div class="val" style="color:#3B82F6">🔥 ${s.profile?.streak||0}</div><div class="lbl">Streak jours</div></div>
+      </div>
+
+      ${weak.length ? `
+      <div class="alert">
+        ⚠️ <strong>Points faibles détectés :</strong>
+        ${weak.map(k => `<span style="margin-left:6px;font-style:italic">${k.replace(/:/g,' › ')} (${getRate(prog[k])}%)</span>`).join(',')}
+      </div>` : ''}
+
+      <h3 style="font-family:'Nunito',sans-serif;font-weight:800;font-size:14px;margin-bottom:10px">Progression par thème</h3>
+      ${CATS.map(cat => {
+        const catKeys = allKeys.filter(k => k.startsWith(cat.id+':'));
+        if (!catKeys.length) return '';
+        const catStars = catKeys.reduce((a,k) => a + getStars(prog[k]), 0);
+        const catMax = catKeys.length * 3;
+        const pct = catMax ? Math.round(catStars/catMax*100) : 0;
+        return `<div class="cat-row">
+          <span style="font-size:16px;width:24px">${cat.emoji}</span>
+          <div style="flex:1">
+            <div style="font-weight:700;font-size:12px">${cat.label}</div>
+            <div class="progress-bar"><div class="progress-fill" style="width:${pct}%;background:${cat.color}"></div></div>
+          </div>
+          <span style="font-size:11px;color:#94A3B8;white-space:nowrap">${catStars}/${catMax} ⭐</span>
+        </div>`;
+      }).join('')}
+
+      ${badges.length ? `
+      <div style="margin-top:14px">
+        <div style="font-weight:700;font-size:12px;margin-bottom:8px">🎖️ Badges (${badges.length})</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          ${badges.map(b => `<span class="badge" style="background:#EDE9FE;color:#5B21B6;font-size:10px">${b}</span>`).join('')}
+        </div>
+      </div>` : ''}
+    `;
+  }
+
+  // Class overview
+  const classEl = document.getElementById('classView');
+  if (!students.length) {
+    classEl.innerHTML = '<div class="empty" style="padding:20px">Importez au moins un élève</div>';
+  } else {
+    const rows = students.map((s,i) => {
+      const prog = s.progress || {};
+      const allKeys = Object.keys(prog);
+      const stars = allKeys.reduce((a,k) => a + getStars(prog[k]), 0);
+      const mastered = allKeys.filter(k => getStars(prog[k]) >= 1).length;
+      const weakCount = allKeys.filter(k => { const r=getRate(prog[k]); return r!==null&&r<60; }).length;
+      const xp = s.xp || 0;
+      return `<tr onclick="selectStudent(${i})" style="cursor:pointer">
+        <td><strong>${s.profile.name}</strong></td>
+        <td style="color:#64748B">${s.profile.level?.replace(/_/g,' ')}</td>
+        <td><span style="color:#F59E0B;font-weight:700">⚡ ${xp}</span></td>
+        <td><span style="color:#10B981;font-weight:700">⭐ ${stars}</span></td>
+        <td>${mastered}</td>
+        <td><span style="${weakCount>0?'color:#EF4444;font-weight:700':'color:#10B981'}">${weakCount>0?'⚠️ '+weakCount:'✅ 0'}</span></td>
+        <td>${s.profile?.streak||0} 🔥</td>
+      </tr>`;
+    }).join('');
+    classEl.innerHTML = `<table>
+      <thead><tr><th>Élève</th><th>Niveau</th><th>XP</th><th>Étoiles</th><th>Maîtrisées</th><th>Points faibles</th><th>Streak</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+  }
+}
+
+function removeStudent(i) {
+  if (confirm(`Supprimer ${students[i].profile.name} ?`)) {
+    students.splice(i, 1);
+    if (selectedIdx >= students.length) selectedIdx = students.length - 1;
+    if (selectedIdx < 0) selectedIdx = null;
+    saveStudents();
+    render();
+  }
+}
+
+// Drag and drop
+const dz = document.getElementById('dropzone');
+dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('drag'); });
+dz.addEventListener('dragleave', () => dz.classList.remove('drag'));
+dz.addEventListener('drop', e => {
+  e.preventDefault(); dz.classList.remove('drag');
+  const file = e.dataTransfer.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = ev => { try { addStudent(JSON.parse(ev.target.result)); } catch { alert('Fichier invalide'); } };
+    reader.readAsText(file);
+  }
+});
+
+render();
+
+// ── QR Scanner ─────────────────────────────────────────────────────────────
+let scanInterval = null;
+let videoStream  = null;
+
+function startScan() {
+  const container = document.getElementById('scannerContainer');
+  const status    = document.getElementById('scanStatus');
+  const video     = document.getElementById('qrVideo');
+  container.style.display = 'block';
+  status.style.display    = 'block';
+
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+    .then(stream => {
+      videoStream = stream;
+      video.srcObject = stream;
+      video.play();
+      scanInterval = setInterval(scanFrame, 200);
+    })
+    .catch(err => {
+      alert('Impossible d'accéder à la caméra : ' + err.message);
+      stopScan();
+    });
+}
+
+function stopScan() {
+  clearInterval(scanInterval);
+  scanInterval = null;
+  if (videoStream) { videoStream.getTracks().forEach(t => t.stop()); videoStream = null; }
+  document.getElementById('scannerContainer').style.display = 'none';
+  document.getElementById('scanStatus').style.display = 'none';
+  document.getElementById('qrVideo').srcObject = null;
+}
+
+function scanFrame() {
+  const video  = document.getElementById('qrVideo');
+  const canvas = document.getElementById('qrCanvas');
+  if (!video.readyState === video.HAVE_ENOUGH_DATA) return;
+  canvas.width  = video.videoWidth;
+  canvas.height = video.videoHeight;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const code = jsQR(imageData.data, imageData.width, imageData.height, { inversionAttempts: 'dontInvert' });
+  if (code) {
+    stopScan();
+    try {
+      const data = JSON.parse(code.data);
+      // QR data is compact format — convert to student format
+      const student = {
+        profile: { name: data.n, level: data.l, streak: data.s },
+        xp: data.x,
+        badges: [],
+        progress: buildProgressFromCompact(data.c),
+        exportedAt: new Date().toISOString(),
+        source: 'qr',
+      };
+      addStudent(student);
+    } catch(e) {
+      alert('QR code invalide ou non reconnu');
+    }
+  }
+}
+
+function buildProgressFromCompact(cats) {
+  // Reconstruct minimal progress from compact QR data
+  const prog = {};
+  if (!cats) return prog;
+  Object.entries(cats).forEach(([catId, stat]) => {
+    // Create a dummy sub entry per category with the stats
+    prog[catId + ':__summary'] = {
+      stars: stat.stars || 0,
+      pc: stat.rate || 0,
+      pt: stat.rate !== null ? 100 : 0,
+    };
+  });
+  return prog;
+}
+</script>
+</body>
+</html>
