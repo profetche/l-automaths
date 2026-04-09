@@ -1,66 +1,79 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <meta name="mobile-web-app-capable" content="yes"/>
-  <meta name="apple-mobile-web-app-capable" content="yes"/>
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-  <meta name="apple-mobile-web-app-title" content="AutoMaths"/>
-  <meta name="theme-color" content="#F59E0B"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#6C63FF" />
+  <meta name="description" content="L'AutoMaths — Entraîne-toi en maths comme sur Duolingo" />
+
   <title>l'AutoMaths</title>
-  <link rel="manifest" href="/manifest.json"/>
-  <link rel="apple-touch-icon" href="/icon-192.png"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"/>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+  <!-- PWA manifest -->
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+
+  <!-- KaTeX -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+
+  <!-- React + ReactDOM -->
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+  <!-- Babel standalone (compile JSX in browser) -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
   <style>
-    *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-    body{background:#0F172A;display:flex;align-items:center;justify-content:center;
-      min-height:100dvh;font-family:'DM Sans',sans-serif;overflow:hidden}
-    @supports(padding:max(0px)){body{padding-top:max(0px,env(safe-area-inset-top))}}
-    #root{width:100%;max-width:430px;height:100dvh}
-    @media(display-mode:standalone){body{background:#E8EAF0}}
-    #loading{position:fixed;inset:0;background:#1A1A2E;display:flex;flex-direction:column;
-      align-items:center;justify-content:center;gap:20px;z-index:9999;transition:opacity .5s}
-    #loading h1{color:#F59E0B;font-family:'Nunito',sans-serif;font-weight:900;font-size:28px}
-    #loading p{color:#64748B;font-size:13px}
-    .spin{width:44px;height:44px;border:4px solid #1E293B;border-top-color:#F59E0B;
-      border-radius:50%;animation:spin .8s linear infinite}
-    @keyframes spin{to{transform:rotate(360deg)}}
+    html, body { margin: 0; padding: 0; height: 100%; }
+    #root { height: 100%; }
+    #loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: 'DM Sans', sans-serif;
+      background: #dde1ea;
+      color: #64748B;
+      font-size: 1.1rem;
+      gap: 16px;
+    }
+    .spinner {
+      width: 40px; height: 40px;
+      border: 4px solid #e2e8f0;
+      border-top-color: #6C63FF;
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
-<div id="loading">
-  <div class="spin"></div>
-  <h1>\U0001f916 l'AutoMaths</h1>
-  <p>Chargement en cours\u2026</p>
-</div>
-<div id="root"></div>
-<script src="/app-compiled.js"></script>
-<script>
-  const obs = new MutationObserver(() => {
-    if(document.getElementById('root').children.length > 0){
-      const l = document.getElementById('loading');
-      if(l){l.style.opacity='0';setTimeout(()=>l.remove(),500);}
-      obs.disconnect();
-    }
-  });
-  obs.observe(document.getElementById('root'),{childList:true});
-  if('serviceWorker' in navigator){
-    window.addEventListener('load',()=>{
-      navigator.serviceWorker.register('/service-worker.js')
-        .then(r=>console.log('[AutoMaths] SW:',r.scope));
+  <div id="loading">
+    <div class="spinner"></div>
+    Chargement de l'AutoMaths…
+  </div>
+  <div id="root"></div>
+
+  <script type="text/babel" src="app.js" data-presets="react"></script>
+
+  <script>
+    // Hide loading screen once React mounts
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const loading = document.getElementById('loading');
+        if (loading) loading.style.display = 'none';
+      }, 800);
     });
-  }
-  let _prompt;
-  window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();_prompt=e;
-    window.__installApp=async()=>{if(!_prompt)return;_prompt.prompt();
-      const{outcome}=await _prompt.userChoice;_prompt=null;return outcome;};});
-</script>
+
+    // Service Worker registration
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(reg => console.log('SW registered:', reg.scope))
+          .catch(err => console.log('SW error:', err));
+      });
+    }
+  </script>
 </body>
 </html>
