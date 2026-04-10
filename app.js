@@ -3299,13 +3299,13 @@ const DB = {
       { q:r`\text{Pour diminuer une quantité de }2{,}3\%\text{, on la multiplie par :}`, choices:[r`1{,}23`,r`0{,}977`,r`0{,}77`,r`1{,}023`], a:r`0{,}977`, tip:r`1-0{,}023=0{,}977` },
       { q:r`\text{50 élèves représentent }4\%\text{ du lycée.}\\[4pt]\text{Nombre total d'élèves :}`, choices:[`2`,`200`,`125`,r`1\,250`], a:r`1\,250`, tip:r`\frac{50}{0{,}04}=1250` },
       { q:r`\text{Volume d'un glacier : }V(n+1)=?\text{ (diminue de }3\%\text{/an)}`, choices:[r`V(n)-0{,}03`,r`0{,}03\times V(n)`,r`0{,}97\times V(n)`,r`V(n)-0{,}97`], a:r`0{,}97\times V(n)`, tip:r`-3\%\Rightarrow\times0{,}97` },
-      { q:r`\text{Coefficient directeur de la droite }D\text{ (pente forte et positive) :}`, choices:[`-3`,`-1`,`2`,`3`], a:`3`, tip:r`\text{Lecture graphique : la droite monte de 3 pour 1 unité}` },
+      { q:r`\text{Coefficient directeur de la droite }D\text{ (lecture graphique) :}`, gspec:{ fn:x=>3*x-1, xr:[-2,3], yr:[-7,8], label:'D', extras:c=><>{gPt(0,-1,c,'#2563EB')}{gPt(1,2,c,'#2563EB')}</> }, choices:[`-3`,`-1`,`2`,`3`], a:`3`, tip:r`\text{La droite monte de 3 pour }+1\text{ (pente = 3)}` },
       { q:r`\text{10 stylos coûtent 13€.}\\[4pt]\text{Prix de 3 stylos :}`, choices:[r`3{,}60€`,r`6{,}90€`,r`3{,}90€`,r`6{,}50€`], a:r`3{,}90€`, tip:r`\frac{13}{10}\times3=3{,}9€` },
       { q:r`\text{Une athlète parcourt 1 km en 5 minutes.}\\[4pt]\text{Sa vitesse moyenne est :}`, choices:[r`8\text{ km/h}`,r`10\text{ km/h}`,r`12\text{ km/h}`,r`14\text{ km/h}`], a:r`12\text{ km/h}`, tip:r`\frac{1}{5/60}=12\text{ km/h}` },
       { q:r`\text{Sur 60 personnes : A=30, B=12, C=18.}\\[4pt]\text{Les proportions sont :}`, choices:[r`A=50\%,B=20\%,C=30\%`,r`A=30\%,B=20\%,C=50\%`,r`A=50\%,B=30\%,C=20\%`,r`A=40\%,B=30\%,C=30\%`], a:r`A=50\%,B=20\%,C=30\%`, tip:r`\frac{30}{60}=50\%,\frac{12}{60}=20\%,\frac{18}{60}=30\%` },
       { q:r`\text{Série A : 9;10;10;11 — Série B : 7;10;10;13}\\[4pt]\text{Proposition vraie :}`, choices:[r`\bar{x}_A>\bar{x}_B`,r`\bar{x}_B>\bar{x}_A`,r`\sigma_A>\sigma_B`,r`\sigma_B>\sigma_A`], a:r`\sigma_B>\sigma_A`, tip:r`\text{Mêmes moyennes}=10\text{, B plus dispersée}` },
       { q:r`V=\pi r^2 h\text{. Isoler }h\text{ :}`, choices:[r`h=\sqrt{\dfrac{V}{\pi r^2}}`,r`h=\dfrac{\pi r^2}{V}`,r`h=\dfrac{V}{\pi r^2}`,r`h=\dfrac{r^2}{\pi V}`], a:r`h=\dfrac{V}{\pi r^2}`, tip:r`h=\frac{V}{\pi r^2}` },
-      { q:r`f\text{ définie sur }[-4\,;\,4]\text{. Les solutions de }f(x)=0\text{ sont :}`, choices:[r`S=\{0\}`,r`S=[-3\,;\,2]`,r`S=\{-3\,;\,-1\,;\,1\,;\,2\}`,r`S=\{1{,}5\}`], a:r`S=\{-3\,;\,-1\,;\,1\,;\,2\}`, tip:r`\text{4 zéros d'après la courbe}` },
+      { q:r`f\\text{ définie sur }[-4\\,;\\,4]. \\text{Zéros de }f\\text{ :}`, gspec:{ fn:x=>(x+3)*(x+1)*(x-1)*(x-2)/4, xr:[-4,4], yr:[-4,4], label:'f', color:'#7C3AED', extras:c=><>{gDH(0,c,'#94A3B8')}{gPt(-3,0,c)}{gPt(-1,0,c)}{gPt(1,0,c)}{gPt(2,0,c)}</> }`, choices:[r`S=\{0\}`,r`S=[-3\,;\,2]`,r`S=\{-3\,;\,-1\,;\,1\,;\,2\}`,r`S=\{1{,}5\}`], a:r`S=\{-3\,;\,-1\,;\,1\,;\,2\}`, tip:r`\text{4 zéros d'après la courbe}` },
     ],
     tronc_original: [],
     // ── Spécialité · Annales · Sujet 1 (2026) ────────────────────────────────
@@ -3573,6 +3573,93 @@ const DB = {
   },
 
 
+  // ════ TRIGONOMÉTRIE ════════════════════════════════════════════════════════
+  trigonometrie: {
+
+    // ── Valeurs cos/sin des angles remarquables ──
+    valeurs_trigo: [
+      { q: r`\cos\!\left(\dfrac{\pi}{6}\right)=\,?`,
+        choices: [r`\dfrac{\sqrt{3}}{2}`, r`\dfrac{1}{2}`, r`\dfrac{\sqrt{2}}{2}`, `1`],
+        a: r`\dfrac{\sqrt{3}}{2}`, tip: r`\cos\!\tfrac{\pi}{6}=\tfrac{\sqrt{3}}{2}` },
+
+      { q: r`\sin\!\left(\dfrac{\pi}{6}\right)=\,?`,
+        choices: [r`\dfrac{1}{2}`, r`\dfrac{\sqrt{3}}{2}`, r`\dfrac{\sqrt{2}}{2}`, `0`],
+        a: r`\dfrac{1}{2}`, tip: r`\sin\!\tfrac{\pi}{6}=\tfrac{1}{2}` },
+
+      { q: r`\cos\!\left(\dfrac{\pi}{4}\right)=\,?`,
+        choices: [r`\dfrac{\sqrt{2}}{2}`, r`\dfrac{\sqrt{3}}{2}`, r`\dfrac{1}{2}`, `1`],
+        a: r`\dfrac{\sqrt{2}}{2}`, tip: r`\cos\!\tfrac{\pi}{4}=\tfrac{\sqrt{2}}{2}` },
+
+      { q: r`\sin\!\left(\dfrac{\pi}{4}\right)=\,?`,
+        choices: [r`\dfrac{\sqrt{2}}{2}`, r`\dfrac{1}{2}`, r`\dfrac{\sqrt{3}}{2}`, `0`],
+        a: r`\dfrac{\sqrt{2}}{2}`, tip: r`\sin\!\tfrac{\pi}{4}=\tfrac{\sqrt{2}}{2}` },
+
+      { q: r`\cos\!\left(\dfrac{\pi}{3}\right)=\,?`,
+        choices: [r`\dfrac{1}{2}`, r`\dfrac{\sqrt{3}}{2}`, r`\dfrac{\sqrt{2}}{2}`, `0`],
+        a: r`\dfrac{1}{2}`, tip: r`\cos\!\tfrac{\pi}{3}=\tfrac{1}{2}` },
+
+      { q: r`\sin\!\left(\dfrac{\pi}{3}\right)=\,?`,
+        choices: [r`\dfrac{\sqrt{3}}{2}`, r`\dfrac{1}{2}`, r`\dfrac{\sqrt{2}}{2}`, `1`],
+        a: r`\dfrac{\sqrt{3}}{2}`, tip: r`\sin\!\tfrac{\pi}{3}=\tfrac{\sqrt{3}}{2}` },
+
+      { q: r`\cos\!\left(\dfrac{\pi}{2}\right)=\,?`,
+        choices: [`0`, `1`, r`-1`, r`\dfrac{\sqrt{2}}{2}`],
+        a: `0`, tip: r`\cos\!\tfrac{\pi}{2}=0` },
+
+      { q: r`\sin\!\left(\dfrac{\pi}{2}\right)=\,?`,
+        choices: [`1`, `0`, r`-1`, r`\dfrac{\sqrt{3}}{2}`],
+        a: `1`, tip: r`\sin\!\tfrac{\pi}{2}=1` },
+
+      { q: r`\cos(\pi)=\,?`,
+        choices: [`-1`, `0`, `1`, r`\dfrac{1}{2}`],
+        a: `-1`, tip: r`\cos\pi=-1` },
+
+      { q: r`\sin(\pi)=\,?`,
+        choices: [`0`, `1`, `-1`, r`\dfrac{1}{2}`],
+        a: `0`, tip: r`\sin\pi=0` },
+
+      { q: r`\cos\!\left(\dfrac{2\pi}{3}\right)=\,?`,
+        choices: [r`-\dfrac{1}{2}`, r`\dfrac{1}{2}`, r`-\dfrac{\sqrt{3}}{2}`, r`\dfrac{\sqrt{3}}{2}`],
+        a: r`-\dfrac{1}{2}`, tip: r`\cos\!\tfrac{2\pi}{3}=-\cos\!\tfrac{\pi}{3}=-\tfrac{1}{2}` },
+
+      { q: r`\sin\!\left(\dfrac{2\pi}{3}\right)=\,?`,
+        choices: [r`\dfrac{\sqrt{3}}{2}`, r`-\dfrac{\sqrt{3}}{2}`, r`\dfrac{1}{2}`, `0`],
+        a: r`\dfrac{\sqrt{3}}{2}`, tip: r`\sin\!\tfrac{2\pi}{3}=\sin\!\tfrac{\pi}{3}=\tfrac{\sqrt{3}}{2}` },
+
+      { q: r`\cos\!\left(\dfrac{3\pi}{4}\right)=\,?`,
+        choices: [r`-\dfrac{\sqrt{2}}{2}`, r`\dfrac{\sqrt{2}}{2}`, r`-\dfrac{1}{2}`, `0`],
+        a: r`-\dfrac{\sqrt{2}}{2}`, tip: r`\cos\!\tfrac{3\pi}{4}=-\cos\!\tfrac{\pi}{4}=-\tfrac{\sqrt{2}}{2}` },
+
+      { q: r`\sin\!\left(\dfrac{3\pi}{4}\right)=\,?`,
+        choices: [r`\dfrac{\sqrt{2}}{2}`, r`-\dfrac{\sqrt{2}}{2}`, r`\dfrac{1}{2}`, `1`],
+        a: r`\dfrac{\sqrt{2}}{2}`, tip: r`\sin\!\tfrac{3\pi}{4}=\sin\!\tfrac{\pi}{4}=\tfrac{\sqrt{2}}{2}` },
+
+      { q: r`\cos\!\left(\dfrac{5\pi}{6}\right)=\,?`,
+        choices: [r`-\dfrac{\sqrt{3}}{2}`, r`\dfrac{\sqrt{3}}{2}`, r`-\dfrac{1}{2}`, r`\dfrac{1}{2}`],
+        a: r`-\dfrac{\sqrt{3}}{2}`, tip: r`\cos\!\tfrac{5\pi}{6}=-\cos\!\tfrac{\pi}{6}=-\tfrac{\sqrt{3}}{2}` },
+
+      { q: r`\cos\!\left(\dfrac{3\pi}{2}\right)=\,?`,
+        choices: [`0`, `-1`, `1`, r`\dfrac{\sqrt{2}}{2}`],
+        a: `0`, tip: r`\cos\!\tfrac{3\pi}{2}=0` },
+
+      { q: r`\sin\!\left(\dfrac{3\pi}{2}\right)=\,?`,
+        choices: [`-1`, `0`, `1`, r`-\dfrac{\sqrt{2}}{2}`],
+        a: `-1`, tip: r`\sin\!\tfrac{3\pi}{2}=-1` },
+
+      { q: r`\cos\!\left(\dfrac{5\pi}{3}\right)=\,?`,
+        choices: [r`\dfrac{1}{2}`, r`-\dfrac{1}{2}`, r`\dfrac{\sqrt{3}}{2}`, `0`],
+        a: r`\dfrac{1}{2}`, tip: r`\cos\!\tfrac{5\pi}{3}=\cos\!\tfrac{\pi}{3}=\tfrac{1}{2}` },
+
+      { q: r`\sin\!\left(\dfrac{7\pi}{6}\right)=\,?`,
+        choices: [r`-\dfrac{1}{2}`, r`\dfrac{1}{2}`, r`-\dfrac{\sqrt{3}}{2}`, `0`],
+        a: r`-\dfrac{1}{2}`, tip: r`\sin\!\tfrac{7\pi}{6}=-\sin\!\tfrac{\pi}{6}=-\tfrac{1}{2}` },
+
+      { q: r`\cos\!\left(\dfrac{7\pi}{4}\right)=\,?`,
+        choices: [r`\dfrac{\sqrt{2}}{2}`, r`-\dfrac{\sqrt{2}}{2}`, r`\dfrac{1}{2}`, `-1`],
+        a: r`\dfrac{\sqrt{2}}{2}`, tip: r`\cos\!\tfrac{7\pi}{4}=\cos\!\tfrac{\pi}{4}=\tfrac{\sqrt{2}}{2}` },
+    ],
+  },
+
 };
 
 // ── Categories ─────────────────────────────────────────────────────────────────
@@ -3655,7 +3742,7 @@ const CATS = [
     ] },
   { id:"trigonometrie",label:"Cercle trigonométrique", emoji:"⭕", color:"#0891B2", grad:"linear-gradient(135deg,#06B6D4,#0E7490)", light:"#ECFEFF", border:"#A5F3FC",
     subs:[
-      {id:"cercle_trigo",label:"Placer un angle sur le cercle", levels:["spe","term"], levelPicker:true, levelType:"cercle_trigo"},
+      {id:"cercle_trigo",label:"Placer un angle sur le cercle", levels:["spe","term"], levelPicker:true, levelType:"cercle_trigo"},{id:"valeurs_trigo",label:"Valeurs de cos et sin",levels:["spe","term"]},
     ] },
 ];;
 // ── Utils ──────────────────────────────────────────────────────────────────────
@@ -5865,17 +5952,29 @@ const NIVEAU_COLORS = {
   "spe":  "#DC2626",
   "term": "#7C3AED",
 };
+// Mapping profil élève → identifiant niveau filtre
+const LEVEL_MAP = {
+  seconde:       "sec",
+  premiere_tronc:"tc",
+  premiere_stmg: "stmg",
+  premiere_spe:  "spe",
+  terminale_spe: "term",
+};
 
-function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker}) {
+function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiveau=null}) {
   const cat=getCat(catId);
-  const [niveau,setNiveau]=useState(null);
+  const [niveau,setNiveau]=useState(defaultNiveau);
   const [sel,setSel]=useState([]);
 
   const levelsInCat=[...new Set(cat.subs.flatMap(s=>s.levels||[]))];
   const normalSubs = cat.subs.filter(s=>!s.levelPicker);
+  // Un sous-thème sans levels est universel (visible pour tous)
   const visibleSubs = niveau
-    ? normalSubs.filter(s=>s.levels?s.levels.includes(niveau):true)
+    ? normalSubs.filter(s=>!s.levels || s.levels.includes(niveau))
     : normalSubs;
+  // LevelPicker items visibles selon le niveau
+  const visiblePickers = cat.subs.filter(s=>s.levelPicker && (!niveau || !s.levels || s.levels.includes(niveau)));
+  const hasAnything = visibleSubs.length>0 || visiblePickers.length>0;
 
   const toggle=id=>setSel(s=>s.includes(id)?s.filter(x=>x!==id):[...s,id]);
   const toggleAll=()=>setSel(s=>visibleSubs.every(s2=>s.includes(s2.id))?s.filter(id=>!visibleSubs.find(s2=>s2.id===id)):[...new Set([...s,...visibleSubs.map(s2=>s2.id)])]);
@@ -5903,40 +6002,43 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker}) {
                 border:`1.5px solid ${niveau===lv?NIVEAU_COLORS[lv]:"#E2E8F0"}`,
                 background:niveau===lv?NIVEAU_COLORS[lv]:"#fff",
                 color:niveau===lv?"#fff":"#64748B",
-                fontSize:10,fontWeight:700,cursor:"pointer"}}>
-              {NIVEAU_LABELS[lv]}
+                fontSize:10,fontWeight:700,cursor:"pointer",
+                boxShadow:niveau===lv?`0 2px 8px ${NIVEAU_COLORS[lv]}55`:"none"}}>
+              {lv===defaultNiveau?"★ ":""}{NIVEAU_LABELS[lv]}
             </button>
           ))}
         </div>
       )}
 
-      {visibleSubs.length===0?(
+      {!hasAnything?(
         <div style={{flex:1,display:"flex",alignItems:"center",justifyContent:"center",flexDirection:"column",gap:10,color:"#94A3B8"}}>
           <span style={{fontSize:36}}>🎓</span>
           <span style={{fontSize:13,fontWeight:600,textAlign:"center"}}>Rien pour ce niveau dans cette section… pour l'instant !</span>
         </div>
       ):(
         <>
-          <button onClick={toggleAll} style={{background:allVis?cat.light:"#F8FAFC",border:`1.5px solid ${allVis?cat.border:"#E2E8F0"}`,borderRadius:10,padding:"7px 12px",cursor:"pointer",fontSize:12,fontWeight:700,color:allVis?cat.color:"#475569",marginBottom:8,textAlign:"left"}}>
+          {visibleSubs.length>0&&<button onClick={toggleAll} style={{background:allVis?cat.light:"#F8FAFC",border:`1.5px solid ${allVis?cat.border:"#E2E8F0"}`,borderRadius:10,padding:"7px 12px",cursor:"pointer",fontSize:12,fontWeight:700,color:allVis?cat.color:"#475569",marginBottom:8,textAlign:"left"}}>
             {allVis?"✅ Tout désélectionner":"☑️ Tout sélectionner"}
-          </button>
+          </button>}
       <Scroll>
         {cat.subs.map((s,i)=>{
-          // Special levelPicker entry — button that opens RacinesLevelScreen
-          if(s.levelPicker) return (
+          // Special levelPicker entry — only show if matches current niveau filter
+          if(s.levelPicker) {
+            if(niveau && s.levels && !s.levels.includes(niveau)) return null;
+            return (
             <button key={s.id} onClick={()=>onLevelPicker&&onLevelPicker(s.id, s.levelType||'racines')} className="pop-in"
               style={{background:"linear-gradient(135deg,#7C3AED18,#5B21B618)",
                 border:"2px solid #DDD6FE",borderRadius:12,padding:"10px 12px",cursor:"pointer",
                 display:"flex",alignItems:"center",gap:10,
                 boxShadow:"0 2px 8px rgba(0,0,0,.04)",animationDelay:`${i*.04}s`,flexShrink:0}}>
-              <div style={{fontSize:22}}>{s.levelType==="identites"?"🔣":"√"}</div>
+              <div style={{fontSize:22}}>{s.levelType==="identites"?"🔣":s.levelType==="cercle_trigo"?"⭕":s.levelType==="factorisation"?"✖️":"√"}</div>
               <div style={{flex:1,textAlign:"left"}}>
                 <div style={{fontSize:12,fontWeight:800,color:"#7C3AED"}}>{s.label}</div>
-                <div style={{fontSize:10,color:"#8B5CF6",marginTop:2}}>4 niveaux — Choisir la difficulté →</div>
+                <div style={{fontSize:10,color:"#8B5CF6",marginTop:2}}>{s.levelType==="cercle_trigo"?"3 niveaux — Placer l'angle →":"4 niveaux — Choisir la difficulté →"}</div>
               </div>
               <span style={{color:"#7C3AED",fontSize:16}}>›</span>
             </button>
-          );
+          );}
           const on=sel.includes(s.id);
           return (
             <button key={s.id} onClick={()=>toggle(s.id)} className="pop-in"
@@ -6311,7 +6413,7 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
   const [dragDone,setDragDone]         = useState(false);
   const [dragCorrect,setDragCorrect]   = useState(false);
 
-  const cat     = getCat(catId)||CATS[0];
+  const cat     = getCat(catId) || { id:catId, label:"En route pour le Bac", emoji:"🏆", color:"#F59E0B", grad:"linear-gradient(135deg,#F59E0B,#B45309)", light:"#FFFBEB", border:"#FDE68A", subs:[] };
   const q       = questions[idx];
   const isNum   = !!q.numpad;
   const isSol   = !!q.solpad;
@@ -7353,7 +7455,7 @@ function AutoMaths() {
           {screen==="home"          && <HomeScreen onMode={hMode} profile={profile} onDashboard={profile?hDashboard:null} onSplash={()=>setScreen("splash")}/>}
           {screen==="submode"       && <SubmodeScreen   mode={mode} onSubmode={hSubmode} onBack={()=>setScreen("home")}/>}
           {screen==="category"      && <CategoryScreen  onCat={hCat} onBack={()=>setScreen(mode==="tester"?"home":"submode")} subtitle={mode==="tester"?"Toutes les questions de la catégorie":"Puis choisis des sous-thèmes"}/>}
-          {screen==="subcategory"   && <SubcategoryScreen catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen("category")} onLevelPicker={hLevelPicker}/>}
+          {screen==="subcategory"   && <SubcategoryScreen catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen("category")} onLevelPicker={hLevelPicker} defaultNiveau={profile?LEVEL_MAP[profile.level]||null:null}/>}
           {screen==="level_picker"  && levelType==="racines"       && <RacinesLevelScreen       catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen("subcategory")}/>}
           {screen==="level_picker"  && levelType==="identites"     && <IdentitesLevelScreen     catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen("subcategory")}/>}
           {screen==="level_picker"  && levelType==="factorisation" && <FactorisationLevelScreen catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen("subcategory")}/>}
