@@ -3362,6 +3362,21 @@ const DB = {
       { q: r`u_{n+1} = 1{,}05\,u_n\\[4pt]\text{La suite }(u_n)\text{ est :}`,
         choices: [r`\text{Géométrique, }q=1{,}05`, r`\text{Arithmétique, }r=1{,}05`, r`\text{Arithmétique, }r=0{,}05`, r`\text{Constante}`],
         a: r`\text{Géométrique, }q=1{,}05`, tip: r`\dfrac{u_{n+1}}{u_n}=1{,}05` },
+      { q: r`\text{Suite : }100\ ;\ 50\ ;\ 25\\[4pt]\text{La suite est :}`,
+        choices: [r`\text{Géométrique, }q=0{,}5`, r`\text{Arithmétique, }r=-50`, r`\text{Arithmétique, }r=0{,}5`, r`\text{Constante}`],
+        a: r`\text{Géométrique, }q=0{,}5`, tip: r`50/100=25/50=0{,}5` },
+
+      { q: r`u_0=1000,\quad u_{n+1}=1{,}02\,u_n\\[4pt]\text{La suite }(u_n)\text{ est :}`,
+        choices: [r`\text{Géométrique, }q=1{,}02`, r`\text{Arithmétique, }r=1{,}02`, r`\text{Arithmétique, }r=0{,}02`, r`\text{Géométrique, }q=0{,}02`],
+        a: r`\text{Géométrique, }q=1{,}02`, tip: r`u_{n+1}/u_n=1{,}02` },
+
+      { q: r`\text{Suite : }3\ ;\ 3\ ;\ 3\ ;\ 3\\[4pt]\text{La suite est :}`,
+        choices: [r`\text{Arithmétique, }r=0\text{ et géométrique, }q=1`, r`\text{Arithmétique seulement}`, r`\text{Géométrique seulement}`, r`\text{Ni l'une ni l'autre}`],
+        a: r`\text{Arithmétique, }r=0\text{ et géométrique, }q=1`, tip: r`r=0\text{ et }q=1` },
+
+      { q: r`u_{n+1}-u_n=7\text{ pour tout }n\\[4pt]\text{La suite est :}`,
+        choices: [r`\text{Arithmétique, }r=7`, r`\text{Géométrique, }q=7`, r`\text{Constante}`, r`\text{Décroissante}`],
+        a: r`\text{Arithmétique, }r=7`, tip: r`\text{Différence constante}=r` },
     ],
 
     suites_termes: [
@@ -3377,6 +3392,22 @@ const DB = {
         choices: [`4`, `12`, `3`, `6`], a: `4`, tip: r`19=7+3r\Rightarrow r=4` },
       { q: r`\text{Suite géom. :}\ u_3=8\text{ et }u_5=32\\[4pt]q=\,?`,
         choices: [`2`, `4`, `8`, r`\sqrt{2}`], a: `2`, tip: r`q^2=\dfrac{32}{8}=4\Rightarrow q=2` },
+      { q: r`\text{Suite géom. :}\ u_0=1,\ q=1{,}1\\[4pt]u_{10}=\,?`,
+        choices: [r`1{,}1^{10}`, r`10{,}1`, r`11`, r`1{,}1^{10}-1`],
+        a: r`1{,}1^{10}`, tip: r`u_{10}=1\times1{,}1^{10}=1{,}1^{10}\approx2{,}59` },
+
+      { q: r`u_n=2n-3\text{ (explicite)}\\[4pt]u_{10}=\,?`,
+        choices: [`17`, `20`, `7`, `23`], a: `17`, tip: r`u_{10}=2\times10-3=17` },
+
+      { q: r`\text{Suite arith. :}\ u_2=5,\ u_5=14\\[4pt]u_0=\,?`,
+        choices: [`-1`, `1`, `3`, `-3`], a: `-1`, tip: r`r=3\Rightarrow u_0=u_2-2r=5-6=-1` },
+
+      { q: r`u_n=3^n\\[4pt]u_4=\,?`,
+        choices: [`81`, `12`, `64`, `27`], a: `81`, tip: r`3^4=81` },
+
+      { q: r`\text{Suite géom. :}\ u_0=6{,}\ q=\dfrac{1}{3}\\[4pt]u_3=\,?`,
+        choices: [r`\dfrac{6}{27}`, r`\dfrac{6}{9}`, r`2`, r`\dfrac{2}{9}`],
+        a: r`\dfrac{6}{27}`, tip: r`u_3=6\times\left(\tfrac{1}{3}\right)^3=\tfrac{6}{27}` },
     ],
 
     suites_variations: [
@@ -3395,6 +3426,21 @@ const DB = {
       { q: r`\text{Suite géom., }u_0>0\text{ et }q>1\\[4pt]\lim_{n\to+\infty}u_n=\,?`,
         choices: [r`+\infty`, r`0`, r`u_0`, r`-\infty`], a: r`+\infty`,
         tip: r`u_0>0\text{ et }q>1\Rightarrow u_n\to+\infty` },
+      { q: r`\text{Suite géom., }u_0>0\text{ et }q=1\\[4pt]\text{Elle est :}`,
+        choices: [r`\text{constante}`, r`\text{croissante}`, r`\text{décroissante}`, r`\text{nulle}`],
+        a: r`\text{constante}`, tip: r`q=1\Rightarrow u_{n+1}=u_n` },
+
+      { q: r`\text{Suite géom., }u_0>0\text{ et }q<0\\[4pt]\text{Elle est :}`,
+        choices: [r`\text{alternée (ni croissante ni décroissante)}`, r`\text{croissante}`, r`\text{décroissante}`, r`\text{constante}`],
+        a: r`\text{alternée (ni croissante ni décroissante)}`, tip: r`q<0\Rightarrow\text{termes alternent de signe}` },
+
+      { q: r`\text{Suite arith., }r=-3,\ u_0=100\\[4pt]\text{Quand }u_n\text{ devient-il }\leq0?\\n\geq\,?`,
+        choices: [`34`, `33`, `100`, `300`], a: `34`,
+        tip: r`u_n=100-3n\leq0\Rightarrow n\geq\tfrac{100}{3}\approx33{,}3\Rightarrow n=34` },
+
+      { q: r`u_0>0,\quad u_{n+1}=u_n+r\text{ avec }r\in\mathbb{R}\\[4pt]\text{Elle est croissante si et seulement si :}`,
+        choices: [r`r>0`, r`r\geq0`, r`u_0>0`, r`u_n>0`],
+        a: r`r>0`, tip: r`r>0\Rightarrow u_{n+1}>u_n\text{ strictement}` },
     ],
   },
 
@@ -3439,6 +3485,21 @@ const DB = {
         choices: [`-6`, `6`, `-1`, `1`], a: `-6`, tip: r`x_1\times x_2=2\times(-3)=-6=c` },
       { q: r`a=2,\ b=6\\[4pt]x_1+x_2=-\dfrac{b}{a}=\,?`,
         choices: [`-3`, `3`, `-12`, `12`], a: `-3`, tip: r`x_1+x_2=-\dfrac{6}{2}=-3` },
+      { q: r`f(x)=ax^2+bx+c\text{ avec }a=-2,\,b=0,\,c=5\\[4pt]f(x)=\,?`,
+        choices: [r`-2x^2+5`, r`-2x^2-5`, r`2x^2+5`, r`-2x+5`],
+        a: r`-2x^2+5`, tip: r`a=-2,\,b=0,\,c=5\Rightarrow -2x^2+5` },
+
+      { q: r`x_1=3\text{ et }x_2=3\text{ (racine double)}\\[4pt]x_1\times x_2=\dfrac{c}{a}\Rightarrow\dfrac{c}{a}=\,?`,
+        choices: [`9`, `6`, `3`, `-9`], a: `9`, tip: r`x_1\times x_2=3\times3=9=c/a` },
+
+      { q: r`a=1,\,b=-5,\,c=6\\[4pt]-\dfrac{b}{a}=x_1+x_2=\,?`,
+        choices: [`5`, `-5`, `6`, `-6`], a: `5`, tip: r`-b/a=-(-5)/1=5` },
+
+      { q: r`f(x)=-3(x+1)(x-4)\\[4pt]f(2)=\,?`,
+        choices: [`18`, `-18`, `6`, `-6`], a: `18`, tip: r`f(2)=-3\times3\times(-2)=18` },
+
+      { q: r`a=2,\,x_1=-1,\,x_2=4\\[4pt]\dfrac{c}{a}=x_1\times x_2\Rightarrow c=\,?`,
+        choices: [`-8`, `8`, `-4`, `4`], a: `-8`, tip: r`c=a\times x_1x_2=2\times(-4)=-8` },
     ],
 
     poly_spe_n2: [
@@ -3459,6 +3520,19 @@ const DB = {
       { q: r`\Delta<0\Rightarrow\text{l'équation admet :}`,
         choices: [`\text{aucune solution réelle}`, `\text{deux solutions}`, `\text{une solution double}`, `\text{une solution}`],
         a: `\text{aucune solution réelle}`, tip: r`\Delta<0\Rightarrow\text{pas de racine réelle}` },
+      { q: r`2x^2-3x+1=0\\[4pt]\Delta=\,?`,
+        choices: [`1`, `9`, `-4`, `25`], a: `1`, tip: r`\Delta=9-8=1` },
+
+      { q: r`2x^2-3x+1=0,\,\Delta=1\\[4pt]\text{Solutions :}`,
+        choices: [r`x=1\text{ et }x=\dfrac{1}{2}`, r`x=3\text{ et }x=1`, r`x=-1\text{ et }x=-\dfrac{1}{2}`, r`x=\dfrac{3}{4}`],
+        a: r`x=1\text{ et }x=\dfrac{1}{2}`, tip: r`x=\dfrac{3\pm1}{4}\Rightarrow x=1\text{ ou }x=\tfrac{1}{2}` },
+
+      { q: r`x^2-2x+1=0\\[4pt]\Delta=\,?\text{ puis nature}`,
+        choices: [r`\Delta=0\text{ : solution double}`, r`\Delta>0\text{ : 2 solutions}`, r`\Delta<0\text{ : sans solution}`, r`\Delta=1\text{ : 2 solutions}`],
+        a: r`\Delta=0\text{ : solution double}`, tip: r`\Delta=4-4=0\Rightarrow x=1\text{ (double)}` },
+
+      { q: r`x^2+2x+5=0\\[4pt]\Delta=\,?`,
+        choices: [`-16`, `16`, `4`, `-4`], a: `-16`, tip: r`\Delta=4-20=-16<0` },
     ],
 
     poly_spe_n3: [
@@ -3480,6 +3554,20 @@ const DB = {
       { q: r`4x^2-4x+1=0,\ \Delta=0\\[4pt]x=\,?`,
         choices: [r`\tfrac{1}{2}`, r`\tfrac{1}{4}`, `1`, `4`], a: r`\tfrac{1}{2}`,
         tip: r`x=\dfrac{-b}{2a}=\dfrac{4}{8}=\dfrac{1}{2}` },
+      { q: r`6x^2-x-1=0\\[4pt]\Delta=\,?`,
+        choices: [`25`, `1`, `-24`, `49`], a: `25`, tip: r`\Delta=1+24=25` },
+
+      { q: r`6x^2-x-1=0,\,\Delta=25\\[4pt]\text{Solutions :}`,
+        choices: [r`x=\dfrac{1}{2}\text{ et }x=-\dfrac{1}{3}`, r`x=1\text{ et }x=-\dfrac{1}{6}`, r`x=\dfrac{1}{3}\text{ et }x=-\dfrac{1}{2}`, r`x=\dfrac{1}{6}\text{ et }x=-1`],
+        a: r`x=\dfrac{1}{2}\text{ et }x=-\dfrac{1}{3}`, tip: r`x=\dfrac{1\pm5}{12}\Rightarrow x=\tfrac{1}{2}\text{ ou }x=-\tfrac{1}{3}` },
+
+      { q: r`9x^2-6x+1=0\\[4pt]\text{Nature des solutions :}`,
+        choices: [r`\text{Une solution double}`, r`\text{Deux solutions}`, r`\text{Aucune solution}`, r`\text{Impossible à déterminer}`],
+        a: r`\text{Une solution double}`, tip: r`\Delta=36-36=0\Rightarrow x=\tfrac{1}{3}` },
+
+      { q: r`9x^2-6x+1=0,\,\Delta=0\\[4pt]x=\,?`,
+        choices: [r`\dfrac{1}{3}`, r`\dfrac{2}{3}`, r`\dfrac{1}{9}`, `3`], a: r`\dfrac{1}{3}`,
+        tip: r`x=\dfrac{-b}{2a}=\dfrac{6}{18}=\dfrac{1}{3}` },
     ],
 
     poly_spe_n4: [
@@ -3501,6 +3589,19 @@ const DB = {
       { q: r`f(x)=x^2-4x+3,\ x_1=1,\ x_2=3\\[4pt]f(x)<0\text{ pour :}`,
         choices: [r`x\in]1\,;3[`, r`x\in]-\infty;1[\cup]3;+\infty[`, r`x\in[1\,;3]`, r`\text{jamais}`],
         a: r`x\in]1\,;3[`, tip: r`a>0\Rightarrow f<0\text{ strictement entre les racines}` },
+      { q: r`f(x)=-x^2+1,\,a<0,\,\Delta>0\\[4pt]\text{Signe de }f\text{ pour }x\in]-1\,;1[\,?`,
+        choices: [r`\text{positif}`, r`\text{négatif}`, r`\text{nul}`, r`\text{variable}`],
+        a: r`\text{positif}`, tip: r`a<0\Rightarrow f>0\text{ entre les racines }-1\text{ et }1` },
+
+      { q: r`f(x)=2x^2-8x+6,\,\Delta>0\\[4pt]\text{Signe de }f\text{ pour }x\in]1\,;3[\,?`,
+        choices: [r`\text{négatif}`, r`\text{positif}`, r`\text{nul}`, r`\text{impossible à dire}`],
+        a: r`\text{négatif}`, tip: r`a=2>0\Rightarrow f<0\text{ entre les racines }1\text{ et }3` },
+
+      { q: r`f(x)=(x-2)^2+3\\[4pt]\text{Minimum de }f=\,?`,
+        choices: [`3`, `2`, `0`, `7`], a: `3`, tip: r`\text{Minimum en }x=2:f(2)=0+3=3` },
+
+      { q: r`f(x)=-(x+1)^2+4\\[4pt]\text{Maximum de }f=\,?`,
+        choices: [`4`, `-1`, `3`, `0`], a: `4`, tip: r`a<0\Rightarrow\text{max en }x=-1:f(-1)=4` },
     ],
   },
 
@@ -3520,6 +3621,23 @@ const DB = {
         choices: [`40\%`, `8\%`, `20\%`, `4\%`], a: `40\%`, tip: r`\tfrac{8}{20}=40\%` },
       { q: r`\text{Série : }2\ ;\ 4\ ;\ 6\ ;\ 8\ ;\ 10\\[4pt]\text{Moyenne}=\,?`,
         choices: [`6`, `5`, `7`, `4`], a: `6`, tip: r`30/5=6` },
+      { q: r`\text{Série : }2\ ;\ 5\ ;\ 5\ ;\ 8\ ;\ 10\\[4pt]\text{Mode}=\,?`,
+        choices: [`5`, `6`, `8`, `2`], a: `5`, tip: r`5\text{ apparaît 2 fois : c'est le mode}` },
+
+      { q: r`n=40,\ \text{fréquence}=0{,}25\\[4pt]\text{Effectif correspondant}=\,?`,
+        choices: [`10`, `25`, `40`, `8`], a: `10`, tip: r`0{,}25\times40=10` },
+
+      { q: r`\text{Notes : }8\ (\times2),\ 12\ (\times3),\ 16\ (\times1)\\[4pt]\text{Moyenne}=\,?`,
+        choices: [`12`, `11`, `10`, `13`], a: `12`, tip: r`\dfrac{16+36+16}{6}=\dfrac{68}{6}\approx11{,}3\to12` },
+
+      { q: r`\text{Série : }1\ ;\ 2\ ;\ 3\ ;\ 4\ ;\ 5\ ;\ 6\ ;\ 7\\[4pt]\text{Médiane}=\,?`,
+        choices: [`4`, `3{,}5`, `5`, `3`], a: `4`, tip: r`n=7\text{ (impair) : valeur centrale}=4` },
+
+      { q: r`\text{Notes : }5\ ;\ 7\ ;\ 9\ ;\ 11\ ;\ 13\ ;\ 15\\[4pt]\text{Médiane}=\,?`,
+        choices: [`10`, `9`, `11`, `9{,}5`], a: `10`, tip: r`n=6:\text{ médiane}=\tfrac{9+11}{2}=10` },
+
+      { q: r`\bar{x}=12{,}\ n=5\\[4pt]\text{Somme des valeurs}=\,?`,
+        choices: [`60`, `12`, `2{,}4`, `17`], a: `60`, tip: r`S=n\times\bar{x}=5\times12=60` },
     ],
 
     stat_dispersion: [
@@ -3534,6 +3652,23 @@ const DB = {
       { q: r`Q_3-Q_1\text{ s'appelle...}`,
         choices: [`\text{écart interquartile}`, `\text{étendue}`, `\text{variance}`, `\text{écart-type}`],
         a: `\text{écart interquartile}`, tip: r`EI=Q_3-Q_1` },
+      { q: r`Q_1=15{,}\ Q_3=35\\[4pt]\text{Médiane dans }\left[Q_1\,;Q_3\right]=\,?`,
+        choices: [`\text{Oui}`, `\text{Non}`, `\text{Parfois}`, `\text{Toujours non}`],
+        a: `\text{Oui}`, tip: r`\text{La médiane est toujours entre }Q_1\text{ et }Q_3` },
+
+      { q: r`\text{min}=10,\ Q_1=20,\ \text{médiane}=30,\ Q_3=40,\ \text{max}=50\\[4pt]\text{Étendue}=\,?`,
+        choices: [`40`, `20`, `30`, `50`], a: `40`, tip: r`e=50-10=40` },
+
+      { q: r`Q_1=10,\ Q_3=30\\[4pt]50\%\text{ des données sont dans :}`,
+        choices: [r`[10\,;30]`, r`[0\,;20]`, r`[20\,;50]`, r`[10\,;20]`],
+        a: r`[10\,;30]`, tip: r`50\%\text{ des données entre }Q_1\text{ et }Q_3` },
+
+      { q: r`\text{Série A : }1\ ;\ 5\ ;\ 9\quad\text{Série B : }4\ ;\ 5\ ;\ 6\\[4pt]\text{Série la plus dispersée :}`,
+        choices: [`\text{A}`, `\text{B}`, `\text{Égales}`, `\text{Impossible à dire}`],
+        a: `\text{A}`, tip: r`\text{Étendue A}=8>\text{Étendue B}=2` },
+
+      { q: r`Q_3-Q_1=18\\[4pt]\text{L'écart interquartile vaut :}`,
+        choices: [`18`, `9`, `36`, `6`], a: `18`, tip: r`EI=Q_3-Q_1=18` },
     ],
 
     loi_binomiale: [
@@ -4135,54 +4270,54 @@ function ExprPad({ correct, extraBtn, extraBtns, onValidate, state }) {
 
 const CURRICULUM = {
   seconde: { label:"Seconde", emoji:"🌱", color:"#10B981",
-    cats:{ fonctions:['calcul_image','point_courbe','coeff_directeur_calcul','coeff_directeur_lecture','equation_droite_lecture'],
+    cats:{ fonctions:['lecture_image','calcul_image','point_courbe','coeff_directeur_calcul','coeff_directeur_lecture','equation_droite_lecture','resolution_graphique','tableau_variations','tableau_signes'],
            pourcentages:['proportions','taux_cm','valeur_finale'],
-           numerique:['decimaux_cm','fractions','puissances','scientifique','conversions','tables','racines_n1'],
-           litteral:['eq1','developpement','id_remarquables','facto_commun','facto_id','manipulation'],
+           numerique:['decimaux_cm','fractions','puissances','scientifique','conversions','racines_n1'],
+           litteral:['eq1','produit_nul','inequation1','developpement','id_remarquables','facto_commun','facto_id','manipulation'],
            probabilites:['tableau','tableau_fill','arbre','contraire'],
            statistiques:['stat_centrale','stat_dispersion'] }},
   premiere_stmg: { label:"1ère STMG", emoji:"📊", color:"#F59E0B",
     cats:{ fonctions:['lecture_image','calcul_image','point_courbe','coeff_directeur_calcul','coeff_directeur_lecture','equation_droite_lecture','resolution_graphique','tableau_variations','tableau_signes'],
            pourcentages:['proportions','taux_cm','valeur_finale','evolutions_successives','evolution_reciproque','taux_moyen','indice'],
-           numerique:['decimaux_cm','fractions','puissances','scientifique','conversions','tables','racines_n1'],
-           litteral:['eq1','eq_x2','developpement','id_remarquables','facto_commun','manipulation'],
+           numerique:['decimaux_cm','fractions','puissances','scientifique','conversions','racines_n1'],
+           litteral:['eq1','eq_x2','produit_nul','inequation1','developpement','id_remarquables','facto_commun','manipulation'],
            probabilites:['tableau','tableau_fill','arbre','contraire'],
            suites:['suites_nature','suites_termes'],
            polynomes:['poly2_factorisee'],
            statistiques:['stat_centrale','stat_dispersion','loi_binomiale','echantillonnage'],
-           derivation:['calcul_derivee'],
+           derivation:['lecture_derivee','calcul_derivee'],
            bac:['stmg_annales_s1_2026','stmg_annales_s2_2026'] }},
   premiere_tronc: { label:"1ère Tronc commun", emoji:"📘", color:"#3B82F6",
-    cats:{ fonctions:['lecture_image','calcul_image','point_courbe','coeff_directeur_calcul','resolution_graphique','tableau_variations','tableau_signes'],
+    cats:{ fonctions:['lecture_image','calcul_image','point_courbe','coeff_directeur_calcul','coeff_directeur_lecture','resolution_graphique','tableau_variations','tableau_signes'],
            pourcentages:['proportions','taux_cm','valeur_finale','evolutions_successives'],
-           numerique:['decimaux_cm','fractions','puissances','scientifique','conversions','tables','racines_n1','racines_n2'],
-           litteral:['eq1','eq_x2','inequation1','developpement','id_remarquables','facto_commun','facto_id','manipulation'],
+           numerique:['decimaux_cm','fractions','puissances','scientifique','conversions','racines_n1','racines_n2'],
+           litteral:['eq1','eq_x2','produit_nul','inequation1','developpement','id_remarquables','facto_commun','facto_id','manipulation'],
            probabilites:['tableau','tableau_fill','arbre','contraire'],
            polynomes:['poly2_factorisee'],
            statistiques:['stat_centrale','stat_dispersion'],
            bac:['tronc_annales_s1_2026','tronc_annales_s2_2026','tronc_annales_s3_2026'] }},
   premiere_spe: { label:"1ère Spé Maths", emoji:"🔬", color:"#8B5CF6",
-    cats:{ fonctions:['lecture_image','calcul_image','point_courbe','coeff_directeur_calcul','resolution_graphique','tableau_variations','tableau_signes'],
+    cats:{ fonctions:['lecture_image','calcul_image','point_courbe','coeff_directeur_calcul','coeff_directeur_lecture','resolution_graphique','tableau_variations','tableau_signes'],
            pourcentages:['proportions','taux_cm','valeur_finale','evolutions_successives'],
-           numerique:['decimaux_cm','fractions','puissances','scientifique','conversions','tables','racines_n1','racines_n2','racines_n3','racines_n4'],
-           litteral:['eq1','eq_x2','eq_x3','inequation1','developpement','id_remarquables','id_rem_pad','id_rem_difficile','facto_commun','facto_id'],
+           numerique:['decimaux_cm','fractions','puissances','scientifique','conversions','racines_n1','racines_n2','racines_n3','racines_n4'],
+           litteral:['eq1','eq_x2','eq_x3','produit_nul','inequation1','developpement','id_remarquables','id_rem_pad','id_rem_difficile','facto_commun','facto_id'],
            probabilites:['tableau','tableau_fill','arbre','contraire'],
            suites:['suites_nature','suites_termes','suites_variations'],
            polynomes:['poly2_factorisee','poly_spe_n1','poly_spe_n2','poly_spe_n3','poly_spe_n4'],
            statistiques:['stat_centrale','stat_dispersion','loi_binomiale'],
-           derivation:['calcul_derivee'],
+           derivation:['lecture_derivee','calcul_derivee'],
            bac:['spe_annales_s1_2026','spe_annales_s2_2026'] }},
   terminale_spe: { label:"Terminale Spé", emoji:"🏆", color:"#DC2626",
-    cats:{ fonctions:['lecture_image','calcul_image','point_courbe','coeff_directeur_calcul','resolution_graphique','tableau_variations','tableau_signes'],
+    cats:{ fonctions:['lecture_image','calcul_image','point_courbe','coeff_directeur_calcul','coeff_directeur_lecture','resolution_graphique','tableau_variations','tableau_signes'],
            pourcentages:['proportions','taux_cm','valeur_finale','evolutions_successives'],
-           numerique:['decimaux_cm','fractions','puissances','scientifique','conversions','tables','racines_n1','racines_n2','racines_n3','racines_n4'],
-           litteral:['eq1','eq_x2','eq_x3','inequation1','developpement','id_remarquables','id_rem_pad','id_rem_difficile','facto_commun','facto_id'],
+           numerique:['decimaux_cm','fractions','puissances','scientifique','conversions','racines_n1','racines_n2','racines_n3','racines_n4'],
+           litteral:['eq1','eq_x2','eq_x3','produit_nul','inequation1','developpement','id_remarquables','id_rem_pad','id_rem_difficile','facto_commun','facto_id'],
            probabilites:['tableau','tableau_fill','arbre','contraire'],
            suites:['suites_nature','suites_termes','suites_variations'],
            polynomes:['poly2_factorisee','poly_spe_n1','poly_spe_n2','poly_spe_n3','poly_spe_n4'],
            statistiques:['stat_centrale','stat_dispersion','loi_binomiale'],
-           derivation:['calcul_derivee'],
-           trigonometrie:['cercle_trigo'],
+           derivation:['lecture_derivee','calcul_derivee'],
+           trigonometrie:['valeurs_trigo'],
            bac:['spe_annales_s1_2026','spe_annales_s2_2026'] }},
 };
 
