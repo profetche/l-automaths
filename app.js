@@ -3504,6 +3504,74 @@ const DB = {
     ],
   },
 
+  // ════ STATISTIQUES ════════════════════════════════════════════════════════
+  statistiques: {
+
+    stat_centrale: [
+      { q: r`\text{Série : }3\ ;\ 5\ ;\ 7\ ;\ 9\ ;\ 11\\[4pt]\text{Médiane}=\,?`,
+        choices: [`7`, `6`, `8`, `5`], a: `7`, tip: r`n=5\text{ : valeur centrale}=7` },
+      { q: r`\text{Série : }10\ ;\ 12\ ;\ 8\ ;\ 14\ ;\ 6\\[4pt]\text{Moyenne}=\,?`,
+        choices: [`10`, `12`, `8`, `11`], a: `10`, tip: r`50/5=10` },
+      { q: r`\text{Notes : }10\ (\times1),\ 14\ (\times3)\\[4pt]\text{Moyenne}=\,?`,
+        choices: [`13`, `12`, `10`, `14`], a: `13`, tip: r`\tfrac{10+42}{4}=13` },
+      { q: r`\text{Série : }4\ ;\ 6\ ;\ 8\ ;\ 10\ ;\ 12\ ;\ 14\\[4pt]\text{Médiane}=\,?`,
+        choices: [`9`, `8`, `10`, `8{,}5`], a: `9`, tip: r`\tfrac{8+10}{2}=9` },
+      { q: r`n=20,\ f=8\text{ fois}\\[4pt]\text{Fréquence}=\,?`,
+        choices: [`40\%`, `8\%`, `20\%`, `4\%`], a: `40\%`, tip: r`\tfrac{8}{20}=40\%` },
+      { q: r`\text{Série : }2\ ;\ 4\ ;\ 6\ ;\ 8\ ;\ 10\\[4pt]\text{Moyenne}=\,?`,
+        choices: [`6`, `5`, `7`, `4`], a: `6`, tip: r`30/5=6` },
+    ],
+
+    stat_dispersion: [
+      { q: r`Q_1=8,\quad Q_3=20\\[4pt]\text{Écart interquartile}=\,?`,
+        choices: [`12`, `28`, `14`, `16`], a: `12`, tip: r`Q_3-Q_1=12` },
+      { q: r`\text{min}=5,\quad \text{max}=25\\[4pt]\text{Étendue}=\,?`,
+        choices: [`20`, `30`, `5`, `15`], a: `20`, tip: r`25-5=20` },
+      { q: r`Q_1=12,\quad Q_3=20\\[4pt]\text{Écart interquartile}=\,?`,
+        choices: [`8`, `32`, `16`, `4`], a: `8`, tip: r`20-12=8` },
+      { q: r`\text{Série : }1\ ;\ 3\ ;\ 5\ ;\ 7\ ;\ 9\ ;\ 11\ ;\ 13\\[4pt]Q_1=\,?`,
+        choices: [`3`, `5`, `4`, `7`], a: `3`, tip: r`n=7\text{ : }Q_1=2^\text{e}\text{ valeur}=3` },
+      { q: r`Q_3-Q_1\text{ s'appelle...}`,
+        choices: [`\text{écart interquartile}`, `\text{étendue}`, `\text{variance}`, `\text{écart-type}`],
+        a: `\text{écart interquartile}`, tip: r`EI=Q_3-Q_1` },
+    ],
+
+    loi_binomiale: [
+      { q: r`X\sim\mathcal{B}(20\ ;\ 0{,}3)\\[4pt]E(X)=\,?`,
+        choices: [`6`, `0{,}3`, `20`, `14`], a: `6`, tip: r`E(X)=np=6` },
+      { q: r`X\sim\mathcal{B}(n\ ;\ p)\\[4pt]E(X)=\,?`,
+        choices: [`np`, `p/n`, `n+p`, `n-p`], a: `np`, tip: r`E(X)=np` },
+      { q: r`X\sim\mathcal{B}(4\ ;\ 0{,}25)\\[4pt]E(X)=\,?`,
+        choices: [`1`, `0{,}25`, `4`, `3`], a: `1`, tip: r`4\times0{,}25=1` },
+      { q: r`X\sim\mathcal{B}(5\ ;\ 0{,}5)\\[4pt]P(X=0)=\,?`,
+        choices: [r`(0{,}5)^5`, `0`, `0{,}5`, `5\times0{,}5`], a: r`(0{,}5)^5`,
+        tip: r`\binom{5}{0}(0{,}5)^5=(0{,}5)^5` },
+      { q: r`\text{10 lancers, succès = « 6 »}\\[4pt]\text{Schéma de Bernoulli ?}`,
+        choices: [`\text{Oui}`, `\text{Non}`, `\text{Seulement si équilibré}`, `\text{Impossible}`],
+        a: `\text{Oui}`, tip: r`n=10\text{ épreuves indép., 2 issues}` },
+      { q: r`\Delta<0\Rightarrow\text{pas de racine}`,
+        choices: [`\text{Vrai}`, `\text{Faux}`, `\text{Ça dépend de }a`, `\text{Toujours une racine}`],
+        a: `\text{Vrai}`, tip: r`\Delta<0\Rightarrow\text{pas de solution réelle}` },
+    ],
+
+    echantillonnage: [
+      { q: r`\text{Intervalle de fluctuation à 95\% :}`,
+        choices: [r`\left[p\pm\tfrac{1}{\sqrt{n}}\right]`, r`\left[p\pm\tfrac{2}{n}\right]`,
+                  r`\left[p\pm\tfrac{1}{n}\right]`, r`\left[p\pm\tfrac{p}{n}\right]`],
+        a: r`\left[p\pm\tfrac{1}{\sqrt{n}}\right]`, tip: r`p\pm\tfrac{1}{\sqrt{n}}` },
+      { q: r`n=100,\quad p=0{,}4\\[4pt]\text{Borne supérieure}=\,?`,
+        choices: [`0{,}5`, `0{,}6`, `0{,}3`, `0{,}04`], a: `0{,}5`, tip: r`0{,}4+\tfrac{1}{10}=0{,}5` },
+      { q: r`n=400,\quad p=0{,}25\\[4pt]\text{Largeur de l'intervalle}=\,?`,
+        choices: [`0{,}1`, `0{,}05`, `0{,}2`, `0{,}5`], a: `0{,}1`, tip: r`\tfrac{2}{\sqrt{400}}=0{,}1` },
+      { q: r`n=100,\quad p=0{,}5\\[4pt]\text{Intervalle}=\,?`,
+        choices: [`[0{,}4\ ;\ 0{,}6]`, `[0{,}25\ ;\ 0{,}75]`, `[0{,}45\ ;\ 0{,}55]`, `[0{,}49\ ;\ 0{,}51]`],
+        a: `[0{,}4\ ;\ 0{,}6]`, tip: r`0{,}5\pm0{,}1` },
+      { q: r`\text{Fréquence observée DANS l'intervalle}\\[4pt]\text{On conclut :}`,
+        choices: [`\text{compatible avec }p`, `p\text{ est certain}`, `p\text{ est faux}`, `\text{erreur}`],
+        a: `\text{compatible avec }p`, tip: r`\text{Dans l'intervalle }\Rightarrow\text{ compatible}` },
+    ],
+  },
+
 
 };
 
