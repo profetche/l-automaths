@@ -3305,7 +3305,7 @@ const DB = {
       { q:r`\text{Sur 60 personnes : A=30, B=12, C=18.}\\[4pt]\text{Les proportions sont :}`, choices:[r`A=50\%,B=20\%,C=30\%`,r`A=30\%,B=20\%,C=50\%`,r`A=50\%,B=30\%,C=20\%`,r`A=40\%,B=30\%,C=30\%`], a:r`A=50\%,B=20\%,C=30\%`, tip:r`\frac{30}{60}=50\%,\frac{12}{60}=20\%,\frac{18}{60}=30\%` },
       { q:r`\text{Série A : 9;10;10;11 — Série B : 7;10;10;13}\\[4pt]\text{Proposition vraie :}`, choices:[r`\bar{x}_A>\bar{x}_B`,r`\bar{x}_B>\bar{x}_A`,r`\sigma_A>\sigma_B`,r`\sigma_B>\sigma_A`], a:r`\sigma_B>\sigma_A`, tip:r`\text{Mêmes moyennes}=10\text{, B plus dispersée}` },
       { q:r`V=\pi r^2 h\text{. Isoler }h\text{ :}`, choices:[r`h=\sqrt{\dfrac{V}{\pi r^2}}`,r`h=\dfrac{\pi r^2}{V}`,r`h=\dfrac{V}{\pi r^2}`,r`h=\dfrac{r^2}{\pi V}`], a:r`h=\dfrac{V}{\pi r^2}`, tip:r`h=\frac{V}{\pi r^2}` },
-      { q:r`f\\text{ définie sur }[-4\\,;\\,4]. \\text{Zéros de }f\\text{ :}`, gspec:{ fn:x=>(x+3)*(x+1)*(x-1)*(x-2)/4, xr:[-4,4], yr:[-4,4], label:'f', color:'#7C3AED', extras:c=><>{gDH(0,c,'#94A3B8')}{gPt(-3,0,c)}{gPt(-1,0,c)}{gPt(1,0,c)}{gPt(2,0,c)}</> }`, choices:[r`S=\{0\}`,r`S=[-3\,;\,2]`,r`S=\{-3\,;\,-1\,;\,1\,;\,2\}`,r`S=\{1{,}5\}`], a:r`S=\{-3\,;\,-1\,;\,1\,;\,2\}`, tip:r`\text{4 zéros d'après la courbe}` },
+      { q:r`f\text{ définie sur }[-4\,;\,4]. \text{Zéros de }f\text{ :}`, gspec:{ fn:x=>(x+3)*(x+1)*(x-1)*(x-2)/4, xr:[-4,4], yr:[-4,4], label:'f', color:'#7C3AED', extras:c=><>{gDH(0,c,'#94A3B8')}{gPt(-3,0,c)}{gPt(-1,0,c)}{gPt(1,0,c)}{gPt(2,0,c)}</> }, choices:[r`S=\{0\}`,r`S=[-3\,;\,2]`,r`S=\{-3\,;\,-1\,;\,1\,;\,2\}`,r`S=\{1{,}5\}`], a:r`S=\{-3\,;\,-1\,;\,1\,;\,2\}`, tip:r`\text{4 zéros d'après la courbe}` },
     ],
     tronc_original: [],
     // ── Spécialité · Annales · Sujet 1 (2026) ────────────────────────────────
