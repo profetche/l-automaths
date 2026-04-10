@@ -7610,6 +7610,28 @@ function AutoMaths() {
 }
 
 
+// ── Service Worker : enregistrement + détection de mise à jour ──────────────
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js').then(reg => {
+    reg.addEventListener('updatefound', () => {
+      const newSW = reg.installing;
+      newSW.addEventListener('statechange', () => {
+        if (newSW.state === 'activated' && navigator.serviceWorker.controller) {
+          location.reload();
+        }
+      });
+    });
+  });
+
+  let refreshing = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (!refreshing) {
+      refreshing = true;
+      location.reload();
+    }
+  });
+}
+
 // ── Render ───────────────────────────────────────────────────────────────────
 const domRoot = document.getElementById('root');
 if (domRoot) {
