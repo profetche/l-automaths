@@ -3509,28 +3509,27 @@ const DB = {
 
 // ── Categories ─────────────────────────────────────────────────────────────────
 const CATS = [
-  { id:"fonctions",    label:"Généralités sur les fonctions", emoji:"📈", color:"#2563EB", grad:"linear-gradient(135deg,#3B82F6,#1D4ED8)", light:"#EFF6FF", border:"#BFDBFE",
+  { id:"fonctions",      label:"Généralités sur les fonctions",  emoji:"📈", color:"#2563EB", grad:"linear-gradient(135deg,#3B82F6,#1D4ED8)", light:"#EFF6FF", border:"#BFDBFE",
     subs:[{id:"lecture_image",label:"Image et antécédent"},{id:"resolution_graphique",label:"Résolution graphique"},{id:"tableau_variations",label:"Tableau de variations"},{id:"tableau_signes",label:"Tableau de signes"},{id:"coeff_directeur_lecture",label:"Coefficient directeur (lecture)"},{id:"equation_droite_lecture",label:"Équation de droite (lecture)"},{id:"calcul_image",label:"Calcul d'image"},{id:"point_courbe",label:"Point sur courbe"},{id:"coeff_directeur_calcul",label:"Coefficient directeur (calcul)"}] },
-  { id:"pourcentages", label:"Pourcentages", emoji:"💹", color:"#059669", grad:"linear-gradient(135deg,#10B981,#047857)", light:"#ECFDF5", border:"#A7F3D0",
-    subs:[{id:"proportions",label:"Proportions",level:"stmg"},{id:"taux_cm",label:"Taux ↔ CM",level:"stmg"},{id:"valeur_finale",label:"Valeur finale / initiale",level:"stmg"},{id:"evolutions_successives",label:"Évolutions successives",level:"stmg"},{id:"evolution_reciproque",label:"Évolution réciproque",level:"stmg"},{id:"taux_moyen",label:"Taux moyen",level:"stmg"},{id:"indice",label:"Indice en base 100",level:"stmg"}] },
-  { id:"numerique",    label:"Calcul numérique", emoji:"🔢", color:"#7C3AED", grad:"linear-gradient(135deg,#8B5CF6,#6D28D9)", light:"#F5F3FF", border:"#DDD6FE",
+  { id:"pourcentages",   label:"Pourcentages",                   emoji:"💹", color:"#059669", grad:"linear-gradient(135deg,#10B981,#047857)", light:"#ECFDF5", border:"#A7F3D0",
+    subs:[{id:"proportions",label:"Proportions"},{id:"taux_cm",label:"Taux ↔ CM"},{id:"valeur_finale",label:"Valeur finale / initiale"},{id:"evolutions_successives",label:"Évolutions successives"},{id:"evolution_reciproque",label:"Évolution réciproque",levels:["stmg"]},{id:"taux_moyen",label:"Taux moyen",levels:["stmg"]},{id:"indice",label:"Indice en base 100",levels:["stmg"]}] },
+  { id:"numerique",      label:"Calcul numérique",               emoji:"🔢", color:"#7C3AED", grad:"linear-gradient(135deg,#8B5CF6,#6D28D9)", light:"#F5F3FF", border:"#DDD6FE",
     subs:[{id:"decimaux_cm",label:"Décimaux & CM"},{id:"fractions",label:"Fractions"},{id:"puissances",label:"Puissances"},{id:"scientifique",label:"Écriture scientifique"},{id:"conversions",label:"Conversions"},{id:"tables",label:"Tables de multiplication (2→9)"},{id:"racines",label:"Racines carrées",levelPicker:true}] },
-  { id:"litteral",     label:"Calcul littéral", emoji:"📐", color:"#DC2626", grad:"linear-gradient(135deg,#EF4444,#B91C1C)", light:"#FEF2F2", border:"#FECACA",
-    subs:[{id:"eq1",label:"Équation 1er degré",level:"tc"},{id:"produit_nul",label:"Équation produit nul",level:"tc"},{id:"eq_x2",label:"x²=a",level:"tc"},{id:"eq_x3",label:"x³=a",level:"tc"},{id:"inequation1",label:"Inéquation 1er degré",level:"tc"},{id:"identites",label:"Développement",levelPicker:true,levelType:"identites",level:"tc"},{id:"factorisation",label:"Factorisation",levelPicker:true,levelType:"factorisation",level:"tc"},{id:"manipulation",label:"Manipulation de formules",level:"stmg"}] },
-  { id:"probabilites", label:"Probabilités", emoji:"🎲", color:"#D97706", grad:"linear-gradient(135deg,#F59E0B,#B45309)", light:"#FFFBEB", border:"#FDE68A",
+  { id:"litteral",       label:"Calcul littéral",                emoji:"📐", color:"#DC2626", grad:"linear-gradient(135deg,#EF4444,#B91C1C)", light:"#FEF2F2", border:"#FECACA",
+    subs:[{id:"eq1",label:"Équation 1er degré"},{id:"produit_nul",label:"Équation produit nul"},{id:"eq_x2",label:"x²=a"},{id:"eq_x3",label:"x³=a",levels:["tc","stmg","spe"]},{id:"inequation1",label:"Inéquation 1er degré"},{id:"identites",label:"Développement",levelPicker:true,levelType:"identites"},{id:"factorisation",label:"Factorisation",levelPicker:true,levelType:"factorisation"},{id:"manipulation",label:"Manipulation de formules"}] },
+  { id:"probabilites",   label:"Probabilités",                   emoji:"🎲", color:"#D97706", grad:"linear-gradient(135deg,#F59E0B,#B45309)", light:"#FFFBEB", border:"#FDE68A",
     subs:[{id:"tableau",label:"Tableau double entrée"},{id:"tableau_fill",label:"📝 Tableau à compléter"},{id:"arbre",label:"Arbre"},{id:"contraire",label:"Événements contraires"}] },
-  { id:"derivation",   label:"Dérivation", emoji:"📉", color:"#0891B2", grad:"linear-gradient(135deg,#06B6D4,#0E7490)", light:"#ECFEFF", border:"#A5F3FC",
-    subs:[{id:"lecture_derivee",label:"Lecture graphique du nombre dérivé"},{id:"calcul_derivee",label:"Calcul de dérivées (deg. 2 et 3)"}] },
-  { id:"suites",    label:"Suites numériques", emoji:"🔁", color:"#EA580C", grad:"linear-gradient(135deg,#F97316,#C2410C)", light:"#FFF7ED", border:"#FED7AA",
-    subs:[{id:"suites_nature",label:"Nature d'une suite",level:"spe"},{id:"suites_termes",label:"Calculer un terme",level:"spe"},{id:"suites_variations",label:"Sens de variation",level:"spe"}] },
-  { id:"polynomes", label:"Polynômes du 2nd degré", emoji:"📊", color:"#7C3AED", grad:"linear-gradient(135deg,#A855F7,#6D28D9)", light:"#F5F3FF", border:"#DDD6FE",
-    subs:[{id:"poly2_factorisee",label:"Forme a(x−x₁)(x−x₂)",level:"stmg"},{id:"poly_spe_n1",label:"Niveau 1 — Lecture des formes",level:"spe"},{id:"poly_spe_n2",label:"Niveau 2 — Résolution facile (Δ)",level:"spe"},{id:"poly_spe_n3",label:"Niveau 3 — Résolution difficile",level:"spe"},{id:"poly_spe_n4",label:"Niveau 4 — Signe et parabole",level:"spe"}] },
-,
-  { id:"trigonometrie", label:"Cercle trigonométrique", emoji:"⭕", color:"#0891B2",
-    grad:"linear-gradient(135deg,#06B6D4,#0E7490)", light:"#ECFEFF", border:"#A5F3FC",
+  { id:"derivation",     label:"Dérivation",                     emoji:"📉", color:"#0891B2", grad:"linear-gradient(135deg,#06B6D4,#0E7490)", light:"#ECFEFF", border:"#A5F3FC",
+    subs:[{id:"lecture_derivee",label:"Lecture graphique du nombre dérivé",levels:["stmg","spe","term"]},{id:"calcul_derivee",label:"Calcul de dérivées",levels:["stmg","spe","term"]}] },
+  { id:"suites",         label:"Suites numériques",              emoji:"🔁", color:"#EA580C", grad:"linear-gradient(135deg,#F97316,#C2410C)", light:"#FFF7ED", border:"#FED7AA",
+    subs:[{id:"suites_nature",label:"Nature d'une suite",levels:["stmg","spe","term"]},{id:"suites_termes",label:"Calculer un terme",levels:["stmg","spe","term"]},{id:"suites_variations",label:"Sens de variation",levels:["spe","term"]}] },
+  { id:"polynomes",      label:"Polynômes du 2nd degré",         emoji:"📊", color:"#7C3AED", grad:"linear-gradient(135deg,#A855F7,#6D28D9)", light:"#F5F3FF", border:"#DDD6FE",
+    subs:[{id:"poly2_factorisee",label:"Forme a(x−x₁)(x−x₂)",levels:["stmg","spe","tc"]},{id:"poly_spe_n1",label:"Niveau 1 — Lecture des formes",levels:["spe"]},{id:"poly_spe_n2",label:"Niveau 2 — Résolution (Δ)",levels:["spe"]},{id:"poly_spe_n3",label:"Niveau 3 — Résolution difficile",levels:["spe"]},{id:"poly_spe_n4",label:"Niveau 4 — Signe et parabole",levels:["spe","term"]}] },
+  { id:"statistiques",   label:"Statistiques",                   emoji:"📈", color:"#BE185D", grad:"linear-gradient(135deg,#EC4899,#9D174D)", light:"#FDF2F8", border:"#FBCFE8",
+    subs:[{id:"stat_centrale",label:"Moyenne & médiane"},{id:"stat_dispersion",label:"Quartiles & dispersion"},{id:"loi_binomiale",label:"Loi binomiale",levels:["stmg","spe","term"]},{id:"echantillonnage",label:"Échantillonnage",levels:["stmg"]}] },
+  { id:"trigonometrie",  label:"Cercle trigonométrique",         emoji:"⭕", color:"#0891B2", grad:"linear-gradient(135deg,#06B6D4,#0E7490)", light:"#ECFEFF", border:"#A5F3FC",
     subs:[{id:"cercle_trigo",label:"Placer un angle sur le cercle",levelPicker:true,levelType:"cercle_trigo",levels:["spe","term"]}] },
 ];
-
 // ── Utils ──────────────────────────────────────────────────────────────────────
 const shuffle  = a => [...a].sort(() => Math.random() - 0.5);
 const getCat   = id => CATS.find(c => c.id === id);
@@ -5747,7 +5746,7 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker}) {
   const levelsInCat=[...new Set(cat.subs.map(s=>s.level).filter(Boolean))];
   const normalSubs = cat.subs.filter(s=>!s.levelPicker);
   const visibleSubs = niveau
-    ? normalSubs.filter(s=>s.level===niveau)
+    ? normalSubs.filter(s=>s.levels?s.levels.includes(niveau):true)
     : normalSubs;
 
   const toggle=id=>setSel(s=>s.includes(id)?s.filter(x=>x!==id):[...s,id]);
