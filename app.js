@@ -6818,6 +6818,7 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
               <div style={{fontSize:12,color:"#475569"}}>
                 <M tex={q.tip}/>
               </div>
+              {!wasCorrect && parseTrigoAngle(q.q)!==null && <MiniTrigoFeedback qTex={q.q}/>}
             </div>
           )}
         </div>
@@ -7114,6 +7115,45 @@ const CX_T = 155, CY_T = 155, R_T = 128;
 const pxT = a => CX_T + R_T * Math.cos(a);
 const pyT = a => CY_T - R_T * Math.sin(a);
 
+// Parse un angle en radians depuis le tex d'une question valeurs_trigo
+function parseTrigoAngle(qTex) {
+  if (!qTex) return null;
+  // Match \dfrac{Npi}{D} ou \dfrac{pi}{D}
+  const m = qTex.match(/frac\{(\d*)\\?pi\}\{(\d+)\}/);
+  if (m) { const n = m[1] ? parseInt(m[1]) : 1; return (n * Math.PI) / parseInt(m[2]); }
+  // Match pi seul
+  if (/\(\\pi\)/.test(qTex) || /\\pi\)/.test(qTex)) return Math.PI;
+  return null;
+}
+
+// Mini cercle trigo pour le feedback des questions valeurs_trigo
+function MiniTrigoFeedback({ qTex }) {
+  const angle = parseTrigoAngle(qTex);
+  if (angle === null) return null;
+  const cx=80, cy=80, r=60;
+  const px = cx + r * Math.cos(angle);
+  const py = cy - r * Math.sin(angle);
+  const cosX = px, sinY = py;
+  return (
+    <svg viewBox="0 0 160 160" width="100%" style={{maxWidth:180,display:"block",margin:"8px auto 0"}}>
+      <rect width="160" height="160" fill="#F8FAFC" rx="10"/>
+      <line x1="10" y1={cy} x2="150" y2={cy} stroke="#CBD5E1" strokeWidth="1"/>
+      <line x1={cx} y1="10" x2={cx} y2="150" stroke="#CBD5E1" strokeWidth="1"/>
+      <circle cx={cx} cy={cy} r={r} fill="none" stroke="#EF4444" strokeWidth="1.5"/>
+      <path d={`M${cx+16},${cy} A16,16 0 ${angle>Math.PI?1:0},0 ${cx+16*Math.cos(angle)},${cy-16*Math.sin(angle)}`} fill="none" stroke="#7C3AED" strokeWidth="1.5" opacity="0.7"/>
+      <line x1={cx} y1={cy} x2={px} y2={py} stroke="#7C3AED" strokeWidth="1.5" opacity="0.6"/>
+      <line x1={cosX} y1={py} x2={cosX} y2={cy} stroke="#7C3AED" strokeWidth="1" strokeDasharray="3,2" opacity="0.7"/>
+      <line x1={px} y1={sinY} x2={cx} y2={sinY} stroke="#7C3AED" strokeWidth="1" strokeDasharray="3,2" opacity="0.7"/>
+      <circle cx={px} cy={py} r="5" fill="#7C3AED"/>
+      <text x={px} y={py+1} textAnchor="middle" dominantBaseline="middle" fontSize="7" fill="white" fontWeight="bold">{"\u2605"}</text>
+      <text x={cx+r+4} y={cy+3} fontSize="7" fill="#94A3B8">1</text>
+      <text x={cx-r-10} y={cy+3} fontSize="7" fill="#94A3B8">-1</text>
+      <text x={cx+3} y={cy-r-3} fontSize="7" fill="#94A3B8">1</text>
+      <text x={cx+3} y={cy+r+9} fontSize="7" fill="#94A3B8">-1</text>
+    </svg>
+  );
+}
+
 function trigoAngleDiff(a, b) {
   let d = Math.abs(a - b) % (2*Math.PI);
   return d > Math.PI ? 2*Math.PI - d : d;
@@ -7230,8 +7270,8 @@ function CercleTrigoScreen({onBack}) {
       <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:16}}>
         <div style={{width:36,height:36,borderRadius:10,background:"linear-gradient(135deg,#06B6D4,#0E7490)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:18}}>⭕</div>
         <div>
-          <h2 style={{fontFamily:"'Nunito',sans-serif",fontSize:17,fontWeight:900,color:"#1E293B"}}>Cercle trigonom\u00e9trique</h2>
-          <p style={{fontSize:11,color:"#64748B"}}>Place l\u2019angle sur le cercle \u00b7 20 questions</p>
+          <h2 style={{fontFamily:"'Nunito',sans-serif",fontSize:17,fontWeight:900,color:"#1E293B"}}>Cercle trigonométrique</h2>
+          <p style={{fontSize:11,color:"#64748B"}}>Place l'angle sur le cercle · 20 questions</p>
         </div>
       </div>
       <Scroll>
@@ -7246,7 +7286,7 @@ function CercleTrigoScreen({onBack}) {
               <div style={{fontFamily:"'Nunito',sans-serif",fontSize:15,fontWeight:800}}>{lv.emoji} {lv.label}</div>
               <div style={{fontSize:12,opacity:.85,marginTop:2}}>{lv.sub}</div>
             </div>
-            <span style={{fontSize:20,opacity:.8}}>\u2192</span>
+            <span style={{fontSize:20,opacity:.8}}>→</span>
           </button>
         ))}
       </Scroll>
@@ -7292,9 +7332,9 @@ function CercleTrigoScreen({onBack}) {
 
       {current&&(
         <div style={{textAlign:"center",background:"#F0F4FF",borderRadius:14,padding:"10px 14px"}}>
-          <div style={{fontSize:12,color:"#64748B",marginBottom:4}}>Place sur le cercle l\u2019angle</div>
+          <div style={{fontSize:12,color:"#64748B",marginBottom:4}}>Place sur le cercle l'angle</div>
           <div style={{fontSize:24}}><M tex={current.displayTex}/></div>
-          <div style={{fontSize:10,color:level?.color,fontWeight:700,marginTop:2}}>{level?.label} \u2014 {level?.sub}</div>
+          <div style={{fontSize:10,color:level?.color,fontWeight:700,marginTop:2}}>{level?.label} — {level?.sub}</div>
         </div>
       )}
 
