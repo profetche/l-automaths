@@ -2656,6 +2656,172 @@ const DB = {
       { q:r`\text{Développer :}\\[5pt](6x-5)^2=`,       exprpad:true, a:"36x²-60x+25",  tip:r`36x^2-60x+25` },
       { q:r`\text{Développer :}\\[5pt](\sqrt{3}-\sqrt{2})^2=`, exprpad:true, a:"5-2√6", extraBtns:["√6","√3","√2"], tip:r`3-2\sqrt{6}+2=5-2\sqrt{6}` },
     ],
+
+    // ── Mise au même dénominateur ───────────────────────────────────────────────
+
+    // Niveau 1 : dénominateur simple x (10 questions)
+    denom_n1: [
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]1+\dfrac{1}{x}=`, exprpad:true, a:"(x+1)/x", altAnswers:["(1+x)/x"], tip:r`\dfrac{x}{x}+\dfrac{1}{x}=\dfrac{x+1}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]3+\dfrac{2}{x}=`, exprpad:true, a:"(3x+2)/x", altAnswers:["(2+3x)/x"], tip:r`\dfrac{3x}{x}+\dfrac{2}{x}=\dfrac{3x+2}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]5-\dfrac{1}{x}=`, exprpad:true, a:"(5x-1)/x", tip:r`\dfrac{5x}{x}-\dfrac{1}{x}=\dfrac{5x-1}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]2-\dfrac{3}{x}=`, exprpad:true, a:"(2x-3)/x", tip:r`\dfrac{2x}{x}-\dfrac{3}{x}=\dfrac{2x-3}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]4+\dfrac{1}{x}=`, exprpad:true, a:"(4x+1)/x", altAnswers:["(1+4x)/x"], tip:r`\dfrac{4x}{x}+\dfrac{1}{x}=\dfrac{4x+1}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]1-\dfrac{2}{x}=`, exprpad:true, a:"(x-2)/x", tip:r`\dfrac{x}{x}-\dfrac{2}{x}=\dfrac{x-2}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]2+\dfrac{5}{x}=`, exprpad:true, a:"(2x+5)/x", altAnswers:["(5+2x)/x"], tip:r`\dfrac{2x}{x}+\dfrac{5}{x}=\dfrac{2x+5}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]3-\dfrac{4}{x}=`, exprpad:true, a:"(3x-4)/x", tip:r`\dfrac{3x}{x}-\dfrac{4}{x}=\dfrac{3x-4}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]6+\dfrac{1}{x}=`, exprpad:true, a:"(6x+1)/x", altAnswers:["(1+6x)/x"], tip:r`\dfrac{6x}{x}+\dfrac{1}{x}=\dfrac{6x+1}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]1-\dfrac{5}{x}=`, exprpad:true, a:"(x-5)/x", tip:r`\dfrac{x}{x}-\dfrac{5}{x}=\dfrac{x-5}{x}` },
+    ],
+
+    // Niveau 2 : dénominateur avec expression (15 questions)
+    // Accepte forme non-réduite OU réduite, avec feedback "C'est bon mais tu peux encore simplifier"
+    denom_n2: [
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{5}{x+1}-2=`, exprpad:true, 
+        a:"(3-2x)/(x+1)", altAnswers:["(5-2(x+1))/(x+1)","(-2x+3)/(x+1)"], 
+        partialAnswers:["(5-2(x+1))/(x+1)"], 
+        tip:r`\dfrac{5-2(x+1)}{x+1}=\dfrac{5-2x-2}{x+1}=\dfrac{3-2x}{x+1}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]3+\dfrac{1}{x-2}=`, exprpad:true, 
+        a:"(3x-5)/(x-2)", altAnswers:["(3(x-2)+1)/(x-2)","(-5+3x)/(x-2)"], 
+        partialAnswers:["(3(x-2)+1)/(x-2)"], 
+        tip:r`\dfrac{3(x-2)+1}{x-2}=\dfrac{3x-6+1}{x-2}=\dfrac{3x-5}{x-2}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{7}{x-3}-1=`, exprpad:true, 
+        a:"(10-x)/(x-3)", altAnswers:["(7-(x-3))/(x-3)","(-x+10)/(x-3)"], 
+        partialAnswers:["(7-(x-3))/(x-3)"], 
+        tip:r`\dfrac{7-(x-3)}{x-3}=\dfrac{7-x+3}{x-3}=\dfrac{10-x}{x-3}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]2-\dfrac{3}{x+4}=`, exprpad:true, 
+        a:"(2x+5)/(x+4)", altAnswers:["(2(x+4)-3)/(x+4)","(5+2x)/(x+4)"], 
+        partialAnswers:["(2(x+4)-3)/(x+4)"], 
+        tip:r`\dfrac{2(x+4)-3}{x+4}=\dfrac{2x+8-3}{x+4}=\dfrac{2x+5}{x+4}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{4}{x+2}+1=`, exprpad:true, 
+        a:"(x+6)/(x+2)", altAnswers:["(4+(x+2))/(x+2)","(6+x)/(x+2)"], 
+        partialAnswers:["(4+(x+2))/(x+2)"], 
+        tip:r`\dfrac{4+(x+2)}{x+2}=\dfrac{4+x+2}{x+2}=\dfrac{x+6}{x+2}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]5-\dfrac{2}{x-1}=`, exprpad:true, 
+        a:"(5x-7)/(x-1)", altAnswers:["(5(x-1)-2)/(x-1)","(-7+5x)/(x-1)"], 
+        partialAnswers:["(5(x-1)-2)/(x-1)"], 
+        tip:r`\dfrac{5(x-1)-2}{x-1}=\dfrac{5x-5-2}{x-1}=\dfrac{5x-7}{x-1}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{6}{x+3}-3=`, exprpad:true, 
+        a:"(-3x-3)/(x+3)", altAnswers:["(6-3(x+3))/(x+3)","(-3-3x)/(x+3)"], 
+        partialAnswers:["(6-3(x+3))/(x+3)"], 
+        tip:r`\dfrac{6-3(x+3)}{x+3}=\dfrac{6-3x-9}{x+3}=\dfrac{-3x-3}{x+3}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]4+\dfrac{2}{x-5}=`, exprpad:true, 
+        a:"(4x-18)/(x-5)", altAnswers:["(4(x-5)+2)/(x-5)","(-18+4x)/(x-5)"], 
+        partialAnswers:["(4(x-5)+2)/(x-5)"], 
+        tip:r`\dfrac{4(x-5)+2}{x-5}=\dfrac{4x-20+2}{x-5}=\dfrac{4x-18}{x-5}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{8}{x-2}-2=`, exprpad:true, 
+        a:"(12-2x)/(x-2)", altAnswers:["(8-2(x-2))/(x-2)","(-2x+12)/(x-2)"], 
+        partialAnswers:["(8-2(x-2))/(x-2)"], 
+        tip:r`\dfrac{8-2(x-2)}{x-2}=\dfrac{8-2x+4}{x-2}=\dfrac{12-2x}{x-2}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]1-\dfrac{4}{x+1}=`, exprpad:true, 
+        a:"(x-3)/(x+1)", altAnswers:["((x+1)-4)/(x+1)","(-3+x)/(x+1)"], 
+        partialAnswers:["((x+1)-4)/(x+1)"], 
+        tip:r`\dfrac{(x+1)-4}{x+1}=\dfrac{x+1-4}{x+1}=\dfrac{x-3}{x+1}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{9}{x+4}+2=`, exprpad:true, 
+        a:"(2x+17)/(x+4)", altAnswers:["(9+2(x+4))/(x+4)","(17+2x)/(x+4)"], 
+        partialAnswers:["(9+2(x+4))/(x+4)"], 
+        tip:r`\dfrac{9+2(x+4)}{x+4}=\dfrac{9+2x+8}{x+4}=\dfrac{2x+17}{x+4}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]3-\dfrac{5}{x-1}=`, exprpad:true, 
+        a:"(3x-8)/(x-1)", altAnswers:["(3(x-1)-5)/(x-1)","(-8+3x)/(x-1)"], 
+        partialAnswers:["(3(x-1)-5)/(x-1)"], 
+        tip:r`\dfrac{3(x-1)-5}{x-1}=\dfrac{3x-3-5}{x-1}=\dfrac{3x-8}{x-1}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{10}{x+5}-4=`, exprpad:true, 
+        a:"(-4x-10)/(x+5)", altAnswers:["(10-4(x+5))/(x+5)","(-10-4x)/(x+5)"], 
+        partialAnswers:["(10-4(x+5))/(x+5)"], 
+        tip:r`\dfrac{10-4(x+5)}{x+5}=\dfrac{10-4x-20}{x+5}=\dfrac{-4x-10}{x+5}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]6+\dfrac{3}{x-4}=`, exprpad:true, 
+        a:"(6x-21)/(x-4)", altAnswers:["(6(x-4)+3)/(x-4)","(-21+6x)/(x-4)"], 
+        partialAnswers:["(6(x-4)+3)/(x-4)"], 
+        tip:r`\dfrac{6(x-4)+3}{x-4}=\dfrac{6x-24+3}{x-4}=\dfrac{6x-21}{x-4}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{7}{x+2}-5=`, exprpad:true, 
+        a:"(-5x-3)/(x+2)", altAnswers:["(7-5(x+2))/(x+2)","(-3-5x)/(x+2)"], 
+        partialAnswers:["(7-5(x+2))/(x+2)"], 
+        tip:r`\dfrac{7-5(x+2)}{x+2}=\dfrac{7-5x-10}{x+2}=\dfrac{-5x-3}{x+2}` },
+    ],
+
+    // Niveau 3 : deux fractions avec dénominateurs différents (15 questions)
+    // Accepte dénominateur factorisé OU développé, avec reminder sur inutilité de développer
+    denom_n3: [
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{1}{x}+\dfrac{3}{x+1}=`, exprpad:true, 
+        a:"(4x+1)/(x(x+1))", altAnswers:["(4x+1)/(x²+x)","(1+4x)/(x(x+1))","(1+4x)/(x²+x)"], 
+        tip:r`\dfrac{x+1+3x}{x(x+1)}=\dfrac{4x+1}{x(x+1)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{2}{x}-\dfrac{1}{x+2}=`, exprpad:true, 
+        a:"(x+4)/(x(x+2))", altAnswers:["(x+4)/(x²+2x)","(4+x)/(x(x+2))","(4+x)/(x²+2x)"], 
+        tip:r`\dfrac{2(x+2)-x}{x(x+2)}=\dfrac{2x+4-x}{x(x+2)}=\dfrac{x+4}{x(x+2)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{3}{x+1}+\dfrac{2}{x-1}=`, exprpad:true, 
+        a:"(5x-1)/((x+1)(x-1))", altAnswers:["(5x-1)/(x²-1)","(-1+5x)/((x+1)(x-1))","(-1+5x)/(x²-1)"], 
+        tip:r`\dfrac{3(x-1)+2(x+1)}{(x+1)(x-1)}=\dfrac{3x-3+2x+2}{(x+1)(x-1)}=\dfrac{5x-1}{(x+1)(x-1)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{1}{x-2}-\dfrac{4}{x+3}=`, exprpad:true, 
+        a:"(-3x-11)/((x-2)(x+3))", altAnswers:["(-3x-11)/(x²+x-6)","(-11-3x)/((x-2)(x+3))","(-11-3x)/(x²+x-6)"], 
+        tip:r`\dfrac{(x+3)-4(x-2)}{(x-2)(x+3)}=\dfrac{x+3-4x+8}{(x-2)(x+3)}=\dfrac{-3x+11}{(x-2)(x+3)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{5}{x}+\dfrac{1}{x-3}=`, exprpad:true, 
+        a:"(6x-3)/(x(x-3))", altAnswers:["(6x-3)/(x²-3x)","(-3+6x)/(x(x-3))","(-3+6x)/(x²-3x)"], 
+        tip:r`\dfrac{5(x-3)+x}{x(x-3)}=\dfrac{5x-15+x}{x(x-3)}=\dfrac{6x-15}{x(x-3)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{4}{x+2}-\dfrac{3}{x-1}=`, exprpad:true, 
+        a:"(x+11)/((x+2)(x-1))", altAnswers:["(x+11)/(x²+x-2)","(11+x)/((x+2)(x-1))","(11+x)/(x²+x-2)"], 
+        tip:r`\dfrac{4(x-1)-3(x+2)}{(x+2)(x-1)}=\dfrac{4x-4-3x-6}{(x+2)(x-1)}=\dfrac{x-10}{(x+2)(x-1)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{2}{x-4}+\dfrac{5}{x+1}=`, exprpad:true, 
+        a:"(7x-3)/((x-4)(x+1))", altAnswers:["(7x-3)/(x²-3x-4)","(-3+7x)/((x-4)(x+1))","(-3+7x)/(x²-3x-4)"], 
+        tip:r`\dfrac{2(x+1)+5(x-4)}{(x-4)(x+1)}=\dfrac{2x+2+5x-20}{(x-4)(x+1)}=\dfrac{7x-18}{(x-4)(x+1)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{1}{x+5}-\dfrac{2}{x}=`, exprpad:true, 
+        a:"(-x-10)/(x(x+5))", altAnswers:["(-x-10)/(x²+5x)","(-10-x)/(x(x+5))","(-10-x)/(x²+5x)"], 
+        tip:r`\dfrac{x-2(x+5)}{x(x+5)}=\dfrac{x-2x-10}{x(x+5)}=\dfrac{-x-10}{x(x+5)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{3}{x-2}+\dfrac{1}{x+4}=`, exprpad:true, 
+        a:"(4x+10)/((x-2)(x+4))", altAnswers:["(4x+10)/(x²+2x-8)","(10+4x)/((x-2)(x+4))","(10+4x)/(x²+2x-8)"], 
+        tip:r`\dfrac{3(x+4)+(x-2)}{(x-2)(x+4)}=\dfrac{3x+12+x-2}{(x-2)(x+4)}=\dfrac{4x+10}{(x-2)(x+4)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{7}{x+3}-\dfrac{2}{x-3}=`, exprpad:true, 
+        a:"(5x+27)/((x+3)(x-3))", altAnswers:["(5x+27)/(x²-9)","(27+5x)/((x+3)(x-3))","(27+5x)/(x²-9)"], 
+        tip:r`\dfrac{7(x-3)-2(x+3)}{(x+3)(x-3)}=\dfrac{7x-21-2x-6}{(x+3)(x-3)}=\dfrac{5x-27}{(x+3)(x-3)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{2}{x}+\dfrac{4}{x+5}=`, exprpad:true, 
+        a:"(6x+4)/(x(x+5))", altAnswers:["(6x+4)/(x²+5x)","(4+6x)/(x(x+5))","(4+6x)/(x²+5x)"], 
+        tip:r`\dfrac{2(x+5)+4x}{x(x+5)}=\dfrac{2x+10+4x}{x(x+5)}=\dfrac{6x+10}{x(x+5)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{5}{x-1}-\dfrac{1}{x+2}=`, exprpad:true, 
+        a:"(4x+11)/((x-1)(x+2))", altAnswers:["(4x+11)/(x²+x-2)","(11+4x)/((x-1)(x+2))","(11+4x)/(x²+x-2)"], 
+        tip:r`\dfrac{5(x+2)-(x-1)}{(x-1)(x+2)}=\dfrac{5x+10-x+1}{(x-1)(x+2)}=\dfrac{4x+11}{(x-1)(x+2)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{3}{x+6}+\dfrac{2}{x-2}=`, exprpad:true, 
+        a:"(5x+6)/((x+6)(x-2))", altAnswers:["(5x+6)/(x²+4x-12)","(6+5x)/((x+6)(x-2))","(6+5x)/(x²+4x-12)"], 
+        tip:r`\dfrac{3(x-2)+2(x+6)}{(x+6)(x-2)}=\dfrac{3x-6+2x+12}{(x+6)(x-2)}=\dfrac{5x+6}{(x+6)(x-2)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{1}{x-5}-\dfrac{3}{x}=`, exprpad:true, 
+        a:"(-2x+15)/(x(x-5))", altAnswers:["(-2x+15)/(x²-5x)","(15-2x)/(x(x-5))","(15-2x)/(x²-5x)"], 
+        tip:r`\dfrac{x-3(x-5)}{x(x-5)}=\dfrac{x-3x+15}{x(x-5)}=\dfrac{-2x+15}{x(x-5)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{6}{x+1}+\dfrac{1}{x-4}=`, exprpad:true, 
+        a:"(7x-23)/((x+1)(x-4))", altAnswers:["(7x-23)/(x²-3x-4)","(-23+7x)/((x+1)(x-4))","(-23+7x)/(x²-3x-4)"], 
+        tip:r`\dfrac{6(x-4)+(x+1)}{(x+1)(x-4)}=\dfrac{6x-24+x+1}{(x+1)(x-4)}=\dfrac{7x-23}{(x+1)(x-4)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+    ],
+
+    // Niveau 4 : numérateurs plus complexes (10 questions)
+    denom_n4: [
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{x+1}{x-2}-\dfrac{x}{x+4}=`, exprpad:true, 
+        a:"(5x+4)/((x-2)(x+4))", altAnswers:["(5x+4)/(x²+2x-8)","(4+5x)/((x-2)(x+4))","(4+5x)/(x²+2x-8)"], 
+        tip:r`\dfrac{(x+1)(x+4)-x(x-2)}{(x-2)(x+4)}=\dfrac{x^2+5x+4-x^2+2x}{(x-2)(x+4)}=\dfrac{7x+4}{(x-2)(x+4)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{2x}{x+1}+\dfrac{x-3}{x-1}=`, exprpad:true, 
+        a:"(3x²-5x-3)/((x+1)(x-1))", altAnswers:["(3x²-5x-3)/(x²-1)","(-3-5x+3x²)/((x+1)(x-1))","(-3-5x+3x²)/(x²-1)"], 
+        tip:r`\dfrac{2x(x-1)+(x-3)(x+1)}{(x+1)(x-1)}=\dfrac{2x^2-2x+x^2-2x-3}{(x+1)(x-1)}=\dfrac{3x^2-4x-3}{(x+1)(x-1)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{x-2}{x+3}-\dfrac{2x+1}{x-5}=`, exprpad:true, 
+        a:"(-x²-8x-13)/((x+3)(x-5))", altAnswers:["(-x²-8x-13)/(x²-2x-15)","(-13-8x-x²)/((x+3)(x-5))","(-13-8x-x²)/(x²-2x-15)"], 
+        tip:r`\dfrac{(x-2)(x-5)-(2x+1)(x+3)}{(x+3)(x-5)}=\dfrac{x^2-7x+10-2x^2-7x-3}{(x+3)(x-5)}=\dfrac{-x^2-14x+7}{(x+3)(x-5)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{3x}{x-1}+\dfrac{x+2}{x+2}=`, exprpad:true, 
+        a:"(4x²+4x+2)/((x-1)(x+2))", altAnswers:["(4x²+4x+2)/(x²+x-2)","(2+4x+4x²)/((x-1)(x+2))","(2+4x+4x²)/(x²+x-2)"], 
+        tip:r`\dfrac{3x(x+2)+(x+2)(x-1)}{(x-1)(x+2)}=\dfrac{3x^2+6x+x^2+x-2}{(x-1)(x+2)}=\dfrac{4x^2+7x-2}{(x-1)(x+2)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{x+5}{x-3}-\dfrac{x-1}{x+1}=`, exprpad:true, 
+        a:"(6x+8)/((x-3)(x+1))", altAnswers:["(6x+8)/(x²-2x-3)","(8+6x)/((x-3)(x+1))","(8+6x)/(x²-2x-3)"], 
+        tip:r`\dfrac{(x+5)(x+1)-(x-1)(x-3)}{(x-3)(x+1)}=\dfrac{x^2+6x+5-x^2+4x-3}{(x-3)(x+1)}=\dfrac{10x+2}{(x-3)(x+1)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{2x-1}{x+4}+\dfrac{x}{x-2}=`, exprpad:true, 
+        a:"(3x²+5x-2)/((x+4)(x-2))", altAnswers:["(3x²+5x-2)/(x²+2x-8)","(-2+5x+3x²)/((x+4)(x-2))","(-2+5x+3x²)/(x²+2x-8)"], 
+        tip:r`\dfrac{(2x-1)(x-2)+x(x+4)}{(x+4)(x-2)}=\dfrac{2x^2-5x+2+x^2+4x}{(x+4)(x-2)}=\dfrac{3x^2-x+2}{(x+4)(x-2)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{x-4}{x+5}-\dfrac{3x}{x-1}=`, exprpad:true, 
+        a:"(-2x²-14x+4)/((x+5)(x-1))", altAnswers:["(-2x²-14x+4)/(x²+4x-5)","(4-14x-2x²)/((x+5)(x-1))","(4-14x-2x²)/(x²+4x-5)"], 
+        tip:r`\dfrac{(x-4)(x-1)-3x(x+5)}{(x+5)(x-1)}=\dfrac{x^2-5x+4-3x^2-15x}{(x+5)(x-1)}=\dfrac{-2x^2-20x+4}{(x+5)(x-1)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{x+3}{x-6}+\dfrac{2x-5}{x+2}=`, exprpad:true, 
+        a:"(3x²-7x-24)/((x-6)(x+2))", altAnswers:["(3x²-7x-24)/(x²-4x-12)","(-24-7x+3x²)/((x-6)(x+2))","(-24-7x+3x²)/(x²-4x-12)"], 
+        tip:r`\dfrac{(x+3)(x+2)+(2x-5)(x-6)}{(x-6)(x+2)}=\dfrac{x^2+5x+6+2x^2-17x+30}{(x-6)(x+2)}=\dfrac{3x^2-12x+36}{(x-6)(x+2)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{4x}{x+3}-\dfrac{x-7}{x-4}=`, exprpad:true, 
+        a:"(3x²+21x+21)/((x+3)(x-4))", altAnswers:["(3x²+21x+21)/(x²-x-12)","(21+21x+3x²)/((x+3)(x-4))","(21+21x+3x²)/(x²-x-12)"], 
+        tip:r`\dfrac{4x(x-4)-(x-7)(x+3)}{(x+3)(x-4)}=\dfrac{4x^2-16x-x^2+4x+21}{(x+3)(x-4)}=\dfrac{3x^2-12x+21}{(x+3)(x-4)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{x+8}{x-7}-\dfrac{5x}{x+6}=`, exprpad:true, 
+        a:"(-4x²-34x+48)/((x-7)(x+6))", altAnswers:["(-4x²-34x+48)/(x²-x-42)","(48-34x-4x²)/((x-7)(x+6))","(48-34x-4x²)/(x²-x-42)"], 
+        tip:r`\dfrac{(x+8)(x+6)-5x(x-7)}{(x-7)(x+6)}=\dfrac{x^2+14x+48-5x^2+35x}{(x-7)(x+6)}=\dfrac{-4x^2+49x+48}{(x-7)(x+6)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+    ],
+
     facto_commun: [
       { q:r`\text{Factoriser :}\\[4pt]3x^2+6x`, choices:[`3x(x+2)`,`3(x^2+2x)`,`x(3x+6)`,`6x(x+1)`], a:`3x(x+2)`, tip:r`\text{Facteur commun }3x` },
       { q:r`\text{Factoriser :}\\[4pt]4x-8`, choices:[`4(x-2)`,`2(2x-4)`,`4(x+2)`,`4x-8`], a:`4(x-2)`, tip:r`\text{Facteur commun }4` },
@@ -3840,6 +4006,7 @@ const CATS = [
       {id:"inequation1",  label:"Inéquation 1er degré",        levels:["sec","tc","stmg","spe","term"]},
       {id:"identites",    label:"Développement",                levels:["sec","tc","stmg","spe","term"], levelPicker:true, levelType:"identites"},
       {id:"factorisation",label:"Factorisation",                levels:["sec","tc","stmg","spe","term"], levelPicker:true, levelType:"factorisation"},
+      {id:"denominateur", label:"Mise au même dénominateur",    levels:["sec","tc","stmg","spe","term"], levelPicker:true, levelType:"denominateur"},
       {id:"manipulation", label:"Manipulation de formules",     levels:["sec","tc","stmg"]},
     ] },
   { id:"probabilites", label:"Probabilités", emoji:"🎲", color:"#D97706", grad:"linear-gradient(135deg,#F59E0B,#B45309)", light:"#FFFBEB", border:"#FDE68A",
@@ -4144,9 +4311,9 @@ function SolPad({ value, onChange, onValidate, state, correctAnswer }) {
 }
 
 // ── EXPRPAD — expression algébrique (x², x, chiffres, +, −) ───────────────────
-function ExprPad({ correct, extraBtn, extraBtns, onValidate, state }) {
+function ExprPad({ correct, altAnswers, partialAnswers, extraBtn, extraBtns, onValidate, state }) {
   const [val, setVal] = React.useState('');
-  const disabled = state !== 'idle';
+  const disabled = state === 'correct' || state === 'wrong'; // partial permet de continuer
 
   const toLatex = s => s
     .replace(/x²/g,'x^2')
@@ -4178,13 +4345,46 @@ function ExprPad({ correct, extraBtn, extraBtns, onValidate, state }) {
 
   const submit = () => {
     if(!val || disabled) return;
-    const ok = normFactor(val) === normFactor(correct);
-    onValidate(ok ? 'correct' : 'wrong', val);
+    const normalized = normFactor(val);
+    
+    // Check if it's a partial answer first (for "C'est bon mais tu peux encore simplifier" feedback)
+    if(partialAnswers && partialAnswers.length > 0) {
+      const isPartial = partialAnswers.some(ans => normFactor(ans) === normalized);
+      if(isPartial) {
+        onValidate('partial', val);
+        return;
+      }
+    }
+    
+    // Check main correct answer
+    const isMainCorrect = normFactor(correct) === normalized;
+    if(isMainCorrect) {
+      onValidate('correct', val);
+      return;
+    }
+    
+    // Check alternative answers
+    if(altAnswers && altAnswers.length > 0) {
+      const isAltCorrect = altAnswers.some(ans => normFactor(ans) === normalized);
+      if(isAltCorrect) {
+        onValidate('correct', val);
+        return;
+      }
+    }
+    
+    onValidate('wrong', val);
   };
 
-  const dispBg = state==='correct'?'#ECFDF5':state==='wrong'?'#FEF2F2':'#F8FAFC';
-  const dispBd = state==='correct'?'#10B981':state==='wrong'?'#EF4444':'#CBD5E1';
-  const dispClr = state==='correct'?'#065F46':state==='wrong'?'#991B1B':'#1E293B';
+  const dispBg = state==='correct'?'#ECFDF5':state==='wrong'?'#FEF2F2':state==='partial'?'#FEF9C3':'#F8FAFC';
+  const dispBd = state==='correct'?'#10B981':state==='wrong'?'#EF4444':state==='partial'?'#F59E0B':'#CBD5E1';
+  const dispClr = state==='correct'?'#065F46':state==='wrong'?'#991B1B':state==='partial'?'#92400E':'#1E293B';
+
+  // Reset val when entering partial state to allow re-typing
+  React.useEffect(() => {
+    if(state === 'partial') {
+      setVal('');
+    }
+  }, [state]);
 
   const B = ({label, tex, bg, color, flex=1, onP}) => (
     <button onClick={onP||(() => ins(label))} disabled={disabled}
@@ -6166,7 +6366,7 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
                 border:"2px solid #DDD6FE",borderRadius:12,padding:"10px 12px",cursor:"pointer",
                 display:"flex",alignItems:"center",gap:10,
                 boxShadow:"0 2px 8px rgba(0,0,0,.04)",animationDelay:`${i*.04}s`,flexShrink:0}}>
-              <div style={{fontSize:22}}>{s.levelType==="identites"?"🔣":s.levelType==="cercle_trigo"?"⭕":s.levelType==="factorisation"?"✖️":"√"}</div>
+              <div style={{fontSize:22}}>{s.levelType==="identites"?"🔣":s.levelType==="cercle_trigo"?"⭕":s.levelType==="factorisation"?"✖️":s.levelType==="denominateur"?"➗":"√"}</div>
               <div style={{flex:1,textAlign:"left"}}>
                 <div style={{fontSize:12,fontWeight:800,color:"#7C3AED"}}>{s.label}</div>
                 <div style={{fontSize:10,color:"#8B5CF6",marginTop:2}}>{s.levelType==="cercle_trigo"?"3 niveaux — Placer l'angle →":"4 niveaux — Choisir la difficulté →"}</div>
@@ -6396,6 +6596,115 @@ function FactorisationLevelScreen({catId, qCount, onStart, onBack}) {
             <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:14,color:"#fff"}}>Tous les niveaux mélangés</div>
             <div style={{color:"#64748B",fontSize:11,marginTop:2}}>
               {(DB.litteral.facto_commun?.length||0)+(DB.litteral.facto_commun_pad?.length||0)+(DB.litteral.facto_id?.length||0)+(DB.litteral.facto_id_pad?.length||0)+(DB.litteral.facto_avance?.length||0)} questions au total
+            </div>
+          </div>
+          <span style={{color:"#F59E0B",fontSize:18}}>›</span>
+        </button>
+      </Scroll>
+    </div>
+  );
+}
+
+// ── DenomLevelScreen — choix du niveau de mise au même dénominateur ──────────
+const DENOM_LEVELS = [
+  {
+    id:"denom_n1", label:"Niveau 1", sub:"Dénominateur simple x",
+    desc:"Additionner un entier et une fraction. Ex : 1 + 1/x = (x+1)/x",
+    emoji:"🟢", color:"#10B981", grad:"linear-gradient(135deg,#10B981,#047857)",
+    tags:["Pad ✍️","Débutant"],
+  },
+  {
+    id:"denom_n2", label:"Niveau 2", sub:"Dénominateur x+a ou x−a",
+    desc:"Mise au dénominateur avec simplification. Ex : 5/(x+1) − 2",
+    emoji:"🟡", color:"#F59E0B", grad:"linear-gradient(135deg,#F59E0B,#B45309)",
+    tags:["Pad ✍️","Intermédiaire"],
+  },
+  {
+    id:"denom_n3", label:"Niveau 3", sub:"Deux fractions différentes",
+    desc:"Additionner deux fractions. Ex : 1/x + 3/(x+1)",
+    emoji:"🟠", color:"#EF4444", grad:"linear-gradient(135deg,#EF4444,#B91C1C)",
+    tags:["Pad ✍️","Avancé"],
+  },
+  {
+    id:"denom_n4", label:"Niveau 4", sub:"Numérateurs complexes 🔥",
+    desc:"Expressions avec polynômes. Ex : (x+1)/(x−2) − x/(x+4)",
+    emoji:"🔴", color:"#7C3AED", grad:"linear-gradient(135deg,#7C3AED,#5B21B6)",
+    tags:["Pad ✍️","Expert 🔥"],
+  },
+];
+
+function DenomLevelScreen({catId, qCount, onStart, onBack}) {
+  const cat = getCat(catId);
+  return (
+    <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",padding:"18px 18px 14px"}}>
+      <Back onClick={onBack}/>
+      <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:6}}>
+        <div style={{width:36,height:36,borderRadius:10,background:cat.grad,
+          display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}}>
+          {cat.emoji}
+        </div>
+        <div>
+          <h2 style={{fontFamily:"'Nunito',sans-serif",fontSize:17,fontWeight:900,color:"#1E293B",margin:0}}>
+            Mise au même dénominateur
+          </h2>
+          <p style={{color:"#64748B",fontSize:11,margin:0}}>Choisis ton niveau</p>
+        </div>
+      </div>
+
+      <Scroll>
+        {DENOM_LEVELS.map((lv,i)=>{
+          const qs = DB.litteral?.[lv.id] || [];
+          return (
+            <button key={lv.id} onClick={()=>onStart(qs, lv.id)} className="pop-in"
+              style={{background:"#fff",border:"2px solid #E2E8F0",borderRadius:16,
+                padding:"0",cursor:"pointer",textAlign:"left",
+                boxShadow:"0 2px 10px rgba(0,0,0,.06)",
+                animationDelay:`${i*.07}s`,flexShrink:0,overflow:"hidden"}}>
+              {/* Color bar */}
+              <div style={{height:4,background:lv.grad,width:"100%"}}/>
+              <div style={{padding:"13px 14px",display:"flex",alignItems:"center",gap:12}}>
+                <div style={{fontSize:26,flexShrink:0}}>{lv.emoji}</div>
+                <div style={{flex:1}}>
+                  <div style={{display:"flex",alignItems:"baseline",gap:6}}>
+                    <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,
+                      fontSize:15,color:"#1E293B"}}>{lv.label}</span>
+                    <span style={{fontSize:11,fontWeight:700,color:lv.color}}>— {lv.sub}</span>
+                  </div>
+                  <div style={{color:"#64748B",fontSize:11,marginTop:2}}>{lv.desc}</div>
+                  <div style={{display:"flex",gap:5,marginTop:6,flexWrap:"wrap"}}>
+                    {lv.tags.map(t=>(
+                      <span key={t} style={{fontSize:9,fontWeight:700,
+                        background:`${lv.color}18`,color:lv.color,
+                        borderRadius:99,padding:"2px 7px"}}>{t}</span>
+                    ))}
+                    <span style={{fontSize:9,color:"#94A3B8",fontWeight:600,marginLeft:"auto"}}>
+                      {qs.length} questions
+                    </span>
+                  </div>
+                </div>
+                <span style={{color:lv.color,fontSize:18,flexShrink:0}}>›</span>
+              </div>
+            </button>
+          );
+        })}
+
+        {/* All levels option */}
+        <button onClick={()=>{
+            const all=[...DB.litteral.denom_n1,...DB.litteral.denom_n2,...DB.litteral.denom_n3,...DB.litteral.denom_n4];
+            onStart(all,'denom_all');
+          }} className="pop-in"
+          style={{background:"#1E293B",border:"none",borderRadius:16,
+            padding:"13px 14px",cursor:"pointer",textAlign:"left",
+            boxShadow:"0 4px 14px rgba(0,0,0,.2)",
+            animationDelay:"0.28s",flexShrink:0,
+            display:"flex",alignItems:"center",gap:12}}>
+          <div style={{fontSize:26}}>🎲</div>
+          <div style={{flex:1}}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:14,color:"#fff"}}>
+              Tous les niveaux mélangés
+            </div>
+            <div style={{color:"#64748B",fontSize:11,marginTop:2}}>
+              {DB.litteral.denom_n1.length+DB.litteral.denom_n2.length+DB.litteral.denom_n3.length+DB.litteral.denom_n4.length} questions au total
             </div>
           </div>
           <span style={{color:"#F59E0B",fontSize:18}}>›</span>
@@ -6784,10 +7093,19 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
 
       {/* ── ExprPad (développement identités remarquables) ── */}
       {isExpr && (
-        <ExprPad key={idx} correct={q.a} extraBtn={q.extraBtn||null} extraBtns={q.extraBtns||[]}
+        <ExprPad key={idx} correct={q.a} 
+          altAnswers={q.altAnswers||[]} 
+          partialAnswers={q.partialAnswers||[]}
+          extraBtn={q.extraBtn||null} extraBtns={q.extraBtns||[]}
           state={padState}
           onValidate={(result)=>{
             setPadState(result);
+            if(result==="correct"){setScore(s=>s+1);setStreak(s=>s+1);}
+            else if(result==="wrong"){setStreak(0);setShake(true);setTimeout(()=>setShake(false),420);}
+            else if(result==="partial"){
+              // After showing the partial feedback for 2s, reset to idle to allow retry
+              setTimeout(()=>setPadState("idle"), 2000);
+            }
           }}/>
       )}
 
@@ -6862,9 +7180,21 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
 
       {/* ── FEEDBACK exprpad ── */}
       {isExpr && padState!=="idle" && (
-        <div className="fade-in" style={{marginTop:10,background:wasCorrect?"#ECFDF5":"#FEF2F2",border:`2px solid ${wasCorrect?"#10B981":"#EF4444"}`,borderRadius:12,padding:"10px 12px",flexShrink:0}}>
+        <div className="fade-in" style={{marginTop:10,
+          background:wasCorrect?"#ECFDF5":padState==="partial"?"#FEF9C3":"#FEF2F2",
+          border:`2px solid ${wasCorrect?"#10B981":padState==="partial"?"#F59E0B":"#EF4444"}`,
+          borderRadius:12,padding:"10px 12px",flexShrink:0}}>
           {wasCorrect ? (
             <div style={{fontWeight:800,fontSize:13,color:"#065F46"}}>✅ Bravo ! <M tex={q.tip||q.a}/></div>
+          ) : padState==="partial" ? (
+            <>
+              <div style={{fontWeight:800,fontSize:12,color:"#92400E",marginBottom:5}}>
+                ⚠️ C'est bon mais tu peux encore simplifier !
+              </div>
+              <div style={{background:"#fff",borderRadius:8,padding:"7px 10px",fontSize:11,color:"#475569"}}>
+                💡 Continue à simplifier le numérateur
+              </div>
+            </>
           ) : (
             <>
               <div style={{fontWeight:800,fontSize:12,color:"#991B1B",marginBottom:5}}>
@@ -7634,6 +7964,7 @@ function AutoMaths() {
           {screen==="level_picker"  && levelType==="racines"       && <RacinesLevelScreen       catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen("subcategory")}/>}
           {screen==="level_picker"  && levelType==="identites"     && <IdentitesLevelScreen     catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen("subcategory")}/>}
           {screen==="level_picker"  && levelType==="factorisation" && <FactorisationLevelScreen catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen("subcategory")}/>}
+          {screen==="level_picker"  && levelType==="denominateur"  && <DenomLevelScreen         catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen("subcategory")}/>}
           {screen==="level_picker"  && levelType==="cercle_trigo"  && <CercleTrigoScreen onBack={()=>setScreen("subcategory")}/>}
           {screen==="bac_subjects"   && <BacSubjectScreen onStart={hBacStart} onBack={()=>setScreen("home")}/>}
           {screen==="count"         && <CountScreen     catId={mode==="bac"?null:catId} allMode={mode==="bac"} onCount={hCount} onBack={()=>setScreen(mode==="bac"?"home":"category")}/>}
