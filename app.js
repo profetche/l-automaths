@@ -2432,6 +2432,69 @@ const DB = {
       { q:r`\text{Développer :}\\[4pt](1+\sqrt{5})^2=`,         exprpad:true, a:"6+2√5",   extraBtns:["√5"],       tip:r`1+2\sqrt{5}+5=6+2\sqrt{5}` },
     ],
 
+    // ── Opérations sur les nombres relatifs (50 questions progressives) ──
+    relatifs: [
+      // Niveau 1 : Additions simples (10q)
+      { q:r`-4+5=?`, choices:[`1`,`-1`,`9`,`-9`], a:`1`, tip:r`-4+5=1` },
+      { q:r`7+(-3)=?`, choices:[`4`,`10`,`-10`,`-4`], a:`4`, tip:r`7-3=4` },
+      { q:r`-8+2=?`, choices:[`-6`,`6`,`-10`,`10`], a:`-6`, tip:r`-8+2=-6` },
+      { q:r`(-5)+(-3)=?`, choices:[`-8`,`8`,`-2`,`2`], a:`-8`, tip:r`-5-3=-8` },
+      { q:r`12+(-7)=?`, choices:[`5`,`19`,`-5`,`-19`], a:`5`, tip:r`12-7=5` },
+      { q:r`-10+10=?`, choices:[`0`,`20`,`-20`,`1`], a:`0`, tip:r`-10+10=0` },
+      { q:r`(-6)+9=?`, choices:[`3`,`-3`,`15`,`-15`], a:`3`, tip:r`-6+9=3` },
+      { q:r`4+(-4)=?`, choices:[`0`,`8`,`-8`,`1`], a:`0`, tip:r`4-4=0` },
+      { q:r`-15+8=?`, choices:[`-7`,`7`,`-23`,`23`], a:`-7`, tip:r`-15+8=-7` },
+      { q:r`(-1)+(-9)=?`, choices:[`-10`,`10`,`8`,`-8`], a:`-10`, tip:r`-1-9=-10` },
+      
+      // Niveau 2 : Soustractions (10q)
+      { q:r`8-(-2)=?`, choices:[`10`,`6`,`-6`,`-10`], a:`10`, tip:r`8+2=10` },
+      { q:r`-5-3=?`, choices:[`-8`,`-2`,`8`,`2`], a:`-8`, tip:r`-5-3=-8` },
+      { q:r`6-(-6)=?`, choices:[`12`,`0`,`-12`,`1`], a:`12`, tip:r`6+6=12` },
+      { q:r`-7-(-4)=?`, choices:[`-3`,`3`,`-11`,`11`], a:`-3`, tip:r`-7+4=-3` },
+      { q:r`10-15=?`, choices:[`-5`,`5`,`25`,`-25`], a:`-5`, tip:r`10-15=-5` },
+      { q:r`-3-(-8)=?`, choices:[`5`,`-5`,`-11`,`11`], a:`5`, tip:r`-3+8=5` },
+      { q:r`0-(-7)=?`, choices:[`7`,`-7`,`0`,`1`], a:`7`, tip:r`0+7=7` },
+      { q:r`-12-(-12)=?`, choices:[`0`,`-24`,`24`,`1`], a:`0`, tip:r`-12+12=0` },
+      { q:r`9-(-1)=?`, choices:[`10`,`8`,`-8`,`-10`], a:`10`, tip:r`9+1=10` },
+      { q:r`-4-6=?`, choices:[`-10`,`10`,`-2`,`2`], a:`-10`, tip:r`-4-6=-10` },
+      
+      // Niveau 3 : Multiplications (10q)
+      { q:r`(-4)\times3=?`, choices:[`-12`,`12`,`-7`,`7`], a:`-12`, tip:r`(-4)\times3=-12` },
+      { q:r`(-2)\times(-5)=?`, choices:[`10`,`-10`,`7`,`-7`], a:`10`, tip:r`(-)\times(-)=(+)` },
+      { q:r`7\times(-3)=?`, choices:[`-21`,`21`,`-10`,`10`], a:`-21`, tip:r`7\times(-3)=-21` },
+      { q:r`(-6)\times(-2)=?`, choices:[`12`,`-12`,`8`,`-8`], a:`12`, tip:r`(-)\times(-)=(+)` },
+      { q:r`(-1)\times8=?`, choices:[`-8`,`8`,`-9`,`9`], a:`-8`, tip:r`(-1)\times8=-8` },
+      { q:r`5\times(-4)=?`, choices:[`-20`,`20`,`-9`,`9`], a:`-20`, tip:r`5\times(-4)=-20` },
+      { q:r`(-3)\times(-7)=?`, choices:[`21`,`-21`,`10`,`-10`], a:`21`, tip:r`(-)\times(-)=(+)` },
+      { q:r`(-9)\times2=?`, choices:[`-18`,`18`,`-11`,`11`], a:`-18`, tip:r`(-9)\times2=-18` },
+      { q:r`(-10)\times(-1)=?`, choices:[`10`,`-10`,`-11`,`11`], a:`10`, tip:r`(-)\times(-)=(+)` },
+      { q:r`6\times(-6)=?`, choices:[`-36`,`36`,`0`,`12`], a:`-36`, tip:r`6\times(-6)=-36` },
+      
+      // Niveau 4 : Divisions (10q)
+      { q:r`(-12)\div4=?`, choices:[`-3`,`3`,`-8`,`8`], a:`-3`, tip:r`(-12)\div4=-3` },
+      { q:r`15\div(-3)=?`, choices:[`-5`,`5`,`-12`,`12`], a:`-5`, tip:r`15\div(-3)=-5` },
+      { q:r`(-20)\div(-5)=?`, choices:[`4`,`-4`,`-15`,`15`], a:`4`, tip:r`(-)\div(-)=(+)` },
+      { q:r`(-18)\div2=?`, choices:[`-9`,`9`,`-16`,`16`], a:`-9`, tip:r`(-18)\div2=-9` },
+      { q:r`24\div(-6)=?`, choices:[`-4`,`4`,`-18`,`18`], a:`-4`, tip:r`24\div(-6)=-4` },
+      { q:r`(-30)\div(-10)=?`, choices:[`3`,`-3`,`-20`,`20`], a:`3`, tip:r`(-)\div(-)=(+)` },
+      { q:r`(-8)\div4=?`, choices:[`-2`,`2`,`-4`,`4`], a:`-2`, tip:r`(-8)\div4=-2` },
+      { q:r`35\div(-7)=?`, choices:[`-5`,`5`,`-28`,`28`], a:`-5`, tip:r`35\div(-7)=-5` },
+      { q:r`(-16)\div(-8)=?`, choices:[`2`,`-2`,`-8`,`8`], a:`2`, tip:r`(-)\div(-)=(+)` },
+      { q:r`(-45)\div9=?`, choices:[`-5`,`5`,`-36`,`36`], a:`-5`, tip:r`(-45)\div9=-5` },
+      
+      // Niveau 5 : Opérations mixtes (10q)
+      { q:r`-3+5\times2=?`, choices:[`7`,`4`,`-7`,`-4`], a:`7`, tip:r`-3+10=7` },
+      { q:r`(-4-2)\times3=?`, choices:[`-18`,`18`,`-12`,`12`], a:`-18`, tip:r`(-6)\times3=-18` },
+      { q:r`8\div(-2)+5=?`, choices:[`1`,`-1`,`9`,`-9`], a:`1`, tip:r`-4+5=1` },
+      { q:r`(-6)\times2+7=?`, choices:[`-5`,`5`,`-19`,`19`], a:`-5`, tip:r`-12+7=-5` },
+      { q:r`10-3\times(-2)=?`, choices:[`16`,`-16`,`4`,`-4`], a:`16`, tip:r`10+6=16` },
+      { q:r`(-5+3)\times4=?`, choices:[`-8`,`8`,`-2`,`2`], a:`-8`, tip:r`(-2)\times4=-8` },
+      { q:r`12\div(-3)-1=?`, choices:[`-5`,`5`,`-3`,`3`], a:`-5`, tip:r`-4-1=-5` },
+      { q:r`(-2)\times(-3)+4=?`, choices:[`10`,`-10`,`-2`,`2`], a:`10`, tip:r`6+4=10` },
+      { q:r`7-4\times(-1)=?`, choices:[`11`,`-11`,`3`,`-3`], a:`11`, tip:r`7+4=11` },
+      { q:r`(-8)\div2\times(-3)=?`, choices:[`12`,`-12`,`-6`,`6`], a:`12`, tip:r`(-4)\times(-3)=12` },
+    ],
+
   },
 
   // ════ 4. CALCUL LITTÉRAL ═════════════════════════════════════════════════════
@@ -2663,78 +2726,78 @@ const DB = {
 
     // Niveau 1 : dénominateur simple x (10 questions)
     denom_n1: [
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]1+\dfrac{1}{x}=`, exprpad:true, a:"(x+1)/x", altAnswers:["(1+x)/x"], tip:r`\dfrac{x}{x}+\dfrac{1}{x}=\dfrac{x+1}{x}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]3+\dfrac{2}{x}=`, exprpad:true, a:"(3x+2)/x", altAnswers:["(2+3x)/x"], tip:r`\dfrac{3x}{x}+\dfrac{2}{x}=\dfrac{3x+2}{x}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]5-\dfrac{1}{x}=`, exprpad:true, a:"(5x-1)/x", tip:r`\dfrac{5x}{x}-\dfrac{1}{x}=\dfrac{5x-1}{x}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]2-\dfrac{3}{x}=`, exprpad:true, a:"(2x-3)/x", tip:r`\dfrac{2x}{x}-\dfrac{3}{x}=\dfrac{2x-3}{x}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]4+\dfrac{1}{x}=`, exprpad:true, a:"(4x+1)/x", altAnswers:["(1+4x)/x"], tip:r`\dfrac{4x}{x}+\dfrac{1}{x}=\dfrac{4x+1}{x}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]1-\dfrac{2}{x}=`, exprpad:true, a:"(x-2)/x", tip:r`\dfrac{x}{x}-\dfrac{2}{x}=\dfrac{x-2}{x}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]2+\dfrac{5}{x}=`, exprpad:true, a:"(2x+5)/x", altAnswers:["(5+2x)/x"], tip:r`\dfrac{2x}{x}+\dfrac{5}{x}=\dfrac{2x+5}{x}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]3-\dfrac{4}{x}=`, exprpad:true, a:"(3x-4)/x", tip:r`\dfrac{3x}{x}-\dfrac{4}{x}=\dfrac{3x-4}{x}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]6+\dfrac{1}{x}=`, exprpad:true, a:"(6x+1)/x", altAnswers:["(1+6x)/x"], tip:r`\dfrac{6x}{x}+\dfrac{1}{x}=\dfrac{6x+1}{x}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]1-\dfrac{5}{x}=`, exprpad:true, a:"(x-5)/x", tip:r`\dfrac{x}{x}-\dfrac{5}{x}=\dfrac{x-5}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]1+\dfrac{1}{x}=`, choices:[r`\dfrac{x+1}{x}`, r`\dfrac{1+x}{x}`, r`\dfrac{2}{x}`, r`\dfrac{x+1}{2x}`], a:r`\dfrac{x+1}{x}`, tip:r`\dfrac{x}{x}+\dfrac{1}{x}=\dfrac{x+1}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]3+\dfrac{2}{x}=`, choices:[r`\dfrac{3x+2}{x}`, r`\dfrac{5}{x}`, r`\dfrac{3+2}{x}`, r`\dfrac{6x}{x}`], a:r`\dfrac{3x+2}{x}`, tip:r`\dfrac{3x}{x}+\dfrac{2}{x}=\dfrac{3x+2}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]5-\dfrac{1}{x}=`, choices:[r`\dfrac{5x-1}{x}`, r`\dfrac{4}{x}`, r`\dfrac{5-1}{x}`, r`\dfrac{5x}{x}`], a:r`\dfrac{5x-1}{x}`, tip:r`\dfrac{5x}{x}-\dfrac{1}{x}=\dfrac{5x-1}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]2-\dfrac{3}{x}=`, choices:[r`\dfrac{2x-3}{x}`, r`\dfrac{-1}{x}`, r`\dfrac{2-3}{x}`, r`\dfrac{6x}{x}`], a:r`\dfrac{2x-3}{x}`, tip:r`\dfrac{2x}{x}-\dfrac{3}{x}=\dfrac{2x-3}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]4+\dfrac{1}{x}=`, choices:[r`\dfrac{4x+1}{x}`, r`\dfrac{5}{x}`, r`\dfrac{4+1}{x}`, r`\dfrac{4x}{x}`], a:r`\dfrac{4x+1}{x}`, tip:r`\dfrac{4x}{x}+\dfrac{1}{x}=\dfrac{4x+1}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]1-\dfrac{2}{x}=`, choices:[r`\dfrac{x-2}{x}`, r`\dfrac{-1}{x}`, r`\dfrac{1-2}{x}`, r`\dfrac{2x}{x}`], a:r`\dfrac{x-2}{x}`, tip:r`\dfrac{x}{x}-\dfrac{2}{x}=\dfrac{x-2}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]2+\dfrac{5}{x}=`, choices:[r`\dfrac{2x+5}{x}`, r`\dfrac{7}{x}`, r`\dfrac{10x}{x}`, r`\dfrac{2+5}{x}`], a:r`\dfrac{2x+5}{x}`, tip:r`\dfrac{2x}{x}+\dfrac{5}{x}=\dfrac{2x+5}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]3-\dfrac{4}{x}=`, choices:[r`\dfrac{3x-4}{x}`, r`\dfrac{-1}{x}`, r`\dfrac{3-4}{x}`, r`\dfrac{12x}{x}`], a:r`\dfrac{3x-4}{x}`, tip:r`\dfrac{3x}{x}-\dfrac{4}{x}=\dfrac{3x-4}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]6+\dfrac{1}{x}=`, choices:[r`\dfrac{6x+1}{x}`, r`\dfrac{7}{x}`, r`\dfrac{6+1}{x}`, r`\dfrac{6x}{x}`], a:r`\dfrac{6x+1}{x}`, tip:r`\dfrac{6x}{x}+\dfrac{1}{x}=\dfrac{6x+1}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]1-\dfrac{5}{x}=`, choices:[r`\dfrac{x-5}{x}`, r`\dfrac{-4}{x}`, r`\dfrac{1-5}{x}`, r`\dfrac{5x}{x}`], a:r`\dfrac{x-5}{x}`, tip:r`\dfrac{x}{x}-\dfrac{5}{x}=\dfrac{x-5}{x}` },
     ],
 
-    // Niveau 2 : dénominateur avec expression (15 questions)
+    // Niveau 2 : dénominateur avec expression (15 questions) - FRACTIONPAD
     // Accepte forme non-réduite OU réduite, avec feedback "C'est bon mais tu peux encore simplifier"
     denom_n2: [
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{5}{x+1}-2=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{5}{x+1}-2=`, fractionpad:true, 
         a:"(3-2x)/(x+1)", altAnswers:["(5-2(x+1))/(x+1)","(-2x+3)/(x+1)"], 
         partialAnswers:["(5-2(x+1))/(x+1)"], 
         tip:r`\dfrac{5-2(x+1)}{x+1}=\dfrac{5-2x-2}{x+1}=\dfrac{3-2x}{x+1}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]3+\dfrac{1}{x-2}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]3+\dfrac{1}{x-2}=`, fractionpad:true, 
         a:"(3x-5)/(x-2)", altAnswers:["(3(x-2)+1)/(x-2)","(-5+3x)/(x-2)"], 
         partialAnswers:["(3(x-2)+1)/(x-2)"], 
         tip:r`\dfrac{3(x-2)+1}{x-2}=\dfrac{3x-6+1}{x-2}=\dfrac{3x-5}{x-2}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{7}{x-3}-1=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{7}{x-3}-1=`, fractionpad:true, 
         a:"(10-x)/(x-3)", altAnswers:["(7-(x-3))/(x-3)","(-x+10)/(x-3)"], 
         partialAnswers:["(7-(x-3))/(x-3)"], 
         tip:r`\dfrac{7-(x-3)}{x-3}=\dfrac{7-x+3}{x-3}=\dfrac{10-x}{x-3}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]2-\dfrac{3}{x+4}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]2-\dfrac{3}{x+4}=`, fractionpad:true, 
         a:"(2x+5)/(x+4)", altAnswers:["(2(x+4)-3)/(x+4)","(5+2x)/(x+4)"], 
         partialAnswers:["(2(x+4)-3)/(x+4)"], 
         tip:r`\dfrac{2(x+4)-3}{x+4}=\dfrac{2x+8-3}{x+4}=\dfrac{2x+5}{x+4}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{4}{x+2}+1=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{4}{x+2}+1=`, fractionpad:true, 
         a:"(x+6)/(x+2)", altAnswers:["(4+(x+2))/(x+2)","(6+x)/(x+2)"], 
         partialAnswers:["(4+(x+2))/(x+2)"], 
         tip:r`\dfrac{4+(x+2)}{x+2}=\dfrac{4+x+2}{x+2}=\dfrac{x+6}{x+2}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]5-\dfrac{2}{x-1}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]5-\dfrac{2}{x-1}=`, fractionpad:true, 
         a:"(5x-7)/(x-1)", altAnswers:["(5(x-1)-2)/(x-1)","(-7+5x)/(x-1)"], 
         partialAnswers:["(5(x-1)-2)/(x-1)"], 
         tip:r`\dfrac{5(x-1)-2}{x-1}=\dfrac{5x-5-2}{x-1}=\dfrac{5x-7}{x-1}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{6}{x+3}-3=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{6}{x+3}-3=`, fractionpad:true, 
         a:"(-3x-3)/(x+3)", altAnswers:["(6-3(x+3))/(x+3)","(-3-3x)/(x+3)"], 
         partialAnswers:["(6-3(x+3))/(x+3)"], 
         tip:r`\dfrac{6-3(x+3)}{x+3}=\dfrac{6-3x-9}{x+3}=\dfrac{-3x-3}{x+3}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]4+\dfrac{2}{x-5}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]4+\dfrac{2}{x-5}=`, fractionpad:true, 
         a:"(4x-18)/(x-5)", altAnswers:["(4(x-5)+2)/(x-5)","(-18+4x)/(x-5)"], 
         partialAnswers:["(4(x-5)+2)/(x-5)"], 
         tip:r`\dfrac{4(x-5)+2}{x-5}=\dfrac{4x-20+2}{x-5}=\dfrac{4x-18}{x-5}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{8}{x-2}-2=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{8}{x-2}-2=`, fractionpad:true, 
         a:"(12-2x)/(x-2)", altAnswers:["(8-2(x-2))/(x-2)","(-2x+12)/(x-2)"], 
         partialAnswers:["(8-2(x-2))/(x-2)"], 
         tip:r`\dfrac{8-2(x-2)}{x-2}=\dfrac{8-2x+4}{x-2}=\dfrac{12-2x}{x-2}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]1-\dfrac{4}{x+1}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]1-\dfrac{4}{x+1}=`, fractionpad:true, 
         a:"(x-3)/(x+1)", altAnswers:["((x+1)-4)/(x+1)","(-3+x)/(x+1)"], 
         partialAnswers:["((x+1)-4)/(x+1)"], 
         tip:r`\dfrac{(x+1)-4}{x+1}=\dfrac{x+1-4}{x+1}=\dfrac{x-3}{x+1}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{9}{x+4}+2=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{9}{x+4}+2=`, fractionpad:true, 
         a:"(2x+17)/(x+4)", altAnswers:["(9+2(x+4))/(x+4)","(17+2x)/(x+4)"], 
         partialAnswers:["(9+2(x+4))/(x+4)"], 
         tip:r`\dfrac{9+2(x+4)}{x+4}=\dfrac{9+2x+8}{x+4}=\dfrac{2x+17}{x+4}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]3-\dfrac{5}{x-1}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]3-\dfrac{5}{x-1}=`, fractionpad:true, 
         a:"(3x-8)/(x-1)", altAnswers:["(3(x-1)-5)/(x-1)","(-8+3x)/(x-1)"], 
         partialAnswers:["(3(x-1)-5)/(x-1)"], 
         tip:r`\dfrac{3(x-1)-5}{x-1}=\dfrac{3x-3-5}{x-1}=\dfrac{3x-8}{x-1}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{10}{x+5}-4=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{10}{x+5}-4=`, fractionpad:true, 
         a:"(-4x-10)/(x+5)", altAnswers:["(10-4(x+5))/(x+5)","(-10-4x)/(x+5)"], 
         partialAnswers:["(10-4(x+5))/(x+5)"], 
         tip:r`\dfrac{10-4(x+5)}{x+5}=\dfrac{10-4x-20}{x+5}=\dfrac{-4x-10}{x+5}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]6+\dfrac{3}{x-4}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]6+\dfrac{3}{x-4}=`, fractionpad:true, 
         a:"(6x-21)/(x-4)", altAnswers:["(6(x-4)+3)/(x-4)","(-21+6x)/(x-4)"], 
         partialAnswers:["(6(x-4)+3)/(x-4)"], 
         tip:r`\dfrac{6(x-4)+3}{x-4}=\dfrac{6x-24+3}{x-4}=\dfrac{6x-21}{x-4}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{7}{x+2}-5=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{7}{x+2}-5=`, fractionpad:true, 
         a:"(-5x-3)/(x+2)", altAnswers:["(7-5(x+2))/(x+2)","(-3-5x)/(x+2)"], 
         partialAnswers:["(7-5(x+2))/(x+2)"], 
         tip:r`\dfrac{7-5(x+2)}{x+2}=\dfrac{7-5x-10}{x+2}=\dfrac{-5x-3}{x+2}` },
@@ -2743,71 +2806,71 @@ const DB = {
     // Niveau 3 : deux fractions avec dénominateurs différents (15 questions)
     // Accepte dénominateur factorisé OU développé, avec reminder sur inutilité de développer
     denom_n3: [
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{1}{x}+\dfrac{3}{x+1}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{1}{x}+\dfrac{3}{x+1}=`, fractionpad:true, 
         a:"(4x+1)/(x(x+1))", altAnswers:["(4x+1)/(x²+x)","(1+4x)/(x(x+1))","(1+4x)/(x²+x)"], 
         tip:r`\dfrac{x+1+3x}{x(x+1)}=\dfrac{4x+1}{x(x+1)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{2}{x}-\dfrac{1}{x+2}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{2}{x}-\dfrac{1}{x+2}=`, fractionpad:true, 
         a:"(x+4)/(x(x+2))", altAnswers:["(x+4)/(x²+2x)","(4+x)/(x(x+2))","(4+x)/(x²+2x)"], 
         tip:r`\dfrac{2(x+2)-x}{x(x+2)}=\dfrac{2x+4-x}{x(x+2)}=\dfrac{x+4}{x(x+2)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{3}{x+1}+\dfrac{2}{x-1}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{3}{x+1}+\dfrac{2}{x-1}=`, fractionpad:true, 
         a:"(5x-1)/((x+1)(x-1))", altAnswers:["(5x-1)/(x²-1)","(-1+5x)/((x+1)(x-1))","(-1+5x)/(x²-1)"], 
         tip:r`\dfrac{3(x-1)+2(x+1)}{(x+1)(x-1)}=\dfrac{3x-3+2x+2}{(x+1)(x-1)}=\dfrac{5x-1}{(x+1)(x-1)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{1}{x-2}-\dfrac{4}{x+3}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{1}{x-2}-\dfrac{4}{x+3}=`, fractionpad:true, 
         a:"(-3x-11)/((x-2)(x+3))", altAnswers:["(-3x-11)/(x²+x-6)","(-11-3x)/((x-2)(x+3))","(-11-3x)/(x²+x-6)"], 
         tip:r`\dfrac{(x+3)-4(x-2)}{(x-2)(x+3)}=\dfrac{x+3-4x+8}{(x-2)(x+3)}=\dfrac{-3x+11}{(x-2)(x+3)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{5}{x}+\dfrac{1}{x-3}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{5}{x}+\dfrac{1}{x-3}=`, fractionpad:true, 
         a:"(6x-3)/(x(x-3))", altAnswers:["(6x-3)/(x²-3x)","(-3+6x)/(x(x-3))","(-3+6x)/(x²-3x)"], 
         tip:r`\dfrac{5(x-3)+x}{x(x-3)}=\dfrac{5x-15+x}{x(x-3)}=\dfrac{6x-15}{x(x-3)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{4}{x+2}-\dfrac{3}{x-1}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{4}{x+2}-\dfrac{3}{x-1}=`, fractionpad:true, 
         a:"(x+11)/((x+2)(x-1))", altAnswers:["(x+11)/(x²+x-2)","(11+x)/((x+2)(x-1))","(11+x)/(x²+x-2)"], 
         tip:r`\dfrac{4(x-1)-3(x+2)}{(x+2)(x-1)}=\dfrac{4x-4-3x-6}{(x+2)(x-1)}=\dfrac{x-10}{(x+2)(x-1)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{2}{x-4}+\dfrac{5}{x+1}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{2}{x-4}+\dfrac{5}{x+1}=`, fractionpad:true, 
         a:"(7x-3)/((x-4)(x+1))", altAnswers:["(7x-3)/(x²-3x-4)","(-3+7x)/((x-4)(x+1))","(-3+7x)/(x²-3x-4)"], 
         tip:r`\dfrac{2(x+1)+5(x-4)}{(x-4)(x+1)}=\dfrac{2x+2+5x-20}{(x-4)(x+1)}=\dfrac{7x-18}{(x-4)(x+1)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{1}{x+5}-\dfrac{2}{x}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{1}{x+5}-\dfrac{2}{x}=`, fractionpad:true, 
         a:"(-x-10)/(x(x+5))", altAnswers:["(-x-10)/(x²+5x)","(-10-x)/(x(x+5))","(-10-x)/(x²+5x)"], 
         tip:r`\dfrac{x-2(x+5)}{x(x+5)}=\dfrac{x-2x-10}{x(x+5)}=\dfrac{-x-10}{x(x+5)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{3}{x-2}+\dfrac{1}{x+4}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{3}{x-2}+\dfrac{1}{x+4}=`, fractionpad:true, 
         a:"(4x+10)/((x-2)(x+4))", altAnswers:["(4x+10)/(x²+2x-8)","(10+4x)/((x-2)(x+4))","(10+4x)/(x²+2x-8)"], 
         tip:r`\dfrac{3(x+4)+(x-2)}{(x-2)(x+4)}=\dfrac{3x+12+x-2}{(x-2)(x+4)}=\dfrac{4x+10}{(x-2)(x+4)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{7}{x+3}-\dfrac{2}{x-3}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{7}{x+3}-\dfrac{2}{x-3}=`, fractionpad:true, 
         a:"(5x+27)/((x+3)(x-3))", altAnswers:["(5x+27)/(x²-9)","(27+5x)/((x+3)(x-3))","(27+5x)/(x²-9)"], 
         tip:r`\dfrac{7(x-3)-2(x+3)}{(x+3)(x-3)}=\dfrac{7x-21-2x-6}{(x+3)(x-3)}=\dfrac{5x-27}{(x+3)(x-3)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{2}{x}+\dfrac{4}{x+5}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{2}{x}+\dfrac{4}{x+5}=`, fractionpad:true, 
         a:"(6x+4)/(x(x+5))", altAnswers:["(6x+4)/(x²+5x)","(4+6x)/(x(x+5))","(4+6x)/(x²+5x)"], 
         tip:r`\dfrac{2(x+5)+4x}{x(x+5)}=\dfrac{2x+10+4x}{x(x+5)}=\dfrac{6x+10}{x(x+5)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{5}{x-1}-\dfrac{1}{x+2}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{5}{x-1}-\dfrac{1}{x+2}=`, fractionpad:true, 
         a:"(4x+11)/((x-1)(x+2))", altAnswers:["(4x+11)/(x²+x-2)","(11+4x)/((x-1)(x+2))","(11+4x)/(x²+x-2)"], 
         tip:r`\dfrac{5(x+2)-(x-1)}{(x-1)(x+2)}=\dfrac{5x+10-x+1}{(x-1)(x+2)}=\dfrac{4x+11}{(x-1)(x+2)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{3}{x+6}+\dfrac{2}{x-2}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{3}{x+6}+\dfrac{2}{x-2}=`, fractionpad:true, 
         a:"(5x+6)/((x+6)(x-2))", altAnswers:["(5x+6)/(x²+4x-12)","(6+5x)/((x+6)(x-2))","(6+5x)/(x²+4x-12)"], 
         tip:r`\dfrac{3(x-2)+2(x+6)}{(x+6)(x-2)}=\dfrac{3x-6+2x+12}{(x+6)(x-2)}=\dfrac{5x+6}{(x+6)(x-2)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{1}{x-5}-\dfrac{3}{x}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{1}{x-5}-\dfrac{3}{x}=`, fractionpad:true, 
         a:"(-2x+15)/(x(x-5))", altAnswers:["(-2x+15)/(x²-5x)","(15-2x)/(x(x-5))","(15-2x)/(x²-5x)"], 
         tip:r`\dfrac{x-3(x-5)}{x(x-5)}=\dfrac{x-3x+15}{x(x-5)}=\dfrac{-2x+15}{x(x-5)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{6}{x+1}+\dfrac{1}{x-4}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{6}{x+1}+\dfrac{1}{x-4}=`, fractionpad:true, 
         a:"(7x-23)/((x+1)(x-4))", altAnswers:["(7x-23)/(x²-3x-4)","(-23+7x)/((x+1)(x-4))","(-23+7x)/(x²-3x-4)"], 
         tip:r`\dfrac{6(x-4)+(x+1)}{(x+1)(x-4)}=\dfrac{6x-24+x+1}{(x+1)(x-4)}=\dfrac{7x-23}{(x+1)(x-4)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
     ],
 
     // Niveau 4 : numérateurs plus complexes (10 questions)
     denom_n4: [
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{x+1}{x-2}-\dfrac{x}{x+4}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{x+1}{x-2}-\dfrac{x}{x+4}=`, fractionpad:true, 
         a:"(5x+4)/((x-2)(x+4))", altAnswers:["(5x+4)/(x²+2x-8)","(4+5x)/((x-2)(x+4))","(4+5x)/(x²+2x-8)"], 
         tip:r`\dfrac{(x+1)(x+4)-x(x-2)}{(x-2)(x+4)}=\dfrac{x^2+5x+4-x^2+2x}{(x-2)(x+4)}=\dfrac{7x+4}{(x-2)(x+4)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{2x}{x+1}+\dfrac{x-3}{x-1}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{2x}{x+1}+\dfrac{x-3}{x-1}=`, fractionpad:true, 
         a:"(3x²-5x-3)/((x+1)(x-1))", altAnswers:["(3x²-5x-3)/(x²-1)","(-3-5x+3x²)/((x+1)(x-1))","(-3-5x+3x²)/(x²-1)"], 
         tip:r`\dfrac{2x(x-1)+(x-3)(x+1)}{(x+1)(x-1)}=\dfrac{2x^2-2x+x^2-2x-3}{(x+1)(x-1)}=\dfrac{3x^2-4x-3}{(x+1)(x-1)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{x-2}{x+3}-\dfrac{2x+1}{x-5}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{x-2}{x+3}-\dfrac{2x+1}{x-5}=`, fractionpad:true, 
         a:"(-x²-8x-13)/((x+3)(x-5))", altAnswers:["(-x²-8x-13)/(x²-2x-15)","(-13-8x-x²)/((x+3)(x-5))","(-13-8x-x²)/(x²-2x-15)"], 
         tip:r`\dfrac{(x-2)(x-5)-(2x+1)(x+3)}{(x+3)(x-5)}=\dfrac{x^2-7x+10-2x^2-7x-3}{(x+3)(x-5)}=\dfrac{-x^2-14x+7}{(x+3)(x-5)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{3x}{x-1}+\dfrac{x+2}{x+2}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{3x}{x-1}+\dfrac{x+2}{x+2}=`, fractionpad:true, 
         a:"(4x²+4x+2)/((x-1)(x+2))", altAnswers:["(4x²+4x+2)/(x²+x-2)","(2+4x+4x²)/((x-1)(x+2))","(2+4x+4x²)/(x²+x-2)"], 
         tip:r`\dfrac{3x(x+2)+(x+2)(x-1)}{(x-1)(x+2)}=\dfrac{3x^2+6x+x^2+x-2}{(x-1)(x+2)}=\dfrac{4x^2+7x-2}{(x-1)(x+2)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{x+5}{x-3}-\dfrac{x-1}{x+1}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{x+5}{x-3}-\dfrac{x-1}{x+1}=`, fractionpad:true, 
         a:"(6x+8)/((x-3)(x+1))", altAnswers:["(6x+8)/(x²-2x-3)","(8+6x)/((x-3)(x+1))","(8+6x)/(x²-2x-3)"], 
         tip:r`\dfrac{(x+5)(x+1)-(x-1)(x-3)}{(x-3)(x+1)}=\dfrac{x^2+6x+5-x^2+4x-3}{(x-3)(x+1)}=\dfrac{10x+2}{(x-3)(x+1)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{2x-1}{x+4}+\dfrac{x}{x-2}=`, exprpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{2x-1}{x+4}+\dfrac{x}{x-2}=`, fractionpad:true, 
         a:"(3x²+5x-2)/((x+4)(x-2))", altAnswers:["(3x²+5x-2)/(x²+2x-8)","(-2+5x+3x²)/((x+4)(x-2))","(-2+5x+3x²)/(x²+2x-8)"], 
         tip:r`\dfrac{(2x-1)(x-2)+x(x+4)}{(x+4)(x-2)}=\dfrac{2x^2-5x+2+x^2+4x}{(x+4)(x-2)}=\dfrac{3x^2-x+2}{(x+4)(x-2)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
       { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{x-4}{x+5}-\dfrac{3x}{x-1}=`, exprpad:true, 
@@ -2957,6 +3020,70 @@ const DB = {
         choices: [r`h=\dfrac{2A}{b}`, r`h=\dfrac{Ab}{2}`, r`h=\dfrac{b}{2A}`, r`h=\dfrac{A}{b^2}`],
         a: r`h=\dfrac{2A}{b}`, tip: r`h=\dfrac{2A}{b}` },
     ],
+
+    // ── Premières opérations et réduction d'expressions (50 questions progressives) ──
+    reduction: [
+      // Niveau 1 : Opérations de base (10q)
+      { q:r`x+x=?`, choices:[r`2x`,r`x^2`,r`2`,r`x`], a:r`2x`, tip:r`x+x=2x` },
+      { q:r`x\times x=?`, choices:[r`x^2`,r`2x`,r`x`,r`x+x`], a:r`x^2`, tip:r`x\times x=x^2` },
+      { q:r`3x=?`, choices:[r`x+x+x`,r`3\times x`,r`xxx`,r`x^3`], a:r`x+x+x`, tip:r`3x=x+x+x` },
+      { q:r`x+x+x+x=?`, choices:[r`4x`,r`x^4`,r`4`,r`2x+2x`], a:r`4x`, tip:r`x+x+x+x=4x` },
+      { q:r`2\times x=?`, choices:[r`2x`,r`x^2`,r`x+2`,r`2+x`], a:r`2x`, tip:r`2\times x=2x` },
+      { q:r`x\times3=?`, choices:[r`3x`,r`x^3`,r`x+3`,r`3+x`], a:r`3x`, tip:r`x\times3=3x` },
+      { q:r`5\times x=?`, choices:[r`5x`,r`x^5`,r`x+5`,r`5+x`], a:r`5x`, tip:r`5\times x=5x` },
+      { q:r`x\times x\times x=?`, choices:[r`x^3`,r`3x`,r`x+x+x`,r`xxx`], a:r`x^3`, tip:r`x\times x\times x=x^3` },
+      { q:r`x+x+x=?`, choices:[r`3x`,r`x^3`,r`3`,r`x\times3`], a:r`3x`, tip:r`x+x+x=3x` },
+      { q:r`x^2=?`, choices:[r`x\times x`,r`2x`,r`x+x`,r`2\times x`], a:r`x\times x`, tip:r`x^2=x\times x` },
+      
+      // Niveau 2 : Réduction simple (10q)
+      { q:r`2x+5x=?`, choices:[r`7x`,r`7x^2`,r`10x`,r`2x^2+5x`], a:r`7x`, tip:r`2x+5x=(2+5)x=7x` },
+      { q:r`7x-3x=?`, choices:[r`4x`,r`10x`,r`7x^2-3x`,r`4`], a:r`4x`, tip:r`7x-3x=(7-3)x=4x` },
+      { q:r`4x+x=?`, choices:[r`5x`,r`4x^2`,r`4x+1`,r`5`], a:r`5x`, tip:r`4x+x=5x` },
+      { q:r`9x-2x=?`, choices:[r`7x`,r`11x`,r`9x^2-2x`,r`7`], a:r`7x`, tip:r`9x-2x=7x` },
+      { q:r`x+6x=?`, choices:[r`7x`,r`6x^2`,r`x^6`,r`7`], a:r`7x`, tip:r`x+6x=7x` },
+      { q:r`10x-4x=?`, choices:[r`6x`,r`14x`,r`10x^2-4x`,r`6`], a:r`6x`, tip:r`10x-4x=6x` },
+      { q:r`3x+3x=?`, choices:[r`6x`,r`9x`,r`3x^2`,r`6`], a:r`6x`, tip:r`3x+3x=6x` },
+      { q:r`8x-5x=?`, choices:[r`3x`,r`13x`,r`8x^2-5x`,r`3`], a:r`3x`, tip:r`8x-5x=3x` },
+      { q:r`2x+x+4x=?`, choices:[r`7x`,r`8x`,r`2x^2+x+4x`,r`7`], a:r`7x`, tip:r`2x+x+4x=7x` },
+      { q:r`12x-7x=?`, choices:[r`5x`,r`19x`,r`12x^2-7x`,r`5`], a:r`5x`, tip:r`12x-7x=5x` },
+      
+      // Niveau 3 : Avec constantes (10q)
+      { q:r`x-7+8x-10=?`, choices:[r`9x-17`,r`x+8x-17`,r`9x-3`,r`17x-17`], a:r`9x-17`, tip:r`x+8x=9x\text{ et }-7-10=-17` },
+      { q:r`5x+3-2x+7=?`, choices:[r`3x+10`,r`7x+10`,r`3x+4`,r`5x-2x+10`], a:r`3x+10`, tip:r`5x-2x=3x\text{ et }3+7=10` },
+      { q:r`4x-1+x+5=?`, choices:[r`5x+4`,r`4x+x+4`,r`5x+6`,r`4x+4`], a:r`5x+4`, tip:r`4x+x=5x\text{ et }-1+5=4` },
+      { q:r`7x-5-3x+2=?`, choices:[r`4x-3`,r`10x-3`,r`4x+7`,r`7x-3x-3`], a:r`4x-3`, tip:r`7x-3x=4x\text{ et }-5+2=-3` },
+      { q:r`2x+8-x-3=?`, choices:[r`x+5`,r`2x-x+5`,r`3x+5`,r`x+11`], a:r`x+5`, tip:r`2x-x=x\text{ et }8-3=5` },
+      { q:r`6x-4+2x+1=?`, choices:[r`8x-3`,r`8x-5`,r`6x+2x-3`,r`8x+5`], a:r`8x-3`, tip:r`6x+2x=8x\text{ et }-4+1=-3` },
+      { q:r`x+10-5x-2=?`, choices:[r`-4x+8`,r`-4x+12`,r`6x+8`,r`x-5x+8`], a:r`-4x+8`, tip:r`x-5x=-4x\text{ et }10-2=8` },
+      { q:r`9x-6-4x+3=?`, choices:[r`5x-3`,r`13x-3`,r`5x-9`,r`9x-4x-3`], a:r`5x-3`, tip:r`9x-4x=5x\text{ et }-6+3=-3` },
+      { q:r`3x+5+x-8=?`, choices:[r`4x-3`,r`4x+13`,r`3x+x-3`,r`2x-3`], a:r`4x-3`, tip:r`3x+x=4x\text{ et }5-8=-3` },
+      { q:r`8x-7-6x+4=?`, choices:[r`2x-3`,r`14x-3`,r`2x-11`,r`8x-6x-3`], a:r`2x-3`, tip:r`8x-6x=2x\text{ et }-7+4=-3` },
+      
+      // Niveau 4 : Avec puissances (10q)
+      { q:r`3x^2-4x+8x^2-7=?`, choices:[r`11x^2-4x-7`,r`11x^2-11x`,r`3x^2+8x^2-4x-7`,r`11x^4-4x-7`], a:r`11x^2-4x-7`, tip:r`3x^2+8x^2=11x^2` },
+      { q:r`5x^2+2x-x^2+3x=?`, choices:[r`4x^2+5x`,r`6x^2+5x`,r`4x^2+2x+3x`,r`4x^4+5x`], a:r`4x^2+5x`, tip:r`5x^2-x^2=4x^2\text{ et }2x+3x=5x` },
+      { q:r`7x^2-3x-2x^2+x=?`, choices:[r`5x^2-2x`,r`9x^2-2x`,r`5x^2-3x+x`,r`5x^4-2x`], a:r`5x^2-2x`, tip:r`7x^2-2x^2=5x^2\text{ et }-3x+x=-2x` },
+      { q:r`x^2+4x+3x^2-x=?`, choices:[r`4x^2+3x`,r`4x^2+5x`,r`x^2+3x^2+3x`,r`4x^4+3x`], a:r`4x^2+3x`, tip:r`x^2+3x^2=4x^2\text{ et }4x-x=3x` },
+      { q:r`6x^2-5x-x^2+2x=?`, choices:[r`5x^2-3x`,r`7x^2-3x`,r`5x^2-5x+2x`,r`5x^4-3x`], a:r`5x^2-3x`, tip:r`6x^2-x^2=5x^2\text{ et }-5x+2x=-3x` },
+      { q:r`2x^2+x-x^2+5x=?`, choices:[r`x^2+6x`,r`x^2+x+5x`,r`3x^2+6x`,r`x^4+6x`], a:r`x^2+6x`, tip:r`2x^2-x^2=x^2\text{ et }x+5x=6x` },
+      { q:r`9x^2-2x-4x^2+3x=?`, choices:[r`5x^2+x`,r`13x^2+x`,r`5x^2-2x+3x`,r`5x^4+x`], a:r`5x^2+x`, tip:r`9x^2-4x^2=5x^2\text{ et }-2x+3x=x` },
+      { q:r`4x^2+3x+2x^2-5x=?`, choices:[r`6x^2-2x`,r`6x^2+8x`,r`4x^2+2x^2-2x`,r`6x^4-2x`], a:r`6x^2-2x`, tip:r`4x^2+2x^2=6x^2\text{ et }3x-5x=-2x` },
+      { q:r`x^2-7x+5x^2+2x=?`, choices:[r`6x^2-5x`,r`6x^2-9x`,r`x^2+5x^2-5x`,r`6x^4-5x`], a:r`6x^2-5x`, tip:r`x^2+5x^2=6x^2\text{ et }-7x+2x=-5x` },
+      { q:r`8x^2-x-3x^2+4x=?`, choices:[r`5x^2+3x`,r`11x^2+3x`,r`5x^2-x+4x`,r`5x^4+3x`], a:r`5x^2+3x`, tip:r`8x^2-3x^2=5x^2\text{ et }-x+4x=3x` },
+      
+      // Niveau 5 : Expressions complexes (10q)
+      { q:r`5x^2-3x+2-x^2+7x-8=?`, choices:[r`4x^2+4x-6`,r`6x^2+4x-6`,r`4x^2+10x-6`,r`4x^4+4x-6`], a:r`4x^2+4x-6`, tip:r`5x^2-x^2=4x^2,\;-3x+7x=4x,\;2-8=-6` },
+      { q:r`3x^2+5x-1-2x^2-x+4=?`, choices:[r`x^2+4x+3`,r`5x^2+4x+3`,r`x^2+6x+3`,r`x^4+4x+3`], a:r`x^2+4x+3`, tip:r`3x^2-2x^2=x^2,\;5x-x=4x,\;-1+4=3` },
+      { q:r`7x^2-2x+6-4x^2+5x-3=?`, choices:[r`3x^2+3x+3`,r`11x^2+3x+3`,r`3x^2+7x+3`,r`3x^4+3x+3`], a:r`3x^2+3x+3`, tip:r`7x^2-4x^2=3x^2,\;-2x+5x=3x,\;6-3=3` },
+      { q:r`2x^2+x-5+3x^2-4x+1=?`, choices:[r`5x^2-3x-4`,r`5x^2+5x-4`,r`5x^2-3x+6`,r`5x^4-3x-4`], a:r`5x^2-3x-4`, tip:r`2x^2+3x^2=5x^2,\;x-4x=-3x,\;-5+1=-4` },
+      { q:r`6x^2-4x+3-x^2+2x-7=?`, choices:[r`5x^2-2x-4`,r`7x^2-2x-4`,r`5x^2-6x-4`,r`5x^4-2x-4`], a:r`5x^2-2x-4`, tip:r`6x^2-x^2=5x^2,\;-4x+2x=-2x,\;3-7=-4` },
+      { q:r`x^2+7x-2+4x^2-3x+5=?`, choices:[r`5x^2+4x+3`,r`5x^2+10x+3`,r`5x^2+4x-7`,r`5x^4+4x+3`], a:r`5x^2+4x+3`, tip:r`x^2+4x^2=5x^2,\;7x-3x=4x,\;-2+5=3` },
+      { q:r`9x^2-5x+1-6x^2+8x-4=?`, choices:[r`3x^2+3x-3`,r`15x^2+3x-3`,r`3x^2+13x-3`,r`3x^4+3x-3`], a:r`3x^2+3x-3`, tip:r`9x^2-6x^2=3x^2,\;-5x+8x=3x,\;1-4=-3` },
+      { q:r`4x^2+2x-6-x^2-5x+2=?`, choices:[r`3x^2-3x-4`,r`5x^2-3x-4`,r`3x^2-7x-4`,r`3x^4-3x-4`], a:r`3x^2-3x-4`, tip:r`4x^2-x^2=3x^2,\;2x-5x=-3x,\;-6+2=-4` },
+      { q:r`8x^2-x+4-3x^2+6x-9=?`, choices:[r`5x^2+5x-5`,r`11x^2+5x-5`,r`5x^2+7x-5`,r`5x^4+5x-5`], a:r`5x^2+5x-5`, tip:r`8x^2-3x^2=5x^2,\;-x+6x=5x,\;4-9=-5` },
+      { q:r`10x^2-3x+2-7x^2+x-8=?`, choices:[r`3x^2-2x-6`,r`17x^2-2x-6`,r`3x^2-4x-6`,r`3x^4-2x-6`], a:r`3x^2-2x-6`, tip:r`10x^2-7x^2=3x^2,\;-3x+x=-2x,\;2-8=-6` },
+    ],
+  },
   // ════ 5. PROBABILITÉS ════════════════════════════════════════════════════════
   probabilites: {
     // ── Tableau double entrée — avec visuels ──
@@ -3967,6 +4094,13 @@ const DB = {
 
 // ── Categories ─────────────────────────────────────────────────────────────────
 const CATS = [
+  { id:"missions",     label:"Les missions", emoji:"🎯", color:"#EA580C", grad:"linear-gradient(135deg,#F97316,#C2410C)", light:"#FFF7ED", border:"#FED7AA",
+    subs:[
+      {id:"mission_bases",      label:"Travailler mes bases",        levels:["sec","tc","stmg","spe","term"], isMission:true},
+      {id:"mission_spe",        label:"Objectif Première Spé",       levels:["spe"], isMission:true},
+      {id:"mission_stmg",       label:"Objectif STMG",               levels:["stmg"], isMission:true, disabled:true},
+      {id:"mission_bac",        label:"Objectif Bac en Terminale",   levels:["term"], isMission:true, disabled:true},
+    ] },
   { id:"fonctions",    label:"Généralités sur les fonctions", emoji:"📈", color:"#2563EB", grad:"linear-gradient(135deg,#3B82F6,#1D4ED8)", light:"#EFF6FF", border:"#BFDBFE",
     subs:[
       {id:"lecture_image",          label:"Image et antécédent",            levels:["sec","tc","stmg","spe","term"]},
@@ -3991,6 +4125,7 @@ const CATS = [
     ] },
   { id:"numerique",    label:"Calcul numérique", emoji:"🔢", color:"#7C3AED", grad:"linear-gradient(135deg,#8B5CF6,#6D28D9)", light:"#F5F3FF", border:"#DDD6FE",
     subs:[
+      {id:"relatifs",     label:"Nombres relatifs",             levels:["sec","tc","stmg","spe","term"], levelPicker:true, levelType:"relatifs"},
       {id:"decimaux_cm",  label:"Décimaux & CM",                levels:["sec","tc","stmg","spe","term"]},
       {id:"fractions",    label:"Fractions",                    levels:["sec","tc","stmg","spe","term"]},
       {id:"puissances",   label:"Puissances",                   levels:["sec","tc","stmg","spe","term"]},
@@ -4001,6 +4136,7 @@ const CATS = [
     ] },
   { id:"litteral",     label:"Calcul littéral", emoji:"📐", color:"#DC2626", grad:"linear-gradient(135deg,#EF4444,#B91C1C)", light:"#FEF2F2", border:"#FECACA",
     subs:[
+      {id:"reduction",    label:"Réduction d'expressions",     levels:["sec","tc","stmg","spe","term"], levelPicker:true, levelType:"reduction"},
       {id:"eq1",          label:"Équation 1er degré",           levels:["sec","tc","stmg","spe","term"]},
       {id:"produit_nul",  label:"Équation produit nul",         levels:["sec","tc","stmg","spe","term"]},
       {id:"eq_x2",        label:"x²=a",                        levels:["sec","tc","stmg","spe","term"]},
@@ -4051,6 +4187,32 @@ const CATS = [
 ];;
 // ── Utils ──────────────────────────────────────────────────────────────────────
 const shuffle  = a => [...a].sort(() => Math.random() - 0.5);
+
+// ── Détecte le type de questions d'une sous-catégorie ─────────────────────────
+const getQuestionTypes = (catId, subId) => {
+  const questions = DB[catId]?.[subId] || [];
+  if (!questions.length) return [];
+  
+  const types = new Set();
+  questions.forEach(q => {
+    if (q.numpad || q.solpad || q.eqpad) types.add("pad");
+    else if (q.exprpad || q.fractionpad) types.add("pad");
+    else if (q.dgspec) types.add("drag");
+    else if (q.tvSpec || q.tsSpec) types.add("tableau");
+    else types.add("qcm");
+  });
+  
+  return Array.from(types);
+};
+
+// ── Obtenir le badge de type principal ────────────────────────────────────────
+const getMainTypeLabel = (types) => {
+  if (types.includes("pad")) return "Pad";
+  if (types.includes("drag")) return "Drag";
+  if (types.includes("tableau")) return "Tableau";
+  if (types.includes("qcm")) return "QCM";
+  return "Mixte";
+};
 const getCat   = id => CATS.find(c => c.id === id);
 const getAllQ   = () => Object.values(DB).flatMap(cat => Object.values(cat).flat());
 const getCatQ  = id => Object.values(DB[id] || {}).flat();
@@ -6602,22 +6764,41 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
   const cat=getCat(catId);
   const [niveau,setNiveau]=useState(defaultNiveau);
   const [sel,setSel]=useState([]);
+  const [typeFilter,setTypeFilter]=useState(null); // null | "qcm" | "pad" | "drag" | "tableau"
 
   const levelsInCat=[...new Set(cat.subs.flatMap(s=>s.levels||[]))];
-  const normalSubs = cat.subs.filter(s=>!s.levelPicker);
-  // Un sous-thème sans levels est universel (visible pour tous)
-  const visibleSubs = niveau
+  const normalSubs = cat.subs.filter(s=>!s.levelPicker && !s.isMission);
+  
+  // Filtrer par niveau ET par type
+  let visibleSubs = niveau
     ? normalSubs.filter(s=>!s.levels || s.levels.includes(niveau))
     : normalSubs;
+  
+  // Appliquer le filtre de type
+  if (typeFilter) {
+    visibleSubs = visibleSubs.filter(s => {
+      const types = getQuestionTypes(catId, s.id);
+      return types.includes(typeFilter);
+    });
+  }
+  
   // LevelPicker items visibles selon le niveau
   const visiblePickers = cat.subs.filter(s=>s.levelPicker && (!niveau || !s.levels || s.levels.includes(niveau)));
   const hasAnything = visibleSubs.length>0 || visiblePickers.length>0;
+
+  // Détecter les types disponibles dans la catégorie
+  const availableTypes = new Set();
+  normalSubs.forEach(s => {
+    const types = getQuestionTypes(catId, s.id);
+    types.forEach(t => availableTypes.add(t));
+  });
 
   const toggle=id=>setSel(s=>s.includes(id)?s.filter(x=>x!==id):[...s,id]);
   const toggleAll=()=>setSel(s=>visibleSubs.every(s2=>s.includes(s2.id))?s.filter(id=>!visibleSubs.find(s2=>s2.id===id)):[...new Set([...s,...visibleSubs.map(s2=>s2.id)])]);
   const allVis=visibleSubs.length>0&&visibleSubs.every(s=>sel.includes(s.id));
   const pool=getSubQ(catId,sel);
   const canStart=sel.length>0&&pool.length>0;
+  
   return (
     <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",padding:"20px 18px 16px"}}>
       <Back onClick={onBack}/>
@@ -6628,8 +6809,9 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
       </div>
       <p style={{color:"#64748B",fontSize:12,marginBottom:12}}>{qCount} questions</p>
 
+      {/* Filtres de niveau */}
       {levelsInCat.length>0&&(
-        <div style={{display:"flex",gap:6,marginBottom:12,flexWrap:"wrap"}}>
+        <div style={{display:"flex",gap:6,marginBottom:8,flexWrap:"wrap"}}>
           <button onClick={()=>{setNiveau(null);setSel([]);}}
             style={{padding:"5px 12px",borderRadius:20,border:`1.5px solid ${!niveau?"#1E293B":"#E2E8F0"}`,
               background:!niveau?"#1E293B":"#fff",color:!niveau?"#fff":"#64748B",
@@ -6648,6 +6830,61 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
         </div>
       )}
 
+      {/* Filtres de type de questions */}
+      {availableTypes.size > 1 && (
+        <div style={{marginBottom:12}}>
+          <div style={{fontSize:10,fontWeight:700,color:"#64748B",marginBottom:6,textTransform:"uppercase",letterSpacing:"0.5px"}}>
+            Type de réponse
+          </div>
+          <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
+            <button onClick={()=>{setTypeFilter(null);setSel([]);}}
+              style={{padding:"5px 12px",borderRadius:20,border:`1.5px solid ${!typeFilter?"#7C3AED":"#E2E8F0"}`,
+                background:!typeFilter?"#7C3AED":"#fff",color:!typeFilter?"#fff":"#64748B",
+                fontSize:11,fontWeight:700,cursor:"pointer"}}>Tous</button>
+            {availableTypes.has("qcm") && (
+              <button onClick={()=>{setTypeFilter("qcm");setSel([]);}}
+                style={{padding:"5px 12px",borderRadius:20,
+                  border:`1.5px solid ${typeFilter==="qcm"?"#10B981":"#E2E8F0"}`,
+                  background:typeFilter==="qcm"?"#10B981":"#fff",
+                  color:typeFilter==="qcm"?"#fff":"#64748B",
+                  fontSize:11,fontWeight:700,cursor:"pointer"}}>
+                QCM
+              </button>
+            )}
+            {availableTypes.has("pad") && (
+              <button onClick={()=>{setTypeFilter("pad");setSel([]);}}
+                style={{padding:"5px 12px",borderRadius:20,
+                  border:`1.5px solid ${typeFilter==="pad"?"#F59E0B":"#E2E8F0"}`,
+                  background:typeFilter==="pad"?"#F59E0B":"#fff",
+                  color:typeFilter==="pad"?"#fff":"#64748B",
+                  fontSize:11,fontWeight:700,cursor:"pointer"}}>
+                ✍️ Pad
+              </button>
+            )}
+            {availableTypes.has("drag") && (
+              <button onClick={()=>{setTypeFilter("drag");setSel([]);}}
+                style={{padding:"5px 12px",borderRadius:20,
+                  border:`1.5px solid ${typeFilter==="drag"?"#EF4444":"#E2E8F0"}`,
+                  background:typeFilter==="drag"?"#EF4444":"#fff",
+                  color:typeFilter==="drag"?"#fff":"#64748B",
+                  fontSize:11,fontWeight:700,cursor:"pointer"}}>
+                🎯 Drag
+              </button>
+            )}
+            {availableTypes.has("tableau") && (
+              <button onClick={()=>{setTypeFilter("tableau");setSel([]);}}
+                style={{padding:"5px 12px",borderRadius:20,
+                  border:`1.5px solid ${typeFilter==="tableau"?"#06B6D4":"#E2E8F0"}`,
+                  background:typeFilter==="tableau"?"#06B6D4":"#fff",
+                  color:typeFilter==="tableau"?"#fff":"#64748B",
+                  fontSize:11,fontWeight:700,cursor:"pointer"}}>
+                📊 Tableau
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+
       {!hasAnything?(
         <div style={{flex:1,display:"flex",alignItems:"center",justifyContent:"center",flexDirection:"column",gap:10,color:"#94A3B8"}}>
           <span style={{fontSize:36}}>🎓</span>
@@ -6660,6 +6897,32 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
           </button>}
       <Scroll>
         {cat.subs.map((s,i)=>{
+          // Special mission entry
+          if(s.isMission) {
+            const disabled = s.disabled || false;
+            return (
+            <button key={s.id} 
+              onClick={()=>!disabled && onLevelPicker && onLevelPicker(s.id, 'mission')} 
+              disabled={disabled}
+              className="pop-in"
+              style={{background:disabled ? "#F1F5F9" : "linear-gradient(135deg,#F9731618,#C2410C18)",
+                border:`2px solid ${disabled ? "#E2E8F0" : "#FED7AA"}`,
+                borderRadius:14,padding:"12px 14px",
+                cursor:disabled ? "not-allowed" : "pointer",
+                display:"flex",alignItems:"center",gap:12,marginBottom:8,
+                boxShadow:"0 2px 8px rgba(0,0,0,.04)",animationDelay:`${i*.04}s`,flexShrink:0,
+                opacity:disabled ? 0.6 : 1}}>
+              <div style={{fontSize:24}}>{disabled ? "🔒" : "🎯"}</div>
+              <div style={{flex:1,textAlign:"left"}}>
+                <div style={{fontSize:13,fontWeight:800,color:disabled ? "#94A3B8" : "#EA580C"}}>{s.label}</div>
+                <div style={{fontSize:10,color:disabled ? "#CBD5E1" : "#F97316",marginTop:3}}>
+                  {disabled ? "Bientôt disponible" : "Cliquer pour démarrer →"}
+                </div>
+              </div>
+              <span style={{color:disabled ? "#CBD5E1" : "#EA580C",fontSize:18}}>›</span>
+            </button>
+          );}
+          
           // Special levelPicker entry — only show if matches current niveau filter
           if(s.levelPicker) {
             if(niveau && s.levels && !s.levels.includes(niveau)) return null;
@@ -6669,7 +6932,7 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
                 border:"2px solid #DDD6FE",borderRadius:14,padding:"12px 14px",cursor:"pointer",
                 display:"flex",alignItems:"center",gap:12,marginBottom:8,
                 boxShadow:"0 2px 8px rgba(0,0,0,.04)",animationDelay:`${i*.04}s`,flexShrink:0}}>
-              <div style={{fontSize:24}}>{s.levelType==="identites"?"🔣":s.levelType==="cercle_trigo"?"⭕":s.levelType==="factorisation"?"✖️":s.levelType==="denominateur"?"➗":"√"}</div>
+              <div style={{fontSize:24}}>{s.levelType==="relatifs"?"➕➖":s.levelType==="reduction"?"✏️":s.levelType==="identites"?"🔣":s.levelType==="cercle_trigo"?"⭕":s.levelType==="factorisation"?"✖️":s.levelType==="denominateur"?"➗":"√"}</div>
               <div style={{flex:1,textAlign:"left"}}>
                 <div style={{fontSize:13,fontWeight:800,color:"#7C3AED"}}>{s.label}</div>
                 <div style={{fontSize:10,color:"#8B5CF6",marginTop:3}}>{s.levelType==="cercle_trigo"?"3 niveaux — Placer l'angle →":"4 niveaux — Choisir la difficulté →"}</div>
@@ -6678,14 +6941,26 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
             </button>
           );}
           const on=sel.includes(s.id);
+          const types = getQuestionTypes(catId, s.id);
+          const mainType = getMainTypeLabel(types);
+          const typeColor = mainType === "QCM" ? "#10B981" : mainType === "Pad" ? "#F59E0B" : mainType === "Drag" ? "#EF4444" : mainType === "Tableau" ? "#06B6D4" : "#94A3B8";
+          
           return (
             <button key={s.id} onClick={()=>toggle(s.id)} className="pop-in"
               style={{background:on?cat.light:"#fff",border:`2px solid ${on?cat.border:"#E2E8F0"}`,borderRadius:14,padding:"12px 14px",cursor:"pointer",display:"flex",alignItems:"center",gap:12,marginBottom:8,boxShadow:"0 2px 8px rgba(0,0,0,.04)",animationDelay:`${i*.04}s`,flexShrink:0}}>
               <div style={{width:20,height:20,borderRadius:6,background:on?cat.color:"#E2E8F0",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
                 {on&&<span style={{color:"#fff",fontSize:11,fontWeight:900}}>✓</span>}
               </div>
-              <span style={{fontSize:13,fontWeight:600,color:on?cat.color:"#475569",textAlign:"left",flex:1}}>{s.label}</span>
-              <span style={{fontSize:10,color:"#94A3B8"}}>{DB[catId][s.id]?.length||0} q.</span>
+              <div style={{flex:1,display:"flex",flexDirection:"column",alignItems:"flex-start",gap:3}}>
+                <span style={{fontSize:13,fontWeight:600,color:on?cat.color:"#475569",textAlign:"left"}}>{s.label}</span>
+                <div style={{display:"flex",gap:4,alignItems:"center"}}>
+                  <span style={{fontSize:9,fontWeight:700,padding:"2px 7px",borderRadius:99,
+                    background:`${typeColor}18`,color:typeColor}}>
+                    {mainType === "Pad" ? "✍️ Pad" : mainType === "Drag" ? "🎯 Drag" : mainType === "Tableau" ? "📊 Tableau" : mainType}
+                  </span>
+                  <span style={{fontSize:10,color:"#94A3B8"}}>{DB[catId][s.id]?.length||0} q.</span>
+                </div>
+              </div>
             </button>
           );
         })}
@@ -6909,6 +7184,127 @@ function FactorisationLevelScreen({catId, qCount, onStart, onBack}) {
 }
 
 // ── DenomLevelScreen — choix du niveau de mise au même dénominateur ──────────
+// ══════════════════════════════════════════════════════════════════════════════
+// ── MISSIONS CONFIGURATIONS ───────────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════════════════════════
+
+const MISSIONS = {
+  mission_bases: {
+    id: "mission_bases",
+    label: "Travailler mes bases",
+    emoji: "🏋️",
+    desc: "Consolide tes fondamentaux en calcul",
+    color: "#10B981",
+    grad: "linear-gradient(135deg,#10B981,#047857)",
+    themes: [
+      { id: "tables", label: "Tables de multiplication", emoji: "✖️", dbPath: "numerique.tables" },
+      { id: "relatifs", label: "Opérations sur les relatifs", emoji: "➕➖", dbPath: "numerique.relatifs" },
+      { id: "reduction", label: "Réduction d'expressions", emoji: "✏️", dbPath: "litteral.reduction" },
+      { id: "eq1", label: "Équations 1er degré", emoji: "🔢", dbPath: "litteral.eq1" },
+    ]
+  },
+  mission_spe: {
+    id: "mission_spe",
+    label: "Objectif Première Spé",
+    emoji: "🚀",
+    desc: "Prépare-toi pour la Spé Maths",
+    color: "#7C3AED",
+    grad: "linear-gradient(135deg,#8B5CF6,#6D28D9)",
+    themes: [
+      { id: "identites", label: "Développement", emoji: "🔣", dbPath: "numerique.identites_remarquables", useLevelPicker: true, levelType: "identites" },
+      { id: "factorisation", label: "Factorisation", emoji: "✖️", dbPath: "numerique.factorisation", useLevelPicker: true, levelType: "factorisation" },
+      { id: "denominateur", label: "Mise au même dénominateur", emoji: "➗", dbPath: "litteral.denominateur", useLevelPicker: true, levelType: "denominateur" },
+    ]
+  },
+  mission_stmg: {
+    id: "mission_stmg",
+    label: "Objectif STMG",
+    emoji: "📊",
+    desc: "À venir...",
+    color: "#F59E0B",
+    grad: "linear-gradient(135deg,#F59E0B,#B45309)",
+    themes: []
+  },
+  mission_bac: {
+    id: "mission_bac",
+    label: "Objectif Bac en Terminale",
+    emoji: "🎓",
+    desc: "À venir...",
+    color: "#EF4444",
+    grad: "linear-gradient(135deg,#EF4444,#B91C1C)",
+    themes: []
+  }
+};
+
+// ── RELATIFS_LEVELS ────────────────────────────────────────────────────────────
+const RELATIFS_LEVELS = [
+  {
+    id:"relatifs_n1", label:"Niveau 1", sub:"Additions simples",
+    desc:"Additions de nombres relatifs. Ex : −4 + 5 = 1",
+    emoji:"🟢", color:"#10B981", grad:"linear-gradient(135deg,#10B981,#047857)",
+    tags:["QCM","Débutant"], count:10
+  },
+  {
+    id:"relatifs_n2", label:"Niveau 2", sub:"Soustractions",
+    desc:"Soustractions de nombres relatifs. Ex : 8 − (−2) = 10",
+    emoji:"🟡", color:"#F59E0B", grad:"linear-gradient(135deg,#F59E0B,#B45309)",
+    tags:["QCM","Débutant"], count:10
+  },
+  {
+    id:"relatifs_n3", label:"Niveau 3", sub:"Multiplications",
+    desc:"Multiplications de nombres relatifs. Ex : (−4) × 3 = −12",
+    emoji:"🟠", color:"#EF4444", grad:"linear-gradient(135deg,#EF4444,#B91C1C)",
+    tags:["QCM","Intermédiaire"], count:10
+  },
+  {
+    id:"relatifs_n4", label:"Niveau 4", sub:"Divisions",
+    desc:"Divisions de nombres relatifs. Ex : (−12) ÷ 4 = −3",
+    emoji:"🔴", color:"#7C3AED", grad:"linear-gradient(135deg,#7C3AED,#5B21B6)",
+    tags:["QCM","Intermédiaire"], count:10
+  },
+  {
+    id:"relatifs_n5", label:"Niveau 5", sub:"Opérations mixtes 🔥",
+    desc:"Plusieurs opérations. Ex : −3 + 5 × 2 = 7",
+    emoji:"⚫", color:"#1E293B", grad:"linear-gradient(135deg,#334155,#0F172A)",
+    tags:["QCM","Avancé"], count:10
+  }
+];
+
+// ── REDUCTION_LEVELS ────────────────────────────────────────────────────────────
+const REDUCTION_LEVELS = [
+  {
+    id:"reduction_n1", label:"Niveau 1", sub:"Opérations de base",
+    desc:"Premières opérations avec x. Ex : x + x = 2x",
+    emoji:"🟢", color:"#10B981", grad:"linear-gradient(135deg,#10B981,#047857)",
+    tags:["QCM","Débutant"], count:10
+  },
+  {
+    id:"reduction_n2", label:"Niveau 2", sub:"Réduction simple",
+    desc:"Réduire des expressions. Ex : 2x + 5x = 7x",
+    emoji:"🟡", color:"#F59E0B", grad:"linear-gradient(135deg,#F59E0B,#B45309)",
+    tags:["QCM","Débutant"], count:10
+  },
+  {
+    id:"reduction_n3", label:"Niveau 3", sub:"Avec constantes",
+    desc:"Réduire avec termes constants. Ex : x − 7 + 8x − 10",
+    emoji:"🟠", color:"#EF4444", grad:"linear-gradient(135deg,#EF4444,#B91C1C)",
+    tags:["QCM","Intermédiaire"], count:10
+  },
+  {
+    id:"reduction_n4", label:"Niveau 4", sub:"Avec puissances",
+    desc:"Réduire avec x². Ex : 3x² − 4x + 8x² − 7",
+    emoji:"🔴", color:"#7C3AED", grad:"linear-gradient(135deg,#7C3AED,#5B21B6)",
+    tags:["QCM","Intermédiaire"], count:10
+  },
+  {
+    id:"reduction_n5", label:"Niveau 5", sub:"Expressions complexes 🔥",
+    desc:"Expressions complètes. Ex : 5x² − 3x + 2 − x² + 7x − 8",
+    emoji:"⚫", color:"#1E293B", grad:"linear-gradient(135deg,#334155,#0F172A)",
+    tags:["QCM","Avancé"], count:10
+  }
+];
+
+// ── DENOM_LEVELS ────────────────────────────────────────────────────────────────
 const DENOM_LEVELS = [
   {
     id:"denom_n1", label:"Niveau 1", sub:"Dénominateur simple x",
@@ -6974,6 +7370,295 @@ const DENOM_LEVELS = [
   },
 ];
 
+// ── MissionScreen — Liste des missions disponibles ────────────────────────────
+function MissionScreen({missionId, onBack, onSelectTheme}) {
+  const mission = MISSIONS[missionId];
+  const cat = getCat("missions");
+  
+  if (!mission) return null;
+  
+  return (
+    <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",padding:"20px 18px 16px"}}>
+      <Back onClick={onBack}/>
+      <Breadcrumb items={["Catégories", "Les missions", mission.label]} />
+      
+      <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:10}}>
+        <div style={{width:40,height:40,borderRadius:12,background:mission.grad,
+          display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,flexShrink:0}}>
+          {mission.emoji}
+        </div>
+        <div>
+          <h2 style={{fontFamily:"'Nunito',sans-serif",fontSize:18,fontWeight:900,color:"#1E293B",margin:0}}>
+            {mission.label}
+          </h2>
+          <p style={{color:"#64748B",fontSize:11,margin:"2px 0 0 0"}}>{mission.desc}</p>
+        </div>
+      </div>
+
+      <Scroll>
+        {mission.themes.length === 0 ? (
+          <div style={{textAlign:"center",padding:"40px 20px",color:"#94A3B8"}}>
+            <div style={{fontSize:48,marginBottom:12}}>🔒</div>
+            <div style={{fontSize:14,fontWeight:600}}>Bientôt disponible</div>
+            <div style={{fontSize:11,marginTop:4}}>Cette mission arrive très prochainement !</div>
+          </div>
+        ) : (
+          mission.themes.map((theme, i) => (
+            <div key={theme.id} className="pop-in" 
+              style={{marginBottom:10, animationDelay:`${i*.07}s`}}>
+              <button onClick={() => onSelectTheme(theme)}
+                style={{background:"#fff",border:"2px solid #E2E8F0",borderRadius:16,
+                  padding:"14px 16px",cursor:"pointer",textAlign:"left",
+                  boxShadow:"0 2px 10px rgba(0,0,0,.06)",
+                  width:"100%",display:"flex",alignItems:"center",gap:14}}>
+                <div style={{fontSize:28,flexShrink:0}}>{theme.emoji}</div>
+                <div style={{flex:1}}>
+                  <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,
+                    fontSize:15,color:"#1E293B"}}>{theme.label}</div>
+                </div>
+                <span style={{color:mission.color,fontSize:20,flexShrink:0}}>›</span>
+              </button>
+            </div>
+          ))
+        )}
+      </Scroll>
+    </div>
+  );
+}
+
+// ── MissionThemeScreen — Choix rapide/long pour un thème ──────────────────────
+function MissionThemeScreen({theme, missionId, onBack, onStart}) {
+  const mission = MISSIONS[missionId];
+  
+  // Si le thème utilise un levelPicker, on redirige
+  if (theme.useLevelPicker) {
+    return null; // Géré directement dans le router principal
+  }
+  
+  // Récupérer les questions depuis DB
+  const getQuestions = () => {
+    const path = theme.dbPath.split('.');
+    let questions = DB;
+    for (let key of path) {
+      questions = questions?.[key];
+      if (!questions) return [];
+    }
+    return Array.isArray(questions) ? questions : Object.values(questions).flat();
+  };
+  
+  const allQuestions = getQuestions();
+  
+  return (
+    <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",padding:"20px 18px 16px"}}>
+      <Back onClick={onBack}/>
+      <Breadcrumb items={["Catégories", "Les missions", mission.label, theme.label]} />
+      
+      <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:10}}>
+        <div style={{width:40,height:40,borderRadius:12,background:mission.grad,
+          display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,flexShrink:0}}>
+          {theme.emoji}
+        </div>
+        <div>
+          <h2 style={{fontFamily:"'Nunito',sans-serif",fontSize:18,fontWeight:900,color:"#1E293B",margin:0}}>
+            {theme.label}
+          </h2>
+          <p style={{color:"#64748B",fontSize:11,margin:"2px 0 0 0"}}>Choisis ta durée</p>
+        </div>
+      </div>
+
+      <Scroll>
+        {/* Entraînement rapide */}
+        <div className="pop-in" style={{marginBottom:10}}>
+          <button onClick={() => onStart(allQuestions.slice(0, 10), theme.id)}
+            style={{background:"#fff",border:"2px solid #E2E8F0",borderRadius:16,
+              padding:"0",cursor:"pointer",textAlign:"left",
+              boxShadow:"0 2px 10px rgba(0,0,0,.06)",
+              width:"100%",overflow:"hidden"}}>
+            <div style={{height:5,background:"linear-gradient(135deg,#10B981,#047857)",width:"100%"}}/>
+            <div style={{padding:"14px 16px",display:"flex",alignItems:"center",gap:14}}>
+              <div style={{fontSize:28,flexShrink:0}}>⚡</div>
+              <div style={{flex:1}}>
+                <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,
+                  fontSize:15,color:"#1E293B"}}>Entraînement rapide</div>
+                <div style={{color:"#64748B",fontSize:11,marginTop:3}}>10 questions — ~3 minutes</div>
+                <div style={{display:"flex",gap:5,marginTop:7}}>
+                  <span style={{fontSize:9,fontWeight:700,
+                    background:"#10B98118",color:"#10B981",
+                    borderRadius:99,padding:"3px 8px"}}>Rapide</span>
+                </div>
+              </div>
+              <span style={{color:"#10B981",fontSize:20,flexShrink:0}}>›</span>
+            </div>
+          </button>
+        </div>
+
+        {/* Entraînement long */}
+        <div className="pop-in" style={{marginBottom:10,animationDelay:".07s"}}>
+          <button onClick={() => onStart(allQuestions.slice(0, 50), theme.id)}
+            disabled={allQuestions.length < 50}
+            style={{background:"#fff",border:"2px solid #E2E8F0",borderRadius:16,
+              padding:"0",cursor:allQuestions.length < 50 ? "not-allowed" : "pointer",
+              textAlign:"left",
+              boxShadow:"0 2px 10px rgba(0,0,0,.06)",
+              width:"100%",overflow:"hidden",
+              opacity:allQuestions.length < 50 ? 0.5 : 1}}>
+            <div style={{height:5,background:"linear-gradient(135deg,#7C3AED,#5B21B6)",width:"100%"}}/>
+            <div style={{padding:"14px 16px",display:"flex",alignItems:"center",gap:14}}>
+              <div style={{fontSize:28,flexShrink:0}}>🔥</div>
+              <div style={{flex:1}}>
+                <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,
+                  fontSize:15,color:"#1E293B"}}>Entraînement long</div>
+                <div style={{color:"#64748B",fontSize:11,marginTop:3}}>
+                  50 questions — ~15 minutes {allQuestions.length < 50 && `(${allQuestions.length} dispo)`}
+                </div>
+                <div style={{display:"flex",gap:5,marginTop:7}}>
+                  <span style={{fontSize:9,fontWeight:700,
+                    background:"#7C3AED18",color:"#7C3AED",
+                    borderRadius:99,padding:"3px 8px"}}>Intense</span>
+                </div>
+              </div>
+              <span style={{color:"#7C3AED",fontSize:20,flexShrink:0}}>›</span>
+            </div>
+          </button>
+        </div>
+      </Scroll>
+    </div>
+  );
+}
+
+// ── RelatifLevelScreen ─────────────────────────────────────────────────────────
+function RelatifLevelScreen({catId, qCount, onStart, onBack}) {
+  const cat = getCat(catId);
+  
+  return (
+    <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",padding:"20px 18px 16px"}}>
+      <Back onClick={onBack}/>
+      <Breadcrumb items={["Catégories", cat.label, "Nombres relatifs"]} />
+      <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:10}}>
+        <div style={{width:40,height:40,borderRadius:12,background:cat.grad,
+          display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,flexShrink:0}}>
+          {cat.emoji}
+        </div>
+        <div>
+          <h2 style={{fontFamily:"'Nunito',sans-serif",fontSize:18,fontWeight:900,color:"#1E293B",margin:0}}>
+            Nombres relatifs
+          </h2>
+          <p style={{color:"#64748B",fontSize:11,margin:"2px 0 0 0"}}>Choisis ton niveau</p>
+        </div>
+      </div>
+
+      <Scroll>
+        {RELATIFS_LEVELS.map((lv,i)=>{
+          const levelQs = DB.numerique?.relatifs || [];
+          const startIdx = i * 10;
+          const qs = levelQs.slice(startIdx, startIdx + 10);
+          return (
+            <div key={lv.id} className="pop-in" 
+              style={{marginBottom:10, animationDelay:`${i*.07}s`}}>
+              <button onClick={()=>onStart(qs, lv.id)}
+                style={{background:"#fff",border:"2px solid #E2E8F0",borderRadius:16,
+                  padding:"0",cursor:"pointer",textAlign:"left",
+                  boxShadow:"0 2px 10px rgba(0,0,0,.06)",
+                  width:"100%",overflow:"hidden"}}>
+                <div style={{height:5,background:lv.grad,width:"100%"}}/>
+                <div style={{padding:"14px 16px",display:"flex",alignItems:"center",gap:14}}>
+                  <div style={{fontSize:28,flexShrink:0}}>{lv.emoji}</div>
+                  <div style={{flex:1}}>
+                    <div style={{display:"flex",alignItems:"baseline",gap:6,flexWrap:"wrap"}}>
+                      <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,
+                        fontSize:15,color:"#1E293B"}}>{lv.label}</span>
+                      <span style={{fontSize:11,fontWeight:700,color:lv.color}}>— {lv.sub}</span>
+                    </div>
+                    <div style={{color:"#64748B",fontSize:11,marginTop:3}}>{lv.desc}</div>
+                    <div style={{display:"flex",gap:5,marginTop:7,flexWrap:"wrap"}}>
+                      {lv.tags.map(t=>(
+                        <span key={t} style={{fontSize:9,fontWeight:700,
+                          background:`${lv.color}18`,color:lv.color,
+                          borderRadius:99,padding:"3px 8px"}}>{t}</span>
+                      ))}
+                      <span style={{fontSize:9,color:"#94A3B8",fontWeight:600,marginLeft:"auto"}}>
+                        {lv.count} questions
+                      </span>
+                    </div>
+                  </div>
+                  <span style={{color:lv.color,fontSize:20,flexShrink:0}}>›</span>
+                </div>
+              </button>
+            </div>
+          );
+        })}
+      </Scroll>
+    </div>
+  );
+}
+
+// ── ReductionLevelScreen ───────────────────────────────────────────────────────
+function ReductionLevelScreen({catId, qCount, onStart, onBack}) {
+  const cat = getCat(catId);
+  
+  return (
+    <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",padding:"20px 18px 16px"}}>
+      <Back onClick={onBack}/>
+      <Breadcrumb items={["Catégories", cat.label, "Réduction d'expressions"]} />
+      <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:10}}>
+        <div style={{width:40,height:40,borderRadius:12,background:cat.grad,
+          display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,flexShrink:0}}>
+          {cat.emoji}
+        </div>
+        <div>
+          <h2 style={{fontFamily:"'Nunito',sans-serif",fontSize:18,fontWeight:900,color:"#1E293B",margin:0}}>
+            Réduction d'expressions
+          </h2>
+          <p style={{color:"#64748B",fontSize:11,margin:"2px 0 0 0"}}>Choisis ton niveau</p>
+        </div>
+      </div>
+
+      <Scroll>
+        {REDUCTION_LEVELS.map((lv,i)=>{
+          const levelQs = DB.litteral?.reduction || [];
+          const startIdx = i * 10;
+          const qs = levelQs.slice(startIdx, startIdx + 10);
+          return (
+            <div key={lv.id} className="pop-in" 
+              style={{marginBottom:10, animationDelay:`${i*.07}s`}}>
+              <button onClick={()=>onStart(qs, lv.id)}
+                style={{background:"#fff",border:"2px solid #E2E8F0",borderRadius:16,
+                  padding:"0",cursor:"pointer",textAlign:"left",
+                  boxShadow:"0 2px 10px rgba(0,0,0,.06)",
+                  width:"100%",overflow:"hidden"}}>
+                <div style={{height:5,background:lv.grad,width:"100%"}}/>
+                <div style={{padding:"14px 16px",display:"flex",alignItems:"center",gap:14}}>
+                  <div style={{fontSize:28,flexShrink:0}}>{lv.emoji}</div>
+                  <div style={{flex:1}}>
+                    <div style={{display:"flex",alignItems:"baseline",gap:6,flexWrap:"wrap"}}>
+                      <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,
+                        fontSize:15,color:"#1E293B"}}>{lv.label}</span>
+                      <span style={{fontSize:11,fontWeight:700,color:lv.color}}>— {lv.sub}</span>
+                    </div>
+                    <div style={{color:"#64748B",fontSize:11,marginTop:3}}>{lv.desc}</div>
+                    <div style={{display:"flex",gap:5,marginTop:7,flexWrap:"wrap"}}>
+                      {lv.tags.map(t=>(
+                        <span key={t} style={{fontSize:9,fontWeight:700,
+                          background:`${lv.color}18`,color:lv.color,
+                          borderRadius:99,padding:"3px 8px"}}>{t}</span>
+                      ))}
+                      <span style={{fontSize:9,color:"#94A3B8",fontWeight:600,marginLeft:"auto"}}>
+                        {lv.count} questions
+                      </span>
+                    </div>
+                  </div>
+                  <span style={{color:lv.color,fontSize:20,flexShrink:0}}>›</span>
+                </div>
+              </button>
+            </div>
+          );
+        })}
+      </Scroll>
+    </div>
+  );
+}
+
+// ── DenomLevelScreen ───────────────────────────────────────────────────────────
 function DenomLevelScreen({catId, qCount, onStart, onBack}) {
   const cat = getCat(catId);
   const [showExemple, setShowExemple] = React.useState(null); // stores level object when showing example
@@ -7372,6 +8057,7 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
   const isSol   = !!q.solpad;
   const isEq    = !!q.eqpad;
   const isExpr  = !!q.exprpad;
+  const isFrac  = !!q.fractionpad;
   const isDrag  = !!q.dgspec;
   const spec    = q.tvSpec || q.tsSpec;
   const specType= q.tvSpec?"tv":q.tsSpec?"ts":null;
@@ -7448,9 +8134,9 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
   };
 
   const nextQ=()=>{
-    const isCorrectNow = isDrag?dragCorrect:(isNum||isSol||isEq||isExpr)?padState==="correct":isTab?allCorrect:selected===q.a;
+    const isCorrectNow = isDrag?dragCorrect:(isNum||isSol||isEq||isExpr||isFrac)?padState==="correct":isTab?allCorrect:selected===q.a;
     if(!isCorrectNow) failedIdx.current = [...new Set([...failedIdx.current, idx])];
-    const fs=(isNum||isSol||isEq)?score+(padState==="correct"?1:0)
+    const fs=(isNum||isSol||isEq||isFrac)?score+(padState==="correct"?1:0)
             :isTab ?score+(allCorrect?1:0)
             :isDrag?score+(dragCorrect?1:0)
             :score+(selected===q.a?1:0);
@@ -7465,8 +8151,8 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
     return "default";
   };
 
-  const didAnswer  = isDrag?dragDone:(isNum||isSol||isEq||isExpr)?padState!=="idle":isTab?tabValidated:shown;
-  const wasCorrect = isDrag?dragCorrect:(isNum||isSol||isEq||isExpr)?padState==="correct":isTab?allCorrect:selected===q.a;
+  const didAnswer  = isDrag?dragDone:(isNum||isSol||isEq||isExpr||isFrac)?padState!=="idle":isTab?tabValidated:shown;
+  const wasCorrect = isDrag?dragCorrect:(isNum||isSol||isEq||isExpr||isFrac)?padState==="correct":isTab?allCorrect:selected===q.a;
 
   return (
     <div style={{display:"flex",flexDirection:"column",minHeight:"100%",padding:"16px 16px 14px"}}>
@@ -7496,9 +8182,9 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
 
       {/* Question card (all non-drag questions) */}
       {!isDrag && <div className={shake?"shake":""} style={{
-        background:(isNum||isSol||isExpr)?"linear-gradient(135deg,#7C3AED,#5B21B6)":"#E8EAF0",
+        background:(isNum||isSol||isExpr||isFrac)?"linear-gradient(135deg,#7C3AED,#5B21B6)":"#E8EAF0",
         borderRadius:18,
-        padding: isNum && !q.gspec ? "18px" : hasVis||isTab||isSol ? "12px" : "16px",
+        padding: isNum && !q.gspec ? "18px" : hasVis||isTab||isSol||isFrac ? "12px" : "16px",
         marginBottom:isTab?10:14, boxShadow:"0 3px 12px rgba(0,0,0,.08)",
         border:"none", flexShrink:0,
         width:"100%", boxSizing:"border-box",
@@ -7517,8 +8203,8 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
             : q.q.length > 25 ? 17
             : 19,
           fontWeight:700, lineHeight:1.5, textAlign:"center",
-          color:(isNum||isSol||isExpr)?"#fff":"#1E293B",
-          fontFamily:(isNum||isSol||isExpr)?"'Nunito',sans-serif":"'DM Sans',sans-serif",
+          color:(isNum||isSol||isExpr||isFrac)?"#fff":"#1E293B",
+          fontFamily:(isNum||isSol||isExpr||isFrac)?"'Nunito',sans-serif":"'DM Sans',sans-serif",
           padding: isNum && q.gspec ? "4px 0 2px" : 0,
           maxWidth:"100%", overflow:"hidden",
         }}>
@@ -7576,7 +8262,7 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
       )}
 
       {/* ── MCQ choices ── */}
-      {!isDrag && !isNum && !isTab && !isSol && !isEq && !isExpr && (
+      {!isDrag && !isNum && !isTab && !isSol && !isEq && !isExpr && !isFrac && (
         <div style={{display:"flex",flexDirection:"column",gap:10,flexShrink:0}}>
           {choices.map((c,i)=><Btn key={i} tex={c} state={getState(c)} onClick={shown?undefined:()=>pick(c)}/>)}
         </div>
@@ -7618,8 +8304,24 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
           }}/>
       )}
 
+      {/* ── FractionPad (mise au même dénominateur) ── */}
+      {isFrac && (
+        <FractionPad key={idx} correct={q.a}
+          altAnswers={q.altAnswers||[]}
+          partialAnswers={q.partialAnswers||[]}
+          state={padState}
+          onValidate={(result)=>{
+            setPadState(result);
+            if(result==="correct"){setScore(s=>s+1);setStreak(s=>s+1);}
+            else if(result==="wrong"){setStreak(0);setShake(true);setTimeout(()=>setShake(false),420);}
+            else if(result==="partial"){
+              setTimeout(()=>setPadState("idle"), 2000);
+            }
+          }}/>
+      )}
+
       {/* ── FEEDBACK MCQ ── */}
-      {!isDrag && !isNum && !isTab && !isSol && !isEq && !isExpr && shown && (
+      {!isDrag && !isNum && !isTab && !isSol && !isEq && !isExpr && !isFrac && shown && (
         <div className="fade-in" style={{marginTop:14,
           background:wasCorrect?"#ECFDF5":"#FEF2F2",
           border:`2.5px solid ${wasCorrect?"#10B981":"#EF4444"}`,
@@ -7689,10 +8391,10 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
 
       {/* ── FEEDBACK exprpad ── */}
       {isExpr && padState!=="idle" && (
-        <div className="fade-in" style={{marginTop:10,
+        <div className="fade-in" style={{marginTop:14,
           background:wasCorrect?"#ECFDF5":padState==="partial"?"#FEF9C3":"#FEF2F2",
-          border:`2px solid ${wasCorrect?"#10B981":padState==="partial"?"#F59E0B":"#EF4444"}`,
-          borderRadius:12,padding:"10px 12px",flexShrink:0}}>
+          border:`2.5px solid ${wasCorrect?"#10B981":padState==="partial"?"#F59E0B":"#EF4444"}`,
+          borderRadius:16,padding:"13px 15px",flexShrink:0}}>
           {wasCorrect ? (
             <div style={{fontWeight:800,fontSize:13,color:"#065F46"}}>✅ Bravo ! <M tex={q.tip||q.a}/></div>
           ) : padState==="partial" ? (
@@ -7710,6 +8412,36 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
                 ❌ La bonne réponse : <M tex={q.a}/>
               </div>
               <div style={{background:"#fff",borderRadius:8,padding:"7px 10px",fontSize:11,color:"#475569"}}>
+                💡 <M tex={q.tip}/>
+              </div>
+            </>
+          )}
+        </div>
+      )}
+
+      {/* ── FEEDBACK fractionpad ── */}
+      {isFrac && padState!=="idle" && (
+        <div className="fade-in" style={{marginTop:14,
+          background:wasCorrect?"#ECFDF5":padState==="partial"?"#FEF9C3":"#FEF2F2",
+          border:`2.5px solid ${wasCorrect?"#10B981":padState==="partial"?"#F59E0B":"#EF4444"}`,
+          borderRadius:16,padding:"13px 15px",flexShrink:0}}>
+          {wasCorrect ? (
+            <div style={{fontWeight:800,fontSize:13,color:"#065F46"}}>✅ Bravo ! <M tex={q.tip||q.a}/></div>
+          ) : padState==="partial" ? (
+            <>
+              <div style={{fontWeight:800,fontSize:13,color:"#92400E",marginBottom:6}}>
+                ⚠️ C'est bon mais tu peux encore simplifier !
+              </div>
+              <div style={{background:"#fff",borderRadius:10,padding:"8px 11px",fontSize:11,color:"#475569"}}>
+                💡 Continue à simplifier le numérateur
+              </div>
+            </>
+          ) : (
+            <>
+              <div style={{fontWeight:800,fontSize:13,color:"#991B1B",marginBottom:6}}>
+                ❌ La bonne réponse : <M tex={q.a}/>
+              </div>
+              <div style={{background:"#fff",borderRadius:10,padding:"8px 11px",fontSize:11,color:"#475569"}}>
                 💡 <M tex={q.tip}/>
               </div>
             </>
@@ -8217,6 +8949,10 @@ function AutoMaths() {
   const [questions, setQuestions] = useState([]);
   const [score,     setScore]     = useState(0);
 
+  // ── Mission state ─────────────────────────────────────────────────────────
+  const [missionId,    setMissionId]    = useState(null);
+  const [missionTheme, setMissionTheme] = useState(null);
+
   // ── Parcours state ────────────────────────────────────────────────────────
   const [profile,   setProfile]   = useState(null);
   const [profReady, setProfReady] = useState(false);
@@ -8374,7 +9110,15 @@ function AutoMaths() {
   const hCat      = cid=> { setCatId(cid); if(mode==="tester") setScreen("count"); else setScreen("subcategory"); };
   const hSub      = qs => { const n=mode==="rapide"?10:20;setQCount(n);startQuiz(qs,n,screen); };
   const [levelType,  setLevelType]  = useState("racines");
-  const hLevelPicker = (_id, type) => { setLevelType(type||"racines"); setScreen("level_picker"); };
+  const hLevelPicker = (_id, type) => { 
+    if (type === 'mission') {
+      setMissionId(_id);
+      setScreen("mission_select");
+    } else {
+      setLevelType(type||"racines"); 
+      setScreen("level_picker"); 
+    }
+  };
   const hBacStart = (subId, qs) => { setCatId("bac"); setPrevScreen("bac_subjects"); setPool(qs); setQuestions(shuffle(qs)); setScreen("quiz"); };
   const hCount    = n  => { setQCount(n); startQuiz(catId?getCatQ(catId):getAllQ(),n,"count"); };
 
@@ -8481,10 +9225,27 @@ function AutoMaths() {
           {screen==="submode"       && <SubmodeScreen   mode={mode} onSubmode={hSubmode} onBack={()=>setScreen("home")}/>}
           {screen==="category"      && <CategoryScreen  onCat={hCat} onBack={()=>setScreen(mode==="tester"?"home":"submode")} subtitle={mode==="tester"?"Toutes les questions de la catégorie":"Puis choisis des sous-thèmes"}/>}
           {screen==="subcategory"   && <SubcategoryScreen catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen("category")} onLevelPicker={hLevelPicker} defaultNiveau={profile?LEVEL_MAP[profile.level]||null:null}/>}
+          {screen==="mission_select" && <MissionScreen missionId={missionId} onBack={()=>setScreen("subcategory")} onSelectTheme={(theme)=>{
+            setMissionTheme(theme);
+            if(theme.useLevelPicker) {
+              setLevelType(theme.levelType);
+              setScreen("level_picker");
+            } else {
+              setScreen("mission_theme");
+            }
+          }}/>}
+          {screen==="mission_theme" && missionTheme && <MissionThemeScreen theme={missionTheme} missionId={missionId} onBack={()=>setScreen("mission_select")} onStart={(qs, themeId)=>{
+            setPrevScreen("mission_theme");
+            setQuestions(qs);
+            setScore(0);
+            setScreen("quiz");
+          }}/>}
+          {screen==="level_picker"  && levelType==="relatifs"      && <RelatifLevelScreen       catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen(missionId ? "mission_select" : "subcategory")}/>}
+          {screen==="level_picker"  && levelType==="reduction"     && <ReductionLevelScreen     catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen(missionId ? "mission_select" : "subcategory")}/>}
           {screen==="level_picker"  && levelType==="racines"       && <RacinesLevelScreen       catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen("subcategory")}/>}
-          {screen==="level_picker"  && levelType==="identites"     && <IdentitesLevelScreen     catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen("subcategory")}/>}
-          {screen==="level_picker"  && levelType==="factorisation" && <FactorisationLevelScreen catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen("subcategory")}/>}
-          {screen==="level_picker"  && levelType==="denominateur"  && <DenomLevelScreen         catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen("subcategory")}/>}
+          {screen==="level_picker"  && levelType==="identites"     && <IdentitesLevelScreen     catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen(missionId ? "mission_select" : "subcategory")}/>}
+          {screen==="level_picker"  && levelType==="factorisation" && <FactorisationLevelScreen catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen(missionId ? "mission_select" : "subcategory")}/>}
+          {screen==="level_picker"  && levelType==="denominateur"  && <DenomLevelScreen         catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen(missionId ? "mission_select" : "subcategory")}/>}
           {screen==="level_picker"  && levelType==="cercle_trigo"  && <CercleTrigoScreen onBack={()=>setScreen("subcategory")}/>}
           {screen==="bac_subjects"   && <BacSubjectScreen onStart={hBacStart} onBack={()=>setScreen("home")}/>}
           {screen==="count"         && <CountScreen     catId={mode==="bac"?null:catId} allMode={mode==="bac"} onCount={hCount} onBack={()=>setScreen(mode==="bac"?"home":"category")}/>}
