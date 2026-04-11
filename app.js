@@ -4070,7 +4070,7 @@ function Btn({ tex, state, onClick }) {
   );
 }
 const Scroll = ({children,style={}}) => <div style={{flex:1,overflowY:"auto",display:"flex",flexDirection:"column",gap:9,...style}}>{children}</div>;
-const Back   = ({onClick}) => <button onClick={onClick} style={{background:"none",border:"none",cursor:"pointer",color:"#64748B",fontSize:13,fontWeight:600,padding:"4px 0",display:"flex",alignItems:"center",gap:5,marginBottom:10}}>← Retour</button>;
+const Back   = ({onClick}) => <button onClick={onClick} style={{background:"none",border:"none",cursor:"pointer",color:"#64748B",fontSize:13,fontWeight:600,padding:"4px 0",display:"flex",alignItems:"center",gap:5,marginBottom:10,marginLeft:"auto"}}>Retour →</button>;
 
 // ── Navigation Components ──────────────────────────────────────────────────────
 const MenuHamburger = ({onHome, onCategories, onProfile, currentScreen}) => {
@@ -4585,6 +4585,180 @@ function ExprPad({ correct, altAnswers, partialAnswers, extraBtn, extraBtns, onV
             OK ✓
           </button>
         </div>
+      </div>
+    </div>
+  );
+}
+
+// ── FractionPad — Pour saisir des fractions (numérateur/dénominateur) ─────────
+function FractionPad({ correct, altAnswers, partialAnswers, onValidate, state }) {
+  const [num, setNum] = React.useState('');   // numérateur
+  const [denom, setDenom] = React.useState(''); // dénominateur
+  const [focus, setFocus] = React.useState('num'); // 'num' ou 'denom'
+  const disabled = state === 'correct' || state === 'wrong';
+
+  const toLatex = s => s
+    .replace(/x²/g,'x^2')
+    .replace(/²/g,'^2');
+
+  const ins = t => {
+    if(disabled) return;
+    if(focus === 'num') setNum(v => v + t);
+    else setDenom(v => v + t);
+  };
+  
+  const del = () => {
+    if(disabled) return;
+    if(focus === 'num') setNum(v => [...v].slice(0,-1).join(''));
+    else setDenom(v => [...v].slice(0,-1).join(''));
+  };
+
+  // Normalisation pour comparaison
+  const normFactor = s => {
+    const clean = s.replace(/\s/g,'').toLowerCase();
+    const parts = [];
+    let depth=0, cur='', hasParens=false;
+    for(let ch of clean){
+      if(ch==='('){depth++;if(depth===1){hasParens=true;continue;}}
+      else if(ch===')'){depth--;if(depth===0){parts.push(cur);cur='';continue;}}
+      if(depth>0) cur+=ch; else if(ch!=='(') cur+=ch;
+    }
+    if(!hasParens) return clean;
+    return [...parts].sort().join('|');
+  };
+
+  const submit = () => {
+    if(!num || !denom || disabled) return;
+    const userAnswer = `(${num})/(${denom})`;
+    const normalized = normFactor(userAnswer);
+    
+    // Check partial answers first
+    if(partialAnswers && partialAnswers.length > 0) {
+      const isPartial = partialAnswers.some(ans => normFactor(ans) === normalized);
+      if(isPartial) {
+        onValidate('partial', userAnswer);
+        return;
+      }
+    }
+    
+    // Check main answer
+    const isMainCorrect = normFactor(correct) === normalized;
+    if(isMainCorrect) {
+      onValidate('correct', userAnswer);
+      return;
+    }
+    
+    // Check alt answers
+    if(altAnswers && altAnswers.length > 0) {
+      const isAltCorrect = altAnswers.some(ans => normFactor(ans) === normalized);
+      if(isAltCorrect) {
+        onValidate('correct', userAnswer);
+        return;
+      }
+    }
+    
+    onValidate('wrong', userAnswer);
+  };
+
+  const dispBg = state==='correct'?'#ECFDF5':state==='wrong'?'#FEF2F2':state==='partial'?'#FEF9C3':'#F8FAFC';
+  const dispBd = state==='correct'?'#10B981':state==='wrong'?'#EF4444':state==='partial'?'#F59E0B':'#CBD5E1';
+  const dispClr = state==='correct'?'#065F46':state==='wrong'?'#991B1B':state==='partial'?'#92400E':'#1E293B';
+
+  // Reset on partial
+  React.useEffect(() => {
+    if(state === 'partial') {
+      setNum('');
+      setDenom('');
+    }
+  }, [state]);
+
+  const B = ({label, tex, bg, color, flex=1, onP}) => (
+    <button onClick={onP||(() => ins(label))} disabled={disabled}
+      style={{flex,padding:"11px 4px",borderRadius:10,border:"none",
+        background:bg||"#F1F5F9",color:color||"#1E293B",
+        fontSize:15,fontWeight:700,cursor:disabled?"default":"pointer",
+        opacity:disabled?.55:1,fontFamily:"'Nunito',sans-serif",minWidth:0}}>
+      {tex ? <M tex={tex}/> : label}
+    </button>
+  );
+
+  return (
+    <div style={{display:"flex",flexDirection:"column",gap:7,flexShrink:0}}>
+      {/* Fraction display */}
+      <div style={{background:dispBg,border:`2.5px solid ${dispBd}`,borderRadius:14,
+        padding:"12px 16px",display:"flex",flexDirection:"column",alignItems:"center",gap:4}}>
+        {/* Numérateur */}
+        <div onClick={()=>!disabled&&setFocus('num')} style={{
+          width:"100%",textAlign:"center",padding:"6px",borderRadius:8,
+          background:focus==='num'&&state==='idle'?'rgba(124,58,237,0.1)':'transparent',
+          border:`2px ${focus==='num'&&state==='idle'?'solid':'dashed'} ${focus==='num'&&state==='idle'?'#7C3AED':'#CBD5E1'}`,
+          cursor:disabled?"default":"pointer",minHeight:40,display:"flex",alignItems:"center",justifyContent:"center"
+        }}>
+          <span style={{fontFamily:"'Nunito',sans-serif",fontSize:18,fontWeight:900,color:dispClr}}>
+            {num ? <M tex={toLatex(num)}/> : <span style={{color:"#CBD5E1",fontSize:14}}>Numérateur</span>}
+          </span>
+        </div>
+        
+        {/* Barre de fraction */}
+        <div style={{width:"100%",height:3,background:dispBd,borderRadius:2}}/>
+        
+        {/* Dénominateur */}
+        <div onClick={()=>!disabled&&setFocus('denom')} style={{
+          width:"100%",textAlign:"center",padding:"6px",borderRadius:8,
+          background:focus==='denom'&&state==='idle'?'rgba(124,58,237,0.1)':'transparent',
+          border:`2px ${focus==='denom'&&state==='idle'?'solid':'dashed'} ${focus==='denom'&&state==='idle'?'#7C3AED':'#CBD5E1'}`,
+          cursor:disabled?"default":"pointer",minHeight:40,display:"flex",alignItems:"center",justifyContent:"center"
+        }}>
+          <span style={{fontFamily:"'Nunito',sans-serif",fontSize:18,fontWeight:900,color:dispClr}}>
+            {denom ? <M tex={toLatex(denom)}/> : <span style={{color:"#CBD5E1",fontSize:14}}>Dénominateur</span>}
+          </span>
+        </div>
+      </div>
+
+      <div style={{display:"flex",flexDirection:"column",gap:5}}>
+        {/* Row 1 — algebraic keys */}
+        <div style={{display:"flex",gap:5}}>
+          <B label="x²" tex="x^2" bg="#7C3AED" color="#fff"/>
+          <B label="x" tex="x" bg="#7C3AED" color="#fff"/>
+          <B label="²" tex="^2" bg="#5B21B6" color="#fff" onP={()=>ins('²')}/>
+          <B label="(" tex="(" bg="#475569" color="#fff" onP={()=>ins('(')}/>
+          <B label=")" tex=")" bg="#475569" color="#fff" onP={()=>ins(')')}/>
+        </div>
+        <div style={{display:"flex",gap:5}}>
+          <B label="7"/><B label="8"/><B label="9"/>
+        </div>
+        <div style={{display:"flex",gap:5}}>
+          <B label="4"/><B label="5"/><B label="6"/>
+        </div>
+        <div style={{display:"flex",gap:5}}>
+          <B label="1"/><B label="2"/><B label="3"/>
+        </div>
+        <div style={{display:"flex",gap:5}}>
+          <B label="+" bg="#EDE9FE" color="#5B21B6"/>
+          <B label="0"/>
+          <B label="−" bg="#EDE9FE" color="#5B21B6" onP={()=>ins('-')}/>
+        </div>
+        
+        {/* Navigation entre zones + validate */}
+        <div style={{display:"flex",gap:5}}>
+          <button onClick={()=>!disabled&&setFocus(f=>f==='num'?'denom':'num')}
+            disabled={disabled}
+            style={{flex:1,padding:"11px",borderRadius:10,border:"2px solid #7C3AED",
+              background:"#fff",color:"#7C3AED",fontSize:13,fontWeight:700,
+              cursor:disabled?"default":"pointer",opacity:disabled?.5:1}}>
+            {focus==='num'?'↓ Dénominateur':'↑ Numérateur'}
+          </button>
+          <B label="⌫" bg="#FEE2E2" color="#EF4444" onP={del}/>
+        </div>
+        
+        <button onClick={submit} disabled={disabled||!num||!denom}
+          style={{width:"100%",padding:"13px",borderRadius:10,border:"none",
+            background:"#10B981",color:"#fff",fontSize:15,fontWeight:800,
+            cursor:(disabled||!num||!denom)?"default":"pointer",
+            opacity:(disabled||!num||!denom)?.5:1,
+            boxShadow:(disabled||!num||!denom)?"none":"0 4px 12px rgba(16,185,129,.35)"}}>
+          OK ✓
+        </button>
       </div>
     </div>
   );
