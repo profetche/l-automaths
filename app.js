@@ -71,6 +71,7 @@ const GS = () => (
     body{background:#dde1ea;display:flex;justify-content:center;align-items:center;min-height:100vh;font-family:'DM Sans',sans-serif;}
     @keyframes popIn  {0%{transform:scale(.78);opacity:0}70%{transform:scale(1.04)}100%{transform:scale(1);opacity:1}}
     @keyframes slideUp{from{transform:translateY(18px);opacity:0}to{transform:translateY(0);opacity:1}}
+    @keyframes slideInLeft{from{transform:translateX(-100%);opacity:0}to{transform:translateX(0);opacity:1}}
     @keyframes shake  {0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
     @keyframes fadeIn {from{opacity:0}to{opacity:1}}
     @keyframes sigmaFloat {
@@ -83,6 +84,7 @@ const GS = () => (
     }
     .pop-in  {animation:popIn   .32s cubic-bezier(.34,1.56,.64,1) both;}
     .slide-up{animation:slideUp .26s ease both;}
+    .slide-in-left{animation:slideInLeft .28s cubic-bezier(.34,1.2,.64,1) both;}
     .shake   {animation:shake   .38s ease;}
     .fade-in {animation:fadeIn  .22s ease both;}
     .sigma-float{animation:sigmaFloat 3s ease-in-out infinite;}
@@ -4070,6 +4072,132 @@ function Btn({ tex, state, onClick }) {
 const Scroll = ({children,style={}}) => <div style={{flex:1,overflowY:"auto",display:"flex",flexDirection:"column",gap:9,...style}}>{children}</div>;
 const Back   = ({onClick}) => <button onClick={onClick} style={{background:"none",border:"none",cursor:"pointer",color:"#64748B",fontSize:13,fontWeight:600,padding:"4px 0",display:"flex",alignItems:"center",gap:5,marginBottom:10}}>← Retour</button>;
 
+// ── Navigation Components ──────────────────────────────────────────────────────
+const MenuHamburger = ({onHome, onCategories, onProfile, currentScreen}) => {
+  const [open, setOpen] = React.useState(false);
+  
+  return (
+    <>
+      {/* Hamburger button */}
+      <button onClick={() => setOpen(!open)} 
+        style={{
+          position:"absolute", top:38, left:16, zIndex:20,
+          background:"rgba(30,41,59,0.1)", backdropFilter:"blur(8px)",
+          border:"1.5px solid rgba(148,163,184,0.2)",
+          borderRadius:10, padding:"8px 10px",
+          cursor:"pointer", display:"flex", flexDirection:"column", gap:3
+        }}>
+        <div style={{width:18, height:2, background:"#1E293B", borderRadius:2, 
+          transition:"transform 0.2s", transform:open?"rotate(45deg) translateY(5px)":"none"}}/>
+        <div style={{width:18, height:2, background:"#1E293B", borderRadius:2,
+          transition:"opacity 0.2s", opacity:open?0:1}}/>
+        <div style={{width:18, height:2, background:"#1E293B", borderRadius:2,
+          transition:"transform 0.2s", transform:open?"rotate(-45deg) translateY(-5px)":"none"}}/>
+      </button>
+
+      {/* Menu overlay */}
+      {open && (
+        <>
+          <div onClick={() => setOpen(false)} 
+            style={{
+              position:"fixed", top:0, left:0, right:0, bottom:0,
+              background:"rgba(0,0,0,0.4)", backdropFilter:"blur(2px)", zIndex:25
+            }}/>
+          <div className="slide-in-left" 
+            style={{
+              position:"absolute", top:26, left:0, bottom:0, width:280,
+              background:"#fff", boxShadow:"4px 0 20px rgba(0,0,0,0.15)", zIndex:30,
+              padding:"20px", display:"flex", flexDirection:"column"
+            }}>
+            {/* Header */}
+            <div style={{marginBottom:24}}>
+              <div style={{fontFamily:"'Nunito',sans-serif", fontSize:20, fontWeight:900, color:"#1E293B"}}>
+                l'Auto<span style={{color:"#F59E0B"}}>Maths</span>
+              </div>
+              <div style={{fontSize:11, color:"#64748B", marginTop:4}}>Navigation rapide</div>
+            </div>
+
+            {/* Menu items */}
+            <div style={{flex:1, display:"flex", flexDirection:"column", gap:8}}>
+              <button onClick={() => {onHome(); setOpen(false);}}
+                style={{
+                  background: currentScreen==="home" ? "#FEF3C7" : "#F8FAFC",
+                  border: currentScreen==="home" ? "2px solid #FBBF24" : "2px solid #E2E8F0",
+                  borderRadius:12, padding:"12px 14px", cursor:"pointer",
+                  display:"flex", alignItems:"center", gap:10, textAlign:"left"
+                }}>
+                <span style={{fontSize:20}}>🏠</span>
+                <div style={{flex:1}}>
+                  <div style={{fontSize:13, fontWeight:700, color:currentScreen==="home"?"#92400E":"#1E293B"}}>Accueil</div>
+                  <div style={{fontSize:10, color:"#64748B", marginTop:2}}>Modes de jeu</div>
+                </div>
+              </button>
+
+              <button onClick={() => {onCategories(); setOpen(false);}}
+                style={{
+                  background: currentScreen==="category" ? "#FEF3C7" : "#F8FAFC",
+                  border: currentScreen==="category" ? "2px solid #FBBF24" : "2px solid #E2E8F0",
+                  borderRadius:12, padding:"12px 14px", cursor:"pointer",
+                  display:"flex", alignItems:"center", gap:10, textAlign:"left"
+                }}>
+                <span style={{fontSize:20}}>📚</span>
+                <div style={{flex:1}}>
+                  <div style={{fontSize:13, fontWeight:700, color:currentScreen==="category"?"#92400E":"#1E293B"}}>Catégories</div>
+                  <div style={{fontSize:10, color:"#64748B", marginTop:2}}>Tous les chapitres</div>
+                </div>
+              </button>
+
+              {onProfile && (
+                <button onClick={() => {onProfile(); setOpen(false);}}
+                  style={{
+                    background: currentScreen==="dashboard" ? "#FEF3C7" : "#F8FAFC",
+                    border: currentScreen==="dashboard" ? "2px solid #FBBF24" : "2px solid #E2E8F0",
+                    borderRadius:12, padding:"12px 14px", cursor:"pointer",
+                    display:"flex", alignItems:"center", gap:10, textAlign:"left"
+                  }}>
+                  <span style={{fontSize:20}}>👤</span>
+                  <div style={{flex:1}}>
+                    <div style={{fontSize:13, fontWeight:700, color:currentScreen==="dashboard"?"#92400E":"#1E293B"}}>Mon Espace</div>
+                    <div style={{fontSize:10, color:"#64748B", marginTop:2}}>Profil & progression</div>
+                  </div>
+                </button>
+              )}
+            </div>
+
+            {/* Footer */}
+            <div style={{paddingTop:16, borderTop:"1px solid #E2E8F0"}}>
+              <div style={{fontSize:10, color:"#94A3B8", textAlign:"center"}}>
+                Version 1.0 · Niveau STMG
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+    </>
+  );
+};
+
+const Breadcrumb = ({items}) => {
+  if(!items || items.length === 0) return null;
+  
+  return (
+    <div style={{
+      display:"flex", alignItems:"center", gap:6, flexWrap:"wrap",
+      padding:"6px 12px", background:"rgba(248,250,252,0.8)",
+      borderRadius:8, fontSize:11, color:"#64748B", marginBottom:12
+    }}>
+      {items.map((item, i) => (
+        <React.Fragment key={i}>
+          <span style={{fontWeight:i===items.length-1?700:500, color:i===items.length-1?"#1E293B":"#64748B"}}>
+            {item}
+          </span>
+          {i < items.length-1 && <span style={{color:"#CBD5E1"}}>›</span>}
+        </React.Fragment>
+      ))}
+    </div>
+  );
+};
+
 // ── NumPad — for multiplication tables ────────────────────────────────────────
 function NumPad({ value, onChange, onValidate, state, correctAnswer }) {
   // state: "idle" | "correct" | "wrong"
@@ -6317,27 +6445,28 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
   const pool=getSubQ(catId,sel);
   const canStart=sel.length>0&&pool.length>0;
   return (
-    <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",padding:"18px 18px 14px"}}>
+    <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",padding:"20px 18px 16px"}}>
       <Back onClick={onBack}/>
-      <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:4}}>
-        <div style={{width:36,height:36,borderRadius:10,background:cat.grad,display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}}>{cat.emoji}</div>
-        <h2 style={{fontFamily:"'Nunito',sans-serif",fontSize:18,fontWeight:900,color:"#1E293B"}}>{cat.label}</h2>
+      <Breadcrumb items={["Catégories", cat.label]} />
+      <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:8}}>
+        <div style={{width:40,height:40,borderRadius:12,background:cat.grad,display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,flexShrink:0}}>{cat.emoji}</div>
+        <h2 style={{fontFamily:"'Nunito',sans-serif",fontSize:19,fontWeight:900,color:"#1E293B",margin:0}}>{cat.label}</h2>
       </div>
-      <p style={{color:"#64748B",fontSize:12,marginBottom:6}}>{qCount} questions</p>
+      <p style={{color:"#64748B",fontSize:12,marginBottom:12}}>{qCount} questions</p>
 
       {levelsInCat.length>0&&(
-        <div style={{display:"flex",gap:5,marginBottom:8,flexWrap:"wrap"}}>
+        <div style={{display:"flex",gap:6,marginBottom:12,flexWrap:"wrap"}}>
           <button onClick={()=>{setNiveau(null);setSel([]);}}
-            style={{padding:"4px 10px",borderRadius:20,border:`1.5px solid ${!niveau?"#1E293B":"#E2E8F0"}`,
+            style={{padding:"5px 12px",borderRadius:20,border:`1.5px solid ${!niveau?"#1E293B":"#E2E8F0"}`,
               background:!niveau?"#1E293B":"#fff",color:!niveau?"#fff":"#64748B",
-              fontSize:10,fontWeight:700,cursor:"pointer"}}>Tous</button>
+              fontSize:11,fontWeight:700,cursor:"pointer"}}>Tous</button>
           {["sec","tc","stmg","spe","term"].filter(lv=>levelsInCat.includes(lv)).map(lv=>(
             <button key={lv} onClick={()=>{setNiveau(lv);setSel([]);}}
-              style={{padding:"4px 10px",borderRadius:20,
+              style={{padding:"5px 12px",borderRadius:20,
                 border:`1.5px solid ${niveau===lv?NIVEAU_COLORS[lv]:"#E2E8F0"}`,
                 background:niveau===lv?NIVEAU_COLORS[lv]:"#fff",
                 color:niveau===lv?"#fff":"#64748B",
-                fontSize:10,fontWeight:700,cursor:"pointer",
+                fontSize:11,fontWeight:700,cursor:"pointer",
                 boxShadow:niveau===lv?`0 2px 8px ${NIVEAU_COLORS[lv]}55`:"none"}}>
               {lv===defaultNiveau?"★ ":""}{NIVEAU_LABELS[lv]}
             </button>
@@ -6352,7 +6481,7 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
         </div>
       ):(
         <>
-          {visibleSubs.length>0&&<button onClick={toggleAll} style={{background:allVis?cat.light:"#F8FAFC",border:`1.5px solid ${allVis?cat.border:"#E2E8F0"}`,borderRadius:10,padding:"7px 12px",cursor:"pointer",fontSize:12,fontWeight:700,color:allVis?cat.color:"#475569",marginBottom:8,textAlign:"left"}}>
+          {visibleSubs.length>0&&<button onClick={toggleAll} style={{background:allVis?cat.light:"#F8FAFC",border:`1.5px solid ${allVis?cat.border:"#E2E8F0"}`,borderRadius:12,padding:"8px 14px",cursor:"pointer",fontSize:12,fontWeight:700,color:allVis?cat.color:"#475569",marginBottom:10,textAlign:"left"}}>
             {allVis?"✅ Tout désélectionner":"☑️ Tout sélectionner"}
           </button>}
       <Scroll>
@@ -6363,25 +6492,25 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
             return (
             <button key={s.id} onClick={()=>onLevelPicker&&onLevelPicker(s.id, s.levelType||'racines')} className="pop-in"
               style={{background:"linear-gradient(135deg,#7C3AED18,#5B21B618)",
-                border:"2px solid #DDD6FE",borderRadius:12,padding:"10px 12px",cursor:"pointer",
-                display:"flex",alignItems:"center",gap:10,
+                border:"2px solid #DDD6FE",borderRadius:14,padding:"12px 14px",cursor:"pointer",
+                display:"flex",alignItems:"center",gap:12,marginBottom:8,
                 boxShadow:"0 2px 8px rgba(0,0,0,.04)",animationDelay:`${i*.04}s`,flexShrink:0}}>
-              <div style={{fontSize:22}}>{s.levelType==="identites"?"🔣":s.levelType==="cercle_trigo"?"⭕":s.levelType==="factorisation"?"✖️":s.levelType==="denominateur"?"➗":"√"}</div>
+              <div style={{fontSize:24}}>{s.levelType==="identites"?"🔣":s.levelType==="cercle_trigo"?"⭕":s.levelType==="factorisation"?"✖️":s.levelType==="denominateur"?"➗":"√"}</div>
               <div style={{flex:1,textAlign:"left"}}>
-                <div style={{fontSize:12,fontWeight:800,color:"#7C3AED"}}>{s.label}</div>
-                <div style={{fontSize:10,color:"#8B5CF6",marginTop:2}}>{s.levelType==="cercle_trigo"?"3 niveaux — Placer l'angle →":"4 niveaux — Choisir la difficulté →"}</div>
+                <div style={{fontSize:13,fontWeight:800,color:"#7C3AED"}}>{s.label}</div>
+                <div style={{fontSize:10,color:"#8B5CF6",marginTop:3}}>{s.levelType==="cercle_trigo"?"3 niveaux — Placer l'angle →":"4 niveaux — Choisir la difficulté →"}</div>
               </div>
-              <span style={{color:"#7C3AED",fontSize:16}}>›</span>
+              <span style={{color:"#7C3AED",fontSize:18}}>›</span>
             </button>
           );}
           const on=sel.includes(s.id);
           return (
             <button key={s.id} onClick={()=>toggle(s.id)} className="pop-in"
-              style={{background:on?cat.light:"#fff",border:`2px solid ${on?cat.border:"#E2E8F0"}`,borderRadius:12,padding:"10px 12px",cursor:"pointer",display:"flex",alignItems:"center",gap:10,boxShadow:"0 2px 8px rgba(0,0,0,.04)",animationDelay:`${i*.04}s`,flexShrink:0}}>
-              <div style={{width:18,height:18,borderRadius:5,background:on?cat.color:"#E2E8F0",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
-                {on&&<span style={{color:"#fff",fontSize:10,fontWeight:900}}>✓</span>}
+              style={{background:on?cat.light:"#fff",border:`2px solid ${on?cat.border:"#E2E8F0"}`,borderRadius:14,padding:"12px 14px",cursor:"pointer",display:"flex",alignItems:"center",gap:12,marginBottom:8,boxShadow:"0 2px 8px rgba(0,0,0,.04)",animationDelay:`${i*.04}s`,flexShrink:0}}>
+              <div style={{width:20,height:20,borderRadius:6,background:on?cat.color:"#E2E8F0",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+                {on&&<span style={{color:"#fff",fontSize:11,fontWeight:900}}>✓</span>}
               </div>
-              <span style={{fontSize:12,fontWeight:600,color:on?cat.color:"#475569",textAlign:"left",flex:1}}>{s.label}</span>
+              <span style={{fontSize:13,fontWeight:600,color:on?cat.color:"#475569",textAlign:"left",flex:1}}>{s.label}</span>
               <span style={{fontSize:10,color:"#94A3B8"}}>{DB[catId][s.id]?.length||0} q.</span>
             </button>
           );
@@ -6389,7 +6518,7 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
         </Scroll>
         </>
       )}
-      <button onClick={()=>canStart&&onStart(pool)} style={{marginTop:10,border:"none",borderRadius:12,padding:"14px",background:canStart?cat.grad:"#E2E8F0",color:canStart?"#fff":"#94A3B8",fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:800,cursor:canStart?"pointer":"not-allowed",flexShrink:0,boxShadow:canStart?`0 5px 16px ${cat.color}44`:"none"}}>
+      <button onClick={()=>canStart&&onStart(pool)} style={{marginTop:12,border:"none",borderRadius:14,padding:"15px",background:canStart?cat.grad:"#E2E8F0",color:canStart?"#fff":"#94A3B8",fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:800,cursor:canStart?"pointer":"not-allowed",flexShrink:0,boxShadow:canStart?`0 5px 16px ${cat.color}44`:"none"}}>
         {canStart?`Démarrer (${Math.min(pool.length,qCount)} questions) →`:"Sélectionne au moins un thème"}
       </button>
     </div>
@@ -6612,42 +6741,96 @@ const DENOM_LEVELS = [
     desc:"Additionner un entier et une fraction. Ex : 1 + 1/x = (x+1)/x",
     emoji:"🟢", color:"#10B981", grad:"linear-gradient(135deg,#10B981,#047857)",
     tags:["Pad ✍️","Débutant"],
+    exemple: {
+      q: "3 + \\frac{2}{x}",
+      steps: [
+        {text:"On met 3 au même dénominateur que 2/x", tex:"3 = \\frac{3x}{x}"},
+        {text:"On additionne les deux fractions", tex:"\\frac{3x}{x} + \\frac{2}{x} = \\frac{3x+2}{x}"}
+      ],
+      answer: "\\frac{3x+2}{x}"
+    }
   },
   {
     id:"denom_n2", label:"Niveau 2", sub:"Dénominateur x+a ou x−a",
     desc:"Mise au dénominateur avec simplification. Ex : 5/(x+1) − 2",
     emoji:"🟡", color:"#F59E0B", grad:"linear-gradient(135deg,#F59E0B,#B45309)",
     tags:["Pad ✍️","Intermédiaire"],
+    exemple: {
+      q: "\\frac{5}{x+1} - 2",
+      steps: [
+        {text:"On met 2 au même dénominateur", tex:"2 = \\frac{2(x+1)}{x+1}"},
+        {text:"On soustrait les deux fractions", tex:"\\frac{5}{x+1} - \\frac{2(x+1)}{x+1} = \\frac{5-2(x+1)}{x+1}"},
+        {text:"On développe le numérateur", tex:"\\frac{5-2x-2}{x+1} = \\frac{3-2x}{x+1}"}
+      ],
+      answer: "\\frac{3-2x}{x+1}"
+    }
   },
   {
     id:"denom_n3", label:"Niveau 3", sub:"Deux fractions différentes",
     desc:"Additionner deux fractions. Ex : 1/x + 3/(x+1)",
     emoji:"🟠", color:"#EF4444", grad:"linear-gradient(135deg,#EF4444,#B91C1C)",
     tags:["Pad ✍️","Avancé"],
+    exemple: {
+      q: "\\frac{1}{x} + \\frac{3}{x+1}",
+      steps: [
+        {text:"Le dénominateur commun est x(x+1)", tex:""},
+        {text:"On met la première fraction au dénominateur commun", tex:"\\frac{1}{x} = \\frac{x+1}{x(x+1)}"},
+        {text:"On met la deuxième fraction au dénominateur commun", tex:"\\frac{3}{x+1} = \\frac{3x}{x(x+1)}"},
+        {text:"On additionne les numérateurs", tex:"\\frac{x+1+3x}{x(x+1)} = \\frac{4x+1}{x(x+1)}"}
+      ],
+      answer: "\\frac{4x+1}{x(x+1)}"
+    }
   },
   {
     id:"denom_n4", label:"Niveau 4", sub:"Numérateurs complexes 🔥",
     desc:"Expressions avec polynômes. Ex : (x+1)/(x−2) − x/(x+4)",
     emoji:"🔴", color:"#7C3AED", grad:"linear-gradient(135deg,#7C3AED,#5B21B6)",
     tags:["Pad ✍️","Expert 🔥"],
+    exemple: {
+      q: "\\frac{x+1}{x-2} - \\frac{x}{x+4}",
+      steps: [
+        {text:"Le dénominateur commun est (x−2)(x+4)", tex:""},
+        {text:"On met la première fraction au dénominateur commun", tex:"\\frac{x+1}{x-2} = \\frac{(x+1)(x+4)}{(x-2)(x+4)}"},
+        {text:"On met la deuxième fraction au dénominateur commun", tex:"\\frac{x}{x+4} = \\frac{x(x-2)}{(x-2)(x+4)}"},
+        {text:"On soustrait et on développe", tex:"\\frac{(x+1)(x+4)-x(x-2)}{(x-2)(x+4)}"},
+        {text:"On simplifie le numérateur", tex:"\\frac{x^2+5x+4-x^2+2x}{(x-2)(x+4)} = \\frac{7x+4}{(x-2)(x+4)}"}
+      ],
+      answer: "\\frac{7x+4}{(x-2)(x+4)}"
+    }
   },
 ];
 
 function DenomLevelScreen({catId, qCount, onStart, onBack}) {
   const cat = getCat(catId);
+  const [showExemple, setShowExemple] = React.useState(null); // stores level object when showing example
+  
+  if (showExemple) {
+    return (
+      <ExempleScreen 
+        exemple={showExemple.exemple}
+        onStart={() => {
+          const qs = DB.litteral?.[showExemple.id] || [];
+          onStart(qs, showExemple.id);
+        }}
+        onBack={() => setShowExemple(null)}
+      />
+    );
+  }
+  
   return (
-    <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",padding:"18px 18px 14px"}}>
+    <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",padding:"20px 18px 16px"}}>
       <Back onClick={onBack}/>
-      <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:6}}>
-        <div style={{width:36,height:36,borderRadius:10,background:cat.grad,
-          display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}}>
+      <Breadcrumb items={["Catégories", cat.label, "Mise au même dénominateur"]} />
+      <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:10}}>
+        <div style={{width:40,height:40,borderRadius:12,background:cat.grad,
+          display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,flexShrink:0}}>
           {cat.emoji}
         </div>
         <div>
-          <h2 style={{fontFamily:"'Nunito',sans-serif",fontSize:17,fontWeight:900,color:"#1E293B",margin:0}}>
+          <h2 style={{fontFamily:"'Nunito',sans-serif",fontSize:18,fontWeight:900,color:"#1E293B",margin:0}}>
             Mise au même dénominateur
           </h2>
-          <p style={{color:"#64748B",fontSize:11,margin:0}}>Choisis ton niveau</p>
+          <p style={{color:"#64748B",fontSize:11,margin:"2px 0 0 0"}}>Choisis ton niveau</p>
         </div>
       </div>
 
@@ -6655,36 +6838,54 @@ function DenomLevelScreen({catId, qCount, onStart, onBack}) {
         {DENOM_LEVELS.map((lv,i)=>{
           const qs = DB.litteral?.[lv.id] || [];
           return (
-            <button key={lv.id} onClick={()=>onStart(qs, lv.id)} className="pop-in"
-              style={{background:"#fff",border:"2px solid #E2E8F0",borderRadius:16,
-                padding:"0",cursor:"pointer",textAlign:"left",
-                boxShadow:"0 2px 10px rgba(0,0,0,.06)",
-                animationDelay:`${i*.07}s`,flexShrink:0,overflow:"hidden"}}>
-              {/* Color bar */}
-              <div style={{height:4,background:lv.grad,width:"100%"}}/>
-              <div style={{padding:"13px 14px",display:"flex",alignItems:"center",gap:12}}>
-                <div style={{fontSize:26,flexShrink:0}}>{lv.emoji}</div>
-                <div style={{flex:1}}>
-                  <div style={{display:"flex",alignItems:"baseline",gap:6}}>
-                    <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,
-                      fontSize:15,color:"#1E293B"}}>{lv.label}</span>
-                    <span style={{fontSize:11,fontWeight:700,color:lv.color}}>— {lv.sub}</span>
+            <div key={lv.id} className="pop-in" 
+              style={{marginBottom:10, animationDelay:`${i*.07}s`}}>
+              {/* Main level card */}
+              <button onClick={()=>onStart(qs, lv.id)}
+                style={{background:"#fff",border:"2px solid #E2E8F0",borderRadius:16,
+                  padding:"0",cursor:"pointer",textAlign:"left",
+                  boxShadow:"0 2px 10px rgba(0,0,0,.06)",
+                  width:"100%",overflow:"hidden"}}>
+                {/* Color bar */}
+                <div style={{height:5,background:lv.grad,width:"100%"}}/>
+                <div style={{padding:"14px 16px",display:"flex",alignItems:"center",gap:14}}>
+                  <div style={{fontSize:28,flexShrink:0}}>{lv.emoji}</div>
+                  <div style={{flex:1}}>
+                    <div style={{display:"flex",alignItems:"baseline",gap:6,flexWrap:"wrap"}}>
+                      <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,
+                        fontSize:15,color:"#1E293B"}}>{lv.label}</span>
+                      <span style={{fontSize:11,fontWeight:700,color:lv.color}}>— {lv.sub}</span>
+                    </div>
+                    <div style={{color:"#64748B",fontSize:11,marginTop:3}}>{lv.desc}</div>
+                    <div style={{display:"flex",gap:5,marginTop:7,flexWrap:"wrap"}}>
+                      {lv.tags.map(t=>(
+                        <span key={t} style={{fontSize:9,fontWeight:700,
+                          background:`${lv.color}18`,color:lv.color,
+                          borderRadius:99,padding:"3px 8px"}}>{t}</span>
+                      ))}
+                      <span style={{fontSize:9,color:"#94A3B8",fontWeight:600,marginLeft:"auto"}}>
+                        {qs.length} questions
+                      </span>
+                    </div>
                   </div>
-                  <div style={{color:"#64748B",fontSize:11,marginTop:2}}>{lv.desc}</div>
-                  <div style={{display:"flex",gap:5,marginTop:6,flexWrap:"wrap"}}>
-                    {lv.tags.map(t=>(
-                      <span key={t} style={{fontSize:9,fontWeight:700,
-                        background:`${lv.color}18`,color:lv.color,
-                        borderRadius:99,padding:"2px 7px"}}>{t}</span>
-                    ))}
-                    <span style={{fontSize:9,color:"#94A3B8",fontWeight:600,marginLeft:"auto"}}>
-                      {qs.length} questions
-                    </span>
-                  </div>
+                  <span style={{color:lv.color,fontSize:20,flexShrink:0}}>›</span>
                 </div>
-                <span style={{color:lv.color,fontSize:18,flexShrink:0}}>›</span>
-              </div>
-            </button>
+              </button>
+              
+              {/* Example button */}
+              <button onClick={() => setShowExemple(lv)}
+                style={{
+                  marginTop:6, width:"100%", padding:"10px 14px",
+                  border:"2px dashed #CBD5E1", borderRadius:12,
+                  background:"#F8FAFC", cursor:"pointer",
+                  display:"flex", alignItems:"center", justifyContent:"center", gap:6
+                }}>
+                <span style={{fontSize:16}}>📖</span>
+                <span style={{fontSize:12, fontWeight:700, color:"#475569"}}>
+                  Voir un exemple
+                </span>
+              </button>
+            </div>
           );
         })}
 
@@ -6694,22 +6895,156 @@ function DenomLevelScreen({catId, qCount, onStart, onBack}) {
             onStart(all,'denom_all');
           }} className="pop-in"
           style={{background:"#1E293B",border:"none",borderRadius:16,
-            padding:"13px 14px",cursor:"pointer",textAlign:"left",
+            padding:"14px 16px",cursor:"pointer",textAlign:"left",
             boxShadow:"0 4px 14px rgba(0,0,0,.2)",
             animationDelay:"0.28s",flexShrink:0,
-            display:"flex",alignItems:"center",gap:12}}>
-          <div style={{fontSize:26}}>🎲</div>
+            display:"flex",alignItems:"center",gap:14}}>
+          <div style={{fontSize:28}}>🎲</div>
           <div style={{flex:1}}>
-            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:14,color:"#fff"}}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:15,color:"#fff"}}>
               Tous les niveaux mélangés
             </div>
-            <div style={{color:"#64748B",fontSize:11,marginTop:2}}>
+            <div style={{color:"#64748B",fontSize:11,marginTop:3}}>
               {DB.litteral.denom_n1.length+DB.litteral.denom_n2.length+DB.litteral.denom_n3.length+DB.litteral.denom_n4.length} questions au total
             </div>
           </div>
-          <span style={{color:"#F59E0B",fontSize:18}}>›</span>
+          <span style={{color:"#F59E0B",fontSize:20}}>›</span>
         </button>
       </Scroll>
+    </div>
+  );
+}
+
+// ── ExempleScreen — Affiche un exemple guidé avec solution progressive ───────
+function ExempleScreen({exemple, onStart, onBack}) {
+  const [step, setStep] = React.useState(0);
+  
+  // exemple structure: { q, steps: [{text, tex}], answer }
+  const maxStep = exemple.steps.length;
+  
+  return (
+    <div className="slide-up" style={{
+      display:"flex", flexDirection:"column", height:"100%", 
+      padding:"20px 18px 16px", gap:16
+    }}>
+      <Back onClick={onBack}/>
+      
+      {/* Header */}
+      <div style={{textAlign:"center"}}>
+        <div style={{fontSize:32, marginBottom:8}}>📖</div>
+        <h2 style={{
+          fontFamily:"'Nunito',sans-serif", fontSize:18, fontWeight:900, 
+          color:"#1E293B", marginBottom:4
+        }}>
+          Exemple guidé
+        </h2>
+        <p style={{fontSize:12, color:"#64748B"}}>
+          Suis les étapes pour comprendre la méthode
+        </p>
+      </div>
+
+      {/* Question */}
+      <div style={{
+        background:"linear-gradient(135deg,#7C3AED,#5B21B6)",
+        borderRadius:18, padding:"18px", textAlign:"center",
+        boxShadow:"0 3px 12px rgba(0,0,0,.08)"
+      }}>
+        <div style={{fontSize:18, fontWeight:700, color:"#fff", lineHeight:1.5}}>
+          <M tex={exemple.q}/>
+        </div>
+      </div>
+
+      {/* Steps progression */}
+      <div style={{
+        background:"#F8FAFC", borderRadius:14, padding:"16px",
+        border:"2px solid #E2E8F0"
+      }}>
+        <div style={{
+          display:"flex", alignItems:"center", gap:8, marginBottom:12
+        }}>
+          <span style={{fontSize:20}}>💡</span>
+          <span style={{fontSize:13, fontWeight:700, color:"#1E293B"}}>
+            Résolution étape par étape
+          </span>
+        </div>
+
+        {/* Steps */}
+        <div style={{display:"flex", flexDirection:"column", gap:10}}>
+          {exemple.steps.slice(0, step + 1).map((s, i) => (
+            <div key={i} className="fade-in" style={{
+              background:"#fff", borderRadius:10, padding:"12px",
+              borderLeft:"3px solid #7C3AED"
+            }}>
+              <div style={{
+                fontSize:10, fontWeight:700, color:"#7C3AED", 
+                textTransform:"uppercase", letterSpacing:0.8, marginBottom:6
+              }}>
+                Étape {i + 1}
+              </div>
+              <div style={{fontSize:12, color:"#475569", marginBottom:s.tex?6:0}}>
+                {s.text}
+              </div>
+              {s.tex && (
+                <div style={{
+                  fontSize:15, fontWeight:700, color:"#1E293B", 
+                  textAlign:"center", marginTop:4
+                }}>
+                  <M tex={s.tex}/>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* Next step button */}
+        {step < maxStep - 1 && (
+          <button onClick={() => setStep(s => s + 1)} 
+            className="pop-in"
+            style={{
+              marginTop:12, width:"100%", padding:"12px", 
+              border:"none", borderRadius:12,
+              background:"linear-gradient(135deg,#7C3AED,#5B21B6)",
+              color:"#fff", fontFamily:"'Nunito',sans-serif",
+              fontSize:13, fontWeight:800, cursor:"pointer",
+              boxShadow:"0 4px 12px rgba(124,58,237,.3)"
+            }}>
+            Étape suivante →
+          </button>
+        )}
+      </div>
+
+      {/* Final answer (shown after all steps) */}
+      {step === maxStep - 1 && (
+        <div className="fade-in" style={{
+          background:"#ECFDF5", border:"2.5px solid #10B981",
+          borderRadius:16, padding:"14px", textAlign:"center"
+        }}>
+          <div style={{
+            fontSize:12, fontWeight:800, color:"#065F46", marginBottom:6
+          }}>
+            ✅ Réponse finale
+          </div>
+          <div style={{fontSize:18, fontWeight:900, color:"#065F46"}}>
+            <M tex={exemple.answer}/>
+          </div>
+        </div>
+      )}
+
+      {/* Action buttons */}
+      <div style={{marginTop:"auto", display:"flex", gap:10}}>
+        {step === maxStep - 1 && (
+          <button onClick={onStart}
+            style={{
+              flex:1, padding:"15px", border:"none", borderRadius:14,
+              background:"linear-gradient(135deg,#10B981,#059669)",
+              color:"#fff", fontFamily:"'Nunito',sans-serif",
+              fontSize:15, fontWeight:800, cursor:"pointer",
+              boxShadow:"0 5px 18px rgba(16,185,129,.4)"
+            }}>
+            Compris, je me lance ! 🚀
+          </button>
+        )}
+      </div>
     </div>
   );
 }
@@ -6960,19 +7295,19 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
   const wasCorrect = isDrag?dragCorrect:(isNum||isSol||isEq||isExpr)?padState==="correct":isTab?allCorrect:selected===q.a;
 
   return (
-    <div style={{display:"flex",flexDirection:"column",minHeight:"100%",padding:"14px 15px 12px"}}>
+    <div style={{display:"flex",flexDirection:"column",minHeight:"100%",padding:"16px 16px 14px"}}>
       {/* Header */}
-      <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:10,flexShrink:0}}>
-        <button onClick={onBack} style={{background:"none",border:"none",cursor:"pointer",color:"#94A3B8",fontSize:16,padding:0,flexShrink:0}}>✕</button>
-        <div style={{flex:1,background:"#E2E8F0",borderRadius:99,height:8,overflow:"hidden"}}>
+      <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:14,flexShrink:0}}>
+        <button onClick={onBack} style={{background:"none",border:"none",cursor:"pointer",color:"#94A3B8",fontSize:18,padding:0,flexShrink:0}}>✕</button>
+        <div style={{flex:1,background:"#E2E8F0",borderRadius:99,height:9,overflow:"hidden"}}>
           <div style={{height:"100%",width:`${(idx/questions.length)*100}%`,background:cat.color,borderRadius:99,transition:"width .4s ease"}}/>
         </div>
-        <div style={{background:"#FEF3C7",color:"#92400E",borderRadius:99,padding:"2px 8px",fontSize:11,fontWeight:700}}>🔥{streak}</div>
-        <div style={{background:cat.light,color:cat.color,borderRadius:99,padding:"2px 8px",fontSize:11,fontWeight:700,border:`1px solid ${cat.border}`}}>{idx+1}/{questions.length}</div>
+        <div style={{background:"#FEF3C7",color:"#92400E",borderRadius:99,padding:"3px 9px",fontSize:11,fontWeight:700}}>🔥{streak}</div>
+        <div style={{background:cat.light,color:cat.color,borderRadius:99,padding:"3px 9px",fontSize:11,fontWeight:700,border:`1px solid ${cat.border}`}}>{idx+1}/{questions.length}</div>
       </div>
 
       {/* Tag */}
-      <div style={{display:"inline-flex",alignItems:"center",gap:4,background:cat.light,color:cat.color,borderRadius:99,padding:"3px 10px",fontSize:11,fontWeight:700,marginBottom:10,alignSelf:"flex-start",border:`1.5px solid ${cat.border}`,flexShrink:0}}>
+      <div style={{display:"inline-flex",alignItems:"center",gap:5,background:cat.light,color:cat.color,borderRadius:99,padding:"4px 12px",fontSize:11,fontWeight:700,marginBottom:14,alignSelf:"flex-start",border:`1.5px solid ${cat.border}`,flexShrink:0}}>
         {cat.emoji} {cat.label}
       </div>
 
@@ -6988,25 +7323,25 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
       {/* Question card (all non-drag questions) */}
       {!isDrag && <div className={shake?"shake":""} style={{
         background:(isNum||isSol||isExpr)?"linear-gradient(135deg,#7C3AED,#5B21B6)":"#E8EAF0",
-        borderRadius:16,
-        padding: isNum && !q.gspec ? "16px" : hasVis||isTab||isSol ? "10px" : "14px",
-        marginBottom:isTab?8:12, boxShadow:"0 2px 10px rgba(0,0,0,.06)",
+        borderRadius:18,
+        padding: isNum && !q.gspec ? "18px" : hasVis||isTab||isSol ? "12px" : "16px",
+        marginBottom:isTab?10:14, boxShadow:"0 3px 12px rgba(0,0,0,.08)",
         border:"none", flexShrink:0,
         width:"100%", boxSizing:"border-box",
       }}>
-        {q.gspec   && <div style={{marginBottom:6}}><Graph spec={q.gspec}/></div>}
-        {q.trespec && <div style={{marginBottom:8}}><ProbaTree spec={q.trespec}/></div>}
+        {q.gspec   && <div style={{marginBottom:8}}><Graph spec={q.gspec}/></div>}
+        {q.trespec && <div style={{marginBottom:10}}><ProbaTree spec={q.trespec}/></div>}
         {q.tspec   && <ProbaTable spec={q.tspec}/>}
         <div style={{
           fontSize: isNum && !q.gspec
-            ? (q.q.length > 60 ? 13 : q.q.length > 40 ? 15 : q.q.length > 20 ? 20 : 36)
-            : (isNum||isSol) && q.gspec ? 15
-            : isSol ? 18
-            : hasVis||isTab ? 13
-            : q.q.length > 80 ? 13
-            : q.q.length > 50 ? 15
-            : q.q.length > 25 ? 16
-            : 18,
+            ? (q.q.length > 60 ? 14 : q.q.length > 40 ? 16 : q.q.length > 20 ? 21 : 38)
+            : (isNum||isSol) && q.gspec ? 16
+            : isSol ? 19
+            : hasVis||isTab ? 14
+            : q.q.length > 80 ? 14
+            : q.q.length > 50 ? 16
+            : q.q.length > 25 ? 17
+            : 19,
           fontWeight:700, lineHeight:1.5, textAlign:"center",
           color:(isNum||isSol||isExpr)?"#fff":"#1E293B",
           fontFamily:(isNum||isSol||isExpr)?"'Nunito',sans-serif":"'DM Sans',sans-serif",
@@ -7068,7 +7403,7 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
 
       {/* ── MCQ choices ── */}
       {!isDrag && !isNum && !isTab && !isSol && !isEq && !isExpr && (
-        <div style={{display:"flex",flexDirection:"column",gap:8,flexShrink:0}}>
+        <div style={{display:"flex",flexDirection:"column",gap:10,flexShrink:0}}>
           {choices.map((c,i)=><Btn key={i} tex={c} state={getState(c)} onClick={shown?undefined:()=>pick(c)}/>)}
         </div>
       )}
@@ -7111,13 +7446,13 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
 
       {/* ── FEEDBACK MCQ ── */}
       {!isDrag && !isNum && !isTab && !isSol && !isEq && !isExpr && shown && (
-        <div className="fade-in" style={{marginTop:10,
+        <div className="fade-in" style={{marginTop:14,
           background:wasCorrect?"#ECFDF5":"#FEF2F2",
-          border:`2px solid ${wasCorrect?"#10B981":"#EF4444"}`,
-          borderRadius:14,padding:"11px 13px",flexShrink:0}}>
-          <div style={{fontWeight:800,fontSize:12,marginBottom:wasCorrect&&!q.tip?0:5,
+          border:`2.5px solid ${wasCorrect?"#10B981":"#EF4444"}`,
+          borderRadius:16,padding:"13px 15px",flexShrink:0}}>
+          <div style={{fontWeight:800,fontSize:13,marginBottom:wasCorrect&&!q.tip?0:6,
             color:wasCorrect?"#065F46":"#991B1B",
-            display:"flex",alignItems:"center",gap:5}}>
+            display:"flex",alignItems:"center",gap:6}}>
             {wasCorrect ? "✅ Exact !" : (
               <span style={{display:"flex",alignItems:"center",gap:6,flexWrap:"wrap"}}>
                 ❌ La bonne réponse : <M tex={q.a}/>
@@ -7127,10 +7462,10 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
           {q.tip && (
             <div style={{
               background:wasCorrect?"rgba(16,185,129,0.08)":"rgba(239,68,68,0.06)",
-              borderRadius:9,padding:"7px 10px",
+              borderRadius:10,padding:"8px 11px",
               borderLeft:`3px solid ${wasCorrect?"#10B981":"#EF4444"}`}}>
               <div style={{fontSize:9,fontWeight:700,color:"#94A3B8",
-                textTransform:"uppercase",letterSpacing:0.8,marginBottom:4}}>
+                textTransform:"uppercase",letterSpacing:0.8,marginBottom:5}}>
                 {wasCorrect?"Méthode":"Rappel — pourquoi ?"}
               </div>
               <div style={{fontSize:12,color:"#475569"}}>
@@ -7144,20 +7479,20 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
 
       {/* ── FEEDBACK numpad / solpad ── */}
       {(isNum||isSol) && padState!=="idle" && (
-        <div className="fade-in" style={{marginTop:10,background:wasCorrect?"#ECFDF5":"#FEF2F2",
-          border:`2px solid ${wasCorrect?"#10B981":"#EF4444"}`,borderRadius:14,
-          padding:"12px 14px",flexShrink:0}}>
-          <div style={{fontWeight:800,fontSize:12,
-            color:wasCorrect?"#065F46":"#991B1B",marginBottom:q.tip?6:0}}>
+        <div className="fade-in" style={{marginTop:14,background:wasCorrect?"#ECFDF5":"#FEF2F2",
+          border:`2.5px solid ${wasCorrect?"#10B981":"#EF4444"}`,borderRadius:16,
+          padding:"13px 15px",flexShrink:0}}>
+          <div style={{fontWeight:800,fontSize:13,
+            color:wasCorrect?"#065F46":"#991B1B",marginBottom:q.tip?7:0}}>
             {wasCorrect ? `✅ Exact ! Réponse : ${q.a}` : `❌ La bonne réponse est ${q.a}`}
           </div>
           {q.tip && (
             <div style={{
               background:wasCorrect?"rgba(16,185,129,0.08)":"rgba(239,68,68,0.06)",
-              borderRadius:9,padding:"7px 10px",
+              borderRadius:10,padding:"8px 11px",
               borderLeft:`3px solid ${wasCorrect?"#10B981":"#EF4444"}`}}>
               <div style={{fontSize:9,fontWeight:700,color:"#94A3B8",
-                textTransform:"uppercase",letterSpacing:0.8,marginBottom:4}}>
+                textTransform:"uppercase",letterSpacing:0.8,marginBottom:5}}>
                 {wasCorrect?"Méthode":"Rappel — pourquoi ?"}
               </div>
               <div style={{fontSize:12,color:"#475569"}}>
@@ -7170,11 +7505,11 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
 
       {/* ── FEEDBACK eqpad ── */}
       {isEq && padState!=="idle" && (
-        <div className="fade-in" style={{marginTop:10,background:wasCorrect?"#ECFDF5":"#FEF2F2",border:`2px solid ${wasCorrect?"#10B981":"#EF4444"}`,borderRadius:12,padding:"10px 12px",flexShrink:0}}>
-          <div style={{fontWeight:700,fontSize:12,color:wasCorrect?"#065F46":"#991B1B"}}>
+        <div className="fade-in" style={{marginTop:14,background:wasCorrect?"#ECFDF5":"#FEF2F2",border:`2.5px solid ${wasCorrect?"#10B981":"#EF4444"}`,borderRadius:14,padding:"12px 14px",flexShrink:0}}>
+          <div style={{fontWeight:700,fontSize:13,color:wasCorrect?"#065F46":"#991B1B"}}>
             {wasCorrect ? `✅ Bravo ! S=${q.a}` : `❌ La réponse était S=${q.a}`}
           </div>
-          <div style={{color:"#475569",fontSize:11,marginTop:3}}>💡 <M tex={q.tip}/></div>
+          <div style={{color:"#475569",fontSize:11,marginTop:4}}>💡 <M tex={q.tip}/></div>
         </div>
       )}
 
@@ -7220,7 +7555,7 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
 
       {/* ── NEXT BUTTON ── */}
       {didAnswer && (
-        <button onClick={nextQ} className="pop-in" style={{marginTop:10,border:"none",borderRadius:12,padding:"13px",background:wasCorrect?"linear-gradient(135deg,#10B981,#059669)":"linear-gradient(135deg,#3B82F6,#1D4ED8)",color:"#fff",fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:800,cursor:"pointer",boxShadow:wasCorrect?"0 5px 15px rgba(16,185,129,.35)":"0 5px 15px rgba(37,99,235,.35)",flexShrink:0}}>
+        <button onClick={nextQ} className="pop-in" style={{marginTop:14,border:"none",borderRadius:14,padding:"15px",background:wasCorrect?"linear-gradient(135deg,#10B981,#059669)":"linear-gradient(135deg,#3B82F6,#1D4ED8)",color:"#fff",fontFamily:"'Nunito',sans-serif",fontSize:15,fontWeight:800,cursor:"pointer",boxShadow:wasCorrect?"0 5px 18px rgba(16,185,129,.4)":"0 5px 18px rgba(37,99,235,.4)",flexShrink:0}}>
           {idx+1>=questions.length?"Voir les résultats 🏆":"Suivante →"}
         </button>
       )}
@@ -7947,6 +8282,17 @@ function AutoMaths() {
       }}>
         <div style={{position:"absolute",top:0,left:"50%",transform:"translateX(-50%)",
           width:120,height:26,background:"#1E293B",borderRadius:"0 0 18px 18px",zIndex:10}}/>
+        
+        {/* MenuHamburger - only show on screens other than splash/setup */}
+        {!["splash","setup","diagnostic","diag_result","weekly_program","quiz","result","parcours_result"].includes(screen) && (
+          <MenuHamburger 
+            currentScreen={screen}
+            onHome={() => setScreen("home")}
+            onCategories={() => {setMode("tester"); setScreen("category");}}
+            onProfile={profile ? () => setScreen("dashboard") : null}
+          />
+        )}
+        
         <div style={{height:"100%",overflowY:"auto",paddingTop:26}}>
 
           {screen==="splash"        && <SplashScreen    onStart={()=>setScreen(profile?"dashboard":"home")} onMySpace={()=>setScreen(profile?"dashboard":"setup")} profile={profile}/>}
