@@ -2997,7 +2997,6 @@ const DB = {
       { q:r`\text{Factoriser :}\\[4pt]x(x-3)+x-3=`, exprpad:true, a:"(x-3)(x+1)", extraBtns:["x²","x"], tip:r`(x-3)(x+1)` },
       { q:r`\text{Factoriser :}\\[4pt](3x+2)^2-25=`, exprpad:true, a:"(3x-3)(3x+7)", extraBtns:["x²","x"], tip:r`(3x+2-5)(3x+2+5)=(3x-3)(3x+7)` },
     ],
-  },
 
 
     // ── Manipulation de formules ──
