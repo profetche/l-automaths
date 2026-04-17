@@ -2716,22 +2716,54 @@ const DB = {
       { q:r`\text{Une bouteille de 1{,}5 L remplit combien de verres de 25 cL ?}`, choices:[`6`,`15`,`5`,`60`], a:`6`, tip:r`1\,500\div250=6` },
     ],
     tables: (()=>{
-      // Generate 20 shuffled multiplication questions (2×2 to 9×9)
+      // 20 questions classiques a×b=? (produit direct) — générées
       const all=[];
       for(let a=2;a<=9;a++) for(let b=a;b<=9;b++) all.push([a,b]);
-      // fixed seed-ish: sort by product then interleave
       const sorted = all.sort((x,y)=>x[0]*x[1]-y[0]*y[1]);
       const picks = [];
-      // take every 3rd to cover range, then fill
       for(let i=0;i<sorted.length;i+=Math.floor(sorted.length/20)) picks.push(sorted[i]);
       while(picks.length<20) picks.push(sorted[picks.length*3%sorted.length]);
       const sel = picks.slice(0,20);
-      return sel.map(([a,b])=>({
+      const base = sel.map(([a,b])=>({
         q: String.raw`${a} \times ${b} = ?`,
         a: String(a*b),
         tip: String.raw`${a}\times${b}=${a*b}`,
         numpad: true,
       }));
+      // 30 questions à trous (a×?=c ou ?×b=c) — progression facile→difficile
+      const trous = [
+      { q:r`2 \times\, ?\, = 14`, a:`7`, tip:r`2\times7=14`, numpad:true },
+      { q:r`3 \times\, ?\, = 24`, a:`8`, tip:r`3\times8=24`, numpad:true },
+      { q:r`5 \times\, ?\, = 30`, a:`6`, tip:r`5\times6=30`, numpad:true },
+      { q:r`?\, \times 5 = 20`, a:`4`, tip:r`4\times5=20`, numpad:true },
+      { q:r`3 \times\, ?\, = 27`, a:`9`, tip:r`3\times9=27`, numpad:true },
+      { q:r`?\, \times 8 = 16`, a:`2`, tip:r`2\times8=16`, numpad:true },
+      { q:r`?\, \times 7 = 35`, a:`5`, tip:r`5\times7=35`, numpad:true },
+      { q:r`3 \times\, ?\, = 18`, a:`6`, tip:r`3\times6=18`, numpad:true },
+      { q:r`?\, \times 9 = 45`, a:`5`, tip:r`5\times9=45`, numpad:true },
+      { q:r`?\, \times 9 = 18`, a:`2`, tip:r`2\times9=18`, numpad:true },
+      { q:r`4 \times\, ?\, = 28`, a:`7`, tip:r`4\times7=28`, numpad:true },
+      { q:r`?\, \times 8 = 32`, a:`4`, tip:r`4\times8=32`, numpad:true },
+      { q:r`6 \times\, ?\, = 30`, a:`5`, tip:r`6\times5=30`, numpad:true },
+      { q:r`?\, \times 7 = 42`, a:`6`, tip:r`6\times7=42`, numpad:true },
+      { q:r`4 \times\, ?\, = 24`, a:`6`, tip:r`4\times6=24`, numpad:true },
+      { q:r`?\, \times 8 = 48`, a:`6`, tip:r`6\times8=48`, numpad:true },
+      { q:r`4 \times\, ?\, = 36`, a:`9`, tip:r`4\times9=36`, numpad:true },
+      { q:r`?\, \times 9 = 54`, a:`6`, tip:r`6\times9=54`, numpad:true },
+      { q:r`4 \times\, ?\, = 16`, a:`4`, tip:r`4\times4=16`, numpad:true },
+      { q:r`?\, \times 6 = 36`, a:`6`, tip:r`6\times6=36`, numpad:true },
+      { q:r`7 \times\, ?\, = 56`, a:`8`, tip:r`7\times8=56`, numpad:true },
+      { q:r`?\, \times 7 = 56`, a:`8`, tip:r`8\times7=56`, numpad:true },
+      { q:r`9 \times\, ?\, = 54`, a:`6`, tip:r`9\times6=54`, numpad:true },
+      { q:r`?\, \times 9 = 63`, a:`7`, tip:r`7\times9=63`, numpad:true },
+      { q:r`8 \times\, ?\, = 72`, a:`9`, tip:r`8\times9=72`, numpad:true },
+      { q:r`?\, \times 4 = 36`, a:`9`, tip:r`9\times4=36`, numpad:true },
+      { q:r`7 \times\, ?\, = 49`, a:`7`, tip:r`7\times7=49`, numpad:true },
+      { q:r`?\, \times 8 = 64`, a:`8`, tip:r`8\times8=64`, numpad:true },
+      { q:r`9 \times\, ?\, = 81`, a:`9`, tip:r`9\times9=81`, numpad:true },
+      { q:r`?\, \times 6 = 48`, a:`8`, tip:r`8\times6=48`, numpad:true },
+      ];
+      return [...base, ...trous];
     })(),
 
     // ── Racines carrées ────────────────────────────────────────────────────────
