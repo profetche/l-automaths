@@ -6891,9 +6891,9 @@ function SplashScreen({onStart, onMySpace, profile}) {
 // ── MENU ─────────────────────────────────────────────────────────────────────
 function HomeScreen({onMode, profile, onDashboard, onSplash}) {
   const modes=[
-    {id:"rapide",label:"Entraînement rapide",sub:"10 ou 20 questions",emoji:"⚡",grad:"linear-gradient(135deg,#3B82F6,#1D4ED8)"},
-    {id:"long",label:"Entraînement long",sub:"20 ou 50 questions",emoji:"🏋️",grad:"linear-gradient(135deg,#8B5CF6,#6D28D9)"},
-    {id:"tester",label:"Se tester",sub:"Par catégorie",emoji:"🎯",grad:"linear-gradient(135deg,#10B981,#047857)"},
+    {id:"express",label:"Express",sub:"10 questions dans un thème",emoji:"⚡",grad:"linear-gradient(135deg,#3B82F6,#1D4ED8)"},
+    {id:"entrainement",label:"Entraînement",sub:"20 ou 50 questions par thème",emoji:"💪",grad:"linear-gradient(135deg,#8B5CF6,#6D28D9)"},
+    {id:"test_aleatoire",label:"Test aléatoire",sub:"Questions surprises",emoji:"🎲",grad:"linear-gradient(135deg,#10B981,#047857)"},
     {id:"missions",label:"Les missions",sub:"Objectifs ciblés Sigma",emoji:"🚀",grad:"linear-gradient(135deg,#F97316,#C2410C)"},
     {id:"bac",label:"En route pour le Bac",sub:"Spé · Tronc commun · STMG",emoji:"🏆",grad:"linear-gradient(135deg,#F59E0B,#B45309)",light:"#FFFBEB",border:"#FDE68A",color:"#B45309",
       subs:[
@@ -8441,7 +8441,29 @@ function BacSubjectScreen({onStart, onBack}) {
   );
 }
 
-function CountScreen({catId,onCount,onBack,allMode=false}) {
+// ── TestAleatoireScreen : choix "Mix global" ou "Mix dans une catégorie" ────
+function TestAleatoireScreen({onGlobal, onCategory, onBack}) {
+  return (
+    <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",padding:"20px 18px",justifyContent:"center",gap:14}}>
+      <Back onClick={onBack}/>
+      <div style={{textAlign:"center",marginBottom:8}}>
+        <div style={{fontSize:40,marginBottom:6}}>🎲</div>
+        <h2 style={{fontFamily:"'Nunito',sans-serif",fontSize:22,fontWeight:900,color:"#1E293B"}}>Test aléatoire</h2>
+        <p style={{color:"#64748B",fontSize:13,marginTop:6}}>Quelle portée ?</p>
+      </div>
+      <button onClick={onGlobal} style={{background:"linear-gradient(135deg,#10B981,#047857)",border:"none",borderRadius:16,padding:"20px",cursor:"pointer",boxShadow:"0 6px 20px rgba(0,0,0,.18)",textAlign:"left"}}>
+        <div style={{fontFamily:"'Nunito',sans-serif",fontSize:20,fontWeight:900,color:"#fff"}}>🌍 Mix global</div>
+        <div style={{color:"rgba(255,255,255,.85)",fontSize:12,marginTop:4}}>Questions tirées de toutes les catégories</div>
+      </button>
+      <button onClick={onCategory} style={{background:"linear-gradient(135deg,#3B82F6,#1D4ED8)",border:"none",borderRadius:16,padding:"20px",cursor:"pointer",boxShadow:"0 6px 20px rgba(0,0,0,.18)",textAlign:"left"}}>
+        <div style={{fontFamily:"'Nunito',sans-serif",fontSize:20,fontWeight:900,color:"#fff"}}>📚 Dans une catégorie</div>
+        <div style={{color:"rgba(255,255,255,.85)",fontSize:12,marginTop:4}}>Choisis une catégorie puis toutes ses questions</div>
+      </button>
+    </div>
+  );
+}
+
+function CountScreen({catId,onCount,onBack,allMode=false,options=[10,20]}) {
   const cat=catId?getCat(catId):null;
   return (
     <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",padding:"20px 18px",justifyContent:"center",gap:14}}>
@@ -8451,7 +8473,7 @@ function CountScreen({catId,onCount,onBack,allMode=false}) {
         <h2 style={{fontFamily:"'Nunito',sans-serif",fontSize:22,fontWeight:900,color:"#1E293B"}}>{allMode?"Tout le programme":cat?.label}</h2>
         <p style={{color:"#64748B",fontSize:13,marginTop:6}}>Combien de questions ?</p>
       </div>
-      {[10,20].map(n=>(
+      {options.map(n=>(
         <button key={n} onClick={()=>onCount(n)} style={{background:cat?.grad||"linear-gradient(135deg,#F59E0B,#B45309)",border:"none",borderRadius:16,padding:"20px",cursor:"pointer",boxShadow:"0 6px 20px rgba(0,0,0,.18)"}}>
           <div style={{fontFamily:"'Nunito',sans-serif",fontSize:26,fontWeight:900,color:"#fff"}}>{n} questions</div>
           <div style={{color:"rgba(255,255,255,.8)",fontSize:13,marginTop:2}}>≈ {n} minutes</div>
@@ -9549,11 +9571,39 @@ function AutoMaths() {
   const hReplay   = () => { setQuestions(shuffle(pool).slice(0,qCount)); setScreen("quiz"); };
   const hHome     = () => { setScreen("home"); setMode(null); setCatId(null); setQuizMode(null); setTrackCat(null); setTrackSub(null); };
   const hDashboard= () => { setQuizMode(null); setTrackCat(null); setTrackSub(null); setScreen(profile?"dashboard":"home"); };
-  const hMode     = m  => { setMode(m); if(m==="bac") setScreen("bac_subjects"); else if(m==="tester") setScreen("category"); else if(m==="missions"){ setCatId("missions"); setScreen("subcategory"); } else setScreen("submode"); };
-  const hSubmode  = sm => { if(sm==="complet"){const n=mode==="rapide"?20:50;setQCount(n);startQuiz(getAllQ(),n,"submode");}else setScreen("category"); };
-  const hCat      = cid=> { setCatId(cid); if(mode==="tester") setScreen("count"); else setScreen("subcategory"); };
-  const hSub      = qs => { const n=mode==="rapide"?10:20;setQCount(n);startQuiz(qs,n,screen); };
+  const hMode     = m  => {
+    setMode(m);
+    if (m === "bac") setScreen("bac_subjects");
+    else if (m === "missions") { setCatId("missions"); setScreen("subcategory"); }
+    else if (m === "express") setScreen("category");
+    else if (m === "entrainement") setScreen("category");
+    else if (m === "test_aleatoire") setScreen("test_aleatoire");
+    else setScreen("category");
+  };
+  const hCat      = cid=> {
+    setCatId(cid);
+    // En Test aléatoire — Mix dans une catégorie : on demande directement le count
+    if (mode === "test_aleatoire") setScreen("count");
+    else setScreen("subcategory");
+  };
+  // Quand des questions sont sélectionnées depuis SubcategoryScreen
+  const hSub      = qs => {
+    if (mode === "express") {
+      setQCount(10);
+      startQuiz(qs, 10, screen);
+    } else if (mode === "entrainement") {
+      // On stocke les questions et on demande le volume (20/50)
+      setPendingPool(qs);
+      setScreen("count");
+    } else {
+      // Fallback (missions par ex.) : comportement d'origine
+      const n = 20;
+      setQCount(n);
+      startQuiz(qs, n, screen);
+    }
+  };
   const [levelType,  setLevelType]  = useState("racines");
+  const [pendingPool, setPendingPool] = useState(null);
   const hLevelPicker = (_id, type) => { 
     if (type === 'mission') {
       setMissionId(_id);
@@ -9564,7 +9614,24 @@ function AutoMaths() {
     }
   };
   const hBacStart = (subId, qs) => { setCatId("bac"); setPrevScreen("bac_subjects"); setPool(qs); setQuestions(shuffle(qs)); setScreen("quiz"); };
-  const hCount    = n  => { setQCount(n); startQuiz(catId?getCatQ(catId):getAllQ(),n,"count"); };
+  const hCount    = n  => {
+    setQCount(n);
+    if (mode === "entrainement" && pendingPool) {
+      // Entraînement : lance le quiz sur les questions sélectionnées en sous-thèmes
+      const qs = pendingPool;
+      setPendingPool(null);
+      startQuiz(qs, n, "count");
+    } else if (mode === "test_aleatoire") {
+      // Test aléatoire : global ou par catégorie
+      const qs = catId ? getCatQ(catId) : getAllQ();
+      startQuiz(qs, n, "count");
+    } else {
+      // Fallback
+      startQuiz(catId ? getCatQ(catId) : getAllQ(), n, "count");
+    }
+  };
+  const hTestGlobal   = () => { setCatId(null); setScreen("count"); };
+  const hTestCategory = () => { setScreen("category"); };
 
   // ── Profile handlers ──────────────────────────────────────────────────────
   const hProfileComplete = (prof) => { setProfile(prof); setScreen("diagnostic"); };
@@ -9650,7 +9717,7 @@ function AutoMaths() {
           <MenuHamburger 
             currentScreen={screen}
             onHome={() => setScreen("home")}
-            onCategories={() => {setMode("tester"); setScreen("category");}}
+            onCategories={() => {setMode("express"); setScreen("category");}}
             onProfile={profile ? () => setScreen("dashboard") : null}
           />
         )}
@@ -9666,9 +9733,9 @@ function AutoMaths() {
           {screen==="weekly_program"&& profile && weekProgram  && <WeeklyProgramScreen profile={profile} program={weekProgram} allProg={allProgCache} onStartSession={hProgramSession} onSkip={hProgramSkip}/>}
           {screen==="dashboard"     && profile && <DashboardScreen profile={profile} onStartPractice={hStartPractice} onStartTest={hStartTest} onGoHome={()=>setScreen("home")} onEditProfile={hEditProfile} onLogout={hLogout} onExport={hExportProgress} onReminder={()=>setScreen("reminder")} onShowProgram={async()=>{const wp=await generateWeeklyProgram(profile,allProgCache);setWeekProgram(wp);setScreen("weekly_program");}}/>}
           {screen==="home"          && <HomeScreen onMode={hMode} profile={profile} onDashboard={profile?hDashboard:null} onSplash={()=>setScreen("splash")}/>}
-          {screen==="submode"       && <SubmodeScreen   mode={mode} onSubmode={hSubmode} onBack={()=>setScreen("home")}/>}
-          {screen==="category"      && <CategoryScreen  onCat={hCat} onBack={()=>setScreen(mode==="tester"?"home":"submode")} subtitle={mode==="tester"?"Toutes les questions de la catégorie":"Puis choisis des sous-thèmes"}/>}
-          {screen==="subcategory"   && <SubcategoryScreen catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen(mode==="missions"?"home":"category")} onLevelPicker={hLevelPicker} defaultNiveau={profile?LEVEL_MAP[profile.level]||null:null}/>}
+          {screen==="test_aleatoire" && <TestAleatoireScreen onGlobal={hTestGlobal} onCategory={hTestCategory} onBack={()=>setScreen("home")}/>}
+          {screen==="category"      && <CategoryScreen  onCat={hCat} onBack={()=>setScreen(mode==="test_aleatoire"?"test_aleatoire":"home")} subtitle={mode==="express"?"Choisis une catégorie":mode==="entrainement"?"Choisis une catégorie":mode==="test_aleatoire"?"Toutes les questions de la catégorie":"Puis choisis des sous-thèmes"}/>}
+          {screen==="subcategory"   && <SubcategoryScreen catId={catId} qCount={mode==="express"?10:20} onStart={hSub} onBack={()=>setScreen(mode==="missions"?"home":"category")} onLevelPicker={hLevelPicker} defaultNiveau={profile?LEVEL_MAP[profile.level]||null:null}/>}
           {screen==="mission_select" && <MissionScreen missionId={missionId} onBack={()=>setScreen("subcategory")} onSelectTheme={(theme)=>{
             setMissionTheme(theme);
             if(theme.useLevelPicker) {
@@ -9684,15 +9751,15 @@ function AutoMaths() {
             setScore(0);
             setScreen("quiz");
           }}/>}
-          {screen==="level_picker"  && levelType==="relatifs"      && <RelatifLevelScreen       catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen(missionId ? "mission_select" : "subcategory")}/>}
-          {screen==="level_picker"  && levelType==="reduction"     && <ReductionLevelScreen     catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen(missionId ? "mission_select" : "subcategory")}/>}
-          {screen==="level_picker"  && levelType==="racines"       && <RacinesLevelScreen       catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen("subcategory")}/>}
-          {screen==="level_picker"  && levelType==="identites"     && <IdentitesLevelScreen     catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen(missionId ? "mission_select" : "subcategory")}/>}
-          {screen==="level_picker"  && levelType==="factorisation" && <FactorisationLevelScreen catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen(missionId ? "mission_select" : "subcategory")}/>}
-          {screen==="level_picker"  && levelType==="denominateur"  && <DenomLevelScreen         catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen(missionId ? "mission_select" : "subcategory")}/>}
+          {screen==="level_picker"  && levelType==="relatifs"      && <RelatifLevelScreen       catId={catId} qCount={mode==="express"?10:20} onStart={hSub} onBack={()=>setScreen(missionId ? "mission_select" : "subcategory")}/>}
+          {screen==="level_picker"  && levelType==="reduction"     && <ReductionLevelScreen     catId={catId} qCount={mode==="express"?10:20} onStart={hSub} onBack={()=>setScreen(missionId ? "mission_select" : "subcategory")}/>}
+          {screen==="level_picker"  && levelType==="racines"       && <RacinesLevelScreen       catId={catId} qCount={mode==="express"?10:20} onStart={hSub} onBack={()=>setScreen("subcategory")}/>}
+          {screen==="level_picker"  && levelType==="identites"     && <IdentitesLevelScreen     catId={catId} qCount={mode==="express"?10:20} onStart={hSub} onBack={()=>setScreen(missionId ? "mission_select" : "subcategory")}/>}
+          {screen==="level_picker"  && levelType==="factorisation" && <FactorisationLevelScreen catId={catId} qCount={mode==="express"?10:20} onStart={hSub} onBack={()=>setScreen(missionId ? "mission_select" : "subcategory")}/>}
+          {screen==="level_picker"  && levelType==="denominateur"  && <DenomLevelScreen         catId={catId} qCount={mode==="express"?10:20} onStart={hSub} onBack={()=>setScreen(missionId ? "mission_select" : "subcategory")}/>}
           {screen==="level_picker"  && levelType==="cercle_trigo"  && <CercleTrigoScreen onBack={()=>setScreen("subcategory")}/>}
           {screen==="bac_subjects"   && <BacSubjectScreen onStart={hBacStart} onBack={()=>setScreen("home")}/>}
-          {screen==="count"         && <CountScreen     catId={mode==="bac"?null:catId} allMode={mode==="bac"} onCount={hCount} onBack={()=>setScreen(mode==="bac"?"home":"category")}/>}
+          {screen==="count"         && <CountScreen     catId={mode==="bac"?null:(mode==="test_aleatoire"&&!catId?null:catId)} allMode={mode==="bac"||(mode==="test_aleatoire"&&!catId)} options={mode==="entrainement"||mode==="test_aleatoire"?[20,50]:[10,20]} onCount={hCount} onBack={()=>setScreen(mode==="entrainement"?"subcategory":mode==="test_aleatoire"?"test_aleatoire":mode==="bac"?"home":"category")}/>}
           {screen==="quiz"          && <QuizScreen      questions={questions} catId={catId||"fonctions"} onFinish={hFinish} onBack={()=>setScreen(prevScreen)}/>}
           {screen==="result"        && <ResultScreen    score={score} total={questions.length} catId={catId||"fonctions"} onReplay={hReplay} onHome={hHome}/>}
           {screen==="parcours_result"&&<PostPracticeResultScreen score={score} total={questions.length} catId={trackCat} subId={trackSub} mode={quizMode} prevStars={prevStars} newStars={newStars} onRetry={()=>quizMode==="practice"?hStartPractice(trackCat,trackSub):hStartTest(trackCat,trackSub)} onDashboard={hDashboard} onHome={hHome}/>}
