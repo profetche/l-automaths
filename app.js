@@ -6494,6 +6494,7 @@ function HomeScreen({onMode, profile, onDashboard, onSplash}) {
     {id:"rapide",label:"Entraînement rapide",sub:"10 ou 20 questions",emoji:"⚡",grad:"linear-gradient(135deg,#3B82F6,#1D4ED8)"},
     {id:"long",label:"Entraînement long",sub:"20 ou 50 questions",emoji:"🏋️",grad:"linear-gradient(135deg,#8B5CF6,#6D28D9)"},
     {id:"tester",label:"Se tester",sub:"Par catégorie",emoji:"🎯",grad:"linear-gradient(135deg,#10B981,#047857)"},
+    {id:"missions",label:"Les missions",sub:"Objectifs ciblés Sigma",emoji:"🚀",grad:"linear-gradient(135deg,#F97316,#C2410C)"},
     {id:"bac",label:"En route pour le Bac",sub:"Spé · Tronc commun · STMG",emoji:"🏆",grad:"linear-gradient(135deg,#F59E0B,#B45309)",light:"#FFFBEB",border:"#FDE68A",color:"#B45309",
       subs:[
         {id:"stmg_annales_s1_2026",label:"🏫 STMG — Annales 2026, Sujet 1"},
@@ -6783,7 +6784,9 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
   
   // LevelPicker items visibles selon le niveau
   const visiblePickers = cat.subs.filter(s=>s.levelPicker && (!niveau || !s.levels || s.levels.includes(niveau)));
-  const hasAnything = visibleSubs.length>0 || visiblePickers.length>0;
+  // Missions visibles selon le niveau (les missions ont isMission:true, pas dans normalSubs)
+  const visibleMissions = cat.subs.filter(s=>s.isMission && (!niveau || !s.levels || s.levels.includes(niveau)));
+  const hasAnything = visibleSubs.length>0 || visiblePickers.length>0 || visibleMissions.length>0;
 
   // Détecter les types disponibles dans la catégorie
   const availableTypes = new Set();
@@ -6898,6 +6901,7 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
         {cat.subs.map((s,i)=>{
           // Special mission entry
           if(s.isMission) {
+            if(niveau && s.levels && !s.levels.includes(niveau)) return null;
             const disabled = s.disabled || false;
             return (
             <button key={s.id} 
@@ -6966,9 +6970,11 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
         </Scroll>
         </>
       )}
+      {normalSubs.length>0 && (
       <button onClick={()=>canStart&&onStart(pool)} style={{marginTop:12,border:"none",borderRadius:14,padding:"15px",background:canStart?cat.grad:"#E2E8F0",color:canStart?"#fff":"#94A3B8",fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:800,cursor:canStart?"pointer":"not-allowed",flexShrink:0,boxShadow:canStart?`0 5px 16px ${cat.color}44`:"none"}}>
         {canStart?`Démarrer (${Math.min(pool.length,qCount)} questions) →`:"Sélectionne au moins un thème"}
       </button>
+      )}
     </div>
   );
 }
@@ -9104,7 +9110,7 @@ function AutoMaths() {
   const hReplay   = () => { setQuestions(shuffle(pool).slice(0,qCount)); setScreen("quiz"); };
   const hHome     = () => { setScreen("home"); setMode(null); setCatId(null); setQuizMode(null); setTrackCat(null); setTrackSub(null); };
   const hDashboard= () => { setQuizMode(null); setTrackCat(null); setTrackSub(null); setScreen(profile?"dashboard":"home"); };
-  const hMode     = m  => { setMode(m); if(m==="bac") setScreen("bac_subjects"); else if(m==="tester") setScreen("category"); else setScreen("submode"); };
+  const hMode     = m  => { setMode(m); if(m==="bac") setScreen("bac_subjects"); else if(m==="tester") setScreen("category"); else if(m==="missions"){ setCatId("missions"); setScreen("subcategory"); } else setScreen("submode"); };
   const hSubmode  = sm => { if(sm==="complet"){const n=mode==="rapide"?20:50;setQCount(n);startQuiz(getAllQ(),n,"submode");}else setScreen("category"); };
   const hCat      = cid=> { setCatId(cid); if(mode==="tester") setScreen("count"); else setScreen("subcategory"); };
   const hSub      = qs => { const n=mode==="rapide"?10:20;setQCount(n);startQuiz(qs,n,screen); };
@@ -9223,7 +9229,7 @@ function AutoMaths() {
           {screen==="home"          && <HomeScreen onMode={hMode} profile={profile} onDashboard={profile?hDashboard:null} onSplash={()=>setScreen("splash")}/>}
           {screen==="submode"       && <SubmodeScreen   mode={mode} onSubmode={hSubmode} onBack={()=>setScreen("home")}/>}
           {screen==="category"      && <CategoryScreen  onCat={hCat} onBack={()=>setScreen(mode==="tester"?"home":"submode")} subtitle={mode==="tester"?"Toutes les questions de la catégorie":"Puis choisis des sous-thèmes"}/>}
-          {screen==="subcategory"   && <SubcategoryScreen catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen("category")} onLevelPicker={hLevelPicker} defaultNiveau={profile?LEVEL_MAP[profile.level]||null:null}/>}
+          {screen==="subcategory"   && <SubcategoryScreen catId={catId} qCount={mode==="rapide"?10:20} onStart={hSub} onBack={()=>setScreen(mode==="missions"?"home":"category")} onLevelPicker={hLevelPicker} defaultNiveau={profile?LEVEL_MAP[profile.level]||null:null}/>}
           {screen==="mission_select" && <MissionScreen missionId={missionId} onBack={()=>setScreen("subcategory")} onSelectTheme={(theme)=>{
             setMissionTheme(theme);
             if(theme.useLevelPicker) {
