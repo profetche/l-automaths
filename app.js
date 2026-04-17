@@ -7299,6 +7299,15 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
           </button>}
       <Scroll>
         {cat.subs.map((s,i)=>{
+          // Filtre niveau pour les subs normales (non-mission, non-levelPicker)
+          if (!s.isMission && !s.levelPicker) {
+            if (niveau && s.levels && !s.levels.includes(niveau)) return null;
+            // Filtre par type de réponse
+            if (typeFilter) {
+              const types = getQuestionTypes(catId, s.id);
+              if (!types.includes(typeFilter)) return null;
+            }
+          }
           // Special mission entry
           if(s.isMission) {
             if(niveau && s.levels && !s.levels.includes(niveau)) return null;
