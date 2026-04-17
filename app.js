@@ -7409,29 +7409,80 @@ const IDENTITES_LEVELS = [
     desc:"k(ax+b) et (ax+b)(cx+d) — reconnaître le développement.",
     emoji:"🟢", color:"#10B981", grad:"linear-gradient(135deg,#10B981,#047857)",
     tags:["MCQ","Débutant"], dbKey:"litteralDB",
+    exemple: {
+      q: "3(2x+5)",
+      steps: [
+        {text:"Distributivité simple : on multiplie le facteur par chaque terme", tex:"3\\times 2x + 3\\times 5"},
+        {text:"On effectue les produits", tex:"6x + 15"}
+      ],
+      answer: "6x+15"
+    }
   },
   {
     id:"id_remarquables", label:"Niveau 2", sub:"Identités remarquables — QCM",
     desc:"(a+b)², (a−b)², (a+b)(a−b) — 25 formes à identifier.",
     emoji:"🟡", color:"#F59E0B", grad:"linear-gradient(135deg,#F59E0B,#B45309)",
     tags:["MCQ","Intermédiaire"], dbKey:"litteralDB",
+    exemple: {
+      q: "(x+4)^2",
+      steps: [
+        {text:"Identité remarquable : (a+b)² = a² + 2ab + b²", tex:""},
+        {text:"Ici a = x et b = 4", tex:"a^2 = x^2\\ ;\\ 2ab = 2\\times x\\times 4 = 8x\\ ;\\ b^2 = 16"},
+        {text:"On assemble les trois termes", tex:"x^2 + 8x + 16"}
+      ],
+      answer: "x^2+8x+16"
+    }
   },
   {
     id:"id_rem_pad", label:"Niveau 3", sub:"Développement mélangé — Pad ✍️",
     desc:"Distributivité + identités remarquables : écrire soi-même avec le pad.",
     emoji:"🟠", color:"#EF4444", grad:"linear-gradient(135deg,#EF4444,#B91C1C)",
     tags:["Pad ✍️","Avancé"], dbKey:"litteralDB",
+    exemple: {
+      q: "(2x+3)(x-5)",
+      steps: [
+        {text:"Double distributivité : chaque terme du 1er facteur multiplie chaque terme du 2ème", tex:"2x\\times x + 2x\\times(-5) + 3\\times x + 3\\times(-5)"},
+        {text:"On calcule chaque produit", tex:"2x^2 - 10x + 3x - 15"},
+        {text:"On réduit les termes en x", tex:"2x^2 - 7x - 15"}
+      ],
+      answer: "2x^2-7x-15"
+    }
   },
   {
     id:"id_rem_difficile", label:"Niveau 4", sub:"Coefficients complexes & radicaux 🔥",
     desc:"(0,5x+3)², (√7−1)²… Le niveau bac.",
     emoji:"🔴", color:"#7C3AED", grad:"linear-gradient(135deg,#7C3AED,#5B21B6)",
     tags:["Pad ✍️","Expert 🔥"], dbKey:"litteralDB",
+    exemple: {
+      q: "(\\sqrt{5}+2)^2",
+      steps: [
+        {text:"Identité remarquable : (a+b)² = a² + 2ab + b²", tex:""},
+        {text:"Ici a = √5 et b = 2, donc a² = (√5)² = 5", tex:"(\\sqrt{5})^2 = 5"},
+        {text:"On calcule 2ab et b²", tex:"2ab = 2\\times\\sqrt{5}\\times 2 = 4\\sqrt{5}\\ ;\\ b^2 = 4"},
+        {text:"On assemble", tex:"5 + 4\\sqrt{5} + 4 = 9 + 4\\sqrt{5}"}
+      ],
+      answer: "9+4\\sqrt{5}"
+    }
   },
 ];
 
 function IdentitesLevelScreen({catId, qCount, onStart, onBack}) {
   const cat = getCat(catId);
+  const [showExemple, setShowExemple] = React.useState(null);
+  
+  if (showExemple) {
+    return (
+      <ExempleScreen 
+        exemple={showExemple.exemple}
+        onStart={() => {
+          const qs = DB.litteral?.[showExemple.id] || [];
+          onStart(qs, showExemple.id);
+        }}
+        onBack={() => setShowExemple(null)}
+      />
+    );
+  }
+  
   return (
     <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",padding:"18px 18px 14px"}}>
       <Back onClick={onBack}/>
@@ -7452,35 +7503,55 @@ function IdentitesLevelScreen({catId, qCount, onStart, onBack}) {
         {IDENTITES_LEVELS.map((lv,i)=>{
           const qs = DB.litteral?.[lv.id] || [];
           return (
-            <button key={lv.id} onClick={()=>onStart(qs, lv.id)} className="pop-in"
-              style={{background:"#fff",border:"2px solid #E2E8F0",borderRadius:16,
-                padding:"0",cursor:"pointer",textAlign:"left",
-                boxShadow:"0 2px 10px rgba(0,0,0,.06)",
-                animationDelay:`${i*.07}s`,flexShrink:0,overflow:"hidden"}}>
-              <div style={{height:4,background:lv.grad,width:"100%"}}/>
-              <div style={{padding:"13px 14px",display:"flex",alignItems:"center",gap:12}}>
-                <div style={{fontSize:26,flexShrink:0}}>{lv.emoji}</div>
-                <div style={{flex:1}}>
-                  <div style={{display:"flex",alignItems:"baseline",gap:6,flexWrap:"wrap"}}>
-                    <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,
-                      fontSize:15,color:"#1E293B"}}>{lv.label}</span>
-                    <span style={{fontSize:11,fontWeight:700,color:lv.color}}>— {lv.sub}</span>
+            <div key={lv.id} className="pop-in" 
+              style={{marginBottom:10, animationDelay:`${i*.07}s`}}>
+              {/* Main level card */}
+              <button onClick={()=>onStart(qs, lv.id)}
+                style={{background:"#fff",border:"2px solid #E2E8F0",borderRadius:16,
+                  padding:"0",cursor:"pointer",textAlign:"left",
+                  boxShadow:"0 2px 10px rgba(0,0,0,.06)",
+                  width:"100%",overflow:"hidden"}}>
+                <div style={{height:4,background:lv.grad,width:"100%"}}/>
+                <div style={{padding:"13px 14px",display:"flex",alignItems:"center",gap:12}}>
+                  <div style={{fontSize:26,flexShrink:0}}>{lv.emoji}</div>
+                  <div style={{flex:1}}>
+                    <div style={{display:"flex",alignItems:"baseline",gap:6,flexWrap:"wrap"}}>
+                      <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,
+                        fontSize:15,color:"#1E293B"}}>{lv.label}</span>
+                      <span style={{fontSize:11,fontWeight:700,color:lv.color}}>— {lv.sub}</span>
+                    </div>
+                    <div style={{color:"#64748B",fontSize:11,marginTop:2}}>{lv.desc}</div>
+                    <div style={{display:"flex",gap:5,marginTop:6,flexWrap:"wrap"}}>
+                      {lv.tags.map(t=>(
+                        <span key={t} style={{fontSize:9,fontWeight:700,
+                          background:`${lv.color}18`,color:lv.color,
+                          borderRadius:99,padding:"2px 7px"}}>{t}</span>
+                      ))}
+                      <span style={{fontSize:9,color:"#94A3B8",fontWeight:600,marginLeft:"auto"}}>
+                        {qs.length} questions
+                      </span>
+                    </div>
                   </div>
-                  <div style={{color:"#64748B",fontSize:11,marginTop:2}}>{lv.desc}</div>
-                  <div style={{display:"flex",gap:5,marginTop:6,flexWrap:"wrap"}}>
-                    {lv.tags.map(t=>(
-                      <span key={t} style={{fontSize:9,fontWeight:700,
-                        background:`${lv.color}18`,color:lv.color,
-                        borderRadius:99,padding:"2px 7px"}}>{t}</span>
-                    ))}
-                    <span style={{fontSize:9,color:"#94A3B8",fontWeight:600,marginLeft:"auto"}}>
-                      {qs.length} questions
-                    </span>
-                  </div>
+                  <span style={{color:lv.color,fontSize:18,flexShrink:0}}>›</span>
                 </div>
-                <span style={{color:lv.color,fontSize:18,flexShrink:0}}>›</span>
-              </div>
-            </button>
+              </button>
+              
+              {/* Example button */}
+              {lv.exemple && (
+                <button onClick={() => setShowExemple(lv)}
+                  style={{
+                    marginTop:6, width:"100%", padding:"10px 14px",
+                    border:"2px dashed #CBD5E1", borderRadius:12,
+                    background:"#F8FAFC", cursor:"pointer",
+                    display:"flex", alignItems:"center", justifyContent:"center", gap:6
+                  }}>
+                  <span style={{fontSize:16}}>📖</span>
+                  <span style={{fontSize:12, fontWeight:700, color:"#475569"}}>
+                    Voir un exemple
+                  </span>
+                </button>
+              )}
+            </div>
           );
         })}
 
@@ -7517,35 +7588,97 @@ const FACTO_LEVELS = [
     desc:"Mettre en évidence le facteur commun. Ex : 3x²+6x = 3x(x+2)",
     emoji:"🟢", color:"#10B981", grad:"linear-gradient(135deg,#10B981,#047857)",
     tags:["MCQ","Débutant"], db:"litteral",
+    exemple: {
+      q: "4x^2 + 10x",
+      steps: [
+        {text:"On cherche le facteur commun aux deux termes", tex:"4x^2 = 2x\\times 2x\\ ;\\ 10x = 2x\\times 5"},
+        {text:"Le facteur commun est 2x, on le met en évidence", tex:"4x^2 + 10x = 2x(2x + 5)"}
+      ],
+      answer: "2x(2x+5)"
+    }
   },
   {
     id:"facto_commun_pad", label:"Niveau 2", sub:"Facteur commun — Pad ✍️",
     desc:"Écrire soi-même la forme factorisée avec le pad.",
     emoji:"🟡", color:"#F59E0B", grad:"linear-gradient(135deg,#F59E0B,#B45309)",
     tags:["Pad ✍️","Intermédiaire"], db:"litteral",
+    exemple: {
+      q: "(x+2)(3x-1) + (x+2)(x+5)",
+      steps: [
+        {text:"On repère le facteur commun entre les deux produits", tex:"(x+2)\\text{ apparaît deux fois}"},
+        {text:"On factorise par (x+2)", tex:"(x+2)\\big[(3x-1) + (x+5)\\big]"},
+        {text:"On réduit ce qui est dans le crochet", tex:"(x+2)(4x+4)"},
+        {text:"On peut encore factoriser par 4 dans le 2ème facteur", tex:"4(x+2)(x+1)"}
+      ],
+      answer: "4(x+2)(x+1)"
+    }
   },
   {
     id:"facto_id", label:"Niveau 3", sub:"Identités remarquables — QCM",
     desc:"a²−b², (a+b)², (a−b)². Ex : x²−9 = (x−3)(x+3)",
     emoji:"🟠", color:"#EF4444", grad:"linear-gradient(135deg,#EF4444,#B91C1C)",
     tags:["MCQ","Avancé"], db:"litteral",
+    exemple: {
+      q: "x^2 - 49",
+      steps: [
+        {text:"Forme a² − b² : différence de deux carrés", tex:"x^2 - 49 = x^2 - 7^2"},
+        {text:"Identité : a² − b² = (a−b)(a+b) avec a = x et b = 7", tex:""},
+        {text:"On applique", tex:"(x-7)(x+7)"}
+      ],
+      answer: "(x-7)(x+7)"
+    }
   },
   {
     id:"facto_id_pad", label:"Niveau 4", sub:"Identités remarquables — Pad 🔥",
     desc:"Factoriser seul avec le pad. Le niveau bac.",
     emoji:"🔴", color:"#7C3AED", grad:"linear-gradient(135deg,#7C3AED,#5B21B6)",
     tags:["Pad ✍️","Expert 🔥"], db:"litteral",
+    exemple: {
+      q: "x^2 + 6x + 9",
+      steps: [
+        {text:"On reconnaît la forme a² + 2ab + b² avec a = x", tex:""},
+        {text:"Vérification : 9 = 3² donc b = 3", tex:"b^2 = 9\\Rightarrow b = 3"},
+        {text:"Vérification : 2ab = 2×x×3 = 6x ✓", tex:""},
+        {text:"C'est donc (a+b)² avec a = x et b = 3", tex:"(x+3)^2"}
+      ],
+      answer: "(x+3)^2"
+    }
   },
   {
     id:"facto_avance", label:"Niveau 5", sub:"Factorisations mélangées 💎",
     desc:"4x²−25, (x+1)²−(x+1)(x−3)… Maîtrise totale niveau bac.",
     emoji:"💎", color:"#0F172A", grad:"linear-gradient(135deg,#1E293B,#0F172A)",
     tags:["Pad ✍️","Bac 💎"], db:"litteral",
+    exemple: {
+      q: "(x+1)^2 - (x+1)(2x-5)",
+      steps: [
+        {text:"On repère le facteur commun (x+1)", tex:"(x+1)^2 = (x+1)(x+1)"},
+        {text:"On factorise par (x+1)", tex:"(x+1)\\big[(x+1) - (2x-5)\\big]"},
+        {text:"On développe et réduit le crochet", tex:"(x+1)(x+1 - 2x + 5) = (x+1)(-x+6)"},
+        {text:"Forme finale", tex:"(x+1)(6-x)"}
+      ],
+      answer: "(x+1)(6-x)"
+    }
   },
 ];
 
 function FactorisationLevelScreen({catId, qCount, onStart, onBack}) {
   const cat = getCat(catId);
+  const [showExemple, setShowExemple] = React.useState(null);
+  
+  if (showExemple) {
+    return (
+      <ExempleScreen 
+        exemple={showExemple.exemple}
+        onStart={() => {
+          const qs = DB.litteral?.[showExemple.id] || [];
+          onStart(qs, showExemple.id);
+        }}
+        onBack={() => setShowExemple(null)}
+      />
+    );
+  }
+  
   return (
     <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",padding:"18px 18px 14px"}}>
       <Back onClick={onBack}/>
@@ -7563,31 +7696,51 @@ function FactorisationLevelScreen({catId, qCount, onStart, onBack}) {
         {FACTO_LEVELS.map((lv,i)=>{
           const qs = DB.litteral?.[lv.id] || [];
           return (
-            <button key={lv.id} onClick={()=>onStart(qs, lv.id)} className="pop-in"
-              style={{background:"#fff",border:"2px solid #E2E8F0",borderRadius:16,
-                padding:"0",cursor:"pointer",textAlign:"left",
-                boxShadow:"0 2px 10px rgba(0,0,0,.06)",
-                animationDelay:`${i*.07}s`,flexShrink:0,overflow:"hidden"}}>
-              <div style={{height:4,background:lv.grad,width:"100%"}}/>
-              <div style={{padding:"13px 14px",display:"flex",alignItems:"center",gap:12}}>
-                <div style={{fontSize:26,flexShrink:0}}>{lv.emoji}</div>
-                <div style={{flex:1}}>
-                  <div style={{display:"flex",alignItems:"baseline",gap:6,flexWrap:"wrap"}}>
-                    <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:15,color:"#1E293B"}}>{lv.label}</span>
-                    <span style={{fontSize:11,fontWeight:700,color:lv.color}}>— {lv.sub}</span>
+            <div key={lv.id} className="pop-in" 
+              style={{marginBottom:10, animationDelay:`${i*.07}s`}}>
+              {/* Main level card */}
+              <button onClick={()=>onStart(qs, lv.id)}
+                style={{background:"#fff",border:"2px solid #E2E8F0",borderRadius:16,
+                  padding:"0",cursor:"pointer",textAlign:"left",
+                  boxShadow:"0 2px 10px rgba(0,0,0,.06)",
+                  width:"100%",overflow:"hidden"}}>
+                <div style={{height:4,background:lv.grad,width:"100%"}}/>
+                <div style={{padding:"13px 14px",display:"flex",alignItems:"center",gap:12}}>
+                  <div style={{fontSize:26,flexShrink:0}}>{lv.emoji}</div>
+                  <div style={{flex:1}}>
+                    <div style={{display:"flex",alignItems:"baseline",gap:6,flexWrap:"wrap"}}>
+                      <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:15,color:"#1E293B"}}>{lv.label}</span>
+                      <span style={{fontSize:11,fontWeight:700,color:lv.color}}>— {lv.sub}</span>
+                    </div>
+                    <div style={{color:"#64748B",fontSize:11,marginTop:2}}>{lv.desc}</div>
+                    <div style={{display:"flex",gap:5,marginTop:6,flexWrap:"wrap"}}>
+                      {lv.tags.map(t=>(
+                        <span key={t} style={{fontSize:9,fontWeight:700,
+                          background:`${lv.color}18`,color:lv.color,borderRadius:99,padding:"2px 7px"}}>{t}</span>
+                      ))}
+                      <span style={{fontSize:9,color:"#94A3B8",fontWeight:600,marginLeft:"auto"}}>{qs.length} questions</span>
+                    </div>
                   </div>
-                  <div style={{color:"#64748B",fontSize:11,marginTop:2}}>{lv.desc}</div>
-                  <div style={{display:"flex",gap:5,marginTop:6,flexWrap:"wrap"}}>
-                    {lv.tags.map(t=>(
-                      <span key={t} style={{fontSize:9,fontWeight:700,
-                        background:`${lv.color}18`,color:lv.color,borderRadius:99,padding:"2px 7px"}}>{t}</span>
-                    ))}
-                    <span style={{fontSize:9,color:"#94A3B8",fontWeight:600,marginLeft:"auto"}}>{qs.length} questions</span>
-                  </div>
+                  <span style={{color:lv.color,fontSize:18,flexShrink:0}}>›</span>
                 </div>
-                <span style={{color:lv.color,fontSize:18,flexShrink:0}}>›</span>
-              </div>
-            </button>
+              </button>
+              
+              {/* Example button */}
+              {lv.exemple && (
+                <button onClick={() => setShowExemple(lv)}
+                  style={{
+                    marginTop:6, width:"100%", padding:"10px 14px",
+                    border:"2px dashed #CBD5E1", borderRadius:12,
+                    background:"#F8FAFC", cursor:"pointer",
+                    display:"flex", alignItems:"center", justifyContent:"center", gap:6
+                  }}>
+                  <span style={{fontSize:16}}>📖</span>
+                  <span style={{fontSize:12, fontWeight:700, color:"#475569"}}>
+                    Voir un exemple
+                  </span>
+                </button>
+              )}
+            </div>
           );
         })}
         <button onClick={()=>{
