@@ -7174,7 +7174,7 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
     ? normalSubs.filter(s=>!s.levels || s.levels.includes(niveau))
     : normalSubs;
   
-  // Appliquer le filtre de type
+  // Appliquer le filtre de type (garde les subs qui contiennent au moins une question de ce type)
   if (typeFilter) {
     visibleSubs = visibleSubs.filter(s => {
       const types = getQuestionTypes(catId, s.id);
@@ -7302,7 +7302,7 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
           // Filtre niveau pour les subs normales (non-mission, non-levelPicker)
           if (!s.isMission && !s.levelPicker) {
             if (niveau && s.levels && !s.levels.includes(niveau)) return null;
-            // Filtre par type de réponse
+            // Filtre par type de réponse (contient au moins une question de ce type)
             if (typeFilter) {
               const types = getQuestionTypes(catId, s.id);
               if (!types.includes(typeFilter)) return null;
@@ -7354,8 +7354,14 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
           );}
           const on=sel.includes(s.id);
           const types = getQuestionTypes(catId, s.id);
-          const mainType = getMainTypeLabel(types);
-          const typeColor = mainType === "QCM" ? "#10B981" : mainType === "Pad" ? "#F59E0B" : mainType === "Drag" ? "#EF4444" : mainType === "Tableau" ? "#06B6D4" : "#94A3B8";
+          const typeMeta = {
+            qcm:     { label: "QCM",      color: "#10B981" },
+            pad:     { label: "✍️ Pad",   color: "#F59E0B" },
+            drag:    { label: "🎯 Drag",  color: "#EF4444" },
+            tableau: { label: "📊 Tableau", color: "#06B6D4" },
+          };
+          // Ordre d'affichage stable : qcm, pad, drag, tableau
+          const sortedTypes = ["qcm","pad","drag","tableau"].filter(t => types.includes(t));
           
           return (
             <button key={s.id} onClick={()=>toggle(s.id)} className="pop-in"
@@ -7365,11 +7371,19 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
               </div>
               <div style={{flex:1,display:"flex",flexDirection:"column",alignItems:"flex-start",gap:3}}>
                 <span style={{fontSize:13,fontWeight:600,color:on?cat.color:"#475569",textAlign:"left"}}>{s.label}</span>
-                <div style={{display:"flex",gap:4,alignItems:"center"}}>
-                  <span style={{fontSize:9,fontWeight:700,padding:"2px 7px",borderRadius:99,
-                    background:`${typeColor}18`,color:typeColor}}>
-                    {mainType === "Pad" ? "✍️ Pad" : mainType === "Drag" ? "🎯 Drag" : mainType === "Tableau" ? "📊 Tableau" : mainType}
-                  </span>
+                <div style={{display:"flex",gap:4,alignItems:"center",flexWrap:"wrap"}}>
+                  {sortedTypes.map(t => {
+                    const meta = typeMeta[t];
+                    const isFiltered = typeFilter === t;
+                    return (
+                      <span key={t} style={{fontSize:9,fontWeight:700,padding:"2px 7px",borderRadius:99,
+                        background:isFiltered?meta.color:`${meta.color}18`,
+                        color:isFiltered?"#fff":meta.color,
+                        border:isFiltered?`1.5px solid ${meta.color}`:"none"}}>
+                        {meta.label}
+                      </span>
+                    );
+                  })}
                   <span style={{fontSize:10,color:"#94A3B8"}}>{DB[catId][s.id]?.length||0} q.</span>
                 </div>
               </div>
@@ -9204,7 +9218,7 @@ function TrigCircleSVG({ current, onPlace, state, playerAngle, levelColor }) {
       {state==="idle"&&<circle cx={CX_T} cy={CY_T} r={R_T} fill="none" stroke={current?.color||levelColor} strokeWidth="14" opacity="0.07"/>}
       {state==="wrong"&&playerAngle!==null&&(
         <><circle cx={pxT(playerAngle)} cy={pyT(playerAngle)} r="8" fill="#FBBF24"/>
-          <text x={pxT(playerAngle)} y={pyT(playerAngle)+1} textAnchor="middle" dominantBaseline="middle" fontSize="11" fill="white" fontWeight="bold">\u2717</text></>
+          <text x={pxT(playerAngle)} y={pyT(playerAngle)+1} textAnchor="middle" dominantBaseline="middle" fontSize="11" fill="white" fontWeight="bold">✗</text></>
       )}
       {state!=="idle"&&current&&(()=>{
         const a=current.angle, ptx=pxT(a), pty=pyT(a), col=current.color;
@@ -9303,17 +9317,17 @@ function CercleTrigoScreen({onBack}) {
         <div style={{fontFamily:"'Nunito',sans-serif",fontSize:22,fontWeight:900,color:"#1E293B"}}>
           {pct===1?"Parfait !":pct>=.75?"Tr\u00e8s bien !":pct>=.5?"Pas mal !":"\u00c0 retravailler\u2026"}
         </div>
-        <div style={{display:"flex",gap:4}}>{[1,2,3].map(s=><span key={s} style={{fontSize:32,opacity:s<=stars?1:.18}}>\u2b50</span>)}</div>
+        <div style={{display:"flex",gap:4}}>{[1,2,3].map(s=><span key={s} style={{fontSize:32,opacity:s<=stars?1:.18}}>⭐</span>)}</div>
         <div style={{color:"#64748B",fontSize:15,fontWeight:700}}>{score} / {queue.length} correctes</div>
         <div style={{display:"flex",gap:8,width:"100%"}}>
           <button onClick={()=>startLevel(levelId)} style={{flex:1,padding:"13px",border:"none",borderRadius:13,
             background:`linear-gradient(135deg,${level?.color},${level?.color}bb)`,
             color:"#fff",fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:800,cursor:"pointer"}}>
-            \uD83D\uDD04 Rejouer
+            🔄 Rejouer
           </button>
           <button onClick={()=>setTrigoScreen("home")} style={{flex:1,padding:"13px",border:"2px solid #E2E8F0",borderRadius:13,
             background:"#fff",color:"#64748B",fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:700,cursor:"pointer"}}>
-            \u2190 Niveaux
+            ← Niveaux
           </button>
         </div>
       </div>
@@ -9323,12 +9337,12 @@ function CercleTrigoScreen({onBack}) {
   return (
     <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",padding:"14px 14px 10px",gap:10}}>
       <div style={{display:"flex",alignItems:"center",gap:8}}>
-        <button onClick={()=>setTrigoScreen("home")} style={{flexShrink:0,padding:"4px 10px",border:"1.5px solid #E2E8F0",borderRadius:8,background:"#fff",color:"#64748B",fontSize:12,fontWeight:700,cursor:"pointer"}}>\u2190 Retour</button>
+        <button onClick={()=>setTrigoScreen("home")} style={{flexShrink:0,padding:"4px 10px",border:"1.5px solid #E2E8F0",borderRadius:8,background:"#fff",color:"#64748B",fontSize:12,fontWeight:700,cursor:"pointer"}}>← Retour</button>
         <div style={{flex:1,height:6,background:"#E2E8F0",borderRadius:99,overflow:"hidden"}}>
           <div style={{width:`${(idx/queue.length)*100}%`,height:"100%",background:level?.color,borderRadius:99,transition:"width .4s"}}/>
         </div>
         <span style={{fontSize:12,color:"#94A3B8",fontWeight:700}}>{idx+1}/{queue.length}</span>
-        <span style={{fontSize:13,fontWeight:800,color:"#F59E0B"}}>\u2726 {score}</span>
+        <span style={{fontSize:13,fontWeight:800,color:"#F59E0B"}}>✦ {score}</span>
       </div>
 
       {current&&(
@@ -9362,7 +9376,7 @@ function CercleTrigoScreen({onBack}) {
           {idx+1<queue.length?"Angle suivant \u2192":"Voir mon score \uD83C\uDF89"}
         </button>
       )}
-      {state==="idle"&&<div style={{textAlign:"center",fontSize:11,color:"#94A3B8",flexShrink:0}}>\uD83D\uDC46 Appuie sur le cercle pour placer le point</div>}
+      {state==="idle"&&<div style={{textAlign:"center",fontSize:11,color:"#94A3B8",flexShrink:0}}>👆 Appuie sur le cercle pour placer le point</div>}
     </div>
   );
 }
