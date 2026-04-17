@@ -6303,6 +6303,8 @@ const XP_K    = 'user:xp';
 const BADGE_K = 'user:badges';
 const DAILY_K = 'user:daily';
 const SHIELD_K= 'user:shield';
+const STREAK_PROGRESS_K = 'user:streak_progress'; // { date: 'YYYY-MM-DD', count: N, completed: bool }
+const STREAK_DAILY_THRESHOLD = 10; // 10 bonnes réponses cumulées valident la journée
 
 async function loadXP()       { try{const r=await _storage.get(XP_K);return r?.value?parseInt(r.value):0;}catch{return 0;} }
 async function saveXP(xp)     { try{await _storage.set(XP_K,String(xp));}catch{} }
@@ -6312,6 +6314,23 @@ async function loadDaily()    { try{const r=await _storage.get(DAILY_K);return r
 async function saveDaily(d)   { try{await _storage.set(DAILY_K,JSON.stringify(d));}catch{} }
 async function loadShield()   { try{const r=await _storage.get(SHIELD_K);return r?.value==='1';}catch{return false;} }
 async function saveShield(v)  { try{await _storage.set(SHIELD_K,v?'1':'0');}catch{} }
+
+// ── Streak progress (bonnes réponses cumulées du jour) ───────────────────────
+// Retourne { date, count, completed }. Si la date stockée n'est pas aujourd'hui, reset.
+async function loadStreakProgress() {
+  try {
+    const r = await _storage.get(STREAK_PROGRESS_K);
+    const today = new Date().toDateString();
+    if (r?.value) {
+      const data = JSON.parse(r.value);
+      if (data.date === today) return data;
+    }
+    return { date: today, count: 0, completed: false };
+  } catch { return { date: new Date().toDateString(), count: 0, completed: false }; }
+}
+async function saveStreakProgress(p) {
+  try { await _storage.set(STREAK_PROGRESS_K, JSON.stringify(p)); } catch {}
+}
 
 // ── Badge unlock helper ───────────────────────────────────────────────────────
 async function checkAndUnlockBadge(badgeId, setBadgesState) {
@@ -6921,8 +6940,9 @@ function SplashScreen({onStart, onMySpace, profile}) {
 }
 
 // ── MENU ─────────────────────────────────────────────────────────────────────
-function HomeScreen({onMode, profile, onDashboard, onSplash}) {
+function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress}) {
   const modes=[
+    {id:"sprint",label:"Sprint 5 min",sub:"Chrono : enchaîne un max de QCM",emoji:"⏱️",grad:"linear-gradient(135deg,#F59E0B,#D97706)"},
     {id:"express",label:"Express",sub:"10 questions dans un thème",emoji:"⚡",grad:"linear-gradient(135deg,#3B82F6,#1D4ED8)"},
     {id:"entrainement",label:"Entraînement",sub:"20 ou 50 questions par thème",emoji:"💪",grad:"linear-gradient(135deg,#8B5CF6,#6D28D9)"},
     {id:"test_aleatoire",label:"Test aléatoire",sub:"Questions surprises",emoji:"🎲",grad:"linear-gradient(135deg,#10B981,#047857)"},
@@ -6977,6 +6997,84 @@ function HomeScreen({onMode, profile, onDashboard, onSplash}) {
             </div>
           </div>
         </div>
+        {profile && (() => {
+          const streak = profile.streak || 0;
+          const today = new Date().toDateString();
+          const lastDay = profile.lastActive ? new Date(profile.lastActive).toDateString() : null;
+          const yesterday = new Date(Date.now()-86400000).toDateString();
+          const threshold = 10; // STREAK_DAILY_THRESHOLD
+          const todayCount = (streakProgress && streakProgress.date === today) ? streakProgress.count : 0;
+          const completedToday = (streakProgress && streakProgress.date === today && streakProgress.completed);
+          const streakAtRisk = streak > 0 && !completedToday && lastDay === yesterday;
+          const streakLost = streak > 0 && lastDay !== today && lastDay !== yesterday;
+          
+          // Couleur et état
+          const bg = completedToday
+            ? "linear-gradient(135deg,#F59E0B,#EA580C)"
+            : streakAtRisk
+            ? "linear-gradient(135deg,#EF4444,#B91C1C)"
+            : "linear-gradient(135deg,#64748B,#475569)";
+          
+          const emoji = streakLost ? "🌱" : (completedToday ? "🔥" : (streakAtRisk ? "⏰" : (streak > 0 ? "🔥" : "🌱")));
+          
+          // Texte principal
+          let mainText, subText;
+          if (completedToday) {
+            mainText = streak === 1 ? "1 jour" : `${streak} jours`;
+            subText = "✅ Journée validée · Reviens demain !";
+          } else if (streak === 0) {
+            mainText = "Démarre ta série !";
+            subText = todayCount > 0
+              ? `${todayCount}/${threshold} bonnes réponses — continue !`
+              : "10 bonnes réponses aujourd'hui pour démarrer";
+          } else if (streakAtRisk) {
+            mainText = streak === 1 ? "1 jour en jeu" : `${streak} jours en jeu`;
+            subText = todayCount > 0
+              ? `${todayCount}/${threshold} — ne casse pas ta série !`
+              : `Joue aujourd'hui (${threshold} bonnes réponses) pour garder ta série`;
+          } else {
+            // Streak perdue ou nouvelle journée loin
+            mainText = "Nouvelle journée";
+            subText = todayCount > 0
+              ? `${todayCount}/${threshold} bonnes réponses — continue !`
+              : `${threshold} bonnes réponses pour démarrer une nouvelle série`;
+          }
+          
+          return (
+            <div style={{
+              background: bg,
+              borderRadius:16, padding:"12px 16px", marginBottom:14,
+              boxShadow:"0 4px 14px rgba(0,0,0,.15)"
+            }}>
+              <div style={{display:"flex", alignItems:"center", gap:14}}>
+                <div style={{fontSize:32, flexShrink:0}}>{emoji}</div>
+                <div style={{flex:1, textAlign:"left"}}>
+                  <div style={{fontFamily:"'Nunito',sans-serif", fontWeight:900,
+                    fontSize:20, color:"#fff", lineHeight:1.1}}>
+                    {mainText}
+                  </div>
+                  <div style={{color:"rgba(255,255,255,.9)", fontSize:10,
+                    fontWeight:600, marginTop:3}}>
+                    {subText}
+                  </div>
+                </div>
+              </div>
+              {/* Barre de progression du jour (seulement si pas encore complétée) */}
+              {!completedToday && (
+                <div style={{
+                  marginTop:10, height:5, background:"rgba(255,255,255,0.25)",
+                  borderRadius:99, overflow:"hidden"
+                }}>
+                  <div style={{
+                    width: `${Math.min(100, (todayCount / threshold) * 100)}%`,
+                    height: "100%", background: "#fff", borderRadius: 99,
+                    transition: "width .4s"
+                  }}/>
+                </div>
+              )}
+            </div>
+          );
+        })()}
         <p style={{color:"#64748B",fontSize:12,fontWeight:600}}>
           Choisis ton mode d'entraînement
         </p>
@@ -8668,6 +8766,193 @@ function CountScreen({catId,onCount,onBack,allMode=false,options=[10,20]}) {
   );
 }
 
+// ── SprintScreen — Chrono 5 min, QCM only, viser le record ──────────────────
+const SPRINT_DURATION = 300; // 5 minutes
+const SPRINT_BEST_K = 'user:sprint_best';
+
+function SprintScreen({pool, onFinish, onBack}) {
+  const [idx, setIdx]           = useState(0);
+  const [score, setScore]       = useState(0);
+  const [answered, setAnswered] = useState(0);
+  const [selected, setSelected] = useState(null);
+  const [shown, setShown]       = useState(false);
+  const [shake, setShake]       = useState(false);
+  const [timeLeft, setTimeLeft] = useState(SPRINT_DURATION);
+  const [started, setStarted]   = useState(false);
+  // File de questions mélangées (on shuffle une fois au démarrage)
+  const queue = React.useMemo(() => shuffle(pool), [pool]);
+  const q = queue[idx % queue.length];
+  const choices = React.useMemo(
+    () => q?.choices ? shuffle(q.choices) : [],
+    [q, idx]
+  );
+
+  // Countdown
+  useEffect(() => {
+    if (!started) return;
+    if (timeLeft <= 0) { onFinish({score, answered}); return; }
+    const timer = setTimeout(() => setTimeLeft(t => t - 1), 1000);
+    return () => clearTimeout(timer);
+  }, [started, timeLeft]);
+
+  // Quand on sélectionne, feedback court puis on passe à la suivante
+  const pick = (c) => {
+    if (shown || !started) return;
+    setSelected(c);
+    setShown(true);
+    const ok = c === q.a;
+    setAnswered(a => a + 1);
+    if (ok) { setScore(s => s + 1); }
+    else { setShake(true); setTimeout(() => setShake(false), 280); }
+    // Enchaîner rapidement : 500 ms si correct, 900 ms si incorrect (lecture)
+    setTimeout(() => {
+      setSelected(null); setShown(false);
+      setIdx(i => i + 1);
+    }, ok ? 500 : 900);
+  };
+
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
+  const pct = (timeLeft / SPRINT_DURATION) * 100;
+  const barColor = timeLeft > 60 ? "#10B981" : timeLeft > 30 ? "#F59E0B" : "#EF4444";
+
+  // Écran de démarrage (pour que l'élève se prépare)
+  if (!started) {
+    return (
+      <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",padding:"24px 20px",justifyContent:"center",alignItems:"center",gap:18}}>
+        <Back onClick={onBack}/>
+        <div style={{fontSize:64,marginBottom:4}}>⏱️</div>
+        <h2 style={{fontFamily:"'Nunito',sans-serif",fontSize:28,fontWeight:900,color:"#1E293B",textAlign:"center",margin:0}}>
+          Sprint 5 minutes
+        </h2>
+        <p style={{color:"#64748B",fontSize:13,textAlign:"center",maxWidth:300,lineHeight:1.5,margin:0}}>
+          Enchaîne un maximum de QCM en 5 minutes.<br/>
+          Chaque bonne réponse compte.<br/>
+          <strong>Prêt·e ?</strong>
+        </p>
+        <div style={{background:"#FEF3C7",borderRadius:12,padding:"10px 16px",color:"#92400E",fontSize:11,fontWeight:700,maxWidth:320,textAlign:"center"}}>
+          💡 Astuce : mieux vaut réfléchir 2s et répondre juste que foncer au hasard.
+        </div>
+        <button onClick={() => setStarted(true)} style={{
+          background:"linear-gradient(135deg,#F59E0B,#D97706)",
+          color:"#fff",border:"none",borderRadius:14,
+          padding:"16px 40px",fontFamily:"'Nunito',sans-serif",
+          fontSize:16,fontWeight:900,cursor:"pointer",
+          boxShadow:"0 6px 20px rgba(245,158,11,.35)",marginTop:8
+        }}>
+          🚀 Démarrer
+        </button>
+      </div>
+    );
+  }
+
+  // Écran de jeu
+  return (
+    <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",padding:"14px 16px",gap:12}}>
+      {/* Header : timer + score */}
+      <div style={{display:"flex",alignItems:"center",gap:10}}>
+        <button onClick={()=>onFinish({score,answered})} style={{
+          background:"#F1F5F9",border:"none",borderRadius:8,padding:"4px 10px",
+          color:"#64748B",fontSize:11,fontWeight:700,cursor:"pointer"}}>
+          ✕
+        </button>
+        <div style={{flex:1,height:8,background:"#E2E8F0",borderRadius:99,overflow:"hidden"}}>
+          <div style={{width:`${pct}%`,height:"100%",background:barColor,borderRadius:99,transition:"width .4s linear"}}/>
+        </div>
+        <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:18,
+          color:barColor,minWidth:56,textAlign:"right"}}>
+          {minutes}:{seconds.toString().padStart(2,'0')}
+        </div>
+      </div>
+
+      {/* Compteurs */}
+      <div style={{display:"flex",gap:8,justifyContent:"center"}}>
+        <div style={{background:"#ECFDF5",color:"#065F46",borderRadius:99,padding:"4px 12px",fontSize:12,fontWeight:800}}>
+          ✓ {score}
+        </div>
+        <div style={{background:"#F8FAFC",color:"#475569",borderRadius:99,padding:"4px 12px",fontSize:12,fontWeight:700}}>
+          {answered} répondues
+        </div>
+      </div>
+
+      {/* Question */}
+      <div className={shake?"shake":""} style={{
+        background:"#E8EAF0",borderRadius:18,padding:"18px 14px",
+        boxShadow:"0 3px 12px rgba(0,0,0,.08)",flexShrink:0
+      }}>
+        <div style={{fontSize:q.q.length>60?14:q.q.length>25?17:19,
+          fontWeight:700,lineHeight:1.5,textAlign:"center",color:"#1E293B"}}>
+          <M tex={q.q}/>
+        </div>
+      </div>
+
+      {/* Choix */}
+      <div style={{display:"flex",flexDirection:"column",gap:8,flex:1,overflow:"auto"}}>
+        {choices.map((c, i) => {
+          const state = !shown ? "default"
+            : c === q.a ? "correct"
+            : c === selected ? "wrong"
+            : "default";
+          return <Btn key={i} tex={c} state={state} onClick={shown?undefined:()=>pick(c)}/>;
+        })}
+      </div>
+    </div>
+  );
+}
+
+// ── SprintResultScreen — Résultat du sprint avec record ──────────────────────
+function SprintResultScreen({result, onReplay, onHome, best, isNewBest}) {
+  const {score, answered} = result;
+  const pct = answered > 0 ? Math.round(score/answered*100) : 0;
+  const emotion = score >= 25 ? "legendaire" : score >= 15 ? "love" : score >= 10 ? "cool" : score >= 5 ? "happy" : "sad";
+  return (
+    <div className="slide-up" style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"22px",height:"100%",gap:14}}>
+      <div className={emotion==="legendaire"?"":"sigma-float"}>
+        {emotion==="legendaire"
+          ? <SigmaLegendaire size={160}/>
+          : <Sigma emotion={emotion} size={160} float={false}/>}
+      </div>
+      <div style={{textAlign:"center"}}>
+        <div style={{fontFamily:"'Nunito',sans-serif",fontSize:56,fontWeight:900,color:"#F59E0B",lineHeight:1}}>{score}</div>
+        <div style={{color:"#64748B",fontSize:13,marginTop:4}}>bonnes réponses sur {answered} en 5 min</div>
+        {answered > 0 && <div style={{color:"#94A3B8",fontSize:11,marginTop:2}}>{pct}% de précision</div>}
+      </div>
+      {isNewBest ? (
+        <div className="pop-in" style={{
+          background:"linear-gradient(135deg,#F59E0B,#EA580C)",
+          borderRadius:14,padding:"12px 18px",boxShadow:"0 4px 14px rgba(234,88,12,.35)"
+        }}>
+          <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,color:"#fff"}}>
+            🏆 Nouveau record personnel !
+          </div>
+          {best > 0 && <div style={{color:"rgba(255,255,255,.9)",fontSize:11,marginTop:3}}>
+            Ancien : {best} · Nouveau : {score}
+          </div>}
+        </div>
+      ) : best > 0 ? (
+        <div style={{background:"#F1F5F9",borderRadius:12,padding:"10px 16px",color:"#475569",fontSize:12,fontWeight:700}}>
+          🎯 Ton record : {best} · Continue, tu peux le battre !
+        </div>
+      ) : null}
+      <div style={{display:"flex",flexDirection:"column",gap:8,width:"100%",maxWidth:320}}>
+        <button onClick={onReplay} style={{background:"linear-gradient(135deg,#F59E0B,#D97706)",color:"#fff",border:"none",borderRadius:13,padding:"14px",fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:800,cursor:"pointer",boxShadow:"0 5px 16px rgba(245,158,11,.35)"}}>
+          🔁 Nouveau sprint
+        </button>
+        <button onClick={onHome} style={{background:"#F1F5F9",color:"#475569",border:"none",borderRadius:13,padding:"14px",fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:700,cursor:"pointer"}}>
+          🏠 Menu principal
+        </button>
+      </div>
+    </div>
+  );
+}
+
+async function loadSprintBest() {
+  try { const r = await _storage.get(SPRINT_BEST_K); return r?.value ? parseInt(r.value) : 0; } catch { return 0; }
+}
+async function saveSprintBest(v) {
+  try { await _storage.set(SPRINT_BEST_K, String(v)); } catch {}
+}
+
 function QuizScreen({questions,catId,onFinish,onBack}) {
   const [idx,setIdx]           = useState(0);
   const [selected,setSelected] = useState(null);
@@ -9154,7 +9439,7 @@ function SigmaLegendaire({size=110}) {
   );
 }
 
-function ResultScreen({score,total,catId,onReplay,onHome}) {
+function ResultScreen({score,total,catId,onReplay,onHome,streakJustCompleted=false,streakCount=0}) {
   const s=starsFor(score,total);
   const pct=Math.round((score/total)*100);
   const cat=getCat(catId)||{label:"",emoji:"🎯",color:"#3B82F6",grad:"linear-gradient(135deg,#3B82F6,#1D4ED8)",light:"#EFF6FF",border:"#BFDBFE"};
@@ -9218,6 +9503,28 @@ function ResultScreen({score,total,catId,onReplay,onHome}) {
         {score>=Math.ceil(total*.8)&&score<total&&<span style={{background:"#ECFDF5",color:"#065F46",borderRadius:99,padding:"4px 12px",fontSize:12,fontWeight:700}}>🔥 Excellent !</span>}
         {score<Math.ceil(total*.5)&&<span style={{background:"#FEF2F2",color:"#991B1B",borderRadius:99,padding:"4px 12px",fontSize:12,fontWeight:700}}>💪 À refaire !</span>}
       </div>
+
+      {/* Streak validée — bandeau de célébration */}
+      {streakJustCompleted && (
+        <div className="pop-in" style={{
+          background:"linear-gradient(135deg,#F59E0B,#EA580C)",
+          borderRadius:14, padding:"12px 16px", maxWidth:320,
+          display:"flex", alignItems:"center", gap:12,
+          boxShadow:"0 4px 14px rgba(234,88,12,.35)"
+        }}>
+          <div style={{fontSize:32}}>🔥</div>
+          <div style={{textAlign:"left"}}>
+            <div style={{fontFamily:"'Nunito',sans-serif", fontWeight:900,
+              fontSize:15, color:"#fff", lineHeight:1.2}}>
+              {streakCount === 1 ? "Série démarrée !" : `Série à ${streakCount} jours !`}
+            </div>
+            <div style={{color:"rgba(255,255,255,.9)", fontSize:11,
+              fontWeight:600, marginTop:2}}>
+              Journée validée · Reviens demain pour continuer
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Buttons */}
       <div style={{display:"flex",flexDirection:"column",gap:9,width:"100%"}}>
@@ -9617,24 +9924,27 @@ function AutoMaths() {
   const [quizMode,  setQuizMode]  = useState(null); // "practice" | "test" | null
   const [prevStars, setPrevStars] = useState(0);
   const [newStars,  setNewStars]  = useState(0);
+  const [streakProgress, setStreakProgress] = useState({ date: new Date().toDateString(), count: 0, completed: false });
+  const [streakJustCompleted, setStreakJustCompleted] = useState(false);
+  // ── Sprint state ──────────────────────────────────────────────────────────
+  const [sprintResult, setSprintResult] = useState(null); // {score, answered}
+  const [sprintBest, setSprintBest] = useState(0);
+  const [sprintIsNewBest, setSprintIsNewBest] = useState(false);
 
   // Load profile on mount
   useEffect(() => {
     loadProfA().then(p => { setProfile(p); setProfReady(true); }).catch(() => setProfReady(true));
   }, []);
 
-  // Update streak daily
+  // Load streak progress on mount (persiste à travers les sessions du même jour)
   useEffect(() => {
-    if (!profile) return;
-    const today = new Date().toDateString();
-    const lastDay = profile.lastActive ? new Date(profile.lastActive).toDateString() : null;
-    if (lastDay === today) return;
-    const yesterday = new Date(Date.now()-86400000).toDateString();
-    const streak = lastDay === yesterday ? (profile.streak||0)+1 : 1;
-    const updated = {...profile, streak, lastActive:Date.now()};
-    setProfile(updated);
-    saveProfA(updated);
-  }, [profReady]);
+    loadStreakProgress().then(sp => setStreakProgress(sp)).catch(() => {});
+    loadSprintBest().then(b => setSprintBest(b)).catch(() => {});
+  }, []);
+
+  // NB: La streak est maintenant incrémentée uniquement quand l'élève atteint
+  // STREAK_DAILY_THRESHOLD bonnes réponses dans la journée (voir handleCorrectAnswer).
+  // Plus de logique automatique au chargement du profil.
 
   // ── Quiz helpers ──────────────────────────────────────────────────────────
   const [prevScreen, setPrevScreen] = useState("home");
@@ -9702,6 +10012,48 @@ function AutoMaths() {
       }
     } catch(e) { /* Never block quiz for XP errors */ }
 
+    // ── Streak : incrémenter si on atteint le seuil aujourd'hui ───────────
+    try {
+      if (profile && sc > 0) {
+        const prog = await loadStreakProgress();
+        const newCount = prog.count + sc;
+        const justCompleted = !prog.completed && newCount >= STREAK_DAILY_THRESHOLD;
+        const updatedProg = {
+          date: prog.date,
+          count: newCount,
+          completed: prog.completed || newCount >= STREAK_DAILY_THRESHOLD
+        };
+        await saveStreakProgress(updatedProg);
+        setStreakProgress(updatedProg);
+
+        // Si on vient d'atteindre le seuil pour la première fois aujourd'hui,
+        // on met à jour la streak du profil.
+        if (justCompleted) {
+          const today = new Date().toDateString();
+          const yesterday = new Date(Date.now() - 86400000).toDateString();
+          const lastDay = profile.lastActive ? new Date(profile.lastActive).toDateString() : null;
+          let newStreak;
+          if (lastDay === today) {
+            // Défense : déjà actif aujourd'hui (ne devrait pas arriver car justCompleted=true)
+            newStreak = profile.streak || 1;
+          } else if (lastDay === yesterday) {
+            newStreak = (profile.streak || 0) + 1;
+          } else {
+            newStreak = 1;
+          }
+          const updatedProfile = { ...profile, streak: newStreak, lastActive: Date.now() };
+          setProfile(updatedProfile);
+          saveProfA(updatedProfile);
+          setStreakJustCompleted(true);
+          // Badges streak
+          try {
+            if (newStreak >= 3) await checkAndUnlockBadge("streak3");
+            if (newStreak >= 7) await checkAndUnlockBadge("streak7");
+          } catch(e) {}
+        }
+      }
+    } catch(e) { /* Safe */ }
+
     if (trackCat && trackSub && quizMode) {
       const prog = await loadProgA(trackCat, trackSub);
 
@@ -9763,6 +10115,7 @@ function AutoMaths() {
     else if (m === "express") setScreen("category");
     else if (m === "entrainement") setScreen("category");
     else if (m === "test_aleatoire") setScreen("test_aleatoire");
+    else if (m === "sprint") setScreen("sprint");
     else setScreen("category");
   };
   const hCat      = cid=> {
@@ -9817,6 +10170,63 @@ function AutoMaths() {
   };
   const hTestGlobal   = () => { setCatId(null); setScreen("count"); };
   const hTestCategory = () => { setScreen("category"); };
+  
+  // ── Sprint handlers ───────────────────────────────────────────────────────
+  // Pool : toutes les questions QCM de l'app (celles avec .choices et sans pad/tableau/drag/graph lourd)
+  const getSprintPool = () => {
+    return getAllQ().filter(q =>
+      q.choices && !q.numpad && !q.solpad && !q.eqpad
+      && !q.exprpad && !q.fractionpad
+      && !q.dgspec && !q.tvSpec && !q.tsSpec
+      // On garde gspec (graphique léger, QCM) — c'est OK pour le sprint
+    );
+  };
+  const hSprintFinish = async (result) => {
+    setSprintResult(result);
+    const isNew = result.score > sprintBest;
+    setSprintIsNewBest(isNew);
+    if (isNew) {
+      setSprintBest(result.score);
+      await saveSprintBest(result.score);
+    }
+    // On profite du sprint pour alimenter le compteur streak (comme un quiz normal)
+    try {
+      if (profile && result.score > 0) {
+        const prog = await loadStreakProgress();
+        const newCount = prog.count + result.score;
+        const justCompleted = !prog.completed && newCount >= STREAK_DAILY_THRESHOLD;
+        const updatedProg = {
+          date: prog.date,
+          count: newCount,
+          completed: prog.completed || newCount >= STREAK_DAILY_THRESHOLD
+        };
+        await saveStreakProgress(updatedProg);
+        setStreakProgress(updatedProg);
+        if (justCompleted) {
+          const today = new Date().toDateString();
+          const yesterday = new Date(Date.now()-86400000).toDateString();
+          const lastDay = profile.lastActive ? new Date(profile.lastActive).toDateString() : null;
+          let newStreak;
+          if (lastDay === today) newStreak = profile.streak || 1;
+          else if (lastDay === yesterday) newStreak = (profile.streak || 0) + 1;
+          else newStreak = 1;
+          const updatedProfile = {...profile, streak:newStreak, lastActive:Date.now()};
+          setProfile(updatedProfile);
+          saveProfA(updatedProfile);
+          setStreakJustCompleted(true);
+          try {
+            if (newStreak >= 3) await checkAndUnlockBadge("streak3");
+            if (newStreak >= 7) await checkAndUnlockBadge("streak7");
+          } catch(e) {}
+        }
+      }
+    } catch(e) {}
+    setScreen("sprint_result");
+  };
+  const hSprintReplay = () => {
+    setSprintResult(null); setSprintIsNewBest(false);
+    setScreen("sprint");
+  };
 
   // ── Profile handlers ──────────────────────────────────────────────────────
   const hProfileComplete = (prof) => { setProfile(prof); setScreen("diagnostic"); };
@@ -9917,8 +10327,10 @@ function AutoMaths() {
           {screen==="diag_result"   && profile && diagResults && <DiagnosticResultScreen profile={profile} diagResults={diagResults} onStart={hDiagResultNext}/>}
           {screen==="weekly_program"&& profile && weekProgram  && <WeeklyProgramScreen profile={profile} program={weekProgram} allProg={allProgCache} onStartSession={hProgramSession} onSkip={hProgramSkip}/>}
           {screen==="dashboard"     && profile && <DashboardScreen profile={profile} onStartPractice={hStartPractice} onStartTest={hStartTest} onGoHome={()=>setScreen("home")} onEditProfile={hEditProfile} onLogout={hLogout} onExport={hExportProgress} onReminder={()=>setScreen("reminder")} onShowProgram={async()=>{const wp=await generateWeeklyProgram(profile,allProgCache);setWeekProgram(wp);setScreen("weekly_program");}}/>}
-          {screen==="home"          && <HomeScreen onMode={hMode} profile={profile} onDashboard={profile?hDashboard:null} onSplash={()=>setScreen("splash")}/>}
+          {screen==="home"          && <HomeScreen onMode={hMode} profile={profile} onDashboard={profile?hDashboard:null} onSplash={()=>setScreen("splash")} streakProgress={streakProgress}/>}
           {screen==="test_aleatoire" && <TestAleatoireScreen onGlobal={hTestGlobal} onCategory={hTestCategory} onBack={()=>setScreen("home")}/>}
+          {screen==="sprint"        && <SprintScreen    pool={getSprintPool()} onFinish={hSprintFinish} onBack={()=>{setSprintResult(null);setScreen("home");}}/>}
+          {screen==="sprint_result" && sprintResult && <SprintResultScreen result={sprintResult} best={sprintBest} isNewBest={sprintIsNewBest} onReplay={hSprintReplay} onHome={()=>{setSprintResult(null);setSprintIsNewBest(false);setStreakJustCompleted(false);setScreen("home");}}/>}
           {screen==="category"      && <CategoryScreen  onCat={hCat} onBack={()=>setScreen(mode==="test_aleatoire"?"test_aleatoire":"home")} subtitle={mode==="express"?"Choisis une catégorie":mode==="entrainement"?"Choisis une catégorie":mode==="test_aleatoire"?"Toutes les questions de la catégorie":"Puis choisis des sous-thèmes"}/>}
           {screen==="subcategory"   && <SubcategoryScreen catId={catId} qCount={mode==="express"?10:20} onStart={hSub} onBack={()=>setScreen(mode==="missions"?"home":"category")} onLevelPicker={hLevelPicker} defaultNiveau={profile?LEVEL_MAP[profile.level]||null:null}/>}
           {screen==="mission_select" && <MissionScreen missionId={missionId} onBack={()=>setScreen("subcategory")} onSelectTheme={(theme)=>{
@@ -9946,7 +10358,7 @@ function AutoMaths() {
           {screen==="bac_subjects"   && <BacSubjectScreen onStart={hBacStart} onBack={()=>setScreen("home")}/>}
           {screen==="count"         && <CountScreen     catId={mode==="bac"?null:(mode==="test_aleatoire"&&!catId?null:catId)} allMode={mode==="bac"||(mode==="test_aleatoire"&&!catId)} options={mode==="entrainement"||mode==="test_aleatoire"?[20,50]:[10,20]} onCount={hCount} onBack={()=>setScreen(mode==="entrainement"?"subcategory":mode==="test_aleatoire"?"test_aleatoire":mode==="bac"?"home":"category")}/>}
           {screen==="quiz"          && <QuizScreen      questions={questions} catId={catId||"fonctions"} onFinish={hFinish} onBack={()=>setScreen(prevScreen)}/>}
-          {screen==="result"        && <ResultScreen    score={score} total={questions.length} catId={catId||"fonctions"} onReplay={hReplay} onHome={hHome}/>}
+          {screen==="result"        && <ResultScreen    score={score} total={questions.length} catId={catId||"fonctions"} onReplay={()=>{setStreakJustCompleted(false);hReplay();}} onHome={()=>{setStreakJustCompleted(false);hHome();}} streakJustCompleted={streakJustCompleted} streakCount={profile?.streak||0}/>}
           {screen==="parcours_result"&&<PostPracticeResultScreen score={score} total={questions.length} catId={trackCat} subId={trackSub} mode={quizMode} prevStars={prevStars} newStars={newStars} onRetry={()=>quizMode==="practice"?hStartPractice(trackCat,trackSub):hStartTest(trackCat,trackSub)} onDashboard={hDashboard} onHome={hHome}/>}
 
         </div>
