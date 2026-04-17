@@ -6045,7 +6045,7 @@ function ReminderScreen({onBack}) {
             Je peux te rappeler chaque jour !
           </div>
           <div style={{color:'#64748B',fontSize:12,marginTop:4}}>
-            Comme Duolingo — une notification à l'heure de ton choix
+            Une notification à l'heure de ton choix
           </div>
         </div>
 
@@ -6118,7 +6118,7 @@ function ReminderScreen({onBack}) {
         <div style={{background:'#FEF9C3',borderRadius:12,padding:'10px 14px',
           fontSize:11,color:'#92400E',lineHeight:1.5}}>
           💡 <strong>Sans serveur :</strong> Le rappel fonctionne quand l'app est installée
-          sur ton téléphone (PWA). Pour des notifs en arrière-plan type Duolingo, 
+          sur ton téléphone (PWA). Pour des notifs en arrière-plan depuis n'importe où, 
           il faut l'héberger sur un serveur (voir README).
         </div>
       </div>
