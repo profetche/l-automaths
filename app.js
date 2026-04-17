@@ -681,11 +681,19 @@ function TableauVarGrid({ spec, activeFill, fills, validated, onCellClick }) {
 
 // Grid renderer — Tableau de Signes
 function TableauSignGrid({ spec, activeFill, fills, validated, onCellClick }) {
-  const { xVals, cells } = spec;
-  // cells = [sign, 0, sign, 0, ..., sign]
-  // Cols: label + alternating [interval(1fr), root(28px)]
+  const { xVals, cells, rows } = spec;
+  // cells = [sign, 0, sign, 0, ..., sign] pour la ligne f(x) finale
+  // rows (optionnel) = [{label, cells:[...]}, ...] pour les lignes intermédiaires (facteurs)
+  // Indexation globale : row 0 = [0..cells.length-1], row 1 = [cells.length..2n-1], ..., ligne f = dernière
+  const hasRows = Array.isArray(rows) && rows.length > 0;
+  const allRows = hasRows ? [...rows, { label: "f(x)", cells, isFinal: true }] : [{ label: "f(x)", cells, isFinal: true }];
+  // Offsets des lignes : row i commence à offset[i]
+  const offsets = [];
+  let off = 0;
+  for (const r of allRows) { offsets.push(off); off += r.cells.length; }
+
   const colDefs = cells.map((_,i)=>i%2===0?"1fr":"26px").join(" ");
-  const gridCols = `24px ${colDefs}`;
+  const gridCols = `44px ${colDefs}`;
   return (
     <div style={{border:"1.5px solid #CBD5E1",borderRadius:8,overflow:"hidden",
       background:"#fff",marginBottom:8}}>
@@ -709,29 +717,39 @@ function TableauSignGrid({ spec, activeFill, fills, validated, onCellClick }) {
           );
         })}
       </div>
-      {/* f(x) row */}
-      <div style={{display:"grid",gridTemplateColumns:gridCols,minHeight:30}}>
-        <div style={{display:"flex",alignItems:"center",justifyContent:"center",
-          fontWeight:700,fontSize:9,color:"#64748B",
-          borderRight:"1.5px solid #CBD5E1",flexDirection:"column",lineHeight:1.2,padding:"2px"}}>
-          <span>f</span><span style={{fontSize:8}}>(x)</span>
-        </div>
-        {cells.map((cell,i)=>{
-          const isRoot=i%2===1;
-          return (
-            <div key={`fs${i}`} style={{
-              display:"flex",alignItems:"center",justifyContent:"center",
-              borderLeft:isRoot?"1.5px solid #CBD5E1":"1px solid #E2E8F0",
-              background:isRoot?"#F1F5F9":"transparent",
-              padding:"3px 2px"
-            }}>
-              <TCell cell={cell} filled={fills[i]} active={activeFill===i}
-                validated={validated}
-                onActivate={()=>cell.hole&&!validated&&onCellClick(i)}/>
+      {/* Toutes les lignes : d'abord facteurs (si rows), puis f(x) final */}
+      {allRows.map((row, rowIdx) => {
+        const rowOffset = offsets[rowIdx];
+        const isFinalRow = row.isFinal;
+        return (
+          <div key={`row${rowIdx}`} style={{display:"grid",gridTemplateColumns:gridCols,minHeight:30,
+            borderTop: rowIdx>0?"1.5px solid #CBD5E1":"none",
+            background: isFinalRow && hasRows ? "#FFFBEB" : "transparent"}}>
+            <div style={{display:"flex",alignItems:"center",justifyContent:"center",
+              fontWeight:700,fontSize:10,color:"#64748B",
+              borderRight:"1.5px solid #CBD5E1",padding:"2px 4px",
+              fontFamily:"'DM Sans',serif"}}>
+              <M tex={row.label}/>
             </div>
-          );
-        })}
-      </div>
+            {row.cells.map((cell,i)=>{
+              const isRoot=i%2===1;
+              const globalIdx = rowOffset + i;
+              return (
+                <div key={`rc${rowIdx}-${i}`} style={{
+                  display:"flex",alignItems:"center",justifyContent:"center",
+                  borderLeft:isRoot?"1.5px solid #CBD5E1":"1px solid #E2E8F0",
+                  background:isRoot?"#F1F5F9":"transparent",
+                  padding:"3px 2px"
+                }}>
+                  <TCell cell={cell} filled={fills[globalIdx]} active={activeFill===globalIdx}
+                    validated={validated}
+                    onActivate={()=>cell.hole&&!validated&&onCellClick(globalIdx)}/>
+                </div>
+              );
+            })}
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -1579,6 +1597,130 @@ const DB = {
         tsSpec:{ xVals:["-∞","+∞"],
           cells:[{v:"+",hole:true,kind:"sign"}] },
         tip:r`x^2+1\geq1>0\text{ pour tout }x\in\mathbb{R}` },
+    ],
+
+    // ── d-bis. Signe d'un produit (tableaux multi-lignes) ──
+    signe_produit: [
+      { q: r`\text{Complète la ligne }f(x)\text{ de }f(x)=(x+2)(x-3)`,
+        tsSpec:{ xVals:["-∞","-2","3","+∞"],
+          rows:[
+            {label:"x+2", cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+            {label:"x-3", cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+          ],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`Règle des signes : (+)(+)=+, (-)(-)=+, (+)(-)=-` },
+      { q: r`\text{Complète la ligne }f(x)\text{ de }f(x)=(x-1)(x-4)`,
+        tsSpec:{ xVals:["-∞","1","4","+∞"],
+          rows:[
+            {label:"x-1", cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+            {label:"x-4", cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+          ],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`Règle des signes : (+)(+)=+, (-)(-)=+, (+)(-)=-` },
+      { q: r`\text{Complète la ligne }f(x)\text{ de }f(x)=(x+3)(x+1)`,
+        tsSpec:{ xVals:["-∞","-3","-1","+∞"],
+          rows:[
+            {label:"x+3", cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+            {label:"x+1", cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+          ],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`Règle des signes : (+)(+)=+, (-)(-)=+, (+)(-)=-` },
+      { q: r`\text{Complète la ligne }f(x)\text{ de }f(x)=(2x-6)(x+2)`,
+        tsSpec:{ xVals:["-∞","-2","3","+∞"],
+          rows:[
+            {label:"2x-6", cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+            {label:"x+2", cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+          ],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`Règle des signes : (+)(+)=+, (-)(-)=+, (+)(-)=-` },
+      { q: r`\text{Complète la ligne }f(x)\text{ de }f(x)=(-x+2)(x+1)`,
+        tsSpec:{ xVals:["-∞","-1","2","+∞"],
+          rows:[
+            {label:"-x+2", cells:[{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"}]},
+            {label:"x+1", cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+          ],
+          cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
+        tip:r`Règle des signes : (+)(+)=+, (-)(-)=+, (+)(-)=-` },
+      { q: r`\text{Complète le tableau de signes de }f(x)=(2x+8)(-x+1)`,
+        tsSpec:{ xVals:["-∞","-4","1","+∞"],
+          rows:[
+            {label:"2x+8", cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+            {label:"-x+1", cells:[{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}]},
+          ],
+          cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
+        tip:r`Racines : x=-4 et x=1. Règle des signes : (+)(+)=+, (-)(-)=+, (+)(-)=-` },
+      { q: r`\text{Complète le tableau de signes de }f(x)=(x+3)(x-2)`,
+        tsSpec:{ xVals:["-∞","-3","2","+∞"],
+          rows:[
+            {label:"x+3", cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+            {label:"x-2", cells:[{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+          ],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`Racines : x=-3 et x=2. Règle des signes : (+)(+)=+, (-)(-)=+, (+)(-)=-` },
+      { q: r`\text{Complète le tableau de signes de }f(x)=(x-1)(x+4)`,
+        tsSpec:{ xVals:["-∞","-4","1","+∞"],
+          rows:[
+            {label:"x-1", cells:[{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+            {label:"x+4", cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+          ],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`Racines : x=-4 et x=1. Règle des signes : (+)(+)=+, (-)(-)=+, (+)(-)=-` },
+      { q: r`\text{Complète le tableau de signes de }f(x)=(2x-4)(x+1)`,
+        tsSpec:{ xVals:["-∞","-1","2","+∞"],
+          rows:[
+            {label:"2x-4", cells:[{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+            {label:"x+1", cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+          ],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`Racines : x=-1 et x=2. Règle des signes : (+)(+)=+, (-)(-)=+, (+)(-)=-` },
+      { q: r`\text{Complète le tableau de signes de }f(x)=(-x+5)(x+2)`,
+        tsSpec:{ xVals:["-∞","-2","5","+∞"],
+          rows:[
+            {label:"-x+5", cells:[{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}]},
+            {label:"x+2", cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+          ],
+          cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
+        tip:r`Racines : x=-2 et x=5. Règle des signes : (+)(+)=+, (-)(-)=+, (+)(-)=-` },
+      { q: r`\text{Complète le tableau de signes de }f(x)=(x+1)(-2x+6)`,
+        tsSpec:{ xVals:["-∞","-1","3","+∞"],
+          rows:[
+            {label:"x+1", cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+            {label:"-2x+6", cells:[{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}]},
+          ],
+          cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
+        tip:r`Racines : x=-1 et x=3. Règle des signes : (+)(+)=+, (-)(-)=+, (+)(-)=-` },
+      { q: r`\text{Complète le tableau de signes de }f(x)=(-x-2)(-x+3)`,
+        tsSpec:{ xVals:["-∞","-2","3","+∞"],
+          rows:[
+            {label:"-x-2", cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}]},
+            {label:"-x+3", cells:[{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}]},
+          ],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`Racines : x=-2 et x=3. Règle des signes : (+)(+)=+, (-)(-)=+, (+)(-)=-` },
+      { q: r`\text{Complète le tableau de signes de }f(x)=(x+5)(x+1)`,
+        tsSpec:{ xVals:["-∞","-5","-1","+∞"],
+          rows:[
+            {label:"x+5", cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+            {label:"x+1", cells:[{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+          ],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`Racines : x=-5 et x=-1. Règle des signes : (+)(+)=+, (-)(-)=+, (+)(-)=-` },
+      { q: r`\text{Complète le tableau de signes de }f(x)=(2x-1)(x-4)`,
+        tsSpec:{ xVals:["-∞","1/2","4","+∞"],
+          rows:[
+            {label:"2x-1", cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+            {label:"x-4", cells:[{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+          ],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`Racines : x=1/2 et x=4. Règle des signes : (+)(+)=+, (-)(-)=+, (+)(-)=-` },
+      { q: r`\text{Complète le tableau de signes de }f(x)=(3x+6)(-x+4)`,
+        tsSpec:{ xVals:["-∞","-2","4","+∞"],
+          rows:[
+            {label:"3x+6", cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+            {label:"-x+4", cells:[{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}]},
+          ],
+          cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
+        tip:r`Racines : x=-2 et x=4. Règle des signes : (+)(+)=+, (-)(-)=+, (+)(-)=-` },
     ],
 
     // ── e. Coefficient directeur (lecture graphique) ──
@@ -4301,6 +4443,7 @@ const CATS = [
       {id:"resolution_graphique",   label:"Résolution graphique",           levels:["sec","tc","stmg","spe","term"]},
       {id:"tableau_variations",     label:"Tableau de variations",          levels:["sec","tc","stmg","spe","term"]},
       {id:"tableau_signes",         label:"Tableau de signes",              levels:["sec","tc","stmg","spe","term"]},
+      {id:"signe_produit",          label:"Signe d'un produit",             levels:["sec","tc","stmg","spe"]},
       {id:"coeff_directeur_lecture",label:"Coefficient directeur (lecture)",levels:["sec","tc","stmg","spe","term"]},
       {id:"equation_droite_lecture",label:"Équation de droite (lecture)",   levels:["sec","tc","stmg","spe","term"]},
       {id:"calcul_image",           label:"Calcul d'image",                 levels:["sec","tc","stmg","spe","term"]},
@@ -8266,12 +8409,22 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
   const choices = useCallback(()=>q.choices?shuffle(q.choices):[],[q])();
 
   // holes & correctness for tableau mode
-  const holes      = isTab ? spec.cells.reduce((a,c,i)=>c.hole?[...a,i]:a,[]) : [];
+  // On aplatit spec (rows + cells finaux) en un tableau global indexé linéairement.
+  const flatCells = isTab ? (() => {
+    if (specType === "ts" && Array.isArray(spec.rows) && spec.rows.length > 0) {
+      const out = [];
+      for (const r of spec.rows) out.push(...r.cells);
+      out.push(...spec.cells);
+      return out;
+    }
+    return spec.cells;
+  })() : [];
+  const holes      = isTab ? flatCells.reduce((a,c,i)=>c.hole?[...a,i]:a,[]) : [];
   const allFilled  = holes.every(i=>fills[i]!==undefined);
-  const allCorrect = holes.every(i=>fills[i]===spec?.cells[i].v);
+  const allCorrect = holes.every(i=>fills[i]===flatCells[i]?.v);
 
   // active cell kind
-  const activeKind = activeFill>=0&&spec ? spec.cells[activeFill].kind : null;
+  const activeKind = activeFill>=0&&isTab ? flatCells[activeFill]?.kind : null;
 
   // Reset all state when question changes
   useEffect(()=>{
@@ -8280,7 +8433,13 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
     setSelected(null); setShown(false);
     if(q.tvSpec||q.tsSpec){
       const s=q.tvSpec||q.tsSpec;
-      const first=s.cells.findIndex(c=>c.hole);
+      let flat = s.cells;
+      if (q.tsSpec && Array.isArray(s.rows) && s.rows.length > 0) {
+        flat = [];
+        for (const r of s.rows) flat.push(...r.cells);
+        flat.push(...s.cells);
+      }
+      const first=flat.findIndex(c=>c.hole);
       setActiveFill(first>=0?first:-1);
     } else { setActiveFill(-1); }
   },[idx]);
@@ -8289,8 +8448,8 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
   const fillHole=(i,val)=>{
     const nf={...fills,[i]:val};
     setFills(nf);
-    if(spec.cells[i].kind!=="num"){
-      const next=spec.cells.findIndex((c,j)=>j>i&&c.hole&&!nf[j]);
+    if(flatCells[i]?.kind!=="num"){
+      const next=flatCells.findIndex((c,j)=>j>i&&c.hole&&!nf[j]);
       setActiveFill(next>=0?next:-1);
     } else { setPad(""); }
   };
