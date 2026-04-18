@@ -4231,7 +4231,7 @@ const DB = {
       { q: r`x^2-5x+6=0\\[4pt]\Delta=b^2-4ac=\,?`,
         choices: [`1`, `25`, `49`, `-1`], a: `1`, tip: r`\Delta=25-24=1` },
       { q: r`x^2-4=0\\[4pt]\text{Solutions :}`,
-        choices: [r`x=-2\text{ et }x=2`, r`x=4\text{ et }x=-4`, r`x=2`, `\text{Pas de solution}`],
+        choices: [r`x=-2\text{ et }x=2`, r`x=4\text{ et }x=-4`, r`x=2`, r`\text{Pas de solution}`],
         a: r`x=-2\text{ et }x=2`, tip: r`x^2=4\Rightarrow x=\pm2` },
       { q: r`x^2-6x+9=0\\[4pt]\Delta=\,?`,
         choices: [`0`, `9`, `36`, `-9`], a: `0`, tip: r`\Delta=36-36=0\Rightarrow\text{une seule racine}` },
@@ -4243,8 +4243,8 @@ const DB = {
         choices: [r`x=2\text{ et }x=3`, r`x=1\text{ et }x=6`, r`x=-2\text{ et }x=-3`, r`x=5`],
         a: r`x=2\text{ et }x=3`, tip: r`x=\dfrac{5\pm1}{2}\Rightarrow x=3\text{ ou }x=2` },
       { q: r`\Delta<0\Rightarrow\text{l'équation admet :}`,
-        choices: [`\text{aucune solution réelle}`, `\text{deux solutions}`, `\text{une solution double}`, `\text{une solution}`],
-        a: `\text{aucune solution réelle}`, tip: r`\Delta<0\Rightarrow\text{pas de racine réelle}` },
+        choices: [r`\text{aucune solution réelle}`, r`\text{deux solutions}`, r`\text{une solution double}`, r`\text{une solution}`],
+        a: r`\text{aucune solution réelle}`, tip: r`\Delta<0\Rightarrow\text{pas de racine réelle}` },
       { q: r`2x^2-3x+1=0\\[4pt]\Delta=\,?`,
         choices: [`1`, `9`, `-4`, `25`], a: `1`, tip: r`\Delta=9-8=1` },
 
@@ -4274,8 +4274,8 @@ const DB = {
       { q: r`x^2+3x+3=0\\[4pt]\Delta=\,?`,
         choices: [`-3`, `9`, `3`, `0`], a: `-3`, tip: r`\Delta=9-12=-3<0\Rightarrow\text{pas de solution}` },
       { q: r`4x^2-4x+1=0\\[4pt]\text{Nature des solutions :}`,
-        choices: [`\text{une solution double}`, `\text{deux solutions}`, `\text{aucune solution}`, `\text{impossible}`],
-        a: `\text{une solution double}`, tip: r`\Delta=16-16=0\Rightarrow x=\dfrac{1}{2}` },
+        choices: [r`\text{une solution double}`, r`\text{deux solutions}`, r`\text{aucune solution}`, r`\text{impossible}`],
+        a: r`\text{une solution double}`, tip: r`\Delta=16-16=0\Rightarrow x=\dfrac{1}{2}` },
       { q: r`4x^2-4x+1=0,\ \Delta=0\\[4pt]x=\,?`,
         choices: [r`\tfrac{1}{2}`, r`\tfrac{1}{4}`, `1`, `4`], a: r`\tfrac{1}{2}`,
         tip: r`x=\dfrac{-b}{2a}=\dfrac{4}{8}=\dfrac{1}{2}` },
@@ -4297,14 +4297,14 @@ const DB = {
 
     poly_spe_n4: [
       { q: r`f(x)=x^2-5x+6,\ a>0,\ \Delta>0\\[4pt]\text{Signe de }f\text{ entre les racines :}`,
-        choices: [`\text{négatif}`, `\text{positif}`, `\text{nul}`, `\text{impossible à dire}`],
-        a: `\text{négatif}`, tip: r`a>0\Rightarrow f<0\text{ entre }x_1\text{ et }x_2` },
+        choices: [r`\text{négatif}`, r`\text{positif}`, r`\text{nul}`, r`\text{impossible à dire}`],
+        a: r`\text{négatif}`, tip: r`a>0\Rightarrow f<0\text{ entre }x_1\text{ et }x_2` },
       { q: r`f(x)=-x^2+4,\ a<0\\[4pt]\text{Signe de }f\text{ entre les racines :}`,
-        choices: [`\text{positif}`, `\text{négatif}`, `\text{nul}`, `\text{toujours positif}`],
-        a: `\text{positif}`, tip: r`a<0\Rightarrow f>0\text{ entre }x_1\text{ et }x_2` },
+        choices: [r`\text{positif}`, r`\text{négatif}`, r`\text{nul}`, r`\text{toujours positif}`],
+        a: r`\text{positif}`, tip: r`a<0\Rightarrow f>0\text{ entre }x_1\text{ et }x_2` },
       { q: r`f(x)=x^2+1,\ \Delta<0,\ a>0\\[4pt]\text{Signe de }f\text{ sur }\mathbb{R}:`,
-        choices: [`\text{toujours positif}`, `\text{toujours négatif}`, `\text{change de signe}`, `\text{nul}`],
-        a: `\text{toujours positif}`, tip: r`\Delta<0\text{ et }a>0\Rightarrow f>0\text{ sur }\mathbb{R}` },
+        choices: [r`\text{toujours positif}`, r`\text{toujours négatif}`, r`\text{change de signe}`, r`\text{nul}`],
+        a: r`\text{toujours positif}`, tip: r`\Delta<0\text{ et }a>0\Rightarrow f>0\text{ sur }\mathbb{R}` },
       { q: r`f(x)=2(x-1)(x-5)\\[4pt]\text{Sommet de la parabole en }x=\,?`,
         choices: [`3`, `1`, `5`, `10`], a: `3`, tip: r`x_s=\dfrac{x_1+x_2}{2}=\dfrac{1+5}{2}=3` },
       { q: r`f(x)=x^2-6x+5\\[4pt]\text{Minimum de }f=\,?`,
@@ -4375,11 +4375,11 @@ const DB = {
       { q: r`\text{Série : }1\ ;\ 3\ ;\ 5\ ;\ 7\ ;\ 9\ ;\ 11\ ;\ 13\\[4pt]Q_1=\,?`,
         choices: [`3`, `5`, `4`, `7`], a: `3`, tip: r`n=7\text{ : }Q_1=2^\text{e}\text{ valeur}=3` },
       { q: r`Q_3-Q_1\text{ s'appelle...}`,
-        choices: [`\text{écart interquartile}`, `\text{étendue}`, `\text{variance}`, `\text{écart-type}`],
-        a: `\text{écart interquartile}`, tip: r`EI=Q_3-Q_1` },
+        choices: [r`\text{écart interquartile}`, r`\text{étendue}`, r`\text{variance}`, r`\text{écart-type}`],
+        a: r`\text{écart interquartile}`, tip: r`EI=Q_3-Q_1` },
       { q: r`Q_1=15{,}\ Q_3=35\\[4pt]\text{Médiane dans }\left[Q_1\,;Q_3\right]=\,?`,
-        choices: [`\text{Oui}`, `\text{Non}`, `\text{Parfois}`, `\text{Toujours non}`],
-        a: `\text{Oui}`, tip: r`\text{La médiane est toujours entre }Q_1\text{ et }Q_3` },
+        choices: [r`\text{Oui}`, r`\text{Non}`, r`\text{Parfois}`, r`\text{Toujours non}`],
+        a: r`\text{Oui}`, tip: r`\text{La médiane est toujours entre }Q_1\text{ et }Q_3` },
 
       { q: r`\text{min}=10,\ Q_1=20,\ \text{médiane}=30,\ Q_3=40,\ \text{max}=50\\[4pt]\text{Étendue}=\,?`,
         choices: [`40`, `20`, `30`, `50`], a: `40`, tip: r`e=50-10=40` },
@@ -4389,8 +4389,8 @@ const DB = {
         a: r`[10\,;30]`, tip: r`50\%\text{ des données entre }Q_1\text{ et }Q_3` },
 
       { q: r`\text{Série A : }1\ ;\ 5\ ;\ 9\quad\text{Série B : }4\ ;\ 5\ ;\ 6\\[4pt]\text{Série la plus dispersée :}`,
-        choices: [`\text{A}`, `\text{B}`, `\text{Égales}`, `\text{Impossible à dire}`],
-        a: `\text{A}`, tip: r`\text{Étendue A}=8>\text{Étendue B}=2` },
+        choices: [r`\text{A}`, r`\text{B}`, r`\text{Égales}`, r`\text{Impossible à dire}`],
+        a: r`\text{A}`, tip: r`\text{Étendue A}=8>\text{Étendue B}=2` },
 
       { q: r`Q_3-Q_1=18\\[4pt]\text{L'écart interquartile vaut :}`,
         choices: [`18`, `9`, `36`, `6`], a: `18`, tip: r`EI=Q_3-Q_1=18` },
@@ -4407,11 +4407,11 @@ const DB = {
         choices: [r`(0{,}5)^5`, `0`, `0{,}5`, `5\times0{,}5`], a: r`(0{,}5)^5`,
         tip: r`\binom{5}{0}(0{,}5)^5=(0{,}5)^5` },
       { q: r`\text{10 lancers, succès = « 6 »}\\[4pt]\text{Schéma de Bernoulli ?}`,
-        choices: [`\text{Oui}`, `\text{Non}`, `\text{Seulement si équilibré}`, `\text{Impossible}`],
-        a: `\text{Oui}`, tip: r`n=10\text{ épreuves indép., 2 issues}` },
+        choices: [r`\text{Oui}`, r`\text{Non}`, r`\text{Seulement si équilibré}`, r`\text{Impossible}`],
+        a: r`\text{Oui}`, tip: r`n=10\text{ épreuves indép., 2 issues}` },
       { q: r`\Delta<0\Rightarrow\text{pas de racine}`,
-        choices: [`\text{Vrai}`, `\text{Faux}`, `\text{Ça dépend de }a`, `\text{Toujours une racine}`],
-        a: `\text{Vrai}`, tip: r`\Delta<0\Rightarrow\text{pas de solution réelle}` },
+        choices: [r`\text{Vrai}`, r`\text{Faux}`, r`\text{Ça dépend de }a`, r`\text{Toujours une racine}`],
+        a: r`\text{Vrai}`, tip: r`\Delta<0\Rightarrow\text{pas de solution réelle}` },
     ],
 
     echantillonnage: [
@@ -4427,8 +4427,8 @@ const DB = {
         choices: [`[0{,}4\ ;\ 0{,}6]`, `[0{,}25\ ;\ 0{,}75]`, `[0{,}45\ ;\ 0{,}55]`, `[0{,}49\ ;\ 0{,}51]`],
         a: `[0{,}4\ ;\ 0{,}6]`, tip: r`0{,}5\pm0{,}1` },
       { q: r`\text{Fréquence observée DANS l'intervalle}\\[4pt]\text{On conclut :}`,
-        choices: [`\text{compatible avec }p`, `p\text{ est certain}`, `p\text{ est faux}`, `\text{erreur}`],
-        a: `\text{compatible avec }p`, tip: r`\text{Dans l'intervalle }\Rightarrow\text{ compatible}` },
+        choices: [r`\text{compatible avec }p`, `p\text{ est certain}`, `p\text{ est faux}`, r`\text{erreur}`],
+        a: r`\text{compatible avec }p`, tip: r`\text{Dans l'intervalle }\Rightarrow\text{ compatible}` },
     ],
   },
 
@@ -6481,6 +6481,194 @@ function selectQuestionsSmart(pool, n, qStateSnapshot) {
     selected = [...selected, ...remaining];
   }
   return shuffle(selected); // on shuffle l'ordre final pour éviter que ce soit toujours "learning" d'abord
+}
+
+// ── Moteur de détection d'erreurs (feedback personnalisé) ───────────────────
+// Analyse (bonneRéponse, réponseÉlève) et renvoie un message de feedback ciblé.
+// Renvoie null si aucun pattern ne matche (on retombe alors sur le tip générique).
+
+// Helper : parse un nombre simple (entier, décimal, signé) depuis un string
+function tryParseNumber(s) {
+  if (typeof s !== 'string') return null;
+  const cleaned = s.trim().replace(',', '.').replace(/\s/g, '');
+  // Rejet si ça contient autre chose qu'un nombre signé
+  if (!/^-?\d+(\.\d+)?$/.test(cleaned)) return null;
+  return parseFloat(cleaned);
+}
+
+// Helper : extraction d'une fraction a/b depuis un string type "3/4" ou "-3/4"
+function tryParseFraction(s) {
+  if (typeof s !== 'string') return null;
+  const m = s.trim().match(/^(-?\d+)\s*\/\s*(-?\d+)$/);
+  if (!m) return null;
+  const num = parseInt(m[1]);
+  const den = parseInt(m[2]);
+  if (den === 0) return null;
+  return { num, den, value: num / den };
+}
+
+// Helper : compare deux polynômes simples en comptant les occurrences de motifs clés
+function polyInfo(tex) {
+  if (typeof tex !== 'string') return null;
+  // Détecte x^2, 2ab (terme du milieu), constante
+  return {
+    hasSquare: /x\^?\{?2\}?/.test(tex) || /x²/.test(tex),
+    hasLinearX: /(^|[^\^])\d*x(?![\^\d])/.test(tex.replace(/x\^?\{?2\}?/g, '').replace(/x²/g, '')),
+    raw: tex,
+  };
+}
+
+// Liste des patterns — ordre d'importance (le 1er qui matche gagne)
+const ERROR_PATTERNS = [
+  // 1. Signe inversé (très fréquent)
+  {
+    name: 'sign_flip',
+    detect: (correct, given) => {
+      const a = tryParseNumber(correct), b = tryParseNumber(given);
+      if (a === null || b === null) return false;
+      if (a === 0 || b === 0) return false;
+      return Math.abs(a + b) < 1e-9; // a = -b
+    },
+    message: "⚠️ Attention au signe. Le résultat est juste en valeur absolue, mais le signe est inversé.",
+  },
+
+  // 2. Double / moitié (erreur fréquente : confondre ab et 2ab)
+  {
+    name: 'double_value',
+    detect: (correct, given) => {
+      const a = tryParseNumber(correct), b = tryParseNumber(given);
+      if (a === null || b === null || a === 0) return false;
+      return Math.abs(b - 2 * a) < 1e-9;
+    },
+    message: "Tu as obtenu le double du résultat. Vérifie si tu n'as pas compté un terme deux fois.",
+  },
+  {
+    name: 'half_value',
+    detect: (correct, given) => {
+      const a = tryParseNumber(correct), b = tryParseNumber(given);
+      if (a === null || b === null || a === 0) return false;
+      return Math.abs(b - a / 2) < 1e-9;
+    },
+    message: "Tu as la moitié du résultat. As-tu oublié un facteur 2 quelque part ?",
+  },
+
+  // 3. Fraction inversée
+  {
+    name: 'fraction_inverted',
+    detect: (correct, given) => {
+      const fa = tryParseFraction(correct), fb = tryParseFraction(given);
+      if (!fa || !fb) return false;
+      return fa.num === fb.den && fa.den === fb.num;
+    },
+    message: "Tu as inversé la fraction. Le numérateur et le dénominateur sont à permuter.",
+  },
+
+  // 4. Oubli du double produit dans (a+b)²
+  //    Pattern : correct = x²+2kx+k², given = x²+k² (manque le terme en x)
+  {
+    name: 'missing_double_product',
+    detect: (correct, given, q) => {
+      if (typeof correct !== 'string' || typeof given !== 'string') return false;
+      if (!q || !q.q || !/\(.+\)\^?\{?2\}?|\(.+\)²/.test(q.q)) return false; // question du type (…)²
+      const pc = polyInfo(correct), pg = polyInfo(given);
+      if (!pc || !pg) return false;
+      // correct a un terme linéaire en x, given n'en a pas
+      return pc.hasSquare && pc.hasLinearX && pg.hasSquare && !pg.hasLinearX;
+    },
+    message: "Tu as oublié le double produit. Rappel : (a+b)² = a² + 2ab + b² — pas seulement a² + b².",
+  },
+
+  // 5. Erreur de distributivité (oubli du signe négatif devant parenthèse)
+  //    Détection heuristique : la bonne réponse et la donnée diffèrent par le signe d'un des termes
+  //    Approximation simple : pour les questions contenant "−(" ou "-(", détection par différence numérique double
+  {
+    name: 'distributivity_sign',
+    detect: (correct, given, q) => {
+      if (!q || typeof q.q !== 'string') return false;
+      if (!/-\s*\(/.test(q.q) && !/−\s*\(/.test(q.q)) return false;
+      const a = tryParseNumber(correct), b = tryParseNumber(given);
+      if (a === null || b === null) return false;
+      // Si l'élève a "oublié" de distribuer le signe, la différence est souvent une valeur
+      // correspondant à deux fois un terme ; heuristique faible
+      return Math.abs(a - b) > 1e-9 && Math.abs(a) + Math.abs(b) > 0;
+    },
+    message: "Attention à la distribution du signe « − » devant la parenthèse. Chaque terme à l'intérieur change de signe.",
+  },
+
+  // 6. Racine vs carré (détecte si l'élève a élevé au carré au lieu de racine, ou l'inverse)
+  {
+    name: 'root_vs_square',
+    detect: (correct, given, q) => {
+      if (!q || typeof q.q !== 'string') return false;
+      if (!/\\sqrt|√/.test(q.q)) return false;
+      const a = tryParseNumber(correct), b = tryParseNumber(given);
+      if (a === null || b === null || a <= 0) return false;
+      return Math.abs(b - a * a) < 1e-9;
+    },
+    message: "Tu as élevé au carré au lieu de prendre la racine. √a, c'est le nombre dont le carré vaut a.",
+  },
+
+  // 7. Confusion multiplication / addition pour petites valeurs (tables)
+  {
+    name: 'mul_vs_add',
+    detect: (correct, given, q) => {
+      if (!q || typeof q.q !== 'string') return false;
+      if (!/\\times|×/.test(q.q)) return false;
+      // Extraire les deux facteurs de la question
+      const m = q.q.match(/(\d+)\s*(?:\\times|×)\s*(\d+)/);
+      if (!m) return false;
+      const a = parseInt(m[1]), b = parseInt(m[2]);
+      const g = tryParseNumber(given);
+      if (g === null) return false;
+      return g === a + b;
+    },
+    message: "Tu as additionné au lieu de multiplier. Ici c'est une multiplication.",
+  },
+
+  // 8. Puissance : a^n interprété comme a*n (erreur très classique)
+  {
+    name: 'power_vs_mult',
+    detect: (correct, given, q) => {
+      if (!q || typeof q.q !== 'string') return false;
+      const m = q.q.match(/(\d+)\s*\^\s*\{?(\d+)\}?/);
+      if (!m) return false;
+      const a = parseInt(m[1]), n = parseInt(m[2]);
+      const g = tryParseNumber(given);
+      if (g === null) return false;
+      return g === a * n;
+    },
+    message: "Attention : aⁿ ce n'est pas a × n, mais a multiplié par lui-même n fois. Par ex. 2³ = 2×2×2 = 8, pas 2×3 = 6.",
+  },
+
+  // 9. Unité / conversion oubliée (seulement pour les questions de conversion)
+  {
+    name: 'unit_shift',
+    detect: (correct, given, q) => {
+      if (!q || typeof q.q !== 'string') return false;
+      // Restriction : uniquement pour les vraies questions de conversion d'unités
+      // (présence d'unités classiques, pas de puissances)
+      if (/\^/.test(q.q)) return false; // pas de puissance
+      if (!/\b(km|hm|dam|cm|mm|dm|kg|hg|dag|dg|cg|mg|hl|dal|dl|cl|ml|°C|litre|gramme|mètre|convertis|conversion|heure|minute|seconde|\d+\s*[a-z])/.test(q.q)) return false;
+      const a = tryParseNumber(correct), b = tryParseNumber(given);
+      if (a === null || b === null || a === 0) return false;
+      const ratios = [10, 100, 1000, 0.1, 0.01, 0.001];
+      for (const r of ratios) {
+        if (Math.abs(b - a * r) < 1e-9) return true;
+      }
+      return false;
+    },
+    message: "Le résultat est correct mais d'un facteur 10, 100 ou 1000 à côté. Vérifie la conversion d'unités ou le décalage de la virgule.",
+  },
+];
+
+function detectErrorPattern(correct, given, question) {
+  if (correct === given) return null;
+  for (const p of ERROR_PATTERNS) {
+    try {
+      if (p.detect(correct, given, question)) return p.message;
+    } catch { /* un pattern qui plante ne doit pas casser le quiz */ }
+  }
+  return null;
 }
 
 // ── Badge unlock helper ───────────────────────────────────────────────────────
@@ -9505,6 +9693,11 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
 
   const didAnswer  = isDrag?dragDone:(isNum||isSol||isEq||isExpr||isFrac)?padState!=="idle":isTab?tabValidated:shown;
   const wasCorrect = isDrag?dragCorrect:(isNum||isSol||isEq||isExpr||isFrac)?padState==="correct":isTab?allCorrect:selected===q.a;
+  // Feedback personnalisé Tier 1 : détection automatique du type d'erreur
+  // Actif uniquement pour les QCM (où on sait ce que l'élève a choisi)
+  const personalizedFeedback = (!wasCorrect && !isDrag && !isNum && !isTab && !isSol && !isEq && !isExpr && !isFrac && shown && selected)
+    ? detectErrorPattern(q.a, selected, q)
+    : null;
 
   return (
     <div style={{display:"flex",flexDirection:"column",minHeight:"100%",padding:"16px 16px 14px"}}>
@@ -9687,6 +9880,21 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
               </span>
             )}
           </div>
+          {/* Feedback personnalisé Tier 1 — message contextuel sur l'erreur type */}
+          {personalizedFeedback && (
+            <div style={{
+              background:"#FEF3C7", borderRadius:10, padding:"9px 12px",
+              borderLeft:"3px solid #F59E0B", marginBottom: q.tip ? 7 : 0
+            }}>
+              <div style={{fontSize:9, fontWeight:700, color:"#92400E",
+                textTransform:"uppercase", letterSpacing:0.8, marginBottom:4}}>
+                Sigma a repéré
+              </div>
+              <div style={{fontSize:12, color:"#78350F", lineHeight:1.5}}>
+                {personalizedFeedback}
+              </div>
+            </div>
+          )}
           {q.tip && (
             <div style={{
               background:wasCorrect?"rgba(16,185,129,0.08)":"rgba(239,68,68,0.06)",
