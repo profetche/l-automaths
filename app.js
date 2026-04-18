@@ -7481,9 +7481,9 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress}) {
   // - Missions : objectifs ciblés
   // - Bac : annales
   const modes = [
-    {id:"sprint",      label:"Sprint 5 min",         sub:"Vite, chrono !",         emoji:"⏱️", grad:"linear-gradient(135deg,#F59E0B,#D97706)"},
-    {id:"train",       label:"S'entraîner",          sub:"Choisis ton format",     emoji:"💪", grad:"linear-gradient(135deg,#3B82F6,#1D4ED8)"},
-    {id:"missions",    label:"Les missions",         sub:"Objectifs ciblés Sigma", emoji:"🚀", grad:"linear-gradient(135deg,#F97316,#C2410C)"},
+    {id:"sprint",      label:"Sprint 5 min",         sub:"Vite, chrono !",         emoji:"⏱️", grad:"linear-gradient(135deg,#10B981,#047857)"},
+    {id:"train",       label:"S'entraîner",          sub:"Choisis ton format",     emoji:"💪", grad:"linear-gradient(135deg,#8B5CF6,#6D28D9)"},
+    {id:"missions",    label:"Les missions",         sub:"Objectifs ciblés Sigma", emoji:"🚀", grad:"linear-gradient(135deg,#3B82F6,#1D4ED8)"},
     {id:"bac",         label:"En route pour le Bac", sub:"Annales & sujets",       emoji:"🏆", grad:"linear-gradient(135deg,#F59E0B,#B45309)"},
   ];
   return (
