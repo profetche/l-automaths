@@ -901,115 +901,115 @@ const DB = {
         gspec: { fn:x=>-x*x+4, xr:[-4,4], yr:[-2,5],
           extras:c=><>{gDH(0,c,"#94A3B8")}{gPt(-2,0,c)}{gPt(2,0,c)}</> },
         choices:[r`x=-2\text{ et }x=2`,r`x=4`,r`x=0`,r`x=-4\text{ et }x=4`],
-        a:r`x=-2\text{ et }x=2`, tip:r`-x^2+4=0\Rightarrow x=\pm2` },
+        a:r`x=-2\text{ et }x=2`, tip:r`\text{On trace l'horizontale }y=0\\[4pt]\text{et on lit les abscisses}\\[4pt]\text{des intersections avec la courbe}` },
 
       { q: r`\text{Antécédents de }3\text{ d'après le graphique :}`,
         gspec: { fn:x=>x*x-1, xr:[-3,3], yr:[-2,5],
           extras:c=><>{gDH(3,c)}{gPt(-2,3,c)}{gPt(2,3,c)}</> },
         choices:[r`x=-2\text{ et }x=2`,r`x=3`,r`x=-3\text{ et }x=3`,r`x=1`],
-        a:r`x=-2\text{ et }x=2`, tip:r`x^2-1=3\Rightarrow x=\pm2` },
+        a:r`x=-2\text{ et }x=2`, tip:r`\text{On trace l'horizontale }y=3\\[4pt]\text{et on lit les abscisses}\\[4pt]\text{des intersections avec la courbe}` },
 
       { q: r`\text{D'après le graphique, }f(0)=?`,
         gspec: { fn:x=>2*x-1, xr:[-3,4], yr:[-4,5],
           extras:c=><>{gPt(0,-1,c)}{gNote(0,-1,'f(0)',c,'#EF4444')}</> },
-        choices:[`-1`,`0`,`1`,`2`], a:`-1`, tip:r`\text{Ordonnée à l'origine}` },
+        choices:[`-1`,`0`,`1`,`2`], a:`-1`, tip:r`\text{On repère }x=0\text{ sur l'axe }(Ox)\\[4pt]\text{puis on lit l'ordonnée sur la courbe}` },
 
       // ── NUMPAD — images ──
       { q: r`f(3)=?`,
         gspec:{ fn:x=>x+2, xr:[-4,4], yr:[-2,7],
           extras:c=><>{gDV(3,c)}{gDH(5,c)}{gPt(3,5,c)}</> },
-        numpad:true, a:"5", tip:r`f(3)=3+2=5` },
+        numpad:true, a:"5", tip:r`\text{On repère }x=3\text{ sur l'axe }(Ox)\\[4pt]\text{puis on lit l'ordonnée sur la courbe}` },
 
       { q: r`f(2)=?`,
         gspec:{ fn:x=>x*x-2, xr:[-3,3], yr:[-3,5],
           extras:c=><>{gDV(2,c)}{gDH(2,c)}{gPt(2,2,c)}</> },
-        numpad:true, a:"2", tip:r`f(2)=4-2=2` },
+        numpad:true, a:"2", tip:r`\text{On repère }x=2\text{ sur l'axe }(Ox)\\[4pt]\text{puis on lit l'ordonnée sur la courbe}` },
 
       { q: r`f(-1)=?`,
         gspec:{ fn:x=>-x+4, xr:[-2,5], yr:[-1,6],
           extras:c=><>{gDV(-1,c)}{gDH(5,c)}{gPt(-1,5,c)}</> },
-        numpad:true, a:"5", tip:r`f(-1)=1+4=5` },
+        numpad:true, a:"5", tip:r`\text{On repère }x=-1\text{ sur l'axe }(Ox)\\[4pt]\text{puis on lit l'ordonnée sur la courbe}` },
 
       { q: r`f(3)=?`,
         gspec:{ fn:x=>2*x+1, xr:[-2,4], yr:[-3,8],
           extras:c=><>{gDV(3,c)}{gDH(7,c)}{gPt(3,7,c)}</> },
-        numpad:true, a:"7", tip:r`f(3)=6+1=7` },
+        numpad:true, a:"7", tip:r`\text{On repère }x=3\text{ sur l'axe }(Ox)\\[4pt]\text{puis on lit l'ordonnée sur la courbe}` },
 
       { q: r`f(-2)=?`,
         gspec:{ fn:x=>x*x+1, xr:[-3,3], yr:[-1,6],
           extras:c=><>{gDV(-2,c)}{gDH(5,c)}{gPt(-2,5,c)}</> },
-        numpad:true, a:"5", tip:r`f(-2)=4+1=5` },
+        numpad:true, a:"5", tip:r`\text{On repère }x=-2\text{ sur l'axe }(Ox)\\[4pt]\text{puis on lit l'ordonnée sur la courbe}` },
 
       { q: r`f(-2)=?`,
         gspec:{ fn:x=>-x*x+9, xr:[-4,4], yr:[-1,10],
           extras:c=><>{gDV(-2,c)}{gDH(5,c)}{gPt(-2,5,c)}</> },
-        numpad:true, a:"5", tip:r`f(-2)=-4+9=5` },
+        numpad:true, a:"5", tip:r`\text{On repère }x=-2\text{ sur l'axe }(Ox)\\[4pt]\text{puis on lit l'ordonnée sur la courbe}` },
 
       { q: r`f(0)=?`,
         gspec:{ fn:x=>x*x-4, xr:[-3,3], yr:[-5,4],
           extras:c=><>{gPt(0,-4,c)}</> },
-        numpad:true, a:"-4", tip:r`f(0)=0-4=-4` },
+        numpad:true, a:"-4", tip:r`\text{On repère }x=0\text{ sur l'axe }(Ox)\\[4pt]\text{puis on lit l'ordonnée sur la courbe}` },
 
       { q: r`f(4)=?`,
         gspec:{ fn:x=>3*x-6, xr:[-1,4], yr:[-7,7],
           extras:c=><>{gDV(4,c)}{gDH(6,c)}{gPt(4,6,c)}</> },
-        numpad:true, a:"6", tip:r`f(4)=12-6=6` },
+        numpad:true, a:"6", tip:r`\text{On repère }x=4\text{ sur l'axe }(Ox)\\[4pt]\text{puis on lit l'ordonnée sur la courbe}` },
 
       { q: r`f(1)=?`,
         gspec:{ fn:x=>-2*x+6, xr:[-1,4], yr:[-2,8],
           extras:c=><>{gDV(1,c)}{gDH(4,c)}{gPt(1,4,c)}</> },
-        numpad:true, a:"4", tip:r`f(1)=-2+6=4` },
+        numpad:true, a:"4", tip:r`\text{On repère }x=1\text{ sur l'axe }(Ox)\\[4pt]\text{puis on lit l'ordonnée sur la courbe}` },
 
       { q: r`f(3)=?`,
         gspec:{ fn:x=>x*x-x, xr:[-2,4], yr:[-2,7],
           extras:c=><>{gDV(3,c)}{gDH(6,c)}{gPt(3,6,c)}</> },
-        numpad:true, a:"6", tip:r`f(3)=9-3=6` },
+        numpad:true, a:"6", tip:r`\text{On repère }x=3\text{ sur l'axe }(Ox)\\[4pt]\text{puis on lit l'ordonnée sur la courbe}` },
 
       // ── NUMPAD — antécédents ──
       { q: r`\text{Antécédent de }5=?`,
         gspec:{ fn:x=>x+2, xr:[-3,5], yr:[-1,8],
           extras:c=><>{gDH(5,c)}{gDV(3,c)}{gPt(3,5,c)}</> },
-        numpad:true, a:"3", tip:r`x+2=5\Rightarrow x=3` },
+        numpad:true, a:"3", tip:r`\text{On trace l'horizontale }y=5\\[4pt]\text{et on lit les abscisses}\\[4pt]\text{des intersections avec la courbe}` },
 
       { q: r`\text{Antécédent de }3=?`,
         gspec:{ fn:x=>2*x-1, xr:[-2,4], yr:[-3,7],
           extras:c=><>{gDH(3,c)}{gDV(2,c)}{gPt(2,3,c)}</> },
-        numpad:true, a:"2", tip:r`2x-1=3\Rightarrow x=2` },
+        numpad:true, a:"2", tip:r`\text{On trace l'horizontale }y=3\\[4pt]\text{et on lit les abscisses}\\[4pt]\text{des intersections avec la courbe}` },
 
       { q: r`\text{Antécédent de }2=?`,
         gspec:{ fn:x=>-x+5, xr:[-1,6], yr:[-2,7],
           extras:c=><>{gDH(2,c)}{gDV(3,c)}{gPt(3,2,c)}</> },
-        numpad:true, a:"3", tip:r`-x+5=2\Rightarrow x=3` },
+        numpad:true, a:"3", tip:r`\text{On trace l'horizontale }y=2\\[4pt]\text{et on lit les abscisses}\\[4pt]\text{des intersections avec la courbe}` },
 
       { q: r`\text{Antécédent de }9=?`,
         gspec:{ fn:x=>3*x, xr:[-1,4], yr:[-3,10],
           extras:c=><>{gDH(9,c)}{gDV(3,c)}{gPt(3,9,c)}</> },
-        numpad:true, a:"3", tip:r`3x=9\Rightarrow x=3` },
+        numpad:true, a:"3", tip:r`\text{On trace l'horizontale }y=9\\[4pt]\text{et on lit les abscisses}\\[4pt]\text{des intersections avec la courbe}` },
 
       { q: r`\text{Antécédent de }2=?`,
         gspec:{ fn:x=>-2*x+8, xr:[-1,5], yr:[-2,9],
           extras:c=><>{gDH(2,c)}{gDV(3,c)}{gPt(3,2,c)}</> },
-        numpad:true, a:"3", tip:r`-2x+8=2\Rightarrow x=3` },
+        numpad:true, a:"3", tip:r`\text{On trace l'horizontale }y=2\\[4pt]\text{et on lit les abscisses}\\[4pt]\text{des intersections avec la courbe}` },
 
       { q: r`\text{Antécédent de }0=?`,
         gspec:{ fn:x=>x+4, xr:[-6,3], yr:[-2,7],
           extras:c=><>{gDH(0,c,"#94A3B8")}{gDV(-4,c)}{gPt(-4,0,c)}</> },
-        numpad:true, a:"-4", tip:r`x+4=0\Rightarrow x=-4` },
+        numpad:true, a:"-4", tip:r`\text{On trace l'horizontale }y=0\\[4pt]\text{et on lit les abscisses}\\[4pt]\text{des intersections avec la courbe}` },
 
       { q: r`\text{Antécédent de }6=?`,
         gspec:{ fn:x=>2*x+2, xr:[-2,4], yr:[-2,8],
           extras:c=><>{gDH(6,c)}{gDV(2,c)}{gPt(2,6,c)}</> },
-        numpad:true, a:"2", tip:r`2x+2=6\Rightarrow x=2` },
+        numpad:true, a:"2", tip:r`\text{On trace l'horizontale }y=6\\[4pt]\text{et on lit les abscisses}\\[4pt]\text{des intersections avec la courbe}` },
 
       { q: r`\text{Antécédent de }{-1}=?`,
         gspec:{ fn:x=>-x+3, xr:[-1,5], yr:[-3,5],
           extras:c=><>{gDH(-1,c)}{gDV(4,c)}{gPt(4,-1,c)}</> },
-        numpad:true, a:"4", tip:r`-x+3=-1\Rightarrow x=4` },
+        numpad:true, a:"4", tip:r`\text{On trace l'horizontale }y=-1\\[4pt]\text{et on lit les abscisses}\\[4pt]\text{des intersections avec la courbe}` },
 
       { q: r`\text{Antécédent de }4=?`,
         gspec:{ fn:x=>4*x-8, xr:[-1,4], yr:[-9,9],
           extras:c=><>{gDH(4,c)}{gDV(3,c)}{gPt(3,4,c)}</> },
-        numpad:true, a:"3", tip:r`4x-8=4\Rightarrow x=3` },
+        numpad:true, a:"3", tip:r`\text{On trace l'horizontale }y=4\\[4pt]\text{et on lit les abscisses}\\[4pt]\text{des intersections avec la courbe}` },
     ],
 
     // ── b. Résolution graphique ──
@@ -1019,173 +1019,173 @@ const DB = {
         gspec: { fn:x=>x*x-4, xr:[-4,4], yr:[-5,4],
           extras:c=><>{gDH(0,c,"#94A3B8")}{gPt(-2,0,c)}{gPt(2,0,c)}</> },
         choices:[r`S=\{-2\ ;\ 2\}`,r`S=\{-4\ ;\ 4\}`,r`S=\{2\}`,r`S=\emptyset`],
-        a:r`S=\{-2\ ;\ 2\}`, tip:r`\text{Abscisses des intersections avec }(Ox)` },
+        a:r`S=\{-2\ ;\ 2\}`, tip:r`\text{Abscisses des points où la courbe}\\[4pt]\text{coupe l'axe }(Ox)` },
 
       { q: r`f(x)>0\text{ pour (graphique) :}`,
         gspec: { fn:x=>-x*x+4, xr:[-4,4], yr:[-2,5],
           extras:c=><>{gDH(0,c,"#94A3B8")}{gPt(-2,0,c,'#F59E0B')}{gPt(2,0,c,'#F59E0B')}</> },
         choices:[r`x\in{]}\ {-2}\ ;\ 2\ {[}`,r`x\in{[}{-2}\ ;\ 2{]}`,r`x\in{]}{-\infty}\ ;\ {-2}{[}\cup{]}2\ ;\ {+\infty}{[}`,r`\text{Jamais}`],
-        a:r`x\in{]}\ {-2}\ ;\ 2\ {[}`, tip:r`f(x)>0\Leftrightarrow\text{courbe strictement au-dessus de }(Ox)` },
+        a:r`x\in{]}\ {-2}\ ;\ 2\ {[}`, tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement au-dessus de l'axe }(Ox)` },
 
       { q: r`f(x)\geq0\text{ pour (graphique) :}`,
         gspec: { fn:x=>x-2, xr:[-2,5], yr:[-4,4],
           extras:c=><>{gDH(0,c,"#94A3B8")}{gPt(2,0,c,'#F59E0B')}</> },
         choices:[r`x\in[2\ ;\ +\infty[`,r`x\in]2\ ;\ +\infty[`,r`x\in{]}\ {-\infty}\ ;\ 2{]}`,r`\text{Toujours}`],
-        a:r`x\in[2\ ;\ +\infty[`, tip:r`x-2\geq0\Leftrightarrow x\geq2\Rightarrow[2\ ;\ +\infty[` },
+        a:r`x\in[2\ ;\ +\infty[`, tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{au-dessus ou sur l'axe }(Ox)` },
 
       // ── NUMPAD — équations f(x)=k, trouver x ──
       { q: r`\text{Résoudre graphiquement }f(x)=4`,
         gspec:{ fn:x=>x+1, fn2:x=>4, xr:[-2,5], yr:[-1,6],
           extras:c=><>{gPt(3,4,c)}</> },
-        eqpad:true, a:"{3}", tip:r`S=\{3\}\ :\ x+1=4\Rightarrow x=3` },
+        eqpad:true, a:"{3}", tip:r`\text{On trace l'horizontale }y=4\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=1`,
         gspec:{ fn:x=>2*x-3, fn2:x=>1, xr:[-1,4], yr:[-4,6],
           extras:c=><>{gPt(2,1,c)}</> },
-        eqpad:true, a:"{2}", tip:r`S=\{2\}\ :\ 2x-3=1\Rightarrow x=2` },
+        eqpad:true, a:"{2}", tip:r`\text{On trace l'horizontale }y=1\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=2`,
         gspec:{ fn:x=>-x+5, fn2:x=>2, xr:[-1,6], yr:[-1,7],
           extras:c=><>{gPt(3,2,c)}</> },
-        eqpad:true, a:"{3}", tip:r`S=\{3\}\ :\ -x+5=2\Rightarrow x=3` },
+        eqpad:true, a:"{3}", tip:r`\text{On trace l'horizontale }y=2\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=0`,
         gspec:{ fn:x=>3*x-6, fn2:x=>0, xr:[-1,4], yr:[-7,5],
           extras:c=><>{gPt(2,0,c)}</> },
-        eqpad:true, a:"{2}", tip:r`S=\{2\}\ :\ 3x-6=0\Rightarrow x=2` },
+        eqpad:true, a:"{2}", tip:r`\text{On trace l'horizontale }y=0\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=2`,
         gspec:{ fn:x=>-2*x+8, fn2:x=>2, xr:[-1,5], yr:[-1,9],
           extras:c=><>{gPt(3,2,c)}</> },
-        eqpad:true, a:"{3}", tip:r`S=\{3\}\ :\ -2x+8=2\Rightarrow x=3` },
+        eqpad:true, a:"{3}", tip:r`\text{On trace l'horizontale }y=2\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=-1`,
         gspec:{ fn:x=>x-4, fn2:x=>-1, xr:[-1,5], yr:[-5,3],
           extras:c=><>{gPt(3,-1,c)}</> },
-        eqpad:true, a:"{3}", tip:r`S=\{3\}\ :\ x-4=-1\Rightarrow x=3` },
+        eqpad:true, a:"{3}", tip:r`\text{On trace l'horizontale }y=-1\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=0`,
         gspec:{ fn:x=>2*x+4, fn2:x=>0, xr:[-4,2], yr:[-3,7],
           extras:c=><>{gPt(-2,0,c)}</> },
-        eqpad:true, a:"{-2}", tip:r`S=\{-2\}\ :\ 2x+4=0\Rightarrow x=-2` },
+        eqpad:true, a:"{-2}", tip:r`\text{On trace l'horizontale }y=0\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=4`,
         gspec:{ fn:x=>4*x-8, fn2:x=>4, xr:[-1,4], yr:[-9,9],
           extras:c=><>{gPt(3,4,c)}</> },
-        eqpad:true, a:"{3}", tip:r`S=\{3\}\ :\ 4x-8=4\Rightarrow x=3` },
+        eqpad:true, a:"{3}", tip:r`\text{On trace l'horizontale }y=4\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=-3`,
         gspec:{ fn:x=>-x+1, fn2:x=>-3, xr:[-1,5], yr:[-4,3],
           extras:c=><>{gPt(4,-3,c)}</> },
-        eqpad:true, a:"{4}", tip:r`S=\{4\}\ :\ -x+1=-3\Rightarrow x=4` },
+        eqpad:true, a:"{4}", tip:r`\text{On trace l'horizontale }y=-3\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=6`,
         gspec:{ fn:x=>3*x+3, fn2:x=>6, xr:[-2,3], yr:[-3,9],
           extras:c=><>{gPt(1,6,c)}</> },
-        eqpad:true, a:"{1}", tip:r`S=\{1\}\ :\ 3x+3=6\Rightarrow x=1` },
+        eqpad:true, a:"{1}", tip:r`\text{On trace l'horizontale }y=6\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
 
       // ── SOLPAD — inéquations, ensemble solution complet ──
       { q: r`\text{Résoudre graphiquement }f(x)>0`,
         gspec:{ fn:x=>x-3, fn2:x=>0, xr:[-1,5], yr:[-4,3],
           extras:c=><>{gPt(3,0,c,'#F59E0B')}</> },
-        solpad:true, a:"]3;+∞[", tip:r`x-3>0\Rightarrow x>3\Rightarrow S=\,]3\,;\,+\infty[` },
+        solpad:true, a:"]3;+∞[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement au-dessus de l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)<0`,
         gspec:{ fn:x=>-x+4, fn2:x=>0, xr:[-1,6], yr:[-2,6],
           extras:c=><>{gPt(4,0,c,'#F59E0B')}</> },
-        solpad:true, a:"]4;+∞[", tip:r`-x+4<0\Rightarrow x>4\Rightarrow S=\,]4\,;\,+\infty[` },
+        solpad:true, a:"]4;+∞[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement en-dessous de l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)\geq0`,
         gspec:{ fn:x=>2*x-6, fn2:x=>0, xr:[-1,5], yr:[-7,5],
           extras:c=><>{gPt(3,0,c,'#F59E0B')}</> },
-        solpad:true, a:"[3;+∞[", tip:r`2x-6\geq0\Rightarrow x\geq3\Rightarrow S=\,[3\,;\,+\infty[` },
+        solpad:true, a:"[3;+∞[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{au-dessus ou sur l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)\leq0`,
         gspec:{ fn:x=>x+2, fn2:x=>0, xr:[-4,2], yr:[-3,5],
           extras:c=><>{gPt(-2,0,c,'#F59E0B')}</> },
-        solpad:true, a:"]-∞;-2]", tip:r`x+2\leq0\Rightarrow x\leq-2\Rightarrow S=\,]\!-\infty\,;\,-2]` },
+        solpad:true, a:"]-∞;-2]", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{en-dessous ou sur l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)\leq0`,
         gspec:{ fn:x=>-2*x+4, fn2:x=>0, xr:[-1,5], yr:[-4,6],
           extras:c=><>{gPt(2,0,c,'#F59E0B')}</> },
-        solpad:true, a:"[2;+∞[", tip:r`-2x+4\leq0\Rightarrow x\geq2\Rightarrow S=\,[2\,;\,+\infty[` },
+        solpad:true, a:"[2;+∞[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{en-dessous ou sur l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)>0`,
         gspec:{ fn:x=>3*x-9, fn2:x=>0, xr:[-1,5], yr:[-10,5],
           extras:c=><>{gPt(3,0,c,'#F59E0B')}</> },
-        solpad:true, a:"]3;+∞[", tip:r`3x-9>0\Rightarrow x>3\Rightarrow S=\,]3\,;\,+\infty[` },
+        solpad:true, a:"]3;+∞[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement au-dessus de l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)>0`,
         gspec:{ fn:x=>-x-1, fn2:x=>0, xr:[-4,2], yr:[-3,4],
           extras:c=><>{gPt(-1,0,c,'#F59E0B')}</> },
-        solpad:true, a:"]-∞;-1[", tip:r`-x-1>0\Rightarrow x<-1\Rightarrow S=\,]\!-\infty\,;\,-1[` },
+        solpad:true, a:"]-∞;-1[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement au-dessus de l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)\geq0`,
         gspec:{ fn:x=>x-1, fn2:x=>0, xr:[-2,4], yr:[-3,4],
           extras:c=><>{gPt(1,0,c,'#F59E0B')}</> },
-        solpad:true, a:"[1;+∞[", tip:r`x-1\geq0\Rightarrow x\geq1\Rightarrow S=\,[1\,;\,+\infty[` },
+        solpad:true, a:"[1;+∞[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{au-dessus ou sur l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)\geq0`,
         gspec:{ fn:x=>2*x+6, fn2:x=>0, xr:[-5,2], yr:[-3,8],
           extras:c=><>{gPt(-3,0,c,'#F59E0B')}</> },
-        solpad:true, a:"[-3;+∞[", tip:r`2x+6\geq0\Rightarrow x\geq-3\Rightarrow S=\,[-3\,;\,+\infty[` },
+        solpad:true, a:"[-3;+∞[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{au-dessus ou sur l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)<0`,
         gspec:{ fn:x=>-3*x+6, fn2:x=>0, xr:[-1,4], yr:[-4,8],
           extras:c=><>{gPt(2,0,c,'#F59E0B')}</> },
-        solpad:true, a:"]2;+∞[", tip:r`-3x+6<0\Rightarrow x>2\Rightarrow S=\,]2\,;\,+\infty[` },
+        solpad:true, a:"]2;+∞[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement en-dessous de l'axe }(Ox)` },
 
       // ── Équations — polynômes deg. 2-3 & homographiques (EqPad) ──
 
       { q: r`\text{Résoudre graphiquement }f(x)=9\text{ (lire }x>0\text{)}`,
         gspec:{ fn:x=>x*x, fn2:x=>9, xr:[0,4], yr:[-1,10],
           extras:c=><>{gPt(3,9,c)}</> },
-        eqpad:true, a:"{3}", tip:r`S=\{3\}\ :\ x^2=9\Rightarrow x=3\text{ (sur }[0;4]\text{)}` },
+        eqpad:true, a:"{3}", tip:r`\text{On trace l'horizontale }y=9\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=0\text{ (lire }x>0\text{)}`,
         gspec:{ fn:x=>-x*x+4, fn2:x=>0, xr:[0,4], yr:[-2,5],
           extras:c=><>{gPt(2,0,c)}</> },
-        eqpad:true, a:"{2}", tip:r`S=\{2\}\ :\ -x^2+4=0\Rightarrow x=2\text{ (racine positive)}` },
+        eqpad:true, a:"{2}", tip:r`\text{On trace l'horizontale }y=0\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=-8`,
         gspec:{ fn:x=>x*x*x, fn2:x=>-8, xr:[-3,1], yr:[-9,3],
           extras:c=><>{gPt(-2,-8,c)}</> },
-        eqpad:true, a:"{-2}", tip:r`S=\{-2\}\ :\ x^3=-8\Rightarrow x=-2` },
+        eqpad:true, a:"{-2}", tip:r`\text{On trace l'horizontale }y=-8\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=8`,
         gspec:{ fn:x=>x*x*x, fn2:x=>8, xr:[0,3], yr:[-1,10],
           extras:c=><>{gPt(2,8,c)}</> },
-        eqpad:true, a:"{2}", tip:r`S=\{2\}\ :\ x^3=8\Rightarrow x=2` },
+        eqpad:true, a:"{2}", tip:r`\text{On trace l'horizontale }y=8\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=-3\text{ (lire }x>0\text{)}`,
         gspec:{ fn:x=>x*x-4*x, fn2:x=>-3, xr:[1,5], yr:[-5,4],
           extras:c=><>{gPt(3,-3,c)}</> },
-        eqpad:true, a:"{3}", tip:r`S=\{3\}\ :\ x^2-4x=-3\Rightarrow x=3\text{ (sur }[1;5]\text{)}` },
+        eqpad:true, a:"{3}", tip:r`\text{On trace l'horizontale }y=-3\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=3\text{ (lire }x>0\text{)}`,
         gspec:{ fn:x=>x*x-1, fn2:x=>3, xr:[0,3], yr:[-2,5],
           extras:c=><>{gPt(2,3,c)}</> },
-        eqpad:true, a:"{2}", tip:r`S=\{2\}\ :\ x^2-1=3\Rightarrow x=2\text{ (racine positive)}` },
+        eqpad:true, a:"{2}", tip:r`\text{On trace l'horizontale }y=3\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=8\text{ (lire }x>0\text{)}`,
         gspec:{ fn:x=>x*x+2*x, fn2:x=>8, xr:[0,4], yr:[-2,12],
           extras:c=><>{gPt(2,8,c)}</> },
-        eqpad:true, a:"{2}", tip:r`S=\{2\}\ :\ x^2+2x=8\Rightarrow x=2\text{ (racine positive)}` },
+        eqpad:true, a:"{2}", tip:r`\text{On trace l'horizontale }y=8\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=6`,
         gspec:{ fn:x=>x*x*x-x, fn2:x=>6, xr:[0,3], yr:[-2,9],
           extras:c=><>{gPt(2,6,c)}</> },
-        eqpad:true, a:"{2}", tip:r`S=\{2\}\ :\ x^3-x=6\Rightarrow x=2\text{ (unique solution réelle)}` },
+        eqpad:true, a:"{2}", tip:r`\text{On trace l'horizontale }y=6\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=2`,
         gspec:{ fn:x=>6/x, fn2:x=>2, xr:[1,7], yr:[-1,7],
           extras:c=><>{gPt(3,2,c)}</> },
-        eqpad:true, a:"{3}", tip:r`S=\{3\}\ :\ \frac{6}{x}=2\Rightarrow x=3` },
+        eqpad:true, a:"{3}", tip:r`\text{On trace l'horizontale }y=2\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=5\text{ (lire }x>0\text{)}`,
         gspec:{ fn:x=>-x*x+6*x, fn2:x=>5, xr:[4,7], yr:[0,10],
           extras:c=><>{gPt(5,5,c)}</> },
-        eqpad:true, a:"{5}", tip:r`S=\{5\}\ :\ -x^2+6x=5\Rightarrow x=5\text{ (sur }[4;7]\text{)}` },
+        eqpad:true, a:"{5}", tip:r`\text{On trace l'horizontale }y=5\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
 
       // ── Équations à double / triple solution ──
 
@@ -1193,31 +1193,31 @@ const DB = {
         gspec:{ fn:x=>x*x-4, fn2:x=>0, xr:[-3,3], yr:[-5,4],
           extras:c=><>{gPt(-2,0,c)}{gPt(2,0,c)}</> },
         eqpad:true, a:"{-2;2}",
-        tip:r`x^2-4=0\Rightarrow x=\pm2\Rightarrow S=\{-2\,;\,2\}` },
+        tip:r`\text{On trace l'horizontale }y=0\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=0`,
         gspec:{ fn:x=>x*x-2*x, fn2:x=>0, xr:[-1,3], yr:[-2,3],
           extras:c=><>{gPt(0,0,c)}{gPt(2,0,c)}</> },
         eqpad:true, a:"{0;2}",
-        tip:r`x(x-2)=0\Rightarrow x=0\text{ ou }x=2\Rightarrow S=\{0\,;\,2\}` },
+        tip:r`\text{On trace l'horizontale }y=0\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=0`,
         gspec:{ fn:x=>x*x-4*x+3, fn2:x=>0, xr:[-1,5], yr:[-2,5],
           extras:c=><>{gPt(1,0,c)}{gPt(3,0,c)}</> },
         eqpad:true, a:"{1;3}",
-        tip:r`(x-1)(x-3)=0\Rightarrow x=1\text{ ou }x=3\Rightarrow S=\{1\,;\,3\}` },
+        tip:r`\text{On trace l'horizontale }y=0\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=0`,
         gspec:{ fn:x=>-x*x+1, fn2:x=>0, xr:[-2,2], yr:[-2,2],
           extras:c=><>{gPt(-1,0,c)}{gPt(1,0,c)}</> },
         eqpad:true, a:"{-1;1}",
-        tip:r`-x^2+1=0\Rightarrow x=\pm1\Rightarrow S=\{-1\,;\,1\}` },
+        tip:r`\text{On trace l'horizontale }y=0\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=0`,
         gspec:{ fn:x=>x*x*x-x, fn2:x=>0, xr:[-2,2], yr:[-1.5,1.5],
           extras:c=><>{gPt(-1,0,c)}{gPt(0,0,c)}{gPt(1,0,c)}</> },
         eqpad:true, a:"{-1;0;1}",
-        tip:r`x(x-1)(x+1)=0\Rightarrow S=\{-1\,;\,0\,;\,1\}` },
+        tip:r`\text{On trace l'horizontale }y=0\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
 
       // ── Inéquations — polynômes deg. 2-3 & homographiques (SolPad) ──
 
@@ -1225,61 +1225,61 @@ const DB = {
         gspec:{ fn:x=>-x*x+4, fn2:x=>0, xr:[-3,3], yr:[-2,5],
           preExtras:c=><>{gShade(x=>-x*x+4,c.x1,-2,c,C_NEG)}{gShade(x=>-x*x+4,-2,2,c,C_POS)}{gShade(x=>-x*x+4,2,c.x2,c,C_NEG)}</>,
           extras:c=><>{gPt(-2,0,c,'#F59E0B')}{gPt(2,0,c,'#F59E0B')}</> },
-        solpad:true, a:"]-2;2[", tip:r`-x^2+4>0\Leftrightarrow x\in\,]-2\,;\,2[` },
+        solpad:true, a:"]-2;2[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement au-dessus de l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)\geq0`,
         gspec:{ fn:x=>-x*x+9, fn2:x=>0, xr:[-4,4], yr:[-2,10],
           preExtras:c=><>{gShade(x=>-x*x+9,c.x1,-3,c,C_NEG)}{gShade(x=>-x*x+9,-3,3,c,C_POS)}{gShade(x=>-x*x+9,3,c.x2,c,C_NEG)}</>,
           extras:c=><>{gPt(-3,0,c,'#F59E0B')}{gPt(3,0,c,'#F59E0B')}</> },
-        solpad:true, a:"[-3;3]", tip:r`-x^2+9\geq0\Leftrightarrow x\in\,[-3\,;\,3]` },
+        solpad:true, a:"[-3;3]", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{au-dessus ou sur l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)\leq0`,
         gspec:{ fn:x=>x*x-4, fn2:x=>0, xr:[-3,3], yr:[-5,4],
           preExtras:c=><>{gShade(x=>x*x-4,c.x1,-2,c,C_POS)}{gShade(x=>x*x-4,-2,2,c,C_NEG)}{gShade(x=>x*x-4,2,c.x2,c,C_POS)}</>,
           extras:c=><>{gPt(-2,0,c,'#F59E0B')}{gPt(2,0,c,'#F59E0B')}</> },
-        solpad:true, a:"[-2;2]", tip:r`x^2-4\leq0\Leftrightarrow x\in\,[-2\,;\,2]` },
+        solpad:true, a:"[-2;2]", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{en-dessous ou sur l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)<0`,
         gspec:{ fn:x=>x*x-2*x, fn2:x=>0, xr:[-1,3], yr:[-2,3],
           preExtras:c=><>{gShade(x=>x*x-2*x,c.x1,0,c,C_POS)}{gShade(x=>x*x-2*x,0,2,c,C_NEG)}{gShade(x=>x*x-2*x,2,c.x2,c,C_POS)}</>,
           extras:c=><>{gPt(0,0,c,'#F59E0B')}{gPt(2,0,c,'#F59E0B')}</> },
-        solpad:true, a:"]0;2[", tip:r`x^2-2x<0\Leftrightarrow x(x-2)<0\Leftrightarrow x\in\,]0\,;\,2[` },
+        solpad:true, a:"]0;2[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement en-dessous de l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)>0`,
         gspec:{ fn:x=>-x*x+4*x-3, fn2:x=>0, xr:[0,5], yr:[-2,2],
           preExtras:c=><>{gShade(x=>-x*x+4*x-3,c.x1,1,c,C_NEG)}{gShade(x=>-x*x+4*x-3,1,3,c,C_POS)}{gShade(x=>-x*x+4*x-3,3,c.x2,c,C_NEG)}</>,
           extras:c=><>{gPt(1,0,c,'#F59E0B')}{gPt(3,0,c,'#F59E0B')}</> },
-        solpad:true, a:"]1;3[", tip:r`-(x-1)(x-3)>0\Leftrightarrow x\in\,]1\,;\,3[` },
+        solpad:true, a:"]1;3[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement au-dessus de l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)>0`,
         gspec:{ fn:x=>x*x*x, fn2:x=>0, xr:[-2,3], yr:[-5,5],
           preExtras:c=><>{gShade(x=>x*x*x,c.x1,0,c,C_NEG)}{gShade(x=>x*x*x,0,c.x2,c,C_POS)}</>,
           extras:c=><>{gPt(0,0,c,'#F59E0B')}</> },
-        solpad:true, a:"]0;+∞[", tip:r`x^3>0\Leftrightarrow x>0\Rightarrow S=\,]0\,;\,+\infty[` },
+        solpad:true, a:"]0;+∞[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement au-dessus de l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)<0`,
         gspec:{ fn:x=>x*x*x, fn2:x=>0, xr:[-3,2], yr:[-5,5],
           preExtras:c=><>{gShade(x=>x*x*x,c.x1,0,c,C_NEG)}{gShade(x=>x*x*x,0,c.x2,c,C_POS)}</>,
           extras:c=><>{gPt(0,0,c,'#F59E0B')}</> },
-        solpad:true, a:"]-∞;0[", tip:r`x^3<0\Leftrightarrow x<0\Rightarrow S=\,]-\infty\,;\,0[` },
+        solpad:true, a:"]-∞;0[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement en-dessous de l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)\leq0`,
         gspec:{ fn:x=>x*x-x-2, fn2:x=>0, xr:[-2,4], yr:[-3,4],
           preExtras:c=><>{gShade(x=>x*x-x-2,c.x1,-1,c,C_POS)}{gShade(x=>x*x-x-2,-1,2,c,C_NEG)}{gShade(x=>x*x-x-2,2,c.x2,c,C_POS)}</>,
           extras:c=><>{gPt(-1,0,c,'#F59E0B')}{gPt(2,0,c,'#F59E0B')}</> },
-        solpad:true, a:"[-1;2]", tip:r`(x-2)(x+1)\leq0\Leftrightarrow x\in\,[-1\,;\,2]` },
+        solpad:true, a:"[-1;2]", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{en-dessous ou sur l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)\geq0`,
         gspec:{ fn:x=>-x*x+4*x, fn2:x=>0, xr:[-1,5], yr:[-2,5],
           preExtras:c=><>{gShade(x=>-x*x+4*x,c.x1,0,c,C_NEG)}{gShade(x=>-x*x+4*x,0,4,c,C_POS)}{gShade(x=>-x*x+4*x,4,c.x2,c,C_NEG)}</>,
           extras:c=><>{gPt(0,0,c,'#F59E0B')}{gPt(4,0,c,'#F59E0B')}</> },
-        solpad:true, a:"[0;4]", tip:r`-x(x-4)\geq0\Leftrightarrow x\in\,[0\,;\,4]` },
+        solpad:true, a:"[0;4]", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{au-dessus ou sur l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)>0`,
         gspec:{ fn:x=>-x*x+6*x-5, fn2:x=>0, xr:[0,7], yr:[-3,5],
           preExtras:c=><>{gShade(x=>-x*x+6*x-5,c.x1,1,c,C_NEG)}{gShade(x=>-x*x+6*x-5,1,5,c,C_POS)}{gShade(x=>-x*x+6*x-5,5,c.x2,c,C_NEG)}</>,
           extras:c=><>{gPt(1,0,c,'#F59E0B')}{gPt(5,0,c,'#F59E0B')}</> },
-        solpad:true, a:"]1;5[", tip:r`-(x-1)(x-5)>0\Leftrightarrow x\in\,]1\,;\,5[` },
+        solpad:true, a:"]1;5[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement au-dessus de l'axe }(Ox)` },
 
       // ── Inéquations avec solution en union ──
 
@@ -1289,7 +1289,7 @@ const DB = {
           extras:c=><>{gPt(-2,0,c,'#F59E0B')}{gPt(2,0,c,'#F59E0B')}
                      {gSign(-3,2,'+',c,"#059669")}{gSign(0,-2,'−',c,"#DC2626")}{gSign(3,2,'+',c,"#059669")}</> },
         solpad:true, a:"]-∞;-2[∪]2;+∞[",
-        tip:r`x^2-4>0\Leftrightarrow (x-2)(x+2)>0\Leftrightarrow x\in\,]-\infty\,;\,-2[\cup]2\,;\,+\infty[` },
+        tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement au-dessus de l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)\geq0`,
         gspec:{ fn:x=>x*x-1, fn2:x=>0, xr:[-2.5,2.5], yr:[-2,4],
@@ -1297,7 +1297,7 @@ const DB = {
           extras:c=><>{gPt(-1,0,c,'#F59E0B')}{gPt(1,0,c,'#F59E0B')}
                      {gSign(-2,1.5,'+',c,"#059669")}{gSign(0,-0.8,'−',c,"#DC2626")}{gSign(2,1.5,'+',c,"#059669")}</> },
         solpad:true, a:"]-∞;-1]∪[1;+∞[",
-        tip:r`x^2-1\geq0\Leftrightarrow x\leq-1\text{ ou }x\geq1\Rightarrow S=\,]-\infty\,;\,-1]\cup[1\,;\,+\infty[` },
+        tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{au-dessus ou sur l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)<0`,
         gspec:{ fn:x=>x*x-x-2, fn2:x=>0, xr:[-2.5,3.5], yr:[-3,5],
@@ -1305,7 +1305,7 @@ const DB = {
           extras:c=><>{gPt(-1,0,c,'#F59E0B')}{gPt(2,0,c,'#F59E0B')}
                      {gSign(-2,2,'+',c,"#059669")}{gSign(0.5,-1.5,'−',c,"#DC2626")}{gSign(3,2,'+',c,"#059669")}</> },
         solpad:true, a:"]-1;2[",
-        tip:r`(x-2)(x+1)<0\Leftrightarrow x\in\,]-1\,;\,2[` },
+        tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement en-dessous de l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)>0`,
         gspec:{ fn:x=>x*x-9, fn2:x=>0, xr:[-4.5,4.5], yr:[-10,5],
@@ -1313,7 +1313,7 @@ const DB = {
           extras:c=><>{gPt(-3,0,c,'#F59E0B')}{gPt(3,0,c,'#F59E0B')}
                      {gSign(-4,2,'+',c,"#059669")}{gSign(0,-4,'−',c,"#DC2626")}{gSign(4,2,'+',c,"#059669")}</> },
         solpad:true, a:"]-∞;-3[∪]3;+∞[",
-        tip:r`x^2-9>0\Leftrightarrow(x-3)(x+3)>0\Leftrightarrow x\in\,]-\infty\,;\,-3[\cup]3\,;\,+\infty[` },
+        tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement au-dessus de l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)\leq0`,
         gspec:{ fn:x=>x*x-4*x+3, fn2:x=>0, xr:[-1,5], yr:[-2,5],
@@ -1321,7 +1321,7 @@ const DB = {
           extras:c=><>{gPt(1,0,c,'#F59E0B')}{gPt(3,0,c,'#F59E0B')}
                      {gSign(-0.5,2,'+',c,"#059669")}{gSign(2,-0.8,'−',c,"#DC2626")}{gSign(4.5,2,'+',c,"#059669")}</> },
         solpad:true, a:"[1;3]",
-        tip:r`(x-1)(x-3)\leq0\Leftrightarrow x\in\,[1\,;\,3]` },
+        tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{en-dessous ou sur l'axe }(Ox)` },
 
       // ── Exercices avec droite glissante (DragGraph) ──
 
@@ -1473,7 +1473,7 @@ const DB = {
           cells:[{v:"-∞",hole:false,kind:"fixed"},{v:"↗",hole:true,kind:"arrow"},
                  {v:"4",hole:true,kind:"num"},{v:"↘",hole:true,kind:"arrow"},
                  {v:"-∞",hole:false,kind:"fixed"}] },
-        tip:r`f'(x)=-2x+2=0\Rightarrow x=1.\ f(1)=4\text{ (maximum)}` },
+        tip:r`\text{Sommet lu sur le graphique : }(1\,;\,4)\\[4pt]\text{Maximum en }x=1` },
 
       { q: r`\text{Complète le tableau de variations de }f(x)=x^2-4x+3`,
         gspec:{ fn:x=>x*x-4*x+3, xr:[-1,5], yr:[-2,5], label:"f",
@@ -1482,7 +1482,7 @@ const DB = {
           cells:[{v:"+∞",hole:false,kind:"fixed"},{v:"↘",hole:true,kind:"arrow"},
                  {v:"-1",hole:true,kind:"num"},{v:"↗",hole:true,kind:"arrow"},
                  {v:"+∞",hole:false,kind:"fixed"}] },
-        tip:r`f'(x)=2x-4=0\Rightarrow x=2.\ f(2)=-1\text{ (minimum)}` },
+        tip:r`\text{Sommet lu sur le graphique : }(2\,;\,-1)\\[4pt]\text{Minimum en }x=2` },
     ],
 
     // ── d. Tableau de signes ──
@@ -1492,7 +1492,7 @@ const DB = {
         gspec: { fn: x => x-3, xr:[0,5], yr:[-3,3],
           preExtras: c => <>{gShade(x=>x-3,c.x1,3,c,C_NEG)}{gShade(x=>x-3,3,c.x2,c,C_POS)}</>,
           extras: c => <>{gPt(3,0,c,"#475569")}{gSign(1.5,-1.5,'−',c,"#DC2626")}{gSign(4,1,'+',c,"#059669")}</> },
-        choices:[r`x<3`,r`x>3`,r`x<-3`,r`x>0`], a:r`x<3`, tip:r`f(x)=x-3<0\Leftrightarrow x<3` },
+        choices:[r`x<3`,r`x>3`,r`x<-3`,r`x>0`], a:r`x<3`, tip:r`\text{Courbe sous }(Ox)\text{ à gauche de }x=3` },
 
       { q: r`\text{D'après le graphique, }f(x)<0\text{ pour :}`,
         gspec: { fn: x => x*x+x-2, xr:[-4,3], yr:[-3,4],
@@ -1519,7 +1519,7 @@ const DB = {
           extras:c=><>{gPt(2,0,c,"#475569")}{gSign(-0.2,-1.8,"-",c,"#DC2626")}{gSign(3.5,1,"+",c,"#059669")}</> },
         tsSpec:{ xVals:["-∞","2","+∞"],
           cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
-        tip:r`x-2<0\Leftrightarrow x<2` },
+        tip:r`\text{Courbe sous }(Ox)\text{ avant }x=2\\[4pt]\text{puis au-dessus après}` },
 
       { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=-x+3`,
         gspec:{ fn:x=>-x+3, xr:[-1,5], yr:[-3,4], label:"f",
@@ -1527,7 +1527,7 @@ const DB = {
           extras:c=><>{gPt(3,0,c,"#475569")}{gSign(0.8,1.5,"+",c,"#059669")}{gSign(4.5,-1,"-",c,"#DC2626")}</> },
         tsSpec:{ xVals:["-∞","3","+∞"],
           cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
-        tip:r`-x+3>0\Leftrightarrow x<3` },
+        tip:r`\text{Courbe au-dessus }(Ox)\text{ avant }x=3\\[4pt]\text{puis en-dessous après}` },
 
       { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=(x-1)(x+2)`,
         gspec:{ fn:x=>(x-1)*(x+2), xr:[-4,3], yr:[-4,4], label:"f",
@@ -1562,7 +1562,7 @@ const DB = {
           extras:c=><>{gPt(3,0,c,"#475569")}{gSign(1,-2,"-",c,"#DC2626")}{gSign(4,2,"+",c,"#059669")}</> },
         tsSpec:{ xVals:["-∞","3","+∞"],
           cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
-        tip:r`2x-6=0\Rightarrow x=3.\text{ Négatif avant, positif après}` },
+        tip:r`\text{Racine lue sur le graphique : }x=3\\[4pt]\text{Courbe négative avant, positive après}` },
 
       { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=-3x+9`,
         gspec:{ fn:x=>-3*x+9, xr:[-1,5], yr:[-5,10], label:"f",
@@ -1570,7 +1570,7 @@ const DB = {
           extras:c=><>{gPt(3,0,c,"#475569")}{gSign(1,3,"+",c,"#059669")}{gSign(4.2,-2,"-",c,"#DC2626")}</> },
         tsSpec:{ xVals:["-∞","3","+∞"],
           cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
-        tip:r`-3x+9=0\Rightarrow x=3.\text{ Positif avant, négatif après}` },
+        tip:r`\text{Racine lue sur le graphique : }x=3\\[4pt]\text{Courbe positive avant, négative après}` },
 
       { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=(x+1)(x-3)`,
         gspec:{ fn:x=>(x+1)*(x-3), xr:[-3,5], yr:[-5,5], label:"f",
@@ -4524,7 +4524,7 @@ const DB = {
 
 // ── Categories ─────────────────────────────────────────────────────────────────
 const CATS = [
-  { id:"missions",     label:"Les missions", emoji:"🎯", color:"#EA580C", grad:"linear-gradient(135deg,#F97316,#C2410C)", light:"#FFF7ED", border:"#FED7AA",
+  { id:"missions",     label:"Les missions", emoji:"🎯", color:"#1E40AF", grad:"linear-gradient(135deg,#1E40AF,#1E3A8A)", light:"#EFF6FF", border:"#BFDBFE",
     subs:[
       {id:"mission_bases",      label:"Travailler mes bases",        levels:["sec","tc","stmg","spe","term"], isMission:true},
       {id:"mission_spe",        label:"Objectif Première Spé",       levels:["spe"], isMission:true},
@@ -7483,7 +7483,7 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress}) {
   const modes = [
     {id:"sprint",      label:"Sprint 5 min",         sub:"Vite, chrono !",         emoji:"⏱️", grad:"linear-gradient(135deg,#10B981,#047857)"},
     {id:"train",       label:"S'entraîner",          sub:"Choisis ton format",     emoji:"💪", grad:"linear-gradient(135deg,#8B5CF6,#6D28D9)"},
-    {id:"missions",    label:"Les missions",         sub:"Objectifs ciblés Sigma", emoji:"🚀", grad:"linear-gradient(135deg,#3B82F6,#1D4ED8)"},
+    {id:"missions",    label:"Les missions",         sub:"Objectifs ciblés Sigma", emoji:"🚀", grad:"linear-gradient(135deg,#1E40AF,#1E3A8A)"},
     {id:"bac",         label:"En route pour le Bac", sub:"Annales & sujets",       emoji:"🏆", grad:"linear-gradient(135deg,#F59E0B,#B45309)"},
   ];
   return (
