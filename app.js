@@ -10683,12 +10683,17 @@ function AutoMaths() {
   // ── Sprint handlers ───────────────────────────────────────────────────────
   // Pool : toutes les questions QCM de l'app (celles avec .choices et sans pad/tableau/drag/graph lourd)
   const getSprintPool = () => {
-    return getAllQ().filter(q =>
-      q.choices && !q.numpad && !q.solpad && !q.eqpad
-      && !q.exprpad && !q.fractionpad
-      && !q.dgspec && !q.tvSpec && !q.tsSpec
-      // On garde gspec (graphique léger, QCM) — c'est OK pour le sprint
-    );
+    // Liste blanche : on n'accepte que les QCM strictement textuels.
+    // Tout champ non listé ici est rejeté pour éviter qu'une question avec rendu
+    // spécial (graphique, tableau, ...) apparaisse sans son visuel dans le sprint.
+    const ALLOWED_FIELDS = new Set(['q', 'choices', 'a', 'tip', 'hint', 'altAnswers', 'partialAnswers']);
+    return getAllQ().filter(q => {
+      if (!q.choices) return false;
+      for (const k of Object.keys(q)) {
+        if (!ALLOWED_FIELDS.has(k)) return false;
+      }
+      return true;
+    });
   };
   const hSprintFinish = async (result) => {
     setSprintResult(result);
