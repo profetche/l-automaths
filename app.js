@@ -6170,8 +6170,16 @@ function ProfileSetupScreen({onComplete, onBack}) {
     {id:'premiere_spe',  emoji:'🔬', label:'1ère Spé Maths',      desc:'Avec spécialité maths'},
     {id:'terminale_spe', emoji:'🏆', label:'Terminale Spé',        desc:'Bac à portée !'},
   ];
-  const finish = () => {
+  const finish = async () => {
     const prof={name:name.trim(),level,joinedAt:Date.now(),streak:0,lastActive:Date.now()};
+    // Rétroactivement : si le compteur streak_progress a déjà franchi le seuil
+    // aujourd'hui (l'élève a joué avant de créer son compte), on crédite la série.
+    try {
+      const sp = await loadStreakProgress();
+      if (sp && sp.completed) {
+        prof.streak = 1; // premier jour validé
+      }
+    } catch {}
     saveProfA(prof); onComplete(prof);
   };
   return (
@@ -6305,6 +6313,15 @@ const DAILY_K = 'user:daily';
 const SHIELD_K= 'user:shield';
 const STREAK_PROGRESS_K = 'user:streak_progress'; // { date: 'YYYY-MM-DD', count: N, completed: bool }
 const STREAK_DAILY_THRESHOLD = 10; // 10 bonnes réponses cumulées valident la journée
+const QSTATE_K = 'user:qstate'; // suivi individuel par question : { "catId:subId:idx": { status, streak, lastSeen, attempts, successes } }
+const MASTERY_STREAK = 3;             // 3 bonnes réponses consécutives = maîtrisé
+const MASTERY_REFRESH_DAYS = 30;      // une question "mastered" vue il y a >30j revient à revoir
+
+// ── Compte progressif : compteur lifetime et gestion du prompt de création ────
+const LIFETIME_CORRECT_K = 'user:lifetime_correct'; // total cumulé de bonnes réponses (jamais remis à zéro)
+const PROMPT_DISMISSED_AT_K = 'user:prompt_dismissed_at'; // valeur du compteur au moment du refus
+const ACCOUNT_PROMPT_FIRST = 50;  // 1er déclenchement
+const ACCOUNT_PROMPT_STEP  = 50;  // redéclenchement tous les 50 ensuite si refusé
 
 async function loadXP()       { try{const r=await _storage.get(XP_K);return r?.value?parseInt(r.value):0;}catch{return 0;} }
 async function saveXP(xp)     { try{await _storage.set(XP_K,String(xp));}catch{} }
@@ -6330,6 +6347,140 @@ async function loadStreakProgress() {
 }
 async function saveStreakProgress(p) {
   try { await _storage.set(STREAK_PROGRESS_K, JSON.stringify(p)); } catch {}
+}
+
+// ── Compteur lifetime (total bonnes réponses jamais remis à zéro) ─────────
+async function loadLifetimeCorrect() {
+  try { const r = await _storage.get(LIFETIME_CORRECT_K); return r?.value ? parseInt(r.value) : 0; }
+  catch { return 0; }
+}
+async function saveLifetimeCorrect(n) {
+  try { await _storage.set(LIFETIME_CORRECT_K, String(n)); } catch {}
+}
+async function loadPromptDismissedAt() {
+  try { const r = await _storage.get(PROMPT_DISMISSED_AT_K); return r?.value ? parseInt(r.value) : -1; }
+  catch { return -1; }
+}
+async function savePromptDismissedAt(n) {
+  try { await _storage.set(PROMPT_DISMISSED_AT_K, String(n)); } catch {}
+}
+// Règle de déclenchement : on propose le compte quand lifetime >= 50 (ou 100, 150, ...)
+// ET qu'on ne l'a pas déjà proposé à cette valeur ou au-dessus
+function shouldShowAccountPrompt(lifetime, dismissedAt) {
+  if (lifetime < ACCOUNT_PROMPT_FIRST) return false;
+  // Seuil à franchir : le prochain multiple de 50 strictement supérieur à dismissedAt
+  // Si jamais refusé (dismissedAt = -1), le seuil est 50
+  const nextThreshold = dismissedAt < ACCOUNT_PROMPT_FIRST
+    ? ACCOUNT_PROMPT_FIRST
+    : Math.ceil((dismissedAt + 1) / ACCOUNT_PROMPT_STEP) * ACCOUNT_PROMPT_STEP;
+  return lifetime >= nextThreshold;
+}
+
+// ── QState : suivi par question individuelle ────────────────────────────────
+// Permet de savoir si l'élève maîtrise une question précise ou non.
+// Clé par question : `${catId}:${subId}:${idxInSub}`
+// Valeur : { status: "unknown"|"learning"|"mastered", streak, lastSeen, attempts, successes }
+async function loadQState() {
+  try { const r = await _storage.get(QSTATE_K); return r?.value ? JSON.parse(r.value) : {}; }
+  catch { return {}; }
+}
+async function saveQState(state) {
+  try { await _storage.set(QSTATE_K, JSON.stringify(state)); } catch {}
+}
+// Récupère le statut d'une question avec gestion du "refresh" après MASTERY_REFRESH_DAYS
+function getQStatus(state, key) {
+  const entry = state[key];
+  if (!entry) return { status: "unknown", streak: 0, lastSeen: 0, attempts: 0, successes: 0 };
+  // Si une question mastered est vue il y a longtemps, on la repasse en learning
+  if (entry.status === "mastered" && entry.lastSeen &&
+      (Date.now() - entry.lastSeen) > MASTERY_REFRESH_DAYS * 86400000) {
+    return { ...entry, status: "learning", streak: 0 };
+  }
+  return entry;
+}
+// Met à jour le state pour une question après une tentative
+function updateQStatus(state, key, correct) {
+  const prev = getQStatus(state, key);
+  const newAttempts = prev.attempts + 1;
+  const newSuccesses = prev.successes + (correct ? 1 : 0);
+  let newStreak, newStatus;
+  if (correct) {
+    newStreak = (prev.streak || 0) + 1;
+    if (newStreak >= MASTERY_STREAK) newStatus = "mastered";
+    else newStatus = "learning";
+  } else {
+    newStreak = 0;
+    newStatus = "learning"; // on ne revient jamais à "unknown" une fois tenté
+  }
+  return {
+    ...state,
+    [key]: {
+      status: newStatus,
+      streak: newStreak,
+      lastSeen: Date.now(),
+      attempts: newAttempts,
+      successes: newSuccesses,
+    }
+  };
+}
+// Génère la clé d'une question : on a besoin de l'index dans le tableau DB
+function getQKey(catId, subId, question) {
+  const arr = DB[catId]?.[subId] || [];
+  const idx = arr.indexOf(question);
+  if (idx < 0) return null;
+  return `${catId}:${subId}:${idx}`;
+}
+
+// Trouve la clé d'une question en cherchant dans toute la DB (plus lent mais universel)
+function findQKey(question) {
+  for (const cId of Object.keys(DB)) {
+    for (const sId of Object.keys(DB[cId])) {
+      const arr = DB[cId][sId];
+      if (!Array.isArray(arr)) continue;
+      const idx = arr.indexOf(question);
+      if (idx >= 0) return `${cId}:${sId}:${idx}`;
+    }
+  }
+  return null;
+}
+
+// Sélection intelligente de n questions dans un pool, en fonction du qState.
+// Priorités (dans l'ordre) :
+//   1. learning (questions en cours d'apprentissage, échecs récents en priorité)
+//   2. unknown (jamais vues)
+//   3. mastered anciennes (>30 jours) — pour maintien
+//   4. mastered récentes (évitées par défaut)
+// Si n > pool disponible, on complète avec du shuffle.
+function selectQuestionsSmart(pool, n, qStateSnapshot) {
+  if (!Array.isArray(pool) || pool.length === 0) return [];
+  const learning = [];
+  const unknown = [];
+  const masteredOld = [];
+  const masteredRecent = [];
+  for (const q of pool) {
+    const key = findQKey(q);
+    const entry = key ? getQStatus(qStateSnapshot || {}, key) : null;
+    if (!entry || entry.status === "unknown") unknown.push(q);
+    else if (entry.status === "learning") learning.push({ q, streak: entry.streak || 0 });
+    else {
+      // mastered
+      const age = entry.lastSeen ? (Date.now() - entry.lastSeen) : Infinity;
+      if (age > MASTERY_REFRESH_DAYS * 86400000) masteredOld.push(q);
+      else masteredRecent.push(q);
+    }
+  }
+  // Dans learning : prioriser les streak faibles (pas encore proches de la maîtrise)
+  learning.sort((a, b) => a.streak - b.streak);
+  const learningQ = learning.map(x => x.q);
+  // Construction du résultat : on remplit dans l'ordre de priorité
+  const priority = [...shuffle(learningQ), ...shuffle(unknown), ...shuffle(masteredOld)];
+  let selected = priority.slice(0, n);
+  if (selected.length < n) {
+    // Fallback : compléter avec les mastered récents si besoin (mieux que vide)
+    const remaining = shuffle(masteredRecent).slice(0, n - selected.length);
+    selected = [...selected, ...remaining];
+  }
+  return shuffle(selected); // on shuffle l'ordre final pour éviter que ce soit toujours "learning" d'abord
 }
 
 // ── Badge unlock helper ───────────────────────────────────────────────────────
@@ -6366,7 +6517,191 @@ function getSigmaMessage(profile, xp, badges, dailyDone) {
 
 
 
-function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEditProfile, onLogout, onShowProgram, onExport, onReminder}) {
+// ── VigilanceScreen — "Points de vigilance" avec analyse individuelle ────────
+function VigilanceScreen({profile, qState, onBack, onRemediation, onWorkTheme}) {
+  // Analyser qState : grouper par (catId, subId) et calculer les stats
+  // On identifie :
+  //   - questions learning (en cours)
+  //   - questions avec plusieurs échecs récents (points chauds)
+  // Et on regroupe par sous-thème pour présenter à l'élève.
+  const analysis = React.useMemo(() => {
+    const bySub = {}; // "catId:subId" -> { catId, subId, learning, mastered, total, failedQuestions: [] }
+    for (const key of Object.keys(qState)) {
+      const parts = key.split(':');
+      if (parts.length !== 3) continue;
+      const [cId, sId, idxStr] = parts;
+      const idx = parseInt(idxStr);
+      const entry = qState[key];
+      if (!entry) continue;
+      const subKey = `${cId}:${sId}`;
+      if (!bySub[subKey]) {
+        bySub[subKey] = { catId: cId, subId: sId, learning: 0, mastered: 0, attempts: 0, failedIdx: [] };
+      }
+      const stats = bySub[subKey];
+      if (entry.status === "learning") {
+        stats.learning++;
+        // On considère une question "en difficulté" si elle a un taux d'échec > 40%
+        const failRate = entry.attempts > 0 ? 1 - (entry.successes / entry.attempts) : 0;
+        if (entry.attempts >= 2 && failRate >= 0.4) {
+          stats.failedIdx.push(idx);
+        }
+      } else if (entry.status === "mastered") {
+        stats.mastered++;
+      }
+      stats.attempts += entry.attempts || 0;
+    }
+    // Convertir en tableau trié : plus il y a de questions en difficulté, plus c'est prioritaire
+    return Object.values(bySub)
+      .filter(s => s.learning > 0 || s.failedIdx.length > 0)
+      .sort((a, b) => b.failedIdx.length - a.failedIdx.length || b.learning - a.learning);
+  }, [qState]);
+  
+  // Stats globales pour résumé
+  const globalStats = React.useMemo(() => {
+    let learning = 0, mastered = 0, total = 0;
+    for (const key of Object.keys(qState)) {
+      const entry = qState[key];
+      if (!entry) continue;
+      total++;
+      if (entry.status === "learning") learning++;
+      else if (entry.status === "mastered") mastered++;
+    }
+    return { learning, mastered, total };
+  }, [qState]);
+
+  return (
+    <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",padding:"20px 18px 16px"}}>
+      <Back onClick={onBack}/>
+      <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:14}}>
+        <div style={{width:40,height:40,borderRadius:12,background:"linear-gradient(135deg,#F59E0B,#EA580C)",
+          display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,flexShrink:0}}>
+          🎯
+        </div>
+        <div>
+          <h2 style={{fontFamily:"'Nunito',sans-serif",fontSize:18,fontWeight:900,color:"#1E293B",margin:0}}>
+            Points de vigilance
+          </h2>
+          <p style={{color:"#64748B",fontSize:11,margin:"2px 0 0 0"}}>Tes thèmes à retravailler</p>
+        </div>
+      </div>
+
+      {/* Bandeau stats globales */}
+      <div style={{background:"#fff",borderRadius:14,padding:"14px 16px",marginBottom:12,
+        boxShadow:"0 2px 8px rgba(0,0,0,.05)",border:"1px solid #E2E8F0"}}>
+        <div style={{display:"flex",justifyContent:"space-around",textAlign:"center",gap:8}}>
+          <div>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontSize:22,fontWeight:900,color:"#10B981"}}>
+              {globalStats.mastered}
+            </div>
+            <div style={{fontSize:10,color:"#64748B",fontWeight:700}}>maîtrisées</div>
+          </div>
+          <div style={{borderLeft:"1px solid #E2E8F0"}}></div>
+          <div>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontSize:22,fontWeight:900,color:"#F59E0B"}}>
+              {globalStats.learning}
+            </div>
+            <div style={{fontSize:10,color:"#64748B",fontWeight:700}}>à revoir</div>
+          </div>
+          <div style={{borderLeft:"1px solid #E2E8F0"}}></div>
+          <div>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontSize:22,fontWeight:900,color:"#475569"}}>
+              {globalStats.total}
+            </div>
+            <div style={{fontSize:10,color:"#64748B",fontWeight:700}}>rencontrées</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bouton Séance de remédiation (si il y a des questions en difficulté) */}
+      {analysis.some(s => s.failedIdx.length > 0) && (
+        <button onClick={onRemediation} style={{
+          background:"linear-gradient(135deg,#EF4444,#B91C1C)",
+          color:"#fff",border:"none",borderRadius:14,padding:"14px 16px",
+          cursor:"pointer",marginBottom:12,display:"flex",alignItems:"center",gap:12,
+          boxShadow:"0 4px 14px rgba(239,68,68,.25)",textAlign:"left"
+        }}>
+          <div style={{fontSize:26}}>💊</div>
+          <div style={{flex:1}}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:14}}>
+              Séance de remédiation
+            </div>
+            <div style={{fontSize:11,opacity:.9,marginTop:2}}>
+              15 questions ciblées sur tes difficultés
+            </div>
+          </div>
+          <span style={{fontSize:18}}>›</span>
+        </button>
+      )}
+
+      <Scroll>
+        {analysis.length === 0 ? (
+          <div style={{textAlign:"center",padding:"40px 20px",color:"#94A3B8"}}>
+            <div style={{fontSize:48,marginBottom:12}}>🌱</div>
+            <div style={{fontSize:14,fontWeight:700,color:"#475569"}}>
+              Aucun point de vigilance
+            </div>
+            <div style={{fontSize:11,marginTop:6,lineHeight:1.5}}>
+              Continue de t'entraîner pour que Sigma puisse analyser ta progression.
+            </div>
+          </div>
+        ) : (
+          analysis.map((s, i) => {
+            const cat = getCat(s.catId);
+            const sub = cat?.subs?.find(x => x.id === s.subId);
+            const subLabel = sub?.label || s.subId;
+            const isHot = s.failedIdx.length >= 3;
+            return (
+              <div key={`${s.catId}:${s.subId}`} className="pop-in"
+                style={{marginBottom:10, animationDelay:`${i*.05}s`}}>
+                <button onClick={() => onWorkTheme(s.catId, s.subId)}
+                  style={{background:"#fff",border:`2px solid ${isHot ? "#FECACA" : "#E2E8F0"}`,
+                    borderRadius:14,padding:"12px 14px",cursor:"pointer",textAlign:"left",
+                    boxShadow:"0 2px 8px rgba(0,0,0,.04)",
+                    width:"100%",display:"flex",alignItems:"center",gap:12}}>
+                  <div style={{width:40,height:40,borderRadius:11,background:cat?.grad||"#E2E8F0",
+                    display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,flexShrink:0}}>
+                    {cat?.emoji||"📚"}
+                  </div>
+                  <div style={{flex:1}}>
+                    <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,
+                      fontSize:13,color:"#1E293B"}}>{subLabel}</div>
+                    <div style={{fontSize:10,color:"#64748B",marginTop:2}}>{cat?.label}</div>
+                    <div style={{display:"flex",gap:5,marginTop:6,flexWrap:"wrap"}}>
+                      {s.failedIdx.length > 0 && (
+                        <span style={{fontSize:9,fontWeight:700,
+                          background:"#FEE2E2",color:"#991B1B",
+                          borderRadius:99,padding:"2px 8px"}}>
+                          ⚠️ {s.failedIdx.length} en difficulté
+                        </span>
+                      )}
+                      {s.learning > 0 && (
+                        <span style={{fontSize:9,fontWeight:700,
+                          background:"#FEF3C7",color:"#92400E",
+                          borderRadius:99,padding:"2px 8px"}}>
+                          {s.learning} à revoir
+                        </span>
+                      )}
+                      {s.mastered > 0 && (
+                        <span style={{fontSize:9,fontWeight:700,
+                          background:"#ECFDF5",color:"#065F46",
+                          borderRadius:99,padding:"2px 8px"}}>
+                          ✓ {s.mastered} acquises
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  <span style={{color:"#94A3B8",fontSize:18,flexShrink:0}}>›</span>
+                </button>
+              </div>
+            );
+          })
+        )}
+      </Scroll>
+    </div>
+  );
+}
+
+function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEditProfile, onLogout, onShowProgram, onExport, onReminder, onVigilance}) {
   const curr = CURRICULUM[profile.level] || CURRICULUM.seconde;
   const [allProg, setAllProg] = useState({});
   const [loading, setLoading] = useState(true);
@@ -6458,6 +6793,7 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
               borderRadius:8,padding:"3px 7px",color:"#FCA5A5",cursor:"pointer",fontSize:9,fontWeight:700}}>⏻</button>
             {onExport&&<button onClick={onExport} style={{background:"rgba(16,185,129,0.15)",border:"none",borderRadius:8,padding:"4px 7px",color:"#6EE7B7",cursor:"pointer",fontSize:9,fontWeight:700}}>📤</button>}
             {onReminder&&<button onClick={onReminder} style={{background:"rgba(245,158,11,0.15)",border:"none",borderRadius:8,padding:"4px 7px",color:"#FDE68A",cursor:"pointer",fontSize:9,fontWeight:700}}>🔔</button>}
+            {onVigilance&&<button onClick={onVigilance} title="Points de vigilance" style={{background:"rgba(239,68,68,0.15)",border:"none",borderRadius:8,padding:"4px 7px",color:"#FCA5A5",cursor:"pointer",fontSize:9,fontWeight:700}}>🎯</button>}
           </div>
         </div>
 
@@ -7075,6 +7411,26 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress}) {
             </div>
           );
         })()}
+        {/* Teaser pour les utilisateurs sans profil — invite douce à créer un compte */}
+        {!profile && (
+          <div style={{
+            background:"linear-gradient(135deg,#E2E8F0,#CBD5E1)",
+            borderRadius:16, padding:"12px 16px", marginBottom:14,
+            boxShadow:"0 2px 8px rgba(0,0,0,.06)",
+            display:"flex", alignItems:"center", gap:12
+          }}>
+            <div style={{fontSize:28, flexShrink:0, opacity:0.7}}>🔒</div>
+            <div style={{flex:1, textAlign:"left"}}>
+              <div style={{fontFamily:"'Nunito',sans-serif", fontWeight:800,
+                fontSize:13, color:"#334155", lineHeight:1.2}}>
+                Série quotidienne, progrès, points de vigilance
+              </div>
+              <div style={{color:"#64748B", fontSize:10, fontWeight:600, marginTop:3}}>
+                Disponibles avec un compte — tu en gardes la trace
+              </div>
+            </div>
+          </div>
+        )}
         <p style={{color:"#64748B",fontSize:12,fontWeight:600}}>
           Choisis ton mode d'entraînement
         </p>
@@ -8901,6 +9257,66 @@ function SprintScreen({pool, onFinish, onBack}) {
 }
 
 // ── SprintResultScreen — Résultat du sprint avec record ──────────────────────
+// ── AccountPromptModal — proposition douce de création de compte ────────────
+function AccountPromptModal({lifetime, onAccept, onDismiss}) {
+  return (
+    <div style={{
+      position:"fixed", top:0, left:0, right:0, bottom:0,
+      background:"rgba(15,23,42,0.55)", backdropFilter:"blur(4px)",
+      zIndex:1000, display:"flex", alignItems:"center", justifyContent:"center",
+      padding:"20px"
+    }}>
+      <div className="pop-in" style={{
+        background:"#fff", borderRadius:22, padding:"24px 22px",
+        maxWidth:340, width:"100%",
+        boxShadow:"0 20px 60px rgba(0,0,0,.3)",
+        textAlign:"center"
+      }}>
+        <div style={{fontSize:56, marginBottom:10}}>🧡</div>
+        <h3 style={{fontFamily:"'Nunito',sans-serif", fontSize:20, fontWeight:900,
+          color:"#1E293B", margin:"0 0 8px 0", lineHeight:1.2}}>
+          Joli parcours !
+        </h3>
+        <p style={{color:"#475569", fontSize:13, lineHeight:1.5, margin:"0 0 14px 0"}}>
+          Tu as déjà répondu juste à <strong>{lifetime} questions</strong>. 
+          Tu veux que Sigma mémorise tes progrès ?
+        </p>
+        <div style={{background:"#F8FAFC", borderRadius:12, padding:"12px 14px",
+          marginBottom:16, textAlign:"left"}}>
+          <div style={{fontSize:11, fontWeight:800, color:"#475569", marginBottom:6, textTransform:"uppercase", letterSpacing:0.5}}>
+            Avec un compte tu débloques :
+          </div>
+          <div style={{fontSize:12, color:"#1E293B", lineHeight:1.7}}>
+            <div>🔥 Ta série de jours consécutifs</div>
+            <div>🎯 Tes points de vigilance</div>
+            <div>🧠 Des quiz adaptés à tes difficultés</div>
+            <div>🏆 Badges et défis</div>
+          </div>
+        </div>
+        <div style={{fontSize:10, color:"#64748B", marginBottom:14, lineHeight:1.4}}>
+          ✨ Tes réponses actuelles seront conservées — aucune progression perdue.
+        </div>
+        <button onClick={onAccept} style={{
+          background:"linear-gradient(135deg,#F59E0B,#D97706)",
+          color:"#fff", border:"none", borderRadius:13, padding:"14px",
+          width:"100%", fontFamily:"'Nunito',sans-serif", fontSize:14, fontWeight:900,
+          cursor:"pointer", boxShadow:"0 5px 16px rgba(245,158,11,.35)",
+          marginBottom:8
+        }}>
+          🚀 Créer mon compte
+        </button>
+        <button onClick={onDismiss} style={{
+          background:"transparent", color:"#64748B", border:"none",
+          padding:"10px", width:"100%", fontSize:12, fontWeight:700,
+          cursor:"pointer"
+        }}>
+          Plus tard
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function SprintResultScreen({result, onReplay, onHome, best, isNewBest}) {
   const {score, answered} = result;
   const pct = answered > 0 ? Math.round(score/answered*100) : 0;
@@ -9926,6 +10342,10 @@ function AutoMaths() {
   const [newStars,  setNewStars]  = useState(0);
   const [streakProgress, setStreakProgress] = useState({ date: new Date().toDateString(), count: 0, completed: false });
   const [streakJustCompleted, setStreakJustCompleted] = useState(false);
+  const [qState, setQState] = useState({});
+  // ── Compte progressif ─────────────────────────────────────────────────────
+  const [lifetimeCorrect, setLifetimeCorrect] = useState(0);
+  const [showAccountPrompt, setShowAccountPrompt] = useState(false);
   // ── Sprint state ──────────────────────────────────────────────────────────
   const [sprintResult, setSprintResult] = useState(null); // {score, answered}
   const [sprintBest, setSprintBest] = useState(0);
@@ -9940,6 +10360,8 @@ function AutoMaths() {
   useEffect(() => {
     loadStreakProgress().then(sp => setStreakProgress(sp)).catch(() => {});
     loadSprintBest().then(b => setSprintBest(b)).catch(() => {});
+    loadQState().then(s => setQState(s)).catch(() => {});
+    loadLifetimeCorrect().then(n => setLifetimeCorrect(n)).catch(() => {});
   }, []);
 
   // NB: La streak est maintenant incrémentée uniquement quand l'élève atteint
@@ -9950,7 +10372,7 @@ function AutoMaths() {
   const [prevScreen, setPrevScreen] = useState("home");
 
   const startQuiz = (qs, n, from) => {
-    const q = shuffle(qs).slice(0, n);
+    const q = selectQuestionsSmart(qs, n, qState);
     setPrevScreen(from || screen);
     setPool(qs); setQuestions(q); setScreen("quiz");
   };
@@ -10011,6 +10433,54 @@ function AutoMaths() {
         if(!currentBadges.includes(bid)) await checkAndUnlockBadge(bid);
       }
     } catch(e) { /* Never block quiz for XP errors */ }
+
+    // ── QState : mettre à jour le statut de chaque question du quiz ────────
+    try {
+      const failSet = new Set(failedIdx || []);
+      const currentState = await loadQState();
+      let newState = currentState;
+      for (let i = 0; i < questions.length; i++) {
+        const q = questions[i];
+        const correct = !failSet.has(i);
+        // Trouver à quelle (catId, subId, idx) appartient cette question
+        // On scanne DB car on ne connaît pas nécessairement catId/subId du pool
+        let key = null;
+        for (const cId of Object.keys(DB)) {
+          for (const sId of Object.keys(DB[cId])) {
+            const arr = DB[cId][sId];
+            if (!Array.isArray(arr)) continue;
+            const idx = arr.indexOf(q);
+            if (idx >= 0) {
+              key = `${cId}:${sId}:${idx}`;
+              break;
+            }
+          }
+          if (key) break;
+        }
+        if (key) {
+          newState = updateQStatus(newState, key, correct);
+        }
+      }
+      await saveQState(newState);
+      setQState(newState);
+    } catch(e) { /* Safe */ }
+
+    // ── Lifetime : compter les bonnes réponses totales (pour prompt compte) ─
+    try {
+      if (sc > 0) {
+        const lifetime = await loadLifetimeCorrect();
+        const newLifetime = lifetime + sc;
+        await saveLifetimeCorrect(newLifetime);
+        setLifetimeCorrect(newLifetime);
+        // Si pas de profile, vérifier le prompt
+        if (!profile) {
+          const dismissedAt = await loadPromptDismissedAt();
+          if (shouldShowAccountPrompt(newLifetime, dismissedAt)) {
+            setShowAccountPrompt(true);
+          }
+        }
+      }
+    } catch(e) { /* Safe */ }
 
     // ── Streak : incrémenter si on atteint le seuil aujourd'hui ───────────
     try {
@@ -10171,6 +10641,45 @@ function AutoMaths() {
   const hTestGlobal   = () => { setCatId(null); setScreen("count"); };
   const hTestCategory = () => { setScreen("category"); };
   
+  // ── Vigilance (Points de vigilance) handlers ─────────────────────────────
+  const hVigilance = () => { setScreen("vigilance"); };
+  // Séance de remédiation : rassemble jusqu'à 15 questions en difficulté (toutes sous-cat confondues)
+  const hRemediation = () => {
+    const difficult = [];
+    for (const key of Object.keys(qState)) {
+      const entry = qState[key];
+      if (!entry || entry.status !== "learning") continue;
+      // Qualifier comme "en difficulté" si au moins 2 tentatives et >=40% d'échec
+      const failRate = entry.attempts > 0 ? 1 - (entry.successes / entry.attempts) : 0;
+      if (entry.attempts >= 2 && failRate >= 0.4) {
+        const parts = key.split(':');
+        if (parts.length !== 3) continue;
+        const [cId, sId, idxStr] = parts;
+        const idx = parseInt(idxStr);
+        const q = DB[cId]?.[sId]?.[idx];
+        if (q) difficult.push(q);
+      }
+    }
+    if (difficult.length === 0) return; // sécurité — le bouton ne s'affiche pas si rien
+    const selected = shuffle(difficult).slice(0, 15);
+    setQCount(selected.length);
+    setMode("entrainement"); // traiter comme un entrainement normal pour le routage
+    setPool(selected); setQuestions(selected);
+    setPrevScreen("vigilance");
+    setScreen("quiz");
+  };
+  // Travailler un thème précis depuis Points de vigilance
+  const hWorkTheme = (cId, sId) => {
+    const allQ = DB[cId]?.[sId] || [];
+    setCatId(cId);
+    setMode("entrainement");
+    const selected = selectQuestionsSmart(allQ, 10, qState);
+    setQCount(selected.length);
+    setPool(selected); setQuestions(selected);
+    setPrevScreen("vigilance");
+    setScreen("quiz");
+  };
+  
   // ── Sprint handlers ───────────────────────────────────────────────────────
   // Pool : toutes les questions QCM de l'app (celles avec .choices et sans pad/tableau/drag/graph lourd)
   const getSprintPool = () => {
@@ -10189,6 +10698,21 @@ function AutoMaths() {
       setSprintBest(result.score);
       await saveSprintBest(result.score);
     }
+    // Lifetime counter (pour prompt de compte progressif)
+    try {
+      if (result.score > 0) {
+        const lifetime = await loadLifetimeCorrect();
+        const newLifetime = lifetime + result.score;
+        await saveLifetimeCorrect(newLifetime);
+        setLifetimeCorrect(newLifetime);
+        if (!profile) {
+          const dismissedAt = await loadPromptDismissedAt();
+          if (shouldShowAccountPrompt(newLifetime, dismissedAt)) {
+            setShowAccountPrompt(true);
+          }
+        }
+      }
+    } catch(e) {}
     // On profite du sprint pour alimenter le compteur streak (comme un quiz normal)
     try {
       if (profile && result.score > 0) {
@@ -10326,11 +10850,12 @@ function AutoMaths() {
           {screen==="diagnostic"    && profile && <DiagnosticScreen profile={profile} onComplete={hDiagComplete}/>}
           {screen==="diag_result"   && profile && diagResults && <DiagnosticResultScreen profile={profile} diagResults={diagResults} onStart={hDiagResultNext}/>}
           {screen==="weekly_program"&& profile && weekProgram  && <WeeklyProgramScreen profile={profile} program={weekProgram} allProg={allProgCache} onStartSession={hProgramSession} onSkip={hProgramSkip}/>}
-          {screen==="dashboard"     && profile && <DashboardScreen profile={profile} onStartPractice={hStartPractice} onStartTest={hStartTest} onGoHome={()=>setScreen("home")} onEditProfile={hEditProfile} onLogout={hLogout} onExport={hExportProgress} onReminder={()=>setScreen("reminder")} onShowProgram={async()=>{const wp=await generateWeeklyProgram(profile,allProgCache);setWeekProgram(wp);setScreen("weekly_program");}}/>}
+          {screen==="dashboard"     && profile && <DashboardScreen profile={profile} onStartPractice={hStartPractice} onStartTest={hStartTest} onGoHome={()=>setScreen("home")} onEditProfile={hEditProfile} onLogout={hLogout} onExport={hExportProgress} onReminder={()=>setScreen("reminder")} onVigilance={hVigilance} onShowProgram={async()=>{const wp=await generateWeeklyProgram(profile,allProgCache);setWeekProgram(wp);setScreen("weekly_program");}}/>}
           {screen==="home"          && <HomeScreen onMode={hMode} profile={profile} onDashboard={profile?hDashboard:null} onSplash={()=>setScreen("splash")} streakProgress={streakProgress}/>}
           {screen==="test_aleatoire" && <TestAleatoireScreen onGlobal={hTestGlobal} onCategory={hTestCategory} onBack={()=>setScreen("home")}/>}
           {screen==="sprint"        && <SprintScreen    pool={getSprintPool()} onFinish={hSprintFinish} onBack={()=>{setSprintResult(null);setScreen("home");}}/>}
           {screen==="sprint_result" && sprintResult && <SprintResultScreen result={sprintResult} best={sprintBest} isNewBest={sprintIsNewBest} onReplay={hSprintReplay} onHome={()=>{setSprintResult(null);setSprintIsNewBest(false);setStreakJustCompleted(false);setScreen("home");}}/>}
+          {screen==="vigilance"     && profile && <VigilanceScreen profile={profile} qState={qState} onBack={()=>setScreen("dashboard")} onRemediation={hRemediation} onWorkTheme={hWorkTheme}/>}
           {screen==="category"      && <CategoryScreen  onCat={hCat} onBack={()=>setScreen(mode==="test_aleatoire"?"test_aleatoire":"home")} subtitle={mode==="express"?"Choisis une catégorie":mode==="entrainement"?"Choisis une catégorie":mode==="test_aleatoire"?"Toutes les questions de la catégorie":"Puis choisis des sous-thèmes"}/>}
           {screen==="subcategory"   && <SubcategoryScreen catId={catId} qCount={mode==="express"?10:20} onStart={hSub} onBack={()=>setScreen(mode==="missions"?"home":"category")} onLevelPicker={hLevelPicker} defaultNiveau={profile?LEVEL_MAP[profile.level]||null:null}/>}
           {screen==="mission_select" && <MissionScreen missionId={missionId} onBack={()=>setScreen("subcategory")} onSelectTheme={(theme)=>{
@@ -10365,6 +10890,17 @@ function AutoMaths() {
         <div style={{position:"absolute",bottom:8,left:"50%",transform:"translateX(-50%)",
           width:120,height:5,background:"#CBD5E1",borderRadius:99}}/>
       </div>
+      {/* Modal compte progressif — overlay visible sur tous les écrans quand déclenché */}
+      {showAccountPrompt && !profile && (
+        <AccountPromptModal
+          lifetime={lifetimeCorrect}
+          onAccept={() => { setShowAccountPrompt(false); setScreen("setup"); }}
+          onDismiss={async () => {
+            await savePromptDismissedAt(lifetimeCorrect);
+            setShowAccountPrompt(false);
+          }}
+        />
+      )}
     </>
   );
 }
