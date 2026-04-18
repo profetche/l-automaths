@@ -4532,17 +4532,22 @@ const CATS = [
       {id:"mission_bac",        label:"Objectif Bac en Terminale",   levels:["term"], isMission:true, disabled:true},
     ] },
   { id:"fonctions",    label:"Généralités sur les fonctions", emoji:"📈", color:"#2563EB", grad:"linear-gradient(135deg,#3B82F6,#1D4ED8)", light:"#EFF6FF", border:"#BFDBFE",
+    groups:[
+      {id:"lecture",   label:"👁️ Lecture graphique"},
+      {id:"calcul",    label:"✏️ Par le calcul"},
+      {id:"algebre",   label:"🧮 Signe d'un produit"},
+    ],
     subs:[
-      {id:"lecture_image",          label:"Image et antécédent",            levels:["sec","tc","stmg","spe","term"]},
-      {id:"resolution_graphique",   label:"Résolution graphique",           levels:["sec","tc","stmg","spe","term"]},
-      {id:"tableau_variations",     label:"Tableau de variations",          levels:["sec","tc","stmg","spe","term"]},
-      {id:"tableau_signes",         label:"Tableau de signes",              levels:["sec","tc","stmg","spe","term"]},
-      {id:"signe_produit",          label:"Signe d'un produit",             levels:["sec","tc","stmg","spe"]},
-      {id:"coeff_directeur_lecture",label:"Coefficient directeur (lecture)",levels:["sec","tc","stmg","spe","term"]},
-      {id:"equation_droite_lecture",label:"Équation de droite (lecture)",   levels:["sec","tc","stmg","spe","term"]},
-      {id:"calcul_image",           label:"Calcul d'image",                 levels:["sec","tc","stmg","spe","term"]},
-      {id:"point_courbe",           label:"Point sur courbe",               levels:["sec","tc","stmg","spe","term"]},
-      {id:"coeff_directeur_calcul", label:"Coefficient directeur (calcul)", levels:["sec","tc","stmg","spe","term"]},
+      {id:"lecture_image",          label:"Image et antécédent",            group:"lecture", levels:["sec","tc","stmg","spe","term"]},
+      {id:"resolution_graphique",   label:"Résolution graphique",           group:"lecture", levels:["sec","tc","stmg","spe","term"]},
+      {id:"tableau_variations",     label:"Tableau de variations",          group:"lecture", levels:["sec","tc","stmg","spe","term"]},
+      {id:"tableau_signes",         label:"Tableau de signes",              group:"lecture", levels:["sec","tc","stmg","spe","term"]},
+      {id:"coeff_directeur_lecture",label:"Coefficient directeur",          group:"lecture", levels:["sec","tc","stmg","spe","term"]},
+      {id:"equation_droite_lecture",label:"Équation de droite",             group:"lecture", levels:["sec","tc","stmg","spe","term"]},
+      {id:"calcul_image",           label:"Calcul d'image",                 group:"calcul",  levels:["sec","tc","stmg","spe","term"]},
+      {id:"point_courbe",           label:"Point sur courbe",               group:"calcul",  levels:["sec","tc","stmg","spe","term"]},
+      {id:"coeff_directeur_calcul", label:"Coefficient directeur",          group:"calcul",  levels:["sec","tc","stmg","spe","term"]},
+      {id:"signe_produit",          label:"Signe d'un produit",             group:"algebre", levels:["sec","tc","stmg","spe"]},
     ] },
   { id:"pourcentages", label:"Pourcentages", emoji:"💹", color:"#059669", grad:"linear-gradient(135deg,#10B981,#047857)", light:"#ECFDF5", border:"#A7F3D0",
     subs:[
@@ -4562,21 +4567,26 @@ const CATS = [
       {id:"puissances",   label:"Puissances",                   levels:["sec","tc","stmg","spe","term"]},
       {id:"scientifique", label:"Écriture scientifique",        levels:["sec","tc","stmg","spe","term"]},
       {id:"conversions",  label:"Conversions",                  levels:["sec","tc","stmg"]},
-      {id:"tables",       label:"Tables de multiplication",     levels:["sec","tc","stmg","spe","term"]},
+      {id:"tables",       label:"Tables de multiplication",     levels:["sec","tc","stmg"]},
       {id:"racines",      label:"Racines carrées",              levels:["sec","tc","stmg","spe","term"], levelPicker:true},
     ] },
   { id:"litteral",     label:"Calcul littéral", emoji:"📐", color:"#DC2626", grad:"linear-gradient(135deg,#EF4444,#B91C1C)", light:"#FEF2F2", border:"#FECACA",
+    groups:[
+      {id:"equations",      label:"🧩 Équations et inéquations"},
+      {id:"transformations",label:"🔧 Transformations d'expressions"},
+      {id:"manipulation",   label:"📐 Manipulation de formules"},
+    ],
     subs:[
-      {id:"reduction",    label:"Réduction d'expressions",     levels:["sec","tc","stmg","spe","term"], levelPicker:true, levelType:"reduction"},
-      {id:"eq1",          label:"Équation 1er degré",           levels:["sec","tc","stmg","spe","term"]},
-      {id:"produit_nul",  label:"Équation produit nul",         levels:["sec","tc","stmg","spe","term"]},
-      {id:"eq_x2",        label:"x²=a",                        levels:["sec","tc","stmg","spe","term"]},
-      {id:"eq_x3",        label:"x³=a",                        levels:["tc","stmg","spe"]},
-      {id:"inequation1",  label:"Inéquation 1er degré",        levels:["sec","tc","stmg","spe","term"]},
-      {id:"identites",    label:"Développement",                levels:["sec","tc","stmg","spe","term"], levelPicker:true, levelType:"identites"},
-      {id:"factorisation",label:"Factorisation",                levels:["sec","tc","stmg","spe","term"], levelPicker:true, levelType:"factorisation"},
-      {id:"denominateur", label:"Mise au même dénominateur",    levels:["sec","tc","stmg","spe","term"], levelPicker:true, levelType:"denominateur"},
-      {id:"manipulation", label:"Manipulation de formules",     levels:["sec","tc","stmg"]},
+      {id:"eq1",          label:"Équation 1er degré",           group:"equations",       levels:["sec","tc","stmg","spe","term"]},
+      {id:"produit_nul",  label:"Équation produit nul",         group:"equations",       levels:["sec","tc","stmg","spe","term"]},
+      {id:"eq_x2",        label:"x²=a",                         group:"equations",       levels:["sec","tc","stmg","spe","term"]},
+      {id:"eq_x3",        label:"x³=a",                         group:"equations",       levels:["tc","stmg","spe"]},
+      {id:"inequation1",  label:"Inéquation 1er degré",         group:"equations",       levels:["sec","tc","stmg","spe","term"]},
+      {id:"reduction",    label:"Réduction d'expressions",      group:"transformations", levels:["sec","tc","stmg","spe","term"], levelPicker:true, levelType:"reduction"},
+      {id:"identites",    label:"Développement",                group:"transformations", levels:["sec","tc","stmg","spe","term"], levelPicker:true, levelType:"identites"},
+      {id:"factorisation",label:"Factorisation",                group:"transformations", levels:["sec","tc","stmg","spe","term"], levelPicker:true, levelType:"factorisation"},
+      {id:"denominateur", label:"Mise au même dénominateur",    group:"transformations", levels:["sec","tc","stmg","spe","term"], levelPicker:true, levelType:"denominateur"},
+      {id:"manipulation", label:"Manipulation de formules",     group:"manipulation",    levels:["sec","tc","stmg"]},
     ] },
   { id:"probabilites", label:"Probabilités", emoji:"🎲", color:"#D97706", grad:"linear-gradient(135deg,#F59E0B,#B45309)", light:"#FFFBEB", border:"#FDE68A",
     subs:[
@@ -7972,21 +7982,51 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
             {allVis?"✅ Tout désélectionner":"☑️ Tout sélectionner"}
           </button>}
       <Scroll>
-        {cat.subs.map((s,i)=>{
+        {(() => {
+          // Si la catégorie a des groupes, on trie les subs par ordre des groupes
+          // pour que les séparateurs soient cohérents.
+          const groups = cat.groups || [];
+          const sortedSubs = groups.length === 0
+            ? cat.subs
+            : [...cat.subs].sort((a, b) => {
+                const ga = groups.findIndex(g => g.id === a.group);
+                const gb = groups.findIndex(g => g.id === b.group);
+                return (ga === -1 ? 999 : ga) - (gb === -1 ? 999 : gb);
+              });
+          let lastGroup = null;
+          const rendered = [];
+          sortedSubs.forEach((s, i) => {
           // Filtre niveau pour les subs normales (non-mission, non-levelPicker)
           if (!s.isMission && !s.levelPicker) {
-            if (niveau && s.levels && !s.levels.includes(niveau)) return null;
+            if (niveau && s.levels && !s.levels.includes(niveau)) return;
             // Filtre par type de réponse (contient au moins une question de ce type)
             if (typeFilter) {
               const types = getQuestionTypes(catId, s.id);
-              if (!types.includes(typeFilter)) return null;
+              if (!types.includes(typeFilter)) return;
             }
+          }
+          // Insérer un séparateur de groupe si nécessaire (catégorie à groupes uniquement)
+          if (groups.length > 0 && s.group && s.group !== lastGroup) {
+            const groupInfo = groups.find(g => g.id === s.group);
+            if (groupInfo) {
+              rendered.push(
+                <div key={`__group_${s.group}`} style={{
+                  fontSize:11, fontWeight:800, color:"#64748B",
+                  textTransform:"uppercase", letterSpacing:0.8,
+                  marginTop: rendered.length === 0 ? 0 : 14, marginBottom:8,
+                  paddingLeft:2
+                }}>
+                  {groupInfo.label}
+                </div>
+              );
+            }
+            lastGroup = s.group;
           }
           // Special mission entry
           if(s.isMission) {
-            if(niveau && s.levels && !s.levels.includes(niveau)) return null;
+            if(niveau && s.levels && !s.levels.includes(niveau)) return;
             const disabled = s.disabled || false;
-            return (
+            rendered.push(
             <button key={s.id} 
               onClick={()=>!disabled && onLevelPicker && onLevelPicker(s.id, 'mission')} 
               disabled={disabled}
@@ -8007,12 +8047,12 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
               </div>
               <span style={{color:disabled ? "#CBD5E1" : "#EA580C",fontSize:18}}>›</span>
             </button>
-          );}
+          );return;}
           
           // Special levelPicker entry — only show if matches current niveau filter
           if(s.levelPicker) {
-            if(niveau && s.levels && !s.levels.includes(niveau)) return null;
-            return (
+            if(niveau && s.levels && !s.levels.includes(niveau)) return;
+            rendered.push(
             <button key={s.id} onClick={()=>onLevelPicker&&onLevelPicker(s.id, s.levelType||'racines')} className="pop-in"
               style={{background:"linear-gradient(135deg,#7C3AED18,#5B21B618)",
                 border:"2px solid #DDD6FE",borderRadius:14,padding:"12px 14px",cursor:"pointer",
@@ -8025,7 +8065,7 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
               </div>
               <span style={{color:"#7C3AED",fontSize:18}}>›</span>
             </button>
-          );}
+          );return;}
           const on=sel.includes(s.id);
           const types = getQuestionTypes(catId, s.id);
           const typeMeta = {
@@ -8037,7 +8077,7 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
           // Ordre d'affichage stable : qcm, pad, drag, tableau
           const sortedTypes = ["qcm","pad","drag","tableau"].filter(t => types.includes(t));
           
-          return (
+          rendered.push(
             <button key={s.id} onClick={()=>toggle(s.id)} className="pop-in"
               style={{background:on?cat.light:"#fff",border:`2px solid ${on?cat.border:"#E2E8F0"}`,borderRadius:14,padding:"12px 14px",cursor:"pointer",display:"flex",alignItems:"center",gap:12,marginBottom:8,boxShadow:"0 2px 8px rgba(0,0,0,.04)",animationDelay:`${i*.04}s`,flexShrink:0}}>
               <div style={{width:20,height:20,borderRadius:6,background:on?cat.color:"#E2E8F0",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
@@ -8063,7 +8103,9 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
               </div>
             </button>
           );
-        })}
+        });
+          return rendered;
+        })()}
         </Scroll>
         </>
       )}
