@@ -7475,53 +7475,38 @@ function SplashScreen({onStart, onMySpace, profile}) {
 
 // ── MENU ─────────────────────────────────────────────────────────────────────
 function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress}) {
-  const modes=[
-    {id:"sprint",label:"Sprint 5 min",sub:"Chrono : enchaîne un max de QCM",emoji:"⏱️",grad:"linear-gradient(135deg,#F59E0B,#D97706)"},
-    {id:"express",label:"Express",sub:"10 questions dans un thème",emoji:"⚡",grad:"linear-gradient(135deg,#3B82F6,#1D4ED8)"},
-    {id:"entrainement",label:"Entraînement",sub:"20 ou 50 questions par thème",emoji:"💪",grad:"linear-gradient(135deg,#8B5CF6,#6D28D9)"},
-    {id:"test_aleatoire",label:"Test aléatoire",sub:"Questions surprises",emoji:"🎲",grad:"linear-gradient(135deg,#10B981,#047857)"},
-    {id:"missions",label:"Les missions",sub:"Objectifs ciblés Sigma",emoji:"🚀",grad:"linear-gradient(135deg,#F97316,#C2410C)"},
-    {id:"bac",label:"En route pour le Bac",sub:"Spé · Tronc commun · STMG",emoji:"🏆",grad:"linear-gradient(135deg,#F59E0B,#B45309)",light:"#FFFBEB",border:"#FDE68A",color:"#B45309",
-      subs:[
-        {id:"stmg_annales_s1_2026",label:"🏫 STMG — Annales 2026, Sujet 1"},
-        {id:"stmg_annales_s2_2026",label:"🏫 STMG — Annales 2026, Sujet 2"},
-        {id:"stmg_original",label:"🏫 STMG — Créations originales 🔧"},
-        {id:"tronc_annales_s1_2026",label:"📘 Tronc commun — Annales 2026, Sujet 1"},
-        {id:"tronc_annales_s2_2026",label:"📘 Tronc commun — Annales 2026, Sujet 2"},
-        {id:"tronc_annales_s3_2026",label:"📘 Tronc commun — Annales 2026, Sujet 3"},
-        {id:"tronc_original",label:"📘 Tronc commun — Créations originales 🔧"},
-        {id:"spe_annales_s1_2026",label:"🔬 Spé — Annales 2026, Sujet 1"},
-        {id:"spe_annales_s2_2026",label:"🔬 Spé — Annales 2026, Sujet 2"},
-        {id:"spe_original",label:"🔬 Spé — Créations originales 🔧"},
-      ]},
+  // Modes principaux simplifiés :
+  // - Sprint : accès direct (format court, rythmé)
+  // - S'entraîner : écran intermédiaire (Express / Entraînement / Test aléatoire)
+  // - Missions : objectifs ciblés
+  // - Bac : annales
+  const modes = [
+    {id:"sprint",      label:"Sprint 5 min",         sub:"Vite, chrono !",         emoji:"⏱️", grad:"linear-gradient(135deg,#F59E0B,#D97706)"},
+    {id:"train",       label:"S'entraîner",          sub:"Choisis ton format",     emoji:"💪", grad:"linear-gradient(135deg,#3B82F6,#1D4ED8)"},
+    {id:"missions",    label:"Les missions",         sub:"Objectifs ciblés Sigma", emoji:"🚀", grad:"linear-gradient(135deg,#F97316,#C2410C)"},
+    {id:"bac",         label:"En route pour le Bac", sub:"Annales & sujets",       emoji:"🏆", grad:"linear-gradient(135deg,#F59E0B,#B45309)"},
   ];
   return (
     <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",
-      padding:"20px 18px",background:"#E8EAF0"}}>
-      <div style={{textAlign:"center",marginBottom:14}}>
-        {/* Sigma + brand header */}
-        <div style={{display:"flex",alignItems:"center",gap:12,
-          background:"#1A1A2E",borderRadius:20,padding:"10px 16px",marginBottom:10,
-          boxShadow:"0 4px 16px rgba(15,52,96,.35)",position:"relative"}}>
-          {/* Back to splash */}
+      padding:"16px 18px",background:"#E8EAF0"}}>
+      <div style={{marginBottom:10}}>
+        {/* Sigma + brand header — version compacte */}
+        <div style={{display:"flex",alignItems:"center",gap:10,
+          background:"#1A1A2E",borderRadius:16,padding:"8px 14px",marginBottom:10,
+          boxShadow:"0 3px 12px rgba(15,52,96,.3)",position:"relative"}}>
           {onSplash && (
             <button onClick={onSplash}
-              style={{position:"absolute",top:8,right:10,background:"rgba(255,255,255,0.08)",
-                border:"none",borderRadius:8,padding:"4px 9px",color:"#64748B",
-                cursor:"pointer",fontSize:11,fontWeight:700}}>
-              ← Accueil
+              style={{position:"absolute",top:6,right:8,background:"rgba(255,255,255,0.08)",
+                border:"none",borderRadius:6,padding:"3px 7px",color:"#64748B",
+                cursor:"pointer",fontSize:10,fontWeight:700}}>
+              ←
             </button>
           )}
           <div style={{flexShrink:0}}>
-            <img src={SIGMA_IMG} alt="Sigma" style={{width:52,height:52,objectFit:"contain"}}/>
+            <img src={SIGMA_IMG} alt="Sigma" style={{width:38,height:38,objectFit:"contain"}}/>
           </div>
-          {/* Brand */}
-          <div style={{textAlign:"left"}}>
-            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:700,fontSize:9,
-              letterSpacing:1,color:"#64748B",textTransform:"uppercase",marginBottom:2}}>
-            Laisse-toi guider par Sigma
-            </div>
-            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:22,
+          <div style={{textAlign:"left",flex:1}}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:18,
               color:"#fff",letterSpacing:-0.5,lineHeight:1}}>
               l'Auto<span style={{color:"#F59E0B"}}>Maths</span>
             </div>
@@ -7567,7 +7552,6 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress}) {
               ? `${todayCount}/${threshold} — ne casse pas ta série !`
               : `Joue aujourd'hui (${threshold} bonnes réponses) pour garder ta série`;
           } else {
-            // Streak perdue ou nouvelle journée loin
             mainText = "Nouvelle journée";
             subText = todayCount > 0
               ? `${todayCount}/${threshold} bonnes réponses — continue !`
@@ -7577,26 +7561,25 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress}) {
           return (
             <div style={{
               background: bg,
-              borderRadius:16, padding:"12px 16px", marginBottom:14,
-              boxShadow:"0 4px 14px rgba(0,0,0,.15)"
+              borderRadius:14, padding:"10px 14px", marginBottom:10,
+              boxShadow:"0 3px 10px rgba(0,0,0,.12)"
             }}>
-              <div style={{display:"flex", alignItems:"center", gap:14}}>
-                <div style={{fontSize:32, flexShrink:0}}>{emoji}</div>
+              <div style={{display:"flex", alignItems:"center", gap:12}}>
+                <div style={{fontSize:26, flexShrink:0}}>{emoji}</div>
                 <div style={{flex:1, textAlign:"left"}}>
                   <div style={{fontFamily:"'Nunito',sans-serif", fontWeight:900,
-                    fontSize:20, color:"#fff", lineHeight:1.1}}>
+                    fontSize:17, color:"#fff", lineHeight:1.1}}>
                     {mainText}
                   </div>
                   <div style={{color:"rgba(255,255,255,.9)", fontSize:10,
-                    fontWeight:600, marginTop:3}}>
+                    fontWeight:600, marginTop:2}}>
                     {subText}
                   </div>
                 </div>
               </div>
-              {/* Barre de progression du jour (seulement si pas encore complétée) */}
               {!completedToday && (
                 <div style={{
-                  marginTop:10, height:5, background:"rgba(255,255,255,0.25)",
+                  marginTop:8, height:4, background:"rgba(255,255,255,0.25)",
                   borderRadius:99, overflow:"hidden"
                 }}>
                   <div style={{
@@ -7609,38 +7592,28 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress}) {
             </div>
           );
         })()}
-        {/* Teaser pour les utilisateurs sans profil — invite douce à créer un compte */}
+        {/* Teaser pour les utilisateurs sans profil — version discrète */}
         {!profile && (
           <div style={{
-            background:"linear-gradient(135deg,#E2E8F0,#CBD5E1)",
-            borderRadius:16, padding:"12px 16px", marginBottom:14,
-            boxShadow:"0 2px 8px rgba(0,0,0,.06)",
-            display:"flex", alignItems:"center", gap:12
+            background:"rgba(203,213,225,0.5)",
+            borderRadius:10, padding:"8px 12px", marginBottom:10,
+            display:"flex", alignItems:"center", gap:8
           }}>
-            <div style={{fontSize:28, flexShrink:0, opacity:0.7}}>🔒</div>
-            <div style={{flex:1, textAlign:"left"}}>
-              <div style={{fontFamily:"'Nunito',sans-serif", fontWeight:800,
-                fontSize:13, color:"#334155", lineHeight:1.2}}>
-                Série quotidienne, progrès, points de vigilance
-              </div>
-              <div style={{color:"#64748B", fontSize:10, fontWeight:600, marginTop:3}}>
-                Disponibles avec un compte — tu en gardes la trace
-              </div>
+            <div style={{fontSize:14, opacity:0.6}}>🔒</div>
+            <div style={{fontSize:11, color:"#475569", fontWeight:600}}>
+              Crée un compte pour garder tes progrès
             </div>
           </div>
         )}
-        <p style={{color:"#64748B",fontSize:12,fontWeight:600}}>
-          Choisis ton mode d'entraînement
-        </p>
       </div>
       {/* Dashboard shortcut */}
       {profile && onDashboard && (
         <button onClick={onDashboard}
-          style={{marginBottom:10,padding:"10px 14px",borderRadius:14,border:"none",
+          style={{marginBottom:10,padding:"9px 14px",borderRadius:12,border:"none",
             background:"linear-gradient(135deg,#1A1A2E,#0F3460)",color:"#F59E0B",
             fontFamily:"'Nunito',sans-serif",fontSize:12,fontWeight:800,cursor:"pointer",
-            display:"flex",alignItems:"center",gap:8}}>
-          <span style={{fontSize:18}}>{CURRICULUM[profile.level]?.emoji||"📊"}</span>
+            display:"flex",alignItems:"center",gap:8,flexShrink:0}}>
+          <span style={{fontSize:16}}>{CURRICULUM[profile.level]?.emoji||"📊"}</span>
           <span>Mon parcours — {profile.name}</span>
           <span style={{marginLeft:"auto",fontSize:10,color:"#64748B"}}>→</span>
         </button>
@@ -7648,20 +7621,90 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress}) {
       <Scroll>
         {modes.map((m,i)=>(
           <button key={m.id} onClick={()=>onMode(m.id)} className="pop-in"
-            style={{background:m.grad,border:"none",borderRadius:16,padding:"15px 18px",
+            style={{background:m.grad,border:"none",borderRadius:16,padding:"16px 18px",
               cursor:"pointer",display:"flex",alignItems:"center",gap:14,
-              boxShadow:"0 5px 18px rgba(0,0,0,.15)",animationDelay:`${i*.06}s`,flexShrink:0}}>
-            <div style={{fontSize:26,width:42,height:42,background:"rgba(255,255,255,.2)",
+              boxShadow:"0 5px 18px rgba(0,0,0,.15)",animationDelay:`${i*.06}s`,flexShrink:0,marginBottom:10}}>
+            <div style={{fontSize:26,width:44,height:44,background:"rgba(255,255,255,.2)",
               borderRadius:12,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
               {m.emoji}
             </div>
-            <div style={{textAlign:"left"}}>
-              <div style={{fontFamily:"'Nunito',sans-serif",fontSize:15,fontWeight:900,color:"#fff"}}>
+            <div style={{textAlign:"left",flex:1}}>
+              <div style={{fontFamily:"'Nunito',sans-serif",fontSize:16,fontWeight:900,color:"#fff"}}>
                 {m.label}
               </div>
-              <div style={{fontSize:12,color:"rgba(255,255,255,.8)",marginTop:1}}>{m.sub}</div>
+              <div style={{fontSize:11,color:"rgba(255,255,255,.8)",marginTop:1}}>{m.sub}</div>
             </div>
-            <div style={{marginLeft:"auto",color:"rgba(255,255,255,.7)",fontSize:18}}>›</div>
+            <div style={{color:"rgba(255,255,255,.7)",fontSize:18}}>›</div>
+          </button>
+        ))}
+      </Scroll>
+    </div>
+  );
+}
+
+// ── TrainingModesScreen — écran intermédiaire pour choisir le format d'entraînement
+function TrainingModesScreen({onMode, onBack}) {
+  const modes = [
+    {
+      id:"express",
+      label:"Express",
+      sub:"10 questions dans un thème",
+      desc:"Parfait pour une pause rapide : tu choisis un thème, Sigma te donne 10 questions.",
+      emoji:"⚡",
+      grad:"linear-gradient(135deg,#3B82F6,#1D4ED8)",
+    },
+    {
+      id:"entrainement",
+      label:"Entraînement",
+      sub:"20 ou 50 questions par thème",
+      desc:"Pour une vraie séance de travail ciblée sur tes thèmes.",
+      emoji:"💪",
+      grad:"linear-gradient(135deg,#8B5CF6,#6D28D9)",
+    },
+    {
+      id:"test_aleatoire",
+      label:"Test aléatoire",
+      sub:"Questions surprises",
+      desc:"Sigma mélange les thèmes — idéal pour simuler une évaluation.",
+      emoji:"🎲",
+      grad:"linear-gradient(135deg,#10B981,#047857)",
+    },
+  ];
+  return (
+    <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",
+      padding:"20px 18px",background:"#E8EAF0"}}>
+      <Back onClick={onBack}/>
+      <div style={{marginBottom:16}}>
+        <h2 style={{fontFamily:"'Nunito',sans-serif",fontSize:22,fontWeight:900,color:"#1E293B",margin:0}}>
+          💪 S'entraîner
+        </h2>
+        <p style={{color:"#64748B",fontSize:12,fontWeight:600,marginTop:4}}>
+          Choisis ton format
+        </p>
+      </div>
+      <Scroll>
+        {modes.map((m,i)=>(
+          <button key={m.id} onClick={()=>onMode(m.id)} className="pop-in"
+            style={{background:m.grad,border:"none",borderRadius:16,padding:"18px",
+              cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"flex-start",gap:8,
+              boxShadow:"0 5px 18px rgba(0,0,0,.15)",animationDelay:`${i*.07}s`,flexShrink:0,marginBottom:12,textAlign:"left"}}>
+            <div style={{display:"flex",alignItems:"center",gap:14,width:"100%"}}>
+              <div style={{fontSize:28,width:48,height:48,background:"rgba(255,255,255,.2)",
+                borderRadius:13,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+                {m.emoji}
+              </div>
+              <div style={{flex:1}}>
+                <div style={{fontFamily:"'Nunito',sans-serif",fontSize:17,fontWeight:900,color:"#fff"}}>
+                  {m.label}
+                </div>
+                <div style={{fontSize:12,color:"rgba(255,255,255,.85)",marginTop:2}}>{m.sub}</div>
+              </div>
+              <div style={{color:"rgba(255,255,255,.7)",fontSize:20}}>›</div>
+            </div>
+            <div style={{fontSize:11,color:"rgba(255,255,255,.85)",lineHeight:1.5,
+              background:"rgba(255,255,255,.1)",borderRadius:10,padding:"8px 12px",width:"100%"}}>
+              {m.desc}
+            </div>
           </button>
         ))}
       </Scroll>
@@ -10832,10 +10875,19 @@ function AutoMaths() {
     setMode(m);
     if (m === "bac") setScreen("bac_subjects");
     else if (m === "missions") { setCatId("missions"); setScreen("subcategory"); }
+    else if (m === "train") setScreen("training_modes"); // écran intermédiaire
     else if (m === "express") setScreen("category");
     else if (m === "entrainement") setScreen("category");
     else if (m === "test_aleatoire") setScreen("test_aleatoire");
     else if (m === "sprint") setScreen("sprint");
+    else setScreen("category");
+  };
+  // Choix depuis l'écran intermédiaire S'entraîner
+  const hTrainingMode = m => {
+    setMode(m);
+    if (m === "express") setScreen("category");
+    else if (m === "entrainement") setScreen("category");
+    else if (m === "test_aleatoire") setScreen("test_aleatoire");
     else setScreen("category");
   };
   const hCat      = cid=> {
@@ -11107,11 +11159,12 @@ function AutoMaths() {
           {screen==="weekly_program"&& profile && weekProgram  && <WeeklyProgramScreen profile={profile} program={weekProgram} allProg={allProgCache} onStartSession={hProgramSession} onSkip={hProgramSkip}/>}
           {screen==="dashboard"     && profile && <DashboardScreen profile={profile} onStartPractice={hStartPractice} onStartTest={hStartTest} onGoHome={()=>setScreen("home")} onEditProfile={hEditProfile} onLogout={hLogout} onExport={hExportProgress} onReminder={()=>setScreen("reminder")} onVigilance={hVigilance} onShowProgram={async()=>{const wp=await generateWeeklyProgram(profile,allProgCache);setWeekProgram(wp);setScreen("weekly_program");}}/>}
           {screen==="home"          && <HomeScreen onMode={hMode} profile={profile} onDashboard={profile?hDashboard:null} onSplash={()=>setScreen("splash")} streakProgress={streakProgress}/>}
-          {screen==="test_aleatoire" && <TestAleatoireScreen onGlobal={hTestGlobal} onCategory={hTestCategory} onBack={()=>setScreen("home")}/>}
+          {screen==="test_aleatoire" && <TestAleatoireScreen onGlobal={hTestGlobal} onCategory={hTestCategory} onBack={()=>setScreen(mode==="test_aleatoire"?"training_modes":"home")}/>}
+          {screen==="training_modes" && <TrainingModesScreen onMode={hTrainingMode} onBack={()=>setScreen("home")}/>}
           {screen==="sprint"        && <SprintScreen    pool={getSprintPool()} onFinish={hSprintFinish} onBack={()=>{setSprintResult(null);setScreen("home");}}/>}
           {screen==="sprint_result" && sprintResult && <SprintResultScreen result={sprintResult} best={sprintBest} isNewBest={sprintIsNewBest} onReplay={hSprintReplay} onHome={()=>{setSprintResult(null);setSprintIsNewBest(false);setStreakJustCompleted(false);setScreen("home");}}/>}
           {screen==="vigilance"     && profile && <VigilanceScreen profile={profile} qState={qState} onBack={()=>setScreen("dashboard")} onRemediation={hRemediation} onWorkTheme={hWorkTheme}/>}
-          {screen==="category"      && <CategoryScreen  onCat={hCat} onBack={()=>setScreen(mode==="test_aleatoire"?"test_aleatoire":"home")} subtitle={mode==="express"?"Choisis une catégorie":mode==="entrainement"?"Choisis une catégorie":mode==="test_aleatoire"?"Toutes les questions de la catégorie":"Puis choisis des sous-thèmes"}/>}
+          {screen==="category"      && <CategoryScreen  onCat={hCat} onBack={()=>setScreen((mode==="express"||mode==="entrainement")?"training_modes":mode==="test_aleatoire"?"test_aleatoire":"home")} subtitle={mode==="express"?"Choisis une catégorie":mode==="entrainement"?"Choisis une catégorie":mode==="test_aleatoire"?"Toutes les questions de la catégorie":"Puis choisis des sous-thèmes"}/>}
           {screen==="subcategory"   && <SubcategoryScreen catId={catId} qCount={mode==="express"?10:20} onStart={hSub} onBack={()=>setScreen(mode==="missions"?"home":"category")} onLevelPicker={hLevelPicker} defaultNiveau={profile?LEVEL_MAP[profile.level]||null:null}/>}
           {screen==="mission_select" && <MissionScreen missionId={missionId} onBack={()=>setScreen("subcategory")} onSelectTheme={(theme)=>{
             setMissionTheme(theme);
