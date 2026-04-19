@@ -7471,7 +7471,7 @@ function VigilanceScreen({profile, qState, onBack, onRemediation, onWorkTheme}) 
   );
 }
 
-function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEditProfile, onLogout, onShowProgram, onExport, onReminder, onVigilance, onCollection, diagResults}) {
+function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEditProfile, onLogout, onShowProgram, onExport, onReminder, onVigilance, onCollection, diagResults, cardsUnlocked, qState}) {
   const curr = CURRICULUM[profile.level] || CURRICULUM.seconde;
   const [allProg, setAllProg] = useState({});
   const [loading, setLoading] = useState(true);
@@ -7481,6 +7481,7 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
   const [dailyState, setDailyState] = useState(null); // {done, date}
   const [shield, setShield] = useState(false);
   const [tab, setTab] = useState('parcours'); // 'parcours' | 'badges' | 'defi'
+  const [menuOpen, setMenuOpen] = useState(false); // menu déroulant ⋯ (actions rares)
 
   const dailyChallenge = React.useMemo(() => getDailyChallenge(profile, allProg, diagResults), [profile.level, allProg, diagResults]);
 
@@ -7540,33 +7541,78 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
 
       {/* ── Header ── */}
       <div style={{background:`linear-gradient(160deg,#1A1A2E 0%,#0F3460 100%)`,
-        padding:"14px 16px 16px",flexShrink:0}}>
+        padding:"14px 16px 16px",flexShrink:0,position:"relative"}}>
         {/* Top row */}
         <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:10}}>
           <img src={SIGMA_IMG} alt="Sigma" style={{width:38,height:38,objectFit:"contain"}}/>
-          <div style={{flex:1}}>
+          <div style={{flex:1,minWidth:0}}>
             <div style={{color:"#64748B",fontSize:9,fontWeight:600}}>Bonjour 👋</div>
-            <div style={{color:"#fff",fontSize:16,fontWeight:900,fontFamily:"'Nunito',sans-serif",lineHeight:1}}>{profile.name}</div>
-            <div style={{display:"flex",gap:4,marginTop:2,flexWrap:"wrap"}}>
-              <span style={{background:`${lvl.color}22`,borderRadius:99,padding:"1px 7px",
-                color:lvl.color,fontSize:9,fontWeight:700}}>{lvl.emoji} {lvl.label}</span>
+            <div style={{color:"#fff",fontSize:16,fontWeight:900,fontFamily:"'Nunito',sans-serif",lineHeight:1.1}}>{profile.name}</div>
+            <div style={{display:"flex",gap:4,marginTop:3,flexWrap:"wrap"}}>
               <span style={{background:"rgba(255,255,255,0.08)",borderRadius:99,padding:"1px 7px",
                 color:"#94A3B8",fontSize:9,fontWeight:600}}>{curr.emoji} {curr.label}</span>
             </div>
           </div>
-          <div style={{display:"flex",flexDirection:"column",gap:3,alignItems:"flex-end"}}>
-            <button onClick={onGoHome} style={{background:"rgba(255,255,255,0.09)",border:"none",
-              borderRadius:8,padding:"4px 8px",color:"#fff",cursor:"pointer",fontSize:11,fontWeight:700}}>🏠</button>
-            <button onClick={onEditProfile} style={{background:"rgba(255,255,255,0.06)",border:"none",
-              borderRadius:8,padding:"4px 8px",color:"#64748B",cursor:"pointer",fontSize:10}}>⚙️</button>
-            <button onClick={onLogout} style={{background:"rgba(239,68,68,0.12)",border:"none",
-              borderRadius:8,padding:"3px 7px",color:"#FCA5A5",cursor:"pointer",fontSize:9,fontWeight:700}}>⏻</button>
-            {onExport&&<button onClick={onExport} style={{background:"rgba(16,185,129,0.15)",border:"none",borderRadius:8,padding:"4px 7px",color:"#6EE7B7",cursor:"pointer",fontSize:9,fontWeight:700}}>📤</button>}
-            {onReminder&&<button onClick={onReminder} style={{background:"rgba(245,158,11,0.15)",border:"none",borderRadius:8,padding:"4px 7px",color:"#FDE68A",cursor:"pointer",fontSize:9,fontWeight:700}}>🔔</button>}
-            {onVigilance&&<button onClick={onVigilance} title="Points de vigilance" style={{background:"rgba(239,68,68,0.15)",border:"none",borderRadius:8,padding:"4px 7px",color:"#FCA5A5",cursor:"pointer",fontSize:9,fontWeight:700}}>🎯</button>}
-            {onCollection&&<button onClick={onCollection} title="Ma collection Sigma" style={{background:"rgba(245,158,11,0.15)",border:"none",borderRadius:8,padding:"4px 7px",color:"#FCD34D",cursor:"pointer",fontSize:9,fontWeight:700}}>🎴</button>}
+          {/* Boutons primaires : Accueil + Menu ⋯ */}
+          <div style={{display:"flex",gap:6,alignItems:"center",flexShrink:0}}>
+            <button onClick={onGoHome} title="Accueil"
+              style={{background:"rgba(255,255,255,0.12)",border:"none",
+                borderRadius:10,padding:"8px 10px",color:"#fff",cursor:"pointer",
+                fontSize:14,fontWeight:700,lineHeight:1}}>🏠</button>
+            <button onClick={()=>setMenuOpen(v=>!v)} title="Plus d'options"
+              style={{background: menuOpen ? "rgba(245,158,11,0.25)" : "rgba(255,255,255,0.06)",
+                border:"none",borderRadius:10,padding:"8px 10px",
+                color: menuOpen ? "#FCD34D" : "#CBD5E1",cursor:"pointer",
+                fontSize:14,fontWeight:900,lineHeight:1}}>⋯</button>
           </div>
         </div>
+
+        {/* Menu déroulant — actions secondaires */}
+        {menuOpen && (
+          <>
+            {/* Overlay pour fermer en cliquant ailleurs */}
+            <div onClick={()=>setMenuOpen(false)}
+              style={{position:"fixed",inset:0,background:"transparent",zIndex:40}}/>
+            <div style={{
+              position:"absolute",top:56,right:14,zIndex:41,
+              background:"#fff",borderRadius:12,minWidth:200,
+              boxShadow:"0 10px 32px rgba(0,0,0,0.25)",overflow:"hidden",
+              animation:"fadeIn .15s ease"
+            }}>
+              <button onClick={()=>{setMenuOpen(false);onEditProfile();}}
+                style={{display:"flex",alignItems:"center",gap:10,width:"100%",
+                  padding:"11px 14px",border:"none",background:"#fff",cursor:"pointer",
+                  fontSize:12,fontWeight:600,color:"#334155",textAlign:"left",
+                  borderBottom:"1px solid #F1F5F9"}}>
+                <span style={{fontSize:16}}>⚙️</span><span>Modifier mon profil</span>
+              </button>
+              {onExport && (
+                <button onClick={()=>{setMenuOpen(false);onExport();}}
+                  style={{display:"flex",alignItems:"center",gap:10,width:"100%",
+                    padding:"11px 14px",border:"none",background:"#fff",cursor:"pointer",
+                    fontSize:12,fontWeight:600,color:"#334155",textAlign:"left",
+                    borderBottom:"1px solid #F1F5F9"}}>
+                  <span style={{fontSize:16}}>📤</span><span>Exporter ma progression</span>
+                </button>
+              )}
+              {onReminder && (
+                <button onClick={()=>{setMenuOpen(false);onReminder();}}
+                  style={{display:"flex",alignItems:"center",gap:10,width:"100%",
+                    padding:"11px 14px",border:"none",background:"#fff",cursor:"pointer",
+                    fontSize:12,fontWeight:600,color:"#334155",textAlign:"left",
+                    borderBottom:"1px solid #F1F5F9"}}>
+                  <span style={{fontSize:16}}>🔔</span><span>Gérer les rappels</span>
+                </button>
+              )}
+              <button onClick={()=>{setMenuOpen(false);onLogout();}}
+                style={{display:"flex",alignItems:"center",gap:10,width:"100%",
+                  padding:"11px 14px",border:"none",background:"#FEF2F2",cursor:"pointer",
+                  fontSize:12,fontWeight:600,color:"#B91C1C",textAlign:"left"}}>
+                <span style={{fontSize:16}}>⏻</span><span>Se déconnecter</span>
+              </button>
+            </div>
+          </>
+        )}
 
         {/* XP bar */}
         <div style={{marginBottom:10}}>
@@ -7690,6 +7736,64 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
                 <Prog pct={Math.min(100,(profile.streak||0)/5*100)} color="orange"/>
               </div>
             </div>
+
+            {/* Accès rapides : Points de vigilance + Collection */}
+            {(onVigilance || onCollection) && (() => {
+              // Compter les points de vigilance = questions en "learning" avec >=2 tentatives et >=40% d'échec
+              let vigilanceCount = 0;
+              if (qState) {
+                for (const k of Object.keys(qState)) {
+                  const e = qState[k];
+                  if (!e || e.status !== "learning") continue;
+                  const failRate = e.attempts > 0 ? 1 - (e.successes / e.attempts) : 0;
+                  if (e.attempts >= 2 && failRate >= 0.4) vigilanceCount++;
+                }
+              }
+              const cardsCount = (cardsUnlocked || []).length;
+              const totalCards = (typeof CARDS !== "undefined" && Array.isArray(CARDS)) ? CARDS.length : 20;
+              return (
+                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
+                  {onVigilance && (
+                    <button onClick={onVigilance}
+                      style={{background:"#fff",border:"2px solid #FECACA",borderRadius:14,
+                        padding:"11px 12px",cursor:"pointer",textAlign:"left",
+                        display:"flex",flexDirection:"column",gap:4,
+                        boxShadow:"0 2px 8px rgba(0,0,0,.05)"}}>
+                      <div style={{display:"flex",alignItems:"center",gap:6}}>
+                        <span style={{fontSize:18}}>🎯</span>
+                        <span style={{fontSize:11,fontWeight:800,color:"#B91C1C"}}>
+                          Vigilance
+                        </span>
+                      </div>
+                      <div style={{fontSize:10,color:"#64748B",fontWeight:600,lineHeight:1.3}}>
+                        {vigilanceCount === 0
+                          ? "Tout roule pour l'instant"
+                          : vigilanceCount === 1
+                          ? "1 thème à revoir"
+                          : `${vigilanceCount} thèmes à revoir`}
+                      </div>
+                    </button>
+                  )}
+                  {onCollection && (
+                    <button onClick={onCollection}
+                      style={{background:"#fff",border:"2px solid #FDE68A",borderRadius:14,
+                        padding:"11px 12px",cursor:"pointer",textAlign:"left",
+                        display:"flex",flexDirection:"column",gap:4,
+                        boxShadow:"0 2px 8px rgba(0,0,0,.05)"}}>
+                      <div style={{display:"flex",alignItems:"center",gap:6}}>
+                        <span style={{fontSize:18}}>🎴</span>
+                        <span style={{fontSize:11,fontWeight:800,color:"#B45309"}}>
+                          Collection
+                        </span>
+                      </div>
+                      <div style={{fontSize:10,color:"#64748B",fontWeight:600,lineHeight:1.3}}>
+                        {cardsCount}/{totalCards} cartes{cardsCount===0?" à débloquer":" débloquées"}
+                      </div>
+                    </button>
+                  )}
+                </div>
+              );
+            })()}
 
             {/* Suggested */}
             {suggested&&(
@@ -11781,16 +11885,6 @@ function AutoMaths() {
         <div style={{position:"absolute",top:0,left:"50%",transform:"translateX(-50%)",
           width:120,height:26,background:"#1E293B",borderRadius:"0 0 18px 18px",zIndex:10}}/>
         
-        {/* MenuHamburger - only show on screens other than splash/setup */}
-        {!["splash","setup","diagnostic","diag_result","weekly_program","quiz","result","parcours_result"].includes(screen) && (
-          <MenuHamburger 
-            currentScreen={screen}
-            onHome={() => setScreen("home")}
-            onCategories={() => {setMode("express"); setScreen("category");}}
-            onProfile={profile ? () => setScreen("dashboard") : null}
-          />
-        )}
-        
         <div style={{height:"100%",overflowY:"auto",paddingTop:26}}>
 
           {screen==="splash"        && <SplashScreen    onStart={()=>setScreen(profile?"dashboard":"home")} onMySpace={()=>setScreen(profile?"dashboard":"setup")} profile={profile}/>}
@@ -11800,7 +11894,7 @@ function AutoMaths() {
           {screen==="diagnostic"    && profile && <DiagnosticScreen profile={profile} onComplete={hDiagComplete}/>}
           {screen==="diag_result"   && profile && diagResults && <DiagnosticResultScreen profile={profile} diagResults={diagResults} onStart={hDiagResultNext}/>}
           {screen==="weekly_program"&& profile && weekProgram  && <WeeklyProgramScreen profile={profile} program={weekProgram} allProg={allProgCache} onStartSession={hProgramSession} onSkip={hProgramSkip}/>}
-          {screen==="dashboard"     && profile && <DashboardScreen profile={profile} diagResults={diagResults} onStartPractice={hStartPractice} onStartTest={hStartTest} onGoHome={()=>setScreen("home")} onEditProfile={hEditProfile} onLogout={hLogout} onExport={hExportProgress} onReminder={()=>setScreen("reminder")} onVigilance={hVigilance} onCollection={()=>setScreen("collection")} onShowProgram={async()=>{const wp=await generateWeeklyProgram(profile,allProgCache,diagResults);setWeekProgram(wp);setScreen("weekly_program");}}/>}
+          {screen==="dashboard"     && profile && <DashboardScreen profile={profile} diagResults={diagResults} cardsUnlocked={cardsUnlocked} qState={qState} onStartPractice={hStartPractice} onStartTest={hStartTest} onGoHome={()=>setScreen("home")} onEditProfile={hEditProfile} onLogout={hLogout} onExport={hExportProgress} onReminder={()=>setScreen("reminder")} onVigilance={hVigilance} onCollection={()=>setScreen("collection")} onShowProgram={async()=>{const wp=await generateWeeklyProgram(profile,allProgCache,diagResults);setWeekProgram(wp);setScreen("weekly_program");}}/>}
           {screen==="home"          && <HomeScreen onMode={hMode} profile={profile} onDashboard={profile?hDashboard:null} onSplash={()=>setScreen("splash")} streakProgress={streakProgress}/>}
           {screen==="test_aleatoire" && <TestAleatoireScreen onGlobal={hTestGlobal} onCategory={hTestCategory} onBack={()=>setScreen(mode==="test_aleatoire"?"training_modes":"home")}/>}
           {screen==="training_modes" && <TrainingModesScreen onMode={hTrainingMode} onBack={()=>setScreen("home")}/>}
