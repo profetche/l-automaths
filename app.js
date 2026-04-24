@@ -4629,6 +4629,47 @@ const CATS = [
 // ── Utils ──────────────────────────────────────────────────────────────────────
 const shuffle  = a => [...a].sort(() => Math.random() - 0.5);
 
+// Mémoire courte : stocke les 20 dernières questions vues pour éviter de les
+// re-proposer trop vite au prochain entraînement. Persiste via localStorage.
+const RECENT_Q_K = 'user:recent_q';
+const RECENT_Q_MAX = 20;
+async function loadRecentQ() {
+  try { const r = await _storage.get(RECENT_Q_K); return r?.value ? JSON.parse(r.value) : []; }
+  catch { return []; }
+}
+async function saveRecentQ(keys) {
+  try { await _storage.set(RECENT_Q_K, JSON.stringify(keys.slice(-RECENT_Q_MAX))); } catch {}
+}
+async function pushRecentQ(newKeys) {
+  try {
+    const current = await loadRecentQ();
+    const merged = [...current, ...newKeys].slice(-RECENT_Q_MAX);
+    await saveRecentQ(merged);
+  } catch {}
+}
+
+// Mélange progressif : on préserve la progression facile → difficile par tiers,
+// chaque tiers étant mélangé indépendamment. Pour n < 6 on shuffle entièrement
+// (pas assez de questions pour parler de progression).
+// Option `avoidKeys` (Set) : questions à éviter si possible (anti-répétition).
+const progressiveShuffle = (arr, avoidKeys = null) => {
+  if (!Array.isArray(arr) || arr.length < 6) return shuffle(arr);
+  // Priorise les questions non-récemment-vues si on en a assez
+  let source = arr;
+  if (avoidKeys && avoidKeys.size > 0) {
+    const filtered = arr.filter(q => {
+      try { const k = findQKey(q); return !k || !avoidKeys.has(k); } catch { return true; }
+    });
+    // On utilise le filtre seulement si ça laisse au moins la moitié du pool
+    if (filtered.length >= Math.ceil(arr.length / 2)) source = filtered;
+  }
+  const third = Math.ceil(source.length / 3);
+  const t1 = shuffle(source.slice(0, third));
+  const t2 = shuffle(source.slice(third, 2 * third));
+  const t3 = shuffle(source.slice(2 * third));
+  return [...t1, ...t2, ...t3];
+};
+
 // ── Détecte le type de questions d'une sous-catégorie ─────────────────────────
 const getQuestionTypes = (catId, subId) => {
   const questions = DB[catId]?.[subId] || [];
@@ -5431,6 +5472,92 @@ const PK = (c,s) => `prg:${c}:${s}`;
 const PROF_K = 'user:prof';
 const EMPTY_P = () => ({pc:0,pt:0,tb:0,stars:0});
 
+// ─────────────────────────────────────────────────────────────────────────────
+// PRÉFÉRENCES VISUELLES — Taille de texte + Thème de couleurs
+// ─────────────────────────────────────────────────────────────────────────────
+
+const FONT_SCALES = {
+  normal: { label: "Normal", factor: 1.0 },
+  grand:  { label: "Grand",  factor: 1.15 },
+  tres_grand: { label: "Très grand", factor: 1.3 },
+};
+
+// Les thèmes définissent les couleurs des fonds d'écran. On reste minimaliste :
+// juste les 3-4 couleurs qui changent vraiment (fond principal + fond carte/tableau).
+// Le reste de l'UI (boutons, textes, accents) reste cohérent — on ne touche pas.
+const THEMES = {
+  ocean: {
+    label: "Océan",
+    emoji: "🌊",
+    // Fond splash/menus principaux (dégradé sombre bleu — l'actuel)
+    bgMain: "linear-gradient(170deg,#1A1A2E 0%,#16213E 55%,#0F3460 100%)",
+    // Fond dashboard / zones claires
+    bgLight: "#E8EAF0",
+    // Couleur d'accent secondaire (header dashboard)
+    headerDark: "linear-gradient(135deg,#1A1A2E,#0F3460)",
+    // Pour étoiles du splash (particules)
+    starColor: "#fff",
+    // Indique si fond sombre (pour adapter le texte sur fond clair ou sombre)
+    dark: true,
+  },
+  crepuscule: {
+    label: "Crépuscule",
+    emoji: "🌆",
+    bgMain: "linear-gradient(170deg,#2D1B4E 0%,#4A1F5C 50%,#6B1F5C 100%)",
+    bgLight: "#F3EEF8",
+    headerDark: "linear-gradient(135deg,#2D1B4E,#4A1F5C)",
+    starColor: "#fff",
+    dark: true,
+  },
+  foret: {
+    label: "Forêt",
+    emoji: "🌲",
+    bgMain: "linear-gradient(170deg,#0F2818 0%,#1B3A2A 55%,#0A4030 100%)",
+    bgLight: "#E8EFE9",
+    headerDark: "linear-gradient(135deg,#0F2818,#0A4030)",
+    starColor: "#fff",
+    dark: true,
+  },
+  papier: {
+    label: "Papier",
+    emoji: "📄",
+    bgMain: "linear-gradient(170deg,#F8FAFC 0%,#EFF1F5 55%,#E2E8F0 100%)",
+    bgLight: "#FFFFFF",
+    headerDark: "linear-gradient(135deg,#475569,#1E293B)", // header reste sombre pour contraste
+    starColor: "#CBD5E1",
+    dark: false, // THÈME CLAIR
+  },
+};
+
+const DEFAULT_PREFS = { fontScale: "normal", theme: "ocean" };
+
+// Helper : retourne les préférences du profil (avec fallback vers les défauts)
+function getPrefs(profile) {
+  const p = profile?.prefs || {};
+  return {
+    fontScale: p.fontScale && FONT_SCALES[p.fontScale] ? p.fontScale : DEFAULT_PREFS.fontScale,
+    theme:     p.theme     && THEMES[p.theme]         ? p.theme     : DEFAULT_PREFS.theme,
+  };
+}
+
+// Helper : retourne l'objet thème en cours (avec fallback)
+function getTheme(profile) {
+  const prefs = getPrefs(profile);
+  return THEMES[prefs.theme] || THEMES.ocean;
+}
+
+// Helper : applique la taille de police globale en CSS variable
+// (On utilise font-size sur body pour que les `em` suivent. Les valeurs en `px`
+// ne suivront pas — mais comme on ne remplacera que quelques endroits clés,
+// c'est acceptable pour une première version.)
+function applyFontScale(scale) {
+  const factor = FONT_SCALES[scale]?.factor || 1.0;
+  try {
+    document.documentElement.style.setProperty('--am-font-scale', factor);
+    document.body.style.fontSize = (14 * factor) + 'px';
+  } catch(e) {}
+}
+
 async function loadProfA() {
   try { const r=await _storage.get(PROF_K); return r?.value?JSON.parse(r.value):null; }
   catch{return null;}
@@ -5444,6 +5571,88 @@ async function loadProgA(c,s) {
 }
 async function saveProgA(c,s,data) {
   try{await _storage.set(PK(c,s),JSON.stringify(data));}catch{}
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SAUVEGARDE / RESTAURATION
+// ─────────────────────────────────────────────────────────────────────────────
+// Exporte TOUT le storage dans un code base64 compact que l'élève peut copier.
+// L'idée : zéro backend, l'élève gère sa sauvegarde lui-même (mail, notes, etc).
+// Format : { v: 1, t: timestamp, d: { key: value, ... } }
+
+async function _storage_list_all() {
+  // Liste toutes les clés connues utilisées par AutoMaths.
+  // On ne peut pas énumérer le storage (pas d'API), donc on liste explicitement.
+  const keys = [];
+  keys.push(PROF_K);
+  // Progression par cat/sub — on parcourt tous les curricula
+  try {
+    for (const level of Object.keys(CURRICULUM)) {
+      const cats = CURRICULUM[level]?.cats || {};
+      for (const c of Object.keys(cats)) {
+        for (const s of cats[c]) keys.push(PK(c, s));
+      }
+    }
+  } catch {}
+  // Clés plates connues
+  const flatKeys = [
+    DIAG_K, PROGRAM_K, DIAG_RESULTS_K, STREAK_PROGRESS_K, QSTATE_K,
+    LIFETIME_CORRECT_K, PROMPT_DISMISSED_AT_K,
+    CARDS_UNLOCKED_K, CARDS_SEEN_K, PERFECT_SCORES_K, SPRINT_COUNT_K,
+    REMEDIATION_DONE_K, MISSION_THEMES_DONE_K, WEEKEND_DAYS_K,
+    MAX_STREAK_K, ACTIVE_DAYS_K, NB_QUIZ_K, CATS_VISITED_K, STARS_TOTAL_K,
+    BAC_COMPLETED_K, REMEDIATION_COUNT_K, COMBO_MAX_K, MORNING_DONE_K,
+    EVENING_DONE_K, IMPROVED_K, REMINDER_K, XP_K, BADGE_K, DAILY_K,
+    SHIELD_K, SPRINT_BEST_K, RECENT_Q_K,
+  ];
+  for (const k of flatKeys) { if (k) keys.push(k); }
+  // Dédoublonner
+  return [...new Set(keys)];
+}
+
+async function exportBackup() {
+  // Construit un objet {key:value,...} avec toutes les clés non vides
+  const keys = await _storage_list_all();
+  const data = {};
+  await Promise.all(keys.map(async k => {
+    try {
+      const r = await _storage.get(k);
+      if (r?.value !== undefined && r?.value !== null) data[k] = r.value;
+    } catch {}
+  }));
+  const payload = { v: 1, t: Date.now(), d: data };
+  const json = JSON.stringify(payload);
+  // Base64 (on passe par encodeURIComponent pour supporter les caractères unicode)
+  const b64 = btoa(unescape(encodeURIComponent(json)));
+  return b64;
+}
+
+async function importBackup(code) {
+  // Restaure depuis un code base64. Retourne {ok, msg, count}.
+  if (!code || typeof code !== 'string') return { ok: false, msg: 'Code vide' };
+  // Nettoyer (espaces, sauts de ligne)
+  const clean = code.replace(/\s/g, '');
+  let payload;
+  try {
+    const json = decodeURIComponent(escape(atob(clean)));
+    payload = JSON.parse(json);
+  } catch(e) {
+    return { ok: false, msg: 'Code invalide ou corrompu' };
+  }
+  if (!payload || payload.v !== 1 || !payload.d) {
+    return { ok: false, msg: 'Format de sauvegarde non reconnu' };
+  }
+  // Restaurer clé par clé
+  let count = 0;
+  for (const [k, v] of Object.entries(payload.d)) {
+    try {
+      await _storage.set(k, v);
+      count++;
+    } catch(e) {}
+  }
+  const date = new Date(payload.t || Date.now());
+  const dateStr = date.toLocaleDateString('fr-FR');
+  return { ok: true, msg: `Sauvegarde du ${dateStr} restaurée`, count };
 }
 
 function getCatInfo(catId) { return CATS.find(c=>c.id===catId)||{}; }
@@ -6223,6 +6432,298 @@ function ReminderScreen({onBack}) {
           sur ton téléphone (PWA). Pour des notifs en arrière-plan depuis n'importe où, 
           il faut l'héberger sur un serveur (voir README).
         </div>
+      </div>
+    </div>
+  );
+}
+
+
+// ─────────────────────────────────────────────────────────────────────────────
+// BackupScreen — Sauvegarder / Restaurer ses données
+// ─────────────────────────────────────────────────────────────────────────────
+// Mode "expertise" : l'élève copie son code et le stocke lui-même (mail, notes).
+// Pas de serveur, pas de compte, zéro friction. S'il perd ses données (clear
+// cache, changement d'appareil), il colle son code et retrouve tout.
+function BackupScreen({onBack, onImportDone}) {
+  const [tab, setTab] = useState('export'); // 'export' | 'import'
+  const [code, setCode] = useState('');
+  const [importCode, setImportCode] = useState('');
+  const [status, setStatus] = useState(null); // {type:'ok'|'err', msg}
+  const [copied, setCopied] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  // Génère le code dès l'arrivée sur l'onglet export
+  useEffect(() => {
+    if (tab === 'export' && !code) {
+      setLoading(true);
+      exportBackup().then(c => { setCode(c); setLoading(false); })
+        .catch(() => { setStatus({type:'err', msg:"Erreur lors de l'export"}); setLoading(false); });
+    }
+  }, [tab]);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Fallback : select the textarea
+      try {
+        const ta = document.getElementById('backup-code-area');
+        if (ta) { ta.select(); document.execCommand('copy'); setCopied(true); setTimeout(()=>setCopied(false), 2000); }
+      } catch {}
+    }
+  };
+
+  const handleImport = async () => {
+    if (!importCode.trim()) {
+      setStatus({type:'err', msg:'Colle ton code avant de restaurer'});
+      return;
+    }
+    if (!confirm('Restaurer cette sauvegarde écrasera tes données actuelles sur cet appareil. Continuer ?')) return;
+    setLoading(true);
+    const res = await importBackup(importCode.trim());
+    setLoading(false);
+    if (res.ok) {
+      setStatus({type:'ok', msg:`✅ ${res.msg} (${res.count} éléments)`});
+      setTimeout(() => { if (onImportDone) onImportDone(); }, 1500);
+    } else {
+      setStatus({type:'err', msg:`❌ ${res.msg}`});
+    }
+  };
+
+  return (
+    <div style={{display:'flex',flexDirection:'column',height:'100%',background:'#E8EAF0'}}>
+      {/* Header */}
+      <div style={{background:'linear-gradient(135deg,#1A1A2E,#0F3460)',
+        padding:'14px 16px',flexShrink:0,display:'flex',alignItems:'center',gap:10}}>
+        <button onClick={onBack} style={{background:'rgba(255,255,255,0.1)',border:'none',
+          borderRadius:9,padding:'6px 11px',color:'#94A3B8',cursor:'pointer',fontSize:12,fontWeight:700}}>
+          ← Retour
+        </button>
+        <div style={{flex:1,color:'#fff',fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,textAlign:'center'}}>
+          Sauvegarder 💾
+        </div>
+      </div>
+
+      {/* Tabs */}
+      <div style={{display:'flex',background:'#fff',borderBottom:'1px solid #E2E8F0',flexShrink:0}}>
+        {[{id:'export',label:'📤 Sauvegarder'},{id:'import',label:'📥 Restaurer'}].map(t=>(
+          <button key={t.id} onClick={()=>{setTab(t.id);setStatus(null);}}
+            style={{flex:1,padding:'12px 8px',border:'none',cursor:'pointer',
+              background: tab===t.id?'#EFF6FF':'#fff',
+              color: tab===t.id?'#1D4ED8':'#64748B',
+              fontFamily:"'Nunito',sans-serif",fontSize:12,fontWeight:800,
+              borderBottom: tab===t.id?'3px solid #1D4ED8':'3px solid transparent'}}>
+            {t.label}
+          </button>
+        ))}
+      </div>
+
+      <div style={{flex:1,overflowY:'auto',padding:'16px',display:'flex',flexDirection:'column',gap:14}}>
+        {tab === 'export' && (
+          <>
+            <div style={{background:'#EFF6FF',borderRadius:12,padding:'12px 14px',
+              borderLeft:'4px solid #1D4ED8',fontSize:12,color:'#1E3A8A',lineHeight:1.5}}>
+              <strong>💡 À quoi sert ce code ?</strong><br/>
+              Copie-le dans un endroit sûr (mail, notes). Si tu changes d'appareil ou si tu es
+              déconnecté, tu pourras retrouver tout ton parcours en collant ce code.
+            </div>
+
+            {loading ? (
+              <div style={{textAlign:'center',padding:20,color:'#64748B',fontSize:12}}>
+                Génération de la sauvegarde…
+              </div>
+            ) : (
+              <>
+                <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:13,color:'#1E293B'}}>
+                  🔐 Ton code de sauvegarde
+                </div>
+                <textarea id="backup-code-area" value={code} readOnly
+                  style={{width:'100%',minHeight:160,padding:'10px',fontSize:10,
+                    fontFamily:'monospace',background:'#F8FAFC',border:'1.5px solid #CBD5E1',
+                    borderRadius:10,resize:'vertical',lineHeight:1.4,wordBreak:'break-all'}}/>
+
+                <button onClick={handleCopy}
+                  style={{padding:'12px',borderRadius:12,border:'none',cursor:'pointer',
+                    background: copied?'#10B981':'linear-gradient(135deg,#1D4ED8,#1E40AF)',
+                    color:'#fff',fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:900,
+                    boxShadow:'0 4px 12px rgba(29,78,216,.25)'}}>
+                  {copied ? '✅ Copié !' : '📋 Copier le code'}
+                </button>
+
+                <div style={{background:'#FEF9C3',borderRadius:10,padding:'10px 12px',
+                  fontSize:11,color:'#92400E',lineHeight:1.5}}>
+                  ⚠️ <strong>Garde ce code en sécurité.</strong> Il contient toute ta progression :
+                  étoiles, cartes, streak, XP, badges, diagnostic, programme…
+                </div>
+              </>
+            )}
+          </>
+        )}
+
+        {tab === 'import' && (
+          <>
+            <div style={{background:'#FEF9C3',borderRadius:12,padding:'12px 14px',
+              borderLeft:'4px solid #F59E0B',fontSize:12,color:'#92400E',lineHeight:1.5}}>
+              <strong>⚠️ Attention :</strong> Restaurer une sauvegarde remplacera toutes tes données
+              actuelles sur cet appareil. Cette action est irréversible.
+            </div>
+
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:13,color:'#1E293B'}}>
+              📥 Colle ton code de sauvegarde
+            </div>
+            <textarea value={importCode} onChange={e=>{setImportCode(e.target.value);setStatus(null);}}
+              placeholder="Colle ici ton code de sauvegarde…"
+              style={{width:'100%',minHeight:140,padding:'10px',fontSize:10,
+                fontFamily:'monospace',background:'#fff',border:'1.5px solid #CBD5E1',
+                borderRadius:10,resize:'vertical',lineHeight:1.4,wordBreak:'break-all'}}/>
+
+            {status && (
+              <div style={{padding:'10px 12px',borderRadius:10,fontSize:12,fontWeight:700,
+                background: status.type==='ok'?'#D1FAE5':'#FEE2E2',
+                color: status.type==='ok'?'#065F46':'#991B1B'}}>
+                {status.msg}
+              </div>
+            )}
+
+            <button onClick={handleImport} disabled={loading || !importCode.trim()}
+              style={{padding:'12px',borderRadius:12,border:'none',
+                cursor: (loading || !importCode.trim())?'not-allowed':'pointer',
+                background: (loading || !importCode.trim())?'#CBD5E1':'linear-gradient(135deg,#059669,#047857)',
+                color:'#fff',fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:900,
+                boxShadow:'0 4px 12px rgba(5,150,105,.25)',opacity: (loading || !importCode.trim())?0.6:1}}>
+              {loading ? '⏳ Restauration…' : '♻️ Restaurer ma sauvegarde'}
+            </button>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PreferencesScreen — Taille de texte + Thème
+// ─────────────────────────────────────────────────────────────────────────────
+function PreferencesScreen({profile, onSave, onBack}) {
+  const currentPrefs = getPrefs(profile);
+  const [fontScale, setFontScale] = useState(currentPrefs.fontScale);
+  const [theme, setTheme] = useState(currentPrefs.theme);
+
+  // Aperçu en direct de la taille de texte
+  useEffect(() => {
+    applyFontScale(fontScale);
+  }, [fontScale]);
+
+  const thObj = THEMES[theme] || THEMES.ocean;
+
+  const handleSave = () => {
+    const updatedProfile = { ...profile, prefs: { fontScale, theme } };
+    saveProfA(updatedProfile);
+    onSave(updatedProfile);
+  };
+
+  return (
+    <div style={{display:'flex',flexDirection:'column',height:'100%',background:'#E8EAF0'}}>
+      {/* Header */}
+      <div style={{background:'linear-gradient(135deg,#1A1A2E,#0F3460)',
+        padding:'14px 16px',flexShrink:0,display:'flex',alignItems:'center',gap:10}}>
+        <button onClick={onBack} style={{background:'rgba(255,255,255,0.1)',border:'none',
+          borderRadius:9,padding:'6px 11px',color:'#94A3B8',cursor:'pointer',fontSize:12,fontWeight:700}}>
+          ← Retour
+        </button>
+        <div style={{flex:1,color:'#fff',fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,textAlign:'center'}}>
+          Préférences 🎨
+        </div>
+      </div>
+
+      <div style={{flex:1,overflowY:'auto',padding:'16px',display:'flex',flexDirection:'column',gap:16}}>
+
+        {/* ─── Taille de texte ─── */}
+        <div style={{background:'#fff',borderRadius:16,padding:'16px',
+          boxShadow:'0 2px 8px rgba(0,0,0,.05)'}}>
+          <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,
+            color:'#1E293B',marginBottom:4}}>🔤 Taille du texte</div>
+          <div style={{fontSize:11,color:'#64748B',marginBottom:12}}>
+            Pour un meilleur confort de lecture
+          </div>
+          <div style={{display:'flex',flexDirection:'column',gap:8}}>
+            {Object.entries(FONT_SCALES).map(([key, {label, factor}]) => {
+              const active = fontScale === key;
+              return (
+                <button key={key} onClick={() => setFontScale(key)}
+                  style={{background: active?'#EFF6FF':'#F8FAFC',
+                    border: active?'2px solid #1D4ED8':'2px solid transparent',
+                    borderRadius:12,padding:'12px 14px',cursor:'pointer',
+                    display:'flex',alignItems:'center',justifyContent:'space-between',
+                    transition:'all .15s'}}>
+                  <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:700,
+                    fontSize: 14 * factor, color:'#1E293B'}}>{label}</span>
+                  <span style={{fontSize: 11 * factor, color:'#64748B'}}>Exemple de texte</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* ─── Thème de couleurs ─── */}
+        <div style={{background:'#fff',borderRadius:16,padding:'16px',
+          boxShadow:'0 2px 8px rgba(0,0,0,.05)'}}>
+          <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,
+            color:'#1E293B',marginBottom:4}}>🎨 Thème de couleurs</div>
+          <div style={{fontSize:11,color:'#64748B',marginBottom:12}}>
+            Change l'ambiance des écrans principaux
+          </div>
+          <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10}}>
+            {Object.entries(THEMES).map(([key, th]) => {
+              const active = theme === key;
+              return (
+                <button key={key} onClick={() => setTheme(key)}
+                  style={{background:'transparent',border:'none',padding:0,cursor:'pointer'}}>
+                  <div style={{background: th.bgMain, borderRadius:12,padding:'20px 10px',
+                    border: active?'3px solid #F59E0B':'3px solid transparent',
+                    boxShadow: active?'0 4px 14px rgba(245,158,11,.3)':'0 2px 6px rgba(0,0,0,.08)',
+                    textAlign:'center',position:'relative'}}>
+                    <div style={{fontSize:28,marginBottom:4}}>{th.emoji}</div>
+                    <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,
+                      fontSize:12,color: th.dark?'#fff':'#1E293B'}}>
+                      {th.label}
+                    </div>
+                    {active && (
+                      <div style={{position:'absolute',top:4,right:6,fontSize:14}}>✓</div>
+                    )}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* ─── Aperçu ─── */}
+        <div style={{background: thObj.bgMain, borderRadius:16,padding:'20px',
+          boxShadow:'0 2px 8px rgba(0,0,0,.1)'}}>
+          <div style={{color: thObj.dark?'#fff':'#1E293B',
+            fontFamily:"'Nunito',sans-serif",fontWeight:800,
+            fontSize: 14 * (FONT_SCALES[fontScale]?.factor||1),
+            textAlign:'center',marginBottom:8}}>
+            Aperçu du thème
+          </div>
+          <div style={{color: thObj.dark?'#94A3B8':'#475569',
+            fontSize: 11 * (FONT_SCALES[fontScale]?.factor||1),
+            textAlign:'center'}}>
+            Voici comment sera affiché l'écran d'accueil
+          </div>
+        </div>
+
+        {/* ─── Bouton Enregistrer ─── */}
+        <button onClick={handleSave}
+          style={{background:'linear-gradient(135deg,#10B981,#059669)',border:'none',
+            borderRadius:14,padding:'14px',cursor:'pointer',color:'#fff',
+            fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:15,
+            boxShadow:'0 6px 16px rgba(16,185,129,.3)'}}>
+          ✓ Enregistrer
+        </button>
       </div>
     </div>
   );
@@ -7059,36 +7560,60 @@ function findQKey(question) {
 //   3. mastered anciennes (>30 jours) — pour maintien
 //   4. mastered récentes (évitées par défaut)
 // Si n > pool disponible, on complète avec du shuffle.
-function selectQuestionsSmart(pool, n, qStateSnapshot) {
+function selectQuestionsSmart(pool, n, qStateSnapshot, avoidKeys = null) {
   if (!Array.isArray(pool) || pool.length === 0) return [];
   const learning = [];
   const unknown = [];
   const masteredOld = [];
   const masteredRecent = [];
-  for (const q of pool) {
+  // IMPORTANT : on conserve l'index d'origine dans pool pour reconstruire une
+  // progression douce (facile → difficile) dans l'ordre final de présentation.
+  // On marque aussi chaque question comme "recent" (vue dans les N dernières)
+  // pour la déprioriser au sein de sa catégorie.
+  pool.forEach((q, origIdx) => {
     const key = findQKey(q);
+    const isRecent = avoidKeys && key && avoidKeys.has(key);
     const entry = key ? getQStatus(qStateSnapshot || {}, key) : null;
-    if (!entry || entry.status === "unknown") unknown.push(q);
-    else if (entry.status === "learning") learning.push({ q, streak: entry.streak || 0 });
+    if (!entry || entry.status === "unknown") unknown.push({ q, origIdx, isRecent });
+    else if (entry.status === "learning") learning.push({ q, origIdx, streak: entry.streak || 0, isRecent });
     else {
-      // mastered
       const age = entry.lastSeen ? (Date.now() - entry.lastSeen) : Infinity;
-      if (age > MASTERY_REFRESH_DAYS * 86400000) masteredOld.push(q);
-      else masteredRecent.push(q);
+      if (age > MASTERY_REFRESH_DAYS * 86400000) masteredOld.push({ q, origIdx, isRecent });
+      else masteredRecent.push({ q, origIdx, isRecent });
     }
-  }
+  });
   // Dans learning : prioriser les streak faibles (pas encore proches de la maîtrise)
   learning.sort((a, b) => a.streak - b.streak);
-  const learningQ = learning.map(x => x.q);
-  // Construction du résultat : on remplit dans l'ordre de priorité
-  const priority = [...shuffle(learningQ), ...shuffle(unknown), ...shuffle(masteredOld)];
+  // Helper : pour chaque groupe, on met les "non-recent" avant les "recent"
+  // Ça permet de choisir d'abord des questions pas vues récemment, tout en
+  // ne les excluant pas si on en a besoin pour atteindre n.
+  const dedup = arr => {
+    const nonRecent = shuffle(arr.filter(x => !x.isRecent));
+    const recent = shuffle(arr.filter(x => x.isRecent));
+    return [...nonRecent, ...recent];
+  };
+  const priority = [
+    ...dedup(learning),
+    ...dedup(unknown),
+    ...dedup(masteredOld),
+  ];
   let selected = priority.slice(0, n);
   if (selected.length < n) {
-    // Fallback : compléter avec les mastered récents si besoin (mieux que vide)
-    const remaining = shuffle(masteredRecent).slice(0, n - selected.length);
+    const remaining = dedup(masteredRecent).slice(0, n - selected.length);
     selected = [...selected, ...remaining];
   }
-  return shuffle(selected); // on shuffle l'ordre final pour éviter que ce soit toujours "learning" d'abord
+  // ─── Progression douce : on trie par origIdx (croissant = facile → dur)
+  // puis on introduit un léger désordre interne par zones pour éviter que
+  // ce soit toujours strictement la même série. On découpe en 3 tiers,
+  // chaque tiers est shuffle indépendamment, puis on concatène tier 1 + 2 + 3.
+  // Résultat : les questions plus faciles restent au début, mais pas dans
+  // le même ordre qu'une session précédente.
+  selected.sort((a, b) => a.origIdx - b.origIdx);
+  const third = Math.ceil(selected.length / 3);
+  const t1 = shuffle(selected.slice(0, third));
+  const t2 = shuffle(selected.slice(third, 2 * third));
+  const t3 = shuffle(selected.slice(2 * third));
+  return [...t1, ...t2, ...t3].map(x => x.q);
 }
 
 // ── Moteur de détection d'erreurs (feedback personnalisé) ───────────────────
@@ -7743,7 +8268,7 @@ function VigilanceScreen({profile, qState, onBack, onRemediation, onWorkTheme}) 
   );
 }
 
-function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEditProfile, onLogout, onShowProgram, onExport, onReminder, onVigilance, onCollection, diagResults, cardsUnlocked, qState}) {
+function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEditProfile, onLogout, onShowProgram, onExport, onBackup, onReminder, onPreferences, onVigilance, onCollection, diagResults, cardsUnlocked, qState}) {
   const curr = CURRICULUM[profile.level] || CURRICULUM.seconde;
   const [allProg, setAllProg] = useState({});
   const [loading, setLoading] = useState(true);
@@ -7867,6 +8392,15 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
                   <span style={{fontSize:16}}>📤</span><span>Exporter ma progression</span>
                 </button>
               )}
+              {onBackup && (
+                <button onClick={()=>{setMenuOpen(false);onBackup();}}
+                  style={{display:"flex",alignItems:"center",gap:10,width:"100%",
+                    padding:"11px 14px",border:"none",background:"#fff",cursor:"pointer",
+                    fontSize:12,fontWeight:600,color:"#334155",textAlign:"left",
+                    borderBottom:"1px solid #F1F5F9"}}>
+                  <span style={{fontSize:16}}>💾</span><span>Sauvegarde / Restauration</span>
+                </button>
+              )}
               {onReminder && (
                 <button onClick={()=>{setMenuOpen(false);onReminder();}}
                   style={{display:"flex",alignItems:"center",gap:10,width:"100%",
@@ -7874,6 +8408,15 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
                     fontSize:12,fontWeight:600,color:"#334155",textAlign:"left",
                     borderBottom:"1px solid #F1F5F9"}}>
                   <span style={{fontSize:16}}>🔔</span><span>Gérer les rappels</span>
+                </button>
+              )}
+              {onPreferences && (
+                <button onClick={()=>{setMenuOpen(false);onPreferences();}}
+                  style={{display:"flex",alignItems:"center",gap:10,width:"100%",
+                    padding:"11px 14px",border:"none",background:"#fff",cursor:"pointer",
+                    fontSize:12,fontWeight:600,color:"#334155",textAlign:"left",
+                    borderBottom:"1px solid #F1F5F9"}}>
+                  <span style={{fontSize:16}}>🎨</span><span>Préférences (taille, thème)</span>
                 </button>
               )}
               <button onClick={()=>{setMenuOpen(false);onLogout();}}
@@ -8330,17 +8873,18 @@ function PostPracticeResultScreen({score, total, catId, subId, mode, prevStars, 
 }
 
 
-function SplashScreen({onStart, onMySpace, profile}) {
+function SplashScreen({onStart, onMySpace, onRestore, profile}) {
+  const th = getTheme(profile);
   return (
     <div style={{position:"relative",height:"100%",overflow:"hidden",
-      background:"linear-gradient(170deg,#1A1A2E 0%,#16213E 55%,#0F3460 100%)",
+      background: th.bgMain,
       display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",
       padding:"22px 22px 18px"}}>
 
       {[[10,8],[80,18],[55,5],[20,40],[90,35],[5,60],[75,65],[40,72],[15,82],[85,78]].map(([l,t],i)=>(
         <div key={i} style={{position:"absolute",left:`${l}%`,top:`${t}%`,
           width:i%3===0?3:2,height:i%3===0?3:2,
-          borderRadius:"50%",background:"#fff",opacity:i%2===0?0.25:0.12}}/>
+          borderRadius:"50%",background: th.starColor, opacity:i%2===0?0.25:0.12}}/>
       ))}
 
       <div className="slide-up" style={{zIndex:1,display:"flex",flexDirection:"column",
@@ -8360,9 +8904,9 @@ function SplashScreen({onStart, onMySpace, profile}) {
             letterSpacing:5,color:"#64748B",textTransform:"uppercase",marginBottom:6}}>
             Travailler ses maths avec
           </div>
-          <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:13,color:"#94A3B8",letterSpacing:1}}>l'</div>
+          <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:13,color: th.dark?"#94A3B8":"#64748B",letterSpacing:1}}>l'</div>
           <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,
-            fontSize:42,color:"#fff",letterSpacing:-1.5,lineHeight:.95,marginTop:-4}}>
+            fontSize:42,color: th.dark?"#fff":"#1E293B",letterSpacing:-1.5,lineHeight:.95,marginTop:-4}}>
             Auto<span style={{color:"#F59E0B"}}>Maths</span>
           </div>
           <div style={{height:3,background:"linear-gradient(90deg,#F59E0B,#EF4444)",
@@ -8411,6 +8955,14 @@ function SplashScreen({onStart, onMySpace, profile}) {
                 {t}</span>
             ))}
           </div>
+          {onRestore && (
+            <button onClick={onRestore}
+              style={{marginTop:8,background:"transparent",border:"none",cursor:"pointer",
+                color:"#64748B",fontSize:11,fontWeight:600,textDecoration:"underline",
+                textDecorationColor:"rgba(100,116,139,0.4)"}}>
+              💾 Restaurer une sauvegarde
+            </button>
+          )}
         </div>
       </div>
     </div>
@@ -8419,6 +8971,7 @@ function SplashScreen({onStart, onMySpace, profile}) {
 
 // ── MENU ─────────────────────────────────────────────────────────────────────
 function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress}) {
+  const th = getTheme(profile);
   // Modes principaux simplifiés :
   // - Sprint : accès direct (format court, rythmé)
   // - S'entraîner : écran intermédiaire (Express / Entraînement / Test aléatoire)
@@ -8432,7 +8985,7 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress}) {
   ];
   return (
     <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",
-      padding:"16px 18px",background:"#E8EAF0"}}>
+      padding:"16px 18px",background: th.bgLight}}>
       <div style={{marginBottom:10}}>
         {/* Sigma + brand header — version compacte */}
         <div style={{display:"flex",alignItems:"center",gap:10,
@@ -10586,7 +11139,121 @@ async function saveSprintBest(v) {
   try { await _storage.set(SPRINT_BEST_K, String(v)); } catch {}
 }
 
-function QuizScreen({questions,catId,onFinish,onBack}) {
+// ─────────────────────────────────────────────────────────────────────────────
+// RAPPELS DE COURS — COURSE_REMINDERS[catId][subId]
+// ─────────────────────────────────────────────────────────────────────────────
+// Structure : { title, definition, example } (strings avec KaTeX entre $...$)
+// Les rappels n'apparaissent qu'en mode pratique/daily (pas en test).
+// Format court volontairement : 150 mots max — sinon les élèves ne lisent pas.
+// TODO Thomas : remplir progressivement. Claude a mis 4 exemples pilotes.
+const COURSE_REMINDERS = {
+  calcul_litteral: {
+    developpement: {
+      title: "Développer",
+      definition: "Développer, c'est supprimer les parenthèses en distribuant le facteur extérieur à chaque terme intérieur.\n\n$k(a+b) = ka + kb$\n$(a+b)(c+d) = ac + ad + bc + bd$",
+      example: "Exemple : $3(x+5) = 3 \\times x + 3 \\times 5 = 3x + 15$"
+    },
+    factorisation: {
+      title: "Factoriser",
+      definition: "Factoriser, c'est l'inverse de développer : on met en évidence un facteur commun.\n\n$ka + kb = k(a+b)$",
+      example: "Exemple : $6x + 9 = 3 \\times 2x + 3 \\times 3 = 3(2x+3)$"
+    },
+  },
+  fonctions: {
+    lecture_image: {
+      title: "Lire une image graphiquement",
+      definition: "Pour lire $f(a)$ sur un graphique :\n1. Repère $x = a$ sur l'axe horizontal\n2. Monte (ou descend) jusqu'à la courbe\n3. Lis l'ordonnée du point obtenu",
+      example: "L'image d'un nombre par $f$, c'est la valeur $y$ lue sur la courbe."
+    },
+    resolution_graphique: {
+      title: "Résoudre graphiquement $f(x) = k$",
+      definition: "Pour résoudre $f(x) = k$ graphiquement :\n1. Trace l'horizontale d'équation $y = k$\n2. Repère les points d'intersection avec la courbe\n3. Lis les abscisses de ces points : ce sont les solutions",
+      example: "S'il n'y a pas d'intersection, il n'y a pas de solution."
+    },
+  },
+};
+
+// Accès sûr avec fallback
+function getCourseReminder(catId, subId) {
+  if (!catId || !subId) return null;
+  return COURSE_REMINDERS[catId]?.[subId] || null;
+}
+
+// Render simple de texte avec KaTeX inline ($...$) et sauts de ligne
+function ReminderText({ text }) {
+  if (!text) return null;
+  // Split sur \n pour les paragraphes
+  const paragraphs = text.split('\n');
+  return (
+    <>
+      {paragraphs.map((p, i) => (
+        <div key={i} style={{marginBottom:6,minHeight: p ? 'auto' : 6}}>
+          {p.split(/(\$[^$]+\$)/).map((chunk, j) => {
+            if (chunk.startsWith('$') && chunk.endsWith('$')) {
+              return <M key={j} tex={chunk.slice(1, -1)}/>;
+            }
+            return <span key={j}>{chunk}</span>;
+          })}
+        </div>
+      ))}
+    </>
+  );
+}
+
+function CourseReminderModal({ catId, subId, onClose }) {
+  const reminder = getCourseReminder(catId, subId);
+  if (!reminder) return null;
+  return (
+    <div style={{position:'absolute',inset:0,background:'rgba(15,23,42,0.75)',
+      display:'flex',alignItems:'center',justifyContent:'center',zIndex:1000,
+      padding:'20px'}}
+      onClick={onClose}>
+      <div onClick={e=>e.stopPropagation()}
+        style={{background:'#fff',borderRadius:18,padding:'18px 18px 14px',
+          maxWidth:340,width:'100%',maxHeight:'80%',overflowY:'auto',
+          boxShadow:'0 20px 60px rgba(0,0,0,0.4)'}}>
+        {/* Header */}
+        <div style={{display:'flex',alignItems:'flex-start',gap:10,marginBottom:12}}>
+          <div style={{fontSize:22,lineHeight:1}}>📘</div>
+          <div style={{flex:1}}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:15,color:'#1E293B'}}>
+              {reminder.title}
+            </div>
+            <div style={{fontSize:10,color:'#94A3B8',marginTop:1}}>Rappel de cours</div>
+          </div>
+          <button onClick={onClose}
+            style={{background:'#F1F5F9',border:'none',borderRadius:8,
+              width:28,height:28,cursor:'pointer',fontSize:14,color:'#64748B',
+              display:'flex',alignItems:'center',justifyContent:'center'}}>
+            ✕
+          </button>
+        </div>
+        {/* Définition */}
+        <div style={{background:'#EFF6FF',borderRadius:12,padding:'12px 14px',
+          fontSize:12,lineHeight:1.6,color:'#1E3A8A',borderLeft:'3px solid #3B82F6',
+          marginBottom:10}}>
+          <ReminderText text={reminder.definition}/>
+        </div>
+        {/* Exemple */}
+        {reminder.example && (
+          <div style={{background:'#FEF9C3',borderRadius:12,padding:'12px 14px',
+            fontSize:12,lineHeight:1.6,color:'#713F12',borderLeft:'3px solid #F59E0B'}}>
+            <ReminderText text={reminder.example}/>
+          </div>
+        )}
+        <button onClick={onClose}
+          style={{width:'100%',marginTop:12,padding:'10px',borderRadius:10,
+            border:'none',background:'linear-gradient(135deg,#1D4ED8,#1E40AF)',
+            color:'#fff',fontWeight:800,fontSize:12,cursor:'pointer',
+            fontFamily:"'Nunito',sans-serif"}}>
+          OK, c'est reparti ! →
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
   const [idx,setIdx]           = useState(0);
   const [selected,setSelected] = useState(null);
   const [shown,setShown]       = useState(false);
@@ -10595,6 +11262,9 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
   const [shake,setShake]       = useState(false);
   const [pad,setPad]           = useState("");
   const [padState,setPadState] = useState("idle");
+  // Rappel de cours (affiché uniquement en pratique/daily, si un rappel existe)
+  const [showReminder, setShowReminder] = useState(false);
+  const reminderAvailable = (quizMode === "practice" || quizMode === "daily") && !!getCourseReminder(catId, subId);
   // Track failed question indices for spaced repetition
   const failedIdx = React.useRef([]);
   // ── Tableau fill mode ──
@@ -10729,13 +11399,26 @@ function QuizScreen({questions,catId,onFinish,onBack}) {
     : null;
 
   return (
-    <div style={{display:"flex",flexDirection:"column",minHeight:"100%",padding:"16px 16px 14px"}}>
+    <div style={{display:"flex",flexDirection:"column",minHeight:"100%",padding:"16px 16px 14px",position:"relative"}}>
+      {/* Modal rappel de cours */}
+      {showReminder && reminderAvailable && (
+        <CourseReminderModal catId={catId} subId={subId} onClose={()=>setShowReminder(false)}/>
+      )}
       {/* Header */}
       <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:14,flexShrink:0}}>
         <button onClick={onBack} style={{background:"none",border:"none",cursor:"pointer",color:"#94A3B8",fontSize:18,padding:0,flexShrink:0}}>✕</button>
         <div style={{flex:1,background:"#E2E8F0",borderRadius:99,height:9,overflow:"hidden"}}>
           <div style={{height:"100%",width:`${(idx/questions.length)*100}%`,background:cat.color,borderRadius:99,transition:"width .4s ease"}}/>
         </div>
+        {reminderAvailable && (
+          <button onClick={()=>setShowReminder(true)}
+            title="Voir le rappel de cours"
+            style={{background:"#EFF6FF",border:"1.5px solid #BFDBFE",borderRadius:99,
+              padding:"3px 10px",fontSize:13,cursor:"pointer",color:"#1D4ED8",
+              fontWeight:700,display:"flex",alignItems:"center",gap:3,flexShrink:0}}>
+            📘
+          </button>
+        )}
         <div style={{background:"#FEF3C7",color:"#92400E",borderRadius:99,padding:"3px 9px",fontSize:11,fontWeight:700}}>🔥{streak}</div>
         <div style={{background:cat.light,color:cat.color,borderRadius:99,padding:"3px 9px",fontSize:11,fontWeight:700,border:`1px solid ${cat.border}`}}>{idx+1}/{questions.length}</div>
       </div>
@@ -11594,7 +12277,13 @@ function AutoMaths() {
 
   // Load profile on mount
   useEffect(() => {
-    loadProfA().then(p => { setProfile(p); setProfReady(true); }).catch(() => setProfReady(true));
+    loadProfA().then(p => {
+      setProfile(p);
+      setProfReady(true);
+      // Applique immédiatement la taille de police préférée (si profil existe)
+      const prefs = getPrefs(p);
+      applyFontScale(prefs.fontScale);
+    }).catch(() => setProfReady(true));
   }, []);
 
   // Load streak progress on mount (persiste à travers les sessions du même jour)
@@ -11668,8 +12357,11 @@ function AutoMaths() {
   // ── Quiz helpers ──────────────────────────────────────────────────────────
   const [prevScreen, setPrevScreen] = useState("home");
 
-  const startQuiz = (qs, n, from) => {
-    const q = selectQuestionsSmart(qs, n, qState);
+  const startQuiz = async (qs, n, from) => {
+    // Récupère les questions récemment vues pour les déprioriser (sans les exclure totalement)
+    let avoidKeys = null;
+    try { const recent = await loadRecentQ(); avoidKeys = new Set(recent); } catch {}
+    const q = selectQuestionsSmart(qs, n, qState, avoidKeys);
     setPrevScreen(from || screen);
     setPool(qs); setQuestions(q); setScreen("quiz");
   };
@@ -11681,10 +12373,17 @@ function AutoMaths() {
     const failIdx = prog.fail || [];
     // Pick up to 4 failed questions
     const failQ = failIdx.slice(0,4).map(i=>allQ[i]).filter(Boolean);
-    // Fill rest with shuffled new questions
+    // Fill rest with fresh questions — on conserve la progressivité par tiers
+    // + anti-répétition : les questions récemment vues sont déprioritées
+    let avoidKeys = null;
+    try { const recent = await loadRecentQ(); avoidKeys = new Set(recent); } catch {}
     const usedSet = new Set(failIdx);
-    const fresh = shuffle(allQ.filter((_,i)=>!usedSet.has(i)));
-    return shuffle([...failQ, ...fresh.slice(0, 10-failQ.length)]).slice(0, 10);
+    const freshPool = allQ.filter((_,i)=>!usedSet.has(i));
+    const fresh = progressiveShuffle(freshPool, avoidKeys);
+    const needed = 10 - failQ.length;
+    // On reprend dans l'ordre progressif (facile → difficile) et on place les
+    // questions ratées en premier (elles ont une priorité pédagogique).
+    return [...shuffle(failQ), ...fresh.slice(0, needed)].slice(0, 10);
   };
 
   // ── Parcours launch ───────────────────────────────────────────────────────
@@ -11704,7 +12403,10 @@ function AutoMaths() {
     const prog = await loadProgA(cId, sId);
     setPrevStars(prog.stars||0);
     const allQ = DB[cId]?.[sId] || [];
-    const qs = shuffle(allQ).slice(0, Math.min(15, allQ.length));
+    // Anti-répétition : on évite les questions récemment vues
+    let avoidKeys = null;
+    try { const recent = await loadRecentQ(); avoidKeys = new Set(recent); } catch {}
+    const qs = progressiveShuffle(allQ, avoidKeys).slice(0, Math.min(15, allQ.length));
     setPrevScreen("dashboard");
     setPool(qs); setQuestions(qs); setScreen("quiz");
   };
@@ -11734,6 +12436,7 @@ function AutoMaths() {
       const failSet = new Set(failedIdx || []);
       const currentState = await loadQState();
       let newState = currentState;
+      const seenKeys = []; // pour l'anti-répétition
       for (let i = 0; i < questions.length; i++) {
         const q = questions[i];
         const correct = !failSet.has(i);
@@ -11754,10 +12457,13 @@ function AutoMaths() {
         }
         if (key) {
           newState = updateQStatus(newState, key, correct);
+          seenKeys.push(key);
         }
       }
       await saveQState(newState);
       setQState(newState);
+      // Mémoriser les questions vues pour éviter les répétitions au prochain quiz
+      if (seenKeys.length > 0) await pushRecentQ(seenKeys);
     } catch(e) { /* Safe */ }
 
     // ── Lifetime : compter les bonnes réponses totales (pour prompt compte) ─
@@ -11934,7 +12640,7 @@ function AutoMaths() {
   };
 
   // ── Standard quiz handlers ────────────────────────────────────────────────
-  const hReplay   = () => { setQuestions(shuffle(pool).slice(0,qCount)); setScreen("quiz"); };
+  const hReplay   = () => { setQuestions(progressiveShuffle(pool).slice(0,qCount)); setScreen("quiz"); };
   const hHome     = () => { setScreen("home"); setMode(null); setCatId(null); setQuizMode(null); setTrackCat(null); setTrackSub(null); };
   const hDashboard= () => { setQuizMode(null); setTrackCat(null); setTrackSub(null); setScreen(profile?"dashboard":"home"); };
   const hMode     = m  => {
@@ -12141,6 +12847,30 @@ function AutoMaths() {
   const hEditProfile     = () => setScreen("setup");
   const hLogout          = () => { setProfile(null); saveProfA(null); setScreen("splash"); };
 
+  // ── Backup handlers ───────────────────────────────────────────────────────
+  const hBackup = () => setScreen("backup");
+  const hImportDone = async () => {
+    // Après import : on recharge tout depuis le storage restauré
+    try {
+      const p = await loadProfA();
+      setProfile(p);
+      const sp = await loadStreakProgress(); setStreakProgress(sp);
+      const sb = await loadSprintBest(); setSprintBest(sb);
+      const qs = await loadQState(); setQState(qs);
+      const lc = await loadLifetimeCorrect(); setLifetimeCorrect(lc);
+      const cu = await loadCardsUnlocked(); setCardsUnlocked(cu);
+      const dr = await loadDiagResults(); if (dr) setDiagResults(dr);
+      // Appliquer les préférences immédiatement
+      if (p) {
+        const prefs = getPrefs(p);
+        applyFontScale(prefs.fontScale);
+      }
+      setScreen(p ? "dashboard" : "home");
+    } catch(e) {
+      setScreen("splash");
+    }
+  };
+
   // ── Export progress for teacher dashboard ────────────────────────────────
   const hExportProgress = async () => {
     // Load XP + badges for QR screen
@@ -12196,11 +12926,13 @@ function AutoMaths() {
     </div>
   );
 
+  const th_main = getTheme(profile);
+
   return (
     <>
       <GS/>
       <div style={{
-        width:390, height:760, background:"#E8EAF0",
+        width:390, height:760, background: th_main.bgLight,
         borderRadius:44, overflow:"hidden", position:"relative",
         boxShadow:"0 30px 80px rgba(0,0,0,.25), 0 0 0 10px #1E293B, 0 0 0 12px #334155",
       }}>
@@ -12209,14 +12941,16 @@ function AutoMaths() {
         
         <div style={{height:"100%",overflowY:"auto",paddingTop:26}}>
 
-          {screen==="splash"        && <SplashScreen    onStart={()=>setScreen(profile?"dashboard":"home")} onMySpace={()=>setScreen(profile?"dashboard":"setup")} profile={profile}/>}
+          {screen==="splash"        && <SplashScreen    onStart={()=>setScreen(profile?"dashboard":"home")} onMySpace={()=>setScreen(profile?"dashboard":"setup")} onRestore={()=>setScreen("backup")} profile={profile}/>}
           {screen==="setup"         && <ProfileSetupScreen onComplete={hProfileComplete} onBack={()=>setScreen("splash")}/>}
           {screen==="qr_export"    && profile && <QRExportScreen profile={profile} allProg={allProgCache} xp={qrXp} badges={qrBadges} onBack={()=>setScreen("dashboard")}/>}
+          {screen==="backup"       && <BackupScreen onBack={()=>setScreen(profile?"dashboard":"splash")} onImportDone={hImportDone}/>}
           {screen==="reminder"     && <ReminderScreen onBack={()=>setScreen("dashboard")}/>}
+          {screen==="preferences"  && profile && <PreferencesScreen profile={profile} onSave={(p)=>{setProfile(p);setScreen("dashboard");}} onBack={()=>setScreen("dashboard")}/>}
           {screen==="diagnostic"    && profile && <DiagnosticScreen profile={profile} onComplete={hDiagComplete}/>}
           {screen==="diag_result"   && profile && diagResults && <DiagnosticResultScreen profile={profile} diagResults={diagResults} onStart={hDiagResultNext}/>}
           {screen==="weekly_program"&& profile && weekProgram  && <WeeklyProgramScreen profile={profile} program={weekProgram} allProg={allProgCache} onStartSession={hProgramSession} onSkip={hProgramSkip}/>}
-          {screen==="dashboard"     && profile && <DashboardScreen profile={profile} diagResults={diagResults} cardsUnlocked={cardsUnlocked} qState={qState} onStartPractice={hStartPractice} onStartTest={hStartTest} onGoHome={()=>setScreen("home")} onEditProfile={hEditProfile} onLogout={hLogout} onExport={hExportProgress} onReminder={()=>setScreen("reminder")} onVigilance={hVigilance} onCollection={()=>setScreen("collection")} onShowProgram={async()=>{const wp=await generateWeeklyProgram(profile,allProgCache,diagResults);setWeekProgram(wp);setScreen("weekly_program");}}/>}
+          {screen==="dashboard"     && profile && <DashboardScreen profile={profile} diagResults={diagResults} cardsUnlocked={cardsUnlocked} qState={qState} onStartPractice={hStartPractice} onStartTest={hStartTest} onGoHome={()=>setScreen("home")} onEditProfile={hEditProfile} onLogout={hLogout} onExport={hExportProgress} onBackup={hBackup} onReminder={()=>setScreen("reminder")} onPreferences={()=>setScreen("preferences")} onVigilance={hVigilance} onCollection={()=>setScreen("collection")} onShowProgram={async()=>{const wp=await generateWeeklyProgram(profile,allProgCache,diagResults);setWeekProgram(wp);setScreen("weekly_program");}}/>}
           {screen==="home"          && <HomeScreen onMode={hMode} profile={profile} onDashboard={profile?hDashboard:null} onSplash={()=>setScreen("splash")} streakProgress={streakProgress}/>}
           {screen==="test_aleatoire" && <TestAleatoireScreen onGlobal={hTestGlobal} onCategory={hTestCategory} onBack={()=>setScreen(mode==="test_aleatoire"?"training_modes":"home")}/>}
           {screen==="training_modes" && <TrainingModesScreen onMode={hTrainingMode} onBack={()=>setScreen("home")}/>}
@@ -12250,7 +12984,7 @@ function AutoMaths() {
           {screen==="level_picker"  && levelType==="cercle_trigo"  && <CercleTrigoScreen onBack={()=>setScreen("subcategory")}/>}
           {screen==="bac_subjects"   && <BacSubjectScreen onStart={hBacStart} onBack={()=>setScreen("home")}/>}
           {screen==="count"         && <CountScreen     catId={mode==="bac"?null:(mode==="test_aleatoire"&&!catId?null:catId)} allMode={mode==="bac"||(mode==="test_aleatoire"&&!catId)} options={mode==="entrainement"||mode==="test_aleatoire"?[20,50]:[10,20]} onCount={hCount} onBack={()=>setScreen(mode==="entrainement"?"subcategory":mode==="test_aleatoire"?"test_aleatoire":mode==="bac"?"home":"category")}/>}
-          {screen==="quiz"          && <QuizScreen      questions={questions} catId={catId||"fonctions"} onFinish={hFinish} onBack={()=>setScreen(prevScreen)}/>}
+          {screen==="quiz"          && <QuizScreen      questions={questions} catId={catId||"fonctions"} subId={trackSub} quizMode={quizMode} onFinish={hFinish} onBack={()=>setScreen(prevScreen)}/>}
           {screen==="result"        && <ResultScreen    score={score} total={questions.length} catId={catId||"fonctions"} onReplay={()=>{setStreakJustCompleted(false);hReplay();}} onHome={()=>{setStreakJustCompleted(false);hHome();}} streakJustCompleted={streakJustCompleted} streakCount={profile?.streak||0}/>}
           {screen==="parcours_result"&&<PostPracticeResultScreen score={score} total={questions.length} catId={trackCat} subId={trackSub} mode={quizMode} prevStars={prevStars} newStars={newStars} onRetry={()=>quizMode==="practice"?hStartPractice(trackCat,trackSub):hStartTest(trackCat,trackSub)} onDashboard={hDashboard} onHome={hHome}/>}
 
