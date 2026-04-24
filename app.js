@@ -6340,19 +6340,17 @@ const XP_PER_STAR     = 50;
 const XP_DAILY        = 30;
 
 // ── Badges ───────────────────────────────────────────────────────────────────
+// Badges "complémentaires" aux cartes Sigma :
+// On a retiré les badges redondants avec des cartes (first_star, triple_star,
+// streak3, streak7, perfect_test, sigma_fan). On garde 6 badges qui couvrent
+// des comportements non récompensés par les cartes (bac, défi quotidien, etc.)
 const BADGES = [
-  {id:"first_star",   emoji:"⭐", label:"Première étoile",     desc:"Obtiens ta 1ère étoile sur un test",   secret:false},
-  {id:"triple_star",  emoji:"🏆", label:"Maître absolu",        desc:"3★ sur n'importe quelle catégorie",    secret:false},
-  {id:"streak3",      emoji:"🔥", label:"En feu !",             desc:"3 jours de suite",                     secret:false},
-  {id:"streak7",      emoji:"🌋", label:"Indestructible",       desc:"7 jours de suite",                     secret:false},
-  {id:"combo10",      emoji:"⚡", label:"Éclair",               desc:"10 bonnes réponses d'affilée",         secret:false},
-  {id:"perfect_test", emoji:"🎯", label:"Perfectionniste",      desc:"100% sur un test",                     secret:false},
   {id:"bac_done",     emoji:"📜", label:"Bac Ready",            desc:"Terminer un sujet d'annales",          secret:false},
   {id:"daily3",       emoji:"☀️",  label:"Matinale",             desc:"Compléter 3 défis du jour",            secret:false},
   {id:"all_cats",     emoji:"🗺️",  label:"Explorateur",          desc:"S'entraîner dans 5 catégories",        secret:false},
+  {id:"combo10",      emoji:"⚡", label:"Éclair",               desc:"10 bonnes réponses d'affilée",         secret:false},
   {id:"night_owl",    emoji:"🦉", label:"Chouette",             desc:"Travailler après 22h",                 secret:true},
   {id:"speed_run",    emoji:"🚀", label:"Speed Run",            desc:"10 bonnes réponses en moins de 2 min", secret:true},
-  {id:"sigma_fan",    emoji:"🤖", label:"Fan de Sigma",         desc:"...",                                  secret:true},
 ];
 
 // ── Défi du Jour ─────────────────────────────────────────────────────────────
@@ -6461,6 +6459,18 @@ const SPRINT_COUNT_K   = 'user:sprint_count';    // compteur global de sessions 
 const REMEDIATION_DONE_K = 'user:remediation_done'; // bool : session vigilance terminée au moins une fois
 const MISSION_THEMES_DONE_K = 'user:mission_themes_done'; // liste de missions terminées
 const WEEKEND_DAYS_K   = 'user:weekend_days';    // { "YYYY-WW": ["Sat","Sun"] } - jours de weekend joués par semaine
+// Compteurs additionnels pour les 100 cartes
+const MAX_STREAK_K     = 'user:max_streak';      // pic de streak historique (persiste même si casse)
+const ACTIVE_DAYS_K    = 'user:active_days';     // liste des jours actifs "YYYY-MM-DD"
+const NB_QUIZ_K        = 'user:nb_quiz';         // nombre de quiz terminés (tout type)
+const CATS_VISITED_K   = 'user:cats_visited';    // liste des catId visitées au moins 1 fois
+const STARS_TOTAL_K    = 'user:stars_total';     // somme des étoiles sur tous les sous-thèmes
+const BAC_COMPLETED_K  = 'user:bac_completed';   // nombre de sujets Bac complétés (score ≥ 60%)
+const REMEDIATION_COUNT_K = 'user:remediation_count'; // nb de sessions de remédiation terminées
+const COMBO_MAX_K      = 'user:combo_max';       // record de bonnes réponses d'affilée
+const MORNING_DONE_K   = 'user:morning_done';    // bool : a joué avant 10h au moins une fois
+const EVENING_DONE_K   = 'user:evening_done';    // bool : a joué après 18h au moins une fois
+const IMPROVED_K       = 'user:improved';        // bool : a rattrapé un thème de <40% à >70%
 
 // Images placeholder (à remplacer par les PNG base64 quand reçus)
 const CARDS_IMAGES = {
@@ -6488,82 +6498,321 @@ const LOCKED_CARD_SVG = `data:image/svg+xml;utf8,${encodeURIComponent(`
 </svg>
 `)}`;
 
-// Catalogue des 20 cartes
+// ── Helpers de check pour les objectifs des cartes ─────────────────────────
+// Chaque helper reçoit le contexte c et renvoie bool. Le contexte contient :
+//   profile, lifetimeCorrect, xp, qState, perfectScores, sprintCount, remediationDone,
+//   missionThemesDone, weekendDays, maxStreak, activeDays, nbQuiz, catsVisited,
+//   starsTotal, bacCompleted, remediationCount, comboMax, morningDone, eveningDone
+function check_streak_ge(n) { return function(c){ return Math.max(c.profile?.streak||0, c.maxStreak||0) >= n; }; }
+function check_lifetime_ge(n) { return function(c){ return (c.lifetimeCorrect||0) >= n; }; }
+function check_xp_ge(n) { return function(c){ return (c.xp||0) >= n; }; }
+function check_sprint_ge(n) { return function(c){ return (c.sprintCount||0) >= n; }; }
+function check_nbquiz_ge(n) { return function(c){ return (c.nbQuiz||0) >= n; }; }
+function check_mastered_ge(n) { return function(c){ return countMastered(c.qState) >= n; }; }
+function check_perfect_ge(n) { return function(c){ return (c.perfectScores||0) >= n; }; }
+function check_stars_ge(n) { return function(c){ return (c.starsTotal||0) >= n; }; }
+function check_missions_done_ge(n) { return function(c){ return (c.missionThemesDone||[]).length >= n; }; }
+function check_bac_ge(n) { return function(c){ return (c.bacCompleted||0) >= n; }; }
+function check_remediation_ge(n) { return function(c){ return (c.remediationCount||0) >= n; }; }
+function check_activedays_ge(n) { return function(c){ return (c.activeDays||[]).length >= n; }; }
+function check_cats_visited_ge(n) { return function(c){ return (c.catsVisited||[]).length >= n; }; }
+function check_cats_visited_has(id) { return function(c){ return (c.catsVisited||[]).includes(id); }; }
+function check_all_cats() { return function(c){
+  // Joué dans toutes les catégories de son niveau (hors missions/bac qui sont des méta-catégories)
+  try {
+    const curr = CURRICULUM[c.profile?.level] || CURRICULUM.seconde;
+    const needed = Object.keys(curr.cats);
+    const visited = c.catsVisited || [];
+    return needed.every(cid => visited.includes(cid));
+  } catch(e){ return false; }
+}; }
+function check_weekend() { return function(c){
+  const w = c.weekendDays || {};
+  return Object.values(w).some(d => Array.isArray(d) && d.includes("Sat") && d.includes("Sun"));
+}; }
+function check_weekends_ge(n) { return function(c){
+  const w = c.weekendDays || {};
+  const cnt = Object.values(w).filter(d => Array.isArray(d) && d.includes("Sat") && d.includes("Sun")).length;
+  return cnt >= n;
+}; }
+function check_saturday() { return function(c){
+  const w = c.weekendDays || {};
+  return Object.values(w).some(d => Array.isArray(d) && d.includes("Sat"));
+}; }
+function check_sunday() { return function(c){
+  const w = c.weekendDays || {};
+  return Object.values(w).some(d => Array.isArray(d) && d.includes("Sun"));
+}; }
+function check_morning() { return function(c){ return c.morningDone === true; }; }
+function check_evening() { return function(c){ return c.eveningDone === true; }; }
+function check_combo_ge(n) { return function(c){ return (c.comboMax||0) >= n; }; }
+function check_subtheme_complete_ge(n) { return function(c){
+  // Compte les sous-thèmes entièrement "mastered" (toutes les questions du DB)
+  if (!c.qState) return 0 >= n;
+  const bySub = {};
+  for (const k in c.qState) {
+    const parts = k.split(":");
+    if (parts.length < 3) continue;
+    const subKey = parts[0] + ":" + parts[1];
+    bySub[subKey] = bySub[subKey] || { total: 0, mastered: 0 };
+    bySub[subKey].total++;
+    if (c.qState[k]?.status === "mastered") bySub[subKey].mastered++;
+  }
+  let cnt = 0;
+  for (const sk in bySub) {
+    const [catId, subId] = sk.split(":");
+    const subQs = DB?.[catId]?.[subId];
+    if (Array.isArray(subQs) && bySub[sk].mastered === subQs.length && subQs.length >= 3) cnt++;
+  }
+  return cnt >= n;
+}; }
+function check_threestar_subs_ge(n) { return function(c){
+  // Nécessite allProg qu'on n'a pas dans ctx. On approxime via stars totales / mastery.
+  // Un sous-thème 3★ = allProg[cat:sub].stars === 3. C'est stocké séparément.
+  // Pour éviter un refacto massif, on approxime : sous-thème "complet" ≈ 3★.
+  // Si besoin plus précis plus tard, on stockera une clé user:threestar_subs.
+  return check_subtheme_complete_ge(n)(c);
+}; }
+function check_cat_complete_ge(n) { return function(c){
+  // Catégorie où TOUS les sous-thèmes sont "complets" (mastery)
+  if (!c.qState) return 0 >= n;
+  const curr = CURRICULUM[c.profile?.level] || CURRICULUM.seconde;
+  const bySub = {};
+  for (const k in c.qState) {
+    const parts = k.split(":");
+    if (parts.length < 3) continue;
+    const subKey = parts[0] + ":" + parts[1];
+    bySub[subKey] = bySub[subKey] || { total: 0, mastered: 0 };
+    bySub[subKey].total++;
+    if (c.qState[k]?.status === "mastered") bySub[subKey].mastered++;
+  }
+  let cnt = 0;
+  for (const catId in curr.cats) {
+    const subs = curr.cats[catId];
+    if (!subs.length) continue;
+    const allComplete = subs.every(subId => {
+      const subQs = DB?.[catId]?.[subId];
+      const st = bySub[`${catId}:${subId}`];
+      return st && subQs && st.mastered === subQs.length && subQs.length >= 3;
+    });
+    if (allComplete) cnt++;
+  }
+  return cnt >= n;
+}; }
+function check_curriculum_complete() { return function(c){
+  const curr = CURRICULUM[c.profile?.level] || CURRICULUM.seconde;
+  const totalCats = Object.keys(curr.cats).length;
+  return check_cat_complete_ge(totalCats)(c);
+}; }
+function check_legendary_combined() { return function(c){
+  return (c.starsTotal||0) >= 50 && (c.missionThemesDone||[]).length >= 10;
+}; }
+
+// Catalogue des cartes
 const CARDS = [
-  // ─── SÉRIE A : WORLD TOUR (régularité / temps passé) ───
-  { id:"sigma_paris",      name:"PARIS",      series:"world_tour", element:"SAPHIR",     quote:"La ville lumière et de la logique.",  stats:{brain:7,speed:6,shield:8}, borderColor:"#3B82F6", elementColor:"#2563EB" },
-  { id:"sigma_london",     name:"LONDON",     series:"world_tour", element:"RUBIS",      quote:"À l'heure du thé et du calcul.",       stats:{brain:8,speed:5,shield:9}, borderColor:"#DC2626", elementColor:"#B91C1C" },
-  { id:"sigma_nyc",        name:"NYC",        series:"world_tour", element:"ACIER",      quote:"La ville qui ne dort jamais.",         stats:{brain:6,speed:9,shield:7}, borderColor:"#64748B", elementColor:"#475569" },
-  { id:"sigma_tokyo",      name:"TOKYO",      series:"world_tour", element:"AMÉTHYSTE",  quote:"Haute technologie et tradition.",      stats:{brain:9,speed:8,shield:8}, borderColor:"#A855F7", elementColor:"#7E22CE" },
-  { id:"sigma_cairo",      name:"CAIRO",      series:"world_tour", element:"AMBRE",      quote:"Le berceau de la géométrie.",          stats:{brain:10,speed:3,shield:10},borderColor:"#D97706", elementColor:"#B45309" },
-  { id:"sigma_rio",        name:"RIO",        series:"world_tour", element:"ÉMERAUDE",   quote:"Le carnaval des nombres.",             stats:{brain:5,speed:10,shield:6},borderColor:"#10B981", elementColor:"#047857" },
-  { id:"sigma_moscow",     name:"MOSCOW",     series:"world_tour", element:"RUBIS",      quote:"La forteresse du savoir.",             stats:{brain:8,speed:6,shield:9}, borderColor:"#DC2626", elementColor:"#B91C1C" },
-  { id:"sigma_venice",     name:"VENICE",     series:"world_tour", element:"SAPHIR",     quote:"Naviguer entre les équations.",        stats:{brain:7,speed:7,shield:7}, borderColor:"#3B82F6", elementColor:"#2563EB" },
-  { id:"sigma_sydney",     name:"SYDNEY",     series:"world_tour", element:"ACIER",      quote:"L'opéra des mathématiques.",           stats:{brain:6,speed:8,shield:8}, borderColor:"#64748B", elementColor:"#475569" },
-  // ─── SÉRIE B : ODYSSÉE DU TEMPS (réussite / niveau) ───
-  { id:"sigma_cromagnon",  name:"CRO-MAGNON", series:"odyssee", element:"AMBRE",      quote:"L'étincelle de la première logique.",  stats:{brain:5,speed:6,shield:4}, borderColor:"#D97706", elementColor:"#B45309" },
-  { id:"sigma_pharaon",    name:"PHARAON",    series:"odyssee", element:"AMBRE",      quote:"Bâtisseur de pyramides éternelles.",   stats:{brain:9,speed:4,shield:10},borderColor:"#D97706", elementColor:"#B45309" },
-  { id:"sigma_maya",       name:"MAYA",       series:"odyssee", element:"ÉMERAUDE",   quote:"Calculateur des cycles du temps.",     stats:{brain:9,speed:5,shield:9}, borderColor:"#10B981", elementColor:"#047857" },
-  { id:"sigma_scribe",     name:"SCRIBE",     series:"odyssee", element:"AMBRE",      quote:"L'écriture du destin numérique.",      stats:{brain:10,speed:3,shield:9},borderColor:"#D97706", elementColor:"#B45309" },
-  { id:"sigma_philosophe", name:"PHILOSOPHE", series:"odyssee", element:"SAPHIR",     quote:"Le père de la géométrie pure.",        stats:{brain:10,speed:5,shield:7},borderColor:"#3B82F6", elementColor:"#2563EB" },
-  { id:"sigma_legionnaire",name:"LÉGIONNAIRE",series:"odyssee", element:"RUBIS",      quote:"L'ordre et la discipline du calcul.",  stats:{brain:7,speed:8,shield:9}, borderColor:"#DC2626", elementColor:"#B91C1C" },
-  { id:"sigma_viking",     name:"VIKING",     series:"odyssee", element:"ACIER",      quote:"Naviguer vers l'inconnu mathématique.",stats:{brain:6,speed:9,shield:8}, borderColor:"#64748B", elementColor:"#475569" },
-  { id:"sigma_samourai",   name:"SAMOURAÏ",   series:"odyssee", element:"RUBIS",      quote:"La précision d'une lame logique.",     stats:{brain:8,speed:10,shield:10},borderColor:"#DC2626", elementColor:"#B91C1C" },
-  { id:"sigma_gladiateur", name:"GLADIATEUR", series:"odyssee", element:"AMBRE",      quote:"Vaincre l'erreur dans l'arène.",       stats:{brain:5,speed:8,shield:10},borderColor:"#D97706", elementColor:"#B45309" },
-  { id:"sigma_druide",     name:"DRUIDE",     series:"odyssee", element:"ÉMERAUDE",   quote:"La magie des nombres naturels.",       stats:{brain:9,speed:4,shield:8}, borderColor:"#10B981", elementColor:"#047857" },
-  { id:"sigma_rome",       name:"ROME",       series:"odyssee", element:"AMBRE",      quote:"Toutes les maths mènent à Rome.",      stats:{brain:9,speed:4,shield:9}, borderColor:"#D97706", elementColor:"#B45309" },
+  { id:"sigma_paris", name:"PARIS", series:"world_tour", element:"SAPHIR", rarity:"bronze", quote:"La ville lumière et de la logique.", stats:{brain:7,speed:6,shield:8}, borderColor:"#D97706", elementColor:"#3B82F6" },
+  { id:"sigma_london", name:"LONDON", series:"world_tour", element:"RUBIS", rarity:"bronze", quote:"À l\'heure du thé et du calcul.", stats:{brain:8,speed:5,shield:9}, borderColor:"#D97706", elementColor:"#DC2626" },
+  { id:"sigma_nyc", name:"NYC", series:"world_tour", element:"ACIER", rarity:"bronze", quote:"La ville qui ne dort jamais.", stats:{brain:6,speed:9,shield:7}, borderColor:"#D97706", elementColor:"#64748B" },
+  { id:"sigma_tokyo", name:"TOKYO", series:"world_tour", element:"AMÉTHYSTE", rarity:"bronze", quote:"Haute technologie et tradition.", stats:{brain:9,speed:8,shield:8}, borderColor:"#D97706", elementColor:"#A855F7" },
+  { id:"sigma_cairo", name:"CAIRO", series:"world_tour", element:"AMBRE", rarity:"bronze", quote:"Le berceau de la géométrie.", stats:{brain:10,speed:3,shield:10}, borderColor:"#D97706", elementColor:"#D97706" },
+  { id:"sigma_rio", name:"RIO", series:"world_tour", element:"ÉMERAUDE", rarity:"bronze", quote:"Le carnaval des nombres.", stats:{brain:5,speed:10,shield:6}, borderColor:"#D97706", elementColor:"#10B981" },
+  { id:"sigma_moscow", name:"MOSCOW", series:"world_tour", element:"RUBIS", rarity:"bronze", quote:"La forteresse du savoir.", stats:{brain:8,speed:6,shield:9}, borderColor:"#D97706", elementColor:"#DC2626" },
+  { id:"sigma_venice", name:"VENICE", series:"world_tour", element:"SAPHIR", rarity:"bronze", quote:"Naviguer entre les équations.", stats:{brain:7,speed:7,shield:7}, borderColor:"#D97706", elementColor:"#3B82F6" },
+  { id:"sigma_sydney", name:"SYDNEY", series:"world_tour", element:"ACIER", rarity:"bronze", quote:"L\'opéra des mathématiques.", stats:{brain:6,speed:8,shield:8}, borderColor:"#D97706", elementColor:"#64748B" },
+  { id:"sigma_a_b10", name:"? CARTE A-10", series:"world_tour", element:"RUBIS", rarity:"bronze", quote:"Fais ton 1er quiz", stats:{brain:6,speed:5,shield:7}, borderColor:"#D97706", elementColor:"#DC2626" },
+  { id:"sigma_a_b11", name:"? CARTE A-11", series:"world_tour", element:"ÉMERAUDE", rarity:"bronze", quote:"Cumule 100 bonnes réponses", stats:{brain:7,speed:5,shield:7}, borderColor:"#D97706", elementColor:"#10B981" },
+  { id:"sigma_a_b12", name:"? CARTE A-12", series:"world_tour", element:"AMÉTHYSTE", rarity:"bronze", quote:"Cumule 250 bonnes réponses", stats:{brain:6,speed:4,shield:5}, borderColor:"#D97706", elementColor:"#A855F7" },
+  { id:"sigma_a_b13", name:"? CARTE A-13", series:"world_tour", element:"ÉMERAUDE", rarity:"bronze", quote:"Valide 2 jours de streak", stats:{brain:5,speed:7,shield:8}, borderColor:"#D97706", elementColor:"#10B981" },
+  { id:"sigma_a_b14", name:"? CARTE A-14", series:"world_tour", element:"ÉMERAUDE", rarity:"bronze", quote:"Cumule 250 XP", stats:{brain:7,speed:8,shield:8}, borderColor:"#D97706", elementColor:"#10B981" },
+  { id:"sigma_a_b15", name:"? CARTE A-15", series:"world_tour", element:"ÉMERAUDE", rarity:"bronze", quote:"3 sessions Sprint", stats:{brain:7,speed:6,shield:8}, borderColor:"#D97706", elementColor:"#10B981" },
+  { id:"sigma_a_b16", name:"? CARTE A-16", series:"world_tour", element:"ACIER", rarity:"bronze", quote:"5 sessions Sprint", stats:{brain:4,speed:6,shield:6}, borderColor:"#D97706", elementColor:"#64748B" },
+  { id:"sigma_a_b17", name:"? CARTE A-17", series:"world_tour", element:"AMÉTHYSTE", rarity:"bronze", quote:"Joue sur 2 catégories différentes", stats:{brain:6,speed:7,shield:5}, borderColor:"#D97706", elementColor:"#A855F7" },
+  { id:"sigma_a_b18", name:"? CARTE A-18", series:"world_tour", element:"ACIER", rarity:"bronze", quote:"Joue sur 3 catégories différentes", stats:{brain:4,speed:4,shield:8}, borderColor:"#D97706", elementColor:"#64748B" },
+  { id:"sigma_a_b19", name:"? CARTE A-19", series:"world_tour", element:"ACIER", rarity:"bronze", quote:"Joue sur 5 catégories différentes", stats:{brain:7,speed:5,shield:5}, borderColor:"#D97706", elementColor:"#64748B" },
+  { id:"sigma_a_b20", name:"? CARTE A-20", series:"world_tour", element:"ÉMERAUDE", rarity:"bronze", quote:"Joue le matin (avant 10h)", stats:{brain:4,speed:4,shield:4}, borderColor:"#D97706", elementColor:"#10B981" },
+  { id:"sigma_a_b21", name:"? CARTE A-21", series:"world_tour", element:"ÉMERAUDE", rarity:"bronze", quote:"Joue le soir (après 18h)", stats:{brain:4,speed:8,shield:7}, borderColor:"#D97706", elementColor:"#10B981" },
+  { id:"sigma_a_b22", name:"? CARTE A-22", series:"world_tour", element:"RUBIS", rarity:"bronze", quote:"Joue un samedi", stats:{brain:4,speed:4,shield:7}, borderColor:"#D97706", elementColor:"#DC2626" },
+  { id:"sigma_a_b23", name:"? CARTE A-23", series:"world_tour", element:"SAPHIR", rarity:"bronze", quote:"Joue un dimanche", stats:{brain:4,speed:6,shield:4}, borderColor:"#D97706", elementColor:"#3B82F6" },
+  { id:"sigma_a_b24", name:"? CARTE A-24", series:"world_tour", element:"ACIER", rarity:"bronze", quote:"10 quiz terminés", stats:{brain:7,speed:6,shield:7}, borderColor:"#D97706", elementColor:"#64748B" },
+  { id:"sigma_a_b25", name:"? CARTE A-25", series:"world_tour", element:"RUBIS", rarity:"bronze", quote:"20 quiz terminés", stats:{brain:4,speed:4,shield:5}, borderColor:"#D97706", elementColor:"#DC2626" },
+  { id:"sigma_a_s01", name:"? CARTE A-1", series:"world_tour", element:"AMBRE", rarity:"argent", quote:"Valide 7 jours de streak", stats:{brain:11,speed:13,shield:15}, borderColor:"#94A3B8", elementColor:"#D97706" },
+  { id:"sigma_a_s02", name:"? CARTE A-2", series:"world_tour", element:"AMBRE", rarity:"argent", quote:"Valide 10 jours de streak", stats:{brain:14,speed:14,shield:11}, borderColor:"#94A3B8", elementColor:"#D97706" },
+  { id:"sigma_a_s03", name:"? CARTE A-3", series:"world_tour", element:"AMÉTHYSTE", rarity:"argent", quote:"Valide 14 jours de streak", stats:{brain:12,speed:14,shield:11}, borderColor:"#94A3B8", elementColor:"#A855F7" },
+  { id:"sigma_a_s04", name:"? CARTE A-4", series:"world_tour", element:"SAPHIR", rarity:"argent", quote:"Cumule 500 bonnes réponses", stats:{brain:15,speed:15,shield:14}, borderColor:"#94A3B8", elementColor:"#3B82F6" },
+  { id:"sigma_a_s05", name:"? CARTE A-5", series:"world_tour", element:"ACIER", rarity:"argent", quote:"Cumule 1000 bonnes réponses", stats:{brain:12,speed:12,shield:12}, borderColor:"#94A3B8", elementColor:"#64748B" },
+  { id:"sigma_a_s06", name:"? CARTE A-6", series:"world_tour", element:"AMBRE", rarity:"argent", quote:"Cumule 1000 XP", stats:{brain:11,speed:14,shield:12}, borderColor:"#94A3B8", elementColor:"#D97706" },
+  { id:"sigma_a_s07", name:"? CARTE A-7", series:"world_tour", element:"ACIER", rarity:"argent", quote:"Cumule 2500 XP", stats:{brain:12,speed:12,shield:15}, borderColor:"#94A3B8", elementColor:"#64748B" },
+  { id:"sigma_a_s08", name:"? CARTE A-8", series:"world_tour", element:"AMÉTHYSTE", rarity:"argent", quote:"10 sessions Sprint", stats:{brain:12,speed:11,shield:12}, borderColor:"#94A3B8", elementColor:"#A855F7" },
+  { id:"sigma_a_s09", name:"? CARTE A-9", series:"world_tour", element:"ACIER", rarity:"argent", quote:"25 sessions Sprint", stats:{brain:15,speed:14,shield:15}, borderColor:"#94A3B8", elementColor:"#64748B" },
+  { id:"sigma_a_s10", name:"? CARTE A-10", series:"world_tour", element:"AMÉTHYSTE", rarity:"argent", quote:"50 quiz terminés", stats:{brain:12,speed:11,shield:13}, borderColor:"#94A3B8", elementColor:"#A855F7" },
+  { id:"sigma_a_s11", name:"? CARTE A-11", series:"world_tour", element:"AMBRE", rarity:"argent", quote:"3 weekends complets (sam+dim)", stats:{brain:12,speed:12,shield:13}, borderColor:"#94A3B8", elementColor:"#D97706" },
+  { id:"sigma_a_s12", name:"? CARTE A-12", series:"world_tour", element:"AMÉTHYSTE", rarity:"argent", quote:"Joue sur toutes les catégories", stats:{brain:11,speed:11,shield:13}, borderColor:"#94A3B8", elementColor:"#A855F7" },
+  { id:"sigma_a_s13", name:"? CARTE A-13", series:"world_tour", element:"AMÉTHYSTE", rarity:"argent", quote:"1ère session de remédiation", stats:{brain:13,speed:13,shield:11}, borderColor:"#94A3B8", elementColor:"#A855F7" },
+  { id:"sigma_a_g01", name:"? CARTE A-1", series:"world_tour", element:"SAPHIR", rarity:"or", quote:"Valide 21 jours de streak", stats:{brain:24,speed:22,shield:20}, borderColor:"#F59E0B", elementColor:"#3B82F6" },
+  { id:"sigma_a_g02", name:"? CARTE A-2", series:"world_tour", element:"AMÉTHYSTE", rarity:"or", quote:"Valide 30 jours de streak", stats:{brain:20,speed:21,shield:22}, borderColor:"#F59E0B", elementColor:"#A855F7" },
+  { id:"sigma_a_g03", name:"? CARTE A-3", series:"world_tour", element:"SAPHIR", rarity:"or", quote:"Cumule 2500 bonnes réponses", stats:{brain:21,speed:20,shield:22}, borderColor:"#F59E0B", elementColor:"#3B82F6" },
+  { id:"sigma_a_g04", name:"? CARTE A-4", series:"world_tour", element:"AMBRE", rarity:"or", quote:"Cumule 5000 XP", stats:{brain:22,speed:23,shield:20}, borderColor:"#F59E0B", elementColor:"#D97706" },
+  { id:"sigma_a_g05", name:"? CARTE A-5", series:"world_tour", element:"RUBIS", rarity:"or", quote:"50 sessions Sprint", stats:{brain:24,speed:23,shield:22}, borderColor:"#F59E0B", elementColor:"#DC2626" },
+  { id:"sigma_a_g06", name:"? CARTE A-6", series:"world_tour", element:"ACIER", rarity:"or", quote:"100 quiz terminés", stats:{brain:23,speed:21,shield:20}, borderColor:"#F59E0B", elementColor:"#64748B" },
+  { id:"sigma_a_g07", name:"? CARTE A-7", series:"world_tour", element:"RUBIS", rarity:"or", quote:"5 sessions de remédiation", stats:{brain:22,speed:23,shield:21}, borderColor:"#F59E0B", elementColor:"#DC2626" },
+  { id:"sigma_a_g08", name:"? CARTE A-8", series:"world_tour", element:"AMBRE", rarity:"or", quote:"30 jours cumulés actifs", stats:{brain:20,speed:20,shield:21}, borderColor:"#F59E0B", elementColor:"#D97706" },
+  { id:"sigma_a_d01", name:"? CARTE A-1", series:"world_tour", element:"ACIER", rarity:"diamant", quote:"Valide 60 jours de streak", stats:{brain:40,speed:40,shield:39}, borderColor:"#06B6D4", elementColor:"#64748B" },
+  { id:"sigma_a_d02", name:"? CARTE A-2", series:"world_tour", element:"SAPHIR", rarity:"diamant", quote:"Cumule 10000 XP", stats:{brain:42,speed:39,shield:41}, borderColor:"#06B6D4", elementColor:"#3B82F6" },
+  { id:"sigma_a_d03", name:"? CARTE A-3", series:"world_tour", element:"AMÉTHYSTE", rarity:"diamant", quote:"100 jours cumulés actifs", stats:{brain:39,speed:41,shield:42}, borderColor:"#06B6D4", elementColor:"#A855F7" },
+  { id:"sigma_a_l01", name:"? CARTE A-1", series:"world_tour", element:"ÉMERAUDE", rarity:"legendaire", quote:"Valide 100 jours de streak", stats:{brain:76,speed:73,shield:73}, borderColor:"#A855F7", elementColor:"#10B981" },
+  { id:"sigma_cromagnon", name:"CRO-MAGNON", series:"odyssee", element:"AMBRE", rarity:"bronze", quote:"L\'étincelle de la première logique.", stats:{brain:5,speed:6,shield:4}, borderColor:"#D97706", elementColor:"#D97706" },
+  { id:"sigma_pharaon", name:"PHARAON", series:"odyssee", element:"AMBRE", rarity:"bronze", quote:"Bâtisseur de pyramides éternelles.", stats:{brain:9,speed:4,shield:10}, borderColor:"#D97706", elementColor:"#D97706" },
+  { id:"sigma_maya", name:"MAYA", series:"odyssee", element:"ÉMERAUDE", rarity:"bronze", quote:"Calculateur des cycles du temps.", stats:{brain:9,speed:5,shield:9}, borderColor:"#D97706", elementColor:"#10B981" },
+  { id:"sigma_scribe", name:"SCRIBE", series:"odyssee", element:"AMBRE", rarity:"bronze", quote:"L\'écriture du destin numérique.", stats:{brain:10,speed:3,shield:9}, borderColor:"#D97706", elementColor:"#D97706" },
+  { id:"sigma_philosophe", name:"PHILOSOPHE", series:"odyssee", element:"SAPHIR", rarity:"bronze", quote:"Le père de la géométrie pure.", stats:{brain:10,speed:5,shield:7}, borderColor:"#D97706", elementColor:"#3B82F6" },
+  { id:"sigma_legionnaire", name:"LÉGIONNAIRE", series:"odyssee", element:"RUBIS", rarity:"bronze", quote:"L\'ordre et la discipline du calcul.", stats:{brain:7,speed:8,shield:9}, borderColor:"#D97706", elementColor:"#DC2626" },
+  { id:"sigma_viking", name:"VIKING", series:"odyssee", element:"ACIER", rarity:"bronze", quote:"Naviguer vers l\'inconnu mathématique.", stats:{brain:6,speed:9,shield:8}, borderColor:"#D97706", elementColor:"#64748B" },
+  { id:"sigma_samourai", name:"SAMOURAÏ", series:"odyssee", element:"RUBIS", rarity:"bronze", quote:"La précision d\'une lame logique.", stats:{brain:8,speed:10,shield:10}, borderColor:"#D97706", elementColor:"#DC2626" },
+  { id:"sigma_gladiateur", name:"GLADIATEUR", series:"odyssee", element:"AMBRE", rarity:"bronze", quote:"Vaincre l\'erreur dans l\'arène.", stats:{brain:5,speed:8,shield:10}, borderColor:"#D97706", elementColor:"#D97706" },
+  { id:"sigma_druide", name:"DRUIDE", series:"odyssee", element:"ÉMERAUDE", rarity:"bronze", quote:"La magie des nombres naturels.", stats:{brain:9,speed:4,shield:8}, borderColor:"#D97706", elementColor:"#10B981" },
+  { id:"sigma_rome", name:"ROME", series:"odyssee", element:"AMBRE", rarity:"bronze", quote:"Toutes les maths mènent à Rome.", stats:{brain:9,speed:4,shield:9}, borderColor:"#D97706", elementColor:"#D97706" },
+  { id:"sigma_b_b12", name:"? CARTE B-12", series:"odyssee", element:"SAPHIR", rarity:"bronze", quote:"Maîtrise ta 1ère question", stats:{brain:6,speed:6,shield:6}, borderColor:"#D97706", elementColor:"#3B82F6" },
+  { id:"sigma_b_b13", name:"? CARTE B-13", series:"odyssee", element:"AMBRE", rarity:"bronze", quote:"Maîtrise 3 questions", stats:{brain:6,speed:6,shield:6}, borderColor:"#D97706", elementColor:"#D97706" },
+  { id:"sigma_b_b14", name:"? CARTE B-14", series:"odyssee", element:"RUBIS", rarity:"bronze", quote:"Maîtrise 50 questions", stats:{brain:5,speed:6,shield:6}, borderColor:"#D97706", elementColor:"#DC2626" },
+  { id:"sigma_b_b15", name:"? CARTE B-15", series:"odyssee", element:"SAPHIR", rarity:"bronze", quote:"2e score parfait", stats:{brain:5,speed:4,shield:6}, borderColor:"#D97706", elementColor:"#3B82F6" },
+  { id:"sigma_b_b16", name:"? CARTE B-16", series:"odyssee", element:"SAPHIR", rarity:"bronze", quote:"5 scores parfaits", stats:{brain:8,speed:5,shield:5}, borderColor:"#D97706", elementColor:"#3B82F6" },
+  { id:"sigma_b_b17", name:"? CARTE B-17", series:"odyssee", element:"ACIER", rarity:"bronze", quote:"Obtiens ta 1ère étoile", stats:{brain:4,speed:8,shield:7}, borderColor:"#D97706", elementColor:"#64748B" },
+  { id:"sigma_b_b18", name:"? CARTE B-18", series:"odyssee", element:"SAPHIR", rarity:"bronze", quote:"Obtiens 3 étoiles cumulées", stats:{brain:6,speed:8,shield:5}, borderColor:"#D97706", elementColor:"#3B82F6" },
+  { id:"sigma_b_b19", name:"? CARTE B-19", series:"odyssee", element:"ACIER", rarity:"bronze", quote:"Obtiens 5 étoiles cumulées", stats:{brain:5,speed:6,shield:5}, borderColor:"#D97706", elementColor:"#64748B" },
+  { id:"sigma_b_b20", name:"? CARTE B-20", series:"odyssee", element:"ACIER", rarity:"bronze", quote:"Obtiens 10 étoiles cumulées", stats:{brain:8,speed:7,shield:5}, borderColor:"#D97706", elementColor:"#64748B" },
+  { id:"sigma_b_b21", name:"? CARTE B-21", series:"odyssee", element:"AMÉTHYSTE", rarity:"bronze", quote:"2 missions terminées", stats:{brain:8,speed:5,shield:7}, borderColor:"#D97706", elementColor:"#A855F7" },
+  { id:"sigma_b_b22", name:"? CARTE B-22", series:"odyssee", element:"ÉMERAUDE", rarity:"bronze", quote:"3 missions terminées", stats:{brain:8,speed:5,shield:5}, borderColor:"#D97706", elementColor:"#10B981" },
+  { id:"sigma_b_b23", name:"? CARTE B-23", series:"odyssee", element:"AMBRE", rarity:"bronze", quote:"Obtiens 3★ sur 1 sous-thème", stats:{brain:5,speed:4,shield:5}, borderColor:"#D97706", elementColor:"#D97706" },
+  { id:"sigma_b_b24", name:"? CARTE B-24", series:"odyssee", element:"ACIER", rarity:"bronze", quote:"1ère exposition à un sujet Bac", stats:{brain:8,speed:5,shield:6}, borderColor:"#D97706", elementColor:"#64748B" },
+  { id:"sigma_b_b25", name:"? CARTE B-25", series:"odyssee", element:"ACIER", rarity:"bronze", quote:"10 bonnes réponses d\'affilée", stats:{brain:6,speed:8,shield:8}, borderColor:"#D97706", elementColor:"#64748B" },
+  { id:"sigma_b_s01", name:"? CARTE B-1", series:"odyssee", element:"ACIER", rarity:"argent", quote:"Maîtrise 75 questions", stats:{brain:11,speed:12,shield:11}, borderColor:"#94A3B8", elementColor:"#64748B" },
+  { id:"sigma_b_s02", name:"? CARTE B-2", series:"odyssee", element:"AMBRE", rarity:"argent", quote:"Maîtrise 100 questions", stats:{brain:13,speed:15,shield:12}, borderColor:"#94A3B8", elementColor:"#D97706" },
+  { id:"sigma_b_s03", name:"? CARTE B-3", series:"odyssee", element:"ACIER", rarity:"argent", quote:"Maîtrise 150 questions", stats:{brain:14,speed:15,shield:14}, borderColor:"#94A3B8", elementColor:"#64748B" },
+  { id:"sigma_b_s04", name:"? CARTE B-4", series:"odyssee", element:"ÉMERAUDE", rarity:"argent", quote:"10 scores parfaits", stats:{brain:11,speed:12,shield:13}, borderColor:"#94A3B8", elementColor:"#10B981" },
+  { id:"sigma_b_s05", name:"? CARTE B-5", series:"odyssee", element:"SAPHIR", rarity:"argent", quote:"15 étoiles cumulées", stats:{brain:14,speed:12,shield:11}, borderColor:"#94A3B8", elementColor:"#3B82F6" },
+  { id:"sigma_b_s06", name:"? CARTE B-6", series:"odyssee", element:"SAPHIR", rarity:"argent", quote:"25 étoiles cumulées", stats:{brain:14,speed:14,shield:15}, borderColor:"#94A3B8", elementColor:"#3B82F6" },
+  { id:"sigma_b_s07", name:"? CARTE B-7", series:"odyssee", element:"AMÉTHYSTE", rarity:"argent", quote:"5 missions terminées", stats:{brain:12,speed:14,shield:15}, borderColor:"#94A3B8", elementColor:"#A855F7" },
+  { id:"sigma_b_s08", name:"? CARTE B-8", series:"odyssee", element:"AMÉTHYSTE", rarity:"argent", quote:"3 sous-thèmes complets", stats:{brain:12,speed:14,shield:15}, borderColor:"#94A3B8", elementColor:"#A855F7" },
+  { id:"sigma_b_s09", name:"? CARTE B-9", series:"odyssee", element:"ACIER", rarity:"argent", quote:"3★ sur 3 sous-thèmes", stats:{brain:11,speed:13,shield:13}, borderColor:"#94A3B8", elementColor:"#64748B" },
+  { id:"sigma_b_s10", name:"? CARTE B-10", series:"odyssee", element:"ACIER", rarity:"argent", quote:"Termine 1 sujet Bac complet", stats:{brain:12,speed:14,shield:12}, borderColor:"#94A3B8", elementColor:"#64748B" },
+  { id:"sigma_b_s11", name:"? CARTE B-11", series:"odyssee", element:"AMBRE", rarity:"argent", quote:"Maîtrise une catégorie entière", stats:{brain:13,speed:12,shield:13}, borderColor:"#94A3B8", elementColor:"#D97706" },
+  { id:"sigma_b_s12", name:"? CARTE B-12", series:"odyssee", element:"AMÉTHYSTE", rarity:"argent", quote:"20 bonnes réponses d\'affilée", stats:{brain:12,speed:12,shield:13}, borderColor:"#94A3B8", elementColor:"#A855F7" },
+  { id:"sigma_b_g01", name:"? CARTE B-1", series:"odyssee", element:"ACIER", rarity:"or", quote:"Maîtrise 250 questions", stats:{brain:20,speed:20,shield:24}, borderColor:"#F59E0B", elementColor:"#64748B" },
+  { id:"sigma_b_g02", name:"? CARTE B-2", series:"odyssee", element:"ÉMERAUDE", rarity:"or", quote:"20 scores parfaits", stats:{brain:22,speed:20,shield:21}, borderColor:"#F59E0B", elementColor:"#10B981" },
+  { id:"sigma_b_g03", name:"? CARTE B-3", series:"odyssee", element:"ÉMERAUDE", rarity:"or", quote:"50 étoiles cumulées", stats:{brain:22,speed:20,shield:20}, borderColor:"#F59E0B", elementColor:"#10B981" },
+  { id:"sigma_b_g04", name:"? CARTE B-4", series:"odyssee", element:"RUBIS", rarity:"or", quote:"10 missions terminées", stats:{brain:24,speed:22,shield:20}, borderColor:"#F59E0B", elementColor:"#DC2626" },
+  { id:"sigma_b_g05", name:"? CARTE B-5", series:"odyssee", element:"SAPHIR", rarity:"or", quote:"5 sous-thèmes complets", stats:{brain:21,speed:20,shield:24}, borderColor:"#F59E0B", elementColor:"#3B82F6" },
+  { id:"sigma_b_g06", name:"? CARTE B-6", series:"odyssee", element:"AMÉTHYSTE", rarity:"or", quote:"2 catégories maîtrisées", stats:{brain:22,speed:22,shield:22}, borderColor:"#F59E0B", elementColor:"#A855F7" },
+  { id:"sigma_b_g07", name:"? CARTE B-7", series:"odyssee", element:"RUBIS", rarity:"or", quote:"3 sujets Bac complets", stats:{brain:21,speed:23,shield:21}, borderColor:"#F59E0B", elementColor:"#DC2626" },
+  { id:"sigma_b_d01", name:"? CARTE B-1", series:"odyssee", element:"ÉMERAUDE", rarity:"diamant", quote:"Maîtrise 500 questions", stats:{brain:38,speed:39,shield:38}, borderColor:"#06B6D4", elementColor:"#10B981" },
+  { id:"sigma_b_d02", name:"? CARTE B-2", series:"odyssee", element:"SAPHIR", rarity:"diamant", quote:"30 scores parfaits", stats:{brain:40,speed:42,shield:42}, borderColor:"#06B6D4", elementColor:"#3B82F6" },
+  { id:"sigma_b_d03", name:"? CARTE B-3", series:"odyssee", element:"SAPHIR", rarity:"diamant", quote:"10 sous-thèmes complets", stats:{brain:41,speed:40,shield:40}, borderColor:"#06B6D4", elementColor:"#3B82F6" },
+  { id:"sigma_b_d04", name:"? CARTE B-4", series:"odyssee", element:"ÉMERAUDE", rarity:"diamant", quote:"3 catégories maîtrisées", stats:{brain:38,speed:42,shield:38}, borderColor:"#06B6D4", elementColor:"#10B981" },
+  { id:"sigma_b_d05", name:"? CARTE B-5", series:"odyssee", element:"AMÉTHYSTE", rarity:"diamant", quote:"50 étoiles cumulées + 10 missions", stats:{brain:40,speed:42,shield:42}, borderColor:"#06B6D4", elementColor:"#A855F7" },
+  { id:"sigma_b_l01", name:"? CARTE B-1", series:"odyssee", element:"AMBRE", rarity:"legendaire", quote:"Maîtrise TOUT le curriculum", stats:{brain:75,speed:77,shield:76}, borderColor:"#A855F7", elementColor:"#D97706" },
 ];
 
-// Table des objectifs de déblocage : id → { label, check(ctx) → bool }
-// ctx contient : profile, lifetimeCorrect, xp, streakProgress, qState, perfectScores, sprintCount,
-//                remediationDone, missionThemesDone, weekendDays
 const CARDS_OBJECTIVES = {
-  // World Tour
-  "sigma_paris":   { label:"Valide ta 1ère journée (10 bonnes réponses dans la journée)",
-                     check:(c)=> (c.profile?.streak||0) >= 1 },
-  "sigma_london":  { label:"Valide 3 jours de streak",
-                     check:(c)=> (c.profile?.streak||0) >= 3 },
-  "sigma_nyc":     { label:"Valide 7 jours de streak",
-                     check:(c)=> (c.profile?.streak||0) >= 7 },
-  "sigma_tokyo":   { label:"Valide 14 jours de streak",
-                     check:(c)=> (c.profile?.streak||0) >= 14 },
-  "sigma_cairo":   { label:"Valide 30 jours de streak",
-                     check:(c)=> (c.profile?.streak||0) >= 30 },
-  "sigma_rio":     { label:"Fais 5 sessions Sprint",
-                     check:(c)=> (c.sprintCount||0) >= 5 },
-  "sigma_moscow":  { label:"Cumule 100 bonnes réponses",
-                     check:(c)=> (c.lifetimeCorrect||0) >= 100 },
-  "sigma_venice":  { label:"Joue un samedi ET un dimanche la même semaine",
-                     check:(c)=> {
-                       const w = c.weekendDays || {};
-                       return Object.values(w).some(days => Array.isArray(days) && days.includes("Sat") && days.includes("Sun"));
-                     }},
-  "sigma_sydney":  { label:"Cumule 500 XP",
-                     check:(c)=> (c.xp||0) >= 500 },
-  "sigma_maya":    { label:"Maîtrise 10 questions (3 bonnes réponses consécutives)",
-                     check:(c)=> countMastered(c.qState) >= 10 },
-
-  // Odyssée du temps
-  "sigma_cromagnon":  { label:"Termine ton premier quiz",
-                        check:(c)=> (c.lifetimeCorrect||0) >= 1 },
-  "sigma_pharaon":    { label:"Maîtrise 5 questions (3 bonnes réponses consécutives)",
-                        check:(c)=> countMastered(c.qState) >= 5 },
-  "sigma_scribe":     { label:"Maîtrise 20 questions",
-                        check:(c)=> countMastered(c.qState) >= 20 },
-  "sigma_philosophe": { label:"Maîtrise 50 questions",
-                        check:(c)=> countMastered(c.qState) >= 50 },
-  "sigma_legionnaire":{ label:"Fais un score parfait à un quiz Express (10/10)",
-                        check:(c)=> (c.perfectScores||0) >= 1 },
-  "sigma_viking":     { label:"Fais 3 scores parfaits",
-                        check:(c)=> (c.perfectScores||0) >= 3 },
-  "sigma_samourai":   { label:"Maîtrise un sous-thème complet",
-                        check:(c)=> hasFullyMasteredSubtheme(c.qState) },
-  "sigma_gladiateur": { label:"Termine une session de remédiation (Points de vigilance)",
-                        check:(c)=> c.remediationDone === true },
-  "sigma_druide":     { label:"Termine un thème complet des Missions",
-                        check:(c)=> (c.missionThemesDone||[]).length >= 1 },
-  "sigma_rome":       { label:"Atteins 1000 XP (niveau expérimenté)",
-                        check:(c)=> (c.xp||0) >= 1000 },
+  "sigma_paris": { label:"Valide ta 1ère journée", check:(c) => check_streak_ge(1)(c) },
+  "sigma_london": { label:"Valide 3 jours de streak", check:(c) => check_streak_ge(3)(c) },
+  "sigma_nyc": { label:"Valide 5 jours de streak", check:(c) => check_streak_ge(5)(c) },
+  "sigma_tokyo": { label:"Cumule 25 bonnes réponses", check:(c) => check_lifetime_ge(25)(c) },
+  "sigma_cairo": { label:"Cumule 50 bonnes réponses", check:(c) => check_lifetime_ge(50)(c) },
+  "sigma_rio": { label:"Cumule 100 XP", check:(c) => check_xp_ge(100)(c) },
+  "sigma_moscow": { label:"Fais ta 1ère session Sprint", check:(c) => check_sprint_ge(1)(c) },
+  "sigma_venice": { label:"Joue un samedi ET un dimanche", check:(c) => check_weekend()(c) },
+  "sigma_sydney": { label:"Cumule 500 XP", check:(c) => check_xp_ge(500)(c) },
+  "sigma_a_b10": { label:"Fais ton 1er quiz", check:(c) => check_lifetime_ge(1)(c) },
+  "sigma_a_b11": { label:"Cumule 100 bonnes réponses", check:(c) => check_lifetime_ge(100)(c) },
+  "sigma_a_b12": { label:"Cumule 250 bonnes réponses", check:(c) => check_lifetime_ge(250)(c) },
+  "sigma_a_b13": { label:"Valide 2 jours de streak", check:(c) => check_streak_ge(2)(c) },
+  "sigma_a_b14": { label:"Cumule 250 XP", check:(c) => check_xp_ge(250)(c) },
+  "sigma_a_b15": { label:"3 sessions Sprint", check:(c) => check_sprint_ge(3)(c) },
+  "sigma_a_b16": { label:"5 sessions Sprint", check:(c) => check_sprint_ge(5)(c) },
+  "sigma_a_b17": { label:"Joue sur 2 catégories différentes", check:(c) => check_cats_visited_ge(2)(c) },
+  "sigma_a_b18": { label:"Joue sur 3 catégories différentes", check:(c) => check_cats_visited_ge(3)(c) },
+  "sigma_a_b19": { label:"Joue sur 5 catégories différentes", check:(c) => check_cats_visited_ge(5)(c) },
+  "sigma_a_b20": { label:"Joue le matin (avant 10h)", check:(c) => check_morning()(c) },
+  "sigma_a_b21": { label:"Joue le soir (après 18h)", check:(c) => check_evening()(c) },
+  "sigma_a_b22": { label:"Joue un samedi", check:(c) => check_saturday()(c) },
+  "sigma_a_b23": { label:"Joue un dimanche", check:(c) => check_sunday()(c) },
+  "sigma_a_b24": { label:"10 quiz terminés", check:(c) => check_nbquiz_ge(10)(c) },
+  "sigma_a_b25": { label:"20 quiz terminés", check:(c) => check_nbquiz_ge(20)(c) },
+  "sigma_a_s01": { label:"Valide 7 jours de streak", check:(c) => check_streak_ge(7)(c) },
+  "sigma_a_s02": { label:"Valide 10 jours de streak", check:(c) => check_streak_ge(10)(c) },
+  "sigma_a_s03": { label:"Valide 14 jours de streak", check:(c) => check_streak_ge(14)(c) },
+  "sigma_a_s04": { label:"Cumule 500 bonnes réponses", check:(c) => check_lifetime_ge(500)(c) },
+  "sigma_a_s05": { label:"Cumule 1000 bonnes réponses", check:(c) => check_lifetime_ge(1000)(c) },
+  "sigma_a_s06": { label:"Cumule 1000 XP", check:(c) => check_xp_ge(1000)(c) },
+  "sigma_a_s07": { label:"Cumule 2500 XP", check:(c) => check_xp_ge(2500)(c) },
+  "sigma_a_s08": { label:"10 sessions Sprint", check:(c) => check_sprint_ge(10)(c) },
+  "sigma_a_s09": { label:"25 sessions Sprint", check:(c) => check_sprint_ge(25)(c) },
+  "sigma_a_s10": { label:"50 quiz terminés", check:(c) => check_nbquiz_ge(50)(c) },
+  "sigma_a_s11": { label:"3 weekends complets (sam+dim)", check:(c) => check_weekends_ge(3)(c) },
+  "sigma_a_s12": { label:"Joue sur toutes les catégories", check:(c) => check_all_cats()(c) },
+  "sigma_a_s13": { label:"1ère session de remédiation", check:(c) => check_remediation_ge(1)(c) },
+  "sigma_a_g01": { label:"Valide 21 jours de streak", check:(c) => check_streak_ge(21)(c) },
+  "sigma_a_g02": { label:"Valide 30 jours de streak", check:(c) => check_streak_ge(30)(c) },
+  "sigma_a_g03": { label:"Cumule 2500 bonnes réponses", check:(c) => check_lifetime_ge(2500)(c) },
+  "sigma_a_g04": { label:"Cumule 5000 XP", check:(c) => check_xp_ge(5000)(c) },
+  "sigma_a_g05": { label:"50 sessions Sprint", check:(c) => check_sprint_ge(50)(c) },
+  "sigma_a_g06": { label:"100 quiz terminés", check:(c) => check_nbquiz_ge(100)(c) },
+  "sigma_a_g07": { label:"5 sessions de remédiation", check:(c) => check_remediation_ge(5)(c) },
+  "sigma_a_g08": { label:"30 jours cumulés actifs", check:(c) => check_activedays_ge(30)(c) },
+  "sigma_a_d01": { label:"Valide 60 jours de streak", check:(c) => check_streak_ge(60)(c) },
+  "sigma_a_d02": { label:"Cumule 10000 XP", check:(c) => check_xp_ge(10000)(c) },
+  "sigma_a_d03": { label:"100 jours cumulés actifs", check:(c) => check_activedays_ge(100)(c) },
+  "sigma_a_l01": { label:"Valide 100 jours de streak", check:(c) => check_streak_ge(100)(c) },
+  "sigma_cromagnon": { label:"Termine ton premier quiz", check:(c) => check_lifetime_ge(1)(c) },
+  "sigma_pharaon": { label:"Maîtrise 5 questions", check:(c) => check_mastered_ge(5)(c) },
+  "sigma_maya": { label:"Maîtrise 10 questions", check:(c) => check_mastered_ge(10)(c) },
+  "sigma_scribe": { label:"Maîtrise 20 questions", check:(c) => check_mastered_ge(20)(c) },
+  "sigma_philosophe": { label:"Maîtrise 30 questions", check:(c) => check_mastered_ge(30)(c) },
+  "sigma_legionnaire": { label:"Fais un score parfait (10/10)", check:(c) => check_perfect_ge(1)(c) },
+  "sigma_viking": { label:"Fais 3 scores parfaits", check:(c) => check_perfect_ge(3)(c) },
+  "sigma_samourai": { label:"Maîtrise un sous-thème complet", check:(c) => check_subtheme_complete_ge(1)(c) },
+  "sigma_gladiateur": { label:"Termine une session de remédiation", check:(c) => check_remediation_ge(1)(c) },
+  "sigma_druide": { label:"Termine un thème complet des Missions", check:(c) => check_missions_done_ge(1)(c) },
+  "sigma_rome": { label:"Cumule 1000 XP", check:(c) => check_xp_ge(1000)(c) },
+  "sigma_b_b12": { label:"Maîtrise ta 1ère question", check:(c) => check_mastered_ge(1)(c) },
+  "sigma_b_b13": { label:"Maîtrise 3 questions", check:(c) => check_mastered_ge(3)(c) },
+  "sigma_b_b14": { label:"Maîtrise 50 questions", check:(c) => check_mastered_ge(50)(c) },
+  "sigma_b_b15": { label:"2e score parfait", check:(c) => check_perfect_ge(2)(c) },
+  "sigma_b_b16": { label:"5 scores parfaits", check:(c) => check_perfect_ge(5)(c) },
+  "sigma_b_b17": { label:"Obtiens ta 1ère étoile", check:(c) => check_stars_ge(1)(c) },
+  "sigma_b_b18": { label:"Obtiens 3 étoiles cumulées", check:(c) => check_stars_ge(3)(c) },
+  "sigma_b_b19": { label:"Obtiens 5 étoiles cumulées", check:(c) => check_stars_ge(5)(c) },
+  "sigma_b_b20": { label:"Obtiens 10 étoiles cumulées", check:(c) => check_stars_ge(10)(c) },
+  "sigma_b_b21": { label:"2 missions terminées", check:(c) => check_missions_done_ge(2)(c) },
+  "sigma_b_b22": { label:"3 missions terminées", check:(c) => check_missions_done_ge(3)(c) },
+  "sigma_b_b23": { label:"Obtiens 3★ sur 1 sous-thème", check:(c) => check_threestar_subs_ge(1)(c) },
+  "sigma_b_b24": { label:"1ère exposition à un sujet Bac", check:(c) => check_cats_visited_has('bac')(c) },
+  "sigma_b_b25": { label:"10 bonnes réponses d\'affilée", check:(c) => check_combo_ge(10)(c) },
+  "sigma_b_s01": { label:"Maîtrise 75 questions", check:(c) => check_mastered_ge(75)(c) },
+  "sigma_b_s02": { label:"Maîtrise 100 questions", check:(c) => check_mastered_ge(100)(c) },
+  "sigma_b_s03": { label:"Maîtrise 150 questions", check:(c) => check_mastered_ge(150)(c) },
+  "sigma_b_s04": { label:"10 scores parfaits", check:(c) => check_perfect_ge(10)(c) },
+  "sigma_b_s05": { label:"15 étoiles cumulées", check:(c) => check_stars_ge(15)(c) },
+  "sigma_b_s06": { label:"25 étoiles cumulées", check:(c) => check_stars_ge(25)(c) },
+  "sigma_b_s07": { label:"5 missions terminées", check:(c) => check_missions_done_ge(5)(c) },
+  "sigma_b_s08": { label:"3 sous-thèmes complets", check:(c) => check_subtheme_complete_ge(3)(c) },
+  "sigma_b_s09": { label:"3★ sur 3 sous-thèmes", check:(c) => check_threestar_subs_ge(3)(c) },
+  "sigma_b_s10": { label:"Termine 1 sujet Bac complet", check:(c) => check_bac_ge(1)(c) },
+  "sigma_b_s11": { label:"Maîtrise une catégorie entière", check:(c) => check_cat_complete_ge(1)(c) },
+  "sigma_b_s12": { label:"20 bonnes réponses d\'affilée", check:(c) => check_combo_ge(20)(c) },
+  "sigma_b_g01": { label:"Maîtrise 250 questions", check:(c) => check_mastered_ge(250)(c) },
+  "sigma_b_g02": { label:"20 scores parfaits", check:(c) => check_perfect_ge(20)(c) },
+  "sigma_b_g03": { label:"50 étoiles cumulées", check:(c) => check_stars_ge(50)(c) },
+  "sigma_b_g04": { label:"10 missions terminées", check:(c) => check_missions_done_ge(10)(c) },
+  "sigma_b_g05": { label:"5 sous-thèmes complets", check:(c) => check_subtheme_complete_ge(5)(c) },
+  "sigma_b_g06": { label:"2 catégories maîtrisées", check:(c) => check_cat_complete_ge(2)(c) },
+  "sigma_b_g07": { label:"3 sujets Bac complets", check:(c) => check_bac_ge(3)(c) },
+  "sigma_b_d01": { label:"Maîtrise 500 questions", check:(c) => check_mastered_ge(500)(c) },
+  "sigma_b_d02": { label:"30 scores parfaits", check:(c) => check_perfect_ge(30)(c) },
+  "sigma_b_d03": { label:"10 sous-thèmes complets", check:(c) => check_subtheme_complete_ge(10)(c) },
+  "sigma_b_d04": { label:"3 catégories maîtrisées", check:(c) => check_cat_complete_ge(3)(c) },
+  "sigma_b_d05": { label:"50 étoiles cumulées + 10 missions", check:(c) => check_legendary_combined()(c) },
+  "sigma_b_l01": { label:"Maîtrise TOUT le curriculum", check:(c) => check_curriculum_complete()(c) },
 };
 
 // Helper : compte les questions en "mastered"
@@ -6613,6 +6862,29 @@ async function loadMissionThemesDone() { try{const r=await _storage.get(MISSION_
 async function saveMissionThemesDone(arr) { try{await _storage.set(MISSION_THEMES_DONE_K,JSON.stringify(arr));}catch{} }
 async function loadWeekendDays() { try{const r=await _storage.get(WEEKEND_DAYS_K);return r?.value?JSON.parse(r.value):{};}catch{return {};} }
 async function saveWeekendDays(o) { try{await _storage.set(WEEKEND_DAYS_K,JSON.stringify(o));}catch{} }
+// Compteurs additionnels
+async function loadMaxStreak() { try{const r=await _storage.get(MAX_STREAK_K);return r?.value?parseInt(r.value):0;}catch{return 0;} }
+async function saveMaxStreak(n) { try{await _storage.set(MAX_STREAK_K,String(n));}catch{} }
+async function loadActiveDays() { try{const r=await _storage.get(ACTIVE_DAYS_K);return r?.value?JSON.parse(r.value):[];}catch{return [];} }
+async function saveActiveDays(arr) { try{await _storage.set(ACTIVE_DAYS_K,JSON.stringify(arr));}catch{} }
+async function loadNbQuiz() { try{const r=await _storage.get(NB_QUIZ_K);return r?.value?parseInt(r.value):0;}catch{return 0;} }
+async function saveNbQuiz(n) { try{await _storage.set(NB_QUIZ_K,String(n));}catch{} }
+async function loadCatsVisited() { try{const r=await _storage.get(CATS_VISITED_K);return r?.value?JSON.parse(r.value):[];}catch{return [];} }
+async function saveCatsVisited(arr) { try{await _storage.set(CATS_VISITED_K,JSON.stringify(arr));}catch{} }
+async function loadStarsTotal() { try{const r=await _storage.get(STARS_TOTAL_K);return r?.value?parseInt(r.value):0;}catch{return 0;} }
+async function saveStarsTotal(n) { try{await _storage.set(STARS_TOTAL_K,String(n));}catch{} }
+async function loadBacCompleted() { try{const r=await _storage.get(BAC_COMPLETED_K);return r?.value?parseInt(r.value):0;}catch{return 0;} }
+async function saveBacCompleted(n) { try{await _storage.set(BAC_COMPLETED_K,String(n));}catch{} }
+async function loadRemediationCount() { try{const r=await _storage.get(REMEDIATION_COUNT_K);return r?.value?parseInt(r.value):0;}catch{return 0;} }
+async function saveRemediationCount(n) { try{await _storage.set(REMEDIATION_COUNT_K,String(n));}catch{} }
+async function loadComboMax() { try{const r=await _storage.get(COMBO_MAX_K);return r?.value?parseInt(r.value):0;}catch{return 0;} }
+async function saveComboMax(n) { try{await _storage.set(COMBO_MAX_K,String(n));}catch{} }
+async function loadMorningDone() { try{const r=await _storage.get(MORNING_DONE_K);return r?.value==="1";}catch{return false;} }
+async function saveMorningDone() { try{await _storage.set(MORNING_DONE_K,"1");}catch{} }
+async function loadEveningDone() { try{const r=await _storage.get(EVENING_DONE_K);return r?.value==="1";}catch{return false;} }
+async function saveEveningDone() { try{await _storage.set(EVENING_DONE_K,"1");}catch{} }
+async function loadImproved() { try{const r=await _storage.get(IMPROVED_K);return r?.value==="1";}catch{return false;} }
+async function saveImproved() { try{await _storage.set(IMPROVED_K,"1");}catch{} }
 
 // Fonction centrale : évalue tous les objectifs et renvoie la liste des cartes débloquées
 // ET non encore enregistrées dans CARDS_UNLOCKED_K. Appelée après chaque événement pertinent.
@@ -7480,7 +7752,7 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
   const [badges, setBadges] = useState([]);
   const [dailyState, setDailyState] = useState(null); // {done, date}
   const [shield, setShield] = useState(false);
-  const [tab, setTab] = useState('parcours'); // 'parcours' | 'badges' | 'defi'
+  const [tab, setTab] = useState('programme'); // 'programme' | 'parcours' | 'recompenses'
   const [menuOpen, setMenuOpen] = useState(false); // menu déroulant ⋯ (actions rares)
 
   const dailyChallenge = React.useMemo(() => getDailyChallenge(profile, allProg, diagResults), [profile.level, allProg, diagResults]);
@@ -7644,13 +7916,12 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
         </div>
       </div>
 
-      {/* ── Tabs ── */}
+      {/* ── Tabs (3 au lieu de 4) ── */}
       <div style={{display:"flex",background:"#fff",borderBottom:"2px solid #F1F5F9",flexShrink:0}}>
         {[
-          {id:"defi",     icon:"🎯", label:"Défi"},
-          {id:"parcours", icon:"📊", label:"Parcours"},
           {id:"programme",icon:"📅", label:"Programme"},
-          {id:"badges",   icon:"🎖️", label:"Badges"},
+          {id:"parcours", icon:"📊", label:"Parcours"},
+          {id:"recompenses",icon:"🏆", label:"Récompenses"},
         ].map(t=>(
           <button key={t.id} onClick={()=>setTab(t.id)}
             style={{flex:1,padding:"9px 4px",border:"none",background:"none",cursor:"pointer",
@@ -7673,9 +7944,10 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
           <span style={{fontSize:11,color:"#334155",fontWeight:600,flex:1}}>{sigmaMsg}</span>
         </div>
 
-        {/* ══ TAB : DÉFI DU JOUR ══ */}
-        {tab==="defi"&&(
+        {/* ══ TAB : PROGRAMME (défi du jour + programme hebdo + vigilance) ══ */}
+        {tab==="programme"&&(
           <div className="slide-up">
+            {/* 1. Défi du jour */}
             <div style={{background:dailyDone?"linear-gradient(135deg,#10B981,#047857)":"linear-gradient(135deg,#F59E0B,#B45309)",
               borderRadius:18,padding:"16px",marginBottom:12,
               boxShadow:dailyDone?"0 6px 20px rgba(16,185,129,.3)":"0 6px 20px rgba(245,158,11,.3)"}}>
@@ -7737,9 +8009,8 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
               </div>
             </div>
 
-            {/* Accès rapides : Points de vigilance + Collection */}
-            {(onVigilance || onCollection) && (() => {
-              // Compter les points de vigilance = questions en "learning" avec >=2 tentatives et >=40% d'échec
+            {/* Accès rapide : Points de vigilance (intégré au programme) */}
+            {onVigilance && (() => {
               let vigilanceCount = 0;
               if (qState) {
                 for (const k of Object.keys(qState)) {
@@ -7749,55 +8020,33 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
                   if (e.attempts >= 2 && failRate >= 0.4) vigilanceCount++;
                 }
               }
-              const cardsCount = (cardsUnlocked || []).length;
-              const totalCards = (typeof CARDS !== "undefined" && Array.isArray(CARDS)) ? CARDS.length : 20;
+              // Si rien à revoir, on n'affiche rien — pas de bruit inutile
+              if (vigilanceCount === 0) return null;
               return (
-                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
-                  {onVigilance && (
-                    <button onClick={onVigilance}
-                      style={{background:"#fff",border:"2px solid #FECACA",borderRadius:14,
-                        padding:"11px 12px",cursor:"pointer",textAlign:"left",
-                        display:"flex",flexDirection:"column",gap:4,
-                        boxShadow:"0 2px 8px rgba(0,0,0,.05)"}}>
-                      <div style={{display:"flex",alignItems:"center",gap:6}}>
-                        <span style={{fontSize:18}}>🎯</span>
-                        <span style={{fontSize:11,fontWeight:800,color:"#B91C1C"}}>
-                          Vigilance
-                        </span>
-                      </div>
-                      <div style={{fontSize:10,color:"#64748B",fontWeight:600,lineHeight:1.3}}>
-                        {vigilanceCount === 0
-                          ? "Tout roule pour l'instant"
-                          : vigilanceCount === 1
-                          ? "1 thème à revoir"
-                          : `${vigilanceCount} thèmes à revoir`}
-                      </div>
-                    </button>
-                  )}
-                  {onCollection && (
-                    <button onClick={onCollection}
-                      style={{background:"#fff",border:"2px solid #FDE68A",borderRadius:14,
-                        padding:"11px 12px",cursor:"pointer",textAlign:"left",
-                        display:"flex",flexDirection:"column",gap:4,
-                        boxShadow:"0 2px 8px rgba(0,0,0,.05)"}}>
-                      <div style={{display:"flex",alignItems:"center",gap:6}}>
-                        <span style={{fontSize:18}}>🎴</span>
-                        <span style={{fontSize:11,fontWeight:800,color:"#B45309"}}>
-                          Collection
-                        </span>
-                      </div>
-                      <div style={{fontSize:10,color:"#64748B",fontWeight:600,lineHeight:1.3}}>
-                        {cardsCount}/{totalCards} cartes{cardsCount===0?" à débloquer":" débloquées"}
-                      </div>
-                    </button>
-                  )}
-                </div>
+                <button onClick={onVigilance}
+                  style={{background:"#fff",border:"2px solid #FECACA",borderRadius:14,
+                    padding:"12px 14px",cursor:"pointer",textAlign:"left",width:"100%",
+                    display:"flex",alignItems:"center",gap:12,marginBottom:10,
+                    boxShadow:"0 2px 8px rgba(0,0,0,.05)"}}>
+                  <span style={{fontSize:22}}>🎯</span>
+                  <div style={{flex:1}}>
+                    <div style={{fontSize:12,fontWeight:800,color:"#B91C1C"}}>
+                      Points de vigilance
+                    </div>
+                    <div style={{fontSize:10,color:"#64748B",fontWeight:600,lineHeight:1.3,marginTop:2}}>
+                      {vigilanceCount === 1
+                        ? "1 thème où tu butes — session de remédiation disponible"
+                        : `${vigilanceCount} thèmes où tu butes — session de remédiation disponible`}
+                    </div>
+                  </div>
+                  <span style={{color:"#B91C1C",fontSize:16}}>›</span>
+                </button>
               );
             })()}
 
             {/* Suggested */}
             {suggested&&(
-              <div>
+              <div style={{marginBottom:10}}>
                 <div style={{fontSize:9,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
                   letterSpacing:1,marginBottom:6}}>💡 Suggéré pour toi</div>
                 <div style={{background:`linear-gradient(135deg,${lvl.color},${getNextLevel(xp)?.color||lvl.color})`,
@@ -7817,6 +8066,37 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
                 </div>
               </div>
             )}
+
+            {/* Programme hebdo adaptatif */}
+            <div style={{background:'#fff',borderRadius:16,padding:'16px',
+              boxShadow:'0 2px 8px rgba(0,0,0,.05)',marginBottom:10,textAlign:'center'}}>
+              <div style={{fontSize:28,marginBottom:6}}>📅</div>
+              <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:14,color:'#1E293B',marginBottom:4}}>
+                Mon programme de la semaine
+              </div>
+              <div style={{color:'#64748B',fontSize:11,lineHeight:1.5,marginBottom:12}}>
+                5 jours ciblés sur tes points faibles
+              </div>
+              <button onClick={onShowProgram}
+                style={{width:'100%',padding:'11px',borderRadius:12,border:'none',
+                  background:'linear-gradient(135deg,#7C3AED,#5B21B6)',
+                  color:'#fff',fontFamily:"'Nunito',sans-serif",
+                  fontSize:13,fontWeight:800,cursor:'pointer',
+                  boxShadow:'0 3px 10px rgba(124,58,237,.3)'}}>
+                Générer mon programme 🚀
+              </button>
+            </div>
+
+            {/* Révision espacée */}
+            <div style={{background:'#FEF9C3',borderRadius:12,padding:'10px 12px',
+              border:'1px solid #FDE68A'}}>
+              <div style={{fontWeight:800,fontSize:11,color:'#92400E',marginBottom:3}}>
+                🔁 Révision espacée activée
+              </div>
+              <div style={{fontSize:10,color:'#B45309',lineHeight:1.4}}>
+                Sigma te repropose les questions ratées au bon moment pour les ancrer durablement.
+              </div>
+            </div>
           </div>
         )}
 
@@ -7891,50 +8171,37 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
           </div>
         )}
 
-        {/* ══ TAB : PROGRAMME ══ */}
-        {tab==="programme"&&(
+        {/* ══ TAB : RÉCOMPENSES (cartes Sigma + badges) ══ */}
+        {tab==="recompenses"&&(
           <div className="slide-up">
-            <div style={{background:'#fff',borderRadius:16,padding:'16px',
-              boxShadow:'0 2px 8px rgba(0,0,0,.05)',marginBottom:10,textAlign:'center'}}>
-              <div style={{fontSize:32,marginBottom:8}}>📅</div>
-              <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,color:'#1E293B',marginBottom:6}}>
-                Mon programme adaptatif
-              </div>
-              <div style={{color:'#64748B',fontSize:12,lineHeight:1.6,marginBottom:14}}>
-                Sigma génère un plan de révision personnalisé<br/>
-                basé sur tes résultats et tes points faibles.
-              </div>
-              <button onClick={onShowProgram}
-                style={{width:'100%',padding:'13px',borderRadius:14,border:'none',
-                  background:'linear-gradient(135deg,#7C3AED,#5B21B6)',
-                  color:'#fff',fontFamily:"'Nunito',sans-serif",
-                  fontSize:14,fontWeight:800,cursor:'pointer',
-                  boxShadow:'0 5px 16px rgba(124,58,237,.3)'}}>
-                Générer mon programme 🚀
-              </button>
-            </div>
+            {/* Section Cartes Sigma */}
+            {onCollection && (() => {
+              const cardsCount = (cardsUnlocked || []).length;
+              const totalCards = (typeof CARDS !== "undefined" && Array.isArray(CARDS)) ? CARDS.length : 20;
+              return (
+                <button onClick={onCollection}
+                  style={{background:"linear-gradient(135deg,#F59E0B,#B45309)",
+                    border:"none",borderRadius:16,padding:"14px 16px",cursor:"pointer",
+                    textAlign:"left",width:"100%",display:"flex",alignItems:"center",gap:12,
+                    marginBottom:14,boxShadow:"0 5px 16px rgba(245,158,11,.3)"}}>
+                  <span style={{fontSize:32}}>🎴</span>
+                  <div style={{flex:1}}>
+                    <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:15,color:"#fff"}}>
+                      Ma collection Sigma
+                    </div>
+                    <div style={{color:"rgba(255,255,255,.85)",fontSize:11,fontWeight:600,marginTop:2}}>
+                      {cardsCount}/{totalCards} cartes débloquées
+                    </div>
+                  </div>
+                  <span style={{color:"#fff",fontSize:22,fontWeight:900}}>›</span>
+                </button>
+              );
+            })()}
 
-            {/* Spaced repetition reminder */}
-            <div style={{background:'#FEF9C3',borderRadius:14,padding:'12px 14px',
-              border:'1.5px solid #FDE68A'}}>
-              <div style={{fontWeight:800,fontSize:12,color:'#92400E',marginBottom:4}}>
-                🔁 Révision espacée activée
-              </div>
-              <div style={{fontSize:11,color:'#B45309',lineHeight:1.5}}>
-                Sigma mémorise tes erreurs et te repropose les questions 
-                ratées au bon moment : demain, dans 3 jours, 7 jours...
-                jusqu'à ce que tu maîtrises vraiment.
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* ══ TAB : BADGES ══ */}
-        {tab==="badges"&&(
-          <div className="slide-up">
+            {/* Section Badges complémentaires */}
             <div style={{fontSize:9,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
-              letterSpacing:1,marginBottom:8}}>
-              {badges.length}/{BADGES.filter(b=>!b.secret).length} badges débloqués
+              letterSpacing:1,marginBottom:8,marginTop:6}}>
+              🎖️ Badges — {badges.filter(b=>BADGES.find(B=>B.id===b)).length}/{BADGES.filter(b=>!b.secret).length} débloqués
             </div>
             <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
               {BADGES.map(b=>{
@@ -11346,10 +11613,27 @@ function AutoMaths() {
   // Retourne la liste des nouvelles cartes (pour afficher la modale).
   const runUnlockCheck = async (overrides = {}) => {
     try {
-      const [xpNow, psNow, spNow, remDone, missDone, wkDays] = await Promise.all([
+      const [xpNow, psNow, spNow, remDone, missDone, wkDays,
+             maxStreak, activeDays, nbQuiz, catsVisited, bacComp,
+             remedCount, comboMax, morning, evening] = await Promise.all([
         loadXP(), loadPerfectScores(), loadSprintCount(),
         loadRemediationDone(), loadMissionThemesDone(), loadWeekendDays(),
+        loadMaxStreak(), loadActiveDays(), loadNbQuiz(), loadCatsVisited(),
+        loadBacCompleted(), loadRemediationCount(), loadComboMax(),
+        loadMorningDone(), loadEveningDone(),
       ]);
+      // Calcul de starsTotal à la volée depuis allProg
+      let starsTotal = 0;
+      try {
+        const curr = CURRICULUM[profile?.level] || CURRICULUM.seconde;
+        for (const catId of Object.keys(curr.cats)) {
+          for (const subId of curr.cats[catId]) {
+            const p = await loadProgA(catId, subId);
+            if (p?.stars) starsTotal += p.stars;
+          }
+        }
+      } catch(e) {}
+
       const ctx = {
         profile: overrides.profile !== undefined ? overrides.profile : profile,
         lifetimeCorrect: overrides.lifetimeCorrect !== undefined ? overrides.lifetimeCorrect : lifetimeCorrect,
@@ -11361,6 +11645,11 @@ function AutoMaths() {
         remediationDone: overrides.remediationDone !== undefined ? overrides.remediationDone : remDone,
         missionThemesDone: overrides.missionThemesDone !== undefined ? overrides.missionThemesDone : missDone,
         weekendDays: overrides.weekendDays !== undefined ? overrides.weekendDays : wkDays,
+        // Nouveaux
+        maxStreak, activeDays, nbQuiz, catsVisited,
+        bacCompleted: bacComp, remediationCount: remedCount,
+        comboMax, morningDone: morning, eveningDone: evening,
+        starsTotal,
       };
       const newOnes = await checkNewUnlocks(ctx);
       if (newOnes.length > 0) {
@@ -11433,10 +11722,8 @@ function AutoMaths() {
       await saveXP(currentXP + xpEarned);
       const currentBadges = await loadBadges();
       const toUnlock = [];
-      if(pct===100) toUnlock.push("perfect_test");
       if(catId==="bac") toUnlock.push("bac_done");
       if(new Date().getHours() >= 22) toUnlock.push("night_owl");
-      if(currentXP === 0 && sc > 0) toUnlock.push("sigma_fan");
       for(const bid of toUnlock) {
         if(!currentBadges.includes(bid)) await checkAndUnlockBadge(bid);
       }
@@ -11523,11 +11810,8 @@ function AutoMaths() {
           setProfile(updatedProfile);
           saveProfA(updatedProfile);
           setStreakJustCompleted(true);
-          // Badges streak
-          try {
-            if (newStreak >= 3) await checkAndUnlockBadge("streak3");
-            if (newStreak >= 7) await checkAndUnlockBadge("streak7");
-          } catch(e) {}
+          // Note: les badges streak3/streak7 sont retirés — remplacés par les cartes
+          // Sigma London (3j) et Sigma NYC (7j) qui se débloquent via runUnlockCheck.
         }
       }
     } catch(e) { /* Safe */ }
@@ -11558,10 +11842,8 @@ function AutoMaths() {
         const bestTb    = Math.max(prog.tb||0, pct);
         await saveProgA(trackCat, trackSub, {...prog, stars:bestStars, tb:bestTb, lt:Date.now()});
         setNewStars(bestStars);
-        // Badge + XP étoiles
+        // XP étoiles (badges first_star / triple_star retirés — couverts par cartes)
         try {
-          if(bestStars>=1 && !(prog.stars>=1)) await checkAndUnlockBadge("first_star");
-          if(bestStars===3) await checkAndUnlockBadge("triple_star");
           const currentXP2 = await loadXP();
           const starBonus = (bestStars - (prog.stars||0)) * XP_PER_STAR;
           if(starBonus>0) await saveXP(currentXP2 + starBonus);
@@ -11579,15 +11861,14 @@ function AutoMaths() {
       } catch(e) {}
     }
 
-    // ── Cartes Sigma : tracking perfect scores + mission themes ─────────────
+    // ── Cartes Sigma : tracking complet pour les 100 cartes ─────────────────
     try {
-      // Score parfait : on incrémente le compteur (tout mode confondu)
+      // 1. Score parfait
       if (pct === 100 && total > 0) {
         const ps = await loadPerfectScores();
         await savePerfectScores(ps + 1);
       }
-      // Mission terminée avec succès (score >= 60% par ex)
-      // Une "mission" = mode missions + trackCat/trackSub définis
+      // 2. Mission terminée avec succès (score >= 60%)
       if (mode === "missions" && trackCat && trackSub && pct >= 60) {
         const done = await loadMissionThemesDone();
         const key = `${trackCat}:${trackSub}`;
@@ -11596,10 +11877,54 @@ function AutoMaths() {
           await saveMissionThemesDone(done);
         }
       }
-      // Session de remédiation terminée (vient de l'écran Vigilance)
+      // 3. Remédiation terminée (vient de l'écran Vigilance)
       if (prevScreen === "vigilance" && total > 0) {
         await saveRemediationDone();
+        const rc = await loadRemediationCount();
+        await saveRemediationCount(rc + 1);
       }
+      // 4. Sujet Bac complété (score >= 60%)
+      if (catId === "bac" && trackCat && trackSub && pct >= 60) {
+        const bc = await loadBacCompleted();
+        await saveBacCompleted(bc + 1);
+      }
+      // 5. maxStreak (met à jour si streak actuel dépasse)
+      if (profile?.streak) {
+        const ms = await loadMaxStreak();
+        if (profile.streak > ms) await saveMaxStreak(profile.streak);
+      }
+      // 6. activeDays
+      const today = new Date().toISOString().slice(0,10);
+      const ads = await loadActiveDays();
+      if (!ads.includes(today)) {
+        ads.push(today);
+        // Ne pas laisser grossir infiniment : on garde les 400 derniers jours
+        if (ads.length > 400) ads.splice(0, ads.length - 400);
+        await saveActiveDays(ads);
+      }
+      // 7. nbQuiz
+      if (total > 0) {
+        const nq = await loadNbQuiz();
+        await saveNbQuiz(nq + 1);
+      }
+      // 8. catsVisited
+      if (trackCat) {
+        const cv = await loadCatsVisited();
+        // On enregistre aussi le catId original (bac, missions) si différent
+        const catsToAdd = [];
+        if (!cv.includes(trackCat)) catsToAdd.push(trackCat);
+        if (catId && catId !== trackCat && !cv.includes(catId)) catsToAdd.push(catId);
+        if (catsToAdd.length > 0) {
+          await saveCatsVisited([...cv, ...catsToAdd]);
+        }
+      }
+      // 9. starsTotal : recalculé à partir de toutes les entrées allProg
+      //    (on évite une clé séparée pour ne pas désynchroniser)
+      //    Cf. runUnlockCheck — on le calcule à la volée via loadAllProg.
+      // 10. morningDone / eveningDone
+      const hour = new Date().getHours();
+      if (hour < 10) await saveMorningDone();
+      if (hour >= 18) await saveEveningDone();
     } catch(e) { /* Safe */ }
 
     // ── Vérifier les déblocages de cartes (fire-and-show) ──────────────────
@@ -11786,10 +12111,7 @@ function AutoMaths() {
           setProfile(updatedProfile);
           saveProfA(updatedProfile);
           setStreakJustCompleted(true);
-          try {
-            if (newStreak >= 3) await checkAndUnlockBadge("streak3");
-            if (newStreak >= 7) await checkAndUnlockBadge("streak7");
-          } catch(e) {}
+          // Badges streak3/streak7 retirés — remplacés par cartes London (3j) et NYC (7j)
         }
       }
     } catch(e) {}
