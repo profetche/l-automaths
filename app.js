@@ -4577,7 +4577,7 @@ const CATS = [
     subs:[
       {id:"mission_bases",      label:"Travailler mes bases",        levels:["sec","tc","stmg","spe","term"], isMission:true},
       {id:"mission_spe",        label:"Objectif Première Spé",       levels:["spe"], isMission:true},
-      {id:"mission_stmg",       label:"Objectif STMG",               levels:["stmg"], isMission:true, disabled:true},
+      {id:"mission_stmg",       label:"Objectif Bac STMG",           levels:["stmg"], isMission:true},
       {id:"mission_bac",        label:"Objectif Bac en Terminale",   levels:["term"], isMission:true, disabled:true},
     ] },
   { id:"fonctions",    label:"Généralités sur les fonctions", emoji:"📈", color:"#2563EB", grad:"linear-gradient(135deg,#3B82F6,#1D4ED8)", light:"#EFF6FF", border:"#BFDBFE",
