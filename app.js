@@ -64,11 +64,37 @@ function M({ tex }) {
 }
 
 // ── Global styles ─────────────────────────────────────────────────────────────
-const GS = () => (
+const GS = ({profile} = {}) => {
+  // Thème courant (fallback sur "ocean" si profile absent / sans pref)
+  // On duplique la logique locale car getTheme est défini plus bas dans le fichier.
+  const themePref = profile?.prefs?.theme;
+  const scalePref = profile?.prefs?.fontScale;
+  const themeMap = {
+    ocean:      { bgLight:'#E8EAF0', bgDark1:'#1A1A2E', bgDark2:'#0F3460' },
+    crepuscule: { bgLight:'#F3EEF8', bgDark1:'#2D1B4E', bgDark2:'#4A1F5C' },
+    foret:      { bgLight:'#E8EFE9', bgDark1:'#0F2818', bgDark2:'#0A4030' },
+    papier:     { bgLight:'#FFFFFF', bgDark1:'#475569', bgDark2:'#1E293B' },
+  };
+  const scaleMap = { normal: 1.0, grand: 1.15, tres_grand: 1.3 };
+  const th = themeMap[themePref] || themeMap.ocean;
+  const scale = scaleMap[scalePref] || 1.0;
+  return (
   <style>{`
     @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=DM+Sans:wght@400;500;600&display=swap');
+    :root {
+      --am-bg-light: ${th.bgLight};
+      --am-bg-dark-1: ${th.bgDark1};
+      --am-bg-dark-2: ${th.bgDark2};
+      --am-font-scale: ${scale};
+    }
     *{box-sizing:border-box;margin:0;padding:0;}
     body{background:#dde1ea;display:flex;justify-content:center;align-items:center;min-height:100vh;font-family:'DM Sans',sans-serif;}
+    /* Taille de texte globale : appliquée au conteneur racine via transform scale.
+       Ainsi TOUS les px hardcodés suivent proportionnellement. */
+    .am-scale-wrapper {
+      transform: scale(var(--am-font-scale));
+      transform-origin: center center;
+    }
     @keyframes popIn  {0%{transform:scale(.78);opacity:0}70%{transform:scale(1.04)}100%{transform:scale(1);opacity:1}}
     @keyframes slideUp{from{transform:translateY(18px);opacity:0}to{transform:translateY(0);opacity:1}}
     @keyframes slideInLeft{from{transform:translateX(-100%);opacity:0}to{transform:translateX(0);opacity:1}}
@@ -104,7 +130,8 @@ const GS = () => (
     .katex .mtext span{white-space:normal !important; word-break:break-word;}
     ::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:99px;}
   `}</style>
-);
+  );
+};
 
 // ═══════════════════════════════════════════════════════════════════════════════
 //  GRAPH SYSTEM
@@ -2973,6 +3000,28 @@ const DB = {
       { q:r`x^2-25=0\\[4pt]x=?`, choices:[r`\pm5`,r`5`,r`-5`,r`\pm25`], a:r`\pm5`, tip:r`(x-5)(x+5)=0` },
       { q:r`(x-1)(x-2)(x-3)=0\\[4pt]x=?`, choices:[r`1\text{, }2\text{ ou }3`,r`1\text{ ou }2`,r`-1\text{, }-2\text{ ou }-3`,r`1\text{, }2\text{ ou }-3`], a:r`1\text{, }2\text{ ou }3`, tip:r`x=1\text{ ou }2\text{ ou }3` },
       { q:r`(x+4)^2=0\\[4pt]x=?`, choices:[`-4`,`4`,r`\pm4`,`0`], a:`-4`, tip:r`\text{Racine double }x=-4` },
+      // ── 21 questions supplémentaires ──
+      { q:r`(x-8)(x+3)=0\\[4pt]x=?`, choices:[r`8\text{ ou }-3`,r`-8\text{ ou }3`,r`8\text{ ou }3`,r`-8\text{ ou }-3`], a:r`8\text{ ou }-3`, tip:r`x=8\text{ ou }x=-3` },
+      { q:r`(2x+6)(x-4)=0\\[4pt]x=?`, choices:[r`-3\text{ ou }4`,r`3\text{ ou }-4`,r`-6\text{ ou }4`,r`6\text{ ou }-4`], a:r`-3\text{ ou }4`, tip:r`2x=-6\Rightarrow x=-3\text{ ou }x=4` },
+      { q:r`x(x-9)=0\\[4pt]x=?`, choices:[r`0\text{ ou }9`,r`0\text{ ou }-9`,r`9`,r`-9`], a:r`0\text{ ou }9`, tip:r`x=0\text{ ou }x=9` },
+      { q:r`(3x-9)(x+1)=0\\[4pt]x=?`, choices:[r`3\text{ ou }-1`,r`-3\text{ ou }1`,r`9\text{ ou }-1`,r`-9\text{ ou }1`], a:r`3\text{ ou }-1`, tip:r`3x=9\Rightarrow x=3\text{ ou }x=-1` },
+      { q:r`(x-6)^2=0\\[4pt]x=?`, choices:[`6`,r`\pm6`,`-6`,`36`], a:`6`, tip:r`\text{Racine double }x=6` },
+      { q:r`x^2-4=0\\[4pt]x=?`, choices:[r`\pm2`,r`2`,r`-2`,r`\pm4`], a:r`\pm2`, tip:r`(x-2)(x+2)=0` },
+      { q:r`(x+9)(x-9)=0\\[4pt]x=?`, choices:[r`\pm9`,r`9`,r`-9`,r`0`], a:r`\pm9`, tip:r`x=9\text{ ou }x=-9` },
+      { q:r`4x(x+7)=0\\[4pt]x=?`, choices:[r`0\text{ ou }-7`,r`0\text{ ou }7`,r`4\text{ ou }-7`,r`-4\text{ ou }7`], a:r`0\text{ ou }-7`, tip:r`x=0\text{ ou }x=-7` },
+      { q:r`x^2-49=0\\[4pt]x=?`, choices:[r`\pm7`,r`7`,r`-7`,r`\pm49`], a:r`\pm7`, tip:r`(x-7)(x+7)=0` },
+      { q:r`(x+2)(3x-6)=0\\[4pt]x=?`, choices:[r`-2\text{ ou }2`,r`2\text{ ou }-2`,r`-2\text{ ou }6`,r`2\text{ ou }-6`], a:r`-2\text{ ou }2`, tip:r`x=-2\text{ ou }3x=6\Rightarrow x=2` },
+      { q:r`(x-10)^2=0\\[4pt]x=?`, choices:[`10`,r`\pm10`,`-10`,`100`], a:`10`, tip:r`\text{Racine double }x=10` },
+      { q:r`x(x+1)(x-4)=0\\[4pt]x=?`, choices:[r`0\text{, }-1\text{ ou }4`,r`0\text{, }1\text{ ou }-4`,r`-1\text{ ou }4`,r`0\text{ ou }1`], a:r`0\text{, }-1\text{ ou }4`, tip:r`x=0\text{ ou }-1\text{ ou }4` },
+      { q:r`(5x+10)(x-3)=0\\[4pt]x=?`, choices:[r`-2\text{ ou }3`,r`2\text{ ou }-3`,r`-10\text{ ou }3`,r`10\text{ ou }-3`], a:r`-2\text{ ou }3`, tip:r`5x=-10\Rightarrow x=-2\text{ ou }x=3` },
+      { q:r`x^2-1=0\\[4pt]x=?`, choices:[r`\pm1`,r`1`,r`-1`,r`0`], a:r`\pm1`, tip:r`(x-1)(x+1)=0` },
+      { q:r`-2x(x-5)=0\\[4pt]x=?`, choices:[r`0\text{ ou }5`,r`0\text{ ou }-5`,r`-2\text{ ou }5`,r`2\text{ ou }-5`], a:r`0\text{ ou }5`, tip:r`x=0\text{ ou }x=5` },
+      { q:r`(x-\frac{1}{2})(x+3)=0\\[4pt]x=?`, choices:[r`\frac{1}{2}\text{ ou }-3`,r`-\frac{1}{2}\text{ ou }3`,r`2\text{ ou }-3`,r`\frac{1}{2}\text{ ou }3`], a:r`\frac{1}{2}\text{ ou }-3`, tip:r`x=\frac{1}{2}\text{ ou }x=-3` },
+      { q:r`(2x-1)(3x+6)=0\\[4pt]x=?`, choices:[r`\frac{1}{2}\text{ ou }-2`,r`-\frac{1}{2}\text{ ou }2`,r`1\text{ ou }-2`,r`\frac{1}{2}\text{ ou }2`], a:r`\frac{1}{2}\text{ ou }-2`, tip:r`2x=1\Rightarrow x=\frac{1}{2}\text{ ou }3x=-6\Rightarrow x=-2` },
+      { q:r`x^2-64=0\\[4pt]x=?`, choices:[r`\pm8`,r`8`,r`-8`,r`\pm64`], a:r`\pm8`, tip:r`(x-8)(x+8)=0` },
+      { q:r`(x+6)^2=0\\[4pt]x=?`, choices:[`-6`,`6`,r`\pm6`,`36`], a:`-6`, tip:r`\text{Racine double }x=-6` },
+      { q:r`7x(x-2)(x+4)=0\\[4pt]x=?`, choices:[r`0\text{, }2\text{ ou }-4`,r`0\text{, }-2\text{ ou }4`,r`7\text{, }2\text{ ou }-4`,r`2\text{ ou }-4`], a:r`0\text{, }2\text{ ou }-4`, tip:r`x=0\text{ ou }2\text{ ou }-4` },
+      { q:r`(4x+12)(2x-1)=0\\[4pt]x=?`, choices:[r`-3\text{ ou }\frac{1}{2}`,r`3\text{ ou }-\frac{1}{2}`,r`-12\text{ ou }1`,r`-3\text{ ou }1`], a:r`-3\text{ ou }\frac{1}{2}`, tip:r`4x=-12\Rightarrow x=-3\text{ ou }2x=1\Rightarrow x=\frac{1}{2}` },
     ],
     eq_x2: [
       { q:r`\text{Résoudre l'équation }x^2=9`, choices:[r`x=-3\text{ ou }x=3`,`x=3`,`x=-3`,r`x=\pm9`], a:r`x=-3\text{ ou }x=3`, tip:r`x^2=9\Rightarrow x=\pm3\Rightarrow x=-3\text{ ou }x=3` },
@@ -5877,7 +5926,7 @@ function DiagnosticScreen({profile, onComplete}) {
   if(!q) return null;
 
   return (
-    <div style={{display:'flex',flexDirection:'column',height:'100%',background:'#E8EAF0'}}>
+    <div style={{display:'flex',flexDirection:'column',height:'100%',background:'var(--am-bg-light)'}}>
       {/* Header */}
       <div style={{background:'linear-gradient(135deg,#7C3AED,#5B21B6)',
         padding:'16px 18px 20px',flexShrink:0}}>
@@ -5971,7 +6020,7 @@ function DiagnosticResultScreen({profile, diagResults, onStart}) {
 
   return (
     <div style={{display:'flex',flexDirection:'column',height:'100%',
-      padding:'20px',background:'#E8EAF0',gap:12}}>
+      padding:'20px',background:'var(--am-bg-light)',gap:12}}>
       <div style={{display:'flex',flexDirection:'column',alignItems:'center',gap:4}}>
         <div className="sigma-float"><Sigma emotion={emotion} size={120}/></div>
         <div className="sigma-shadow" style={{width:'40%',marginTop:-2}}/>
@@ -6059,9 +6108,9 @@ function WeeklyProgramScreen({profile, program, allProg, onStartSession, onSkip}
   const weakPats = getErrorPatterns(allProg, curr);
 
   return (
-    <div style={{display:'flex',flexDirection:'column',height:'100%',background:'#E8EAF0'}}>
+    <div style={{display:'flex',flexDirection:'column',height:'100%',background:'var(--am-bg-light)'}}>
       {/* Header */}
-      <div style={{background:'linear-gradient(135deg,#1A1A2E,#0F3460)',
+      <div style={{background:'linear-gradient(135deg,var(--am-bg-dark-1),var(--am-bg-dark-2))',
         padding:'16px 16px 18px',flexShrink:0}}>
         <div style={{display:'flex',alignItems:'center',gap:10}}>
           <img src={SIGMA_IMG} alt="" style={{width:36,height:36,objectFit:'contain'}}/>
@@ -6234,9 +6283,9 @@ function QRExportScreen({profile, allProg, xp, badges, onBack}) {
   const lvlInfo = getXpLevel(xp);
 
   return (
-    <div style={{display:'flex',flexDirection:'column',height:'100%',background:'#E8EAF0'}}>
+    <div style={{display:'flex',flexDirection:'column',height:'100%',background:'var(--am-bg-light)'}}>
       {/* Header */}
-      <div style={{background:'linear-gradient(135deg,#1A1A2E,#0F3460)',
+      <div style={{background:'linear-gradient(135deg,var(--am-bg-dark-1),var(--am-bg-dark-2))',
         padding:'14px 16px',flexShrink:0,display:'flex',alignItems:'center',gap:10}}>
         <button onClick={onBack} style={{background:'rgba(255,255,255,0.1)',border:'none',
           borderRadius:9,padding:'6px 11px',color:'#94A3B8',cursor:'pointer',fontSize:12,fontWeight:700}}>
@@ -6334,8 +6383,8 @@ function ReminderScreen({onBack}) {
   const permLabel = notifPerm==='granted'?'✅ Autorisées':'⚠️ '+notifPerm;
 
   return (
-    <div style={{display:'flex',flexDirection:'column',height:'100%',background:'#E8EAF0'}}>
-      <div style={{background:'linear-gradient(135deg,#1A1A2E,#0F3460)',
+    <div style={{display:'flex',flexDirection:'column',height:'100%',background:'var(--am-bg-light)'}}>
+      <div style={{background:'linear-gradient(135deg,var(--am-bg-dark-1),var(--am-bg-dark-2))',
         padding:'14px 16px',flexShrink:0,display:'flex',alignItems:'center',gap:10}}>
         <button onClick={onBack} style={{background:'rgba(255,255,255,0.1)',border:'none',
           borderRadius:9,padding:'6px 11px',color:'#94A3B8',cursor:'pointer',fontSize:12,fontWeight:700}}>
@@ -6493,9 +6542,9 @@ function BackupScreen({onBack, onImportDone}) {
   };
 
   return (
-    <div style={{display:'flex',flexDirection:'column',height:'100%',background:'#E8EAF0'}}>
+    <div style={{display:'flex',flexDirection:'column',height:'100%',background:'var(--am-bg-light)'}}>
       {/* Header */}
-      <div style={{background:'linear-gradient(135deg,#1A1A2E,#0F3460)',
+      <div style={{background:'linear-gradient(135deg,var(--am-bg-dark-1),var(--am-bg-dark-2))',
         padding:'14px 16px',flexShrink:0,display:'flex',alignItems:'center',gap:10}}>
         <button onClick={onBack} style={{background:'rgba(255,255,255,0.1)',border:'none',
           borderRadius:9,padding:'6px 11px',color:'#94A3B8',cursor:'pointer',fontSize:12,fontWeight:700}}>
@@ -6625,9 +6674,9 @@ function PreferencesScreen({profile, onSave, onBack}) {
   };
 
   return (
-    <div style={{display:'flex',flexDirection:'column',height:'100%',background:'#E8EAF0'}}>
+    <div style={{display:'flex',flexDirection:'column',height:'100%',background:'var(--am-bg-light)'}}>
       {/* Header */}
-      <div style={{background:'linear-gradient(135deg,#1A1A2E,#0F3460)',
+      <div style={{background:'linear-gradient(135deg,var(--am-bg-dark-1),var(--am-bg-dark-2))',
         padding:'14px 16px',flexShrink:0,display:'flex',alignItems:'center',gap:10}}>
         <button onClick={onBack} style={{background:'rgba(255,255,255,0.1)',border:'none',
           borderRadius:9,padding:'6px 11px',color:'#94A3B8',cursor:'pointer',fontSize:12,fontWeight:700}}>
@@ -6755,7 +6804,7 @@ function ProfileSetupScreen({onComplete, onBack}) {
   };
   return (
     <div style={{height:"100%",display:"flex",flexDirection:"column",alignItems:"center",
-      justifyContent:"center",padding:"24px",background:"linear-gradient(170deg,#1A1A2E,#0F3460)",
+      justifyContent:"center",padding:"24px",background:"linear-gradient(170deg,var(--am-bg-dark-1),var(--am-bg-dark-2))",
       position:"relative"}}>
       {/* Bouton retour */}
       <button onClick={step===1?()=>setStep(0):onBack}
@@ -7958,7 +8007,7 @@ function CollectionScreen({onBack, cardsUnlocked}) {
 
   return (
     <div className="slide-up" style={{display:"flex", flexDirection:"column", height:"100%",
-      padding:"20px 18px", background:"#E8EAF0"}}>
+      padding:"20px 18px", background:"var(--am-bg-light)"}}>
       <Back onClick={onBack}/>
       <div style={{marginBottom:12}}>
         <h2 style={{fontFamily:"'Nunito',sans-serif", fontSize:22, fontWeight:900,
@@ -7975,7 +8024,7 @@ function CollectionScreen({onBack, cardsUnlocked}) {
           <button key={f.id} onClick={()=>setFilter(f.id)}
             style={{
               padding:"7px 12px", borderRadius:10, border:"none",
-              background: filter===f.id ? "#1A1A2E" : "#fff",
+              background: filter===f.id ? "var(--am-bg-dark-1)" : "#fff",
               color: filter===f.id ? "#F59E0B" : "#64748B",
               fontFamily:"'Nunito',sans-serif", fontWeight:800, fontSize:11,
               cursor:"pointer", whiteSpace:"nowrap", flexShrink:0,
@@ -8334,10 +8383,10 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
   const Stars = ({n}) => <span>{[1,2,3].map(i=><span key={i} style={{opacity:i<=n?1:0.2,fontSize:11}}>⭐</span>)}</span>;
 
   return (
-    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"#E8EAF0"}}>
+    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"var(--am-bg-light)"}}>
 
       {/* ── Header ── */}
-      <div style={{background:`linear-gradient(160deg,#1A1A2E 0%,#0F3460 100%)`,
+      <div style={{background:`linear-gradient(160deg,var(--am-bg-dark-1) 0%,var(--am-bg-dark-2) 100%)`,
         padding:"14px 16px 16px",flexShrink:0,position:"relative"}}>
         {/* Top row */}
         <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:10}}>
@@ -8787,7 +8836,7 @@ function PostPracticeResultScreen({score, total, catId, subId, mode, prevStars, 
 
   return (
     <div className="slide-up" style={{display:"flex",flexDirection:"column",alignItems:"center",
-      justifyContent:"center",height:"100%",padding:"24px",gap:12,background:"#E8EAF0"}}>
+      justifyContent:"center",height:"100%",padding:"24px",gap:12,background:"var(--am-bg-light)"}}>
 
       {gotStars?(
         <div className="pop-in" style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
@@ -8989,7 +9038,7 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress}) {
       <div style={{marginBottom:10}}>
         {/* Sigma + brand header — version compacte */}
         <div style={{display:"flex",alignItems:"center",gap:10,
-          background:"#1A1A2E",borderRadius:16,padding:"8px 14px",marginBottom:10,
+          background:"var(--am-bg-dark-1)",borderRadius:16,padding:"8px 14px",marginBottom:10,
           boxShadow:"0 3px 12px rgba(15,52,96,.3)",position:"relative"}}>
           {onSplash && (
             <button onClick={onSplash}
@@ -9107,7 +9156,7 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress}) {
       {profile && onDashboard && (
         <button onClick={onDashboard}
           style={{marginBottom:10,padding:"9px 14px",borderRadius:12,border:"none",
-            background:"linear-gradient(135deg,#1A1A2E,#0F3460)",color:"#F59E0B",
+            background:"linear-gradient(135deg,var(--am-bg-dark-1),var(--am-bg-dark-2))",color:"#F59E0B",
             fontFamily:"'Nunito',sans-serif",fontSize:12,fontWeight:800,cursor:"pointer",
             display:"flex",alignItems:"center",gap:8,flexShrink:0}}>
           <span style={{fontSize:16}}>{CURRICULUM[profile.level]?.emoji||"📊"}</span>
@@ -9169,7 +9218,7 @@ function TrainingModesScreen({onMode, onBack}) {
   ];
   return (
     <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",
-      padding:"20px 18px",background:"#E8EAF0"}}>
+      padding:"20px 18px",background:"var(--am-bg-light)"}}>
       <Back onClick={onBack}/>
       <div style={{marginBottom:16}}>
         <h2 style={{fontFamily:"'Nunito',sans-serif",fontSize:22,fontWeight:900,color:"#1E293B",margin:0}}>
@@ -10025,6 +10074,90 @@ function FactorisationLevelScreen({catId, qCount, onStart, onBack}) {
 // ── MISSIONS CONFIGURATIONS ───────────────────────────────────────────────────
 // ══════════════════════════════════════════════════════════════════════════════
 
+// ── Bac blanc : programmes couverts ──
+// On reprend le programme officiel de chaque niveau MOINS les exclusions
+// pédagogiques (thèmes pas encore couverts ou trop techniques pour un bac blanc
+// en conditions "programme complet").
+const BAC_BLANC_POOLS = {
+  stmg: {
+    label: "Bac blanc STMG",
+    // Format : { catId: [subId, ...] } — tout le programme STMG sauf exclusions
+    // Exclusions : racines carrées, trigo, mise au même dénominateur,
+    //              polynômes formes niveau 1-2-3-4 (pas en STMG de toute façon)
+    content: {
+      fonctions: ['lecture_image','calcul_image','point_courbe','coeff_directeur_calcul','coeff_directeur_lecture','equation_droite_lecture','resolution_graphique','tableau_variations','tableau_signes'],
+      pourcentages: ['proportions','taux_cm','valeur_finale','evolutions_successives','evolution_reciproque','taux_moyen','indice'],
+      numerique: ['decimaux_cm','fractions','puissances','scientifique','conversions'],
+      litteral: ['eq1','eq_x2','produit_nul','inequation1','developpement','id_remarquables','facto_commun','manipulation'],
+      probabilites: ['tableau','tableau_fill','arbre','contraire'],
+      suites: ['suites_nature','suites_termes'],
+      polynomes: ['poly2_factorisee'],
+      statistiques: ['stat_centrale','stat_dispersion','loi_binomiale','echantillonnage'],
+      derivation: ['lecture_derivee','calcul_derivee'],
+    },
+    totalQuestions: 30,
+  },
+};
+
+// Construit un pool de N questions tirées au hasard dans le programme défini,
+// avec répartition proportionnelle par catégorie pour éviter le déséquilibre.
+// Retourne un tableau de questions mélangé.
+function buildBacBlancPool(poolKey, n = 30) {
+  const config = BAC_BLANC_POOLS[poolKey];
+  if (!config) return [];
+  const targetCount = n || config.totalQuestions;
+
+  // 1. Collecter toutes les questions par catégorie
+  const byCategory = {};
+  let totalAvailable = 0;
+  for (const [catId, subIds] of Object.entries(config.content)) {
+    const questions = [];
+    for (const subId of subIds) {
+      const sub = DB[catId]?.[subId];
+      if (Array.isArray(sub)) questions.push(...sub);
+    }
+    if (questions.length > 0) {
+      byCategory[catId] = questions;
+      totalAvailable += questions.length;
+    }
+  }
+
+  if (totalAvailable === 0) return [];
+
+  // 2. Répartition proportionnelle : chaque catégorie reçoit un nombre de slots
+  //    proportionnel à sa taille, avec un minimum de 1 par catégorie.
+  const catIds = Object.keys(byCategory);
+  const slots = {};
+  let assigned = 0;
+  for (const catId of catIds) {
+    const raw = Math.round((byCategory[catId].length / totalAvailable) * targetCount);
+    slots[catId] = Math.max(1, raw);
+    assigned += slots[catId];
+  }
+  // Ajustement pour tomber pile sur targetCount
+  while (assigned > targetCount) {
+    // Retirer 1 dans la catégorie qui a le plus de slots (pour équilibrer)
+    const maxCat = catIds.reduce((a, b) => slots[a] > slots[b] ? a : b);
+    if (slots[maxCat] > 1) { slots[maxCat]--; assigned--; } else break;
+  }
+  while (assigned < targetCount) {
+    const minCat = catIds.reduce((a, b) => slots[a] < slots[b] ? a : b);
+    slots[minCat]++; assigned++;
+  }
+
+  // 3. Tirer au hasard dans chaque catégorie
+  const selected = [];
+  for (const catId of catIds) {
+    const pool = byCategory[catId];
+    const n = Math.min(slots[catId], pool.length);
+    const picks = shuffle(pool).slice(0, n);
+    selected.push(...picks);
+  }
+
+  // 4. Mélanger l'ordre final (un bac blanc c'est du tout-venant, pas progressif)
+  return shuffle(selected);
+}
+
 const MISSIONS = {
   mission_bases: {
     id: "mission_bases",
@@ -10055,12 +10188,14 @@ const MISSIONS = {
   },
   mission_stmg: {
     id: "mission_stmg",
-    label: "Objectif STMG",
+    label: "Objectif Bac STMG",
     emoji: "📊",
-    desc: "À venir...",
+    desc: "Bac blanc : 30 questions tirées au hasard dans tout le programme",
     color: "#F59E0B",
     grad: "linear-gradient(135deg,#F59E0B,#B45309)",
-    themes: []
+    themes: [
+      { id: "bac_blanc_stmg", label: "Bac blanc — 30 questions", emoji: "🎯", useBacBlanc: "stmg" },
+    ]
   },
   mission_bac: {
     id: "mission_bac",
@@ -10775,7 +10910,7 @@ const BAC_GROUPS = [
 
 function BacSubjectScreen({onStart, onBack}) {
   return (
-    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"#E8EAF0"}}>
+    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"var(--am-bg-light)"}}>
       {/* Header */}
       <div style={{background:"linear-gradient(135deg,#F59E0B,#B45309)",
         padding:"18px 16px 20px",flexShrink:0}}>
@@ -11003,7 +11138,7 @@ function SprintScreen({pool, onFinish, onBack}) {
 
       {/* Question */}
       <div className={shake?"shake":""} style={{
-        background:"#E8EAF0",borderRadius:18,padding:"18px 14px",
+        background:"var(--am-bg-light)",borderRadius:18,padding:"18px 14px",
         boxShadow:"0 3px 12px rgba(0,0,0,.08)",flexShrink:0
       }}>
         <div style={{fontSize:q.q.length>60?14:q.q.length>25?17:19,
@@ -11439,7 +11574,7 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
 
       {/* Question card (all non-drag questions) */}
       {!isDrag && <div className={shake?"shake":""} style={{
-        background:(isNum||isSol||isExpr||isFrac)?"linear-gradient(135deg,#7C3AED,#5B21B6)":"#E8EAF0",
+        background:(isNum||isSol||isExpr||isFrac)?"linear-gradient(135deg,#7C3AED,#5B21B6)":"var(--am-bg-light)",
         borderRadius:18,
         padding: isNum && !q.gspec ? "18px" : hasVis||isTab||isSol||isFrac ? "12px" : "16px",
         marginBottom:isTab?10:14, boxShadow:"0 3px 12px rgba(0,0,0,.08)",
@@ -12917,7 +13052,7 @@ function AutoMaths() {
   if (!katexReady) return (
     <div style={{display:"flex",alignItems:"center",justifyContent:"center",
       height:"100vh",flexDirection:"column",gap:16,fontFamily:"'DM Sans',sans-serif",
-      background:"linear-gradient(170deg,#1A1A2E,#0F3460)"}}>
+      background:"linear-gradient(170deg,var(--am-bg-dark-1),var(--am-bg-dark-2))"}}>
       <div className="float"><Sigma emotion="thinking" size={64}/></div>
       <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:22,color:"#fff"}}>
         l'Auto<span style={{color:"#F59E0B"}}>Maths</span>
@@ -12927,10 +13062,12 @@ function AutoMaths() {
   );
 
   const th_main = getTheme(profile);
+  const currentScale = getPrefs(profile).fontScale;
+  const scaleFactor = FONT_SCALES[currentScale]?.factor || 1.0;
 
   return (
     <>
-      <GS/>
+      <GS profile={profile}/>
       <div style={{
         width:390, height:760, background: th_main.bgLight,
         borderRadius:44, overflow:"hidden", position:"relative",
@@ -12939,7 +13076,12 @@ function AutoMaths() {
         <div style={{position:"absolute",top:0,left:"50%",transform:"translateX(-50%)",
           width:120,height:26,background:"#1E293B",borderRadius:"0 0 18px 18px",zIndex:10}}/>
         
-        <div style={{height:"100%",overflowY:"auto",paddingTop:26}}>
+        <div style={{height:"100%",overflowY:"auto",paddingTop:26,
+          // Zoom via la propriété CSS `zoom` (supportée Chrome/Safari/Firefox).
+          // Avantage vs transform:scale : ne casse pas les positionnements
+          // absolus, les modales, les dropdowns. Simple et fiable.
+          zoom: scaleFactor,
+        }}>
 
           {screen==="splash"        && <SplashScreen    onStart={()=>setScreen(profile?"dashboard":"home")} onMySpace={()=>setScreen(profile?"dashboard":"setup")} onRestore={()=>setScreen("backup")} profile={profile}/>}
           {screen==="setup"         && <ProfileSetupScreen onComplete={hProfileComplete} onBack={()=>setScreen("splash")}/>}
@@ -12962,7 +13104,21 @@ function AutoMaths() {
           {screen==="subcategory"   && <SubcategoryScreen catId={catId} qCount={mode==="express"?10:20} onStart={hSub} onBack={()=>setScreen(mode==="missions"?"home":"category")} onLevelPicker={hLevelPicker} defaultNiveau={profile?LEVEL_MAP[profile.level]||null:null}/>}
           {screen==="mission_select" && <MissionScreen missionId={missionId} onBack={()=>setScreen("subcategory")} onSelectTheme={(theme)=>{
             setMissionTheme(theme);
-            if(theme.useLevelPicker) {
+            if(theme.useBacBlanc) {
+              // Bac blanc : tire directement 30 questions dans tout le programme
+              const qs = buildBacBlancPool(theme.useBacBlanc, 30);
+              if (qs.length === 0) {
+                alert("Aucune question disponible pour ce bac blanc. Vérifie le programme.");
+                return;
+              }
+              setQuizMode("test"); // Mode évaluation — pas de rappel de cours
+              setCatId("bac");     // Utilise le style visuel "bac" (couleur or)
+              setTrackCat(null); setTrackSub(null); // Pas de progression sur une sub spécifique
+              setPool(qs);
+              setQuestions(qs);
+              setPrevScreen("mission_select");
+              setScreen("quiz");
+            } else if(theme.useLevelPicker) {
               setLevelType(theme.levelType);
               setScreen("level_picker");
             } else {
