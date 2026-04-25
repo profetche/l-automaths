@@ -1365,7 +1365,7 @@ const DB = {
           fn:x=>-x*x+4, xr:[-3.5,3.5], yr:[-5,6],
           questionTex:r`f(x)=-x^2+4\qquad f(x)\geq0`,
           type:"≥", padType:"sol", a:"[-2;2]",
-          tipTex:r`a<0\text{ : parabole vers le bas. Racines : }x=\pm2`,
+          tipTex:r`a<0\text{ : parabole vers le bas. Racines : }x=-2\text{ ou }x=2`,
         }},
 
       { q: r`\text{Résoudre graphiquement }f(x)>0`,
@@ -2984,67 +2984,67 @@ const DB = {
       { q:r`(x-3)(x+1)=0\\[4pt]x=?`, choices:[r`3\text{ ou }-1`,r`-3\text{ ou }1`,`3`,`2`], a:r`3\text{ ou }-1`, tip:r`x=3\text{ ou }x=-1` },
       { q:r`(2x-4)(x+5)=0\\[4pt]x=?`, choices:[r`2\text{ ou }-5`,r`4\text{ ou }-5`,`-2`,`2`], a:r`2\text{ ou }-5`, tip:r`x=2\text{ ou }x=-5` },
       { q:r`3x(x-1)=0\\[4pt]x=?`, choices:[r`0\text{ ou }1`,r`3\text{ ou }1`,`0`,`3`], a:r`0\text{ ou }1`, tip:r`x=0\text{ ou }x=1` },
-      { q:r`(x-2)^2=0\\[4pt]x=?`, choices:[`2`,r`\pm2`,`-2`,`0`], a:`2`, tip:r`\text{Racine double}` },
+      { q:r`(x-2)^2=0\\[4pt]x=?`, choices:[`2`,r`-2\text{ ou }2`,`-2`,`0`], a:`2`, tip:r`\text{Racine double}` },
       { q:r`(x+4)(x-6)=0\\[4pt]x=?`, choices:[r`-4\text{ ou }6`,r`4\text{ ou }-6`,r`-4\text{ ou }-6`,r`4\text{ ou }6`], a:r`-4\text{ ou }6`, tip:r`x=-4\text{ ou }x=6` },
       { q:r`x(x-5)(x+2)=0\\[4pt]x=?`, choices:[r`0\text{, }5\text{ ou }-2`,r`0\text{, }-5\text{ ou }2`,r`0\text{ ou }5`,r`-5\text{ ou }2`], a:r`0\text{, }5\text{ ou }-2`, tip:r`x=0\text{ ou }5\text{ ou }-2` },
       { q:r`(3x+6)(x-1)=0\\[4pt]x=?`, choices:[r`-2\text{ ou }1`,r`2\text{ ou }1`,r`6\text{ ou }1`,r`-6\text{ ou }1`], a:r`-2\text{ ou }1`, tip:r`3x=-6\Rightarrow x=-2\text{ ou }x=1` },
-      { q:r`x^2-9=0\\[4pt]x=?`, choices:[r`\pm3`,r`3`,r`-3`,r`\pm9`], a:r`\pm3`, tip:r`(x-3)(x+3)=0` },
-      { q:r`(x+1)^2=0\\[4pt]x=?`, choices:[`-1`,`1`,r`\pm1`,`0`], a:`-1`, tip:r`\text{Racine double}` },
+      { q:r`x^2-9=0\\[4pt]x=?`, choices:[r`-3\text{ ou }3`,r`3`,r`-3`,r`-9\text{ ou }9`], a:r`-3\text{ ou }3`, tip:r`(x-3)(x+3)=0` },
+      { q:r`(x+1)^2=0\\[4pt]x=?`, choices:[`-1`,`1`,r`-1\text{ ou }1`,`0`], a:`-1`, tip:r`\text{Racine double}` },
       { q:r`2x(x+3)=0\\[4pt]x=?`, choices:[r`0\text{ ou }-3`,r`0\text{ ou }3`,r`2\text{ ou }-3`,r`-2\text{ ou }3`], a:r`0\text{ ou }-3`, tip:r`x=0\text{ ou }x=-3` },
-      { q:r`(x-7)(x+7)=0\\[4pt]x=?`, choices:[r`\pm7`,r`7`,r`-7`,`0`], a:r`\pm7`, tip:r`x=7\text{ ou }x=-7` },
+      { q:r`(x-7)(x+7)=0\\[4pt]x=?`, choices:[r`-7\text{ ou }7`,r`7`,r`-7`,`0`], a:r`-7\text{ ou }7`, tip:r`x=7\text{ ou }x=-7` },
       { q:r`(4x-8)(x+2)=0\\[4pt]x=?`, choices:[r`2\text{ ou }-2`,r`8\text{ ou }-2`,r`4\text{ ou }-2`,r`-4\text{ ou }2`], a:r`2\text{ ou }-2`, tip:r`4x=8\Rightarrow x=2\text{ ou }x=-2` },
-      { q:r`x^2-16=0\\[4pt]x=?`, choices:[r`\pm4`,r`4`,r`-4`,r`\pm8`], a:r`\pm4`, tip:r`(x-4)(x+4)=0` },
-      { q:r`(x-3)^2=0\\[4pt]x=?`, choices:[`3`,r`\pm3`,`-3`,`9`], a:`3`, tip:r`\text{Racine double }x=3` },
+      { q:r`x^2-16=0\\[4pt]x=?`, choices:[r`-4\text{ ou }4`,r`4`,r`-4`,r`-8\text{ ou }8`], a:r`-4\text{ ou }4`, tip:r`(x-4)(x+4)=0` },
+      { q:r`(x-3)^2=0\\[4pt]x=?`, choices:[`3`,r`-3\text{ ou }3`,`-3`,`9`], a:`3`, tip:r`\text{Racine double }x=3` },
       { q:r`5x(2x-10)=0\\[4pt]x=?`, choices:[r`0\text{ ou }5`,r`0\text{ ou }-5`,r`5\text{ ou }-2`,r`0\text{ ou }2`], a:r`0\text{ ou }5`, tip:r`x=0\text{ ou }2x=10\Rightarrow x=5` },
       { q:r`(x+5)(2x-3)=0\\[4pt]x=?`, choices:[r`-5\text{ ou }\frac{3}{2}`,r`5\text{ ou }-\frac{3}{2}`,r`-5\text{ ou }-\frac{3}{2}`,r`5\text{ ou }\frac{3}{2}`], a:r`-5\text{ ou }\frac{3}{2}`, tip:r`x=-5\text{ ou }x=\frac{3}{2}` },
-      { q:r`x^2-25=0\\[4pt]x=?`, choices:[r`\pm5`,r`5`,r`-5`,r`\pm25`], a:r`\pm5`, tip:r`(x-5)(x+5)=0` },
+      { q:r`x^2-25=0\\[4pt]x=?`, choices:[r`-5\text{ ou }5`,r`5`,r`-5`,r`-25\text{ ou }25`], a:r`-5\text{ ou }5`, tip:r`(x-5)(x+5)=0` },
       { q:r`(x-1)(x-2)(x-3)=0\\[4pt]x=?`, choices:[r`1\text{, }2\text{ ou }3`,r`1\text{ ou }2`,r`-1\text{, }-2\text{ ou }-3`,r`1\text{, }2\text{ ou }-3`], a:r`1\text{, }2\text{ ou }3`, tip:r`x=1\text{ ou }2\text{ ou }3` },
-      { q:r`(x+4)^2=0\\[4pt]x=?`, choices:[`-4`,`4`,r`\pm4`,`0`], a:`-4`, tip:r`\text{Racine double }x=-4` },
+      { q:r`(x+4)^2=0\\[4pt]x=?`, choices:[`-4`,`4`,r`-4\text{ ou }4`,`0`], a:`-4`, tip:r`\text{Racine double }x=-4` },
       // ── 21 questions supplémentaires ──
       { q:r`(x-8)(x+3)=0\\[4pt]x=?`, choices:[r`8\text{ ou }-3`,r`-8\text{ ou }3`,r`8\text{ ou }3`,r`-8\text{ ou }-3`], a:r`8\text{ ou }-3`, tip:r`x=8\text{ ou }x=-3` },
       { q:r`(2x+6)(x-4)=0\\[4pt]x=?`, choices:[r`-3\text{ ou }4`,r`3\text{ ou }-4`,r`-6\text{ ou }4`,r`6\text{ ou }-4`], a:r`-3\text{ ou }4`, tip:r`2x=-6\Rightarrow x=-3\text{ ou }x=4` },
       { q:r`x(x-9)=0\\[4pt]x=?`, choices:[r`0\text{ ou }9`,r`0\text{ ou }-9`,r`9`,r`-9`], a:r`0\text{ ou }9`, tip:r`x=0\text{ ou }x=9` },
       { q:r`(3x-9)(x+1)=0\\[4pt]x=?`, choices:[r`3\text{ ou }-1`,r`-3\text{ ou }1`,r`9\text{ ou }-1`,r`-9\text{ ou }1`], a:r`3\text{ ou }-1`, tip:r`3x=9\Rightarrow x=3\text{ ou }x=-1` },
-      { q:r`(x-6)^2=0\\[4pt]x=?`, choices:[`6`,r`\pm6`,`-6`,`36`], a:`6`, tip:r`\text{Racine double }x=6` },
-      { q:r`x^2-4=0\\[4pt]x=?`, choices:[r`\pm2`,r`2`,r`-2`,r`\pm4`], a:r`\pm2`, tip:r`(x-2)(x+2)=0` },
-      { q:r`(x+9)(x-9)=0\\[4pt]x=?`, choices:[r`\pm9`,r`9`,r`-9`,r`0`], a:r`\pm9`, tip:r`x=9\text{ ou }x=-9` },
+      { q:r`(x-6)^2=0\\[4pt]x=?`, choices:[`6`,r`-6\text{ ou }6`,`-6`,`36`], a:`6`, tip:r`\text{Racine double }x=6` },
+      { q:r`x^2-4=0\\[4pt]x=?`, choices:[r`-2\text{ ou }2`,r`2`,r`-2`,r`-4\text{ ou }4`], a:r`-2\text{ ou }2`, tip:r`(x-2)(x+2)=0` },
+      { q:r`(x+9)(x-9)=0\\[4pt]x=?`, choices:[r`-9\text{ ou }9`,r`9`,r`-9`,r`0`], a:r`-9\text{ ou }9`, tip:r`x=9\text{ ou }x=-9` },
       { q:r`4x(x+7)=0\\[4pt]x=?`, choices:[r`0\text{ ou }-7`,r`0\text{ ou }7`,r`4\text{ ou }-7`,r`-4\text{ ou }7`], a:r`0\text{ ou }-7`, tip:r`x=0\text{ ou }x=-7` },
-      { q:r`x^2-49=0\\[4pt]x=?`, choices:[r`\pm7`,r`7`,r`-7`,r`\pm49`], a:r`\pm7`, tip:r`(x-7)(x+7)=0` },
+      { q:r`x^2-49=0\\[4pt]x=?`, choices:[r`-7\text{ ou }7`,r`7`,r`-7`,r`-49\text{ ou }49`], a:r`-7\text{ ou }7`, tip:r`(x-7)(x+7)=0` },
       { q:r`(x+2)(3x-6)=0\\[4pt]x=?`, choices:[r`-2\text{ ou }2`,r`2\text{ ou }-2`,r`-2\text{ ou }6`,r`2\text{ ou }-6`], a:r`-2\text{ ou }2`, tip:r`x=-2\text{ ou }3x=6\Rightarrow x=2` },
-      { q:r`(x-10)^2=0\\[4pt]x=?`, choices:[`10`,r`\pm10`,`-10`,`100`], a:`10`, tip:r`\text{Racine double }x=10` },
+      { q:r`(x-10)^2=0\\[4pt]x=?`, choices:[`10`,r`-10\text{ ou }10`,`-10`,`100`], a:`10`, tip:r`\text{Racine double }x=10` },
       { q:r`x(x+1)(x-4)=0\\[4pt]x=?`, choices:[r`0\text{, }-1\text{ ou }4`,r`0\text{, }1\text{ ou }-4`,r`-1\text{ ou }4`,r`0\text{ ou }1`], a:r`0\text{, }-1\text{ ou }4`, tip:r`x=0\text{ ou }-1\text{ ou }4` },
       { q:r`(5x+10)(x-3)=0\\[4pt]x=?`, choices:[r`-2\text{ ou }3`,r`2\text{ ou }-3`,r`-10\text{ ou }3`,r`10\text{ ou }-3`], a:r`-2\text{ ou }3`, tip:r`5x=-10\Rightarrow x=-2\text{ ou }x=3` },
-      { q:r`x^2-1=0\\[4pt]x=?`, choices:[r`\pm1`,r`1`,r`-1`,r`0`], a:r`\pm1`, tip:r`(x-1)(x+1)=0` },
+      { q:r`x^2-1=0\\[4pt]x=?`, choices:[r`-1\text{ ou }1`,r`1`,r`-1`,r`0`], a:r`-1\text{ ou }1`, tip:r`(x-1)(x+1)=0` },
       { q:r`-2x(x-5)=0\\[4pt]x=?`, choices:[r`0\text{ ou }5`,r`0\text{ ou }-5`,r`-2\text{ ou }5`,r`2\text{ ou }-5`], a:r`0\text{ ou }5`, tip:r`x=0\text{ ou }x=5` },
       { q:r`(x-\frac{1}{2})(x+3)=0\\[4pt]x=?`, choices:[r`\frac{1}{2}\text{ ou }-3`,r`-\frac{1}{2}\text{ ou }3`,r`2\text{ ou }-3`,r`\frac{1}{2}\text{ ou }3`], a:r`\frac{1}{2}\text{ ou }-3`, tip:r`x=\frac{1}{2}\text{ ou }x=-3` },
       { q:r`(2x-1)(3x+6)=0\\[4pt]x=?`, choices:[r`\frac{1}{2}\text{ ou }-2`,r`-\frac{1}{2}\text{ ou }2`,r`1\text{ ou }-2`,r`\frac{1}{2}\text{ ou }2`], a:r`\frac{1}{2}\text{ ou }-2`, tip:r`2x=1\Rightarrow x=\frac{1}{2}\text{ ou }3x=-6\Rightarrow x=-2` },
-      { q:r`x^2-64=0\\[4pt]x=?`, choices:[r`\pm8`,r`8`,r`-8`,r`\pm64`], a:r`\pm8`, tip:r`(x-8)(x+8)=0` },
-      { q:r`(x+6)^2=0\\[4pt]x=?`, choices:[`-6`,`6`,r`\pm6`,`36`], a:`-6`, tip:r`\text{Racine double }x=-6` },
+      { q:r`x^2-64=0\\[4pt]x=?`, choices:[r`-8\text{ ou }8`,r`8`,r`-8`,r`-64\text{ ou }64`], a:r`-8\text{ ou }8`, tip:r`(x-8)(x+8)=0` },
+      { q:r`(x+6)^2=0\\[4pt]x=?`, choices:[`-6`,`6`,r`-6\text{ ou }6`,`36`], a:`-6`, tip:r`\text{Racine double }x=-6` },
       { q:r`7x(x-2)(x+4)=0\\[4pt]x=?`, choices:[r`0\text{, }2\text{ ou }-4`,r`0\text{, }-2\text{ ou }4`,r`7\text{, }2\text{ ou }-4`,r`2\text{ ou }-4`], a:r`0\text{, }2\text{ ou }-4`, tip:r`x=0\text{ ou }2\text{ ou }-4` },
       { q:r`(4x+12)(2x-1)=0\\[4pt]x=?`, choices:[r`-3\text{ ou }\frac{1}{2}`,r`3\text{ ou }-\frac{1}{2}`,r`-12\text{ ou }1`,r`-3\text{ ou }1`], a:r`-3\text{ ou }\frac{1}{2}`, tip:r`4x=-12\Rightarrow x=-3\text{ ou }2x=1\Rightarrow x=\frac{1}{2}` },
     ],
     eq_x2: [
-      { q:r`\text{Résoudre l'équation }x^2=9`, choices:[r`x=-3\text{ ou }x=3`,`x=3`,`x=-3`,r`x=\pm9`], a:r`x=-3\text{ ou }x=3`, tip:r`x^2=9\Rightarrow x=\pm3\Rightarrow x=-3\text{ ou }x=3` },
+      { q:r`\text{Résoudre l'équation }x^2=9`, choices:[r`x=-3\text{ ou }x=3`,`x=3`,`x=-3`,r`x=-9\text{ ou }x=9`], a:r`x=-3\text{ ou }x=3`, tip:r`x^2=9\Rightarrow x=-3\text{ ou }x=3\Rightarrow x=-3\text{ ou }x=3` },
       { q:r`\text{Résoudre l'équation }x^2=7`, choices:[r`x=-\sqrt{7}\text{ ou }x=\sqrt{7}`,r`x=\sqrt{7}`,`x=7`,r`\text{Pas de solution}`], a:r`x=-\sqrt{7}\text{ ou }x=\sqrt{7}`, tip:r`x^2=7\Rightarrow x=-\sqrt{7}\text{ ou }x=\sqrt{7}` },
-      { q:r`\text{Résoudre l'équation }x^2=-4`, choices:[r`\text{Pas de solution dans }\mathbb{R}`,r`x=-2\text{ ou }x=2`,`x=2`,r`x=\pm4`], a:r`\text{Pas de solution dans }\mathbb{R}`, tip:r`x^2\geq0\text{ pour tout }x\text{, donc pas de solution}` },
+      { q:r`\text{Résoudre l'équation }x^2=-4`, choices:[r`\text{Pas de solution dans }\mathbb{R}`,r`x=-2\text{ ou }x=2`,`x=2`,r`x=-4\text{ ou }x=4`], a:r`\text{Pas de solution dans }\mathbb{R}`, tip:r`x^2\geq0\text{ pour tout }x\text{, donc pas de solution}` },
       { q:r`\text{Résoudre l'équation }x^2=0`, choices:[`x=0`,r`x=-1\text{ ou }x=1`,`x=1`,r`\text{Pas de solution}`], a:`x=0`, tip:r`x^2=0\Rightarrow x=0\text{ (unique solution)}` },
-      { q:r`\text{Résoudre l'équation }x^2=25`, choices:[r`x=-5\text{ ou }x=5`,`x=5`,`x=-5`,r`x=\pm25`], a:r`x=-5\text{ ou }x=5`, tip:r`x^2=25\Rightarrow x=-5\text{ ou }x=5` },
-      { q:r`\text{Résoudre l'équation }x^2=36`, choices:[r`x=-6\text{ ou }x=6`,`x=6`,`x=-6`,r`x=\pm18`], a:r`x=-6\text{ ou }x=6`, tip:r`x^2=36\Rightarrow x=-6\text{ ou }x=6` },
-      { q:r`\text{Résoudre l'équation }x^2=100`, choices:[r`x=-10\text{ ou }x=10`,`x=10`,`x=-10`,r`x=\pm50`], a:r`x=-10\text{ ou }x=10`, tip:r`x^2=100\Rightarrow x=-10\text{ ou }x=10` },
+      { q:r`\text{Résoudre l'équation }x^2=25`, choices:[r`x=-5\text{ ou }x=5`,`x=5`,`x=-5`,r`x=-25\text{ ou }x=25`], a:r`x=-5\text{ ou }x=5`, tip:r`x^2=25\Rightarrow x=-5\text{ ou }x=5` },
+      { q:r`\text{Résoudre l'équation }x^2=36`, choices:[r`x=-6\text{ ou }x=6`,`x=6`,`x=-6`,r`x=-18\text{ ou }x=18`], a:r`x=-6\text{ ou }x=6`, tip:r`x^2=36\Rightarrow x=-6\text{ ou }x=6` },
+      { q:r`\text{Résoudre l'équation }x^2=100`, choices:[r`x=-10\text{ ou }x=10`,`x=10`,`x=-10`,r`x=-50\text{ ou }x=50`], a:r`x=-10\text{ ou }x=10`, tip:r`x^2=100\Rightarrow x=-10\text{ ou }x=10` },
       { q:r`\text{Résoudre l'équation }x^2=2`, choices:[r`x=-\sqrt{2}\text{ ou }x=\sqrt{2}`,r`x=\sqrt{2}`,`x=2`,r`\text{Pas de solution}`], a:r`x=-\sqrt{2}\text{ ou }x=\sqrt{2}`, tip:r`x^2=2\Rightarrow x=-\sqrt{2}\text{ ou }x=\sqrt{2}` },
-      { q:r`\text{Résoudre l'équation }x^2=49`, choices:[r`x=-7\text{ ou }x=7`,`x=7`,`x=-7`,r`x=\pm14`], a:r`x=-7\text{ ou }x=7`, tip:r`x^2=49\Rightarrow x=-7\text{ ou }x=7` },
+      { q:r`\text{Résoudre l'équation }x^2=49`, choices:[r`x=-7\text{ ou }x=7`,`x=7`,`x=-7`,r`x=-14\text{ ou }x=14`], a:r`x=-7\text{ ou }x=7`, tip:r`x^2=49\Rightarrow x=-7\text{ ou }x=7` },
       { q:r`\text{Résoudre l'équation }x^2=-1`, choices:[r`\text{Pas de solution dans }\mathbb{R}`,r`x=-1\text{ ou }x=1`,`x=1`,`x=-1`], a:r`\text{Pas de solution dans }\mathbb{R}`, tip:r`x^2\geq0\text{ pour tout }x` },
     ],
     eq_x3: [
-      { q:r`x^3=8\\[4pt]x=?`, choices:[`2`,`-2`,r`\pm2`,r`\pm4`], a:`2`, tip:r`2^3=8` },
+      { q:r`x^3=8\\[4pt]x=?`, choices:[`2`,`-2`,r`-2\text{ ou }2`,r`-4\text{ ou }4`], a:`2`, tip:r`2^3=8` },
       { q:r`x^3=27\\[4pt]x=?`, choices:[`3`,`-3`,`9`,`27`], a:`3`, tip:r`3^3=27` },
-      { q:r`x^3=-8\\[4pt]x=?`, choices:[`-2`,`2`,r`\pm2`,`8`], a:`-2`, tip:r`(-2)^3=-8` },
+      { q:r`x^3=-8\\[4pt]x=?`, choices:[`-2`,`2`,r`-2\text{ ou }2`,`8`], a:`-2`, tip:r`(-2)^3=-8` },
       { q:r`x^3=125\\[4pt]x=?`, choices:[`5`,`-5`,`25`,`625`], a:`5`, tip:r`5^3=125` },
-      { q:r`x^3=0\\[4pt]x=?`, choices:[`0`,`1`,`-1`,r`\pm1`], a:`0`, tip:r`0^3=0` },
+      { q:r`x^3=0\\[4pt]x=?`, choices:[`0`,`1`,`-1`,r`-1\text{ ou }1`], a:`0`, tip:r`0^3=0` },
       { q:r`2x^3=16\\[4pt]x=?`, choices:[`2`,`-2`,`4`,`8`], a:`2`, tip:r`x^3=8\Rightarrow x=2` },
-      { q:r`x^3+1=0\\[4pt]x=?`, choices:[`-1`,`1`,`0`,r`\pm1`], a:`-1`, tip:r`x^3=-1\Rightarrow x=-1` },
+      { q:r`x^3+1=0\\[4pt]x=?`, choices:[`-1`,`1`,`0`,r`-1\text{ ou }1`], a:`-1`, tip:r`x^3=-1\Rightarrow x=-1` },
       { q:r`x^3=1000\\[4pt]x=?`, choices:[`10`,`100`,`-10`,`30`], a:`10`, tip:r`10^3=1000` },
-      { q:r`x^3=-1\\[4pt]x=?`, choices:[`-1`,`1`,`-3`,r`\pm1`], a:`-1`, tip:r`(-1)^3=-1` },
+      { q:r`x^3=-1\\[4pt]x=?`, choices:[`-1`,`1`,`-3`,r`-1\text{ ou }1`], a:`-1`, tip:r`(-1)^3=-1` },
       { q:r`3x^3=24\\[4pt]x=?`, choices:[`2`,`8`,`3`,`-2`], a:`2`, tip:r`x^3=8\Rightarrow x=2` },
       { q:r`x^3=64\\[4pt]x=?`, choices:[`4`,`-4`,`8`,`16`], a:`4`, tip:r`4^3=64` },
       { q:r`x^3=-27\\[4pt]x=?`, choices:[`-3`,`3`,`-9`,`9`], a:`-3`, tip:r`(-3)^3=-27` },
@@ -3498,6 +3498,25 @@ const DB = {
       { q: r`A=\dfrac{bh}{2}\\[4pt]\text{Isoler }h :`,
         choices: [r`h=\dfrac{2A}{b}`, r`h=\dfrac{Ab}{2}`, r`h=\dfrac{b}{2A}`, r`h=\dfrac{A}{b^2}`],
         a: r`h=\dfrac{2A}{b}`, tip: r`h=\dfrac{2A}{b}` },
+      // ── 6 questions supplémentaires ──
+      { q: r`p=2(L+\ell)\\[4pt]\text{Isoler }L :`,
+        choices: [r`L=\dfrac{p}{2}-\ell`, r`L=\dfrac{p-\ell}{2}`, r`L=2p-\ell`, r`L=\dfrac{p}{2}+\ell`],
+        a: r`L=\dfrac{p}{2}-\ell`, tip: r`L+\ell=\dfrac{p}{2}\Rightarrow L=\dfrac{p}{2}-\ell` },
+      { q: r`v=\dfrac{d}{t}\\[4pt]\text{Isoler }t :`,
+        choices: [r`t=\dfrac{d}{v}`, r`t=dv`, r`t=\dfrac{v}{d}`, r`t=v-d`],
+        a: r`t=\dfrac{d}{v}`, tip: r`vt=d\Rightarrow t=\dfrac{d}{v}` },
+      { q: r`C_{TTC}=C_{HT}(1+t)\\[4pt]\text{Isoler }C_{HT} :`,
+        choices: [r`C_{HT}=\dfrac{C_{TTC}}{1+t}`, r`C_{HT}=C_{TTC}(1-t)`, r`C_{HT}=\dfrac{C_{TTC}}{t}`, r`C_{HT}=C_{TTC}-t`],
+        a: r`C_{HT}=\dfrac{C_{TTC}}{1+t}`, tip: r`\text{Diviser par }(1+t)` },
+      { q: r`I=\dfrac{C\,t\,n}{100}\\[4pt]\text{Isoler }C :`,
+        choices: [r`C=\dfrac{100\,I}{tn}`, r`C=\dfrac{Itn}{100}`, r`C=\dfrac{I}{100\,tn}`, r`C=100\,Itn`],
+        a: r`C=\dfrac{100\,I}{tn}`, tip: r`C\,t\,n=100I\Rightarrow C=\dfrac{100I}{tn}` },
+      { q: r`E=\dfrac{1}{2}mv^2\\[4pt]\text{Isoler }m :`,
+        choices: [r`m=\dfrac{2E}{v^2}`, r`m=\dfrac{Ev^2}{2}`, r`m=\dfrac{E}{2v^2}`, r`m=2Ev^2`],
+        a: r`m=\dfrac{2E}{v^2}`, tip: r`mv^2=2E\Rightarrow m=\dfrac{2E}{v^2}` },
+      { q: r`A=\pi r^2 h\ \text{(volume cylindre)}\\[4pt]\text{Isoler }h :`,
+        choices: [r`h=\dfrac{A}{\pi r^2}`, r`h=\dfrac{\pi r^2}{A}`, r`h=A\pi r^2`, r`h=\dfrac{A}{\pi r}`],
+        a: r`h=\dfrac{A}{\pi r^2}`, tip: r`\text{Diviser par }\pi r^2` },
     ],
 
     // ── Premières opérations et réduction d'expressions (50 questions progressives) ──
@@ -3979,6 +3998,120 @@ const DB = {
         },
         choices:[`-2`,`2`,`-1`,`1`], a:`-2`,
         tip:r`\text{Triangle : }\Delta x=+1,\ \Delta y=-2\ \Rightarrow\ f'(2)=\frac{-2}{1}=-2` },
+
+      // ── 10 nouvelles — SANS triangle de construction (à l'œil) ──
+      // L'élève doit lire la pente directement sur la tangente tracée.
+
+      // Q11 — pente +1
+      { q: r`\text{Lis }f'(0)\text{ à l'œil :}`,
+        gspec: { fn:x=>x*x/4+x, xr:[-3,3], yr:[-3,4], label:"f",
+          extras: c => {
+            const fn=x=>x*x/4+x, a=0, m=1;
+            return <>{gTan(fn,a,m,c,'#EF4444')}{gPt(a,fn(a),c,'#EF4444')}</>;
+          }
+        },
+        choices:[`1`,`0`,`-1`,`2`], a:`1`,
+        tip:r`f'(x)=\frac{x}{2}+1\ \Rightarrow\ f'(0)=1` },
+
+      // Q12 — pente +2
+      { q: r`\text{Lis }f'(1)\text{ à l'œil :}`,
+        gspec: { fn:x=>x*x, xr:[-2,3], yr:[-1,5], label:"f",
+          extras: c => {
+            const fn=x=>x*x, a=1, m=2;
+            return <>{gTan(fn,a,m,c,'#EF4444')}{gPt(a,fn(a),c,'#EF4444')}</>;
+          }
+        },
+        choices:[`2`,`1`,`-2`,`4`], a:`2`,
+        tip:r`f'(x)=2x\ \Rightarrow\ f'(1)=2` },
+
+      // Q13 — pente -1
+      { q: r`\text{Lis }f'(0)\text{ à l'œil :}`,
+        gspec: { fn:x=>-x+1, xr:[-2,3], yr:[-2,3], label:"f",
+          extras: c => {
+            const fn=x=>-x+1, a=0, m=-1;
+            return <>{gTan(fn,a,m,c,'#EF4444')}{gPt(a,fn(a),c,'#EF4444')}</>;
+          }
+        },
+        choices:[`-1`,`1`,`0`,`-2`], a:`-1`,
+        tip:r`\text{Pente d'une droite affine : } f'(x)=-1` },
+
+      // Q14 — pente 0 (extremum)
+      { q: r`\text{Lis }f'(1)\text{ à l'œil :}`,
+        gspec: { fn:x=>(x-1)*(x-1)+1, xr:[-1,3], yr:[0,5], label:"f",
+          extras: c => {
+            const fn=x=>(x-1)*(x-1)+1, a=1, m=0;
+            return <>{gTan(fn,a,m,c,'#EF4444')}{gPt(a,fn(a),c,'#EF4444')}</>;
+          }
+        },
+        choices:[`0`,`1`,`2`,`-1`], a:`0`,
+        tip:r`\text{Tangente horizontale au sommet}\ \Rightarrow\ f'(1)=0` },
+
+      // Q15 — pente -3
+      { q: r`\text{Lis }f'(0)\text{ à l'œil :}`,
+        gspec: { fn:x=>-x*x-3*x+2, xr:[-3,2], yr:[-2,5], label:"f",
+          extras: c => {
+            const fn=x=>-x*x-3*x+2, a=0, m=-3;
+            return <>{gTan(fn,a,m,c,'#EF4444')}{gPt(a,fn(a),c,'#EF4444')}</>;
+          }
+        },
+        choices:[`-3`,`3`,`-1`,`2`], a:`-3`,
+        tip:r`f'(x)=-2x-3\ \Rightarrow\ f'(0)=-3` },
+
+      // Q16 — pente +0,5
+      { q: r`\text{Lis }f'(0)\text{ à l'œil :}`,
+        gspec: { fn:x=>0.5*x+1, xr:[-3,3], yr:[-1,3], label:"f",
+          extras: c => {
+            const fn=x=>0.5*x+1, a=0, m=0.5;
+            return <>{gTan(fn,a,m,c,'#EF4444')}{gPt(a,fn(a),c,'#EF4444')}</>;
+          }
+        },
+        choices:[r`0{,}5`,`1`,`2`,r`-0{,}5`], a:r`0{,}5`,
+        tip:r`\text{Pente douce}\ \Rightarrow\ f'(0)=0{,}5` },
+
+      // Q17 — pente +3
+      { q: r`\text{Lis }f'(1)\text{ à l'œil :}`,
+        gspec: { fn:x=>x*x*x, xr:[-2,2], yr:[-3,4], label:"f",
+          extras: c => {
+            const fn=x=>x*x*x, a=1, m=3;
+            return <>{gTan(fn,a,m,c,'#EF4444')}{gPt(a,fn(a),c,'#EF4444')}</>;
+          }
+        },
+        choices:[`3`,`1`,`2`,`-3`], a:`3`,
+        tip:r`f'(x)=3x^2\ \Rightarrow\ f'(1)=3` },
+
+      // Q18 — pente -2 (lue à l'œil)
+      { q: r`\text{Lis }f'(2)\text{ à l'œil :}`,
+        gspec: { fn:x=>-0.5*x*x+3, xr:[-2,4], yr:[-2,4], label:"f",
+          extras: c => {
+            const fn=x=>-0.5*x*x+3, a=2, m=-2;
+            return <>{gTan(fn,a,m,c,'#EF4444')}{gPt(a,fn(a),c,'#EF4444')}</>;
+          }
+        },
+        choices:[`-2`,`2`,`-1`,`1`], a:`-2`,
+        tip:r`f'(x)=-x\ \Rightarrow\ f'(2)=-2` },
+
+      // Q19 — droite affine, pente 2
+      { q: r`\text{Lis }f'(0)\text{ à l'œil :}`,
+        gspec: { fn:x=>2*x-1, xr:[-2,3], yr:[-3,4], label:"f",
+          extras: c => {
+            const fn=x=>2*x-1, a=0, m=2;
+            return <>{gTan(fn,a,m,c,'#EF4444')}{gPt(a,fn(a),c,'#EF4444')}</>;
+          }
+        },
+        choices:[`2`,`-1`,`0`,`1`], a:`2`,
+        tip:r`\text{Pente de la droite : }f'(x)=2` },
+
+      // Q20 — pente -0,5 (douce, négative)
+      { q: r`\text{Lis }f'(1)\text{ à l'œil :}`,
+        gspec: { fn:x=>-0.25*x*x+0.5*x+2, xr:[-2,4], yr:[-1,4], label:"f",
+          extras: c => {
+            const fn=x=>-0.25*x*x+0.5*x+2, a=1, m=0;
+            // f'(x) = -0.5x + 0.5, f'(1) = 0
+            return <>{gTan(fn,a,m,c,'#EF4444')}{gPt(a,fn(a),c,'#EF4444')}</>;
+          }
+        },
+        choices:[`0`,r`0{,}5`,`-1`,`1`], a:`0`,
+        tip:r`f'(x)=-\frac{x}{2}+\frac{1}{2}\ \Rightarrow\ f'(1)=0` },
     ],
     calcul_derivee: [
       { q:r`\text{Si }f(x)=4x-7\\[5pt]\text{Alors }f'(x)=`, choices:[`4`,`-7`,`4x`,`0`], a:`4`, tip:r`(ax+b)'=a` },
@@ -4001,6 +4134,25 @@ const DB = {
       { q:r`\text{Si }f(x)=6x-1\\[5pt]\text{Alors }f'(x)=`, choices:[`6`,`-1`,`6x`,`0`], a:`6`, tip:r`(ax+b)'=a=6` },
       { q:r`\text{Si }f(x)=x^3-4x^2+2\\[5pt]\text{Alors }f'(x)=`, choices:[r`3x^2-8x`,r`3x^2-4x`,r`x^2-8x`,r`3x^2-8x+2`], a:r`3x^2-8x`, tip:r`3x^2-8x` },
       { q:r`\text{Si }f(x)=5x^2+2x-1\\[5pt]\text{Alors }f'(x)=`, choices:[`10x+2`,`5x+2`,`10x-1`,`10x`], a:`10x+2`, tip:r`10x+2` },
+      // ── 16 questions supplémentaires (degré 2 et 3) ──
+      // Degré 2 (8 questions)
+      { q:r`\text{Si }f(x)=x^2-7x+12\\[5pt]\text{Alors }f'(x)=`, choices:[`2x-7`,`2x+7`,`x-7`,`2x-12`], a:`2x-7`, tip:r`2x-7` },
+      { q:r`\text{Si }f(x)=-x^2+6x\\[5pt]\text{Alors }f'(x)=`, choices:[`-2x+6`,`-2x-6`,`-x+6`,`2x+6`], a:`-2x+6`, tip:r`-2x+6` },
+      { q:r`\text{Si }f(x)=3x^2-12x+7\\[5pt]\text{Alors }f'(x)=`, choices:[`6x-12`,`3x-12`,`6x+7`,`6x-7`], a:`6x-12`, tip:r`6x-12` },
+      { q:r`\text{Si }f(x)=-2x^2+8x-3\\[5pt]\text{Alors }f'(x)=`, choices:[`-4x+8`,`-2x+8`,`-4x-3`,`4x+8`], a:`-4x+8`, tip:r`-4x+8` },
+      { q:r`\text{Si }f(x)=\dfrac{x^2}{2}-3x\\[5pt]\text{Alors }f'(x)=`, choices:[`x-3`,r`\frac{x}{2}-3`,`2x-3`,`x+3`], a:`x-3`, tip:r`\frac{1}{2}\times2x-3=x-3` },
+      { q:r`\text{Si }f(x)=10x^2-x+4\\[5pt]\text{Alors }f'(x)=`, choices:[`20x-1`,`10x-1`,`20x+4`,`20x`], a:`20x-1`, tip:r`20x-1` },
+      { q:r`\text{Si }f(x)=(x-3)^2\\[5pt]\text{Alors }f'(x)=`, choices:[`2x-6`,`2(x-3)`,`x-3`,`2x+6`], a:`2x-6`, tip:r`(x-3)^2=x^2-6x+9\Rightarrow f'(x)=2x-6` },
+      { q:r`\text{Si }f(x)=-\dfrac{1}{2}x^2+5\\[5pt]\text{Alors }f'(x)=`, choices:[`-x`,r`-\frac{x}{2}`,`-x+5`,`x`], a:`-x`, tip:r`-\frac{1}{2}\times2x=-x` },
+      // Degré 3 (8 questions)
+      { q:r`\text{Si }f(x)=2x^3-3x^2+x\\[5pt]\text{Alors }f'(x)=`, choices:[r`6x^2-6x+1`,r`6x^2-3x+1`,r`2x^2-6x+1`,r`6x^2-6x`], a:r`6x^2-6x+1`, tip:r`6x^2-6x+1` },
+      { q:r`\text{Si }f(x)=x^3+5x^2-2x+1\\[5pt]\text{Alors }f'(x)=`, choices:[r`3x^2+10x-2`,r`3x^2+5x-2`,r`x^2+10x-2`,r`3x^2+10x-1`], a:r`3x^2+10x-2`, tip:r`3x^2+10x-2` },
+      { q:r`\text{Si }f(x)=-x^3+4x\\[5pt]\text{Alors }f'(x)=`, choices:[r`-3x^2+4`,r`-3x^2-4`,r`-x^2+4`,r`3x^2+4`], a:r`-3x^2+4`, tip:r`-3x^2+4` },
+      { q:r`\text{Si }f(x)=2x^3-6x\\[5pt]\text{Alors }f'(x)=`, choices:[r`6x^2-6`,r`6x^2+6`,r`2x^2-6`,r`6x^2-6x`], a:r`6x^2-6`, tip:r`6x^2-6` },
+      { q:r`\text{Si }f(x)=\dfrac{x^3}{3}-2x\\[5pt]\text{Alors }f'(x)=`, choices:[r`x^2-2`,r`x^2+2`,r`\frac{x^2}{3}-2`,r`3x^2-2`], a:r`x^2-2`, tip:r`\frac{1}{3}\times3x^2-2=x^2-2` },
+      { q:r`\text{Si }f(x)=5x^3-x^2+7\\[5pt]\text{Alors }f'(x)=`, choices:[r`15x^2-2x`,r`15x^2-x`,r`5x^2-2x`,r`15x^2-2x+7`], a:r`15x^2-2x`, tip:r`15x^2-2x` },
+      { q:r`\text{Si }f(x)=-2x^3+3x^2-x\\[5pt]\text{Alors }f'(x)=`, choices:[r`-6x^2+6x-1`,r`-6x^2+3x-1`,r`-2x^2+6x-1`,r`-6x^2+6x`], a:r`-6x^2+6x-1`, tip:r`-6x^2+6x-1` },
+      { q:r`\text{Si }f(x)=x^3-3x^2+3x-1\\[5pt]\text{Alors }f'(x)=`, choices:[r`3x^2-6x+3`,r`3x^2-3x+3`,r`x^2-6x+3`,r`3x^2-6x-1`], a:r`3x^2-6x+3`, tip:r`3x^2-6x+3=3(x-1)^2` },
     ],
   },
   // ════ 7. EN ROUTE POUR LE BAC ══════════════════════════════════════════════════
@@ -4090,7 +4242,7 @@ const DB = {
       { q:r`\text{Un prix }P\text{ augmente de }10\%\text{ puis baisse de }10\%.\\[4pt]P_1\text{ par rapport à }P\text{ :}`, choices:[r`P_1=P`,r`P_1>P`,r`P_1<P`,r`\text{Cela dépend de }P`], a:r`P_1<P`, tip:r`P\times1{,}1\times0{,}9=0{,}99P<P` },
       { q:r`\text{Dé à 4 faces : P(1)}=0{,}5\text{, P(2)}=\frac{1}{6}\text{, P(3)}=0{,}2.\\[4pt]x=\text{P(4)}=?`, choices:[r`x=\dfrac{2}{15}`,r`x=\dfrac{2}{3}`,r`x=0{,}4`,r`x=0{,}1`], a:r`x=\dfrac{2}{15}`, tip:r`x=1-0{,}5-\frac{1}{6}-0{,}2=\frac{2}{15}` },
       { q:r`\dfrac{1}{x}+\dfrac{1}{y}=\dfrac{1}{u}\text{. On a :}`, choices:[r`u=\dfrac{xy}{x+y}`,r`u=\dfrac{x+y}{xy}`,r`u=xy`,r`u=x+y`], a:r`u=\dfrac{xy}{x+y}`, tip:r`\frac{x+y}{xy}=\frac{1}{u}\Rightarrow u=\frac{xy}{x+y}` },
-      { q:r`x^2>10\text{ est équivalent à :}`, choices:[r`-\sqrt{10}\leq x\leq\sqrt{10}`,r`x\leq-\sqrt{10}\text{ ou }x\geq\sqrt{10}`,r`x\geq\sqrt{10}`,r`x=\pm\sqrt{10}`], a:r`x\leq-\sqrt{10}\text{ ou }x\geq\sqrt{10}`, tip:r`|x|>\sqrt{10}` },
+      { q:r`x^2>10\text{ est équivalent à :}`, choices:[r`-\sqrt{10}\leq x\leq\sqrt{10}`,r`x\leq-\sqrt{10}\text{ ou }x\geq\sqrt{10}`,r`x\geq\sqrt{10}`,r`x=-\sqrt{10}\text{ ou }x=\sqrt{10}`], a:r`x\leq-\sqrt{10}\text{ ou }x\geq\sqrt{10}`, tip:r`|x|>\sqrt{10}` },
       { q:r`\text{Droite passant par }(0\,;\,2)\text{ et }(3\,;\,0).\\[4pt]\text{Son équation est :}`, choices:[r`y=-\dfrac{3}{2}x+2`,r`y=\dfrac{2}{3}x+2`,r`2x-3y-6=0`,r`\dfrac{x}{3}+\dfrac{y}{2}-1=0`], a:r`\dfrac{x}{3}+\dfrac{y}{2}-1=0`, tip:r`\text{Vérif : }(0,2)\checkmark\text{ et }(3,0)\checkmark` },
       { q:r`f_1:x\mapsto x^2-(1-x)^2,\;f_2:x\mapsto\frac{x}{2}-\left(1+\frac{1}{\sqrt{2}}\right),\;f_3:x\mapsto\frac{5-\frac{2}{3}x}{0{,}7}\\[4pt]\text{Les fonctions affines sont :}`, choices:[r`\text{Aucune}`,r`\text{Toutes}`,r`\text{Uniquement }f_1`,r`\text{Uniquement }f_2\text{ et }f_3`], a:r`\text{Toutes}`, tip:r`f_1=2x-1\text{ (affine), }f_2\text{ et }f_3\text{ aussi}` },
       { q:r`\text{Parabole vers le bas, racines en }x=0\text{ et }x=10.\\[4pt]\text{Expression possible :}`, choices:[r`x\mapsto x^2-10`,r`x\mapsto-x^2-10`,r`x\mapsto-x^2+10`,r`x\mapsto-x^2+10x`], a:r`x\mapsto-x^2+10x`, tip:r`-x(x-10)=0\Rightarrow x=0\text{ ou }10\checkmark` },
@@ -4107,7 +4259,7 @@ const DB = {
       { q:r`7{,}5\times10^6\text{ J en kWh (1 kWh}=3{,}6\times10^6\text{ J) :}`, choices:[r`0{,}5\text{ kWh}`,r`2{,}08\text{ kWh}`,r`5{,}3\text{ kWh}`,r`20{,}35\text{ kWh}`], a:r`2{,}08\text{ kWh}`, tip:r`\frac{7{,}5}{3{,}6}\approx2{,}08` },
       { q:r`A(0\,;\,-1)\text{ et }B(2\,;\,5).\\[4pt]\text{Coefficient directeur de }(AB)\text{ :}`, choices:[r`-\dfrac{1}{2}`,`2`,`3`,r`\dfrac{1}{3}`], a:`3`, tip:r`m=\frac{5-(-1)}{2-0}=3` },
       { q:r`\text{Droite passant par }(0\,;\,-1)\text{ et }(1\,;\,1).\\[4pt]\text{Son équation est :}`, choices:[r`2x-y=0`,r`2x+y+1=0`,r`y=x^2-(x+1)^2+1`,r`y=2x-1`], a:`y=2x-1`, tip:r`y=2x-1\text{ : }f(0)=-1\checkmark,\,f(1)=1\checkmark` },
-      { q:r`x^2=10.\\[4pt]S=?`, choices:[r`\{-5\,;\,5\}`,r`\{-\sqrt{5}\,;\,\sqrt{5}\}`,r`\{-\sqrt{10}\,;\,\sqrt{10}\}`,r`\emptyset`], a:r`\{-\sqrt{10}\,;\,\sqrt{10}\}`, tip:r`x=\pm\sqrt{10}` },
+      { q:r`x^2=10.\\[4pt]S=?`, choices:[r`\{-5\,;\,5\}`,r`\{-\sqrt{5}\,;\,\sqrt{5}\}`,r`\{-\sqrt{10}\,;\,\sqrt{10}\}`,r`\emptyset`], a:r`\{-\sqrt{10}\,;\,\sqrt{10}\}`, tip:r`x=-\sqrt{10}\text{ ou }x=\sqrt{10}` },
       { q:r`f(x)=(3x-15)(x+2).\\[4pt]f\text{ est positif pour :}`, choices:[r`x<-2\text{ et }x>5`,r`-2<x<5`,r`x<-5\text{ et }x>2`,r`-5<x<2`], a:r`x<-2\text{ et }x>5`, tip:r`\text{Racines}=-2\text{ et }5,\text{ parabole vers le haut}` },
       { q:r`(2x+0{,}5)^2=?`, choices:[r`4x^2+x+0{,}25`,r`4x^2+4x+2`,r`4x^2+2x+0{,}25`,r`4x^2+2x+1`], a:r`4x^2+2x+0{,}25`, tip:r`4x^2+2\times2x\times0{,}5+0{,}25` },
       { q:r`a=\dfrac{v^2}{R}\text{. Isoler }v\text{ :}`, choices:[r`v=aR^2`,r`v=\sqrt{aR}`,r`v=\sqrt{\dfrac{a}{R}}`,r`v=\dfrac{a^2}{R}`], a:r`v=\sqrt{aR}`, tip:r`v^2=aR\Rightarrow v=\sqrt{aR}` },
@@ -4281,7 +4433,7 @@ const DB = {
         choices: [`1`, `25`, `49`, `-1`], a: `1`, tip: r`\Delta=25-24=1` },
       { q: r`x^2-4=0\\[4pt]\text{Solutions :}`,
         choices: [r`x=-2\text{ et }x=2`, r`x=4\text{ et }x=-4`, r`x=2`, r`\text{Pas de solution}`],
-        a: r`x=-2\text{ et }x=2`, tip: r`x^2=4\Rightarrow x=\pm2` },
+        a: r`x=-2\text{ et }x=2`, tip: r`x^2=4\Rightarrow x=-2\text{ ou }x=2` },
       { q: r`x^2-6x+9=0\\[4pt]\Delta=\,?`,
         choices: [`0`, `9`, `36`, `-9`], a: `0`, tip: r`\Delta=36-36=0\Rightarrow\text{une seule racine}` },
       { q: r`x^2-6x+9=0,\ \Delta=0\\[4pt]\text{Solution double :}`,
@@ -6273,8 +6425,9 @@ function QRExportScreen({profile, allProg, xp, badges, onBack}) {
   const data = compactStats(profile, allProg, xp, badges);
   const json = JSON.stringify(data);
 
-  // Build visual QR via Google Charts API (free, no key)
-  const qrUrl = `https://chart.googleapis.com/chart?chs=280x280&cht=qr&chl=${encodeURIComponent(json)}&choe=UTF-8&chld=L|2`;
+  // Build visual QR via api.qrserver.com (gratuit, sans clé, stable).
+  // Note : Google Charts QR API a été dépréciée en 2024, on utilise un fallback.
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=${encodeURIComponent(json)}&ecc=L&margin=10`;
 
   const CATS_MAP = {
     fonctions:'📈 Fonctions',pourcentages:'💹 %',numerique:'🔢 Numérique',
@@ -6308,7 +6461,15 @@ function QRExportScreen({profile, allProg, xp, badges, onBack}) {
           </div>
           <img src={qrUrl} alt="QR Code"
             style={{width:220,height:220,borderRadius:12,border:'2px solid #F1F5F9'}}
-            onError={e=>e.target.style.display='none'}/>
+            onError={e=>{
+              // Si l'API tombe, on remplace l'image par un message lisible
+              const parent = e.target.parentNode;
+              const fallback = document.createElement('div');
+              fallback.style.cssText = 'width:220px;height:220px;border-radius:12px;border:2px dashed #CBD5E1;background:#F8FAFC;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;margin:0 auto;';
+              fallback.innerHTML = '<div style="font-size:36px;margin-bottom:8px;">📱</div><div style="font-size:11px;color:#64748B;text-align:center;line-height:1.5;">QR temporairement indisponible.<br/>Ton code de sauvegarde est<br/>accessible via <strong>Sauvegarde 💾</strong></div>';
+              e.target.style.display='none';
+              parent.appendChild(fallback);
+            }}/>
           <div style={{marginTop:12,fontSize:10,color:'#94A3B8',lineHeight:1.5}}>
             Montre ce QR code à ton professeur<br/>ou télécharge le fichier JSON ci-dessous
           </div>
@@ -6779,7 +6940,7 @@ function PreferencesScreen({profile, onSave, onBack}) {
 }
 
 
-function ProfileSetupScreen({onComplete, onBack}) {
+function ProfileSetupScreen({onComplete, onBack, onRestore}) {
   const [name, setName] = useState('');
   const [level, setLevel] = useState('');
   const [step, setStep] = useState(0);
@@ -6836,6 +6997,23 @@ function ProfileSetupScreen({onComplete, onBack}) {
               fontSize:15,fontWeight:800,cursor:name.trim()?"pointer":"default"}}>
             Continuer →
           </button>
+          {/* Lien : si l'élève a déjà un compte, il peut restaurer sa sauvegarde
+              au lieu de refaire tout le diagnostic */}
+          {onRestore && (
+            <div style={{marginTop:14,paddingTop:14,borderTop:"1px solid rgba(148,163,184,0.15)",
+              textAlign:"center"}}>
+              <div style={{fontSize:11,color:"#64748B",marginBottom:6}}>
+                Tu as déjà utilisé AutoMaths ?
+              </div>
+              <button onClick={onRestore}
+                style={{background:"transparent",border:"1.5px solid rgba(59,130,246,0.4)",
+                  borderRadius:10,padding:"8px 14px",cursor:"pointer",
+                  color:"#93C5FD",fontFamily:"'Nunito',sans-serif",
+                  fontSize:11,fontWeight:800,display:"inline-flex",alignItems:"center",gap:6}}>
+                💾 Restaurer ma sauvegarde
+              </button>
+            </div>
+          )}
         </div>
       ):(
         <div className="slide-up" style={{width:"100%",maxWidth:320,marginTop:16}}>
@@ -9004,7 +9182,25 @@ function SplashScreen({onStart, onMySpace, onRestore, profile}) {
                 {t}</span>
             ))}
           </div>
-          {onRestore && (
+          {/* Restauration : encart bien visible quand pas de profil
+              (cas d'un élève qui se reconnecte après déconnexion / clear cache) */}
+          {onRestore && !profile && (
+            <button onClick={onRestore}
+              style={{marginTop:14,padding:"11px 16px",borderRadius:14,
+                background:"rgba(59,130,246,0.12)",border:"1.5px solid rgba(59,130,246,0.4)",
+                cursor:"pointer",display:"flex",alignItems:"center",gap:10,
+                color:"#93C5FD",fontFamily:"'Nunito',sans-serif",fontSize:12,fontWeight:800,
+                width:"100%",justifyContent:"center"}}>
+              <span style={{fontSize:18}}>💾</span>
+              <span style={{display:"flex",flexDirection:"column",alignItems:"flex-start",gap:1}}>
+                <span style={{fontSize:12,color:"#fff"}}>Déjà un compte ?</span>
+                <span style={{fontSize:10,fontWeight:600,color:"#93C5FD"}}>Restaure ta sauvegarde →</span>
+              </span>
+            </button>
+          )}
+          {/* Lien discret quand il y a déjà un profil (cas rare : un élève veut
+              importer une autre sauvegarde par-dessus) */}
+          {onRestore && profile && (
             <button onClick={onRestore}
               style={{marginTop:8,background:"transparent",border:"none",cursor:"pointer",
                 color:"#64748B",fontSize:11,fontWeight:600,textDecoration:"underline",
@@ -13084,7 +13280,7 @@ function AutoMaths() {
         }}>
 
           {screen==="splash"        && <SplashScreen    onStart={()=>setScreen(profile?"dashboard":"home")} onMySpace={()=>setScreen(profile?"dashboard":"setup")} onRestore={()=>setScreen("backup")} profile={profile}/>}
-          {screen==="setup"         && <ProfileSetupScreen onComplete={hProfileComplete} onBack={()=>setScreen("splash")}/>}
+          {screen==="setup"         && <ProfileSetupScreen onComplete={hProfileComplete} onBack={()=>setScreen("splash")} onRestore={()=>setScreen("backup")}/>}
           {screen==="qr_export"    && profile && <QRExportScreen profile={profile} allProg={allProgCache} xp={qrXp} badges={qrBadges} onBack={()=>setScreen("dashboard")}/>}
           {screen==="backup"       && <BackupScreen onBack={()=>setScreen(profile?"dashboard":"splash")} onImportDone={hImportDone}/>}
           {screen==="reminder"     && <ReminderScreen onBack={()=>setScreen("dashboard")}/>}
