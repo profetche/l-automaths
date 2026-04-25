@@ -6422,7 +6422,7 @@ function compactStats(profile, allProg, xp, badges) {
 
 // ── Teacher Snapshot (lien pour dashboard prof) ──────────────────────────────
 // URL du dashboard prof. À ajuster si tu changes d'hébergement.
-const DASHBOARD_URL = 'https://l-automaths-prof.vercel.app/';
+const DASHBOARD_URL = 'https://automaths-prof.vercel.app/';
 
 async function teacherSnapshot(profile, allProg, xp) {
   const activeDays = await loadActiveDays();
