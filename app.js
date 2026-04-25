@@ -6420,6 +6420,49 @@ function compactStats(profile, allProg, xp, badges) {
   };
 }
 
+// ── Teacher Snapshot (lien pour dashboard prof) ──────────────────────────────
+// URL du dashboard prof. À ajuster si tu changes d'hébergement.
+const DASHBOARD_URL = 'https://l-automaths-prof.vercel.app/';
+
+async function teacherSnapshot(profile, allProg, xp) {
+  const activeDays = await loadActiveDays();
+  const recentDays = activeDays.slice(-14);
+
+  const lastSeen = recentDays.length > 0
+    ? recentDays[recentDays.length - 1] + 'T12:00:00Z'
+    : new Date().toISOString();
+
+  const progress = {};
+  for (const [key, p] of Object.entries(allProg || {})) {
+    if (p && p.pt > 0) {
+      progress[key] = { pc: p.pc || 0, pt: p.pt || 0, stars: p.stars || 0 };
+    }
+  }
+
+  return {
+    v: 1,
+    exportedAt: new Date().toISOString(),
+    student: {
+      name: profile.name || 'Anonyme',
+      level: profile.level || 'seconde',
+      lastSeen,
+      streak: profile.streak || 0,
+      totalXp: xp || 0,
+    },
+    progress,
+    activeDays: recentDays,
+  };
+}
+
+function buildTeacherLink(snapshot) {
+  const json = JSON.stringify(snapshot);
+  const b64 = btoa(unescape(encodeURIComponent(json)))
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/, '');
+  return DASHBOARD_URL + '?d=' + b64;
+}
+
 // ── QR Display Screen ─────────────────────────────────────────────────────────
 function QRExportScreen({profile, allProg, xp, badges, onBack}) {
   const data = compactStats(profile, allProg, xp, badges);
@@ -6505,6 +6548,134 @@ function QRExportScreen({profile, allProg, xp, badges, onBack}) {
           💡 Ton professeur scanne ce QR code avec son tableau de bord AutoMaths
           pour voir tes progrès en temps réel.
         </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Send to Teacher Screen (lien partagé) ────────────────────────────────────
+function SendToTeacherScreen({profile, allProg, xp, onBack}) {
+  const [link, setLink] = React.useState('');
+  const [status, setStatus] = React.useState('');
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    teacherSnapshot(profile, allProg, xp)
+      .then(snap => {
+        setLink(buildTeacherLink(snap));
+        setLoading(false);
+      })
+      .catch(() => {
+        setStatus('error');
+        setLoading(false);
+      });
+  }, []);
+
+  const handleShare = async () => {
+    if (!link) return;
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Mon suivi AutoMaths',
+          text: `Suivi de ${profile.name} pour le prof`,
+          url: link,
+        });
+        setStatus('shared');
+      } catch (e) {
+        // L'utilisateur a annulé le partage, on ne fait rien
+      }
+    } else {
+      handleCopy();
+    }
+  };
+
+  const handleCopy = async () => {
+    if (!link) return;
+    try {
+      await navigator.clipboard.writeText(link);
+      setStatus('copied');
+      setTimeout(() => setStatus(''), 2500);
+    } catch {
+      const ta = document.getElementById('teacher-link-area');
+      if (ta) { ta.select(); document.execCommand('copy'); setStatus('copied'); }
+    }
+  };
+
+  return (
+    <div style={{display:'flex',flexDirection:'column',height:'100%',background:'var(--am-bg-light)'}}>
+      <div style={{background:'linear-gradient(135deg,var(--am-bg-dark-1),var(--am-bg-dark-2))',
+        padding:'14px 16px',flexShrink:0,display:'flex',alignItems:'center',gap:10}}>
+        <button onClick={onBack} style={{background:'rgba(255,255,255,0.1)',border:'none',
+          borderRadius:9,padding:'6px 11px',color:'#94A3B8',cursor:'pointer',fontSize:12,fontWeight:700}}>
+          ← Retour
+        </button>
+        <div style={{flex:1,color:'#fff',fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,textAlign:'center'}}>
+          Envoyer à mon prof 📨
+        </div>
+      </div>
+
+      <div style={{flex:1,overflowY:'auto',padding:'20px',display:'flex',flexDirection:'column',gap:14}}>
+        {loading ? (
+          <div style={{textAlign:'center',padding:40,color:'#64748B'}}>Préparation du lien…</div>
+        ) : (
+          <React.Fragment>
+            <div style={{background:'#fff',borderRadius:18,padding:'20px',
+              boxShadow:'0 4px 16px rgba(0,0,0,.08)'}}>
+              <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:15,
+                color:'#1E293B',marginBottom:8}}>
+                Comment ça marche
+              </div>
+              <ol style={{paddingLeft:20,fontSize:13,color:'#475569',lineHeight:1.7,margin:0}}>
+                <li>Appuie sur <strong>Partager</strong> ci-dessous</li>
+                <li>Choisis Pronote, Mail, ou n'importe quel moyen</li>
+                <li>Envoie le lien à ton prof — il l'ouvrira et tes progrès apparaîtront chez lui</li>
+              </ol>
+              <div style={{marginTop:12,padding:'10px 12px',background:'#FEF3C7',borderRadius:8,
+                fontSize:11,color:'#92400E',lineHeight:1.5}}>
+                💡 Le lien contient un résumé de ton travail. Pas ton mot de passe, pas tes badges :
+                juste ce que ton prof a besoin de voir.
+              </div>
+            </div>
+
+            <button onClick={handleShare} style={{
+              padding:'16px 20px',background:'linear-gradient(135deg,#4338CA,#6366F1)',
+              color:'#fff',border:'none',borderRadius:14,fontSize:16,fontWeight:800,
+              cursor:'pointer',fontFamily:"'Nunito',sans-serif",
+              boxShadow:'0 4px 12px rgba(99,102,241,0.3)'}}>
+              📤 Partager le lien
+            </button>
+
+            <button onClick={handleCopy} style={{
+              padding:'12px 20px',background:'#fff',color:'#1E293B',
+              border:'2px solid #E2E8F0',borderRadius:12,fontSize:14,fontWeight:700,
+              cursor:'pointer',fontFamily:"'Nunito',sans-serif"}}>
+              {status === 'copied' ? '✓ Lien copié' : '📋 Copier le lien'}
+            </button>
+
+            <details style={{background:'#fff',borderRadius:12,padding:12,fontSize:12}}>
+              <summary style={{cursor:'pointer',color:'#64748B',fontWeight:700}}>
+                Voir le lien (avancé)
+              </summary>
+              <textarea id="teacher-link-area" value={link} readOnly
+                style={{width:'100%',minHeight:80,marginTop:10,padding:8,
+                  fontSize:10,fontFamily:'monospace',border:'1px solid #E2E8F0',
+                  borderRadius:6,resize:'vertical',color:'#475569'}}/>
+            </details>
+
+            {status === 'shared' && (
+              <div style={{padding:'10px 14px',background:'#D1FAE5',borderRadius:10,
+                fontSize:12,color:'#065F46',fontWeight:600}}>
+                ✓ Lien partagé. Ton prof devrait le recevoir.
+              </div>
+            )}
+            {status === 'error' && (
+              <div style={{padding:'10px 14px',background:'#FEE2E2',borderRadius:10,
+                fontSize:12,color:'#991B1B',fontWeight:600}}>
+                Erreur de génération du lien. Réessaie.
+              </div>
+            )}
+          </React.Fragment>
+        )}
       </div>
     </div>
   );
@@ -6654,7 +6825,7 @@ function ReminderScreen({onBack}) {
 // Mode "expertise" : l'élève copie son code et le stocke lui-même (mail, notes).
 // Pas de serveur, pas de compte, zéro friction. S'il perd ses données (clear
 // cache, changement d'appareil), il colle son code et retrouve tout.
-function BackupScreen({onBack, onImportDone}) {
+function BackupScreen({onBack, onImportDone, onSendTeacher, hasProfile}) {
   const [tab, setTab] = useState('export'); // 'export' | 'import'
   const [code, setCode] = useState('');
   const [importCode, setImportCode] = useState('');
@@ -6731,6 +6902,18 @@ function BackupScreen({onBack, onImportDone}) {
       </div>
 
       <div style={{flex:1,overflowY:'auto',padding:'16px',display:'flex',flexDirection:'column',gap:14}}>
+        {hasProfile && onSendTeacher && (
+          <button onClick={onSendTeacher}
+            style={{padding:'14px 16px',background:'linear-gradient(135deg,#4338CA,#6366F1)',
+              color:'#fff',border:'none',borderRadius:14,fontSize:14,fontWeight:800,
+              cursor:'pointer',fontFamily:"'Nunito',sans-serif",
+              display:'flex',alignItems:'center',justifyContent:'center',gap:10,
+              boxShadow:'0 4px 12px rgba(99,102,241,0.25)'}}>
+            <span style={{fontSize:18}}>📨</span>
+            <span>Envoyer mes progrès à mon prof</span>
+          </button>
+        )}
+
         {tab === 'export' && (
           <>
             <div style={{background:'#EFF6FF',borderRadius:12,padding:'12px 14px',
@@ -13282,7 +13465,8 @@ function AutoMaths() {
           {screen==="splash"        && <SplashScreen    onStart={()=>setScreen(profile?"dashboard":"home")} onMySpace={()=>setScreen(profile?"dashboard":"setup")} onRestore={()=>setScreen("backup")} profile={profile}/>}
           {screen==="setup"         && <ProfileSetupScreen onComplete={hProfileComplete} onBack={()=>setScreen("splash")} onRestore={()=>setScreen("backup")}/>}
           {screen==="qr_export"    && profile && <QRExportScreen profile={profile} allProg={allProgCache} xp={qrXp} badges={qrBadges} onBack={()=>setScreen("dashboard")}/>}
-          {screen==="backup"       && <BackupScreen onBack={()=>setScreen(profile?"dashboard":"splash")} onImportDone={hImportDone}/>}
+          {screen==="send_teacher" && profile && <SendToTeacherScreen profile={profile} allProg={allProgCache} xp={qrXp} onBack={()=>setScreen("backup")}/>}
+          {screen==="backup"       && <BackupScreen onBack={()=>setScreen(profile?"dashboard":"splash")} onImportDone={hImportDone} onSendTeacher={()=>setScreen("send_teacher")} hasProfile={!!profile}/>}
           {screen==="reminder"     && <ReminderScreen onBack={()=>setScreen("dashboard")}/>}
           {screen==="preferences"  && profile && <PreferencesScreen profile={profile} onSave={(p)=>{setProfile(p);setScreen("dashboard");}} onBack={()=>setScreen("dashboard")}/>}
           {screen==="diagnostic"    && profile && <DiagnosticScreen profile={profile} onComplete={hDiagComplete}/>}
