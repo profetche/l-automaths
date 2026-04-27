@@ -9343,168 +9343,252 @@ function SplashScreen({onStart, onMySpace, onRestore, profile}) {
 // ── MENU ─────────────────────────────────────────────────────────────────────
 function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress}) {
   const th = getTheme(profile);
-  // Modes principaux simplifiés :
-  // - Sprint : accès direct (format court, rythmé)
-  // - S'entraîner : écran intermédiaire (Express / Entraînement / Test aléatoire)
-  // - Missions : objectifs ciblés
-  // - Bac : annales
-  const modes = [
-    {id:"sprint",      label:"Sprint 5 min",         sub:"Vite, chrono !",         emoji:"⏱️", grad:"linear-gradient(135deg,#10B981,#047857)"},
-    {id:"train",       label:"S'entraîner",          sub:"Choisis ton format",     emoji:"💪", grad:"linear-gradient(135deg,#8B5CF6,#6D28D9)"},
-    {id:"missions",    label:"Les missions",         sub:"Objectifs ciblés Sigma", emoji:"🚀", grad:"linear-gradient(135deg,#1E40AF,#1E3A8A)"},
-    {id:"bac",         label:"En route pour le Bac", sub:"Annales & sujets",       emoji:"🏆", grad:"linear-gradient(135deg,#F59E0B,#B45309)"},
+
+  // Modes secondaires (compacts, 3 cartes en grille)
+  const secondaryModes = [
+    {id:"sprint",   label:"Sprint",       sub:"5 min chrono",    emoji:"⏱️", color:"#10B981", grad:"linear-gradient(135deg,#10B981,#047857)"},
+    {id:"missions", label:"Missions",     sub:"Objectifs Sigma", emoji:"🚀", color:"#1E40AF", grad:"linear-gradient(135deg,#1E40AF,#1E3A8A)"},
+    {id:"bac",      label:"Bac",          sub:"Annales",         emoji:"🏆", color:"#F59E0B", grad:"linear-gradient(135deg,#F59E0B,#B45309)"},
   ];
+
+  // ─── Calcul du status streak (logique inchangée, juste extraite proprement) ───
+  let streakBlock = null;
+  if (profile) {
+    const streak = profile.streak || 0;
+    const today = new Date().toDateString();
+    const lastDay = profile.lastActive ? new Date(profile.lastActive).toDateString() : null;
+    const yesterday = new Date(Date.now()-86400000).toDateString();
+    const threshold = 10;
+    const todayCount = (streakProgress && streakProgress.date === today) ? streakProgress.count : 0;
+    const completedToday = (streakProgress && streakProgress.date === today && streakProgress.completed);
+    const streakAtRisk = streak > 0 && !completedToday && lastDay === yesterday;
+
+    let mainText, subText, emoji, accent;
+    if (completedToday) {
+      mainText = streak === 1 ? "1 jour" : `${streak} jours`;
+      subText = "Journée validée · Reviens demain";
+      emoji = "🔥";
+      accent = "#F59E0B";
+    } else if (streak === 0) {
+      mainText = "Démarre ta série";
+      subText = todayCount > 0 ? `${todayCount}/${threshold} bonnes réponses` : `${threshold} bonnes réponses aujourd'hui`;
+      emoji = "🌱";
+      accent = "#10B981";
+    } else if (streakAtRisk) {
+      mainText = streak === 1 ? "1 jour en jeu" : `${streak} jours en jeu`;
+      subText = todayCount > 0 ? `${todayCount}/${threshold} — ne casse pas la série !` : `Joue ${threshold} bonnes réponses pour garder ta série`;
+      emoji = "⏰";
+      accent = "#EF4444";
+    } else {
+      mainText = "Nouvelle journée";
+      subText = todayCount > 0 ? `${todayCount}/${threshold} bonnes réponses` : `${threshold} bonnes réponses pour démarrer`;
+      emoji = "☀️";
+      accent = "#F59E0B";
+    }
+
+    streakBlock = {
+      mainText, subText, emoji, accent, completedToday, todayCount, threshold
+    };
+  }
+
   return (
     <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",
-      padding:"16px 18px",background: th.bgLight}}>
-      <div style={{marginBottom:10}}>
-        {/* Sigma + brand header — version compacte */}
-        <div style={{display:"flex",alignItems:"center",gap:10,
-          background:"var(--am-bg-dark-1)",borderRadius:16,padding:"8px 14px",marginBottom:10,
-          boxShadow:"0 3px 12px rgba(15,52,96,.3)",position:"relative"}}>
-          {onSplash && (
-            <button onClick={onSplash}
-              style={{position:"absolute",top:6,right:8,background:"rgba(255,255,255,0.08)",
-                border:"none",borderRadius:6,padding:"3px 7px",color:"#64748B",
-                cursor:"pointer",fontSize:10,fontWeight:700}}>
-              ←
-            </button>
-          )}
-          <div style={{flexShrink:0}}>
-            <img src={SIGMA_IMG} alt="Sigma" style={{width:38,height:38,objectFit:"contain"}}/>
-          </div>
-          <div style={{textAlign:"left",flex:1}}>
-            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:18,
+      background: th.bgLight}}>
+
+      {/* ════════════════════════════════════════════════════════════════
+          ZONE 1 — STATUT (compact, dense, sombre)
+          Brand + streak + parcours regroupés sur fond foncé.
+          ════════════════════════════════════════════════════════════════ */}
+      <div style={{
+        background:"linear-gradient(135deg,var(--am-bg-dark-1),var(--am-bg-dark-2))",
+        padding:"14px 18px 18px",
+        borderBottomLeftRadius:24,
+        borderBottomRightRadius:24,
+        boxShadow:"0 4px 14px rgba(15,52,96,.25)",
+        position:"relative",
+        flexShrink:0,
+      }}>
+        {/* Ligne 1 : brand + retour */}
+        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom: profile ? 12 : 4}}>
+          <img src={SIGMA_IMG} alt="Sigma" style={{width:36,height:36,objectFit:"contain",flexShrink:0}}/>
+          <div style={{flex:1}}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:17,
               color:"#fff",letterSpacing:-0.5,lineHeight:1}}>
               l'Auto<span style={{color:"#F59E0B"}}>Maths</span>
             </div>
             <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:10,
-              color:"#64748B",marginTop:2}}>
-              Ton assistante maths 🧡
+              color:"rgba(255,255,255,.5)",marginTop:2}}>
+              {profile ? `Bonjour ${profile.name} 👋` : "Ton assistante maths 🧡"}
             </div>
           </div>
+          {onSplash && (
+            <button onClick={onSplash}
+              style={{background:"rgba(255,255,255,0.08)",
+                border:"none",borderRadius:8,padding:"5px 10px",color:"rgba(255,255,255,.6)",
+                cursor:"pointer",fontSize:11,fontWeight:700}}>
+              ←
+            </button>
+          )}
         </div>
-        {profile && (() => {
-          const streak = profile.streak || 0;
-          const today = new Date().toDateString();
-          const lastDay = profile.lastActive ? new Date(profile.lastActive).toDateString() : null;
-          const yesterday = new Date(Date.now()-86400000).toDateString();
-          const threshold = 10; // STREAK_DAILY_THRESHOLD
-          const todayCount = (streakProgress && streakProgress.date === today) ? streakProgress.count : 0;
-          const completedToday = (streakProgress && streakProgress.date === today && streakProgress.completed);
-          const streakAtRisk = streak > 0 && !completedToday && lastDay === yesterday;
-          const streakLost = streak > 0 && lastDay !== today && lastDay !== yesterday;
-          
-          // Couleur et état
-          const bg = completedToday
-            ? "linear-gradient(135deg,#F59E0B,#EA580C)"
-            : streakAtRisk
-            ? "linear-gradient(135deg,#EF4444,#B91C1C)"
-            : "linear-gradient(135deg,#64748B,#475569)";
-          
-          const emoji = streakLost ? "🌱" : (completedToday ? "🔥" : (streakAtRisk ? "⏰" : (streak > 0 ? "🔥" : "🌱")));
-          
-          // Texte principal
-          let mainText, subText;
-          if (completedToday) {
-            mainText = streak === 1 ? "1 jour" : `${streak} jours`;
-            subText = "✅ Journée validée · Reviens demain !";
-          } else if (streak === 0) {
-            mainText = "Démarre ta série !";
-            subText = todayCount > 0
-              ? `${todayCount}/${threshold} bonnes réponses — continue !`
-              : "10 bonnes réponses aujourd'hui pour démarrer";
-          } else if (streakAtRisk) {
-            mainText = streak === 1 ? "1 jour en jeu" : `${streak} jours en jeu`;
-            subText = todayCount > 0
-              ? `${todayCount}/${threshold} — ne casse pas ta série !`
-              : `Joue aujourd'hui (${threshold} bonnes réponses) pour garder ta série`;
-          } else {
-            mainText = "Nouvelle journée";
-            subText = todayCount > 0
-              ? `${todayCount}/${threshold} bonnes réponses — continue !`
-              : `${threshold} bonnes réponses pour démarrer une nouvelle série`;
-          }
-          
-          return (
-            <div style={{
-              background: bg,
-              borderRadius:14, padding:"10px 14px", marginBottom:10,
-              boxShadow:"0 3px 10px rgba(0,0,0,.12)"
-            }}>
-              <div style={{display:"flex", alignItems:"center", gap:12}}>
-                <div style={{fontSize:26, flexShrink:0}}>{emoji}</div>
-                <div style={{flex:1, textAlign:"left"}}>
-                  <div style={{fontFamily:"'Nunito',sans-serif", fontWeight:900,
-                    fontSize:17, color:"#fff", lineHeight:1.1}}>
-                    {mainText}
-                  </div>
-                  <div style={{color:"rgba(255,255,255,.9)", fontSize:10,
-                    fontWeight:600, marginTop:2}}>
-                    {subText}
-                  </div>
-                </div>
+
+        {/* Ligne 2 : streak (compact, intégré au bandeau sombre) */}
+        {profile && streakBlock && (
+          <div style={{
+            background:"rgba(255,255,255,0.06)",
+            borderRadius:12,
+            padding:"10px 14px",
+            display:"flex",
+            alignItems:"center",
+            gap:12,
+            border: `1px solid ${streakBlock.accent}33`,
+          }}>
+            <div style={{fontSize:24, flexShrink:0}}>{streakBlock.emoji}</div>
+            <div style={{flex:1, minWidth:0}}>
+              <div style={{fontFamily:"'Nunito',sans-serif", fontWeight:800,
+                fontSize:14, color:"#fff", lineHeight:1.1}}>
+                {streakBlock.mainText}
               </div>
-              {!completedToday && (
-                <div style={{
-                  marginTop:8, height:4, background:"rgba(255,255,255,0.25)",
-                  borderRadius:99, overflow:"hidden"
-                }}>
+              <div style={{color:"rgba(255,255,255,.7)", fontSize:10,
+                fontWeight:600, marginTop:2, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis"}}>
+                {streakBlock.subText}
+              </div>
+            </div>
+            {!streakBlock.completedToday && (
+              <div style={{width:46,flexShrink:0}}>
+                <div style={{height:5, background:"rgba(255,255,255,0.15)",
+                  borderRadius:99, overflow:"hidden"}}>
                   <div style={{
-                    width: `${Math.min(100, (todayCount / threshold) * 100)}%`,
-                    height: "100%", background: "#fff", borderRadius: 99,
+                    width: `${Math.min(100, (streakBlock.todayCount / streakBlock.threshold) * 100)}%`,
+                    height: "100%", background: streakBlock.accent, borderRadius: 99,
                     transition: "width .4s"
                   }}/>
                 </div>
-              )}
-            </div>
-          );
-        })()}
-        {/* Teaser pour les utilisateurs sans profil — version discrète */}
+                <div style={{textAlign:"right",fontSize:9,fontWeight:700,
+                  color:"rgba(255,255,255,.5)",marginTop:3}}>
+                  {streakBlock.todayCount}/{streakBlock.threshold}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Teaser sans profil */}
         {!profile && (
           <div style={{
-            background:"rgba(203,213,225,0.5)",
-            borderRadius:10, padding:"8px 12px", marginBottom:10,
-            display:"flex", alignItems:"center", gap:8
+            background:"rgba(255,255,255,0.06)",
+            borderRadius:10, padding:"8px 12px", marginTop:10,
+            display:"flex", alignItems:"center", gap:8,
+            border:"1px dashed rgba(255,255,255,0.15)"
           }}>
-            <div style={{fontSize:14, opacity:0.6}}>🔒</div>
-            <div style={{fontSize:11, color:"#475569", fontWeight:600}}>
+            <div style={{fontSize:13, opacity:0.7}}>🔒</div>
+            <div style={{fontSize:11, color:"rgba(255,255,255,.7)", fontWeight:600}}>
               Crée un compte pour garder tes progrès
             </div>
           </div>
         )}
       </div>
-      {/* Dashboard shortcut */}
-      {profile && onDashboard && (
-        <button onClick={onDashboard}
-          style={{marginBottom:10,padding:"9px 14px",borderRadius:12,border:"none",
-            background:"linear-gradient(135deg,var(--am-bg-dark-1),var(--am-bg-dark-2))",color:"#F59E0B",
-            fontFamily:"'Nunito',sans-serif",fontSize:12,fontWeight:800,cursor:"pointer",
-            display:"flex",alignItems:"center",gap:8,flexShrink:0}}>
-          <span style={{fontSize:16}}>{CURRICULUM[profile.level]?.emoji||"📊"}</span>
-          <span>Mon parcours — {profile.name}</span>
-          <span style={{marginLeft:"auto",fontSize:10,color:"#64748B"}}>→</span>
-        </button>
-      )}
+
+      {/* ════════════════════════════════════════════════════════════════
+          RESPIRATION — Vraie marge entre statut et actions
+          ════════════════════════════════════════════════════════════════ */}
+      <div style={{height:24, flexShrink:0}}/>
+
+      {/* ════════════════════════════════════════════════════════════════
+          ZONE 2 — ACTIONS
+          ════════════════════════════════════════════════════════════════ */}
       <Scroll>
-        {modes.map((m,i)=>(
-          <button key={m.id} onClick={()=>onMode(m.id)} className="pop-in"
-            style={{background:m.grad,border:"none",borderRadius:16,padding:"16px 18px",
-              cursor:"pointer",display:"flex",alignItems:"center",gap:14,
-              boxShadow:"0 5px 18px rgba(0,0,0,.15)",animationDelay:`${i*.06}s`,flexShrink:0,marginBottom:10}}>
-            <div style={{fontSize:26,width:44,height:44,background:"rgba(255,255,255,.2)",
-              borderRadius:12,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
-              {m.emoji}
+        <div style={{padding:"0 18px"}}>
+
+          {/* Petit label de section */}
+          <div style={{
+            fontSize:10, fontWeight:800, color:"#94A3B8",
+            letterSpacing:".15em", textTransform:"uppercase",
+            marginBottom:10, paddingLeft:4
+          }}>
+            Que veux-tu faire ?
+          </div>
+
+          {/* ─── MODE HÉROS : S'entraîner (le plus utilisé) ─── */}
+          <button onClick={()=>onMode("train")} className="pop-in"
+            style={{
+              background:"linear-gradient(135deg,#8B5CF6,#6D28D9)",
+              border:"none",borderRadius:18,padding:"22px 22px",
+              cursor:"pointer",display:"flex",alignItems:"center",gap:16,
+              boxShadow:"0 8px 24px rgba(139,92,246,.3)",
+              width:"100%",marginBottom:14,
+              animationDelay:"0s",position:"relative",overflow:"hidden",
+            }}>
+            {/* Halo décoratif */}
+            <div style={{position:"absolute",top:-30,right:-30,width:140,height:140,
+              borderRadius:"50%",background:"rgba(255,255,255,0.08)",pointerEvents:"none"}}/>
+            <div style={{fontSize:38,width:64,height:64,
+              background:"rgba(255,255,255,.2)",borderRadius:18,
+              display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,
+              position:"relative",zIndex:1}}>
+              💪
             </div>
-            <div style={{textAlign:"left",flex:1}}>
-              <div style={{fontFamily:"'Nunito',sans-serif",fontSize:16,fontWeight:900,color:"#fff"}}>
-                {m.label}
+            <div style={{textAlign:"left",flex:1,position:"relative",zIndex:1}}>
+              <div style={{fontFamily:"'Nunito',sans-serif",fontSize:20,fontWeight:900,color:"#fff",lineHeight:1.1}}>
+                S'entraîner
               </div>
-              <div style={{fontSize:11,color:"rgba(255,255,255,.8)",marginTop:1}}>{m.sub}</div>
+              <div style={{fontSize:12,color:"rgba(255,255,255,.85)",marginTop:4,fontWeight:600}}>
+                Choisis ton chapitre · ton format · à ton rythme
+              </div>
             </div>
-            <div style={{color:"rgba(255,255,255,.7)",fontSize:18}}>›</div>
+            <div style={{color:"rgba(255,255,255,.7)",fontSize:24,position:"relative",zIndex:1}}>›</div>
           </button>
-        ))}
+
+          {/* ─── MODES SECONDAIRES (grille 3 colonnes) ─── */}
+          <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:8,marginBottom:14}}>
+            {secondaryModes.map((m,i)=>(
+              <button key={m.id} onClick={()=>onMode(m.id)} className="pop-in"
+                style={{
+                  background:m.grad,border:"none",borderRadius:14,padding:"14px 8px",
+                  cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",gap:6,
+                  boxShadow:`0 4px 12px ${m.color}40`,
+                  animationDelay:`${(i+1)*.06}s`,
+                  minHeight:96,
+                }}>
+                <div style={{fontSize:24,width:42,height:42,
+                  background:"rgba(255,255,255,.2)",borderRadius:11,
+                  display:"flex",alignItems:"center",justifyContent:"center"}}>
+                  {m.emoji}
+                </div>
+                <div style={{textAlign:"center"}}>
+                  <div style={{fontFamily:"'Nunito',sans-serif",fontSize:13,fontWeight:900,color:"#fff",lineHeight:1.1}}>
+                    {m.label}
+                  </div>
+                  <div style={{fontSize:9,color:"rgba(255,255,255,.8)",marginTop:2,fontWeight:600}}>
+                    {m.sub}
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+
+          {/* ─── ACCÈS DASHBOARD (lien sobre, en bas) ─── */}
+          {profile && onDashboard && (
+            <button onClick={onDashboard}
+              style={{
+                width:"100%",padding:"12px 16px",borderRadius:12,
+                border:"1.5px solid #E2E8F0",
+                background:"#fff",
+                fontFamily:"'Nunito',sans-serif",fontSize:13,fontWeight:700,
+                color:"#475569",cursor:"pointer",
+                display:"flex",alignItems:"center",gap:10,marginBottom:12
+              }}>
+              <span style={{fontSize:18}}>{CURRICULUM[profile.level]?.emoji||"📊"}</span>
+              <div style={{textAlign:"left",flex:1}}>
+                <div style={{fontWeight:800,color:"#1E293B"}}>Mon parcours</div>
+                <div style={{fontSize:10,color:"#94A3B8",fontWeight:600,marginTop:1}}>
+                  Progression · stats · réglages
+                </div>
+              </div>
+              <span style={{fontSize:14,color:"#94A3B8"}}>→</span>
+            </button>
+          )}
+
+        </div>
       </Scroll>
     </div>
   );
