@@ -7548,6 +7548,8 @@ function check_curriculum_complete() { return function(c){
 function check_legendary_combined() { return function(c){
   return (c.starsTotal||0) >= 50 && (c.missionThemesDone||[]).length >= 10;
 }; }
+// Combinateur : déclenche si TOUTES les checks passent (ET logique)
+function check_and(...checks) { return function(c){ return checks.every(f => f(c)); }; }
 
 // Catalogue des cartes
 const CARDS = [
@@ -7598,46 +7600,47 @@ const CARDS = [
 const CARDS_OBJECTIVES = {
   // ─── Objectifs série A : Histoire ───
   "sigma_cromagnon": { label:"Fais ton 1er quiz", check:(c) => check_lifetime_ge(1)(c) },
-  "sigma_pharaon": { label:"Cumule 25 bonnes réponses", check:(c) => check_lifetime_ge(25)(c) },
-  "sigma_scribe": { label:"Cumule 50 bonnes réponses", check:(c) => check_lifetime_ge(50)(c) },
-  "sigma_philosophe": { label:"Cumule 100 bonnes réponses", check:(c) => check_lifetime_ge(100)(c) },
-  "sigma_legionnaire": { label:"Valide 2 jours de streak", check:(c) => check_streak_ge(2)(c) },
-  "sigma_viking": { label:"Valide 3 jours de streak", check:(c) => check_streak_ge(3)(c) },
-  "sigma_maya": { label:"Cumule 100 XP", check:(c) => check_xp_ge(100)(c) },
-  "sigma_samourai": { label:"Cumule 250 XP", check:(c) => check_xp_ge(250)(c) },
-  "sigma_gladiateur": { label:"Joue le matin (avant 10h)", check:(c) => check_morning()(c) },
-  "sigma_druide": { label:"Joue le soir (après 18h)", check:(c) => check_evening()(c) },
-  "sigma_chevalier": { label:"Valide 5 jours de streak", check:(c) => check_streak_ge(5)(c) },
-  "sigma_inventeur": { label:"Valide 7 jours de streak", check:(c) => check_streak_ge(7)(c) },
-  "sigma_alchimiste": { label:"Valide 10 jours de streak", check:(c) => check_streak_ge(10)(c) },
-  "sigma_mousquetaire": { label:"Cumule 250 bonnes réponses", check:(c) => check_lifetime_ge(250)(c) },
-  "sigma_pirate": { label:"Cumule 500 bonnes réponses", check:(c) => check_lifetime_ge(500)(c) },
-  "sigma_astronome": { label:"Cumule 500 XP", check:(c) => check_xp_ge(500)(c) },
-  "sigma_cowboy": { label:"Cumule 1000 XP", check:(c) => check_xp_ge(1000)(c) },
-  "sigma_explorateur": { label:"Joue un samedi", check:(c) => check_saturday()(c) },
-  "sigma_moine": { label:"Joue un dimanche", check:(c) => check_sunday()(c) },
-  "sigma_azat": { label:"Joue un samedi ET un dimanche", check:(c) => check_weekend()(c) },
+  "sigma_pharaon": { label:"Cumule 50 bonnes réponses", check:(c) => check_lifetime_ge(50)(c) },
+  "sigma_scribe": { label:"Cumule 150 bonnes réponses", check:(c) => check_lifetime_ge(150)(c) },
+  "sigma_philosophe": { label:"Cumule 300 bonnes réponses", check:(c) => check_lifetime_ge(300)(c) },
+  "sigma_legionnaire": { label:"Valide 3 jours de streak", check:(c) => check_streak_ge(3)(c) },
+  "sigma_viking": { label:"Valide 7 jours de streak", check:(c) => check_streak_ge(7)(c) },
+  "sigma_maya": { label:"Cumule 500 XP", check:(c) => check_xp_ge(500)(c) },
+  "sigma_samourai": { label:"Cumule 1500 XP", check:(c) => check_xp_ge(1500)(c) },
+  "sigma_gladiateur": { label:"Joue le matin avec 100 bonnes réponses au compteur", check:(c) => check_and(check_morning(), check_lifetime_ge(100))(c) },
+  "sigma_druide": { label:"Joue le soir avec un streak de 3 jours", check:(c) => check_and(check_evening(), check_streak_ge(3))(c) },
+  "sigma_chevalier": { label:"Valide 10 jours de streak", check:(c) => check_streak_ge(10)(c) },
+  "sigma_inventeur": { label:"Valide 14 jours de streak", check:(c) => check_streak_ge(14)(c) },
+  "sigma_alchimiste": { label:"Valide 21 jours de streak", check:(c) => check_streak_ge(21)(c) },
+  "sigma_mousquetaire": { label:"Cumule 750 bonnes réponses", check:(c) => check_lifetime_ge(750)(c) },
+  "sigma_pirate": { label:"Cumule 1500 bonnes réponses", check:(c) => check_lifetime_ge(1500)(c) },
+  "sigma_astronome": { label:"Cumule 3000 XP", check:(c) => check_xp_ge(3000)(c) },
+  "sigma_cowboy": { label:"Cumule 6000 XP", check:(c) => check_xp_ge(6000)(c) },
+  "sigma_explorateur": { label:"Joue un samedi avec 50 bonnes réponses au compteur", check:(c) => check_and(check_saturday(), check_lifetime_ge(50))(c) },
+  "sigma_moine": { label:"Joue un dimanche avec 150 bonnes réponses au compteur", check:(c) => check_and(check_sunday(), check_lifetime_ge(150))(c) },
+  "sigma_azat": { label:"3 weekends complets (sam+dim)", check:(c) => check_weekends_ge(3)(c) },
   // ─── Objectifs série B : Voyage ───
-  "sigma_paris": { label:"Joue sur 2 catégories différentes", check:(c) => check_cats_visited_ge(2)(c) },
-  "sigma_london": { label:"Joue sur 3 catégories différentes", check:(c) => check_cats_visited_ge(3)(c) },
-  "sigma_newyork": { label:"Joue sur 4 catégories différentes", check:(c) => check_cats_visited_ge(4)(c) },
-  "sigma_tokyo": { label:"Joue sur 5 catégories différentes", check:(c) => check_cats_visited_ge(5)(c) },
-  "sigma_rome": { label:"Fais ta 1ère session Sprint", check:(c) => check_sprint_ge(1)(c) },
-  "sigma_cairo": { label:"3 sessions Sprint", check:(c) => check_sprint_ge(3)(c) },
-  "sigma_sydney": { label:"5 sessions Sprint", check:(c) => check_sprint_ge(5)(c) },
-  "sigma_moscow": { label:"10 quiz terminés", check:(c) => check_nbquiz_ge(10)(c) },
-  "sigma_rio": { label:"20 quiz terminés", check:(c) => check_nbquiz_ge(20)(c) },
-  "sigma_beijing": { label:"50 quiz terminés", check:(c) => check_nbquiz_ge(50)(c) },
-  "sigma_athens": { label:"10 sessions Sprint", check:(c) => check_sprint_ge(10)(c) },
-  "sigma_petra": { label:"25 sessions Sprint", check:(c) => check_sprint_ge(25)(c) },
-  "sigma_machupicchu": { label:"Cumule 1000 bonnes réponses", check:(c) => check_lifetime_ge(1000)(c) },
-  "sigma_venice": { label:"Cumule 2500 XP", check:(c) => check_xp_ge(2500)(c) },
-  "sigma_marrakech": { label:"Valide 14 jours de streak", check:(c) => check_streak_ge(14)(c) },
-  "sigma_agra": { label:"3 weekends complets (sam+dim)", check:(c) => check_weekends_ge(3)(c) },
-  "sigma_istanbul": { label:"Joue sur toutes les catégories", check:(c) => check_all_cats()(c) },
-  "sigma_berlin": { label:"1ère session de remédiation", check:(c) => check_remediation_ge(1)(c) },
-  "sigma_amsterdam": { label:"100 quiz terminés", check:(c) => check_nbquiz_ge(100)(c) },
-  "sigma_kyoto": { label:"Cumule 5000 XP", check:(c) => check_xp_ge(5000)(c) },
+  "sigma_paris": { label:"Joue sur 3 catégories différentes", check:(c) => check_cats_visited_ge(3)(c) },
+  "sigma_london": { label:"Joue sur 5 catégories différentes", check:(c) => check_cats_visited_ge(5)(c) },
+  "sigma_newyork": { label:"Joue sur toutes les catégories", check:(c) => check_all_cats()(c) },
+  "sigma_tokyo": { label:"Maîtrise une catégorie entière", check:(c) => check_cat_complete_ge(1)(c) },
+  "sigma_rome": { label:"3 sessions Sprint", check:(c) => check_sprint_ge(3)(c) },
+  "sigma_cairo": { label:"5 sessions Sprint", check:(c) => check_sprint_ge(5)(c) },
+  "sigma_sydney": { label:"10 sessions Sprint", check:(c) => check_sprint_ge(10)(c) },
+  "sigma_moscow": { label:"20 quiz terminés", check:(c) => check_nbquiz_ge(20)(c) },
+  "sigma_rio": { label:"40 quiz terminés", check:(c) => check_nbquiz_ge(40)(c) },
+  "sigma_beijing": { label:"75 quiz terminés", check:(c) => check_nbquiz_ge(75)(c) },
+  "sigma_athens": { label:"20 sessions Sprint", check:(c) => check_sprint_ge(20)(c) },
+  "sigma_petra": { label:"40 sessions Sprint", check:(c) => check_sprint_ge(40)(c) },
+  "sigma_machupicchu": { label:"Cumule 2500 bonnes réponses", check:(c) => check_lifetime_ge(2500)(c) },
+  "sigma_venice": { label:"Cumule 8000 XP", check:(c) => check_xp_ge(8000)(c) },
+  "sigma_marrakech": { label:"Valide 30 jours de streak", check:(c) => check_streak_ge(30)(c) },
+  "sigma_agra": { label:"5 weekends complets (sam+dim)", check:(c) => check_weekends_ge(5)(c) },
+  "sigma_istanbul": { label:"Maîtrise 2 catégories entières", check:(c) => check_cat_complete_ge(2)(c) },
+  "sigma_berlin": { label:"3 sessions de remédiation", check:(c) => check_remediation_ge(3)(c) },
+  "sigma_amsterdam": { label:"150 quiz terminés", check:(c) => check_nbquiz_ge(150)(c) },
+  "sigma_kyoto": { label:"Cumule 15000 XP", check:(c) => check_xp_ge(15000)(c) },
+  // ─── Stubs Or / Diamant / Légendaire (cartes à venir) ───
   // ─── Stubs Or / Diamant / Légendaire (cartes à venir) ───
   "sigma_a_g01": { label:"Valide 21 jours de streak", check:(c) => check_streak_ge(21)(c) },
   "sigma_a_g02": { label:"Valide 30 jours de streak", check:(c) => check_streak_ge(30)(c) },
@@ -11348,7 +11351,8 @@ function CountScreen({catId,onCount,onBack,allMode=false,options=[10,20]}) {
 
 // ── SprintScreen — Chrono 5 min, QCM only, viser le record ──────────────────
 const SPRINT_DURATION = 300; // 5 minutes
-const SPRINT_BEST_K = 'user:sprint_best';
+const SPRINT_BEST_K = 'user:sprint_best';        // (legacy) record sur bonnes réponses brutes
+const SPRINT_BEST_FINAL_K = 'user:sprint_best_final'; // record sur le score final (précision × volume + combo)
 
 function SprintScreen({pool, onFinish, onBack}) {
   const [idx, setIdx]           = useState(0);
@@ -11359,6 +11363,11 @@ function SprintScreen({pool, onFinish, onBack}) {
   const [shake, setShake]       = useState(false);
   const [timeLeft, setTimeLeft] = useState(SPRINT_DURATION);
   const [started, setStarted]   = useState(false);
+  // Combo : nombre de bonnes réponses d'affilée. Récompense la précision.
+  const [combo, setCombo]       = useState(0);
+  const [bestCombo, setBestCombo] = useState(0);
+  // Animation pop sur le combo quand il s'incrémente
+  const [comboPop, setComboPop] = useState(false);
   // File de questions mélangées (on shuffle une fois au démarrage)
   const queue = React.useMemo(() => shuffle(pool), [pool]);
   const q = queue[idx % queue.length];
@@ -11367,10 +11376,17 @@ function SprintScreen({pool, onFinish, onBack}) {
     [q, idx]
   );
 
+  // Multiplicateur de combo (visuel + bonus de score final)
+  // 0-4 combo => ×1 / 5-9 => ×2 / 10-14 => ×3 / 15+ => ×5
+  const comboMult = combo >= 15 ? 5 : combo >= 10 ? 3 : combo >= 5 ? 2 : 1;
+  // Précision en temps réel (affichée à partir de 5 réponses pour éviter l'effet yoyo)
+  const livePct = answered > 0 ? Math.round(score / answered * 100) : 0;
+  const showLivePct = answered >= 5;
+
   // Countdown
   useEffect(() => {
     if (!started) return;
-    if (timeLeft <= 0) { onFinish({score, answered}); return; }
+    if (timeLeft <= 0) { onFinish({score, answered, bestCombo}); return; }
     const timer = setTimeout(() => setTimeLeft(t => t - 1), 1000);
     return () => clearTimeout(timer);
   }, [started, timeLeft]);
@@ -11382,8 +11398,19 @@ function SprintScreen({pool, onFinish, onBack}) {
     setShown(true);
     const ok = c === q.a;
     setAnswered(a => a + 1);
-    if (ok) { setScore(s => s + 1); }
-    else { setShake(true); setTimeout(() => setShake(false), 280); }
+    if (ok) {
+      setScore(s => s + 1);
+      setCombo(c => {
+        const newC = c + 1;
+        setBestCombo(b => Math.max(b, newC));
+        return newC;
+      });
+      setComboPop(true);
+      setTimeout(() => setComboPop(false), 350);
+    } else {
+      setCombo(0); // mauvaise réponse = reset du combo
+      setShake(true); setTimeout(() => setShake(false), 280);
+    }
     // Enchaîner rapidement : 500 ms si correct, 900 ms si incorrect (lecture)
     setTimeout(() => {
       setSelected(null); setShown(false);
@@ -11395,6 +11422,11 @@ function SprintScreen({pool, onFinish, onBack}) {
   const seconds = timeLeft % 60;
   const pct = (timeLeft / SPRINT_DURATION) * 100;
   const barColor = timeLeft > 60 ? "#10B981" : timeLeft > 30 ? "#F59E0B" : "#EF4444";
+
+  // Couleur dynamique pour la précision en temps réel
+  const livePctColor = livePct >= 70 ? "#10B981" : livePct >= 50 ? "#F59E0B" : "#EF4444";
+  // Couleur dynamique pour le combo (du gris au violet selon le multiplicateur)
+  const comboColor = comboMult === 5 ? "#A855F7" : comboMult === 3 ? "#F59E0B" : comboMult === 2 ? "#10B981" : "#94A3B8";
 
   // Écran de démarrage (pour que l'élève se prépare)
   if (!started) {
@@ -11410,8 +11442,9 @@ function SprintScreen({pool, onFinish, onBack}) {
           Chaque bonne réponse compte.<br/>
           <strong>Prêt·e ?</strong>
         </p>
-        <div style={{background:"#FEF3C7",borderRadius:12,padding:"10px 16px",color:"#92400E",fontSize:11,fontWeight:700,maxWidth:320,textAlign:"center"}}>
-          💡 Astuce : mieux vaut réfléchir 2s et répondre juste que foncer au hasard.
+        <div style={{background:"#FEF3C7",borderRadius:12,padding:"10px 16px",color:"#92400E",fontSize:11,fontWeight:700,maxWidth:320,textAlign:"center",lineHeight:1.5}}>
+          💡 La précision compte plus que la vitesse !<br/>
+          <span style={{fontWeight:600}}>Enchaîne les bonnes réponses pour activer un combo (×2, ×3, ×5).</span>
         </div>
         <button onClick={() => setStarted(true)} style={{
           background:"linear-gradient(135deg,#F59E0B,#D97706)",
@@ -11431,7 +11464,7 @@ function SprintScreen({pool, onFinish, onBack}) {
     <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",padding:"14px 16px",gap:12}}>
       {/* Header : timer + score */}
       <div style={{display:"flex",alignItems:"center",gap:10}}>
-        <button onClick={()=>onFinish({score,answered})} style={{
+        <button onClick={()=>onFinish({score,answered,bestCombo})} style={{
           background:"#F1F5F9",border:"none",borderRadius:8,padding:"4px 10px",
           color:"#64748B",fontSize:11,fontWeight:700,cursor:"pointer"}}>
           ✕
@@ -11445,14 +11478,34 @@ function SprintScreen({pool, onFinish, onBack}) {
         </div>
       </div>
 
-      {/* Compteurs */}
-      <div style={{display:"flex",gap:8,justifyContent:"center"}}>
+      {/* Compteurs : score / précision / combo */}
+      <div style={{display:"flex",gap:6,justifyContent:"center",flexWrap:"wrap"}}>
         <div style={{background:"#ECFDF5",color:"#065F46",borderRadius:99,padding:"4px 12px",fontSize:12,fontWeight:800}}>
           ✓ {score}
         </div>
         <div style={{background:"#F8FAFC",color:"#475569",borderRadius:99,padding:"4px 12px",fontSize:12,fontWeight:700}}>
           {answered} répondues
         </div>
+        {showLivePct && (
+          <div style={{
+            background: livePctColor === "#10B981" ? "#ECFDF5" : livePctColor === "#F59E0B" ? "#FFFBEB" : "#FEF2F2",
+            color: livePctColor,borderRadius:99,padding:"4px 12px",
+            fontSize:12,fontWeight:800,transition:"all .25s ease"
+          }}>
+            🎯 {livePct}%
+          </div>
+        )}
+        {combo >= 3 && (
+          <div className={comboPop ? "pop-in" : ""} style={{
+            background: comboMult >= 3 ? "linear-gradient(135deg," + comboColor + "," + comboColor + "DD)" : comboColor + "22",
+            color: comboMult >= 3 ? "#fff" : comboColor,
+            borderRadius:99,padding:"4px 12px",fontSize:12,fontWeight:900,
+            boxShadow: comboMult >= 2 ? "0 2px 8px " + comboColor + "55" : "none",
+            transition:"all .25s ease"
+          }}>
+            🔥 {combo}{comboMult > 1 ? ` · ×${comboMult}` : ""}
+          </div>
+        )}
       </div>
 
       {/* Question */}
@@ -11542,43 +11595,99 @@ function AccountPromptModal({lifetime, onAccept, onDismiss}) {
 }
 
 function SprintResultScreen({result, onReplay, onHome, best, isNewBest}) {
-  const {score, answered} = result;
+  const {score, answered, bestCombo = 0} = result;
   const pct = answered > 0 ? Math.round(score/answered*100) : 0;
-  const emotion = score >= 25 ? "legendaire" : score >= 15 ? "love" : score >= 10 ? "cool" : score >= 5 ? "happy" : "sad";
+
+  // Score final = bonnes réponses × précision + bonus combo
+  // Formule : finalScore = round(score × pct/100) + comboBonus
+  // Le comboBonus = bestCombo × 2 (chaque palier de 5 ajoute ~10 points)
+  // Cliquer au hasard donne ~25% pct + combo nul -> finalScore très bas.
+  // Réfléchir donne ~80% pct + combos -> finalScore élevé.
+  const accuracyScore = Math.round(score * pct / 100);
+  const comboBonus = bestCombo * 2;
+  const finalScore = accuracyScore + comboBonus;
+
+  // Multiplicateur atteint pendant la session (pour affichage)
+  const maxMultReached = bestCombo >= 15 ? 5 : bestCombo >= 10 ? 3 : bestCombo >= 5 ? 2 : 1;
+
+  // Émotion basée sur le score final (plus juste que le brut)
+  const emotion = finalScore >= 30 ? "legendaire"
+                : finalScore >= 18 ? "love"
+                : finalScore >= 10 ? "cool"
+                : finalScore >= 5  ? "happy"
+                : "sad";
+
   return (
-    <div className="slide-up" style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"22px",height:"100%",gap:14}}>
-      <div className={emotion==="legendaire"?"":"sigma-float"}>
+    <div className="slide-up" style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"flex-start",padding:"22px",height:"100%",gap:12,overflowY:"auto"}}>
+      <div className={emotion==="legendaire"?"":"sigma-float"} style={{flexShrink:0}}>
         {emotion==="legendaire"
-          ? <SigmaLegendaire size={160}/>
-          : <Sigma emotion={emotion} size={160} float={false}/>}
+          ? <SigmaLegendaire size={130}/>
+          : <Sigma emotion={emotion} size={130} float={false}/>}
       </div>
+
+      {/* Score final mis en avant */}
       <div style={{textAlign:"center"}}>
-        <div style={{fontFamily:"'Nunito',sans-serif",fontSize:56,fontWeight:900,color:"#F59E0B",lineHeight:1}}>{score}</div>
-        <div style={{color:"#64748B",fontSize:13,marginTop:4}}>bonnes réponses sur {answered} en 5 min</div>
-        {answered > 0 && <div style={{color:"#94A3B8",fontSize:11,marginTop:2}}>{pct}% de précision</div>}
+        <div style={{fontSize:11,color:"#94A3B8",fontWeight:800,letterSpacing:".15em",textTransform:"uppercase"}}>Score final</div>
+        <div style={{fontFamily:"'Nunito',sans-serif",fontSize:64,fontWeight:900,color:"#F59E0B",lineHeight:1}}>{finalScore}</div>
+        <div style={{color:"#64748B",fontSize:12,marginTop:2}}>en 5 minutes</div>
       </div>
+
+      {/* Détail du calcul (transparence) */}
+      <div style={{
+        background:"#F8FAFC",borderRadius:14,padding:"12px 16px",
+        width:"100%",maxWidth:320,fontSize:13
+      }}>
+        <div style={{display:"flex",justifyContent:"space-between",padding:"3px 0"}}>
+          <span style={{color:"#64748B"}}>Bonnes réponses</span>
+          <span style={{fontWeight:800,color:"#1E293B"}}>{score} / {answered}</span>
+        </div>
+        <div style={{display:"flex",justifyContent:"space-between",padding:"3px 0"}}>
+          <span style={{color:"#64748B"}}>Précision</span>
+          <span style={{fontWeight:800,color: pct>=70?"#10B981":pct>=50?"#F59E0B":"#EF4444"}}>{pct} %</span>
+        </div>
+        <div style={{display:"flex",justifyContent:"space-between",padding:"3px 0"}}>
+          <span style={{color:"#64748B"}}>Meilleur combo</span>
+          <span style={{fontWeight:800,color:"#1E293B"}}>
+            {bestCombo > 0 ? `🔥 ${bestCombo}` : "—"}
+            {maxMultReached > 1 && <span style={{color:"#A855F7",marginLeft:4}}>·×{maxMultReached}</span>}
+          </span>
+        </div>
+        <div style={{borderTop:"1px solid #E2E8F0",margin:"6px 0 4px 0"}}></div>
+        <div style={{display:"flex",justifyContent:"space-between",padding:"3px 0",fontSize:11,color:"#94A3B8"}}>
+          <span>Bonnes × précision</span>
+          <span>{accuracyScore}</span>
+        </div>
+        {comboBonus > 0 && (
+          <div style={{display:"flex",justifyContent:"space-between",padding:"3px 0",fontSize:11,color:"#94A3B8"}}>
+            <span>Bonus combo</span>
+            <span>+{comboBonus}</span>
+          </div>
+        )}
+      </div>
+
       {isNewBest ? (
         <div className="pop-in" style={{
           background:"linear-gradient(135deg,#F59E0B,#EA580C)",
-          borderRadius:14,padding:"12px 18px",boxShadow:"0 4px 14px rgba(234,88,12,.35)"
+          borderRadius:14,padding:"10px 16px",boxShadow:"0 4px 14px rgba(234,88,12,.35)"
         }}>
-          <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,color:"#fff"}}>
+          <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:14,color:"#fff"}}>
             🏆 Nouveau record personnel !
           </div>
-          {best > 0 && <div style={{color:"rgba(255,255,255,.9)",fontSize:11,marginTop:3}}>
-            Ancien : {best} · Nouveau : {score}
+          {best > 0 && <div style={{color:"rgba(255,255,255,.9)",fontSize:11,marginTop:2}}>
+            Ancien : {best} · Nouveau : {finalScore}
           </div>}
         </div>
       ) : best > 0 ? (
-        <div style={{background:"#F1F5F9",borderRadius:12,padding:"10px 16px",color:"#475569",fontSize:12,fontWeight:700}}>
-          🎯 Ton record : {best} · Continue, tu peux le battre !
+        <div style={{background:"#F1F5F9",borderRadius:12,padding:"8px 14px",color:"#475569",fontSize:12,fontWeight:700}}>
+          🎯 Ton record : {best} · {finalScore < best ? `Encore ${best - finalScore + 1} pour le battre !` : "Tu peux le battre"}
         </div>
       ) : null}
-      <div style={{display:"flex",flexDirection:"column",gap:8,width:"100%",maxWidth:320}}>
-        <button onClick={onReplay} style={{background:"linear-gradient(135deg,#F59E0B,#D97706)",color:"#fff",border:"none",borderRadius:13,padding:"14px",fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:800,cursor:"pointer",boxShadow:"0 5px 16px rgba(245,158,11,.35)"}}>
+
+      <div style={{display:"flex",flexDirection:"column",gap:8,width:"100%",maxWidth:320,marginTop:4}}>
+        <button onClick={onReplay} style={{background:"linear-gradient(135deg,#F59E0B,#D97706)",color:"#fff",border:"none",borderRadius:13,padding:"13px",fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:800,cursor:"pointer",boxShadow:"0 5px 16px rgba(245,158,11,.35)"}}>
           🔁 Nouveau sprint
         </button>
-        <button onClick={onHome} style={{background:"#F1F5F9",color:"#475569",border:"none",borderRadius:13,padding:"14px",fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:700,cursor:"pointer"}}>
+        <button onClick={onHome} style={{background:"#F1F5F9",color:"#475569",border:"none",borderRadius:13,padding:"13px",fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:700,cursor:"pointer"}}>
           🏠 Menu principal
         </button>
       </div>
@@ -11591,6 +11700,12 @@ async function loadSprintBest() {
 }
 async function saveSprintBest(v) {
   try { await _storage.set(SPRINT_BEST_K, String(v)); } catch {}
+}
+async function loadSprintBestFinal() {
+  try { const r = await _storage.get(SPRINT_BEST_FINAL_K); return r?.value ? parseInt(r.value) : 0; } catch { return 0; }
+}
+async function saveSprintBestFinal(v) {
+  try { await _storage.set(SPRINT_BEST_FINAL_K, String(v)); } catch {}
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -11716,6 +11831,8 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
   const [shake,setShake]       = useState(false);
   const [pad,setPad]           = useState("");
   const [padState,setPadState] = useState("idle");
+  // Confirmation d'abandon (modale)
+  const [showAbandon, setShowAbandon] = useState(false);
   // Rappel de cours (affiché uniquement en pratique/daily, si un rappel existe)
   const [showReminder, setShowReminder] = useState(false);
   const reminderAvailable = (quizMode === "practice" || quizMode === "daily") && !!getCourseReminder(catId, subId);
@@ -11829,11 +11946,10 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
   const nextQ=()=>{
     const isCorrectNow = isDrag?dragCorrect:(isNum||isSol||isEq||isExpr||isFrac)?padState==="correct":isTab?allCorrect:selected===q.a;
     if(!isCorrectNow) failedIdx.current = [...new Set([...failedIdx.current, idx])];
-    const fs=(isNum||isSol||isEq||isFrac)?score+(padState==="correct"?1:0)
-            :isTab ?score+(allCorrect?1:0)
-            :isDrag?score+(dragCorrect?1:0)
-            :score+(selected===q.a?1:0);
-    if(idx+1>=questions.length){onFinish(fs, failedIdx.current);return;}
+    // Le score a déjà été incrémenté par validateTab/pick/validatePad au moment de la
+    // validation de la réponse. On ne le re-incrémente PAS ici, sinon la dernière
+    // bonne réponse compterait double (bug du 110% : 11 sur 10 questions).
+    if(idx+1>=questions.length){onFinish(score, failedIdx.current);return;}
     setIdx(i=>i+1);
   };
 
@@ -11860,7 +11976,13 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
       )}
       {/* Header */}
       <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:14,flexShrink:0}}>
-        <button onClick={onBack} style={{background:"none",border:"none",cursor:"pointer",color:"#94A3B8",fontSize:18,padding:0,flexShrink:0}}>✕</button>
+        <button onClick={() => {
+          // Si l'élève a déjà validé au moins 1 réponse (score > 0) ou avancé d'une
+          // question (idx > 0), on demande confirmation : les réponses partielles ne
+          // sont pas sauvegardées, autant l'avertir de la perte.
+          if (idx > 0 || score > 0) setShowAbandon(true);
+          else onBack();
+        }} style={{background:"none",border:"none",cursor:"pointer",color:"#94A3B8",fontSize:18,padding:0,flexShrink:0}}>✕</button>
         <div style={{flex:1,background:"#E2E8F0",borderRadius:99,height:9,overflow:"hidden"}}>
           <div style={{height:"100%",width:`${(idx/questions.length)*100}%`,background:cat.color,borderRadius:99,transition:"width .4s ease"}}/>
         </div>
@@ -12190,6 +12312,48 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
         <button onClick={nextQ} className="pop-in" style={{marginTop:14,border:"none",borderRadius:14,padding:"15px",background:wasCorrect?"linear-gradient(135deg,#10B981,#059669)":"linear-gradient(135deg,#3B82F6,#1D4ED8)",color:"#fff",fontFamily:"'Nunito',sans-serif",fontSize:15,fontWeight:800,cursor:"pointer",boxShadow:wasCorrect?"0 5px 18px rgba(16,185,129,.4)":"0 5px 18px rgba(37,99,235,.4)",flexShrink:0}}>
           {idx+1>=questions.length?"Voir les résultats 🏆":"Suivante →"}
         </button>
+      )}
+
+      {/* ── ABANDON CONFIRMATION MODAL ── */}
+      {showAbandon && (
+        <div onClick={() => setShowAbandon(false)} style={{
+          position:"fixed",inset:0,background:"rgba(15,23,42,0.55)",
+          display:"flex",alignItems:"center",justifyContent:"center",
+          zIndex:1000,padding:"20px"
+        }}>
+          <div onClick={(e) => e.stopPropagation()} className="pop-in" style={{
+            background:"#fff",borderRadius:18,padding:"22px 22px 18px",
+            maxWidth:340,width:"100%",boxShadow:"0 14px 40px rgba(0,0,0,0.25)",
+            display:"flex",flexDirection:"column",gap:12
+          }}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontSize:18,fontWeight:900,color:"#1E293B"}}>
+              Quitter le quiz ?
+            </div>
+            <div style={{color:"#475569",fontSize:13,lineHeight:1.5}}>
+              Tu as déjà répondu à <strong>{idx + (score > 0 || padState !== "idle" || tabValidated ? 1 : 0)}</strong> question{idx >= 1 ? "s" : ""}.
+              Si tu sors maintenant, <strong>tes réponses ne seront pas comptées</strong> :
+              ni dans ton XP, ni dans ton suivi.
+            </div>
+            <div style={{display:"flex",gap:8,marginTop:6}}>
+              <button onClick={() => setShowAbandon(false)} style={{
+                flex:1,border:"1.5px solid #E2E8F0",background:"#fff",
+                borderRadius:12,padding:"12px",fontFamily:"'Nunito',sans-serif",
+                fontSize:13,fontWeight:800,color:"#475569",cursor:"pointer"
+              }}>
+                Continuer le quiz
+              </button>
+              <button onClick={() => { setShowAbandon(false); onBack(); }} style={{
+                flex:1,border:"none",
+                background:"linear-gradient(135deg,#EF4444,#DC2626)",
+                borderRadius:12,padding:"12px",fontFamily:"'Nunito',sans-serif",
+                fontSize:13,fontWeight:800,color:"#fff",cursor:"pointer",
+                boxShadow:"0 4px 12px rgba(239,68,68,0.3)"
+              }}>
+                Quitter
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
@@ -12743,7 +12907,7 @@ function AutoMaths() {
   // Load streak progress on mount (persiste à travers les sessions du même jour)
   useEffect(() => {
     loadStreakProgress().then(sp => setStreakProgress(sp)).catch(() => {});
-    loadSprintBest().then(b => setSprintBest(b)).catch(() => {});
+    loadSprintBestFinal().then(b => setSprintBest(b)).catch(() => {});
     loadQState().then(s => setQState(s)).catch(() => {});
     loadLifetimeCorrect().then(n => setLifetimeCorrect(n)).catch(() => {});
     loadCardsUnlocked().then(arr => setCardsUnlocked(arr)).catch(() => {});
@@ -13224,12 +13388,19 @@ function AutoMaths() {
     });
   };
   const hSprintFinish = async (result) => {
+    // Calcul du score final cohérent avec SprintResultScreen
+    const {score, answered, bestCombo = 0} = result;
+    const pct = answered > 0 ? Math.round(score / answered * 100) : 0;
+    const accuracyScore = Math.round(score * pct / 100);
+    const comboBonus = bestCombo * 2;
+    const finalScore = accuracyScore + comboBonus;
+
     setSprintResult(result);
-    const isNew = result.score > sprintBest;
+    const isNew = finalScore > sprintBest;
     setSprintIsNewBest(isNew);
     if (isNew) {
-      setSprintBest(result.score);
-      await saveSprintBest(result.score);
+      setSprintBest(finalScore);
+      await saveSprintBestFinal(finalScore);
     }
     // Lifetime counter (pour prompt de compte progressif)
     try {
@@ -13309,7 +13480,7 @@ function AutoMaths() {
       const p = await loadProfA();
       setProfile(p);
       const sp = await loadStreakProgress(); setStreakProgress(sp);
-      const sb = await loadSprintBest(); setSprintBest(sb);
+      const sb = await loadSprintBestFinal(); setSprintBest(sb);
       const qs = await loadQState(); setQState(qs);
       const lc = await loadLifetimeCorrect(); setLifetimeCorrect(lc);
       const cu = await loadCardsUnlocked(); setCardsUnlocked(cu);
