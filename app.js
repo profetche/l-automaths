@@ -6464,95 +6464,6 @@ function buildTeacherLink(snapshot) {
 }
 
 // ── QR Display Screen ─────────────────────────────────────────────────────────
-function QRExportScreen({profile, allProg, xp, badges, onBack}) {
-  const data = compactStats(profile, allProg, xp, badges);
-  const json = JSON.stringify(data);
-
-  // Build visual QR via api.qrserver.com (gratuit, sans clé, stable).
-  // Note : Google Charts QR API a été dépréciée en 2024, on utilise un fallback.
-  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=${encodeURIComponent(json)}&ecc=L&margin=10`;
-
-  const CATS_MAP = {
-    fonctions:'📈 Fonctions',pourcentages:'💹 %',numerique:'🔢 Numérique',
-    litteral:'📐 Littéral',probabilites:'🎲 Probas',derivation:'∂ Dérivation',bac:'🏆 Bac'
-  };
-  const lvlInfo = getXpLevel(xp);
-
-  return (
-    <div style={{display:'flex',flexDirection:'column',height:'100%',background:'var(--am-bg-light)'}}>
-      {/* Header */}
-      <div style={{background:'linear-gradient(135deg,var(--am-bg-dark-1),var(--am-bg-dark-2))',
-        padding:'14px 16px',flexShrink:0,display:'flex',alignItems:'center',gap:10}}>
-        <button onClick={onBack} style={{background:'rgba(255,255,255,0.1)',border:'none',
-          borderRadius:9,padding:'6px 11px',color:'#94A3B8',cursor:'pointer',fontSize:12,fontWeight:700}}>
-          ← Retour
-        </button>
-        <div style={{flex:1,color:'#fff',fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,textAlign:'center'}}>
-          Mon code élève 📤
-        </div>
-      </div>
-
-      <div style={{flex:1,overflowY:'auto',padding:'16px',display:'flex',flexDirection:'column',gap:12}}>
-
-        {/* QR Code */}
-        <div style={{background:'#fff',borderRadius:18,padding:'20px',textAlign:'center',
-          boxShadow:'0 4px 16px rgba(0,0,0,.08)'}}>
-          <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,
-            color:'#1E293B',marginBottom:4}}>{profile.name}</div>
-          <div style={{color:'#64748B',fontSize:11,marginBottom:14}}>
-            {lvlInfo.emoji} {lvlInfo.label} · ⚡ {xp} XP · 🔥 {profile.streak||0} jours
-          </div>
-          <img src={qrUrl} alt="QR Code"
-            style={{width:220,height:220,borderRadius:12,border:'2px solid #F1F5F9'}}
-            onError={e=>{
-              // Si l'API tombe, on remplace l'image par un message lisible
-              const parent = e.target.parentNode;
-              const fallback = document.createElement('div');
-              fallback.style.cssText = 'width:220px;height:220px;border-radius:12px;border:2px dashed #CBD5E1;background:#F8FAFC;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;margin:0 auto;';
-              fallback.innerHTML = '<div style="font-size:36px;margin-bottom:8px;">📱</div><div style="font-size:11px;color:#64748B;text-align:center;line-height:1.5;">QR temporairement indisponible.<br/>Ton code de sauvegarde est<br/>accessible via <strong>Sauvegarde 💾</strong></div>';
-              e.target.style.display='none';
-              parent.appendChild(fallback);
-            }}/>
-          <div style={{marginTop:12,fontSize:10,color:'#94A3B8',lineHeight:1.5}}>
-            Montre ce QR code à ton professeur<br/>ou télécharge le fichier JSON ci-dessous
-          </div>
-        </div>
-
-        {/* Quick stats */}
-        <div style={{background:'#fff',borderRadius:16,padding:'14px',
-          boxShadow:'0 2px 8px rgba(0,0,0,.05)'}}>
-          <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:13,
-            color:'#1E293B',marginBottom:10}}>📊 Mes stats résumées</div>
-          {Object.entries(data.c).map(([catId, stat]) => (
-            <div key={catId} style={{display:'flex',alignItems:'center',gap:8,
-              padding:'6px 0',borderBottom:'1px solid #F8FAFC'}}>
-              <span style={{fontSize:14,width:20}}>{CATS_MAP[catId]?.split(' ')[0]||'📚'}</span>
-              <div style={{flex:1,fontSize:11,fontWeight:600,color:'#334155'}}>
-                {CATS_MAP[catId]?.split(' ').slice(1).join(' ')||catId}
-              </div>
-              {stat.rate!==null && (
-                <span style={{fontSize:10,fontWeight:700,
-                  color:stat.rate>=80?'#10B981':stat.rate>=60?'#F59E0B':'#EF4444'}}>
-                  {stat.rate}%
-                </span>
-              )}
-              <span style={{fontSize:10,color:'#94A3B8'}}>
-                {'⭐'.repeat(stat.stars>3?3:stat.stars)||'○'}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        <div style={{background:'#EFF6FF',borderRadius:12,padding:'10px 14px',
-          fontSize:11,color:'#1D4ED8',lineHeight:1.5,fontWeight:600}}>
-          💡 Ton professeur scanne ce QR code avec son tableau de bord AutoMaths
-          pour voir tes progrès en temps réel.
-        </div>
-      </div>
-    </div>
-  );
-}
-
 // ── Send to Teacher Screen (lien partagé) ────────────────────────────────────
 function SendToTeacherScreen({profile, onBack}) {
   const [link, setLink] = React.useState('');
@@ -6840,27 +6751,33 @@ function ReminderScreen({onBack}) {
 
 
 // ─────────────────────────────────────────────────────────────────────────────
-// BackupScreen — Sauvegarder / Restaurer ses données
+// BackupScreen — "Mes données et partage" (refonte unifiée)
 // ─────────────────────────────────────────────────────────────────────────────
-// Mode "expertise" : l'élève copie son code et le stocke lui-même (mail, notes).
-// Pas de serveur, pas de compte, zéro friction. S'il perd ses données (clear
-// cache, changement d'appareil), il colle son code et retrouve tout.
+// Hiérarchise les 3 actions par fréquence d'usage :
+//  1. Envoyer au prof (hebdomadaire — action principale)
+//  2. Sauvegarder mon compte (rare — code de sauvegarde)
+//  3. Restaurer un compte (très rare — coller un code)
 function BackupScreen({onBack, onImportDone, onSendTeacher, hasProfile}) {
-  const [tab, setTab] = useState('export'); // 'export' | 'import'
+  // Gestion de la zone "Sauvegarder" (révélée à la demande)
+  const [showSaveCode, setShowSaveCode] = useState(false);
   const [code, setCode] = useState('');
+  const [copied, setCopied] = useState(false);
+  const [generating, setGenerating] = useState(false);
+
+  // Gestion de la zone "Restaurer"
+  const [showRestoreInput, setShowRestoreInput] = useState(false);
   const [importCode, setImportCode] = useState('');
   const [status, setStatus] = useState(null); // {type:'ok'|'err', msg}
-  const [copied, setCopied] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [importing, setImporting] = useState(false);
 
-  // Génère le code dès l'arrivée sur l'onglet export
+  // Génère le code la première fois qu'on déroule la section "Sauvegarder"
   useEffect(() => {
-    if (tab === 'export' && !code) {
-      setLoading(true);
-      exportBackup().then(c => { setCode(c); setLoading(false); })
-        .catch(() => { setStatus({type:'err', msg:"Erreur lors de l'export"}); setLoading(false); });
+    if (showSaveCode && !code) {
+      setGenerating(true);
+      exportBackup().then(c => { setCode(c); setGenerating(false); })
+        .catch(() => { setStatus({type:'err', msg:"Erreur lors de la génération du code."}); setGenerating(false); });
     }
-  }, [tab]);
+  }, [showSaveCode]);
 
   const handleCopy = async () => {
     try {
@@ -6868,7 +6785,6 @@ function BackupScreen({onBack, onImportDone, onSendTeacher, hasProfile}) {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Fallback : select the textarea
       try {
         const ta = document.getElementById('backup-code-area');
         if (ta) { ta.select(); document.execCommand('copy'); setCopied(true); setTimeout(()=>setCopied(false), 2000); }
@@ -6878,19 +6794,33 @@ function BackupScreen({onBack, onImportDone, onSendTeacher, hasProfile}) {
 
   const handleImport = async () => {
     if (!importCode.trim()) {
-      setStatus({type:'err', msg:'Colle ton code avant de restaurer'});
+      setStatus({type:'err', msg:'Colle ton code avant de restaurer.'});
       return;
     }
     if (!confirm('Restaurer cette sauvegarde écrasera tes données actuelles sur cet appareil. Continuer ?')) return;
-    setLoading(true);
+    setImporting(true);
     const res = await importBackup(importCode.trim());
-    setLoading(false);
+    setImporting(false);
     if (res.ok) {
       setStatus({type:'ok', msg:`✅ ${res.msg} (${res.count} éléments)`});
       setTimeout(() => { if (onImportDone) onImportDone(); }, 1500);
     } else {
       setStatus({type:'err', msg:`❌ ${res.msg}`});
     }
+  };
+
+  // Style commun aux cartes de section
+  const sectionCard = {
+    background:'#fff',borderRadius:14,padding:'14px 16px',
+    border:'1.5px solid #E2E8F0',
+    display:'flex',flexDirection:'column',gap:10,
+  };
+  const sectionTitle = {
+    fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:13,color:'#1E293B',
+    display:'flex',alignItems:'center',gap:8,
+  };
+  const sectionDesc = {
+    fontSize:11,color:'#64748B',lineHeight:1.45,
   };
 
   return (
@@ -6902,114 +6832,156 @@ function BackupScreen({onBack, onImportDone, onSendTeacher, hasProfile}) {
           borderRadius:9,padding:'6px 11px',color:'#94A3B8',cursor:'pointer',fontSize:12,fontWeight:700}}>
           ← Retour
         </button>
-        <div style={{flex:1,color:'#fff',fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,textAlign:'center'}}>
-          Sauvegarder 💾
+        <div style={{flex:1,color:'#fff',fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:15,textAlign:'center'}}>
+          Mes données & partage
         </div>
-      </div>
-
-      {/* Tabs */}
-      <div style={{display:'flex',background:'#fff',borderBottom:'1px solid #E2E8F0',flexShrink:0}}>
-        {[{id:'export',label:'📤 Sauvegarder'},{id:'import',label:'📥 Restaurer'}].map(t=>(
-          <button key={t.id} onClick={()=>{setTab(t.id);setStatus(null);}}
-            style={{flex:1,padding:'12px 8px',border:'none',cursor:'pointer',
-              background: tab===t.id?'#EFF6FF':'#fff',
-              color: tab===t.id?'#1D4ED8':'#64748B',
-              fontFamily:"'Nunito',sans-serif",fontSize:12,fontWeight:800,
-              borderBottom: tab===t.id?'3px solid #1D4ED8':'3px solid transparent'}}>
-            {t.label}
-          </button>
-        ))}
+        <div style={{width:60,flexShrink:0}}/>{/* spacer pour centrer le titre */}
       </div>
 
       <div style={{flex:1,overflowY:'auto',padding:'16px',display:'flex',flexDirection:'column',gap:14}}>
+
+        {/* ════════════════════════════════════════════════════════════════
+            ACTION PRINCIPALE — Envoyer au prof (la plus fréquente)
+            ════════════════════════════════════════════════════════════════ */}
         {hasProfile && onSendTeacher && (
           <button onClick={onSendTeacher}
-            style={{padding:'14px 16px',background:'linear-gradient(135deg,#4338CA,#6366F1)',
-              color:'#fff',border:'none',borderRadius:14,fontSize:14,fontWeight:800,
+            style={{padding:'18px 16px',background:'linear-gradient(135deg,#4338CA,#6366F1)',
+              color:'#fff',border:'none',borderRadius:16,fontSize:15,fontWeight:900,
               cursor:'pointer',fontFamily:"'Nunito',sans-serif",
-              display:'flex',alignItems:'center',justifyContent:'center',gap:10,
-              boxShadow:'0 4px 12px rgba(99,102,241,0.25)'}}>
-            <span style={{fontSize:18}}>📨</span>
-            <span>Envoyer mes progrès à mon prof</span>
+              display:'flex',alignItems:'center',gap:14,
+              boxShadow:'0 6px 18px rgba(99,102,241,0.3)',position:'relative',overflow:'hidden'}}>
+            <div style={{fontSize:32,width:50,height:50,
+              background:'rgba(255,255,255,.18)',borderRadius:13,
+              display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
+              📨
+            </div>
+            <div style={{textAlign:'left',flex:1}}>
+              <div style={{fontSize:15,fontWeight:900,lineHeight:1.1}}>
+                Envoyer mes progrès
+              </div>
+              <div style={{fontSize:11,color:'rgba(255,255,255,.85)',marginTop:3,fontWeight:600}}>
+                Génère un lien à partager avec ton prof
+              </div>
+            </div>
+            <div style={{color:'rgba(255,255,255,.7)',fontSize:22}}>›</div>
           </button>
         )}
 
-        {tab === 'export' && (
-          <>
-            <div style={{background:'#EFF6FF',borderRadius:12,padding:'12px 14px',
-              borderLeft:'4px solid #1D4ED8',fontSize:12,color:'#1E3A8A',lineHeight:1.5}}>
-              <strong>💡 À quoi sert ce code ?</strong><br/>
-              Copie-le dans un endroit sûr (mail, notes). Si tu changes d'appareil ou si tu es
-              déconnecté, tu pourras retrouver tout ton parcours en collant ce code.
-            </div>
+        {/* Séparateur "Tes données personnelles" */}
+        <div style={{
+          fontSize:10, fontWeight:800, color:'#94A3B8',
+          letterSpacing:'.15em', textTransform:'uppercase',
+          marginTop:6, paddingLeft:4
+        }}>
+          Tes données personnelles
+        </div>
 
-            {loading ? (
-              <div style={{textAlign:'center',padding:20,color:'#64748B',fontSize:12}}>
-                Génération de la sauvegarde…
+        {/* ════════════════════════════════════════════════════════════════
+            SAUVEGARDER mon compte (déroulable)
+            ════════════════════════════════════════════════════════════════ */}
+        <div style={sectionCard}>
+          <div style={{display:'flex',alignItems:'center',gap:10}}>
+            <div style={{fontSize:24,width:40,height:40,background:'#F1F5F9',
+              borderRadius:10,display:'flex',alignItems:'center',justifyContent:'center'}}>
+              💾
+            </div>
+            <div style={{flex:1}}>
+              <div style={sectionTitle}>Sauvegarder mon compte</div>
+              <div style={sectionDesc}>
+                Génère un code à coller dans tes notes ou un mail. Te servira si tu changes d'appareil.
               </div>
-            ) : (
-              <>
-                <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:13,color:'#1E293B'}}>
-                  🔐 Ton code de sauvegarde
-                </div>
-                <textarea id="backup-code-area" value={code} readOnly
-                  style={{width:'100%',minHeight:160,padding:'10px',fontSize:10,
-                    fontFamily:'monospace',background:'#F8FAFC',border:'1.5px solid #CBD5E1',
-                    borderRadius:10,resize:'vertical',lineHeight:1.4,wordBreak:'break-all'}}/>
-
-                <button onClick={handleCopy}
-                  style={{padding:'12px',borderRadius:12,border:'none',cursor:'pointer',
-                    background: copied?'#10B981':'linear-gradient(135deg,#1D4ED8,#1E40AF)',
-                    color:'#fff',fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:900,
-                    boxShadow:'0 4px 12px rgba(29,78,216,.25)'}}>
-                  {copied ? '✅ Copié !' : '📋 Copier le code'}
-                </button>
-
-                <div style={{background:'#FEF9C3',borderRadius:10,padding:'10px 12px',
-                  fontSize:11,color:'#92400E',lineHeight:1.5}}>
-                  ⚠️ <strong>Garde ce code en sécurité.</strong> Il contient toute ta progression :
-                  étoiles, cartes, streak, XP, badges, diagnostic, programme…
-                </div>
-              </>
-            )}
-          </>
-        )}
-
-        {tab === 'import' && (
-          <>
-            <div style={{background:'#FEF9C3',borderRadius:12,padding:'12px 14px',
-              borderLeft:'4px solid #F59E0B',fontSize:12,color:'#92400E',lineHeight:1.5}}>
-              <strong>⚠️ Attention :</strong> Restaurer une sauvegarde remplacera toutes tes données
-              actuelles sur cet appareil. Cette action est irréversible.
             </div>
-
-            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:13,color:'#1E293B'}}>
-              📥 Colle ton code de sauvegarde
-            </div>
-            <textarea value={importCode} onChange={e=>{setImportCode(e.target.value);setStatus(null);}}
-              placeholder="Colle ici ton code de sauvegarde…"
-              style={{width:'100%',minHeight:140,padding:'10px',fontSize:10,
-                fontFamily:'monospace',background:'#fff',border:'1.5px solid #CBD5E1',
-                borderRadius:10,resize:'vertical',lineHeight:1.4,wordBreak:'break-all'}}/>
-
-            {status && (
-              <div style={{padding:'10px 12px',borderRadius:10,fontSize:12,fontWeight:700,
-                background: status.type==='ok'?'#D1FAE5':'#FEE2E2',
-                color: status.type==='ok'?'#065F46':'#991B1B'}}>
-                {status.msg}
-              </div>
-            )}
-
-            <button onClick={handleImport} disabled={loading || !importCode.trim()}
-              style={{padding:'12px',borderRadius:12,border:'none',
-                cursor: (loading || !importCode.trim())?'not-allowed':'pointer',
-                background: (loading || !importCode.trim())?'#CBD5E1':'linear-gradient(135deg,#059669,#047857)',
-                color:'#fff',fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:900,
-                boxShadow:'0 4px 12px rgba(5,150,105,.25)',opacity: (loading || !importCode.trim())?0.6:1}}>
-              {loading ? '⏳ Restauration…' : '♻️ Restaurer ma sauvegarde'}
+            <button onClick={() => setShowSaveCode(s => !s)}
+              style={{background:'#F1F5F9',border:'none',borderRadius:8,padding:'6px 12px',
+                color:'#475569',fontSize:11,fontWeight:800,cursor:'pointer',flexShrink:0}}>
+              {showSaveCode ? 'Masquer' : 'Afficher'}
             </button>
-          </>
-        )}
+          </div>
+
+          {showSaveCode && (
+            <div style={{paddingTop:6,borderTop:'1px solid #F1F5F9',display:'flex',flexDirection:'column',gap:10}}>
+              {generating ? (
+                <div style={{textAlign:'center',padding:14,color:'#64748B',fontSize:12}}>
+                  Génération du code…
+                </div>
+              ) : (
+                <>
+                  <textarea id="backup-code-area" value={code} readOnly
+                    style={{width:'100%',minHeight:120,padding:'10px',fontSize:10,
+                      fontFamily:'monospace',background:'#F8FAFC',border:'1px solid #E2E8F0',
+                      borderRadius:8,resize:'vertical',lineHeight:1.4,wordBreak:'break-all'}}/>
+
+                  <button onClick={handleCopy}
+                    style={{padding:'10px',borderRadius:10,border:'none',cursor:'pointer',
+                      background: copied?'#10B981':'linear-gradient(135deg,#1D4ED8,#1E40AF)',
+                      color:'#fff',fontFamily:"'Nunito',sans-serif",fontSize:13,fontWeight:800}}>
+                    {copied ? '✅ Copié !' : '📋 Copier le code'}
+                  </button>
+
+                  <div style={{background:'#FEF9C3',borderRadius:8,padding:'8px 10px',
+                    fontSize:10,color:'#92400E',lineHeight:1.4}}>
+                    ⚠️ Garde ce code en sécurité. Il contient toute ta progression.
+                  </div>
+                </>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* ════════════════════════════════════════════════════════════════
+            RESTAURER un compte (déroulable)
+            ════════════════════════════════════════════════════════════════ */}
+        <div style={sectionCard}>
+          <div style={{display:'flex',alignItems:'center',gap:10}}>
+            <div style={{fontSize:24,width:40,height:40,background:'#F1F5F9',
+              borderRadius:10,display:'flex',alignItems:'center',justifyContent:'center'}}>
+              📥
+            </div>
+            <div style={{flex:1}}>
+              <div style={sectionTitle}>Restaurer un compte</div>
+              <div style={sectionDesc}>
+                Si tu as déjà un code de sauvegarde, colle-le ici pour retrouver ta progression.
+              </div>
+            </div>
+            <button onClick={() => { setShowRestoreInput(s => !s); setStatus(null); }}
+              style={{background:'#F1F5F9',border:'none',borderRadius:8,padding:'6px 12px',
+                color:'#475569',fontSize:11,fontWeight:800,cursor:'pointer',flexShrink:0}}>
+              {showRestoreInput ? 'Masquer' : 'Afficher'}
+            </button>
+          </div>
+
+          {showRestoreInput && (
+            <div style={{paddingTop:6,borderTop:'1px solid #F1F5F9',display:'flex',flexDirection:'column',gap:10}}>
+              <div style={{background:'#FEF9C3',borderRadius:8,padding:'8px 10px',
+                fontSize:10,color:'#92400E',lineHeight:1.4}}>
+                ⚠️ <strong>Attention :</strong> restaurer écrase tes données actuelles sur cet appareil. Irréversible.
+              </div>
+
+              <textarea value={importCode} onChange={e=>{setImportCode(e.target.value);setStatus(null);}}
+                placeholder="Colle ici ton code de sauvegarde…"
+                style={{width:'100%',minHeight:110,padding:'10px',fontSize:10,
+                  fontFamily:'monospace',background:'#fff',border:'1px solid #E2E8F0',
+                  borderRadius:8,resize:'vertical',lineHeight:1.4,wordBreak:'break-all'}}/>
+
+              {status && (
+                <div style={{padding:'8px 10px',borderRadius:8,fontSize:11,fontWeight:700,
+                  background: status.type==='ok'?'#D1FAE5':'#FEE2E2',
+                  color: status.type==='ok'?'#065F46':'#991B1B'}}>
+                  {status.msg}
+                </div>
+              )}
+
+              <button onClick={handleImport} disabled={importing || !importCode.trim()}
+                style={{padding:'10px',borderRadius:10,border:'none',
+                  cursor: (importing || !importCode.trim())?'not-allowed':'pointer',
+                  background: (importing || !importCode.trim())?'#CBD5E1':'linear-gradient(135deg,#059669,#047857)',
+                  color:'#fff',fontFamily:"'Nunito',sans-serif",fontSize:13,fontWeight:800,
+                  opacity: (importing || !importCode.trim())?0.6:1}}>
+                {importing ? '⏳ Restauration…' : '♻️ Restaurer ma sauvegarde'}
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -8641,7 +8613,7 @@ function VigilanceScreen({profile, qState, onBack, onRemediation, onWorkTheme}) 
   );
 }
 
-function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEditProfile, onLogout, onShowProgram, onExport, onBackup, onReminder, onPreferences, onVigilance, onCollection, diagResults, cardsUnlocked, qState}) {
+function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEditProfile, onLogout, onShowProgram, onBackup, onReminder, onPreferences, onVigilance, onCollection, diagResults, cardsUnlocked, qState}) {
   const curr = CURRICULUM[profile.level] || CURRICULUM.seconde;
   const [allProg, setAllProg] = useState({});
   const [loading, setLoading] = useState(true);
@@ -8756,22 +8728,13 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
                   borderBottom:"1px solid #F1F5F9"}}>
                 <span style={{fontSize:16}}>⚙️</span><span>Modifier mon profil</span>
               </button>
-              {onExport && (
-                <button onClick={()=>{setMenuOpen(false);onExport();}}
-                  style={{display:"flex",alignItems:"center",gap:10,width:"100%",
-                    padding:"11px 14px",border:"none",background:"#fff",cursor:"pointer",
-                    fontSize:12,fontWeight:600,color:"#334155",textAlign:"left",
-                    borderBottom:"1px solid #F1F5F9"}}>
-                  <span style={{fontSize:16}}>📤</span><span>Exporter ma progression</span>
-                </button>
-              )}
               {onBackup && (
                 <button onClick={()=>{setMenuOpen(false);onBackup();}}
                   style={{display:"flex",alignItems:"center",gap:10,width:"100%",
                     padding:"11px 14px",border:"none",background:"#fff",cursor:"pointer",
                     fontSize:12,fontWeight:600,color:"#334155",textAlign:"left",
                     borderBottom:"1px solid #F1F5F9"}}>
-                  <span style={{fontSize:16}}>💾</span><span>Sauvegarde / Restauration</span>
+                  <span style={{fontSize:16}}>📨</span><span>Mes données & partage</span>
                 </button>
               )}
               {onReminder && (
@@ -12975,8 +12938,6 @@ function AutoMaths() {
   const [diagResults, setDiagResults] = useState(null);
   const [weekProgram, setWeekProgram] = useState(null);
   const [allProgCache, setAllProgCache] = useState({});
-  const [qrXp, setQrXp] = useState(0);
-  const [qrBadges, setQrBadges] = useState([]);
   const [trackCat,  setTrackCat]  = useState(null); // catId being tracked
   const [trackSub,  setTrackSub]  = useState(null); // subId being tracked
   const [quizMode,  setQuizMode]  = useState(null); // "practice" | "test" | null
@@ -13600,17 +13561,6 @@ function AutoMaths() {
     }
   };
 
-  // ── Export progress for teacher dashboard ────────────────────────────────
-  const hExportProgress = async () => {
-    // Load XP + badges for QR screen
-    try {
-      const xp = await loadXP().catch(()=>0);
-      const badges = await loadBadges().catch(()=>[]);
-      setQrXp(xp); setQrBadges(badges);
-      setScreen("qr_export");
-    } catch(e) { alert('Erreur export'); }
-  };
-
   const hExportJSON = async () => {
     try {
       const curr = CURRICULUM[profile.level] || CURRICULUM.seconde;
@@ -13679,7 +13629,6 @@ function AutoMaths() {
 
           {screen==="splash"        && <SplashScreen    onStart={()=>setScreen(profile?"dashboard":"home")} onMySpace={()=>setScreen(profile?"dashboard":"setup")} onRestore={()=>setScreen("backup")} profile={profile}/>}
           {screen==="setup"         && <ProfileSetupScreen onComplete={hProfileComplete} onBack={()=>setScreen("splash")} onRestore={()=>setScreen("backup")}/>}
-          {screen==="qr_export"    && profile && <QRExportScreen profile={profile} allProg={allProgCache} xp={qrXp} badges={qrBadges} onBack={()=>setScreen("dashboard")}/>}
           {screen==="send_teacher" && profile && <SendToTeacherScreen profile={profile} onBack={()=>setScreen("backup")}/>}
           {screen==="backup"       && <BackupScreen onBack={()=>setScreen(profile?"dashboard":"splash")} onImportDone={hImportDone} onSendTeacher={()=>setScreen("send_teacher")} hasProfile={!!profile}/>}
           {screen==="reminder"     && <ReminderScreen onBack={()=>setScreen("dashboard")}/>}
@@ -13687,7 +13636,7 @@ function AutoMaths() {
           {screen==="diagnostic"    && profile && <DiagnosticScreen profile={profile} onComplete={hDiagComplete}/>}
           {screen==="diag_result"   && profile && diagResults && <DiagnosticResultScreen profile={profile} diagResults={diagResults} onStart={hDiagResultNext}/>}
           {screen==="weekly_program"&& profile && weekProgram  && <WeeklyProgramScreen profile={profile} program={weekProgram} allProg={allProgCache} onStartSession={hProgramSession} onSkip={hProgramSkip}/>}
-          {screen==="dashboard"     && profile && <DashboardScreen profile={profile} diagResults={diagResults} cardsUnlocked={cardsUnlocked} qState={qState} onStartPractice={hStartPractice} onStartTest={hStartTest} onGoHome={()=>setScreen("home")} onEditProfile={hEditProfile} onLogout={hLogout} onExport={hExportProgress} onBackup={hBackup} onReminder={()=>setScreen("reminder")} onPreferences={()=>setScreen("preferences")} onVigilance={hVigilance} onCollection={()=>setScreen("collection")} onShowProgram={async()=>{const wp=await generateWeeklyProgram(profile,allProgCache,diagResults);setWeekProgram(wp);setScreen("weekly_program");}}/>}
+          {screen==="dashboard"     && profile && <DashboardScreen profile={profile} diagResults={diagResults} cardsUnlocked={cardsUnlocked} qState={qState} onStartPractice={hStartPractice} onStartTest={hStartTest} onGoHome={()=>setScreen("home")} onEditProfile={hEditProfile} onLogout={hLogout} onBackup={hBackup} onReminder={()=>setScreen("reminder")} onPreferences={()=>setScreen("preferences")} onVigilance={hVigilance} onCollection={()=>setScreen("collection")} onShowProgram={async()=>{const wp=await generateWeeklyProgram(profile,allProgCache,diagResults);setWeekProgram(wp);setScreen("weekly_program");}}/>}
           {screen==="home"          && <HomeScreen onMode={hMode} profile={profile} onDashboard={profile?hDashboard:null} onSplash={()=>setScreen("splash")} streakProgress={streakProgress}/>}
           {screen==="test_aleatoire" && <TestAleatoireScreen onGlobal={hTestGlobal} onCategory={hTestCategory} onBack={()=>setScreen(mode==="test_aleatoire"?"training_modes":"home")}/>}
           {screen==="training_modes" && <TrainingModesScreen onMode={hTrainingMode} onBack={()=>setScreen("home")}/>}
