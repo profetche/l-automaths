@@ -4828,7 +4828,18 @@ const CATS = [
     ] },
 ];;
 // ── Utils ──────────────────────────────────────────────────────────────────────
-const shuffle  = a => [...a].sort(() => Math.random() - 0.5);
+// Fisher-Yates shuffle : distribution uniforme garantie.
+// (L'ancienne version `[...a].sort(() => Math.random() - 0.5)` produisait un
+// biais documenté qui faisait apparaître la 1ère et la dernière position plus
+// fréquemment que les positions du milieu — ~36% / 17% / 16% / 31% sur n=4.)
+const shuffle = a => {
+  const arr = [...a];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+};
 
 // Mémoire courte : stocke les 20 dernières questions vues pour éviter de les
 // re-proposer trop vite au prochain entraînement. Persiste via localStorage.
@@ -6117,7 +6128,13 @@ function DiagnosticScreen({profile, onComplete}) {
         {/* Question card */}
         <div style={{background:'#fff',borderRadius:16,padding:'16px',
           textAlign:'center',boxShadow:'0 2px 10px rgba(0,0,0,.06)'}}>
-          <div style={{fontSize:16,fontWeight:700,color:'#1E293B'}}>
+          <div style={{
+            fontSize: q.q.length > 150 ? 11
+                    : q.q.length > 120 ? 12
+                    : q.q.length > 80  ? 14
+                    : 16,
+            fontWeight:700,color:'#1E293B',lineHeight:1.45,
+            maxWidth:'100%',overflow:'hidden',wordWrap:'break-word'}}>
             <M tex={q.q}/>
           </div>
         </div>
@@ -11580,8 +11597,15 @@ function SprintScreen({pool, onFinish, onBack}) {
         background:"var(--am-bg-light)",borderRadius:18,padding:"18px 14px",
         boxShadow:"0 3px 12px rgba(0,0,0,.08)",flexShrink:0
       }}>
-        <div style={{fontSize:q.q.length>60?14:q.q.length>25?17:19,
-          fontWeight:700,lineHeight:1.5,textAlign:"center",color:"#1E293B"}}>
+        <div style={{
+          fontSize: q.q.length > 150 ? 11
+                  : q.q.length > 120 ? 12
+                  : q.q.length > 80  ? 14
+                  : q.q.length > 50  ? 16
+                  : q.q.length > 25  ? 17
+                  : 19,
+          fontWeight:700,lineHeight:1.45,textAlign:"center",color:"#1E293B",
+          maxWidth:"100%",overflow:"hidden",wordWrap:"break-word"}}>
           <M tex={q.q}/>
         </div>
       </div>
@@ -12098,15 +12122,18 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
             : (isNum||isSol) && q.gspec ? 16
             : isSol ? 19
             : hasVis||isTab ? 14
-            : q.q.length > 80 ? 14
-            : q.q.length > 50 ? 16
-            : q.q.length > 25 ? 17
+            // Questions textuelles : paliers étendus pour les annales longues
+            : q.q.length > 150 ? 11
+            : q.q.length > 120 ? 12
+            : q.q.length > 80  ? 14
+            : q.q.length > 50  ? 16
+            : q.q.length > 25  ? 17
             : 19,
-          fontWeight:700, lineHeight:1.5, textAlign:"center",
+          fontWeight:700, lineHeight:1.45, textAlign:"center",
           color:(isNum||isSol||isExpr||isFrac)?"#fff":"#1E293B",
           fontFamily:(isNum||isSol||isExpr||isFrac)?"'Nunito',sans-serif":"'DM Sans',sans-serif",
           padding: isNum && q.gspec ? "4px 0 2px" : 0,
-          maxWidth:"100%", overflow:"hidden",
+          maxWidth:"100%", overflow:"hidden", wordWrap:"break-word",
         }}>
           <M tex={q.q}/>
         </div>
