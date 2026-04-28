@@ -6449,12 +6449,59 @@ async function teacherSnapshot(profile, allProg, xp) {
     ? recentDays[recentDays.length - 1] + 'T12:00:00Z'
     : new Date().toISOString();
 
+  // ─── Sources de données fusionnées ─────────────────────────────────────────
+  // 1. `allProg` (clés `prg:cat:sub`) — stats agrégées des quiz "S'entraîner"
+  //    incluent { pc, pt, stars } mais NE SONT PAS mis à jour par Sprint/Mission/Bac
+  // 2. `qState` (clé `user:qstate`) — suivi par question individuelle, mis à jour
+  //    PARTOUT (Sprint, Mission, Bac, Entraînement). Format :
+  //    { "catId:subId:idx": { attempts, successes, status, ... } }
+  //
+  // Il faut fusionner les deux pour que les snapshots reflètent toute l'activité,
+  // même celle qui passe uniquement par Sprint/Mission/Bac.
   const progress = {};
+
+  // Étape 1 : stats agrégées depuis allProg
   for (const [key, p] of Object.entries(allProg || {})) {
     if (p && p.pt > 0) {
       progress[key] = { pc: p.pc || 0, pt: p.pt || 0, stars: p.stars || 0 };
     }
   }
+
+  // Étape 2 : agréger qState par cat:sub et fusionner
+  try {
+    const qState = await loadQState();
+    if (qState && typeof qState === 'object') {
+      const qAgg = {}; // { "cat:sub": { pc, pt, mastered } }
+      for (const [qKey, qData] of Object.entries(qState)) {
+        if (!qData || typeof qData !== 'object') continue;
+        const parts = qKey.split(':');
+        if (parts.length < 3) continue;
+        const catSub = `${parts[0]}:${parts[1]}`;
+        if (!qAgg[catSub]) qAgg[catSub] = { pc: 0, pt: 0, mastered: 0 };
+        qAgg[catSub].pc += qData.successes || 0;
+        qAgg[catSub].pt += qData.attempts || 0;
+        if (qData.status === 'mastered') qAgg[catSub].mastered += 1;
+      }
+      // Fusion : si la sous-cat a plus de tentatives via qState, on prend qState
+      // (cas de Sprint/Mission/Bac). Sinon on garde allProg (qui contient stars).
+      for (const [catSub, agg] of Object.entries(qAgg)) {
+        if (agg.pt > 0) {
+          const existing = progress[catSub];
+          if (!existing || agg.pt > existing.pt) {
+            progress[catSub] = {
+              pc: agg.pc,
+              pt: agg.pt,
+              stars: existing?.stars || 0, // les étoiles ne viennent que des tests "S'entraîner"
+              mastered: agg.mastered,
+            };
+          } else {
+            // On a déjà allProg → on enrichit juste avec mastered
+            existing.mastered = agg.mastered;
+          }
+        }
+      }
+    }
+  } catch (e) { /* qState absent ou corrompu : on continue avec allProg seul */ }
 
   return {
     v: 1,
