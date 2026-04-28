@@ -4728,7 +4728,7 @@ const CATS = [
   { id:"missions",     label:"Les missions", emoji:"🎯", color:"#1E40AF", grad:"linear-gradient(135deg,#1E40AF,#1E3A8A)", light:"#EFF6FF", border:"#BFDBFE",
     subs:[
       {id:"mission_bases",      label:"Travailler mes bases",        levels:["sec","tc","stmg","spe","term"], isMission:true},
-      {id:"mission_spe",        label:"Objectif Première Spé",       levels:["spe"], isMission:true},
+      {id:"mission_spe",        label:"Objectif Première Spé",       levels:["sec","spe"], isMission:true},
       {id:"mission_stmg",       label:"Objectif Bac STMG",           levels:["stmg"], isMission:true},
       {id:"mission_bac",        label:"Objectif Bac en Terminale",   levels:["term"], isMission:true, disabled:true},
     ] },
@@ -6554,22 +6554,42 @@ function QRExportScreen({profile, allProg, xp, badges, onBack}) {
 }
 
 // ── Send to Teacher Screen (lien partagé) ────────────────────────────────────
-function SendToTeacherScreen({profile, allProg, xp, onBack}) {
+function SendToTeacherScreen({profile, onBack}) {
   const [link, setLink] = React.useState('');
   const [status, setStatus] = React.useState('');
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
-    teacherSnapshot(profile, allProg, xp)
-      .then(snap => {
+    // BUGFIX : on charge les données fraîches depuis le storage à chaque ouverture
+    // de l'écran. Avant, on utilisait `allProgCache` (state global) qui n'était
+    // jamais alimenté → snapshots avec progress: {} et totalXp: 0.
+    (async () => {
+      try {
+        // 1. Reconstruire allProg depuis le storage par catégorie/sous-catégorie
+        const curr = CURRICULUM[profile.level] || CURRICULUM.seconde;
+        const entries = [];
+        Object.entries(curr.cats).forEach(([c, subs]) => subs.forEach(s => entries.push([c, s])));
+        const allProg = {};
+        await Promise.all(entries.map(async ([c, s]) => {
+          try {
+            const r = await _storage.get(PK(c, s));
+            if (r?.value) allProg[`${c}:${s}`] = JSON.parse(r.value);
+          } catch {}
+        }));
+
+        // 2. Charger l'XP cumulé
+        const xp = await loadXP().catch(() => 0);
+
+        // 3. Générer le snapshot et le lien
+        const snap = await teacherSnapshot(profile, allProg, xp);
         setLink(buildTeacherLink(snap));
         setLoading(false);
-      })
-      .catch(() => {
+      } catch (e) {
         setStatus('error');
         setLoading(false);
-      });
-  }, []);
+      }
+    })();
+  }, [profile]);
 
   const handleShare = async () => {
     if (!link) return;
@@ -13660,7 +13680,7 @@ function AutoMaths() {
           {screen==="splash"        && <SplashScreen    onStart={()=>setScreen(profile?"dashboard":"home")} onMySpace={()=>setScreen(profile?"dashboard":"setup")} onRestore={()=>setScreen("backup")} profile={profile}/>}
           {screen==="setup"         && <ProfileSetupScreen onComplete={hProfileComplete} onBack={()=>setScreen("splash")} onRestore={()=>setScreen("backup")}/>}
           {screen==="qr_export"    && profile && <QRExportScreen profile={profile} allProg={allProgCache} xp={qrXp} badges={qrBadges} onBack={()=>setScreen("dashboard")}/>}
-          {screen==="send_teacher" && profile && <SendToTeacherScreen profile={profile} allProg={allProgCache} xp={qrXp} onBack={()=>setScreen("backup")}/>}
+          {screen==="send_teacher" && profile && <SendToTeacherScreen profile={profile} onBack={()=>setScreen("backup")}/>}
           {screen==="backup"       && <BackupScreen onBack={()=>setScreen(profile?"dashboard":"splash")} onImportDone={hImportDone} onSendTeacher={()=>setScreen("send_teacher")} hasProfile={!!profile}/>}
           {screen==="reminder"     && <ReminderScreen onBack={()=>setScreen("dashboard")}/>}
           {screen==="preferences"  && profile && <PreferencesScreen profile={profile} onSave={(p)=>{setProfile(p);setScreen("dashboard");}} onBack={()=>setScreen("dashboard")}/>}
