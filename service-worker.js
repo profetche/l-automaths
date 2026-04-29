@@ -1,5 +1,5 @@
 // ── Change CACHE_VERSION à chaque déploiement pour invalider l'ancien cache ──
-const CACHE_VERSION = 'automaths-v3';
+const CACHE_VERSION = 'automaths-v4';
 const ASSETS = ['/', '/index.html', '/app.js'];
 
 // ── Install : pré-cache les assets ───────────────────────────────────────────
