@@ -7304,6 +7304,7 @@ const getXpLevel = xp => [...XP_LEVELS].reverse().find(l=>xp>=l.xpNeeded)||XP_LE
 const getNextLevel = xp => XP_LEVELS.find(l=>l.xpNeeded>xp)||null;
 const XP_PER_CORRECT  = 10;
 const XP_PER_STAR     = 50;
+const XP_MASTERY_BONUS = 100; // bonus quand une sous-catégorie passe à 100% mastered (1ère fois)
 const XP_DAILY        = 30;
 
 // ── Badges ───────────────────────────────────────────────────────────────────
@@ -7406,6 +7407,7 @@ const STREAK_DAILY_THRESHOLD = 10; // 10 bonnes réponses cumulées valident la 
 const QSTATE_K = 'user:qstate'; // suivi individuel par question : { "catId:subId:idx": { status, streak, lastSeen, attempts, successes } }
 const MASTERY_STREAK = 3;             // 3 bonnes réponses consécutives = maîtrisé
 const MASTERY_REFRESH_DAYS = 30;      // une question "mastered" vue il y a >30j revient à revoir
+const MASTERY_CELEBRATED_K = 'user:mastery_celebrated'; // liste de "catId:subId" déjà félicitées (bonus XP donné une seule fois)
 
 // ── Compte progressif : compteur lifetime et gestion du prompt de création ────
 const LIFETIME_CORRECT_K = 'user:lifetime_correct'; // total cumulé de bonnes réponses (jamais remis à zéro)
@@ -7759,6 +7761,30 @@ function hasFullyMasteredSubtheme(qState) {
   return false;
 }
 
+// Renvoie les "catId:subId" intégralement maîtrisés DANS qState.
+// Une sous-cat est intégralement maîtrisée quand TOUTES ses questions de DB ont
+// le status "mastered" dans qState (et qu'il y en a au moins 3).
+function listFullyMasteredSubs(qState) {
+  if (!qState) return [];
+  const bySub = {};
+  for (const k in qState) {
+    const parts = k.split(":");
+    if (parts.length < 3) continue;
+    const subKey = parts[0] + ":" + parts[1];
+    bySub[subKey] = bySub[subKey] || { mastered: 0 };
+    if (qState[k]?.status === "mastered") bySub[subKey].mastered++;
+  }
+  const result = [];
+  for (const sk in bySub) {
+    const [catId, subId] = sk.split(":");
+    const subQs = DB?.[catId]?.[subId];
+    if (Array.isArray(subQs) && subQs.length >= 3 && bySub[sk].mastered === subQs.length) {
+      result.push(sk);
+    }
+  }
+  return result;
+}
+
 // Storage helpers
 async function loadCardsUnlocked() { try{const r=await _storage.get(CARDS_UNLOCKED_K);return r?.value?JSON.parse(r.value):[];}catch{return [];} }
 async function saveCardsUnlocked(arr) { try{await _storage.set(CARDS_UNLOCKED_K,JSON.stringify(arr));}catch{} }
@@ -7904,6 +7930,14 @@ async function loadQState() {
 }
 async function saveQState(state) {
   try { await _storage.set(QSTATE_K, JSON.stringify(state)); } catch {}
+}
+// ── Sous-catégories déjà félicitées (pour ne donner XP_MASTERY_BONUS qu'une fois) ──
+async function loadMasteryCelebrated() {
+  try { const r = await _storage.get(MASTERY_CELEBRATED_K); return r?.value ? JSON.parse(r.value) : []; }
+  catch { return []; }
+}
+async function saveMasteryCelebrated(arr) {
+  try { await _storage.set(MASTERY_CELEBRATED_K, JSON.stringify(arr)); } catch {}
 }
 // Récupère le statut d'une question avec gestion du "refresh" après MASTERY_REFRESH_DAYS
 function getQStatus(state, key) {
@@ -10616,7 +10650,7 @@ const MISSIONS = {
     id: "mission_bases",
     label: "Travailler mes bases",
     emoji: "🏋️",
-    desc: "Consolide tes fondamentaux en calcul",
+    desc: "Solidifie tes fondamentaux. Chaque question rapporte autant que les autres : sans bases solides, le reste s'écroule. Maîtrise un thème entier pour décrocher un gros bonus XP 👑",
     color: "#10B981",
     grad: "linear-gradient(135deg,#10B981,#047857)",
     themes: [
@@ -12534,7 +12568,7 @@ function SigmaLegendaire({size=110}) {
   );
 }
 
-function ResultScreen({score,total,catId,onReplay,onHome,streakJustCompleted=false,streakCount=0}) {
+function ResultScreen({score,total,catId,onReplay,onHome,streakJustCompleted=false,streakCount=0,masteryBonus={amount:0,subs:[]}}) {
   const s=starsFor(score,total);
   const pct=Math.round((score/total)*100);
   const cat=getCat(catId)||{label:"",emoji:"🎯",color:"#3B82F6",grad:"linear-gradient(135deg,#3B82F6,#1D4ED8)",light:"#EFF6FF",border:"#BFDBFE"};
@@ -12616,6 +12650,41 @@ function ResultScreen({score,total,catId,onReplay,onHome,streakJustCompleted=fal
             <div style={{color:"rgba(255,255,255,.9)", fontSize:11,
               fontWeight:600, marginTop:2}}>
               Journée validée · Reviens demain pour continuer
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Sous-catégorie maîtrisée — bandeau bonus XP (gold/violet pour différencier du streak) */}
+      {masteryBonus.amount > 0 && (
+        <div className="pop-in" style={{
+          background:"linear-gradient(135deg,#A855F7,#7C3AED)",
+          borderRadius:14, padding:"12px 16px", maxWidth:320,
+          display:"flex", alignItems:"center", gap:12,
+          boxShadow:"0 4px 14px rgba(124,58,237,.35)"
+        }}>
+          <div style={{fontSize:32}}>👑</div>
+          <div style={{textAlign:"left",flex:1}}>
+            <div style={{fontFamily:"'Nunito',sans-serif", fontWeight:900,
+              fontSize:15, color:"#fff", lineHeight:1.2}}>
+              {masteryBonus.subs.length === 1 ? "Sous-thème maîtrisé !" : `${masteryBonus.subs.length} sous-thèmes maîtrisés !`}
+            </div>
+            <div style={{color:"rgba(255,255,255,.9)", fontSize:11,
+              fontWeight:600, marginTop:2}}>
+              {masteryBonus.subs.map(sub => {
+                const [cId, sId] = sub.split(":");
+                const cat = getCat(cId);
+                const subDef = cat?.subs?.find(x => x.id === sId);
+                return subDef?.label || sId;
+              }).join(" · ")}
+            </div>
+            <div style={{
+              display:"inline-block",marginTop:6,
+              background:"rgba(255,255,255,0.2)",borderRadius:8,
+              padding:"2px 10px",fontSize:11,fontWeight:900,color:"#fff",
+              letterSpacing:.3
+            }}>
+              +{masteryBonus.amount} XP bonus
             </div>
           </div>
         </div>
@@ -13017,6 +13086,8 @@ function AutoMaths() {
   const [quizMode,  setQuizMode]  = useState(null); // "practice" | "test" | null
   const [prevStars, setPrevStars] = useState(0);
   const [newStars,  setNewStars]  = useState(0);
+  // Bonus XP de maîtrise complète d'une sous-catégorie (donné 1 fois par sub)
+  const [masteryBonus, setMasteryBonus] = useState({ amount: 0, subs: [] });
   const [streakProgress, setStreakProgress] = useState({ date: new Date().toDateString(), count: 0, completed: false });
   const [streakJustCompleted, setStreakJustCompleted] = useState(false);
   const [qState, setQState] = useState({});
@@ -13189,9 +13260,13 @@ function AutoMaths() {
     } catch(e) { /* Never block quiz for XP errors */ }
 
     // ── QState : mettre à jour le statut de chaque question du quiz ────────
+    let masteryBonusEarned = 0;
+    let newlyMasteredSubs = [];
     try {
       const failSet = new Set(failedIdx || []);
       const currentState = await loadQState();
+      // Sauvegarder la liste des sous-cats déjà maîtrisées AVANT la mise à jour
+      const masteredBefore = new Set(listFullyMasteredSubs(currentState));
       let newState = currentState;
       const seenKeys = []; // pour l'anti-répétition
       for (let i = 0; i < questions.length; i++) {
@@ -13221,7 +13296,33 @@ function AutoMaths() {
       setQState(newState);
       // Mémoriser les questions vues pour éviter les répétitions au prochain quiz
       if (seenKeys.length > 0) await pushRecentQ(seenKeys);
+
+      // ── BONUS DE MAÎTRISE : détecter les sous-cats nouvellement complétées ─
+      // Une sous-cat passe de "non maîtrisée" à "maîtrisée" quand TOUTES ses
+      // questions de DB ont status === "mastered" pour la 1ère fois.
+      // On donne XP_MASTERY_BONUS une seule fois par sous-cat (clé MASTERY_CELEBRATED_K).
+      try {
+        const masteredAfter = listFullyMasteredSubs(newState);
+        const celebrated = await loadMasteryCelebrated();
+        const celebratedSet = new Set(celebrated);
+        for (const sub of masteredAfter) {
+          if (!masteredBefore.has(sub) && !celebratedSet.has(sub)) {
+            newlyMasteredSubs.push(sub);
+            celebratedSet.add(sub);
+          }
+        }
+        if (newlyMasteredSubs.length > 0) {
+          masteryBonusEarned = newlyMasteredSubs.length * XP_MASTERY_BONUS;
+          await saveMasteryCelebrated([...celebratedSet]);
+          // Ajouter le bonus à l'XP courant (déjà sauvé plus haut, on ré-écrit)
+          const xpNow = await loadXP();
+          await saveXP(xpNow + masteryBonusEarned);
+        }
+      } catch(e) { /* Safe */ }
     } catch(e) { /* Safe */ }
+
+    // Mémoriser le bonus pour l'écran de résultat
+    setMasteryBonus({ amount: masteryBonusEarned, subs: newlyMasteredSubs });
 
     // ── Lifetime : compter les bonnes réponses totales (pour prompt compte) ─
     try {
@@ -13759,7 +13860,7 @@ function AutoMaths() {
           {screen==="bac_subjects"   && <BacSubjectScreen onStart={hBacStart} onBack={()=>setScreen("home")}/>}
           {screen==="count"         && <CountScreen     catId={mode==="bac"?null:(mode==="test_aleatoire"&&!catId?null:catId)} allMode={mode==="bac"||(mode==="test_aleatoire"&&!catId)} options={mode==="entrainement"||mode==="test_aleatoire"?[20,50]:[10,20]} onCount={hCount} onBack={()=>setScreen(mode==="entrainement"?"subcategory":mode==="test_aleatoire"?"test_aleatoire":mode==="bac"?"home":"category")}/>}
           {screen==="quiz"          && <QuizScreen      questions={questions} catId={catId||"fonctions"} subId={trackSub} quizMode={quizMode} onFinish={hFinish} onBack={()=>setScreen(prevScreen)}/>}
-          {screen==="result"        && <ResultScreen    score={score} total={questions.length} catId={catId||"fonctions"} onReplay={()=>{setStreakJustCompleted(false);hReplay();}} onHome={()=>{setStreakJustCompleted(false);hHome();}} streakJustCompleted={streakJustCompleted} streakCount={profile?.streak||0}/>}
+          {screen==="result"        && <ResultScreen    score={score} total={questions.length} catId={catId||"fonctions"} onReplay={()=>{setStreakJustCompleted(false);hReplay();}} onHome={()=>{setStreakJustCompleted(false);hHome();}} streakJustCompleted={streakJustCompleted} streakCount={profile?.streak||0} masteryBonus={masteryBonus}/>}
           {screen==="parcours_result"&&<PostPracticeResultScreen score={score} total={questions.length} catId={trackCat} subId={trackSub} mode={quizMode} prevStars={prevStars} newStars={newStars} onRetry={()=>quizMode==="practice"?hStartPractice(trackCat,trackSub):hStartTest(trackCat,trackSub)} onDashboard={hDashboard} onHome={hHome}/>}
 
         </div>
