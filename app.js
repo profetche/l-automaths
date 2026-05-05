@@ -3840,6 +3840,477 @@ const DB = {
       { q:r`P(\text{réussir})=0{,}8.\ P(\text{échouer})=?`, choices:[r`0{,}2`,r`0{,}8`,r`0{,}1`,r`0{,}5`], a:r`0{,}2`, tip:r`1-0{,}8=0{,}2` },
       { q:r`P(A)+P(\bar A)=?`, choices:[`1`,`0`,r`0{,}5`,r`\text{Variable}`], a:`1`, tip:r`P(A)+P(\bar A)=1` },
     ],
+
+    // ── Probabilités conditionnelles ── (7 questions)
+    probas_conditionnelles: [
+      // term_proba_01 — Calcul de P(A∩B) avec formule conditionnelle — facile
+      { q: r`\text{On considère deux événements }A\text{ et }B\text{ tels que }P(A) = 0{,}6\text{ et }P_A(B) = 0{,}5\text{. Quelle est la valeur de }P(A \cap B)\text{ ?}`,
+        choices: [
+          r`0{,}3`,
+          r`1{,}1`,
+          r`0{,}1`,
+          r`\dfrac{5}{6}`
+        ],
+        a: r`0{,}3`,
+        tip: r`\text{Formule du cours : }P(A \cap B) = P(A) \times P_A(B)\text{.\\\\ Application : }P(A \cap B) = 0{,}6 \times 0{,}5 = 0{,}3\text{.\\\\ Le distracteur }1{,}1\text{ correspond à une addition au lieu d'une multiplication. Le distracteur }\dfrac{5}{6}\…` },
+      // term_proba_02 — Calcul d'une probabilité conditionnelle (formule i — facile
+      { q: r`\text{On donne }P(A) = 0{,}4\text{ et }P(A \cap B) = 0{,}1\text{. Quelle est la valeur de }P_A(B)\text{ ?}`,
+        choices: [
+          r`0{,}25`,
+          r`0{,}04`,
+          r`2{,}5`,
+          r`0{,}5`
+        ],
+        a: r`0{,}25`,
+        tip: r`\text{Formule du cours : }P_A(B) = \dfrac{P(A \cap B)}{P(A)}\text{ (à condition que }P(A) \neq 0\text{).\\\\ Application : }P_A(B) = \dfrac{0{,}1}{0{,}4} = \dfrac{1}{4} = 0{,}25\text{.\\\\ Le distracteur }0{,}04\text{ correspond au produit }P(A) \tim…` },
+      // term_proba_03 — Probabilité conditionnelle dans un tableau croisé — moyenne
+      // ⚠️ Question pédagogique majeure : forcer la distinction entre P_A(F), P_F(A) et P(F∩A). À surveiller en classe.
+      { q: r`\text{Dans une classe de }30\text{ élèves, il y a }18\text{ filles et }12\text{ garçons. }8\text{ filles et }4\text{ garçons étudient l'allemand. On choisit un élève au hasard. Sachant qu'il étudie l'allemand, quelle est la probabilité que ce soit une fille ?}`,
+        choices: [
+          r`\dfrac{2}{3}`,
+          r`\dfrac{8}{18}`,
+          r`\dfrac{8}{30}`,
+          r`\dfrac{12}{30}`
+        ],
+        a: r`\dfrac{2}{3}`,
+        tip: r`\text{On note }F\text{ = \og l'élève est une fille \fg{} et }A\text{ = \og l'élève étudie l'allemand \fg.\\\\ }P_A(F) = \dfrac{P(F \cap A)}{P(A)} = \dfrac{\text{nb filles allemand}}{\text{nb total allemand}} = \dfrac{8}{8 + 4} = \dfrac{8}{12} = \dfra…` },
+      // term_proba_04 — Lecture d'un arbre pondéré — moyenne
+      { q: r`\text{On donne ci-dessus l'arbre pondéré associé à deux événements }A\text{ et }B\text{. Quelle est la valeur de }P(A \cap B)\text{ ?}`,
+        svg: r`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 300" width="100%" style="background:#fff;font-family:sans-serif">
+<line x1="60" y1="150" x2="200" y2="80" stroke="#111" stroke-width="1.3"/>
+<line x1="60" y1="150" x2="200" y2="220" stroke="#111" stroke-width="1.3"/>
+<text x="130.0" y="107.0" font-size="13" text-anchor="middle">0,7</text>
+<text x="130.0" y="203.0" font-size="13" text-anchor="middle">0,3</text>
+<text x="205" y="85" font-size="15" font-style="italic" text-anchor="start">A</text>
+<text x="205" y="225" font-size="15" font-style="italic" text-anchor="start">A</text>
+<line x1="204" y1="212.25" x2="215.5" y2="212.25" stroke="#111" stroke-width="1.2"/>
+<line x1="225" y1="80" x2="380" y2="40" stroke="#111" stroke-width="1.3"/>
+<line x1="225" y1="80" x2="380" y2="120" stroke="#111" stroke-width="1.3"/>
+<line x1="225" y1="220" x2="380" y2="180" stroke="#111" stroke-width="1.3"/>
+<line x1="225" y1="220" x2="380" y2="260" stroke="#111" stroke-width="1.3"/>
+<text x="302.5" y="52.0" font-size="13" text-anchor="middle">0,4</text>
+<text x="302.5" y="114.0" font-size="13" text-anchor="middle">0,6</text>
+<text x="302.5" y="192.0" font-size="13" text-anchor="middle">0,6</text>
+<text x="302.5" y="254.0" font-size="13" text-anchor="middle">0,4</text>
+<text x="385" y="45" font-size="15" font-style="italic" text-anchor="start">B</text>
+<text x="385" y="125" font-size="15" font-style="italic" text-anchor="start">B</text>
+<line x1="384" y1="112.25" x2="395.5" y2="112.25" stroke="#111" stroke-width="1.2"/>
+<text x="385" y="185" font-size="15" font-style="italic" text-anchor="start">B</text>
+<text x="385" y="265" font-size="15" font-style="italic" text-anchor="start">B</text>
+<line x1="384" y1="252.25" x2="395.5" y2="252.25" stroke="#111" stroke-width="1.2"/>
+</svg>`,
+        choices: [
+          r`0{,}28`,
+          r`0{,}40`,
+          r`1{,}10`,
+          r`0{,}70`
+        ],
+        a: r`0{,}28`,
+        tip: r`\text{Sur un arbre pondéré, on multiplie les probabilités le long du chemin menant à }A \cap B\text{.\\\\ Le chemin }A\text{ puis }B\text{ donne : }P(A \cap B) = P(A) \times P_A(B) = 0{,}7 \times 0{,}4 = 0{,}28\text{.\\\\ Le distracteur }0{,}40\text{}…` },
+      // term_proba_05 — Inversion conditionnelle (Bayes simple) — moyenne
+      // ⚠️ Distracteur 3 (P_A(B) = 0,80) piège l'élève qui suppose la symétrie. Crucial pédagogiquement.
+      { q: r`\text{Soient }A\text{ et }B\text{ deux événements tels que }P(A) = 0{,}3\text{, }P_A(B) = 0{,}8\text{ et }P(B) = 0{,}5\text{. Quelle est la valeur de }P_B(A)\text{ ?}`,
+        choices: [
+          r`0{,}48`,
+          r`0{,}24`,
+          r`0{,}80`,
+          r`0{,}30`
+        ],
+        a: r`0{,}48`,
+        tip: r`\text{On part de }P_B(A) = \dfrac{P(A \cap B)}{P(B)}\text{ avec }P(A \cap B) = P(A) \times P_A(B)\text{.\\\\ Donc : }P_B(A) = \dfrac{P(A) \times P_A(B)}{P(B)} = \dfrac{0{,}3 \times 0{,}8}{0{,}5} = \dfrac{0{,}24}{0{,}5} = 0{,}48\text{.\\\\ \textbf{Imp}}…` },
+      // term_proba_06 — Probabilité conditionnelle dans un tirage successi — moyenne
+      { q: r`\text{Une urne contient }5\text{ boules rouges et }3\text{ boules vertes. On tire successivement et sans remise }2\text{ boules. Sachant que la première est rouge, quelle est la probabilité que la seconde soit rouge ?}`,
+        choices: [
+          r`\dfrac{4}{7}`,
+          r`\dfrac{5}{8}`,
+          r`\dfrac{5}{7}`,
+          r`\dfrac{4}{8}`
+        ],
+        a: r`\dfrac{4}{7}`,
+        tip: r`\text{On note }R_1\text{ et }R_2\text{ les événements \og la }1^{re}\text{ (resp. }2^e\text{) boule est rouge \fg.\\\\ Sachant }R_1\text{, il reste dans l'urne }4\text{ rouges et }3\text{ vertes, soit }7\text{ boules. Donc }P_{R_1}(R_2) = \dfrac{4}{7}…` },
+      // term_proba_07 — Probabilité conditionnelle inverse en contexte — dure
+      // ⚠️ Question dure type bac. Distracteur 2 (0,9) piège fréquent : élève confond fiabilité du test et proba conditionnelle inverse.
+      { q: r`\text{Une maladie touche }10\,\%\text{ de la population. Un test détecte la maladie avec une probabilité de }0{,}9\text{ chez un malade, et donne un faux positif (test positif chez un non-malade) avec une probabilité de }0{,}2\text{. Une personne est testée positive. Quelle est la probabilité qu'elle soit effectivement malade ?}`,
+        choices: [
+          r`\dfrac{1}{3}`,
+          r`0{,}9`,
+          r`0{,}1`,
+          r`0{,}5`
+        ],
+        a: r`\dfrac{1}{3}`,
+        tip: r`\text{Notons }M\text{ = \og malade \fg{} et }T\text{ = \og test positif \fg.\\\\ Données : }P(M) = 0{,}1\text{, }P_M(T) = 0{,}9\text{, }P_{\overline{M}}(T) = 0{,}2\text{.\\\\ \textbf{Étape 1} (formule des probabilités totales) : }P(T) = P(M) \times P…` },
+    ],
+
+    // ── Événements indépendants ── (5 questions)
+    probas_independance: [
+      // term_proba_08 — Tester l'indépendance par la formule — facile
+      { q: r`\text{On considère deux événements }A\text{ et }B\text{ vérifiant }P(A) = 0{,}5\text{, }P(B) = 0{,}4\text{ et }P(A \cap B) = 0{,}2\text{. Les événements }A\text{ et }B\text{ sont-ils indépendants ?}`,
+        choices: [
+          r`\text{Oui : }P(A) \times P(B) = 0{,}2 = P(A \cap B)`,
+          r`\text{Non : }0{,}5 \neq 0{,}4`,
+          r`\text{On ne peut pas conclure sans plus d'information}`,
+          r`\text{Oui car }A\text{ et }B\text{ sont disjoints}`
+        ],
+        a: r`\text{Oui : }P(A) \times P(B) = 0{,}2 = P(A \cap B)`,
+        tip: r`\text{Définition du cours : }A\text{ et }B\text{ sont \textbf{indépendants} si et seulement si }P(A \cap B) = P(A) \times P(B)\text{.\\\\ Calcul : }P(A) \times P(B) = 0{,}5 \times 0{,}4 = 0{,}2\text{, et }P(A \cap B) = 0{,}2\text{. L'égalité est véri}…` },
+      // term_proba_09 — Reconnaître une situation d'indépendance — facile
+      { q: r`\text{On lance deux dés équilibrés à }6\text{ faces. Soit }A\text{ = \og le premier dé montre }6\text{ \fg{} et }B\text{ = \og le second dé montre }6\text{ \fg. Quelle est la valeur de }P(A \cap B)\text{ ?}`,
+        choices: [
+          r`\dfrac{1}{36}`,
+          r`\dfrac{1}{6}`,
+          r`\dfrac{2}{6}`,
+          r`\dfrac{1}{12}`
+        ],
+        a: r`\dfrac{1}{36}`,
+        tip: r`\text{Les deux lancers de dés sont \textbf{indépendants} (le résultat d'un dé n'influence pas l'autre). Donc }P(A \cap B) = P(A) \times P(B) = \dfrac{1}{6} \times \dfrac{1}{6} = \dfrac{1}{36}\text{.}` },
+      // term_proba_10 — Calculer P(A∪B) avec indépendance — moyenne
+      { q: r`A\text{ et }B\text{ sont deux événements \textbf{indépendants} tels que }P(A) = 0{,}6\text{ et }P(B) = 0{,}3\text{. Quelle est la valeur de }P(A \cup B)\text{ ?}`,
+        choices: [
+          r`0{,}72`,
+          r`0{,}90`,
+          r`0{,}18`,
+          r`0{,}50`
+        ],
+        a: r`0{,}72`,
+        tip: r`\text{Formule générale : }P(A \cup B) = P(A) + P(B) - P(A \cap B)\text{.\\\\ Comme }A\text{ et }B\text{ sont indépendants, }P(A \cap B) = P(A) \times P(B) = 0{,}6 \times 0{,}3 = 0{,}18\text{.\\\\ Donc }P(A \cup B) = 0{,}6 + 0{,}3 - 0{,}18 = 0{,}72\te…` },
+      // term_proba_11 — Indépendance et événements contraires — moyenne
+      { q: r`A\text{ et }B\text{ sont deux événements \textbf{indépendants} tels que }P(A) = 0{,}4\text{ et }P(B) = 0{,}7\text{. Quelle est la valeur de }P(A \cap \overline{B})\text{ ?}`,
+        choices: [
+          r`0{,}12`,
+          r`0{,}28`,
+          r`0{,}30`,
+          r`0{,}10`
+        ],
+        a: r`0{,}12`,
+        tip: r`\text{Propriété du cours : si }A\text{ et }B\text{ sont indépendants, alors }A\text{ et }\overline{B}\text{ le sont aussi.\\\\ Donc }P(A \cap \overline{B}) = P(A) \times P(\overline{B})\text{.\\\\ Or }P(\overline{B}) = 1 - P(B) = 1 - 0{,}7 = 0{,}3\te…` },
+      // term_proba_12 — Tester si deux événements ne sont pas indépendants — dure
+      // ⚠️ Question méta sur la définition. Distracteur 2 cible la confusion 'P(A∩B)>0 implique indépendance'.
+      { q: r`\text{Soient }A\text{ et }B\text{ deux événements vérifiant }P(A) = 0{,}4\text{, }P(B) = 0{,}5\text{ et }P(A \cap B) = 0{,}25\text{. Que peut-on dire de l'indépendance de }A\text{ et }B\text{ ?}`,
+        choices: [
+          r`A\text{ et }B\text{ ne sont pas indépendants car }P(A) \times P(B) = 0{,}2 \neq 0{,}25`,
+          r`A\text{ et }B\text{ sont indépendants car }P(A \cap B) > 0`,
+          r`A\text{ et }B\text{ sont indépendants car }P(A) + P(B) > 1`,
+          r`\text{On ne peut pas conclure sans connaître }P(A \cup B)`
+        ],
+        a: r`A\text{ et }B\text{ ne sont pas indépendants car }P(A) \times P(B) = 0{,}2 \neq 0{,}25`,
+        tip: r`\text{Test d'indépendance : on calcule }P(A) \times P(B) = 0{,}4 \times 0{,}5 = 0{,}2\text{. On compare avec }P(A \cap B) = 0{,}25\text{.\\\\ Comme }0{,}2 \neq 0{,}25\text{, les événements ne sont \textbf{pas} indépendants.\\\\ Remarque : ici }P(A \c…` },
+    ],
+
+    // ── Probabilités totales ── (6 questions)
+    probas_totales: [
+      // term_proba_13 — Formule des probabilités totales (2 branches) — facile
+      { q: r`\text{Soient }A\text{ et }B\text{ deux événements tels que }P(A) = 0{,}6\text{, }P_A(B) = 0{,}7\text{ et }P_{\overline{A}}(B) = 0{,}3\text{. Quelle est la valeur de }P(B)\text{ ?}`,
+        choices: [
+          r`0{,}54`,
+          r`1{,}00`,
+          r`0{,}21`,
+          r`0{,}42`
+        ],
+        a: r`0{,}54`,
+        tip: r`\text{Formule des probabilités totales avec la partition }\{A\,;\,\overline{A}\}\text{ :\\\\ }P(B) = P(A) \times P_A(B) + P(\overline{A}) \times P_{\overline{A}}(B)\text{\\\\ }= 0{,}6 \times 0{,}7 + 0{,}4 \times 0{,}3 = 0{,}42 + 0{,}12 = 0{,}54\text{}…` },
+      // term_proba_14 — Probabilités totales par lecture d'arbre — moyenne
+      { q: r`\text{Une entreprise possède deux usines }A\text{ et }B\text{. L'usine }A\text{ produit }60\,\%\text{ des pièces, l'usine }B\text{ produit le reste. Parmi les pièces de l'usine }A\text{, }2\,\%\text{ sont défectueuses (événement }D\text{). Parmi celles de l'usine }B\text{, }5\,\%\text{ sont défectueuses. L'arbre pondéré ci-dessus modélise la situation. Quelle est la probabilité qu'une pièce prise au hasard soit défectueuse ?}`,
+        svg: r`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" width="100%" style="background:#fff;font-family:sans-serif">
+<line x1="60" y1="150" x2="200" y2="80" stroke="#111" stroke-width="1.3"/>
+<line x1="60" y1="150" x2="200" y2="220" stroke="#111" stroke-width="1.3"/>
+<text x="130.0" y="107.0" font-size="13" text-anchor="middle">0,6</text>
+<text x="130.0" y="203.0" font-size="13" text-anchor="middle">0,4</text>
+<text x="205" y="85" font-size="15" font-style="italic">A</text>
+<text x="205" y="225" font-size="15" font-style="italic">B</text>
+<line x1="225" y1="80" x2="390" y2="40" stroke="#111" stroke-width="1.3"/>
+<line x1="225" y1="80" x2="390" y2="120" stroke="#111" stroke-width="1.3"/>
+<line x1="225" y1="220" x2="390" y2="180" stroke="#111" stroke-width="1.3"/>
+<line x1="225" y1="220" x2="390" y2="260" stroke="#111" stroke-width="1.3"/>
+<text x="307.5" y="52.0" font-size="13" text-anchor="middle">0,02</text>
+<text x="307.5" y="114.0" font-size="13" text-anchor="middle">0,98</text>
+<text x="307.5" y="192.0" font-size="13" text-anchor="middle">0,05</text>
+<text x="307.5" y="254.0" font-size="13" text-anchor="middle">0,95</text>
+<text x="395" y="45" font-size="15" font-style="italic">D</text>
+<text x="395" y="125" font-size="15" font-style="italic" text-anchor="start">D</text>
+<line x1="394" y1="112.25" x2="405.5" y2="112.25" stroke="#111" stroke-width="1.2"/>
+<text x="395" y="185" font-size="15" font-style="italic">D</text>
+<text x="395" y="265" font-size="15" font-style="italic" text-anchor="start">D</text>
+<line x1="394" y1="252.25" x2="405.5" y2="252.25" stroke="#111" stroke-width="1.2"/>
+</svg>`,
+        choices: [
+          r`0{,}032`,
+          r`0{,}012`,
+          r`0{,}050`,
+          r`0{,}070`
+        ],
+        a: r`0{,}032`,
+        tip: r`\text{Formule des probabilités totales avec la partition }\{A\,;\,B\}\text{ :\\\\ }P(D) = P(A) \times P_A(D) + P(B) \times P_B(D)\text{\\\\ }= 0{,}6 \times 0{,}02 + 0{,}4 \times 0{,}05 = 0{,}012 + 0{,}020 = 0{,}032\text{.\\\\ Le distracteur }0{,}012\…` },
+      // term_proba_15 — Bayes via probabilités totales — moyenne
+      { q: r`\text{On reprend la situation des deux usines }A\text{ (}60\,\%\text{ de la production, }2\,\%\text{ défectueuses) et }B\text{ (}40\,\%\text{, }5\,\%\text{ défectueuses). On a montré que }P(D) = 0{,}032\text{. Une pièce prise au hasard est défectueuse. Quelle est la probabilité qu'elle vienne de l'usine }A\text{ ?}`,
+        choices: [
+          r`\dfrac{3}{8} = 0{,}375`,
+          r`0{,}012`,
+          r`0{,}600`,
+          r`0{,}020`
+        ],
+        a: r`\dfrac{3}{8} = 0{,}375`,
+        tip: r`\text{On cherche }P_D(A) = \dfrac{P(A \cap D)}{P(D)}\text{.\\\\ Le numérateur : }P(A \cap D) = P(A) \times P_A(D) = 0{,}6 \times 0{,}02 = 0{,}012\text{.\\\\ D'où : }P_D(A) = \dfrac{0{,}012}{0{,}032} = \dfrac{12}{32} = \dfrac{3}{8} = 0{,}375\text{.\\\}…` },
+      // term_proba_16 — Probabilités totales avec partition à 3 classes — moyenne
+      { q: r`\text{Dans un lycée, }50\,\%\text{ des élèves choisissent l'option Mathématiques, }30\,\%\text{ Physique-Chimie et }20\,\%\text{ SVT (chacun choisit une seule option). Parmi ceux qui font Maths, }10\,\%\text{ font aussi du Latin ; Physique-Chimie : }20\,\%\text{ ; SVT : }5\,\%\text{. Quelle est la probabilité qu'un élève pris au hasard fasse du Latin ?}`,
+        choices: [
+          r`0{,}12`,
+          r`0{,}35`,
+          r`0{,}11`,
+          r`0{,}07`
+        ],
+        a: r`0{,}12`,
+        tip: r`\text{Formule des probabilités totales avec la partition }\{M\,;\,P\,;\,S\}\text{ :\\\\ }P(L) = P(M) \times P_M(L) + P(P) \times P_P(L) + P(S) \times P_S(L)\text{\\\\ }= 0{,}5 \times 0{,}1 + 0{,}3 \times 0{,}2 + 0{,}2 \times 0{,}05 = 0{,}05 + 0{,}06 …` },
+      // term_proba_17 — Identifier la formule des probabilités totales — moyenne
+      { q: r`\text{Soient }A_1, A_2, A_3\text{ une partition de l'univers et }B\text{ un événement. Quelle formule exprime correctement }P(B)\text{ ?}`,
+        choices: [
+          r`P(B) = P(A_1) P_{A_1}(B) + P(A_2) P_{A_2}(B) + P(A_3) P_{A_3}(B)`,
+          r`P(B) = P_B(A_1) + P_B(A_2) + P_B(A_3)`,
+          r`P(B) = P(A_1) + P(A_2) + P(A_3)`,
+          r`P(B) = P(A_1) \times P(A_2) \times P(A_3)`
+        ],
+        a: r`P(B) = P(A_1) P_{A_1}(B) + P(A_2) P_{A_2}(B) + P(A_3) P_{A_3}(B)`,
+        tip: r`\text{Formule des probabilités totales : si }\{A_1, \ldots, A_n\}\text{ est une partition de l'univers, alors pour tout événement }B\text{ :\\\\ }P(B) = \displaystyle\sum_{i=1}^n P(A_i) \times P_{A_i}(B)\text{.\\\\ Le distracteur 2 (}P_B(A_1) + \ldot…` },
+      // term_proba_18 — Probabilités totales en contexte (sondage) — dure
+      // ⚠️ Question type bac. Bonne pour évaluer la maîtrise complète du chapitre conditionnelles + probas totales.
+      { q: r`\text{Un sondage s'intéresse à la consommation de café. La population est composée de }40\,\%\text{ d'hommes et }60\,\%\text{ de femmes. }70\,\%\text{ des hommes consomment du café quotidiennement ; chez les femmes, cette proportion est de }50\,\%\text{. Sachant qu'une personne consomme du café quotidiennement, quelle est la probabilité que ce soit un homme ?}`,
+        choices: [
+          r`\dfrac{14}{29} \approx 0{,}483`,
+          r`0{,}40`,
+          r`0{,}70`,
+          r`0{,}28`
+        ],
+        a: r`\dfrac{14}{29} \approx 0{,}483`,
+        tip: r`\text{Notons }H\text{ = \og homme \fg, }F\text{ = \og femme \fg, }C\text{ = \og consomme du café \fg.\\\\ Données : }P(H) = 0{,}4\text{, }P(F) = 0{,}6\text{, }P_H(C) = 0{,}7\text{, }P_F(C) = 0{,}5\text{.\\\\ \textbf{Probabilités totales} : }P(C) = 0{}…` },
+    ],
+
+    // ── Variables aléatoires (E, V, σ) ── (7 questions)
+    probas_var_aleatoires: [
+      // term_proba_19 — Compléter une loi de probabilité — facile
+      { q: r`X\text{ est une variable aléatoire qui prend les valeurs }1\text{, }2\text{ et }3\text{. On donne }P(X=1) = 0{,}2\text{ et }P(X=2) = 0{,}3\text{. Quelle est la valeur de }P(X=3)\text{ ?}`,
+        choices: [
+          r`0{,}5`,
+          r`0{,}1`,
+          r`0{,}25`,
+          r`1`
+        ],
+        a: r`0{,}5`,
+        tip: r`\text{La somme des probabilités d'une loi vaut toujours }1\text{ : }P(X=1) + P(X=2) + P(X=3) = 1\text{.\\\\ Donc }P(X=3) = 1 - 0{,}2 - 0{,}3 = 0{,}5\text{.}` },
+      // term_proba_20 — Calcul d'une espérance — facile
+      { q: r`X\text{ est une variable aléatoire de loi : }P(X=1) = 0{,}4\text{, }P(X=2) = 0{,}5\text{, }P(X=3) = 0{,}1\text{. Quelle est la valeur de }E(X)\text{ ?}`,
+        choices: [
+          r`1{,}7`,
+          r`2`,
+          r`1`,
+          r`3`
+        ],
+        a: r`1{,}7`,
+        tip: r`\text{Définition : }E(X) = \displaystyle\sum_i x_i \times P(X=x_i)\text{.\\\\ }E(X) = 1 \times 0{,}4 + 2 \times 0{,}5 + 3 \times 0{,}1 = 0{,}4 + 1 + 0{,}3 = 1{,}7\text{.\\\\ Le distracteur }2\text{ correspond à la moyenne arithmétique des valeurs (sa}…` },
+      // term_proba_21 — Espérance de gain dans un jeu — moyenne
+      { q: r`\text{Dans un jeu, on a }1\text{ chance sur }10\text{ de gagner }50\text{ € et }9\text{ chances sur }10\text{ de perdre }5\text{ €. Soit }X\text{ la variable aléatoire donnant le gain (algébrique) du joueur. Quelle est la valeur de }E(X)\text{, et le jeu est-il favorable au joueur ?}`,
+        choices: [
+          r`E(X) = 0{,}5\text{ €, le jeu est favorable}`,
+          r`E(X) = 0{,}5\text{ €, le jeu est défavorable}`,
+          r`E(X) = -0{,}5\text{ €, le jeu est défavorable}`,
+          r`E(X) = 45\text{ €, le jeu est favorable}`
+        ],
+        a: r`E(X) = 0{,}5\text{ €, le jeu est favorable}`,
+        tip: r`X\text{ prend les valeurs }50\text{ avec probabilité }0{,}1\text{ et }-5\text{ avec probabilité }0{,}9\text{ (perte = gain négatif).\\\\ }E(X) = 50 \times 0{,}1 + (-5) \times 0{,}9 = 5 - 4{,}5 = 0{,}5\text{ €.\\\\ }E(X) > 0\text{, le jeu est \textbf{}}…` },
+      // term_proba_22 — Calcul de variance — moyenne
+      // ⚠️ Calcul long mais fondamental. Attention à bien insister sur la formule de König-Huygens.
+      { q: r`X\text{ est une variable aléatoire de loi : }P(X=0) = 0{,}5\text{, }P(X=1) = 0{,}3\text{, }P(X=2) = 0{,}2\text{. Quelle est la valeur de }V(X)\text{ ?}`,
+        choices: [
+          r`0{,}61`,
+          r`1{,}1`,
+          r`0{,}7`,
+          r`0{,}49`
+        ],
+        a: r`0{,}61`,
+        tip: r`\text{\textbf{Étape 1} : }E(X) = 0 \times 0{,}5 + 1 \times 0{,}3 + 2 \times 0{,}2 = 0{,}7\text{.\\\\ \textbf{Étape 2} : }E(X^2) = 0^2 \times 0{,}5 + 1^2 \times 0{,}3 + 2^2 \times 0{,}2 = 0 + 0{,}3 + 0{,}8 = 1{,}1\text{.\\\\ \textbf{Étape 3} (formule }…` },
+      // term_proba_23 — Linéarité de l'espérance — moyenne
+      { q: r`X\text{ est une variable aléatoire d'espérance }E(X) = 5\text{. Soit }Y = 2X + 3\text{. Quelle est la valeur de }E(Y)\text{ ?}`,
+        choices: [
+          r`13`,
+          r`10`,
+          r`8`,
+          r`5`
+        ],
+        a: r`13`,
+        tip: r`\text{Linéarité de l'espérance : pour tous réels }a\text{ et }b\text{, }E(aX + b) = a \times E(X) + b\text{.\\\\ }E(Y) = E(2X + 3) = 2 \times E(X) + 3 = 2 \times 5 + 3 = 13\text{.}` },
+      // term_proba_24 — Variance d'une transformation affine — dure
+      // ⚠️ Distracteur 2 (8 = 2*V(X)) extrêmement classique. À surveiller.
+      { q: r`X\text{ est une variable aléatoire de variance }V(X) = 4\text{. Soit }Y = 2X - 1\text{. Quelle est la valeur de }V(Y)\text{ ?}`,
+        choices: [
+          r`16`,
+          r`8`,
+          r`7`,
+          r`4`
+        ],
+        a: r`16`,
+        tip: r`\text{Propriété : pour tous réels }a\text{ et }b\text{, }V(aX + b) = a^2 \times V(X)\text{. \\\\ Le terme constant }b\text{ disparaît (translater une variable ne change pas sa dispersion). Le coefficient }a\text{ apparaît au carré (dilater multiplie }…` },
+      // term_proba_25 — Calcul de l'écart-type — dure
+      { q: r`X\text{ est une variable aléatoire d'espérance }E(X) = 10\text{ et de variance }V(X) = 9\text{. Quelle est la valeur de l'écart-type }\sigma(X)\text{ ?}`,
+        choices: [
+          r`3`,
+          r`9`,
+          r`81`,
+          r`\sqrt{10}`
+        ],
+        a: r`3`,
+        tip: r`\text{Définition : }\sigma(X) = \sqrt{V(X)}\text{.\\\\ }\sigma(X) = \sqrt{9} = 3\text{.\\\\ L'écart-type s'exprime dans la même unité que }X\text{, contrairement à la variance (qui s'exprime dans le carré de l'unité). L'espérance n'intervient pas dans ce calcul.}` },
+    ],
+
+    // ── Loi binomiale ── (10 questions)
+    probas_loi_binomiale: [
+      // term_proba_26 — Reconnaître une situation binomiale — facile
+      { q: r`\text{Dans laquelle des situations suivantes la variable aléatoire }X\text{ suit-elle une loi binomiale ?}`,
+        choices: [
+          r`\text{On lance }10\text{ fois une pièce truquée (probabilité de pile }0{,}3\text{) et }X\text{ compte le nombre de \og pile \fg}`,
+          r`\text{On tire successivement \textbf{sans remise} }5\text{ cartes d'un jeu de }32\text{ et }X\text{ compte le nombre de rois}`,
+          r`\text{On lance un dé jusqu'à obtenir un }6\text{ et }X\text{ est le nombre de lancers nécessaires}`,
+          r`X\text{ représente la taille d'un élève pris au hasard dans un lycée}`
+        ],
+        a: r`\text{On lance }10\text{ fois une pièce truquée (probabilité de pile }0{,}3\text{) et }X\text{ compte le nombre de \og pile \fg}`,
+        tip: r`\text{Une loi binomiale }\mathcal{B}(n,p)\text{ modélise le nombre de succès lors de }n\text{ \textbf{épreuves de Bernoulli identiques et indépendantes}, chacune ayant probabilité }p\text{ de succès.\\\\ \textbf{Choix 1} : OUI. }10\text{ lancers iden}…` },
+      // term_proba_27 — Calcul direct de P(X=k) — facile
+      { q: r`X\text{ suit la loi binomiale }\mathcal{B}(5\,;\,0{,}4)\text{. Quelle est la valeur de }P(X = 2)\text{ ?}`,
+        choices: [
+          r`\dbinom{5}{2} \times 0{,}4^{2} \times 0{,}6^{3} = 0{,}3456`,
+          r`\dbinom{5}{2} \times 0{,}4^{2} \times 0{,}4^{3}`,
+          r`0{,}4^{2} \times 0{,}6^{3}`,
+          r`\dbinom{5}{2} \times 0{,}4^{5}`
+        ],
+        a: r`\dbinom{5}{2} \times 0{,}4^{2} \times 0{,}6^{3} = 0{,}3456`,
+        tip: r`\text{Formule du cours : si }X \sim \mathcal{B}(n\,;\,p)\text{, alors }P(X=k) = \dbinom{n}{k} \times p^{k} \times (1-p)^{n-k}\text{.\\\\ Avec }n = 5\text{, }p = 0{,}4\text{, }k = 2\text{ : }P(X=2) = \dbinom{5}{2} \times 0{,}4^{2} \times 0{,}6^{3} = 1…` },
+      // term_proba_28 — Espérance d'une loi binomiale — facile
+      { q: r`X\text{ suit la loi binomiale }\mathcal{B}(20\,;\,0{,}3)\text{. Quelle est la valeur de }E(X)\text{ ?}`,
+        choices: [
+          r`6`,
+          r`0{,}3`,
+          r`20`,
+          r`4{,}2`
+        ],
+        a: r`6`,
+        tip: r`\text{Pour }X \sim \mathcal{B}(n\,;\,p)\text{ : }E(X) = np\text{.\\\\ }E(X) = 20 \times 0{,}3 = 6\text{.\\\\ Interprétation : sur }20\text{ épreuves indépendantes ayant chacune }0{,}3\text{ de réussite, on s'attend en moyenne à }6\text{ succès.\\\\ L}…` },
+      // term_proba_29 — Calcul de P(X=0) — moyenne
+      { q: r`X\text{ suit la loi binomiale }\mathcal{B}(10\,;\,0{,}2)\text{. Quelle est la valeur de }P(X = 0)\text{ ?}`,
+        choices: [
+          r`0{,}8^{10} \approx 0{,}107`,
+          r`0{,}2^{10}`,
+          r`0`,
+          r`\dbinom{10}{0} \times 0{,}2`
+        ],
+        a: r`0{,}8^{10} \approx 0{,}107`,
+        tip: r`P(X=0) = \dbinom{10}{0} \times 0{,}2^{0} \times 0{,}8^{10} = 1 \times 1 \times 0{,}8^{10} \approx 0{,}107\text{.\\\\ Interprétation : la probabilité d'avoir \textbf{aucun} succès, c'est que les }10\text{ épreuves soient des échecs, donc }(1-p)^{n} = …` },
+      // term_proba_30 — Probabilité d'au moins un succès — moyenne
+      { q: r`X\text{ suit la loi binomiale }\mathcal{B}(8\,;\,0{,}3)\text{. Quelle est la valeur de }P(X \geqslant 1)\text{ ?}`,
+        choices: [
+          r`1 - 0{,}7^{8} \approx 0{,}942`,
+          r`0{,}3^{8}`,
+          r`8 \times 0{,}3 = 2{,}4`,
+          r`1 - 0{,}3^{8}`
+        ],
+        a: r`1 - 0{,}7^{8} \approx 0{,}942`,
+        tip: r`\text{\textbf{Méthode du complémentaire} : }P(X \geqslant 1) = 1 - P(X = 0) = 1 - 0{,}7^{8} \approx 1 - 0{,}058 = 0{,}942\text{.\\\\ \textbf{Astuce} : pour \og au moins un \fg, passer toujours par le complémentaire (\og aucun \fg) plutôt que de somme}…` },
+      // term_proba_31 — Variance et écart-type d'une loi binomiale — moyenne
+      { q: r`X\text{ suit la loi binomiale }\mathcal{B}(50\,;\,0{,}4)\text{. Quelles sont les valeurs de }V(X)\text{ et }\sigma(X)\text{ (arrondi à }0{,}01\text{ près) ?}`,
+        choices: [
+          r`V(X) = 12\text{ et }\sigma(X) \approx 3{,}46`,
+          r`V(X) = 20\text{ et }\sigma(X) \approx 4{,}47`,
+          r`V(X) = 12\text{ et }\sigma(X) = 12`,
+          r`V(X) = 0{,}24\text{ et }\sigma(X) \approx 0{,}49`
+        ],
+        a: r`V(X) = 12\text{ et }\sigma(X) \approx 3{,}46`,
+        tip: r`\text{Pour }X \sim \mathcal{B}(n\,;\,p)\text{ : }V(X) = np(1-p)\text{ et }\sigma(X) = \sqrt{V(X)}\text{.\\\\ }V(X) = 50 \times 0{,}4 \times 0{,}6 = 12\text{.\\\\ }\sigma(X) = \sqrt{12} \approx 3{,}46\text{.\\\\ Le distracteur 2 (}V = 20 = E(X)\text{)}…` },
+      // term_proba_32 — Lecture d'un histogramme binomiale — moyenne
+      { q: r`\text{L'histogramme ci-dessus représente la loi de probabilité d'une variable aléatoire }X\text{ suivant la loi binomiale }\mathcal{B}(10\,;\,0{,}5)\text{. D'après le graphique, quelle est approximativement la valeur de }P(X = 5)\text{ ?}`,
+        svg: r`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 320" width="100%" style="background:#fff;font-family:sans-serif">
+<g stroke="#e5e7eb" stroke-width="0.5">
+<line x1="50" y1="228.33" x2="440" y2="228.33"/>
+<line x1="50" y1="186.67" x2="440" y2="186.67"/>
+<line x1="50" y1="145.00" x2="440" y2="145.00"/>
+<line x1="50" y1="103.33" x2="440" y2="103.33"/>
+<line x1="50" y1="61.67" x2="440" y2="61.67"/>
+<line x1="50" y1="20.00" x2="440" y2="20.00"/>
+</g>
+<rect x="55.32" y="269.19" width="24.82" height="0.81" fill="#3b82f6" stroke="#1e40af" stroke-width="0.5"/>
+<text x="67.73" y="285.00" font-size="11" text-anchor="middle">0</text>
+<rect x="90.77" y="261.86" width="24.82" height="8.14" fill="#3b82f6" stroke="#1e40af" stroke-width="0.5"/>
+<text x="103.18" y="285.00" font-size="11" text-anchor="middle">1</text>
+<rect x="126.23" y="233.38" width="24.82" height="36.62" fill="#3b82f6" stroke="#1e40af" stroke-width="0.5"/>
+<text x="138.64" y="285.00" font-size="11" text-anchor="middle">2</text>
+<rect x="161.68" y="172.34" width="24.82" height="97.66" fill="#3b82f6" stroke="#1e40af" stroke-width="0.5"/>
+<text x="174.09" y="285.00" font-size="11" text-anchor="middle">3</text>
+<rect x="197.14" y="99.10" width="24.82" height="170.90" fill="#3b82f6" stroke="#1e40af" stroke-width="0.5"/>
+<text x="209.55" y="285.00" font-size="11" text-anchor="middle">4</text>
+<rect x="232.59" y="64.92" width="24.82" height="205.08" fill="#3b82f6" stroke="#1e40af" stroke-width="0.5"/>
+<text x="245.00" y="285.00" font-size="11" text-anchor="middle">5</text>
+<rect x="268.05" y="99.10" width="24.82" height="170.90" fill="#3b82f6" stroke="#1e40af" stroke-width="0.5"/>
+<text x="280.45" y="285.00" font-size="11" text-anchor="middle">6</text>
+<rect x="303.50" y="172.34" width="24.82" height="97.66" fill="#3b82f6" stroke="#1e40af" stroke-width="0.5"/>
+<text x="315.91" y="285.00" font-size="11" text-anchor="middle">7</text>
+<rect x="338.95" y="233.38" width="24.82" height="36.62" fill="#3b82f6" stroke="#1e40af" stroke-width="0.5"/>
+<text x="351.36" y="285.00" font-size="11" text-anchor="middle">8</text>
+<rect x="374.41" y="261.86" width="24.82" height="8.14" fill="#3b82f6" stroke="#1e40af" stroke-width="0.5"/>
+<text x="386.82" y="285.00" font-size="11" text-anchor="middle">9</text>
+<rect x="409.86" y="269.19" width="24.82" height="0.81" fill="#3b82f6" stroke="#1e40af" stroke-width="0.5"/>
+<text x="422.27" y="285.00" font-size="11" text-anchor="middle">10</text>
+<line x1="50" y1="270.00" x2="440" y2="270.00" stroke="#111" stroke-width="1.2"/>
+<line x1="50" y1="20" x2="50" y2="270.00" stroke="#111" stroke-width="1.2"/>
+<line x1="47" y1="228.33" x2="53" y2="228.33" stroke="#111"/>
+<text x="44" y="231.33" font-size="10" text-anchor="end">0.05</text>
+<line x1="47" y1="186.67" x2="53" y2="186.67" stroke="#111"/>
+<text x="44" y="189.67" font-size="10" text-anchor="end">0.10</text>
+<line x1="47" y1="145.00" x2="53" y2="145.00" stroke="#111"/>
+<text x="44" y="148.00" font-size="10" text-anchor="end">0.15</text>
+<line x1="47" y1="103.33" x2="53" y2="103.33" stroke="#111"/>
+<text x="44" y="106.33" font-size="10" text-anchor="end">0.20</text>
+<line x1="47" y1="61.67" x2="53" y2="61.67" stroke="#111"/>
+<text x="44" y="64.67" font-size="10" text-anchor="end">0.25</text>
+<text x="245.00" y="308" font-size="12" text-anchor="middle">k</text>
+<text x="20" y="30" font-size="11">P(X=k)</text>
+</svg>`,
+        choices: [
+          r`\approx 0{,}25`,
+          r`\approx 0{,}50`,
+          r`\approx 0{,}10`,
+          r`\approx 1`
+        ],
+        a: r`\approx 0{,}25`,
+        tip: r`\text{On lit la hauteur de la barre au-dessus de }k = 5\text{ : elle atteint environ }0{,}25\text{. \\\\ Calcul exact : }P(X=5) = \dbinom{10}{5} \times 0{,}5^{5} \times 0{,}5^{5} = 252 \times 0{,}5^{10} \approx 0{,}246\text{.\\\\ Remarque : l'histogr}…` },
+      // term_proba_33 — Calcul de P(X≤k) à la calculatrice — dure
+      // ⚠️ Question dure : nécessite la calculatrice. À calibrer selon la maîtrise de tes élèves de binomFRép.
+      { q: r`X\text{ suit la loi binomiale }\mathcal{B}(20\,;\,0{,}25)\text{. À l'aide de la calculatrice, déterminer la valeur de }P(X \leqslant 4)\text{ (arrondi à }10^{-3}\text{).}`,
+        choices: [
+          r`0{,}415`,
+          r`0{,}189`,
+          r`0{,}585`,
+          r`0{,}811`
+        ],
+        a: r`0{,}415`,
+        tip: r`P(X \leqslant 4) = P(X=0) + P(X=1) + \ldots + P(X=4)\text{.\\\\ À la calculatrice, on utilise la fonction \texttt{binomFRép}(20, 0.25, 4) ou équivalent : on obtient }P(X \leqslant 4) \approx 0{,}415\text{.\\\\ \textbf{Vérifications utiles} :\\\\ }\bu…` },
+      // term_proba_34 — Probabilité d'un intervalle — dure
+      // ⚠️ Distracteur classique (P(X<=8) - P(X<=5)) à anticiper. Bien insister sur l'inégalité large.
+      { q: r`X\text{ suit la loi binomiale }\mathcal{B}(15\,;\,0{,}4)\text{. À l'aide de la calculatrice, déterminer la valeur de }P(5 \leqslant X \leqslant 8)\text{ (arrondi à }10^{-3}\text{).}`,
+        choices: [
+          r`0{,}688`,
+          r`0{,}213`,
+          r`0{,}403`,
+          r`0{,}904`
+        ],
+        a: r`0{,}688`,
+        tip: r`\text{On utilise : }P(5 \leqslant X \leqslant 8) = P(X \leqslant 8) - P(X \leqslant 4)\text{.\\\\ À la calculatrice : }P(X \leqslant 8) \approx 0{,}9050\text{ et }P(X \leqslant 4) \approx 0{,}2173\text{.\\\\ Donc }P(5 \leqslant X \leqslant 8) \approx…` },
+      // term_proba_35 — Détermination du paramètre n (seuil) — dure
+      // ⚠️ Question type bac (résolution d'inéquation avec ln). Très formatrice mais difficile.
+      { q: r`\text{On considère }n\text{ épreuves de Bernoulli indépendantes, chacune ayant probabilité }0{,}05\text{ de succès. On note }X\text{ le nombre total de succès, donc }X \sim \mathcal{B}(n\,;\,0{,}05)\text{. Quelle est la plus petite valeur de }n\text{ pour laquelle }P(X \geqslant 1) \geqslant 0{,}99\text{ ?}`,
+        choices: [
+          r`n = 90`,
+          r`n = 20`,
+          r`n = 99`,
+          r`n = 198`
+        ],
+        a: r`n = 90`,
+        tip: r`P(X \geqslant 1) = 1 - P(X = 0) = 1 - 0{,}95^{n}\text{.\\\\ On veut }1 - 0{,}95^{n} \geqslant 0{,}99\text{, soit }0{,}95^{n} \leqslant 0{,}01\text{.\\\\ En passant au }\ln\text{ (croissant) : }n \ln(0{,}95) \leqslant \ln(0{,}01)\text{. Comme }\ln(0{,}…` },
+    ],
   },
 
   // ════ 6. DÉRIVATION ══════════════════════════════════════════════════════════
@@ -4154,6 +4625,1052 @@ const DB = {
       { q:r`\text{Si }f(x)=-2x^3+3x^2-x\\[5pt]\text{Alors }f'(x)=`, choices:[r`-6x^2+6x-1`,r`-6x^2+3x-1`,r`-2x^2+6x-1`,r`-6x^2+6x`], a:r`-6x^2+6x-1`, tip:r`-6x^2+6x-1` },
       { q:r`\text{Si }f(x)=x^3-3x^2+3x-1\\[5pt]\text{Alors }f'(x)=`, choices:[r`3x^2-6x+3`,r`3x^2-3x+3`,r`x^2-6x+3`,r`3x^2-6x-1`], a:r`3x^2-6x+3`, tip:r`3x^2-6x+3=3(x-1)^2` },
     ],
+
+    // ── Vitesse moyenne / instantanée ──
+    deriv_vitesse: [
+      // tc_vit_02 — distinguer_vmoy_vinst — n1
+      { q: r`\text{Soit }f\text{ la position d'un mobile au cours du temps. Comment exprime-t-on la vitesse instantanée du mobile à l'instant }t = a\text{ ?}`,
+        choices: [
+          r`\dfrac{f(a)}{a}`,
+          r`f(a)`,
+          r`f'(a)`,
+          r`\dfrac{f(b) - f(a)}{b - a}\text{ pour un certain }b > a`
+        ],
+        a: r`f'(a)`,
+        tip: r`\text{La vitesse instantanée à l'instant }a\text{ est le nombre dérivé }f'(a)\text{. Le distracteur D est la vitesse moyenne entre }a\text{ et }b\text{ — c'est différent : c'est une moyenne sur un intervalle, pas une vitesse à un instant précis.}` },
+      // tc_vit_05 — lecture_graphique_f_prime — n2
+      { q: r`\text{La courbe ci-contre représente la position }f(t)\text{ d'un mobile (en mètres) en fonction du temps }t\text{ (en secondes). On a tracé la tangente à la courbe au point d'abscisse }t = 2\text{. À l'aide du graphique, quelle est la vitesse instantanée du mobile à }t = 2\text{ s ?}`,
+        gspec: { fn:x=>x*x-x+2, xr:[0,4], yr:[0,8], extras:c=><>{gTan(x=>x*x-x+2,2,3,c)}{gPt(2,4,c)}{gNote(2.2,4.6,'A',c,'#EF4444')}</> },
+        choices: [
+          r`f(2) = 4\text{ m/s}`,
+          r`3\text{ m/s (coefficient directeur de la tangente)}`,
+          r`2\text{ m/s}`,
+          r`\text{On ne peut pas la déterminer graphiquement}`
+        ],
+        a: r`3\text{ m/s (coefficient directeur de la tangente)}`,
+        tip: r`\text{La vitesse instantanée à }t = a\text{ est égale au coefficient directeur de la tangente à la courbe au point d'abscisse }a\text{. Ici, on lit graphiquement une pente de }3\text{, donc }f'(2) = 3\text{ m/s.}` },
+      // tc_vit_06 — vitesse_nulle_extremum — n2
+      { q: r`\text{Un objet est lancé verticalement et sa hauteur (en mètres) après }t\text{ secondes est donnée par }h(t) = -5t^2 + 20t\text{. À quel instant sa vitesse est-elle nulle ?}`,
+        choices: [
+          r`t = 0\text{ s}`,
+          r`t = 2\text{ s}`,
+          r`t = 4\text{ s}`,
+          r`\text{Sa vitesse n'est jamais nulle}`
+        ],
+        a: r`t = 2\text{ s}`,
+        tip: r`h'(t) = -10t + 20\text{. La vitesse est nulle quand }h'(t) = 0\text{, soit }t = 2\text{ s. C'est précisément l'instant où l'objet atteint sa hauteur maximale avant de redescendre.}` },
+      // tc_vit_07 — signe_f_prime_sens_mouvement — n2
+      { q: r`\text{La position d'un mobile est }f(t) = -t^2 + 6t - 5\text{ (en mètres, }t \geq 0\text{ en secondes). À l'instant }t = 4\text{ s, le mobile :}`,
+        choices: [
+          r`\text{est à l'arrêt (vitesse nulle)}`,
+          r`\text{avance dans le sens positif (vitesse positive)}`,
+          r`\text{recule (vitesse négative)}`,
+          r`\text{accélère}`
+        ],
+        a: r`\text{recule (vitesse négative)}`,
+        tip: r`f'(t) = -2t + 6\text{, donc }f'(4) = -2 < 0\text{. Une vitesse négative signifie que la position diminue : le mobile recule. Note : « accélérer » se rapporte à }f''\text{ (dérivée seconde), hors programme TC.}` },
+      // tc_vit_08 — comparaison_vitesses — n3
+      { q: r`\text{La position d'un mobile est }f(t) = t^2 - 4t + 3\text{ (en mètres, }t \geq 0\text{ en secondes). Comparons la vitesse du mobile à }t = 1\text{ s et à }t = 3\text{ s :}`,
+        choices: [
+          r`\text{Le mobile va plus vite à }t = 1\text{ s}`,
+          r`\text{Le mobile va plus vite à }t = 3\text{ s}`,
+          r`\text{Le mobile va à la même vitesse aux deux instants}`,
+          r`\text{Les vitesses sont opposées (même valeur, signes contraires)}`
+        ],
+        a: r`\text{Les vitesses sont opposées (même valeur, signes contraires)}`,
+        tip: r`f'(t) = 2t - 4\text{. À }t = 1\text{ : }f'(1) = -2\text{ (recule à }2\text{ m/s). À }t = 3\text{ : }f'(3) = +2\text{ (avance à }2\text{ m/s). Les vitesses sont opposées : même valeur absolue, signes contraires.}` },
+      // tc_vit_09 — lecture_graphique_signe_vitesse — n2
+      { q: r`\text{La courbe ci-contre représente la position }f(t)\text{ d'un mobile (en mètres) en fonction du temps }t\text{ (en secondes). À quel(s) instant(s) le mobile avance (vitesse positive) ?}`,
+        gspec: { fn:x=>-(x-3)*(x-3)+5, xr:[0,6], yr:[-2,6], extras:c=><>{gPt(3,5,c)}{gDV(3,c)}{gNote(3.1,5.2,'max',c,'#EF4444')}</> },
+        choices: [
+          r`\text{Pour }t \in [0 \,;\, 3]`,
+          r`\text{Pour }t \in [3 \,;\, 6]`,
+          r`\text{Pour tout }t \in [0 \,;\, 6]`,
+          r`\text{Le mobile n'avance jamais}`
+        ],
+        a: r`\text{Pour }t \in [0 \,;\, 3]`,
+        tip: r`\text{Le mobile avance lorsque sa position augmente, donc lorsque }f\text{ est croissante. Sur le graphique, }f\text{ croît sur }[0\,;\,3]\text{ puis décroît sur }[3\,;\,6]\text{. La vitesse est positive sur }[0\,;\,3]\text{.}` },
+      // tc_vit_10 — unite_derivee — n3
+      { q: r`\text{La fonction }V(t)\text{ donne le volume d'eau (en litres) dans un réservoir au temps }t\text{ (en heures). Que représente }V'(2)\text{ et quelle est son unité ?}`,
+        choices: [
+          r`\text{Le volume d'eau à }t = 2\text{, en litres}`,
+          r`\text{Le débit (vitesse de remplissage ou de vidage) à }t = 2\text{, en litres par heure (L/h)}`,
+          r`\text{Le volume moyen entre }t = 0\text{ et }t = 2\text{, en litres}`,
+          r`\text{Le temps de remplissage du réservoir, en heures}`
+        ],
+        a: r`\text{Le débit (vitesse de remplissage ou de vidage) à }t = 2\text{, en litres par heure (L/h)}`,
+        tip: r`V'(2)\text{ est la vitesse de variation du volume à l'instant }t = 2\text{, exprimée en litres par heure. Si }V'(2) > 0\text{, le réservoir se remplit ; si }V'(2) < 0\text{, il se vide. L'unité d'un nombre dérivé est l'unité de }f\text{ divisée par l'unité de la variable.}` },
+    ],
+
+    // ── Tangente — lecture graphique ──
+    deriv_tangente: [
+      // tc_tan_01 — formule_tangente — n1
+      { q: r`\text{Soit }f\text{ une fonction dérivable en }a\text{. Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a\text{ ?}`,
+        choices: [
+          r`y = f(a) \times x + f'(a)`,
+          r`y = f'(a)(x - a) + f(a)`,
+          r`y = f(a)(x - a) + f'(a)`,
+          r`y = f'(a) \times x + f(a)`
+        ],
+        a: r`y = f'(a)(x - a) + f(a)`,
+        tip: r`\text{La formule à connaître par cœur : }y = f'(a)(x - a) + f(a)\text{. Le coefficient directeur est }f'(a)\text{, et la tangente passe par le point }(a \,;\, f(a))\text{.}` },
+      // tc_tan_02 — calcul_equation_a_positif — n2
+      { q: r`\text{Soit }f(x) = x^2\text{. Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 1\text{ ?}`,
+        choices: [
+          r`y = 2x - 1`,
+          r`y = 2x + 1`,
+          r`y = x + 1`,
+          r`y = 2x`
+        ],
+        a: r`y = 2x - 1`,
+        tip: r`f(1) = 1\text{ et }f'(x) = 2x\text{ donc }f'(1) = 2\text{. Tangente : }y = 2(x - 1) + 1 = 2x - 1\text{.}` },
+      // tc_tan_03 — calcul_equation_a_negatif — n3
+      { q: r`\text{Soit }f(x) = x^2 + 1\text{. Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = -2\text{ ?}`,
+        choices: [
+          r`y = -4x - 3`,
+          r`y = -4x + 3`,
+          r`y = 4x + 3`,
+          r`y = -4x - 5`
+        ],
+        a: r`y = -4x - 3`,
+        tip: r`f(-2) = 4 + 1 = 5\text{ et }f'(-2) = -4\text{. Tangente : }y = -4(x - (-2)) + 5 = -4(x + 2) + 5 = -4x - 3\text{. Attention au signe : }(x - a)\text{ avec }a = -2\text{ devient }(x + 2)\text{.}` },
+      // tc_tan_04 — lecture_graphique_pente — n2
+      { q: r`\text{Sur la figure ci-contre, la droite }T\text{ est la tangente à la courbe de }f\text{ au point d'abscisse }a = 2\text{. Quelle est la valeur de }f'(2)\text{ ?}`,
+        gspec: { fn:x=>x*x-x+2, xr:[-1,4], yr:[-1,8], extras:c=><>{gTan(x=>x*x-x+2,2,3,c)}{gPt(2,4,c)}{gNote(2.2,4.6,'A',c,'#EF4444')}</> },
+        choices: [
+          r`f'(2) = 1`,
+          r`f'(2) = 2`,
+          r`f'(2) = 3`,
+          r`f'(2) = -3`
+        ],
+        a: r`f'(2) = 3`,
+        tip: r`f'(2)\text{ est égal au coefficient directeur de la tangente }T\text{ au point d'abscisse }2\text{. Sur le graphique, on lit que la tangente monte de }3\text{ unités quand }x\text{ augmente de }1\text{, donc }f'(2) = 3\text{.}` },
+      // tc_tan_05 — lecture_graphique_f_a — n2
+      { q: r`\text{Sur la figure ci-contre, la droite }T\text{ est la tangente à la courbe de }f\text{ au point }A\text{ d'abscisse }2\text{. Que vaut }f(2)\text{ ?}`,
+        gspec: { fn:x=>x*x-x+2, xr:[-1,4], yr:[-1,8], extras:c=><>{gTan(x=>x*x-x+2,2,3,c)}{gPt(2,4,c)}{gDV(2,c)}{gDH(4,c)}{gNote(2.2,4.6,'A',c,'#EF4444')}</> },
+        choices: [
+          r`f(2) = 2`,
+          r`f(2) = 3`,
+          r`f(2) = 4`,
+          r`\text{On ne peut pas le déterminer à partir du graphique}`
+        ],
+        a: r`f(2) = 4`,
+        tip: r`f(2)\text{ est l'ordonnée du point de la courbe d'abscisse }2\text{, c'est-à-dire l'ordonnée du point }A\text{. Sur le graphique, on lit }f(2) = 4\text{.}` },
+      // tc_tan_06 — equation_a_partir_lectures — n3
+      { q: r`\text{En utilisant les lectures de }f(2)\text{ et }f'(2)\text{ effectuées sur le graphique ci-contre, quelle est l'équation de la tangente }T\text{ ?}`,
+        gspec: { fn:x=>x*x-x+2, xr:[-1,4], yr:[-1,8], extras:c=><>{gTan(x=>x*x-x+2,2,3,c)}{gPt(2,4,c)}{gNote(2.2,4.6,'A',c,'#EF4444')}</> },
+        choices: [
+          r`y = 3x - 2`,
+          r`y = 3x + 4`,
+          r`y = 4x - 3`,
+          r`y = 3x + 2`
+        ],
+        a: r`y = 3x - 2`,
+        tip: r`\text{Avec }f(2) = 4\text{ et }f'(2) = 3\text{ : tangente }y = 3(x - 2) + 4 = 3x - 6 + 4 = 3x - 2\text{.}` },
+      // tc_tan_07 — tangente_horizontale — n2
+      { q: r`\text{La courbe ci-contre admet une tangente horizontale au point d'abscisse }a = 1\text{. Que peut-on dire du nombre dérivé }f'(1)\text{ ?}`,
+        gspec: { fn:x=>-(x-1)*(x-1)+4, xr:[-1,4], yr:[-2,5], extras:c=><>{gTan(x=>-(x-1)*(x-1)+4,1,0,c)}{gPt(1,4,c)}{gNote(1.15,4.3,'max',c,'#EF4444')}</> },
+        choices: [
+          r`f'(1) = 1`,
+          r`f'(1) = 0`,
+          r`f'(1)\text{ n'existe pas}`,
+          r`f'(1)\text{ est égal à }f(1)`
+        ],
+        a: r`f'(1) = 0`,
+        tip: r`\text{Une tangente horizontale a un coefficient directeur nul. Donc }f'(1) = 0\text{. Réciproquement, si }f'(a) = 0\text{ alors la tangente en }a\text{ est horizontale — c'est un critère pour repérer les extremums.}` },
+      // tc_tan_08 — tangente_parallele — n4
+      { q: r`\text{Soit }f(x) = x^2 - 4x + 1\text{. En quel point la courbe de }f\text{ admet-elle une tangente parallèle à la droite d'équation }y = 2x + 7\text{ ?}`,
+        choices: [
+          r`\text{Au point d'abscisse }x = 2`,
+          r`\text{Au point d'abscisse }x = 3`,
+          r`\text{Au point d'abscisse }x = 1`,
+          r`\text{En aucun point}`
+        ],
+        a: r`\text{Au point d'abscisse }x = 3`,
+        tip: r`\text{Deux droites sont parallèles si et seulement si elles ont le même coefficient directeur. La droite }y = 2x + 7\text{ a pour coefficient directeur }2\text{. On cherche donc }x\text{ tel que }f'(x) = 2\text{, soit }2x - 4 = 2\text{, donc }x = 3\text{.}` },
+    ],
+
+    // ── Dérivées des fonctions de référence ──
+    deriv_fonctions_ref: [
+      // tc_ref_01 — polynome_degre_2 — n1
+      { q: r`\text{Quelle est la dérivée de la fonction }f(x) = 3x^2 - 5x + 7\text{ ?}`,
+        choices: [
+          r`f'(x) = 6x - 5 + 7`,
+          r`f'(x) = 6x - 5`,
+          r`f'(x) = 3x - 5`,
+          r`f'(x) = 6x^2 - 5`
+        ],
+        a: r`f'(x) = 6x - 5`,
+        tip: r`\text{Dérivée de }3x^2\text{ est }6x\text{ (linéarité : }3 \times 2x\text{). Dérivée de }-5x\text{ est }-5\text{. Dérivée de }7\text{ (constante) est }0\text{. Distracteur A : oubli que la dérivée d'une constante est nulle. Distracteur D : erreur sur la dérivée de }x^2\text{.}` },
+      // tc_ref_02 — polynome_degre_3 — n2
+      { q: r`\text{Quelle est la dérivée de la fonction }f(x) = 2x^3 - 4x^2 + x\text{ ?}`,
+        choices: [
+          r`f'(x) = 6x^2 - 8x + 1`,
+          r`f'(x) = 6x^2 - 4x + 1`,
+          r`f'(x) = 2x^2 - 8x + 1`,
+          r`f'(x) = 6x^3 - 8x^2 + 1`
+        ],
+        a: r`f'(x) = 6x^2 - 8x + 1`,
+        tip: r`(2x^3)' = 2 \times 3x^2 = 6x^2\text{. }(-4x^2)' = -4 \times 2x = -8x\text{. }(x)' = 1\text{. Donc }f'(x) = 6x^2 - 8x + 1\text{.}` },
+      // tc_ref_03 — derivee_inverse — n2
+      { q: r`\text{Soit }f\text{ la fonction définie sur }\mathbb{R}^*\text{ par }f(x) = \dfrac{1}{x}\text{. Quelle est sa dérivée ?}`,
+        choices: [
+          r`f'(x) = \dfrac{1}{x^2}`,
+          r`f'(x) = -\dfrac{1}{x^2}`,
+          r`f'(x) = -\dfrac{1}{x}`,
+          r`f'(x) = -\dfrac{1}{2x}`
+        ],
+        a: r`f'(x) = -\dfrac{1}{x^2}`,
+        tip: r`\text{Formule à connaître par cœur : }\left(\dfrac{1}{x}\right)' = -\dfrac{1}{x^2}\text{. Attention au signe négatif : la fonction }1/x\text{ est décroissante, donc sa dérivée est négative.}` },
+      // tc_ref_04 — derivee_racine — n2
+      { q: r`\text{Soit }f\text{ la fonction définie sur }]0\,;\,+\infty[\text{ par }f(x) = \sqrt{x}\text{. Quelle est sa dérivée ?}`,
+        choices: [
+          r`f'(x) = \dfrac{1}{\sqrt{x}}`,
+          r`f'(x) = \dfrac{1}{2\sqrt{x}}`,
+          r`f'(x) = 2\sqrt{x}`,
+          r`f'(x) = \dfrac{\sqrt{x}}{2}`
+        ],
+        a: r`f'(x) = \dfrac{1}{2\sqrt{x}}`,
+        tip: r`\text{Formule à connaître par cœur : }(\sqrt{x})' = \dfrac{1}{2\sqrt{x}}\text{, définie sur }]0\,;\,+\infty[\text{ (la fonction n'est pas dérivable en }0\text{).}` },
+      // tc_ref_05 — linearite_avec_inverse — n3
+      { q: r`\text{Soit }f(x) = x^2 + \dfrac{1}{x}\text{ définie sur }\mathbb{R}^*\text{. Quelle est sa dérivée ?}`,
+        choices: [
+          r`f'(x) = 2x + \dfrac{1}{x^2}`,
+          r`f'(x) = 2x - \dfrac{1}{x^2}`,
+          r`f'(x) = 2x + \dfrac{1}{x}`,
+          r`f'(x) = 2x - \dfrac{1}{x}`
+        ],
+        a: r`f'(x) = 2x - \dfrac{1}{x^2}`,
+        tip: r`\text{Par linéarité : }f'(x) = (x^2)' + \left(\dfrac{1}{x}\right)' = 2x + \left(-\dfrac{1}{x^2}\right) = 2x - \dfrac{1}{x^2}\text{. Distracteur A : oubli du signe négatif sur la dérivée de }1/x\text{ — le piège le plus fréquent.}` },
+      // tc_ref_06 — calcul_nombre_derive — n3
+      { q: r`\text{Soit }f(x) = x^3 - 6x^2 + 9x - 4\text{. Combien vaut }f'(2)\text{ ?}`,
+        choices: [
+          r`-3`,
+          r`0`,
+          r`9`,
+          r`-12`
+        ],
+        a: r`-3`,
+        tip: r`f'(x) = 3x^2 - 12x + 9\text{. Donc }f'(2) = 3 \times 4 - 12 \times 2 + 9 = 12 - 24 + 9 = -3\text{.}` },
+      // tc_ref_07 — synthese_coefficients — n4
+      { q: r`\text{Soit }f\text{ la fonction définie sur }]0\,;\,+\infty[\text{ par }f(x) = 4\sqrt{x} + \dfrac{2}{x}\text{. Quelle est sa dérivée ?}`,
+        choices: [
+          r`f'(x) = \dfrac{2}{\sqrt{x}} + \dfrac{2}{x^2}`,
+          r`f'(x) = \dfrac{4}{\sqrt{x}} - \dfrac{2}{x^2}`,
+          r`f'(x) = \dfrac{2}{\sqrt{x}} - \dfrac{2}{x^2}`,
+          r`f'(x) = 2\sqrt{x} - \dfrac{2}{x^2}`
+        ],
+        a: r`f'(x) = \dfrac{2}{\sqrt{x}} - \dfrac{2}{x^2}`,
+        tip: r`(4\sqrt{x})' = 4 \times \dfrac{1}{2\sqrt{x}} = \dfrac{2}{\sqrt{x}}\text{ et }\left(\dfrac{2}{x}\right)' = -\dfrac{2}{x^2}\text{. Par linéarité : }f'(x) = \dfrac{2}{\sqrt{x}} - \dfrac{2}{x^2}\text{.}` },
+      // tc_ref_08 — constante_disparait — n2
+      { q: r`\text{Parmi les fonctions suivantes, lesquelles ont la même dérivée ? }f(x) = x^2 + 3\text{ ; }g(x) = x^2 - 5\text{ ; }h(x) = 2x^2 + 3\text{ ; }k(x) = x^2 + x`,
+        choices: [
+          r`f\text{ et }g\text{ uniquement}`,
+          r`f\text{, }g\text{ et }h`,
+          r`f\text{, }g\text{ et }k`,
+          r`\text{Toutes les quatre}`
+        ],
+        a: r`f\text{ et }g\text{ uniquement}`,
+        tip: r`f'(x) = g'(x) = 2x\text{. La constante (additive) disparaît à la dérivation : }f\text{ et }g\text{ ne diffèrent que par leur terme constant (}+3\text{ vs }-5\text{), donc elles ont la même dérivée. En revanche, }h\text{ }…` },
+    ],
+
+    // ── Dérivée et variations ──
+    deriv_variations: [
+      // tc_var_01 — lien_signe_f_prime_variations — n1
+      { q: r`\text{Soit }f\text{ une fonction dérivable sur un intervalle }I\text{. Quelle affirmation est correcte ?}`,
+        choices: [
+          r`\text{Si }f'(x) > 0\text{ sur }I\text{, alors }f\text{ est positive sur }I`,
+          r`\text{Si }f'(x) > 0\text{ sur }I\text{, alors }f\text{ est croissante sur }I`,
+          r`\text{Si }f(x) > 0\text{ sur }I\text{, alors }f'\text{ est positive sur }I`,
+          r`\text{Si }f\text{ est croissante sur }I\text{, alors }f'(x) > 0\text{ pour tout }x\text{ de }I`
+        ],
+        a: r`\text{Si }f'(x) > 0\text{ sur }I\text{, alors }f\text{ est croissante sur }I`,
+        tip: r`\text{La règle fondamentale : si }f'(x) > 0\text{ sur un intervalle, alors }f\text{ est strictement croissante sur cet intervalle. Distracteur A : confond signe de }f\text{ et signe de }f'\text{. Distracteur D : la récip}…` },
+      // tc_var_02 — intervalle_decroissance — n2
+      { q: r`\text{Soit }f\text{ une fonction dont la dérivée est }f'(x) = 2x - 6\text{. Sur quel intervalle la fonction }f\text{ est-elle décroissante ?}`,
+        choices: [
+          r`]-\infty\,;\,3]`,
+          r`[3\,;\,+\infty[`,
+          r`]-\infty\,;\,6]`,
+          r`f\text{ est décroissante sur }\mathbb{R}`
+        ],
+        a: r`]-\infty\,;\,3]`,
+        tip: r`f\text{ décroissante }\iff f'(x) \leq 0\text{. On résout : }2x - 6 \leq 0\text{, soit }x \leq 3\text{. Donc }f\text{ est décroissante sur }]-\infty\,;\,3]\text{.}` },
+      // tc_var_03 — variations_trinome — n2
+      { q: r`\text{Soit }f\text{ la fonction définie sur }\mathbb{R}\text{ par }f(x) = x^2 - 4x + 1\text{. Quelles sont les variations de }f\text{ ?}`,
+        choices: [
+          r`f\text{ est croissante sur }]-\infty\,;\,2]\text{ puis décroissante sur }[2\,;\,+\infty[`,
+          r`f\text{ est décroissante sur }]-\infty\,;\,2]\text{ puis croissante sur }[2\,;\,+\infty[`,
+          r`f\text{ est croissante sur }\mathbb{R}`,
+          r`f\text{ est décroissante sur }\mathbb{R}`
+        ],
+        a: r`f\text{ est décroissante sur }]-\infty\,;\,2]\text{ puis croissante sur }[2\,;\,+\infty[`,
+        tip: r`f'(x) = 2x - 4\text{, qui s'annule en }x = 2\text{. }f'(x) < 0\text{ pour }x < 2\text{ et }f'(x) > 0\text{ pour }x > 2\text{. Donc }f\text{ décroît sur }]-\infty\,;\,2]\text{ puis croît sur }[2\,;\,+\infty[\text{. Cohére}…` },
+      // tc_var_04 — lecture_tableau_variations — n2
+      { q: r`\text{Le tableau de variations ci-contre représente la fonction }f\text{ sur }[-2\,;\,5]\text{. Quelle affirmation est fausse ?}`,
+        gspec: { fn:x=>-0.7*(x-1)*(x-1)+4, xr:[-2,5], yr:[-4,5], extras:c=><>{gPt(1,4,c)}{gPt(-2,-3,c)}{gPt(5,-1,c)}{gDH(0,c,'#94A3B8')}{gNote(1,4.3,'max=4',c,'#EF4444')}{gNote(-2,-2.7,'(-2;-3)',c)}{gNote(4.2,-1,'(5;-1)',c)}</> },
+        choices: [
+          r`f\text{ admet un maximum égal à }4\text{ sur }[-2\,;\,5]`,
+          r`\text{Le maximum de }f\text{ est atteint en }x = 1`,
+          r`f'(1) = 0`,
+          r`f\text{ est positive sur tout l'intervalle }[-2\,;\,5]`
+        ],
+        a: r`f\text{ est positive sur tout l'intervalle }[-2\,;\,5]`,
+        tip: r`f(-2) = -3 < 0\text{ et }f(5) = -1 < 0\text{ : }f\text{ n'est pas positive sur tout l'intervalle. A est vrai : maximum = 4. B est vrai : maximum atteint au sommet, en }x = 1\text{. C est vrai : la tangente est horizontale au maximum.}` },
+      // tc_var_05 — changement_signe_extremum — n3
+      { q: r`\text{Soit }f\text{ une fonction dérivable sur }\mathbb{R}\text{, dont la dérivée }f'\text{ a le tableau de signes suivant : }f'(x) > 0\text{ sur }]-\infty\,;\,1[\text{, }f'(1) = 0\text{, }f'(x) < 0\text{ sur }]1\,;\,+\infty[\text{. Que peut-on dire de }f\text{ en }x = 1\text{ ?}`,
+        choices: [
+          r`f\text{ admet un minimum en }x = 1`,
+          r`f\text{ admet un maximum en }x = 1`,
+          r`f\text{ admet un point d'inflexion (changement de courbure) en }x = 1`,
+          r`\text{On ne peut rien conclure}`
+        ],
+        a: r`f\text{ admet un maximum en }x = 1`,
+        tip: r`f'\text{ passe du positif au négatif en traversant }x = 1\text{ : }f\text{ est croissante avant, décroissante après. Donc }f\text{ admet un maximum en }x = 1\text{. Règle : à un changement de signe de }f'\text{, }f\text{}…` },
+      // tc_var_06 — piege_f_prime_nul_sans_changement — n4
+      { q: r`\text{Soit }f\text{ une fonction dérivable telle que }f'(x) = 3x^2\text{. Que peut-on dire de }f\text{ en }x = 0\text{ ?}`,
+        choices: [
+          r`f\text{ admet un minimum en }x = 0`,
+          r`f\text{ admet un maximum en }x = 0`,
+          r`f\text{ n'admet ni minimum ni maximum en }x = 0`,
+          r`f\text{ n'est pas dérivable en }x = 0`
+        ],
+        a: r`f\text{ n'admet ni minimum ni maximum en }x = 0`,
+        tip: r`f'(x) = 3x^2 \geq 0\text{ pour tout }x\text{, et }f'(0) = 0\text{. Mais }f'\text{ ne change pas de signe en }0\text{ (elle reste positive ou nulle). Donc }f\text{ est croissante sur }\mathbb{R}\text{ et n'admet pas d'ext}…` },
+      // tc_var_07 — etude_complete_polynome_3 — n4
+      { q: r`\text{Soit }f\text{ définie sur }\mathbb{R}\text{ par }f(x) = x^3 - 3x\text{. On peut affirmer que :}`,
+        choices: [
+          r`f\text{ est croissante sur }\mathbb{R}`,
+          r`f\text{ est croissante sur }]-\infty\,;\,-1]\text{, décroissante sur }[-1\,;\,1]\text{, croissante sur }[1\,;\,+\infty[`,
+          r`f\text{ est décroissante sur }]-\infty\,;\,-1]\text{, croissante sur }[-1\,;\,1]\text{, décroissante sur }[1\,;\,+\infty[`,
+          r`f\text{ admet un maximum en }x = 1\text{ et un minimum en }x = -1`
+        ],
+        a: r`f\text{ est croissante sur }]-\infty\,;\,-1]\text{, décroissante sur }[-1\,;\,1]\text{, croissante sur }[1\,;\,+\infty[`,
+        tip: r`f'(x) = 3x^2 - 3 = 3(x-1)(x+1)\text{. Racines }-1\text{ et }1\text{ ; trinôme positif à l'extérieur (car }a = 3 > 0\text{). Donc }f' > 0\text{ sur }]-\infty\,;\,-1[\text{ et }]1\,;\,+\infty[\text{, et }f' < 0\text{ sur }…` },
+    ],
+
+    // ── Dérivée d'un produit ──
+    deriv_produit: [
+      // spe_prod_01 — formule_produit — n1
+      { q: r`\text{Soient }u\text{ et }v\text{ deux fonctions dérivables sur un intervalle }I\text{. Quelle est la formule donnant la dérivée du produit }uv\text{ ?}`,
+        choices: [
+          r`(uv)' = u'v'`,
+          r`(uv)' = u'v + uv'`,
+          r`(uv)' = u'v - uv'`,
+          r`(uv)' = uv' - u'v`
+        ],
+        a: r`(uv)' = u'v + uv'`,
+        tip: r`\text{Formule à connaître par cœur : }(uv)' = u'v + uv'\text{. Distracteur A : erreur très fréquente, on dérive chaque facteur séparément. Distracteur C : confusion avec la formule du quotient (qui est }(u'v - uv')/v^2\text{ — sans le }v^2\text{).}` },
+      // spe_prod_02 — application_directe — n2
+      { q: r`\text{Soit }f(x) = x \cdot (x^2 + 1)\text{. Quelle est la dérivée de }f\text{ ?}`,
+        choices: [
+          r`f'(x) = 1 \cdot 2x = 2x`,
+          r`f'(x) = (x^2 + 1) + x \cdot 2x = 3x^2 + 1`,
+          r`f'(x) = (x^2 + 1) + 2x = x^2 + 2x + 1`,
+          r`f'(x) = 2x \cdot 1 = 2x`
+        ],
+        a: r`f'(x) = (x^2 + 1) + x \cdot 2x = 3x^2 + 1`,
+        tip: r`\text{Avec }u(x) = x\text{ (}u' = 1\text{) et }v(x) = x^2 + 1\text{ (}v' = 2x\text{) : }f'(x) = u'v + uv' = (x^2+1) + x \cdot 2x = x^2 + 1 + 2x^2 = 3x^2 + 1\text{.}` },
+      // spe_prod_03 — methode_developper — n2
+      { q: r`\text{Pour calculer la dérivée de }f(x) = (x + 3)(x - 5)\text{, quelle est la méthode la plus rapide ?}`,
+        choices: [
+          r`\text{Appliquer la formule du produit avec }u = x+3\text{ et }v = x-5`,
+          r`\text{Développer d'abord : }f(x) = x^2 - 2x - 15\text{, puis dériver}`,
+          r`\text{Les deux méthodes donnent un résultat différent}`,
+          r`\text{Cette dérivée n'est pas calculable en 1ère}`
+        ],
+        a: r`\text{Développer d'abord : }f(x) = x^2 - 2x - 15\text{, puis dériver}`,
+        tip: r`\text{Quand les facteurs sont des polynômes simples, développer est généralement plus rapide que d'appliquer la formule du produit. Ici, après développement on obtient }x^2 - 2x - 15\text{, dont la dérivée est immédiate }…` },
+      // spe_prod_04 — formule_obligatoire_racine — n3
+      { q: r`\text{Soit }f(x) = x \cdot \sqrt{x}\text{ définie sur }[0\,;\,+\infty[\text{. Quelle est sa dérivée sur }]0\,;\,+\infty[\text{ ?}`,
+        choices: [
+          r`f'(x) = \sqrt{x} + \dfrac{x}{2\sqrt{x}}`,
+          r`f'(x) = 1 \cdot \dfrac{1}{2\sqrt{x}} = \dfrac{1}{2\sqrt{x}}`,
+          r`f'(x) = \dfrac{x}{2\sqrt{x}}`,
+          r`f'(x) = 2\sqrt{x}`
+        ],
+        a: r`f'(x) = \sqrt{x} + \dfrac{x}{2\sqrt{x}}`,
+        tip: r`\text{Avec }u(x) = x\text{ (}u' = 1\text{) et }v(x) = \sqrt{x}\text{ (}v' = \dfrac{1}{2\sqrt{x}}\text{) : }f'(x) = \sqrt{x} + \dfrac{x}{2\sqrt{x}}\text{. Cette expression peut se simplifier en }\dfrac{3\sqrt{x}}{2}\text{, mais la forme A est correcte.}` },
+      // spe_prod_05 — calcul_avec_coefficients — n3
+      { q: r`\text{Soit }f(x) = (2x - 1)(x^2 + 3)\text{. Quelle est la dérivée }f'(x)\text{ ?}`,
+        choices: [
+          r`f'(x) = 2 \cdot 2x = 4x`,
+          r`f'(x) = 2(x^2 + 3) + (2x - 1) \cdot 2x = 6x^2 - 2x + 6`,
+          r`f'(x) = 2(x^2 + 3) + (2x - 1) \cdot 2x = 6x^2 + 2x + 6`,
+          r`f'(x) = (x^2 + 3) + 2x(2x-1)`
+        ],
+        a: r`f'(x) = 2(x^2 + 3) + (2x - 1) \cdot 2x = 6x^2 - 2x + 6`,
+        tip: r`\text{Avec }u(x) = 2x - 1\text{ (}u' = 2\text{) et }v(x) = x^2 + 3\text{ (}v' = 2x\text{) : }f'(x) = 2(x^2 + 3) + (2x - 1)(2x) = 2x^2 + 6 + 4x^2 - 2x = 6x^2 - 2x + 6\text{. Distracteur C : erreur de signe lors du développement de }(2x-1)(2x)\text{.}` },
+      // spe_prod_06 — calcul_nombre_derive — n3
+      { q: r`\text{Soit }f(x) = (x^2 - 4)(3x + 1)\text{. Combien vaut }f'(2)\text{ ?}`,
+        choices: [
+          r`0`,
+          r`13`,
+          r`26`,
+          r`28`
+        ],
+        a: r`28`,
+        tip: r`u(x) = x^2 - 4\text{ donne }u'(x) = 2x\text{ ; }v(x) = 3x + 1\text{ donne }v'(x) = 3\text{. }f'(x) = 2x(3x+1) + 3(x^2-4)\text{. En }x = 2\text{ : }f'(2) = 4 \times 7 + 3 \times 0 = 28\text{. Bon réflexe : remarquer que }u(2) = 0\text{ simplifie le calcul.}` },
+      // spe_prod_07 — synthese_choix_methode — n4
+      { q: r`\text{Pour chacune des fonctions suivantes, indiquez quelle est la méthode la plus rapide pour obtenir la dérivée : (i) }f(x) = (3x + 2)(x - 1)\text{ ; (ii) }g(x) = x \cdot \sqrt{x}\text{ ; (iii) }h(x) = (x^2 + 1) \cdot \dfrac{1}{x}`,
+        choices: [
+          r`\text{(i) développer, (ii) formule produit, (iii) formule produit}`,
+          r`\text{(i) formule produit, (ii) formule produit, (iii) développer après transformation}`,
+          r`\text{(i) développer, (ii) développer après transformation, (iii) formule produit}`,
+          r`\text{(i) développer, (ii) formule produit, (iii) développer après transformation}`
+        ],
+        a: r`\text{(i) développer, (ii) formule produit, (iii) développer après transformation}`,
+        tip: r`\text{(i) Polynômes : développer donne }3x^2 - x - 2\text{, dérivée immédiate }6x - 1\text{. (ii) Avec }\sqrt{x}\text{, on n'a pas le choix : formule produit. (iii) Astuce : }\dfrac{x^2 + 1}{x} = x + \dfrac{1}{x}\text{, }…` },
+    ],
+
+    // ── Dérivée d'un quotient ──
+    deriv_quotient: [
+      // spe_quot_01 — formule_quotient — n1
+      { q: r`\text{Soient }u\text{ et }v\text{ deux fonctions dérivables sur un intervalle }I\text{ avec }v\text{ ne s'annulant pas sur }I\text{. Quelle est la formule de la dérivée de }\dfrac{u}{v}\text{ ?}`,
+        choices: [
+          r`\left(\dfrac{u}{v}\right)' = \dfrac{u'v + uv'}{v^2}`,
+          r`\left(\dfrac{u}{v}\right)' = \dfrac{u'v - uv'}{v^2}`,
+          r`\left(\dfrac{u}{v}\right)' = \dfrac{uv' - u'v}{v^2}`,
+          r`\left(\dfrac{u}{v}\right)' = \dfrac{u'}{v'}`
+        ],
+        a: r`\left(\dfrac{u}{v}\right)' = \dfrac{u'v - uv'}{v^2}`,
+        tip: r`\text{Formule à connaître par cœur : }\left(\dfrac{u}{v}\right)' = \dfrac{u'v - uv'}{v^2}\text{. Distracteur A : confusion avec la formule du produit. Distracteur C : ordre inversé au numérateur — erreur de signe systématique.}` },
+      // spe_quot_02 — formule_un_sur_u — n1
+      { q: r`\text{Soit }u\text{ une fonction dérivable sur un intervalle }I\text{ avec }u\text{ ne s'annulant pas sur }I\text{. Quelle est la dérivée de }\dfrac{1}{u}\text{ ?}`,
+        choices: [
+          r`\left(\dfrac{1}{u}\right)' = \dfrac{1}{u'}`,
+          r`\left(\dfrac{1}{u}\right)' = \dfrac{u'}{u^2}`,
+          r`\left(\dfrac{1}{u}\right)' = -\dfrac{u'}{u^2}`,
+          r`\left(\dfrac{1}{u}\right)' = -\dfrac{1}{u^2}`
+        ],
+        a: r`\left(\dfrac{1}{u}\right)' = -\dfrac{u'}{u^2}`,
+        tip: r`\text{Formule à connaître par cœur : }\left(\dfrac{1}{u}\right)' = -\dfrac{u'}{u^2}\text{. Distracteur D piège les élèves qui généralisent à tort la formule de la fonction de référence }\left(\dfrac{1}{x}\right)' = -\dfr…` },
+      // spe_quot_03 — application_un_sur_u — n2
+      { q: r`\text{Soit }f(x) = \dfrac{1}{x^2 + 1}\text{ définie sur }\mathbb{R}\text{. Quelle est sa dérivée ?}`,
+        choices: [
+          r`f'(x) = -\dfrac{1}{(x^2 + 1)^2}`,
+          r`f'(x) = -\dfrac{2x}{(x^2 + 1)^2}`,
+          r`f'(x) = \dfrac{2x}{(x^2 + 1)^2}`,
+          r`f'(x) = -\dfrac{2x}{x^2 + 1}`
+        ],
+        a: r`f'(x) = -\dfrac{2x}{(x^2 + 1)^2}`,
+        tip: r`\text{Avec }u(x) = x^2 + 1\text{ (}u' = 2x\text{) : }\left(\dfrac{1}{u}\right)' = -\dfrac{2x}{(x^2+1)^2}\text{. Distracteur A : oubli de multiplier par }u' = 2x\text{. Distracteur D : oubli du carré au dénominateur.}` },
+      // spe_quot_04 — application_quotient_simple — n2
+      { q: r`\text{Soit }f(x) = \dfrac{x}{x + 1}\text{ définie sur }\mathbb{R} \setminus \{-1\}\text{. Quelle est sa dérivée ?}`,
+        choices: [
+          r`f'(x) = \dfrac{1}{(x+1)^2}`,
+          r`f'(x) = \dfrac{x - 1}{(x+1)^2}`,
+          r`f'(x) = \dfrac{1}{x+1}`,
+          r`f'(x) = -\dfrac{1}{(x+1)^2}`
+        ],
+        a: r`f'(x) = \dfrac{1}{(x+1)^2}`,
+        tip: r`\text{Avec }u(x) = x\text{, }u'(x) = 1\text{ et }v(x) = x+1\text{, }v'(x) = 1\text{ : }f'(x) = \dfrac{1 \cdot (x+1) - x \cdot 1}{(x+1)^2} = \dfrac{1}{(x+1)^2}\text{. Distracteur D : erreur de signe au numérateur.}` },
+      // spe_quot_05 — choix_methode_un_sur_u — n3
+      { q: r`\text{Pour calculer la dérivée de }f(x) = \dfrac{1}{2x - 3}\text{, quelle méthode est la plus rapide ?}`,
+        choices: [
+          r`\text{Appliquer la formule du quotient avec }u = 1\text{ et }v = 2x - 3`,
+          r`\text{Appliquer la formule de }1/u\text{ avec }u = 2x - 3`,
+          r`\text{Développer d'abord}`,
+          r`\text{Les deux formules (A et B) donnent des résultats différents}`
+        ],
+        a: r`\text{Appliquer la formule de }1/u\text{ avec }u = 2x - 3`,
+        tip: r`\text{Quand le numérateur est constant (}= 1\text{ ici), la formule de }\dfrac{1}{u}\text{ est plus rapide : un seul terme au numérateur (}-u'\text{) au lieu de deux. Ici }u = 2x - 3\text{ donc }u' = 2\text{ et }f'(x) = -\dfrac{2}{(2x-3)^2}\text{.}` },
+      // spe_quot_06 — quotient_denominateur_degre_2 — n3
+      { q: r`\text{Soit }f(x) = \dfrac{2x + 1}{x^2 + 1}\text{ définie sur }\mathbb{R}\text{. Quelle est sa dérivée ?}`,
+        choices: [
+          r`f'(x) = \dfrac{-2x^2 - 2x + 2}{(x^2 + 1)^2}`,
+          r`f'(x) = \dfrac{2x^2 + 2x - 2}{(x^2 + 1)^2}`,
+          r`f'(x) = \dfrac{2(x^2 + 1) + (2x+1)(2x)}{(x^2 + 1)^2}`,
+          r`f'(x) = \dfrac{2}{2x}`
+        ],
+        a: r`f'(x) = \dfrac{-2x^2 - 2x + 2}{(x^2 + 1)^2}`,
+        tip: r`u = 2x+1\text{, }u' = 2\text{ ; }v = x^2 + 1\text{, }v' = 2x\text{. Numérateur }u'v - uv' = 2(x^2+1) - (2x+1)(2x) = 2x^2 + 2 - 4x^2 - 2x = -2x^2 - 2x + 2\text{. Donc }f'(x) = \dfrac{-2x^2 - 2x + 2}{(x^2+1)^2}\text{. Distracteur B : erreur de signe systématique au numérateur.}` },
+      // spe_quot_07 — domaine_derivabilite — n2
+      { q: r`\text{Soit }f(x) = \dfrac{x + 2}{x - 3}\text{. Sur quel ensemble cette fonction est-elle dérivable ?}`,
+        choices: [
+          r`\mathbb{R}`,
+          r`\mathbb{R} \setminus \{-2\}`,
+          r`\mathbb{R} \setminus \{3\}`,
+          r`\mathbb{R} \setminus \{-2 \,;\, 3\}`
+        ],
+        a: r`\mathbb{R} \setminus \{3\}`,
+        tip: r`\text{Une fonction quotient est dérivable là où elle est définie, c'est-à-dire là où le dénominateur ne s'annule pas. Ici }x - 3 \neq 0 \iff x \neq 3\text{. Donc }f\text{ est dérivable sur }\mathbb{R} \setminus \{3\}\text{. Distracteur B confond avec l'annulation du numérateur.}` },
+      // spe_quot_08 — calcul_nombre_derive_observation — n4
+      { q: r`\text{Soit }f(x) = \dfrac{1}{x^2 - 4x + 5}\text{. Combien vaut }f'(2)\text{ ?}`,
+        choices: [
+          r`0`,
+          r`\dfrac{1}{2}`,
+          r`-\dfrac{1}{2}`,
+          r`1`
+        ],
+        a: r`0`,
+        tip: r`u(x) = x^2 - 4x + 5\text{ donne }u'(x) = 2x - 4\text{. En }x = 2\text{ : }u'(2) = 0\text{ et }u(2) = 1\text{. Donc }f'(2) = -\dfrac{u'(2)}{u(2)^2} = -\dfrac{0}{1} = 0\text{. Bon réflexe : remarquer que }x = 2\text{ est l}…` },
+    ],
+
+    // ── Dérivée de fonction rationnelle ──
+    deriv_rationnelle: [
+      // spe_rat_01 — domaine_derivabilite — n1
+      { q: r`\text{Soit }f(x) = \dfrac{2x + 1}{x - 4}\text{. Quels sont son ensemble de définition }D_f\text{ et son ensemble de dérivabilité }D_{f'}\text{ ?}`,
+        choices: [
+          r`D_f = D_{f'} = \mathbb{R}`,
+          r`D_f = D_{f'} = \mathbb{R} \setminus \{4\}`,
+          r`D_f = \mathbb{R} \setminus \{4\}\text{ et }D_{f'} = \mathbb{R} \setminus \{-\frac{1}{2} \,;\, 4\}`,
+          r`D_f = \mathbb{R} \setminus \{4\}\text{ et }D_{f'} = \mathbb{R}`
+        ],
+        a: r`D_f = D_{f'} = \mathbb{R} \setminus \{4\}`,
+        tip: r`\text{La fonction n'est pas définie là où le dénominateur s'annule, soit }x = 4\text{. Une fonction rationnelle est dérivable partout où elle est définie. Donc }D_f = D_{f'} = \mathbb{R} \setminus \{4\}\text{.}` },
+      // spe_rat_02 — signe_carre_denominateur — n2
+      { q: r`\text{Soit }f\text{ une fonction rationnelle dont la dérivée s'écrit }f'(x) = \dfrac{x - 3}{(x + 1)^2}\text{ sur }\mathbb{R} \setminus \{-1\}\text{. Sur quel ensemble }f'(x)\text{ est-elle strictement positive ?}`,
+        choices: [
+          r`\mathbb{R} \setminus \{-1\}`,
+          r`]3 \,;\, +\infty[`,
+          r`]-\infty \,;\, -1[ \,\cup\, ]3 \,;\, +\infty[`,
+          r`]-1 \,;\, 3[`
+        ],
+        a: r`]3 \,;\, +\infty[`,
+        tip: r`\text{Le dénominateur }(x+1)^2\text{ est strictement positif sur }\mathbb{R} \setminus \{-1\}\text{, donc le signe de }f'\text{ est entièrement déterminé par le numérateur }x - 3\text{. On a }x - 3 > 0 \iff x > 3\text{. }…` },
+      // spe_rat_03 — signe_constant_quotient — n3
+      { q: r`\text{Soit }f(x) = \dfrac{x}{x + 2}\text{ définie sur }\mathbb{R} \setminus \{-2\}\text{. Quel est le signe de }f'(x)\text{ ?}`,
+        choices: [
+          r`f'(x) > 0\text{ sur }\mathbb{R} \setminus \{-2\}`,
+          r`f'(x) < 0\text{ sur }\mathbb{R} \setminus \{-2\}`,
+          r`f'(x) > 0\text{ sur }]-\infty\,;\,-2[\text{ et }f'(x) < 0\text{ sur }]-2\,;\,+\infty[`,
+          r`f'(x)\text{ change de signe en }x = 0`
+        ],
+        a: r`f'(x) > 0\text{ sur }\mathbb{R} \setminus \{-2\}`,
+        tip: r`f'(x) = \dfrac{1 \cdot (x+2) - x \cdot 1}{(x+2)^2} = \dfrac{2}{(x+2)^2}\text{. Le numérateur est strictement positif (constante }2\text{) et le dénominateur strictement positif (carré). Donc }f'(x) > 0\text{ partout où }…` },
+      // spe_rat_04 — variations_intervalles_separes — n3
+      { q: r`\text{Soit }f(x) = \dfrac{1}{x}\text{ définie sur }\mathbb{R}^*\text{. Quelle affirmation est correcte ?}`,
+        choices: [
+          r`f\text{ est strictement décroissante sur }\mathbb{R}^*`,
+          r`f\text{ est strictement décroissante sur }]-\infty\,;\,0[\text{ et sur }]0\,;\,+\infty[`,
+          r`f\text{ est strictement croissante sur }]-\infty\,;\,0[\text{ et strictement décroissante sur }]0\,;\,+\infty[`,
+          r`f\text{ est constante sur chaque intervalle de son domaine}`
+        ],
+        a: r`f\text{ est strictement décroissante sur }]-\infty\,;\,0[\text{ et sur }]0\,;\,+\infty[`,
+        tip: r`f'(x) = -\dfrac{1}{x^2} < 0\text{ partout où définie, donc }f\text{ est strictement décroissante sur chacun des intervalles }]-\infty\,;\,0[\text{ et }]0\,;\,+\infty[\text{. Mais }f\text{ n'est PAS décroissante sur }\mat…` },
+      // spe_rat_05 — etude_complete_quotient — n4
+      { q: r`\text{Soit }f(x) = \dfrac{x^2}{x - 1}\text{ définie sur }\mathbb{R} \setminus \{1\}\text{. Sur quel(s) intervalle(s) }f\text{ est-elle décroissante ?}`,
+        choices: [
+          r`]-\infty\,;\,1[`,
+          r`]0\,;\,1[\text{ et }]1\,;\,2[`,
+          r`]-\infty\,;\,0]\text{ et }[2\,;\,+\infty[`,
+          r`\mathbb{R} \setminus \{1\}`
+        ],
+        a: r`]0\,;\,1[\text{ et }]1\,;\,2[`,
+        tip: r`f'(x) = \dfrac{x(x-2)}{(x-1)^2}\text{. Le dénominateur est strictement positif sur le domaine, le signe de }f'\text{ est donc celui de }x(x-2)\text{. Ce trinôme a pour racines }0\text{ et }2\text{, et est positif à l'ext}…` },
+      // spe_rat_06 — extremum_fonction_rationnelle — n4
+      { q: r`\text{Soit }f(x) = \dfrac{x^2 + 4}{x}\text{ définie sur }\mathbb{R}^*\text{. Sur }]0\,;\,+\infty[\text{, }f\text{ admet :}`,
+        choices: [
+          r`\text{Un maximum en }x = 2`,
+          r`\text{Un minimum en }x = 2`,
+          r`\text{Un minimum en }x = 4`,
+          r`\text{Aucun extremum}`
+        ],
+        a: r`\text{Un minimum en }x = 2`,
+        tip: r`f'(x) = \dfrac{x^2 - 4}{x^2} = \dfrac{(x-2)(x+2)}{x^2}\text{. Sur }]0\,;\,+\infty[\text{, }x^2 > 0\text{ et }x + 2 > 0\text{, donc le signe de }f'\text{ est celui de }x - 2\text{. }f'\text{ passe du négatif au positif en}…` },
+      // spe_rat_07 — lecture_graphique_rationnelle — n2
+      { q: r`\text{La courbe ci-contre représente une fonction rationnelle }f\text{ définie sur }\mathbb{R} \setminus \{2\}\text{. Quelle affirmation est correcte ?}`,
+        gspec: { fn:x=>1/(x-2), xr:[-2,6], yr:[-4,4], extras:c=><>{gDV(2,c,'#9CA3AF')}{gNote(2.1,3.5,'x=2',c,'#9CA3AF')}</> },
+        choices: [
+          r`f\text{ est croissante sur }\mathbb{R}`,
+          r`f\text{ est décroissante sur }]-\infty\,;\,2[\text{ et sur }]2\,;\,+\infty[`,
+          r`f\text{ admet un maximum en }x = 2`,
+          r`f\text{ admet un minimum en }x = 2`
+        ],
+        a: r`f\text{ est décroissante sur }]-\infty\,;\,2[\text{ et sur }]2\,;\,+\infty[`,
+        tip: r`\text{Sur le graphique, on lit que }f\text{ décroît sur chacun des deux intervalles séparés par la valeur interdite }x = 2\text{. La décroissance ne s'étend PAS à }\mathbb{R} \setminus \{2\}\text{ pris globalement à cause du saut.}` },
+    ],
+
+    // ── Optimisation (max/min) ──
+    deriv_optimisation: [
+      // spe_opt_01 — modelisation_volume — n2
+      { q: r`\text{On découpe quatre carrés de côté }x\text{ aux quatre coins d'un rectangle de carton de dimensions }20 \times 30\text{ cm, puis on plie pour former une boîte sans couvercle. Quelle est l'expression du volume }V(x)\text{ de la boîte en fonction de }x\text{ ?}`,
+        choices: [
+          r`V(x) = 20 \times 30 \times x`,
+          r`V(x) = (20 - x)(30 - x) \times x`,
+          r`V(x) = (20 - 2x)(30 - 2x) \times x`,
+          r`V(x) = 20 \times 30 - 4x^2`
+        ],
+        a: r`V(x) = (20 - 2x)(30 - 2x) \times x`,
+        tip: r`\text{Quand on découpe un carré de côté }x\text{ à chaque coin et qu'on replie, la base de la boîte est rectangulaire de dimensions }(20 - 2x)\text{ et }(30 - 2x)\text{ — on retire }x\text{ de chaque côté de chaque dimen}…` },
+      // spe_opt_02 — domaine_variable — n2
+      { q: r`\text{Avec la même situation que la question précédente (}V(x) = (20-2x)(30-2x) \cdot x\text{ pour la boîte issue d'un rectangle }20 \times 30\text{), quel est l'ensemble des valeurs possibles de }x\text{ ?}`,
+        choices: [
+          r`x \in \mathbb{R}`,
+          r`x > 0`,
+          r`0 < x < 10`,
+          r`0 < x < 15`
+        ],
+        a: r`0 < x < 10`,
+        tip: r`\text{Pour que la boîte existe, il faut }x > 0\text{, et il faut que les dimensions de la base restent positives : }20 - 2x > 0\text{ donne }x < 10\text{. La condition }30 - 2x > 0\text{ (}x < 15\text{) est moins restrictive, donc redondante. Donc }x \in \,]0\,;\,10[\text{.}` },
+      // spe_opt_03 — choix_methode_optimisation — n2
+      { q: r`\text{Pour déterminer la valeur de }x\text{ qui rend le volume }V(x) = (20-2x)(30-2x) \cdot x\text{ maximal sur }]0\,;\,10[\text{, on doit :}`,
+        choices: [
+          r`\text{Calculer }V(0)\text{ et }V(10)\text{ et comparer}`,
+          r`\text{Calculer }V'(x)\text{, étudier son signe et identifier un changement de signe}`,
+          r`\text{Tester quelques valeurs de }x\text{ (par exemple }x = 5\text{) et choisir la plus grande}`,
+          r`\text{Résoudre l'équation }V(x) = 0`
+        ],
+        a: r`\text{Calculer }V'(x)\text{, étudier son signe et identifier un changement de signe}`,
+        tip: r`\text{Pour trouver un maximum d'une fonction sur un intervalle ouvert, on dérive, on étudie le signe de la dérivée, et on identifie un éventuel changement de signe.}` },
+      // spe_opt_04 — aire_max_perimetre_fixe — n3
+      { q: r`\text{On dispose de }40\text{ mètres de clôture pour entourer un enclos rectangulaire. Quelles sont les dimensions qui maximisent l'aire de l'enclos ?}`,
+        choices: [
+          r`5 \times 15\text{ (aire = }75\text{ m}^2\text{)}`,
+          r`10 \times 10\text{ (aire = }100\text{ m}^2\text{)}`,
+          r`1 \times 19\text{ (aire = }19\text{ m}^2\text{)}`,
+          r`\text{Aucun rectangle ne maximise l'aire}`
+        ],
+        a: r`10 \times 10\text{ (aire = }100\text{ m}^2\text{)}`,
+        tip: r`\text{Avec le périmètre fixé à }40\text{ m, on a }\ell + L = 20\text{, soit }L = 20 - \ell\text{. L'aire est }A(\ell) = \ell(20 - \ell) = 20\ell - \ell^2\text{. La dérivée }A'(\ell) = 20 - 2\ell\text{ s'annule en }\ell =…` },
+      // spe_opt_05 — perimetre_min_aire_fixee — n4
+      { q: r`\text{Un rectangle a une aire de }36\text{ m}^2\text{. On note }\ell\text{ sa largeur. Quelle valeur de }\ell\text{ minimise son périmètre ?}`,
+        choices: [
+          r`\ell = 4\text{ m}`,
+          r`\ell = 6\text{ m}`,
+          r`\ell = 9\text{ m}`,
+          r`\text{Le périmètre n'a pas de minimum}`
+        ],
+        a: r`\ell = 6\text{ m}`,
+        tip: r`\text{Avec }\ell L = 36\text{, on a }L = \dfrac{36}{\ell}\text{. Le périmètre est }P(\ell) = 2\ell + \dfrac{72}{\ell}\text{ pour }\ell > 0\text{. La dérivée est }P'(\ell) = 2 - \dfrac{72}{\ell^2}\text{, qui s'annule pour}…` },
+      // spe_opt_06 — produit_max_somme_fixee — n3
+      { q: r`\text{Soient }a\text{ et }b\text{ deux nombres réels strictement positifs vérifiant }a + b = 10\text{. Quelle est la valeur maximale du produit }a \cdot b\text{ ?}`,
+        choices: [
+          r`25`,
+          r`20`,
+          r`50`,
+          r`\text{Le produit n'a pas de maximum}`
+        ],
+        a: r`25`,
+        tip: r`\text{Avec }b = 10 - a\text{, le produit est }f(a) = a(10 - a) = 10a - a^2\text{ pour }a \in ]0\,;\,10[\text{. La dérivée }f'(a) = 10 - 2a\text{ s'annule en }a = 5\text{, qui est bien un maximum. Alors }b = 10 - 5 = 5\te…` },
+      // spe_opt_07 — meta_rigueur_extremum — n4
+      { q: r`\text{Soit }f(x) = -x^2 + 6x\text{ sur }[0\,;\,6]\text{. On souhaite déterminer le maximum de }f\text{ sur cet intervalle. Un élève écrit : « }f'(x) = -2x + 6\text{, qui s'annule en }x = 3\text{. Donc le maximum est }3\text{. » Cette conclusion est :}`,
+        choices: [
+          r`\text{Correcte}`,
+          r`\text{Incorrecte : il faut calculer }f(3)\text{ pour donner la valeur du maximum}`,
+          r`\text{Incorrecte : le maximum n'existe pas sur cet intervalle}`,
+          r`\text{Incorrecte : il faut vérifier que }x = 3\text{ est dans }[0\,;\,6]`
+        ],
+        a: r`\text{Incorrecte : il faut calculer }f(3)\text{ pour donner la valeur du maximum}`,
+        tip: r`\text{L'élève a trouvé la valeur de }x\text{ où le maximum est atteint (}x = 3\text{), mais la valeur du maximum elle-même est }f(3) = -9 + 18 = 9\text{. C'est une confusion fréquente en évaluation. Bonne formulation : «}…` },
+    ],
+
+    // ── Tangente — équation et lectures avancées ──
+    deriv_tangente_avancee: [
+      // spe_tana_01 — distinction_au_point_passant_par — n2
+      { q: r`\text{Soit }f\text{ une fonction dérivable et }A\text{ un point fixé. Quelle est la différence essentielle entre « la tangente à }\mathcal{C}_f\text{ au point }A\text{ » et « la tangente à }\mathcal{C}_f\text{ passant par }A\text{ » ?}`,
+        choices: [
+          r`\text{Aucune différence, ce sont deux façons de dire la même chose}`,
+          r`\text{La première suppose que }A\text{ est sur la courbe ; la seconde non}`,
+          r`\text{La première est unique ; la seconde n'existe que si }A\text{ est l'origine}`,
+          r`\text{Les deux supposent que }A\text{ est sur la courbe}`
+        ],
+        a: r`\text{La première suppose que }A\text{ est sur la courbe ; la seconde non}`,
+        tip: r`\text{La tangente « au point }A\text{ » suppose que }A\text{ est un point de la courbe : on connaît l'abscisse }a\text{ et la tangente est unique. La tangente « passant par }A\text{ » peut concerner un point }A\text{ ext}…` },
+      // spe_tana_02 — mise_en_equation_origine — n3
+      { q: r`\text{Soit }f(x) = x^2 + 4\text{. On cherche les points de la courbe en lesquels la tangente passe par l'origine }O\text{. Soit }a\text{ l'abscisse d'un tel point. Quelle équation doit vérifier }a\text{ ?}`,
+        choices: [
+          r`a^2 + 4 = 0`,
+          r`f'(a) = 0`,
+          r`a^2 = 4`,
+          r`2a = 0`
+        ],
+        a: r`a^2 = 4`,
+        tip: r`\text{La tangente au point d'abscisse }a\text{ a pour équation }y = 2a(x-a) + a^2 + 4\text{. Elle passe par }O(0\,;\,0)\text{ si et seulement si }0 = 2a(0-a) + a^2 + 4\text{, ce qui se simplifie en }-a^2 + 4 = 0\text{, donc }a^2 = 4\text{.}` },
+      // spe_tana_03 — resolution_interpretation — n3
+      { q: r`\text{Avec la même fonction }f(x) = x^2 + 4\text{, combien de tangentes à la courbe de }f\text{ passent par l'origine ?}`,
+        choices: [
+          r`\text{Aucune}`,
+          r`\text{Une seule}`,
+          r`\text{Deux}`,
+          r`\text{Une infinité}`
+        ],
+        a: r`\text{Deux}`,
+        tip: r`a^2 = 4\text{ donne }a = 2\text{ ou }a = -2\text{. Il y a donc deux tangentes : l'une au point }(2\,;\,8)\text{, l'autre au point }(-2\,;\,8)\text{. Géométriquement cohérent : la parabole étant symétrique par rapport à l}…` },
+      // spe_tana_04 — mise_en_equation_point_quelconque — n4
+      { q: r`\text{Soit }f(x) = x^2\text{. On cherche les valeurs de }a\text{ telles que la tangente à }\mathcal{C}_f\text{ au point d'abscisse }a\text{ passe par le point }A(1\,;\,-3)\text{. Quelle équation doit vérifier }a\text{ ?}`,
+        choices: [
+          r`a = 1\text{ et }-3 = 1`,
+          r`a^2 - 2a - 3 = 0`,
+          r`a^2 + 2a - 3 = 0`,
+          r`-a^2 - 2a - 3 = 0`
+        ],
+        a: r`a^2 - 2a - 3 = 0`,
+        tip: r`\text{Tangente au point d'abscisse }a\text{ : }y = 2a(x-a) + a^2\text{. Elle passe par }A(1\,;\,-3)\text{ si et seulement si }-3 = 2a(1-a) + a^2\text{, soit }-3 = 2a - 2a^2 + a^2 = 2a - a^2\text{, ce qui équivaut à }a^2 - 2a - 3 = 0\text{.}` },
+      // spe_tana_05 — resolution_equation_associee — n3
+      { q: r`\text{En reprenant la question précédente, l'équation }a^2 - 2a - 3 = 0\text{ admet pour solutions :}`,
+        choices: [
+          r`a = 1\text{ uniquement}`,
+          r`a = -1\text{ et }a = 3`,
+          r`a = 1\text{ et }a = -3`,
+          r`\text{Aucune solution réelle}`
+        ],
+        a: r`a = -1\text{ et }a = 3`,
+        tip: r`\Delta = 4 + 12 = 16 > 0\text{, donc deux racines : }a = \dfrac{2 \pm 4}{2}\text{, soit }a = 3\text{ ou }a = -1\text{. Il y a donc deux tangentes à la courbe de }f(x) = x^2\text{ passant par le point }A(1\,;\,-3)\text{ :}…` },
+      // spe_tana_06 — position_courbe_tangente_convexite — n4
+      { q: r`\text{Soit }f(x) = x^2\text{. La tangente à la courbe de }f\text{ au point d'abscisse }a = 1\text{ a pour équation }y = 2x - 1\text{. Quelle est la position de la courbe par rapport à cette tangente ?}`,
+        choices: [
+          r`\text{La courbe est au-dessus de la tangente sur }\mathbb{R}\text{, sauf au point de tangence}`,
+          r`\text{La courbe est en-dessous de la tangente sur }\mathbb{R}\text{, sauf au point de tangence}`,
+          r`\text{La courbe coupe la tangente en deux points}`,
+          r`\text{La position varie selon les intervalles}`
+        ],
+        a: r`\text{La courbe est au-dessus de la tangente sur }\mathbb{R}\text{, sauf au point de tangence}`,
+        tip: r`\text{Étudier la position consiste à étudier le signe de }f(x) - (2x - 1)\text{ : on a }x^2 - 2x + 1 = (x-1)^2 \geq 0\text{, avec égalité uniquement en }x = 1\text{. Donc la courbe est au-dessus de la tangente partout, s}…` },
+      // spe_tana_07 — lecture_graphique_equation_tangente — n2
+      { q: r`\text{La courbe ci-contre représente une fonction }f\text{. La droite }T\text{ est la tangente à la courbe au point d'abscisse }2\text{. Parmi les équations suivantes, laquelle correspond à }T\text{ ?}`,
+        gspec: { fn:x=>(x*x+2)/2, xr:[-1,4], yr:[-1,7], extras:c=><>{gTan(x=>(x*x+2)/2,2,2,c)}{gPt(2,3,c)}{gNote(2.2,3.4,'A',c,'#EF4444')}</> },
+        choices: [
+          r`y = 2x - 1`,
+          r`y = -2x + 7`,
+          r`y = 3x - 3`,
+          r`y = x + 1`
+        ],
+        a: r`y = 2x - 1`,
+        tip: r`\text{Sur le graphique, on lit le coefficient directeur de }T\text{ : la droite monte de }2\text{ unités quand }x\text{ augmente de }1\text{, donc pente }= 2\text{. On lit aussi l'ordonnée à l'origine : }y = -1\text{ qua}…` },
+    ],
+
+    // ── Convexité et points d'inflexion ── (14 questions)
+    derivee_convexite: [
+      // term_convex_01 — Lire la convexité sur le graphe de f — facile
+      { q: r`\text{Ci-dessus, la courbe représentative d'une fonction }f\text{ définie sur }[-1\,;\,3{,}5]\text{. Que peut-on dire de la convexité de }f\text{ ?}`,
+        svg: r`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 320" width="100%" style="background:#fff;font-family:sans-serif">
+<g stroke="#e5e7eb" stroke-width="0.5">
+<line x1="70.91" y1="20" x2="70.91" y2="290"/>
+<line x1="132.73" y1="20" x2="132.73" y2="290"/>
+<line x1="194.55" y1="20" x2="194.55" y2="290"/>
+<line x1="256.36" y1="20" x2="256.36" y2="290"/>
+<line x1="318.18" y1="20" x2="318.18" y2="290"/>
+<line x1="40" y1="267.50" x2="380" y2="267.50"/>
+<line x1="40" y1="222.50" x2="380" y2="222.50"/>
+<line x1="40" y1="177.50" x2="380" y2="177.50"/>
+<line x1="40" y1="132.50" x2="380" y2="132.50"/>
+<line x1="40" y1="87.50" x2="380" y2="87.50"/>
+<line x1="40" y1="42.50" x2="380" y2="42.50"/>
+</g>
+<line x1="40" y1="177.50" x2="380" y2="177.50" stroke="#111" stroke-width="1.2"/>
+<line x1="132.73" y1="20" x2="132.73" y2="290" stroke="#111" stroke-width="1.2"/>
+<polygon points="380,177.50 374,174.50 374,180.50" fill="#111"/>
+<polygon points="132.73,20 129.73,26 135.73,26" fill="#111"/>
+<text x="378.00" y="192.50" font-size="11" text-anchor="end">x</text>
+<text x="140.73" y="30" font-size="11">y</text>
+<line x1="70.91" y1="174.50" x2="70.91" y2="180.50" stroke="#111"/>
+<text x="70.91" y="191.50" font-size="10" text-anchor="middle">-1</text>
+<line x1="194.55" y1="174.50" x2="194.55" y2="180.50" stroke="#111"/>
+<text x="194.55" y="191.50" font-size="10" text-anchor="middle">1</text>
+<line x1="256.36" y1="174.50" x2="256.36" y2="180.50" stroke="#111"/>
+<text x="256.36" y="191.50" font-size="10" text-anchor="middle">2</text>
+<line x1="318.18" y1="174.50" x2="318.18" y2="180.50" stroke="#111"/>
+<text x="318.18" y="191.50" font-size="10" text-anchor="middle">3</text>
+<line x1="129.73" y1="267.50" x2="135.73" y2="267.50" stroke="#111"/>
+<text x="126.73" y="270.50" font-size="10" text-anchor="end">-2</text>
+<line x1="129.73" y1="222.50" x2="135.73" y2="222.50" stroke="#111"/>
+<text x="126.73" y="225.50" font-size="10" text-anchor="end">-1</text>
+<line x1="129.73" y1="132.50" x2="135.73" y2="132.50" stroke="#111"/>
+<text x="126.73" y="135.50" font-size="10" text-anchor="end">1</text>
+<line x1="129.73" y1="87.50" x2="135.73" y2="87.50" stroke="#111"/>
+<text x="126.73" y="90.50" font-size="10" text-anchor="end">2</text>
+<line x1="129.73" y1="42.50" x2="135.73" y2="42.50" stroke="#111"/>
+<text x="126.73" y="45.50" font-size="10" text-anchor="end">3</text>
+<text x="126.73" y="189.50" font-size="10" text-anchor="end">0</text>
+<polyline points="58.55,268.22 62.22,258.29 65.90,249.04 69.58,240.45 73.26,232.50 76.93,225.18 80.61,218.47 84.29,212.34 87.97,206.78 91.65,201.78 95.32,197.30 99.00,193.33 102.68,189.85 106.36,186.85 110.03,184.31 113.71,182.19 117.39,180.50 121.07,179.20 124.75,178.28 128.42,177.72 132.10,177.50 135.78,177.61 139.46,178.01 143.13,178.70 146.81,179.66 150.49,180.86 154.17,182.29 157.85,183.92 161.52,185.75 165.20,187.74 168.88,189.89 172.56,192.17 176.23,194.56 179.91,197.05 183.59,199.61 187.27,202.23 190.95,204.88 194.62,207.56 198.30,210.23 201.98,212.89 205.66,215.50 209.33,218.06 213.01,220.54 216.69,222.93 220.37,225.20 224.05,227.34 227.72,229.33 231.40,231.15 235.08,232.78 238.76,234.20 242.43,235.39 246.11,236.33 249.79,237.01 253.47,237.40 257.15,237.49 260.82,237.26 264.50,236.69 268.18,235.75 271.86,234.44 275.54,232.72 279.21,230.59 282.89,228.03 286.57,225.01 290.25,221.51 293.92,217.52 297.60,213.02 301.28,207.99 304.96,202.41 308.64,196.26 312.31,189.52 315.99,182.17 319.67,174.20 323.35,165.58 327.02,156.30 330.70,146.34 334.38,135.68 338.06,124.29 341.74,112.17 345.41,99.29 349.09,85.63" fill="none" stroke="#2563eb" stroke-width="2"/>
+<text x="330.55" y="96.50" font-size="13" fill="#2563eb" font-style="italic">C_f</text>
+</svg>`,
+        choices: [
+          r`f\text{ est concave sur }[-1\,;\,1]\text{ et convexe sur }[1\,;\,3{,}5]`,
+          r`f\text{ est convexe sur }[-1\,;\,1]\text{ et concave sur }[1\,;\,3{,}5]`,
+          r`f\text{ est convexe sur }[-1\,;\,3{,}5]`,
+          r`f\text{ est concave sur }[-1\,;\,3{,}5]`
+        ],
+        a: r`f\text{ est concave sur }[-1\,;\,1]\text{ et convexe sur }[1\,;\,3{,}5]`,
+        tip: r`\text{Sur }[-1\,;\,1]\text{ la courbe est tournée vers le bas (la corde passe en dessous de la courbe) : }f\text{ est concave. Sur }[1\,;\,3{,}5]\text{ la courbe est tournée vers le haut : }f\text{ est convexe. Le point d'abscisse }1\text{ est un point d'inflexion.}` },
+      // term_convex_02 — Étudier la convexité par f'' — facile
+      { q: r`\text{Soit }f\text{ définie sur }\mathbb{R}\text{ par }f(x) = 2x^3 - 9x^2 + 12x - 1\text{. Sur quel intervalle }f\text{ est-elle convexe ?}`,
+        choices: [
+          r`\left]-\infty\,;\,\dfrac{3}{2}\right]`,
+          r`\left[\dfrac{3}{2}\,;\,+\infty\right[`,
+          r`\mathbb{R}\text{ tout entier}`,
+          r`f\text{ n'est convexe sur aucun intervalle}`
+        ],
+        a: r`\left[\dfrac{3}{2}\,;\,+\infty\right[`,
+        tip: r`\text{On a }f'(x) = 6x^2 - 18x + 12\text{ puis }f''(x) = 12x - 18\text{. }f''(x) \geqslant 0 \iff x \geqslant \dfrac{3}{2}\text{. Donc }f\text{ est convexe sur }\left[\dfrac{3}{2}\,;\,+\infty\right[\text{.}` },
+      // term_convex_03 — Lire la convexité de f sur le graphe de f' (piège) — moyenne
+      // ⚠️ Question piège volontaire sur la confusion graphe de f vs graphe de f'. Vérifier que les distracteurs sont bien identifiés : choix 0 = élève qui lit le signe de f' au lieu des variations ; choix 2 = élève qui inverse convexe/concave.
+      { q: r`\text{Ci-dessus, la courbe représentative de }f'\text{, dérivée d'une fonction }f\text{ définie sur }[-1\,;\,3]\text{. Que peut-on dire de la convexité de }f\text{ ?}`,
+        svg: r`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 320" width="100%" style="background:#fff;font-family:sans-serif">
+<g stroke="#e5e7eb" stroke-width="0.5">
+<line x1="74.00" y1="20" x2="74.00" y2="290"/>
+<line x1="142.00" y1="20" x2="142.00" y2="290"/>
+<line x1="210.00" y1="20" x2="210.00" y2="290"/>
+<line x1="278.00" y1="20" x2="278.00" y2="290"/>
+<line x1="346.00" y1="20" x2="346.00" y2="290"/>
+<line x1="40" y1="249.25" x2="380" y2="249.25"/>
+<line x1="40" y1="198.30" x2="380" y2="198.30"/>
+<line x1="40" y1="147.36" x2="380" y2="147.36"/>
+<line x1="40" y1="96.42" x2="380" y2="96.42"/>
+<line x1="40" y1="45.47" x2="380" y2="45.47"/>
+</g>
+<line x1="40" y1="198.30" x2="380" y2="198.30" stroke="#111" stroke-width="1.2"/>
+<line x1="142.00" y1="20" x2="142.00" y2="290" stroke="#111" stroke-width="1.2"/>
+<polygon points="380,198.30 374,195.30 374,201.30" fill="#111"/>
+<polygon points="142.00,20 139.00,26 145.00,26" fill="#111"/>
+<text x="378.00" y="213.30" font-size="11" text-anchor="end">x</text>
+<text x="150.00" y="30" font-size="11">y</text>
+<line x1="74.00" y1="195.30" x2="74.00" y2="201.30" stroke="#111"/>
+<text x="74.00" y="212.30" font-size="10" text-anchor="middle">-1</text>
+<line x1="210.00" y1="195.30" x2="210.00" y2="201.30" stroke="#111"/>
+<text x="210.00" y="212.30" font-size="10" text-anchor="middle">1</text>
+<line x1="278.00" y1="195.30" x2="278.00" y2="201.30" stroke="#111"/>
+<text x="278.00" y="212.30" font-size="10" text-anchor="middle">2</text>
+<line x1="346.00" y1="195.30" x2="346.00" y2="201.30" stroke="#111"/>
+<text x="346.00" y="212.30" font-size="10" text-anchor="middle">3</text>
+<line x1="139.00" y1="249.25" x2="145.00" y2="249.25" stroke="#111"/>
+<text x="136.00" y="252.25" font-size="10" text-anchor="end">-1</text>
+<line x1="139.00" y1="147.36" x2="145.00" y2="147.36" stroke="#111"/>
+<text x="136.00" y="150.36" font-size="10" text-anchor="end">1</text>
+<line x1="139.00" y1="96.42" x2="145.00" y2="96.42" stroke="#111"/>
+<text x="136.00" y="99.42" font-size="10" text-anchor="end">2</text>
+<line x1="139.00" y1="45.47" x2="145.00" y2="45.47" stroke="#111"/>
+<text x="136.00" y="48.47" font-size="10" text-anchor="end">3</text>
+<text x="136.00" y="210.30" font-size="10" text-anchor="end">0</text>
+<polyline points="74.00,45.47 77.44,55.66 80.89,65.58 84.33,75.25 87.77,84.65 91.22,93.79 94.66,102.68 98.10,111.30 101.54,119.65 104.99,127.75 108.43,135.59 111.87,143.16 115.32,150.48 118.76,157.53 122.20,164.32 125.65,170.85 129.09,177.12 132.53,183.13 135.97,188.87 139.42,194.36 142.86,199.58 146.30,204.55 149.75,209.25 153.19,213.69 156.63,217.87 160.08,221.79 163.52,225.44 166.96,228.84 170.41,231.97 173.85,234.85 177.29,237.46 180.73,239.81 184.18,241.90 187.62,243.73 191.06,245.29 194.51,246.60 197.95,247.65 201.39,248.43 204.84,248.95 208.28,249.21 211.72,249.21 215.16,248.95 218.61,248.43 222.05,247.65 225.49,246.60 228.94,245.29 232.38,243.73 235.82,241.90 239.27,239.81 242.71,237.46 246.15,234.85 249.59,231.97 253.04,228.84 256.48,225.44 259.92,221.79 263.37,217.87 266.81,213.69 270.25,209.25 273.70,204.55 277.14,199.58 280.58,194.36 284.03,188.87 287.47,183.13 290.91,177.12 294.35,170.85 297.80,164.32 301.24,157.53 304.68,150.48 308.13,143.16 311.57,135.59 315.01,127.75 318.46,119.65 321.90,111.30 325.34,102.68 328.78,93.79 332.23,84.65 335.67,75.25 339.11,65.58 342.56,55.66 346.00,45.47" fill="none" stroke="#dc2626" stroke-width="2"/>
+<text x="325.60" y="70.94" font-size="13" fill="#dc2626" font-style="italic">C_f'</text>
+</svg>`,
+        choices: [
+          r`f\text{ est convexe sur }[0\,;\,2]\text{ et concave ailleurs}`,
+          r`f\text{ est concave sur }[-1\,;\,1]\text{ et convexe sur }[1\,;\,3]`,
+          r`f\text{ est convexe sur }[-1\,;\,1]\text{ et concave sur }[1\,;\,3]`,
+          r`f\text{ est convexe sur }[-1\,;\,3]`
+        ],
+        a: r`f\text{ est concave sur }[-1\,;\,1]\text{ et convexe sur }[1\,;\,3]`,
+        tip: r`\text{C'est le graphe de }f'\text{ (et non de }f\text{). }f'\text{ est décroissante sur }[-1\,;\,1]\text{ donc }f''(x) \leqslant 0\text{ sur cet intervalle, donc }f\text{ est concave sur }[-1\,;\,1]\text{. }f'\text{ est croissante sur }[1\,;\,3]\text…` },
+      // term_convex_04 — Étudier la convexité par f'' — moyenne
+      { q: r`\text{Soit }f\text{ définie sur }\mathbb{R}\text{ par }f(x) = x^4 - 6x^2 + 5\text{. Sur quel(s) intervalle(s) }f\text{ est-elle concave ?}`,
+        choices: [
+          r`[-1\,;\,1]`,
+          r`\left]-\infty\,;\,-1\right] \cup \left[1\,;\,+\infty\right[`,
+          r`\left]-\infty\,;\,0\right]`,
+          r`f\text{ n'est concave sur aucun intervalle}`
+        ],
+        a: r`[-1\,;\,1]`,
+        tip: r`\text{On a }f'(x) = 4x^3 - 12x\text{ puis }f''(x) = 12x^2 - 12 = 12(x^2 - 1) = 12(x-1)(x+1)\text{. Le trinôme }x^2 - 1\text{ est négatif entre ses racines : }f''(x) \leqslant 0 \iff x \in [-1\,;\,1]\text{. Donc }f\text{ est concave sur }[-1\,;\,1]\text{.}` },
+      // term_convex_05 — Étudier la convexité (fonction avec exponentielle) — moyenne
+      // ⚠️ Distracteur 1 = élève qui s'arrête à f'(x)=0 (donne x=1) et confond avec convexité.
+      { q: r`\text{Soit }f\text{ définie sur }\mathbb{R}\text{ par }f(x) = (x-2)\,\mathrm{e}^{x}\text{. Sur quel intervalle }f\text{ est-elle convexe ?}`,
+        choices: [
+          r`\left]-\infty\,;\,1\right]`,
+          r`\left[1\,;\,+\infty\right[`,
+          r`\left]-\infty\,;\,0\right]`,
+          r`\left[0\,;\,+\infty\right[`
+        ],
+        a: r`\left[0\,;\,+\infty\right[`,
+        tip: r`f'(x) = \mathrm{e}^{x} + (x-2)\mathrm{e}^{x} = (x-1)\mathrm{e}^{x}\text{. Puis }f''(x) = \mathrm{e}^{x} + (x-1)\mathrm{e}^{x} = x\,\mathrm{e}^{x}\text{. Comme }\mathrm{e}^{x} > 0\text{ sur }\mathbb{R}\text{, }f''(x) \geqslant 0 \iff x \geqslant 0\tex…` },
+      // term_convex_06 — Étudier la convexité (fonction rationnelle) — moyenne
+      { q: r`\text{Soit }f\text{ définie sur }\left]0\,;\,+\infty\right[\text{ par }f(x) = x + \dfrac{1}{x}\text{. Que peut-on dire de la convexité de }f\text{ sur }\left]0\,;\,+\infty\right[\text{ ?}`,
+        choices: [
+          r`f\text{ est convexe sur }\left]0\,;\,+\infty\right[`,
+          r`f\text{ est concave sur }\left]0\,;\,+\infty\right[`,
+          r`f\text{ est convexe sur }\left]0\,;\,1\right]\text{ et concave sur }\left[1\,;\,+\infty\right[`,
+          r`f\text{ est concave sur }\left]0\,;\,1\right]\text{ et convexe sur }\left[1\,;\,+\infty\right[`
+        ],
+        a: r`f\text{ est convexe sur }\left]0\,;\,+\infty\right[`,
+        tip: r`f'(x) = 1 - \dfrac{1}{x^2}\text{, puis }f''(x) = \dfrac{2}{x^3}\text{. Sur }\left]0\,;\,+\infty\right[\text{, on a }x^3 > 0\text{ donc }f''(x) > 0\text{. Donc }f\text{ est convexe sur tout }\left]0\,;\,+\infty\right[\text{. Le minimum en }x=1\text{ n}…` },
+      // term_convex_07 — Étudier la convexité (fonction avec ln) — dure
+      // ⚠️ Distracteur 1 = élève qui inverse le signe. Vérifier que la dérivée de x*ln(x) est bien attendue connue à ce stade dans ta progression.
+      { q: r`\text{Soit }f\text{ définie sur }\left]0\,;\,+\infty\right[\text{ par }f(x) = x\ln(x) - x^2\text{. Sur quel intervalle }f\text{ est-elle convexe ?}`,
+        choices: [
+          r`\left]0\,;\,\dfrac{1}{2}\right]`,
+          r`\left[\dfrac{1}{2}\,;\,+\infty\right[`,
+          r`\left]0\,;\,+\infty\right[\text{ tout entier}`,
+          r`f\text{ n'est convexe sur aucun intervalle de }\left]0\,;\,+\infty\right[`
+        ],
+        a: r`\left]0\,;\,\dfrac{1}{2}\right]`,
+        tip: r`f'(x) = \ln(x) + 1 - 2x\text{ (en utilisant }(x\ln x)' = \ln x + 1\text{). Puis }f''(x) = \dfrac{1}{x} - 2 = \dfrac{1 - 2x}{x}\text{. Sur }\left]0\,;\,+\infty\right[\text{, }x > 0\text{ donc }f''(x) \geqslant 0 \iff 1 - 2x \geqslant 0 \iff x \leqslan…` },
+      // term_convex_08 — Étudier la convexité (type bac, exp et polynôme) — dure
+      { q: r`\text{Soit }f\text{ définie sur }\mathbb{R}\text{ par }f(x) = \mathrm{e}^{x} - \dfrac{x^2}{2} - x - 1\text{. Sur quel intervalle }f\text{ est-elle convexe ?}`,
+        choices: [
+          r`\left]-\infty\,;\,0\right]`,
+          r`\left[0\,;\,+\infty\right[`,
+          r`\mathbb{R}\text{ tout entier}`,
+          r`f\text{ n'est convexe sur aucun intervalle}`
+        ],
+        a: r`\left[0\,;\,+\infty\right[`,
+        tip: r`f'(x) = \mathrm{e}^{x} - x - 1\text{, puis }f''(x) = \mathrm{e}^{x} - 1\text{. On résout }f''(x) \geqslant 0 \iff \mathrm{e}^{x} \geqslant 1 \iff x \geqslant 0\text{ (car la fonction exp est strictement croissante et }\mathrm{e}^{0} = 1\text{). Donc }…` },
+      // term_convex_09 — Repérer un point d'inflexion sur un graphe — facile
+      { q: r`\text{Ci-dessus, la courbe représentative d'une fonction }f\text{ définie sur }[-2\,;\,2]\text{. Cette courbe possède un point d'inflexion. Quelles sont ses coordonnées ?}`,
+        svg: r`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 320" width="100%" style="background:#fff;font-family:sans-serif">
+<g stroke="#e5e7eb" stroke-width="0.5">
+<line x1="74.00" y1="20" x2="74.00" y2="290"/>
+<line x1="142.00" y1="20" x2="142.00" y2="290"/>
+<line x1="210.00" y1="20" x2="210.00" y2="290"/>
+<line x1="278.00" y1="20" x2="278.00" y2="290"/>
+<line x1="346.00" y1="20" x2="346.00" y2="290"/>
+<line x1="40" y1="277.73" x2="380" y2="277.73"/>
+<line x1="40" y1="253.18" x2="380" y2="253.18"/>
+<line x1="40" y1="228.64" x2="380" y2="228.64"/>
+<line x1="40" y1="204.09" x2="380" y2="204.09"/>
+<line x1="40" y1="179.55" x2="380" y2="179.55"/>
+<line x1="40" y1="155.00" x2="380" y2="155.00"/>
+<line x1="40" y1="130.45" x2="380" y2="130.45"/>
+<line x1="40" y1="105.91" x2="380" y2="105.91"/>
+<line x1="40" y1="81.36" x2="380" y2="81.36"/>
+<line x1="40" y1="56.82" x2="380" y2="56.82"/>
+<line x1="40" y1="32.27" x2="380" y2="32.27"/>
+</g>
+<line x1="40" y1="155.00" x2="380" y2="155.00" stroke="#111" stroke-width="1.2"/>
+<line x1="210.00" y1="20" x2="210.00" y2="290" stroke="#111" stroke-width="1.2"/>
+<polygon points="380,155.00 374,152.00 374,158.00" fill="#111"/>
+<polygon points="210.00,20 207.00,26 213.00,26" fill="#111"/>
+<text x="378.00" y="170.00" font-size="11" text-anchor="end">x</text>
+<text x="218.00" y="30" font-size="11">y</text>
+<line x1="74.00" y1="152.00" x2="74.00" y2="158.00" stroke="#111"/>
+<text x="74.00" y="169.00" font-size="10" text-anchor="middle">-2</text>
+<line x1="142.00" y1="152.00" x2="142.00" y2="158.00" stroke="#111"/>
+<text x="142.00" y="169.00" font-size="10" text-anchor="middle">-1</text>
+<line x1="278.00" y1="152.00" x2="278.00" y2="158.00" stroke="#111"/>
+<text x="278.00" y="169.00" font-size="10" text-anchor="middle">1</text>
+<line x1="346.00" y1="152.00" x2="346.00" y2="158.00" stroke="#111"/>
+<text x="346.00" y="169.00" font-size="10" text-anchor="middle">2</text>
+<line x1="207.00" y1="277.73" x2="213.00" y2="277.73" stroke="#111"/>
+<text x="204.00" y="280.73" font-size="10" text-anchor="end">-5</text>
+<line x1="207.00" y1="253.18" x2="213.00" y2="253.18" stroke="#111"/>
+<text x="204.00" y="256.18" font-size="10" text-anchor="end">-4</text>
+<line x1="207.00" y1="228.64" x2="213.00" y2="228.64" stroke="#111"/>
+<text x="204.00" y="231.64" font-size="10" text-anchor="end">-3</text>
+<line x1="207.00" y1="204.09" x2="213.00" y2="204.09" stroke="#111"/>
+<text x="204.00" y="207.09" font-size="10" text-anchor="end">-2</text>
+<line x1="207.00" y1="179.55" x2="213.00" y2="179.55" stroke="#111"/>
+<text x="204.00" y="182.55" font-size="10" text-anchor="end">-1</text>
+<line x1="207.00" y1="130.45" x2="213.00" y2="130.45" stroke="#111"/>
+<text x="204.00" y="133.45" font-size="10" text-anchor="end">1</text>
+<line x1="207.00" y1="105.91" x2="213.00" y2="105.91" stroke="#111"/>
+<text x="204.00" y="108.91" font-size="10" text-anchor="end">2</text>
+<line x1="207.00" y1="81.36" x2="213.00" y2="81.36" stroke="#111"/>
+<text x="204.00" y="84.36" font-size="10" text-anchor="end">3</text>
+<line x1="207.00" y1="56.82" x2="213.00" y2="56.82" stroke="#111"/>
+<text x="204.00" y="59.82" font-size="10" text-anchor="end">4</text>
+<line x1="207.00" y1="32.27" x2="213.00" y2="32.27" stroke="#111"/>
+<text x="204.00" y="35.27" font-size="10" text-anchor="end">5</text>
+<text x="204.00" y="167.00" font-size="10" text-anchor="end">0</text>
+<polyline points="60.40,296.12 64.19,288.30 67.97,280.81 71.76,273.64 75.55,266.77 79.34,260.21 83.12,253.94 86.91,247.96 90.70,242.25 94.49,236.80 98.27,231.62 102.06,226.69 105.85,221.99 109.64,217.53 113.42,213.30 117.21,209.28 121.00,205.47 124.78,201.86 128.57,198.44 132.36,195.20 136.15,192.14 139.93,189.24 143.72,186.50 147.51,183.91 151.30,181.45 155.08,179.13 158.87,176.93 162.66,174.85 166.45,172.87 170.23,170.99 174.02,169.20 177.81,167.49 181.59,165.85 185.38,164.27 189.17,162.75 192.96,161.28 196.74,159.85 200.53,158.44 204.32,157.06 208.11,155.68 211.89,154.32 215.68,152.94 219.47,151.56 223.26,150.15 227.04,148.72 230.83,147.25 234.62,145.73 238.41,144.15 242.19,142.51 245.98,140.80 249.77,139.01 253.55,137.13 257.34,135.15 261.13,133.07 264.92,130.87 268.70,128.55 272.49,126.09 276.28,123.50 280.07,120.76 283.85,117.86 287.64,114.80 291.43,111.56 295.22,108.14 299.00,104.53 302.79,100.72 306.58,96.70 310.36,92.47 314.15,88.01 317.94,83.31 321.73,78.38 325.51,73.20 329.30,67.75 333.09,62.04 336.88,56.06 340.66,49.79 344.45,43.23 348.24,36.36 352.03,29.19 355.81,21.70 359.60,13.88" fill="none" stroke="#2563eb" stroke-width="2"/>
+<text x="346.00" y="69.09" font-size="13" fill="#2563eb" font-style="italic">C_f</text>
+</svg>`,
+        choices: [
+          r`(0\,;\,0)`,
+          r`(-1\,;\,-\dfrac{4}{3})`,
+          r`(1\,;\,\dfrac{4}{3})`,
+          r`\text{La courbe ne possède pas de point d'inflexion}`
+        ],
+        a: r`(0\,;\,0)`,
+        tip: r`\text{Un point d'inflexion est un point où la courbure change : avant, la courbe est tournée vers le bas (concave) ; après, vers le haut (convexe). Ici, le changement se produit en }x=0\text{, et }f(0)=0\text{. Le point d'inflexion est donc }(0\,;\,0)\text{.}` },
+      // term_convex_10 — Déterminer un point d'inflexion par calcul de f'' — facile
+      { q: r`\text{Soit }f\text{ définie sur }\mathbb{R}\text{ par }f(x) = x^3 - 6x^2 + 9x + 1\text{. Quelles sont les coordonnées du point d'inflexion de la courbe }\mathcal{C}_f\text{ ?}`,
+        choices: [
+          r`(2\,;\,3)`,
+          r`(2\,;\,0)`,
+          r`(1\,;\,5)`,
+          r`(3\,;\,1)`
+        ],
+        a: r`(2\,;\,3)`,
+        tip: r`\text{On calcule }f'(x) = 3x^2 - 12x + 9\text{ puis }f''(x) = 6x - 12\text{. On résout }f''(x) = 0 \iff x = 2\text{. On vérifie que }f''\text{ change bien de signe en }2\text{ : }f''(1) = -6 < 0\text{ et }f''(3) = 6 > 0\text{. Donc il y a un point d'}…` },
+      // term_convex_11 — Repérer un point d'inflexion à partir du graphe de — moyenne
+      // ⚠️ Distracteur 1 : élève qui prend les zéros de f' (extremums de f). Distracteur 2 : élève qui mélange les deux notions. Vérifier que le piège est calibré pour ton public.
+      { q: r`\text{Ci-dessus, la courbe représentative de }f'\text{, dérivée d'une fonction }f\text{ définie sur }[-3\,;\,3]\text{. En quelle(s) abscisse(s) la courbe }\mathcal{C}_f\text{ admet-elle un point d'inflexion ?}`,
+        svg: r`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 320" width="100%" style="background:#fff;font-family:sans-serif">
+<g stroke="#e5e7eb" stroke-width="0.5">
+<line x1="40.00" y1="20" x2="40.00" y2="290"/>
+<line x1="96.67" y1="20" x2="96.67" y2="290"/>
+<line x1="153.33" y1="20" x2="153.33" y2="290"/>
+<line x1="210.00" y1="20" x2="210.00" y2="290"/>
+<line x1="266.67" y1="20" x2="266.67" y2="290"/>
+<line x1="323.33" y1="20" x2="323.33" y2="290"/>
+<line x1="380.00" y1="20" x2="380.00" y2="290"/>
+<line x1="40" y1="290.00" x2="380" y2="290.00"/>
+<line x1="40" y1="261.58" x2="380" y2="261.58"/>
+<line x1="40" y1="233.16" x2="380" y2="233.16"/>
+<line x1="40" y1="204.74" x2="380" y2="204.74"/>
+<line x1="40" y1="176.32" x2="380" y2="176.32"/>
+<line x1="40" y1="147.89" x2="380" y2="147.89"/>
+<line x1="40" y1="119.47" x2="380" y2="119.47"/>
+<line x1="40" y1="91.05" x2="380" y2="91.05"/>
+<line x1="40" y1="62.63" x2="380" y2="62.63"/>
+<line x1="40" y1="34.21" x2="380" y2="34.21"/>
+</g>
+<line x1="40" y1="147.89" x2="380" y2="147.89" stroke="#111" stroke-width="1.2"/>
+<line x1="210.00" y1="20" x2="210.00" y2="290" stroke="#111" stroke-width="1.2"/>
+<polygon points="380,147.89 374,144.89 374,150.89" fill="#111"/>
+<polygon points="210.00,20 207.00,26 213.00,26" fill="#111"/>
+<text x="378.00" y="162.89" font-size="11" text-anchor="end">x</text>
+<text x="218.00" y="30" font-size="11">y</text>
+<line x1="96.67" y1="144.89" x2="96.67" y2="150.89" stroke="#111"/>
+<text x="96.67" y="161.89" font-size="10" text-anchor="middle">-2</text>
+<line x1="153.33" y1="144.89" x2="153.33" y2="150.89" stroke="#111"/>
+<text x="153.33" y="161.89" font-size="10" text-anchor="middle">-1</text>
+<line x1="266.67" y1="144.89" x2="266.67" y2="150.89" stroke="#111"/>
+<text x="266.67" y="161.89" font-size="10" text-anchor="middle">1</text>
+<line x1="323.33" y1="144.89" x2="323.33" y2="150.89" stroke="#111"/>
+<text x="323.33" y="161.89" font-size="10" text-anchor="middle">2</text>
+<line x1="207.00" y1="261.58" x2="213.00" y2="261.58" stroke="#111"/>
+<text x="204.00" y="264.58" font-size="10" text-anchor="end">-4</text>
+<line x1="207.00" y1="233.16" x2="213.00" y2="233.16" stroke="#111"/>
+<text x="204.00" y="236.16" font-size="10" text-anchor="end">-3</text>
+<line x1="207.00" y1="204.74" x2="213.00" y2="204.74" stroke="#111"/>
+<text x="204.00" y="207.74" font-size="10" text-anchor="end">-2</text>
+<line x1="207.00" y1="176.32" x2="213.00" y2="176.32" stroke="#111"/>
+<text x="204.00" y="179.32" font-size="10" text-anchor="end">-1</text>
+<line x1="207.00" y1="119.47" x2="213.00" y2="119.47" stroke="#111"/>
+<text x="204.00" y="122.47" font-size="10" text-anchor="end">1</text>
+<line x1="207.00" y1="91.05" x2="213.00" y2="91.05" stroke="#111"/>
+<text x="204.00" y="94.05" font-size="10" text-anchor="end">2</text>
+<line x1="207.00" y1="62.63" x2="213.00" y2="62.63" stroke="#111"/>
+<text x="204.00" y="65.63" font-size="10" text-anchor="end">3</text>
+<line x1="207.00" y1="34.21" x2="213.00" y2="34.21" stroke="#111"/>
+<text x="204.00" y="37.21" font-size="10" text-anchor="end">4</text>
+<text x="204.00" y="159.89" font-size="10" text-anchor="end">0</text>
+<polyline points="51.33,38.76 55.35,49.90 59.37,60.75 63.38,71.32 67.40,81.60 71.42,91.60 75.43,101.31 79.45,110.73 83.47,119.87 87.49,128.73 91.50,137.30 95.52,145.58 99.54,153.58 103.55,161.29 107.57,168.72 111.59,175.86 115.60,182.71 119.62,189.28 123.64,195.56 127.65,201.56 131.67,207.28 135.69,212.70 139.70,217.84 143.72,222.70 147.74,227.27 151.76,231.55 155.77,235.55 159.79,239.26 163.81,242.69 167.82,245.83 171.84,248.69 175.86,251.26 179.87,253.55 183.89,255.55 187.91,257.26 191.92,258.69 195.94,259.83 199.96,260.69 203.97,261.26 207.99,261.54 212.01,261.54 216.03,261.26 220.04,260.69 224.06,259.83 228.08,258.69 232.09,257.26 236.11,255.55 240.13,253.55 244.14,251.26 248.16,248.69 252.18,245.83 256.19,242.69 260.21,239.26 264.23,235.55 268.24,231.55 272.26,227.27 276.28,222.70 280.30,217.84 284.31,212.70 288.33,207.28 292.35,201.56 296.36,195.56 300.38,189.28 304.40,182.71 308.41,175.86 312.43,168.72 316.45,161.29 320.46,153.58 324.48,145.58 328.50,137.30 332.51,128.73 336.53,119.87 340.55,110.73 344.57,101.31 348.58,91.60 352.60,81.60 356.62,71.32 360.63,60.75 364.65,49.90 368.67,38.76" fill="none" stroke="#dc2626" stroke-width="2"/>
+<text x="351.67" y="54.11" font-size="13" fill="#dc2626" font-style="italic">C_f'</text>
+</svg>`,
+        choices: [
+          r`\text{En }x = 0`,
+          r`\text{En }x = -2\text{ et }x = 2`,
+          r`\text{En }x = -2\text{, }x = 0\text{ et }x = 2`,
+          r`\mathcal{C}_f\text{ n'admet aucun point d'inflexion}`
+        ],
+        a: r`\text{En }x = 0`,
+        tip: r`\text{Un point d'inflexion correspond à un endroit où }f''\text{ change de signe, c'est-à-dire où }f'\text{ change de sens de variation (extremum local de }f'\text{). Sur le graphe, }f'\text{ atteint son minimum en }x=0\text{ : c'est donc là que se s}…` },
+      // term_convex_12 — Déterminer plusieurs points d'inflexion par calcul — moyenne
+      { q: r`\text{Soit }f\text{ définie sur }\mathbb{R}\text{ par }f(x) = x^4 - 4x^3\text{. Combien la courbe }\mathcal{C}_f\text{ admet-elle de points d'inflexion ?}`,
+        choices: [
+          r`\text{Aucun}`,
+          r`\text{Un seul}`,
+          r`\text{Deux}`,
+          r`\text{Trois}`
+        ],
+        a: r`\text{Deux}`,
+        tip: r`\text{On calcule }f'(x) = 4x^3 - 12x^2\text{ puis }f''(x) = 12x^2 - 24x = 12x(x-2)\text{. L'équation }f''(x) = 0\text{ a deux solutions : }x = 0\text{ et }x = 2\text{. On vérifie le changement de signe en chacune : }f''(-1) = 36 > 0\text{, }f''(1) = …` },
+      // term_convex_13 — Déterminer un point d'inflexion (fonction avec exp — moyenne
+      // ⚠️ Distracteur 2 (x=1) : élève qui se trompe en dérivant ou qui résout f(x)=0 au lieu de f''(x)=0.
+      { q: r`\text{Soit }f\text{ définie sur }\mathbb{R}\text{ par }f(x) = (x-1)\,\mathrm{e}^{x}\text{. Quelle est l'abscisse du point d'inflexion de }\mathcal{C}_f\text{ ?}`,
+        choices: [
+          r`x = -1`,
+          r`x = 0`,
+          r`x = 1`,
+          r`\mathcal{C}_f\text{ n'admet pas de point d'inflexion}`
+        ],
+        a: r`x = -1`,
+        tip: r`\text{On calcule }f'(x) = \mathrm{e}^{x} + (x-1)\mathrm{e}^{x} = x\,\mathrm{e}^{x}\text{, puis }f''(x) = \mathrm{e}^{x} + x\,\mathrm{e}^{x} = (x+1)\,\mathrm{e}^{x}\text{. Comme }\mathrm{e}^{x} > 0\text{, on a }f''(x) = 0 \iff x = -1\text{. On vérifie}…` },
+      // term_convex_14 — Démontrer un point d'inflexion et calculer la tang — dure
+      { q: r`\text{Soit }f\text{ définie sur }\mathbb{R}\text{ par }f(x) = x^3 - 3x^2 + 4\text{. On admet que }\mathcal{C}_f\text{ admet un unique point d'inflexion noté }A\text{. Quelle est l'équation réduite de la tangente à }\mathcal{C}_f\text{ au point }A\text{ ?}`,
+        choices: [
+          r`y = -3x + 5`,
+          r`y = -3x + 2`,
+          r`y = 3x - 1`,
+          r`y = -3x - 1`
+        ],
+        a: r`y = -3x + 5`,
+        tip: r`\text{On a }f'(x) = 3x^2 - 6x\text{ et }f''(x) = 6x - 6\text{. }f''(x) = 0 \iff x = 1\text{, et }f''\text{ change de signe (négatif avant, positif après), donc }A\text{ a pour abscisse }1\text{. Puis }f(1) = 1 - 3 + 4 = 2\text{ et }f'(1) = 3 - 6 = -3…` },
+    ],
   },
   // ════ 7. EN ROUTE POUR LE BAC ══════════════════════════════════════════════════
   bac: {
@@ -4266,6 +5783,745 @@ const DB = {
     ],
     spe_original: [],
   },
+  // ════ 7bis. LIMITES (Term Spé) ════════════════════════════════════════════════
+  limites: {
+
+    // ── Fonctions de référence ── (8 questions)
+    lim_reference: [
+      // term_lim_01 — Limite d'une fonction de référence — facile
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to 0^{+}} \dfrac{1}{x}\text{ ?}`,
+        choices: [
+          r`+\infty`,
+          r`-\infty`,
+          r`0`,
+          r`\text{La limite n'existe pas}`
+        ],
+        a: r`+\infty`,
+        tip: r`\text{Quand }x\text{ tend vers }0\text{ par valeurs positives, }x\text{ devient très petit et positif, donc }\dfrac{1}{x}\text{ devient très grand : }\displaystyle\lim_{x \to 0^{+}} \dfrac{1}{x} = +\infty\text{.}` },
+      // term_lim_02 — Limite d'une fonction de référence — facile
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to -\infty} \dfrac{1}{x}\text{ ?}`,
+        choices: [
+          r`0`,
+          r`-\infty`,
+          r`+\infty`,
+          r`-1`
+        ],
+        a: r`0`,
+        tip: r`\text{Quand }x\text{ tend vers }-\infty\text{, }|x|\text{ devient très grand donc }\dfrac{1}{x}\text{ tend vers }0\text{. Plus précisément, }\dfrac{1}{x}\text{ tend vers }0\text{ par valeurs négatives (}0^-\text{), mais la limite reste }0\text{.}` },
+      // term_lim_03 — Limite de 1/x² en 0 — facile
+      // ⚠️ Distracteur 3 cible l'élève qui généralise abusivement à partir du cas 1/x. Bon piège.
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to 0} \dfrac{1}{x^2}\text{ ?}`,
+        choices: [
+          r`+\infty`,
+          r`-\infty`,
+          r`0`,
+          r`\text{La limite n'existe pas car les limites à droite et à gauche diffèrent}`
+        ],
+        a: r`+\infty`,
+        tip: r`\text{Que }x\text{ tende vers }0\text{ par valeurs positives ou négatives, }x^2\text{ est toujours strictement positif et tend vers }0\text{. Donc }\dfrac{1}{x^2}\text{ tend vers }+\infty\text{ des deux côtés. La limite (bilatérale) est bien }+\infty\text{.}` },
+      // term_lim_04 — Limite de la racine carrée — facile
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to +\infty} \sqrt{x}\text{ ?}`,
+        choices: [
+          r`+\infty`,
+          r`0`,
+          r`1`,
+          r`\text{La limite n'existe pas}`
+        ],
+        a: r`+\infty`,
+        tip: r`\text{La fonction racine carrée est strictement croissante sur }[0\,;\,+\infty[\text{ et n'est pas majorée : }\displaystyle\lim_{x \to +\infty} \sqrt{x} = +\infty\text{.}` },
+      // term_lim_05 — Limite de l'exponentielle — facile
+      // ⚠️ Distracteur 1 (-inf) très tentant : élève qui suit le signe de x sans connaître la propriété clé de exp. Calibre selon ton public.
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to -\infty} \mathrm{e}^{x}\text{ ?}`,
+        choices: [
+          r`0`,
+          r`-\infty`,
+          r`1`,
+          r`+\infty`
+        ],
+        a: r`0`,
+        tip: r`\text{La fonction exponentielle est strictement positive sur }\mathbb{R}\text{ et }\displaystyle\lim_{x \to -\infty} \mathrm{e}^{x} = 0\text{. Plus précisément, }\mathrm{e}^{x}\text{ tend vers }0\text{ par valeurs strictement positives.}` },
+      // term_lim_06 — Limite du logarithme népérien — moyenne
+      // ⚠️ Distracteur 3 piège l'élève qui confond domaine de définition et existence de limite. Pédagogiquement utile.
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to 0^{+}} \ln(x)\text{ ?}`,
+        choices: [
+          r`-\infty`,
+          r`0`,
+          r`+\infty`,
+          r`\ln(x)\text{ n'est pas définie en }0\text{, donc pas de limite}`
+        ],
+        a: r`-\infty`,
+        tip: r`\text{La fonction }\ln\text{ est définie sur }]0\,;\,+\infty[\text{. En }0^+\text{, }\ln(x)\text{ tend vers }-\infty\text{. C'est une asymptote verticale de la courbe de }\ln\text{ : }\displaystyle\lim_{x \to 0^{+}} \ln(x) = -\infty\text{.}` },
+      // term_lim_07 — Limite d'une puissance impaire — moyenne
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to -\infty} x^{3}\text{ ?}`,
+        choices: [
+          r`-\infty`,
+          r`+\infty`,
+          r`0`,
+          r`\text{La limite n'existe pas}`
+        ],
+        a: r`-\infty`,
+        tip: r`\text{Pour tout }x < 0\text{, }x^3 < 0\text{ (puissance impaire conserve le signe). Quand }x\text{ tend vers }-\infty\text{, }|x|^3\text{ tend vers }+\infty\text{ donc }x^3\text{ tend vers }-\infty\text{. C'est différent de }x^2\text{ ou }x^4\text{ q}…` },
+      // term_lim_08 — Limite d'une fonction inverse de racine — moyenne
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to 0^{+}} \dfrac{1}{\sqrt{x}}\text{ ?}`,
+        choices: [
+          r`+\infty`,
+          r`0`,
+          r`-\infty`,
+          r`1`
+        ],
+        a: r`+\infty`,
+        tip: r`\text{Quand }x \to 0^{+}\text{, }\sqrt{x} \to 0^{+}\text{. Donc }\dfrac{1}{\sqrt{x}} \to +\infty\text{. On peut aussi voir cette fonction comme }x^{-1/2}\text{ : c'est une fonction puissance négative, qui explose en }0\text{.}` },
+    ],
+
+    // ── Opérations sur les limites ── (8 questions)
+    lim_operations: [
+      // term_lim_09 — Limite d'un polynôme en l'infini — facile
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to +\infty} \left(x^2 + 3x - 5\right)\text{ ?}`,
+        choices: [
+          r`+\infty`,
+          r`-\infty`,
+          r`0`,
+          r`\text{On ne peut pas conclure (forme indéterminée)}`
+        ],
+        a: r`+\infty`,
+        tip: r`\text{On a }\displaystyle\lim_{x \to +\infty} x^2 = +\infty\text{ et }\displaystyle\lim_{x \to +\infty} 3x = +\infty\text{. Comme }-5\text{ est une constante et que la somme de deux limites }+\infty\text{ donne }+\infty\text{, on obtient }+\infty\tex…` },
+      // term_lim_10 — Limite d'un polynôme en l'infini avec terme domina — facile
+      // ⚠️ Cette Q est en réalité une FI levée par factorisation. Difficulté plutôt moyenne que facile selon ton public. À déplacer dans ST3 si tu juges trop dur.
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to -\infty} \left(x^3 - 2x\right)\text{ ?}`,
+        choices: [
+          r`-\infty`,
+          r`+\infty`,
+          r`0`,
+          r`\text{On ne peut pas conclure}`
+        ],
+        a: r`-\infty`,
+        tip: r`\text{En }-\infty\text{, }x^3 \to -\infty\text{ et }-2x \to +\infty\text{ : c'est une forme }-\infty + \infty\text{, donc indéterminée par opération directe. On factorise : }x^3 - 2x = x^3\!\left(1 - \dfrac{2}{x^2}\right)\text{. Comme }x^3 \to -\inft…` },
+      // term_lim_11 — Limite d'une somme avec 1/x — moyenne
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to +\infty} \left(\dfrac{1}{x} + 2\right)\text{ ?}`,
+        choices: [
+          r`2`,
+          r`0`,
+          r`+\infty`,
+          r`3`
+        ],
+        a: r`2`,
+        tip: r`\displaystyle\lim_{x \to +\infty} \dfrac{1}{x} = 0\text{, et }2\text{ est une constante. La limite d'une somme est la somme des limites (pas de FI ici) : }0 + 2 = 2\text{.}` },
+      // term_lim_12 — Limite avec exponentielle décroissante — moyenne
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to -\infty} \left(\mathrm{e}^{x} + x\right)\text{ ?}`,
+        choices: [
+          r`-\infty`,
+          r`+\infty`,
+          r`0`,
+          r`\text{On ne peut pas conclure}`
+        ],
+        a: r`-\infty`,
+        tip: r`\text{On a }\displaystyle\lim_{x \to -\infty} \mathrm{e}^{x} = 0\text{ et }\displaystyle\lim_{x \to -\infty} x = -\infty\text{. La somme donne }0 + (-\infty) = -\infty\text{. Pas de forme indéterminée.}` },
+      // term_lim_13 — Limite d'une somme avec deux termes infinis de mêm — moyenne
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to 0^{+}} \left(\ln(x) - \dfrac{1}{x}\right)\text{ ?}`,
+        choices: [
+          r`-\infty`,
+          r`+\infty`,
+          r`0`,
+          r`\text{On ne peut pas conclure}`
+        ],
+        a: r`-\infty`,
+        tip: r`\displaystyle\lim_{x \to 0^{+}} \ln(x) = -\infty\text{ et }\displaystyle\lim_{x \to 0^{+}} \dfrac{1}{x} = +\infty\text{, donc }-\dfrac{1}{x} \to -\infty\text{. La somme de deux limites }-\infty\text{ vaut }-\infty\text{. Ce n'est pas une forme indéte}…` },
+      // term_lim_14 — Identifier une forme indéterminée — moyenne
+      // ⚠️ Question méta sur la reconnaissance d'une FI. Important pédagogiquement.
+      { q: r`\text{On considère }\displaystyle\lim_{x \to +\infty} \left(\mathrm{e}^{x} - x^{2}\right)\text{. S'agit-il d'une forme indéterminée ?}`,
+        choices: [
+          r`\text{Oui, c'est une forme indéterminée du type }\infty - \infty`,
+          r`\text{Non, la limite vaut }+\infty\text{ par opération directe}`,
+          r`\text{Non, la limite vaut }-\infty\text{ par opération directe}`,
+          r`\text{Non, la limite vaut }0`
+        ],
+        a: r`\text{Oui, c'est une forme indéterminée du type }\infty - \infty`,
+        tip: r`\displaystyle\lim_{x \to +\infty} \mathrm{e}^{x} = +\infty\text{ et }\displaystyle\lim_{x \to +\infty} x^2 = +\infty\text{. La différence }+\infty - \infty\text{ est une forme indéterminée. (Pour info, par croissance comparée, }\dfrac{\mathrm{e}^{x}}…` },
+      // term_lim_15 — Limite d'un produit (sans FI) — moyenne
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to +\infty} (x^2 + 1)\left(1 + \dfrac{1}{x}\right)\text{ ?}`,
+        choices: [
+          r`+\infty`,
+          r`1`,
+          r`0`,
+          r`\text{On ne peut pas conclure}`
+        ],
+        a: r`+\infty`,
+        tip: r`\displaystyle\lim_{x \to +\infty} (x^2 + 1) = +\infty\text{ et }\displaystyle\lim_{x \to +\infty} \left(1 + \dfrac{1}{x}\right) = 1\text{. Le produit donne }+\infty \times 1 = +\infty\text{. Pas de FI car la deuxième limite n'est pas }0\text{.}` },
+      // term_lim_16 — Limite d'un quotient en un point fini — dure
+      // ⚠️ Question fondamentale : maîtriser le passage à la limite avec 0+/0-. Attention à bien insister sur le signe du dénominateur.
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to 1^{+}} \dfrac{x + 2}{x - 1}\text{ ?}`,
+        choices: [
+          r`+\infty`,
+          r`-\infty`,
+          r`3`,
+          r`0`
+        ],
+        a: r`+\infty`,
+        tip: r`\text{En }1^+\text{ : }x + 2 \to 3\text{ (constante non nulle) et }x - 1 \to 0^{+}\text{ (par valeurs positives). Donc le quotient est de la forme }\dfrac{3}{0^{+}} \to +\infty\text{. Si on tendait vers }1^{-}\text{, on aurait }\dfrac{3}{0^{-}} \to -\infty\text{.}` },
+    ],
+
+    // ── Formes indéterminées ── (10 questions)
+    lim_FI: [
+      // term_lim_17 — FI ∞-∞ : factorisation par le terme dominant (poly — facile
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to +\infty} \left(3x^{2} - 5x + 1\right)\text{ ?}`,
+        choices: [
+          r`+\infty`,
+          r`-\infty`,
+          r`3`,
+          r`0`
+        ],
+        a: r`+\infty`,
+        tip: r`\text{Forme }\infty - \infty + \text{const}\text{, indéterminée. On factorise par }x^2\text{ : }3x^2 - 5x + 1 = x^2\!\left(3 - \dfrac{5}{x} + \dfrac{1}{x^2}\right)\text{. Comme }x^2 \to +\infty\text{ et }\left(3 - \dfrac{5}{x} + \dfrac{1}{x^2}\right)…` },
+      // term_lim_18 — FI ∞/∞ : quotient de polynômes de même degré — moyenne
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to +\infty} \dfrac{x^{2} - 3x}{2x^{2} + 1}\text{ ?}`,
+        choices: [
+          r`\dfrac{1}{2}`,
+          r`+\infty`,
+          r`0`,
+          r`-\dfrac{3}{2}`
+        ],
+        a: r`\dfrac{1}{2}`,
+        tip: r`\text{Forme }\dfrac{\infty}{\infty}\text{. On factorise }x^2\text{ au numérateur et au dénominateur : }\dfrac{x^2 - 3x}{2x^2 + 1} = \dfrac{x^2\!\left(1 - \frac{3}{x}\right)}{x^2\!\left(2 + \frac{1}{x^2}\right)} = \dfrac{1 - \frac{3}{x}}{2 + \frac{1}{}}…` },
+      // term_lim_19 — FI ∞-∞ avec racine : expression conjuguée — dure
+      // ⚠️ Question dure (technique de l'expression conjuguée). À garder pour des élèves prêts.
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to +\infty} \left(\sqrt{x^{2} + x} - x\right)\text{ ?}`,
+        choices: [
+          r`\dfrac{1}{2}`,
+          r`0`,
+          r`+\infty`,
+          r`1`
+        ],
+        a: r`\dfrac{1}{2}`,
+        tip: r`\text{Forme }\infty - \infty\text{. On multiplie par l'expression conjuguée : }\sqrt{x^2+x} - x = \dfrac{(\sqrt{x^2+x} - x)(\sqrt{x^2+x} + x)}{\sqrt{x^2+x} + x} = \dfrac{x^2 + x - x^2}{\sqrt{x^2+x} + x} = \dfrac{x}{\sqrt{x^2+x} + x}\text{. On factori}…` },
+      // term_lim_20 — FI ∞/∞ : quotient de polynômes de degrés différent — moyenne
+      // ⚠️ Distracteur 2 ($2$) tentant pour l'élève qui prend les coefs dominants sans regarder les degrés. Bon piège pédagogique.
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to +\infty} \dfrac{2x^{3} + x - 1}{x^{2} + 1}\text{ ?}`,
+        choices: [
+          r`+\infty`,
+          r`2`,
+          r`0`,
+          r`-\infty`
+        ],
+        a: r`+\infty`,
+        tip: r`\text{Forme }\dfrac{\infty}{\infty}\text{. On factorise par les termes dominants : }\dfrac{2x^3 + x - 1}{x^2 + 1} = \dfrac{x^3\!\left(2 + \frac{1}{x^2} - \frac{1}{x^3}\right)}{x^2\!\left(1 + \frac{1}{x^2}\right)} = x \cdot \dfrac{2 + \frac{1}{x^2} - }…` },
+      // term_lim_21 — Croissance comparée : exp domine — moyenne
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to +\infty} \dfrac{\mathrm{e}^{x}}{x}\text{ ?}`,
+        choices: [
+          r`+\infty`,
+          r`1`,
+          r`0`,
+          r`\mathrm{e}`
+        ],
+        a: r`+\infty`,
+        tip: r`\text{Forme }\dfrac{\infty}{\infty}\text{. C'est une croissance comparée fondamentale : l'exponentielle l'emporte sur toute fonction puissance. Théorème : }\displaystyle\lim_{x \to +\infty} \dfrac{\mathrm{e}^{x}}{x} = +\infty\text{ (et plus généralem}…` },
+      // term_lim_22 — Croissance comparée : x*ln(x) en 0 — moyenne
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to 0^{+}} x\ln(x)\text{ ?}`,
+        choices: [
+          r`0`,
+          r`-\infty`,
+          r`+\infty`,
+          r`1`
+        ],
+        a: r`0`,
+        tip: r`\text{Forme }0 \times (-\infty)\text{, indéterminée. C'est une croissance comparée fondamentale : }\displaystyle\lim_{x \to 0^{+}} x\ln(x) = 0\text{. Intuition : }x\text{ écrase }\ln(x)\text{ assez vite pour que le produit tende vers }0\text{. Astuce}…` },
+      // term_lim_23 — Croissance comparée : ln domine x ? — moyenne
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to +\infty} \dfrac{\ln(x)}{x}\text{ ?}`,
+        choices: [
+          r`0`,
+          r`+\infty`,
+          r`1`,
+          r`\text{On ne peut pas conclure}`
+        ],
+        a: r`0`,
+        tip: r`\text{Forme }\dfrac{\infty}{\infty}\text{. Croissance comparée : la fonction }x\text{ l'emporte sur }\ln(x)\text{. Théorème : }\displaystyle\lim_{x \to +\infty} \dfrac{\ln(x)}{x} = 0\text{. Plus généralement }\dfrac{\ln(x)}{x^n} \to 0\text{ pour tout }n > 0\text{.}` },
+      // term_lim_24 — Croissance comparée : exp domine x² — moyenne
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to +\infty} \dfrac{x^{2}}{\mathrm{e}^{x}}\text{ ?}`,
+        choices: [
+          r`0`,
+          r`+\infty`,
+          r`1`,
+          r`\dfrac{1}{\mathrm{e}}`
+        ],
+        a: r`0`,
+        tip: r`\text{Forme }\dfrac{\infty}{\infty}\text{. Croissance comparée : l'exponentielle l'emporte sur toute fonction puissance. Donc }\displaystyle\lim_{x \to +\infty} \dfrac{x^2}{\mathrm{e}^{x}} = 0\text{. C'est l'inverse de la limite }\dfrac{\mathrm{e}^{x}}{x^2} \to +\infty\text{.}` },
+      // term_lim_25 — FI 0/0 : factorisation polynomiale — dure
+      // ⚠️ Distracteur 4 piège l'élève qui voit '0/0' comme 'pas de limite'. Pédagogiquement crucial.
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to 2} \dfrac{x^{2} - 4}{x - 2}\text{ ?}`,
+        choices: [
+          r`4`,
+          r`0`,
+          r`1`,
+          r`\text{La limite n'existe pas}`
+        ],
+        a: r`4`,
+        tip: r`\text{Forme }\dfrac{0}{0}\text{ : indéterminée. On factorise au numérateur en utilisant l'identité remarquable }x^2 - 4 = (x-2)(x+2)\text{. Donc pour }x \neq 2\text{ : }\dfrac{x^2 - 4}{x - 2} = \dfrac{(x-2)(x+2)}{x-2} = x + 2\text{. Quand }x \to 2\te…` },
+      // term_lim_26 — FI 0/0 : factorisation polynomiale (trinôme) — dure
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to 2} \dfrac{x^{2} - 5x + 6}{x - 2}\text{ ?}`,
+        choices: [
+          r`-1`,
+          r`0`,
+          r`1`,
+          r`+\infty`
+        ],
+        a: r`-1`,
+        tip: r`\text{Forme }\dfrac{0}{0}\text{. On factorise le trinôme : ses racines sont }2\text{ et }3\text{ (somme }5\text{, produit }6\text{), donc }x^2 - 5x + 6 = (x-2)(x-3)\text{. Pour }x \neq 2\text{ : }\dfrac{(x-2)(x-3)}{x-2} = x - 3\text{. Quand }x \to 2\text{ : }2 - 3 = -1\text{.}` },
+    ],
+
+    // ── Limites et asymptotes ── (8 questions)
+    lim_asymptotes: [
+      // term_lim_27 — Lecture graphique d'asymptotes — facile
+      { q: r`\text{Ci-dessus, la courbe représentative d'une fonction }f\text{. Les asymptotes sont représentées en vert pointillé. Quelles sont les équations des asymptotes de }\mathcal{C}_f\text{ ?}`,
+        svg: r`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 320" width="100%" style="background:#fff;font-family:sans-serif">
+<g stroke="#e5e7eb" stroke-width="0.5">
+<line x1="40.00" y1="20" x2="40.00" y2="290"/>
+<line x1="74.00" y1="20" x2="74.00" y2="290"/>
+<line x1="108.00" y1="20" x2="108.00" y2="290"/>
+<line x1="142.00" y1="20" x2="142.00" y2="290"/>
+<line x1="176.00" y1="20" x2="176.00" y2="290"/>
+<line x1="210.00" y1="20" x2="210.00" y2="290"/>
+<line x1="244.00" y1="20" x2="244.00" y2="290"/>
+<line x1="278.00" y1="20" x2="278.00" y2="290"/>
+<line x1="312.00" y1="20" x2="312.00" y2="290"/>
+<line x1="346.00" y1="20" x2="346.00" y2="290"/>
+<line x1="380.00" y1="20" x2="380.00" y2="290"/>
+<line x1="40" y1="290.00" x2="380" y2="290.00"/>
+<line x1="40" y1="263.00" x2="380" y2="263.00"/>
+<line x1="40" y1="236.00" x2="380" y2="236.00"/>
+<line x1="40" y1="209.00" x2="380" y2="209.00"/>
+<line x1="40" y1="182.00" x2="380" y2="182.00"/>
+<line x1="40" y1="155.00" x2="380" y2="155.00"/>
+<line x1="40" y1="128.00" x2="380" y2="128.00"/>
+<line x1="40" y1="101.00" x2="380" y2="101.00"/>
+<line x1="40" y1="74.00" x2="380" y2="74.00"/>
+<line x1="40" y1="47.00" x2="380" y2="47.00"/>
+<line x1="40" y1="20.00" x2="380" y2="20.00"/>
+</g>
+<line x1="40" y1="182.00" x2="380" y2="182.00" stroke="#111" stroke-width="1.2"/>
+<line x1="142.00" y1="20" x2="142.00" y2="290" stroke="#111" stroke-width="1.2"/>
+<polygon points="380,182.00 374,179.00 374,185.00" fill="#111"/>
+<polygon points="142.00,20 139.00,26 145.00,26" fill="#111"/>
+<text x="378.00" y="197.00" font-size="11" text-anchor="end">x</text>
+<text x="150.00" y="30" font-size="11">y</text>
+<line x1="40" y1="155.00" x2="380" y2="155.00" stroke="#16a34a" stroke-width="1.3" stroke-dasharray="5,4"/>
+<line x1="210.00" y1="20" x2="210.00" y2="290" stroke="#16a34a" stroke-width="1.3" stroke-dasharray="5,4"/>
+<line x1="74.00" y1="179.00" x2="74.00" y2="185.00" stroke="#111"/>
+<text x="74.00" y="196.00" font-size="10" text-anchor="middle">-2</text>
+<line x1="108.00" y1="179.00" x2="108.00" y2="185.00" stroke="#111"/>
+<text x="108.00" y="196.00" font-size="10" text-anchor="middle">-1</text>
+<line x1="176.00" y1="179.00" x2="176.00" y2="185.00" stroke="#111"/>
+<text x="176.00" y="196.00" font-size="10" text-anchor="middle">1</text>
+<line x1="210.00" y1="179.00" x2="210.00" y2="185.00" stroke="#111"/>
+<text x="210.00" y="196.00" font-size="10" text-anchor="middle">2</text>
+<line x1="244.00" y1="179.00" x2="244.00" y2="185.00" stroke="#111"/>
+<text x="244.00" y="196.00" font-size="10" text-anchor="middle">3</text>
+<line x1="278.00" y1="179.00" x2="278.00" y2="185.00" stroke="#111"/>
+<text x="278.00" y="196.00" font-size="10" text-anchor="middle">4</text>
+<line x1="312.00" y1="179.00" x2="312.00" y2="185.00" stroke="#111"/>
+<text x="312.00" y="196.00" font-size="10" text-anchor="middle">5</text>
+<line x1="346.00" y1="179.00" x2="346.00" y2="185.00" stroke="#111"/>
+<text x="346.00" y="196.00" font-size="10" text-anchor="middle">6</text>
+<line x1="139.00" y1="263.00" x2="145.00" y2="263.00" stroke="#111"/>
+<text x="136.00" y="266.00" font-size="10" text-anchor="end">-3</text>
+<line x1="139.00" y1="236.00" x2="145.00" y2="236.00" stroke="#111"/>
+<text x="136.00" y="239.00" font-size="10" text-anchor="end">-2</text>
+<line x1="139.00" y1="209.00" x2="145.00" y2="209.00" stroke="#111"/>
+<text x="136.00" y="212.00" font-size="10" text-anchor="end">-1</text>
+<line x1="139.00" y1="155.00" x2="145.00" y2="155.00" stroke="#111"/>
+<text x="136.00" y="158.00" font-size="10" text-anchor="end">1</text>
+<line x1="139.00" y1="128.00" x2="145.00" y2="128.00" stroke="#111"/>
+<text x="136.00" y="131.00" font-size="10" text-anchor="end">2</text>
+<line x1="139.00" y1="101.00" x2="145.00" y2="101.00" stroke="#111"/>
+<text x="136.00" y="104.00" font-size="10" text-anchor="end">3</text>
+<line x1="139.00" y1="74.00" x2="145.00" y2="74.00" stroke="#111"/>
+<text x="136.00" y="77.00" font-size="10" text-anchor="end">4</text>
+<line x1="139.00" y1="47.00" x2="145.00" y2="47.00" stroke="#111"/>
+<text x="136.00" y="50.00" font-size="10" text-anchor="end">5</text>
+<text x="136.00" y="194.00" font-size="10" text-anchor="end">0</text>
+<polyline points="40.00,160.40 42.07,160.47 44.13,160.53 46.20,160.60 48.26,160.68 50.33,160.75 52.39,160.82 54.46,160.90 56.53,160.98 58.59,161.06 60.66,161.15 62.72,161.23 64.79,161.32 66.86,161.41 68.92,161.51 70.99,161.60 73.05,161.70 75.12,161.81 77.18,161.91 79.25,162.02 81.32,162.13 83.38,162.25 85.45,162.37 87.51,162.49 89.58,162.62 91.65,162.76 93.71,162.89 95.78,163.04 97.84,163.18 99.91,163.34 101.97,163.50 104.04,163.66 106.11,163.84 108.17,164.02 110.24,164.20 112.30,164.40 114.37,164.60 116.44,164.81 118.50,165.03 120.57,165.26 122.63,165.51 124.70,165.76 126.76,166.03 128.83,166.31 130.90,166.61 132.96,166.92 135.03,167.24 137.09,167.59 139.16,167.96 141.23,168.35 143.29,168.76 145.36,169.20 147.42,169.67 149.49,170.17 151.55,170.71 153.62,171.28 155.69,171.90 157.75,172.57 159.82,173.29 161.88,174.08 163.95,174.93 166.02,175.87 168.08,176.90 170.15,178.03 172.21,179.29 174.28,180.70 176.34,182.28 178.41,184.06 180.48,186.09 182.54,188.43 184.61,191.15 186.67,194.35 188.74,198.18 190.81,202.83 192.87,208.59 194.94,215.94 197.00,225.63 199.07,238.98 201.13,258.54 203.20,290.00" fill="none" stroke="#2563eb" stroke-width="2"/>
+<polyline points="216.80,20.00 218.87,51.46 220.93,71.02 223.00,84.37 225.06,94.06 227.13,101.41 229.19,107.17 231.26,111.82 233.33,115.65 235.39,118.85 237.46,121.57 239.52,123.91 241.59,125.94 243.66,127.72 245.72,129.30 247.79,130.71 249.85,131.97 251.92,133.10 253.98,134.13 256.05,135.07 258.12,135.92 260.18,136.71 262.25,137.43 264.31,138.10 266.38,138.72 268.45,139.29 270.51,139.83 272.58,140.33 274.64,140.80 276.71,141.24 278.77,141.65 280.84,142.04 282.91,142.41 284.97,142.76 287.04,143.08 289.10,143.39 291.17,143.69 293.24,143.97 295.30,144.24 297.37,144.49 299.43,144.74 301.50,144.97 303.56,145.19 305.63,145.40 307.70,145.60 309.76,145.80 311.83,145.98 313.89,146.16 315.96,146.34 318.03,146.50 320.09,146.66 322.16,146.82 324.22,146.96 326.29,147.11 328.35,147.24 330.42,147.38 332.49,147.51 334.55,147.63 336.62,147.75 338.68,147.87 340.75,147.98 342.82,148.09 344.88,148.19 346.95,148.30 349.01,148.40 351.08,148.49 353.14,148.59 355.21,148.68 357.28,148.77 359.34,148.85 361.41,148.94 363.47,149.02 365.54,149.10 367.61,149.18 369.67,149.25 371.74,149.32 373.80,149.40 375.87,149.47 377.93,149.53 380.00,149.60" fill="none" stroke="#2563eb" stroke-width="2"/>
+<text x="329.00" y="128.00" font-size="13" fill="#2563eb" font-style="italic">C_f</text>
+</svg>`,
+        choices: [
+          r`\text{Asymptote horizontale }y = 1\text{ et asymptote verticale }x = 2`,
+          r`\text{Asymptote horizontale }y = 2\text{ et asymptote verticale }x = 1`,
+          r`\text{Asymptote horizontale }y = 0\text{ et asymptote verticale }x = 2`,
+          r`\text{Aucune asymptote visible}`
+        ],
+        a: r`\text{Asymptote horizontale }y = 1\text{ et asymptote verticale }x = 2`,
+        tip: r`\text{L'asymptote horizontale est la droite horizontale dont la courbe se rapproche en }\pm\infty\text{ : ici la droite d'équation }y = 1\text{ (la courbe se rapproche du niveau }1\text{ aux extrémités). L'asymptote verticale est la droite verticale }…` },
+      // term_lim_28 — Asymptote horizontale par calcul — facile
+      { q: r`\text{Soit }f\text{ définie sur }\mathbb{R} \setminus \{3\}\text{ par }f(x) = \dfrac{2x + 1}{x - 3}\text{. Quelle est l'équation de l'asymptote horizontale de }\mathcal{C}_f\text{ en }+\infty\text{ ?}`,
+        choices: [
+          r`y = 2`,
+          r`y = -3`,
+          r`y = \dfrac{1}{3}`,
+          r`\text{Pas d'asymptote horizontale}`
+        ],
+        a: r`y = 2`,
+        tip: r`\text{On calcule }\displaystyle\lim_{x \to +\infty} \dfrac{2x+1}{x-3}\text{. Forme }\dfrac{\infty}{\infty}\text{, on factorise : }\dfrac{2x+1}{x-3} = \dfrac{x(2+\frac{1}{x})}{x(1-\frac{3}{x})} = \dfrac{2 + \frac{1}{x}}{1 - \frac{3}{x}} \to \dfrac{2}{}…` },
+      // term_lim_29 — Asymptote verticale par calcul — moyenne
+      // ⚠️ Distracteur 3 (« 7/0 indéfini ») cible l'élève qui ne sait pas gérer 0+/0-. Bon piège mais peut frustrer si pas vu en cours.
+      { q: r`\text{Soit }f\text{ définie sur }\mathbb{R} \setminus \{3\}\text{ par }f(x) = \dfrac{2x + 1}{x - 3}\text{. Quelle est la limite de }f\text{ en }3^{+}\text{ ?}`,
+        choices: [
+          r`+\infty`,
+          r`-\infty`,
+          r`\dfrac{7}{0}\text{, donc indéfini}`,
+          r`2`
+        ],
+        a: r`+\infty`,
+        tip: r`\text{En }3^{+}\text{ : }2x + 1 \to 7\text{ (constante non nulle) et }x - 3 \to 0^{+}\text{ (par valeurs positives car }x > 3\text{). Donc }\dfrac{2x+1}{x-3} \to \dfrac{7}{0^{+}} = +\infty\text{. Ceci montre que la droite }x = 3\text{ est asymptote verticale.}` },
+      // term_lim_30 — Asymptote horizontale y=0 — moyenne
+      { q: r`\text{Soit }f\text{ définie sur }\mathbb{R}\text{ par }f(x) = \dfrac{3x}{x^{2} + 1}\text{. Que peut-on dire des asymptotes de }\mathcal{C}_f\text{ ?}`,
+        choices: [
+          r`\text{Asymptote horizontale }y = 0\text{ en }+\infty\text{ et en }-\infty\text{, pas d'asymptote verticale}`,
+          r`\text{Asymptote horizontale }y = 3\text{ en }+\infty\text{, pas d'asymptote verticale}`,
+          r`\text{Pas d'asymptote}`,
+          r`\text{Asymptote verticale }x = 0\text{ et asymptote horizontale }y = 3`
+        ],
+        a: r`\text{Asymptote horizontale }y = 0\text{ en }+\infty\text{ et en }-\infty\text{, pas d'asymptote verticale}`,
+        tip: r`\text{En }+\infty\text{ : numérateur de degré }1\text{, dénominateur de degré }2\text{ (degré du dénominateur > degré du numérateur), donc }\displaystyle\lim_{x \to +\infty} \dfrac{3x}{x^2 + 1} = 0\text{. Idem en }-\infty\text{. La droite }y = 0\text…` },
+      // term_lim_31 — Position relative courbe/asymptote — dure
+      // ⚠️ Question type bac : excellente pour différencier les très bons élèves.
+      { q: r`\text{Soit }f\text{ définie sur }\mathbb{R} \setminus \{3\}\text{ par }f(x) = \dfrac{2x + 1}{x - 3}\text{. La droite }\Delta\text{ d'équation }y = 2\text{ est asymptote horizontale à }\mathcal{C}_f\text{. Quelle est la position de }\mathcal{C}_f\text{ par rapport à }\Delta\text{ sur }]3\,;\,+\infty[\text{ ?}`,
+        choices: [
+          r`\mathcal{C}_f\text{ est strictement au-dessus de }\Delta`,
+          r`\mathcal{C}_f\text{ est strictement en-dessous de }\Delta`,
+          r`\mathcal{C}_f\text{ coupe }\Delta`,
+          r`\text{On ne peut pas conclure}`
+        ],
+        a: r`\mathcal{C}_f\text{ est strictement au-dessus de }\Delta`,
+        tip: r`\text{On étudie le signe de }f(x) - 2 = \dfrac{2x+1}{x-3} - 2 = \dfrac{2x+1 - 2(x-3)}{x-3} = \dfrac{7}{x-3}\text{. Sur }]3\,;\,+\infty[\text{, }x - 3 > 0\text{ donc }f(x) - 2 > 0\text{, donc }f(x) > 2\text{. Sur cet intervalle, }\mathcal{C}_f\text{ e}…` },
+      // term_lim_32 — Asymptote avec exponentielle — moyenne
+      // ⚠️ Distracteur 2 piège l'élève qui ne contrôle pas le comportement asymétrique de e^(-x).
+      { q: r`\text{Soit }f\text{ définie sur }\mathbb{R}\text{ par }f(x) = \mathrm{e}^{-x} + 1\text{. Que peut-on dire des asymptotes de }\mathcal{C}_f\text{ ?}`,
+        choices: [
+          r`\text{Asymptote horizontale }y = 1\text{ en }+\infty\text{ uniquement}`,
+          r`\text{Asymptote horizontale }y = 1\text{ en }+\infty\text{ et en }-\infty`,
+          r`\text{Asymptote horizontale }y = 0\text{ en }+\infty`,
+          r`\text{Pas d'asymptote}`
+        ],
+        a: r`\text{Asymptote horizontale }y = 1\text{ en }+\infty\text{ uniquement}`,
+        tip: r`\text{En }+\infty\text{ : }-x \to -\infty\text{, donc }\mathrm{e}^{-x} \to 0\text{. Ainsi }f(x) \to 0 + 1 = 1\text{. Donc }y = 1\text{ est asymptote horizontale en }+\infty\text{. En }-\infty\text{ : }-x \to +\infty\text{, donc }\mathrm{e}^{-x} \to +…` },
+      // term_lim_33 — Asymptote verticale du logarithme — moyenne
+      // ⚠️ Distracteur 2 vise l'élève qui confond 'l'expression contient +2' avec 'asymptote y=2'.
+      { q: r`\text{Soit }f\text{ définie sur }]0\,;\,+\infty[\text{ par }f(x) = \ln(x) + 2\text{. Quelles sont les asymptotes de }\mathcal{C}_f\text{ ?}`,
+        choices: [
+          r`\text{Asymptote verticale }x = 0\text{ uniquement}`,
+          r`\text{Asymptote verticale }x = 0\text{ et asymptote horizontale }y = 2`,
+          r`\text{Asymptote horizontale }y = 2\text{ uniquement}`,
+          r`\text{Pas d'asymptote}`
+        ],
+        a: r`\text{Asymptote verticale }x = 0\text{ uniquement}`,
+        tip: r`\text{En }0^+\text{ : }\ln(x) \to -\infty\text{ donc }f(x) \to -\infty\text{. La droite }x = 0\text{ est asymptote verticale. En }+\infty\text{ : }\ln(x) \to +\infty\text{ donc }f(x) \to +\infty\text{. Pas d'asymptote horizontale (la fonction n'a pas}…` },
+      // term_lim_34 — Asymptote ln/x — dure
+      // ⚠️ Question intéressante : combine croissances comparées + asymptote verticale. Distracteur 3 cible l'élève qui oublie l'asymptote verticale.
+      { q: r`\text{Soit }f\text{ définie sur }]0\,;\,+\infty[\text{ par }f(x) = \dfrac{\ln(x)}{x}\text{. Quelles sont les asymptotes de }\mathcal{C}_f\text{ ?}`,
+        choices: [
+          r`\text{Asymptote horizontale }y = 0\text{ en }+\infty\text{ et asymptote verticale }x = 0`,
+          r`\text{Asymptote horizontale }y = 1\text{ en }+\infty`,
+          r`\text{Asymptote horizontale }y = 0\text{ en }+\infty\text{ uniquement, pas d'asymptote verticale}`,
+          r`\text{Pas d'asymptote}`
+        ],
+        a: r`\text{Asymptote horizontale }y = 0\text{ en }+\infty\text{ et asymptote verticale }x = 0`,
+        tip: r`\text{En }+\infty\text{ : par croissance comparée, }\dfrac{\ln(x)}{x} \to 0\text{. Donc }y = 0\text{ est asymptote horizontale en }+\infty\text{. En }0^+\text{ : }\ln(x) \to -\infty\text{ et }x \to 0^+\text{, donc }\dfrac{\ln(x)}{x} \to \dfrac{-\inft}…` },
+    ],
+
+    // ── Comparaison et encadrement ── (6 questions)
+    lim_comparaison: [
+      // term_lim_35 — Théorème des gendarmes (sin) — facile
+      // ⚠️ Distracteur 3 piège l'élève qui pense qu'une fonction oscillante n'a pas de limite. Pédagogiquement crucial : montrer que l'encadrement écrase l'oscillation.
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to +\infty} \dfrac{\sin(x)}{x}\text{ ?}`,
+        choices: [
+          r`0`,
+          r`1`,
+          r`\text{La limite n'existe pas car }\sin\text{ oscille}`,
+          r`+\infty`
+        ],
+        a: r`0`,
+        tip: r`\text{Pour tout }x > 0\text{, }-1 \leqslant \sin(x) \leqslant 1\text{ donc }-\dfrac{1}{x} \leqslant \dfrac{\sin(x)}{x} \leqslant \dfrac{1}{x}\text{. Or }\displaystyle\lim_{x \to +\infty} -\dfrac{1}{x} = \displaystyle\lim_{x \to +\infty} \dfrac{1}{x} …` },
+      // term_lim_36 — Théorème des gendarmes (cos) — facile
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to +\infty} \dfrac{\cos(x)}{x}\text{ ?}`,
+        choices: [
+          r`0`,
+          r`1`,
+          r`\text{La limite n'existe pas}`,
+          r`+\infty`
+        ],
+        a: r`0`,
+        tip: r`\text{Pour tout }x > 0\text{, }-1 \leqslant \cos(x) \leqslant 1\text{ donc }-\dfrac{1}{x} \leqslant \dfrac{\cos(x)}{x} \leqslant \dfrac{1}{x}\text{. Les deux bornes tendent vers }0\text{, donc par le théorème des gendarmes, }\displaystyle\lim_{x \to }…` },
+      // term_lim_37 — Théorème de minoration — moyenne
+      { q: r`\text{Soit }f\text{ une fonction définie sur }\mathbb{R}\text{ vérifiant pour tout }x \in \mathbb{R}\text{ : }f(x) \geqslant x^{2} - 5\text{. Que peut-on en déduire pour }\displaystyle\lim_{x \to +\infty} f(x)\text{ ?}`,
+        choices: [
+          r`\displaystyle\lim_{x \to +\infty} f(x) = +\infty`,
+          r`\displaystyle\lim_{x \to +\infty} f(x) = -5`,
+          r`\displaystyle\lim_{x \to +\infty} f(x) = 0`,
+          r`\text{On ne peut rien conclure sans plus d'information sur }f`
+        ],
+        a: r`\displaystyle\lim_{x \to +\infty} f(x) = +\infty`,
+        tip: r`\text{On a }f(x) \geqslant x^2 - 5\text{ et }\displaystyle\lim_{x \to +\infty} (x^2 - 5) = +\infty\text{. Par le théorème de comparaison (minoration par une fonction de limite }+\infty\text{), on conclut que }\displaystyle\lim_{x \to +\infty} f(x) = +\infty\text{.}` },
+      // term_lim_38 — Théorème de majoration — moyenne
+      { q: r`\text{Soit }f\text{ une fonction définie sur }\mathbb{R}\text{ vérifiant pour tout }x \in \mathbb{R}\text{ : }f(x) \leqslant -x^{3} + 1\text{. Que peut-on en déduire pour }\displaystyle\lim_{x \to +\infty} f(x)\text{ ?}`,
+        choices: [
+          r`\displaystyle\lim_{x \to +\infty} f(x) = -\infty`,
+          r`\displaystyle\lim_{x \to +\infty} f(x) = +\infty`,
+          r`\displaystyle\lim_{x \to +\infty} f(x) = 1`,
+          r`\text{On ne peut rien conclure}`
+        ],
+        a: r`\displaystyle\lim_{x \to +\infty} f(x) = -\infty`,
+        tip: r`\text{On a }-x^3 + 1 \to -\infty\text{ quand }x \to +\infty\text{ (terme dominant }-x^3\text{). Comme }f(x) \leqslant -x^3 + 1\text{, par le théorème de comparaison (majoration par une fonction de limite }-\infty\text{), on conclut que }\displaystyle…` },
+      // term_lim_39 — Encadrement non concluant (piège) — dure
+      // ⚠️ Question piège : très formatrice mais peut frustrer. Le distracteur 2 (limite=0, le 'centre') est un piège fréquent.
+      { q: r`\text{Soit }f\text{ une fonction définie sur }]0\,;\,+\infty[\text{ vérifiant pour tout }x > 0\text{ : }-1 + \dfrac{2}{x} \leqslant f(x) \leqslant 1 + \dfrac{3}{x}\text{. Que peut-on conclure pour }\displaystyle\lim_{x \to +\infty} f(x)\text{ ?}`,
+        choices: [
+          r`\text{On ne peut pas conclure : l'encadrement n'est pas assez fin}`,
+          r`\displaystyle\lim_{x \to +\infty} f(x) = 0`,
+          r`\displaystyle\lim_{x \to +\infty} f(x) = 1`,
+          r`\displaystyle\lim_{x \to +\infty} f(x) = -1`
+        ],
+        a: r`\text{On ne peut pas conclure : l'encadrement n'est pas assez fin}`,
+        tip: r`\text{Calcul des limites des bornes : la borne inférieure tend vers }-1\text{ et la borne supérieure tend vers }1\text{. Le théorème des gendarmes ne s'applique que si les deux bornes ont la même limite : ici elles diffèrent, donc on ne peut rien con}…` },
+      // term_lim_40 — Limite avec terme oscillant — dure
+      // ⚠️ Distracteur 2 piège l'élève qui pense que l'oscillation empêche la limite. Apprentissage clé : un terme borné ajouté à un terme infini ne change pas la limite.
+      { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to +\infty} \left(x + \sin(x)\right)\text{ ?}`,
+        choices: [
+          r`+\infty`,
+          r`\text{La limite n'existe pas car }\sin\text{ oscille}`,
+          r`0`,
+          r`+\infty\text{ ou }-\infty\text{ selon les valeurs de }x`
+        ],
+        a: r`+\infty`,
+        tip: r`\text{Pour tout }x \in \mathbb{R}\text{, }\sin(x) \geqslant -1\text{, donc }x + \sin(x) \geqslant x - 1\text{. Or }\displaystyle\lim_{x \to +\infty} (x - 1) = +\infty\text{. Par minoration, }\displaystyle\lim_{x \to +\infty} (x + \sin(x)) = +\infty\t…` },
+    ],
+  },
+  // ════ 7ter. DÉNOMBREMENT (Term Spé) ════════════════════════════════════════════
+  denombrement: {
+
+    // ── Dénombrement — combinaisons, arrangements, k-uplets ── (22 questions)
+    denombrement_type: [
+      // term_denomb_00a — Calculer une combinaison — facile
+      { q: r`\text{Quelle est la valeur de }\dbinom{5}{3}\text{ ?}`,
+        choices: [
+          r`10`,
+          r`60`,
+          r`15`,
+          r`\dfrac{1}{10}`
+        ],
+        a: r`10`,
+        tip: r`\text{Formule du cours : }\dbinom{n}{k} = \dfrac{n \times (n-1) \times \dots \times (n-k+1)}{k!}\text{ (au numérateur, }k\text{ facteurs en partant de }n\text{ et en descendant).\\\\ Application : }\dbinom{5}{3} = \dfrac{5 \times 4 \times 3}{3!} = \d…` },
+      // term_denomb_00b — Calculer une combinaison — facile
+      { q: r`\text{Quelle est la valeur de }\dbinom{7}{2}\text{ ?}`,
+        choices: [
+          r`21`,
+          r`42`,
+          r`14`,
+          r`\dfrac{7}{2}`
+        ],
+        a: r`21`,
+        tip: r`\text{Formule du cours : }\dbinom{n}{k} = \dfrac{n \times (n-1) \times \dots \times (n-k+1)}{k!}\text{ (au numérateur, }k\text{ facteurs en partant de }n\text{).\\\\ Application : }\dbinom{7}{2} = \dfrac{7 \times 6}{2!} = \dfrac{42}{2} = 21\text{.\\\}…` },
+      // term_denomb_01 — Identifier un k-uplet (avec répétition) — facile
+      { q: r`\text{On forme un code à }4\text{ chiffres choisis parmi }\{0\,;\,1\,;\,\dots\,;\,9\}\text{. Les chiffres peuvent se répéter. Combien de codes différents peut-on former ?}`,
+        choices: [
+          r`10^{4} = 10\,000`,
+          r`10 \times 9 \times 8 \times 7 = 5\,040`,
+          r`\binom{10}{4} = 210`,
+          r`4! = 24`
+        ],
+        a: r`10^{4} = 10\,000`,
+        tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
+      // term_denomb_02 — Identifier une combinaison (tirage simultané) — facile
+      { q: r`\text{On tire \textbf{simultanément} }3\text{ cartes d'un jeu de }32\text{ cartes. Combien de tirages différents sont possibles ?}`,
+        choices: [
+          r`\binom{32}{3} = 4\,960`,
+          r`32 \times 31 \times 30 = 29\,760`,
+          r`32^{3} = 32\,768`,
+          r`3! = 6`
+        ],
+        a: r`\binom{32}{3} = 4\,960`,
+        tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
+      // term_denomb_03 — Identifier un arrangement (podium) — facile
+      { q: r`\text{À l'arrivée d'une course de }8\text{ coureurs, on relève l'ordre des }3\text{ premiers (or, argent, bronze). Combien de podiums différents sont possibles ?}`,
+        choices: [
+          r`8 \times 7 \times 6 = 336`,
+          r`\binom{8}{3} = 56`,
+          r`8^{3} = 512`,
+          r`3! = 6`
+        ],
+        a: r`8 \times 7 \times 6 = 336`,
+        tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
+      // term_denomb_04 — Identifier une permutation — facile
+      { q: r`\text{Combien existe-t-il de façons de ranger }5\text{ livres distincts sur une étagère, en ligne ?}`,
+        choices: [
+          r`5! = 120`,
+          r`5^{5} = 3\,125`,
+          r`\binom{5}{5} = 1`,
+          r`5 \times 4 = 20`
+        ],
+        a: r`5! = 120`,
+        tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
+      // term_denomb_05 — Identifier un arrangement (tirage successif sans r — facile
+      { q: r`\text{Une urne contient }6\text{ boules numérotées de }1\text{ à }6\text{. On tire \textbf{successivement, sans remise}, }2\text{ boules. Combien de tirages différents sont possibles ?}`,
+        choices: [
+          r`6 \times 5 = 30`,
+          r`\binom{6}{2} = 15`,
+          r`6^{2} = 36`,
+          r`2! = 2`
+        ],
+        a: r`6 \times 5 = 30`,
+        tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
+      // term_denomb_06 — Identifier un k-uplet (lancers de dés) — facile
+      { q: r`\text{On lance un dé équilibré à }6\text{ faces }3\text{ fois de suite et on note le résultat dans l'ordre. Combien de résultats différents sont possibles ?}`,
+        choices: [
+          r`6^{3} = 216`,
+          r`6 \times 5 \times 4 = 120`,
+          r`\binom{6}{3} = 20`,
+          r`3! = 6`
+        ],
+        a: r`6^{3} = 216`,
+        tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
+      // term_denomb_07 — Combinaison (comité) — moyenne
+      { q: r`\text{Une association comporte }12\text{ membres. On souhaite former un comité de }4\text{ personnes (sans hiérarchie particulière). Combien de comités différents peut-on former ?}`,
+        choices: [
+          r`\binom{12}{4} = 495`,
+          r`12 \times 11 \times 10 \times 9 = 11\,880`,
+          r`12^{4} = 20\,736`,
+          r`4! = 24`
+        ],
+        a: r`\binom{12}{4} = 495`,
+        tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
+      // term_denomb_08 — Arrangement (postes hiérarchisés) — moyenne
+      { q: r`\text{Lors d'une compétition, }10\text{ candidats s'affrontent. On distribue }3\text{ médailles \textbf{distinctes} (or, argent, bronze). De combien de façons différentes peut-on attribuer ces médailles ?}`,
+        choices: [
+          r`10 \times 9 \times 8 = 720`,
+          r`\binom{10}{3} = 120`,
+          r`10^{3} = 1\,000`,
+          r`3! = 6`
+        ],
+        a: r`10 \times 9 \times 8 = 720`,
+        tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
+      // term_denomb_09 — K-uplet (mot de passe) — moyenne
+      { q: r`\text{On forme un mot de passe de }5\text{ lettres (majuscules) en utilisant l'alphabet }A\text{ à }Z\text{ (}26\text{ lettres). Les lettres peuvent se répéter. Combien de mots de passe différents sont possibles ?}`,
+        choices: [
+          r`26^{5}`,
+          r`26 \times 25 \times 24 \times 23 \times 22`,
+          r`\binom{26}{5}`,
+          r`5!`
+        ],
+        a: r`26^{5}`,
+        tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
+      // term_denomb_10 — Combinaison (jeu de cartes) — moyenne
+      { q: r`\text{On distribue une \og main \fg{} de }5\text{ cartes à un joueur, à partir d'un jeu de }52\text{ cartes. Combien de mains différentes peut-il recevoir ?}`,
+        choices: [
+          r`\binom{52}{5}`,
+          r`52 \times 51 \times 50 \times 49 \times 48`,
+          r`52^{5}`,
+          r`5!`
+        ],
+        a: r`\binom{52}{5}`,
+        tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
+      // term_denomb_11 — Arrangement (lettres distinctes) — moyenne
+      { q: r`\text{On souhaite former un sigle de }4\text{ lettres \textbf{toutes différentes} parmi les }26\text{ lettres de l'alphabet. Combien de sigles peut-on former ?}`,
+        choices: [
+          r`26 \times 25 \times 24 \times 23 = 358\,800`,
+          r`\binom{26}{4} = 14\,950`,
+          r`26^{4} = 456\,976`,
+          r`4! = 24`
+        ],
+        a: r`26 \times 25 \times 24 \times 23 = 358\,800`,
+        tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
+      // term_denomb_12 — Combinaison (délégués) — moyenne
+      { q: r`\text{Dans une classe de }28\text{ élèves, on doit choisir }2\text{ délégués (sans distinction entre eux). Combien de choix possibles ?}`,
+        choices: [
+          r`\binom{28}{2} = 378`,
+          r`28 \times 27 = 756`,
+          r`28^{2} = 784`,
+          r`2! = 2`
+        ],
+        a: r`\binom{28}{2} = 378`,
+        tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
+      // term_denomb_13 — K-uplet (choix indépendants successifs) — moyenne
+      { q: r`\text{Au self, }7\text{ desserts différents sont proposés chaque jour. Lola y déjeune }4\text{ jours dans la semaine et choisit un dessert chaque jour (elle peut reprendre le même). Combien de \og semaines de desserts \fg{} différentes sont possibles pour Lola ?}`,
+        choices: [
+          r`7^{4} = 2\,401`,
+          r`7 \times 6 \times 5 \times 4 = 840`,
+          r`\binom{7}{4} = 35`,
+          r`4! = 24`
+        ],
+        a: r`7^{4} = 2\,401`,
+        tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
+      // term_denomb_14 — Permutation (anagrammes) — moyenne
+      { q: r`\text{Combien d'anagrammes (mots ayant un sens ou non) peut-on former avec les lettres du mot \textsc{maths} (les }5\text{ lettres sont distinctes) ?}`,
+        choices: [
+          r`5! = 120`,
+          r`5^{5} = 3\,125`,
+          r`\binom{5}{5} = 1`,
+          r`25 = 5 \times 5`
+        ],
+        a: r`5! = 120`,
+        tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
+      // term_denomb_15 — Différencier combinaison et arrangement (piège) — moyenne
+      { q: r`\text{Un professeur doit choisir }3\text{ élèves \textbf{simultanément} parmi }10\text{ pour participer à un projet (sans rôle distinct). Combien de choix possibles ?}`,
+        choices: [
+          r`\binom{10}{3} = 120`,
+          r`10 \times 9 \times 8 = 720`,
+          r`10^{3} = 1\,000`,
+          r`3! = 6`
+        ],
+        a: r`\binom{10}{3} = 120`,
+        tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
+      // term_denomb_16 — Combinaison double (composition mixte) — dure
+      { q: r`\text{Un comité de }5\text{ personnes doit être formé parmi un groupe de }8\text{ hommes et }10\text{ femmes. Le comité doit comporter exactement }2\text{ hommes et }3\text{ femmes. Combien de comités possibles ?}`,
+        choices: [
+          r`\binom{8}{2} \times \binom{10}{3} = 3\,360`,
+          r`\binom{18}{5} = 8\,568`,
+          r`\binom{8}{2} + \binom{10}{3} = 148`,
+          r`8 \times 7 \times 10 \times 9 \times 8 = 40\,320`
+        ],
+        a: r`\binom{8}{2} \times \binom{10}{3} = 3\,360`,
+        tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
+      // term_denomb_17 — Arrangement avec contrainte de position — dure
+      { q: r`\text{Combien de \og mots \fg{} de }4\text{ lettres \textbf{toutes différentes} peut-on former avec l'alphabet (}26\text{ lettres) en imposant que la première lettre soit \textsc{m} ?}`,
+        choices: [
+          r`25 \times 24 \times 23 = 13\,800`,
+          r`26 \times 25 \times 24 \times 23 = 358\,800`,
+          r`\binom{25}{3} = 2\,300`,
+          r`26^{3} = 17\,576`
+        ],
+        a: r`25 \times 24 \times 23 = 13\,800`,
+        tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
+      // term_denomb_18 — Combinaison double (mains de cartes contraintes) — dure
+      // ⚠️ Distracteur 2 (C(4,2)*C(32,3)) très efficace : élève qui oublie d'exclure les rois du second tirage. Distracteur 4 (4*3 au lieu de C(4,2)) cible la confusion ordre/sans ordre sur les rois.
+      { q: r`\text{On distribue une main de }5\text{ cartes à partir d'un jeu de }32\text{ cartes (qui contient }4\text{ rois). Combien de mains contiennent \textbf{exactement} }2\text{ rois ?}`,
+        choices: [
+          r`\binom{4}{2} \times \binom{28}{3}`,
+          r`\binom{4}{2} \times \binom{32}{3}`,
+          r`\binom{32}{5} - \binom{28}{5}`,
+          r`4 \times 3 \times \binom{28}{3}`
+        ],
+        a: r`\binom{4}{2} \times \binom{28}{3}`,
+        tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
+      // term_denomb_19 — Distinguer arrangement et combinaison (formulation — dure
+      { q: r`\text{Une urne contient }7\text{ boules numérotées de }1\text{ à }7\text{. On tire \textbf{successivement, sans remise}, }3\text{ boules, et on note le numéro à chaque tirage (on retient donc l'ordre). Combien de tirages différents peut-on observer ?}`,
+        choices: [
+          r`7 \times 6 \times 5 = 210`,
+          r`\binom{7}{3} = 35`,
+          r`7^{3} = 343`,
+          r`3! = 6`
+        ],
+        a: r`7 \times 6 \times 5 = 210`,
+        tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
+      // term_denomb_20 — Dénombrement par complémentaire — dure
+      // ⚠️ Le distracteur 3 (4 × 10³) est l'erreur classique du dénombrement : multiplication abusive sans tenir compte des doubles comptages. Très formateur.
+      { q: r`\text{On forme un code à }4\text{ chiffres avec répétition possible (chiffres de }0\text{ à }9\text{). Combien de codes contiennent \textbf{au moins un} }0\text{ ?}`,
+        choices: [
+          r`10^{4} - 9^{4} = 3\,439`,
+          r`9^{4} = 6\,561`,
+          r`4 \times 10^{3} = 4\,000`,
+          r`10^{4} = 10\,000`
+        ],
+        a: r`10^{4} - 9^{4} = 3\,439`,
+        tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
+    ],
+  },
   // ════ 8. SUITES NUMÉRIQUES ══════════════════════════════════════════════════
   suites: {
 
@@ -4368,6 +6624,186 @@ const DB = {
         choices: [r`r>0`, r`r\geq0`, r`u_0>0`, r`u_n>0`],
         a: r`r>0`, tip: r`r>0\Rightarrow u_{n+1}>u_n\text{ strictement}` },
     ],
+
+    // ── Récurrence (Term Spé) ──
+    // 8 questions : 2 compréhension structurelle (A) + 2 calcul technique (C) + 4 preuve-détective (B)
+    suites_recurrence: [
+
+      // Q1 — A — Rôle de l'hypothèse de récurrence
+      { q: r`\text{Démonstration par récurrence de }P(n)\text{ au rang }n+1.\\[6pt]\text{Au début de l'hérédité, on \textbf{suppose} :}`,
+        choices: [
+          r`P(n)\text{ vraie pour un entier }n\text{ fixé}`,
+          r`P(n)\text{ vraie pour tout entier }n`,
+          r`P(n+1)\text{ est vraie}`,
+          r`P(0)\text{ et }P(n+1)\text{ vraies}`
+        ],
+        a: r`P(n)\text{ vraie pour un entier }n\text{ fixé}`,
+        tip: r`\text{On fixe }n\text{ et on suppose }P(n).\\[3pt]\text{Supposer }P(n)\text{ pour tout }n\\\text{reviendrait à supposer ce qu'on prouve.}` },
+
+      // Q2 — A — Rang d'initialisation
+      { q: r`\text{On démontre par récurrence que }P(n)\\[3pt]\text{est vraie pour tout }n\geq 3.\\[6pt]\text{L'\textbf{initialisation} consiste à vérifier :}`,
+        choices: [r`P(3)`, r`P(0)`, r`P(0),\,P(1),\,P(2)\text{ et }P(3)`, r`P(n)\text{ pour tout }n\geq 3`],
+        a: r`P(3)`,
+        tip: r`\text{L'initialisation se fait au \textbf{rang de départ}}\\\text{de la propriété, pas au rang 0.}` },
+
+      // Q3 — C — Manipulation algébrique (égalité)
+      { q: r`u_0=1,\quad u_{n+1}=2u_n+3\\[4pt]\text{On veut prouver }u_n=4\cdot 2^n-3.\\[4pt]\text{À l'hérédité on suppose }u_n=4\cdot 2^n-3.\\[4pt]\text{Que vaut }u_{n+1}\text{ après calcul ?}`,
+        choices: [
+          r`4\cdot 2^{n+1}-3`,
+          r`4\cdot 2^{n+1}-6`,
+          r`8\cdot 2^n-3`,
+          r`4\cdot 2^n+3`
+        ],
+        a: r`4\cdot 2^{n+1}-3`,
+        tip: r`u_{n+1}=2(4\cdot 2^n-3)+3=8\cdot 2^n-3\\[3pt]\text{et }8\cdot 2^n=4\cdot 2^{n+1}.` },
+
+      // Q4 — C — Manipulation d'inégalité
+      { q: r`u_0=5,\quad u_{n+1}=\dfrac{u_n+3}{2}\\[4pt]\text{On veut prouver }u_n\geq 3.\\[4pt]\text{À l'hérédité on suppose }u_n\geq 3.\\[4pt]\text{Quelle inégalité obtient-on directement ?}`,
+        choices: [r`u_{n+1}\geq 3`, r`u_{n+1}\geq 5`, r`u_{n+1}\leq 3`, r`u_{n+1}\geq 6`],
+        a: r`u_{n+1}\geq 3`,
+        tip: r`u_n\geq 3\Rightarrow u_n+3\geq 6\\[3pt]\Rightarrow \dfrac{u_n+3}{2}\geq 3.` },
+
+      // Q5 — B — Preuve avec faute "pour tout n" dans l'hypothèse
+      { q: r`u_0=2,\,u_{n+1}=u_n+4\,;\,\text{prouver }u_n=4n+2.\\[4pt]\text{Voici la preuve. Quelle est l'\textbf{erreur} ?}\\[6pt]\textbf{(L1)}\;u_0=2=4\!\times\!0+2\\[2pt]\textbf{(L2)}\;\text{On suppose }u_n=4n+2\text{ \textbf{pour tout }}n\\[2pt]\textbf{(L3)}\;u_{n+1}=u_n+4=4n+6=4(n+1)+2\\[2pt]\textbf{(L4)}\;\text{Donc }P(n+1)\text{ est vraie}\\[2pt]\textbf{(L5)}\;\text{Conclusion par récurrence.}`,
+        choices: [
+          r`\text{L2 : on suppose pour tout }n\\\text{au lieu d'un }n\text{ fixé}`,
+          r`\text{L1 : initialisation mal écrite}`,
+          r`\text{L3 : calcul algébrique faux}`,
+          r`\text{L5 : conclusion mal formulée}`
+        ],
+        a: r`\text{L2 : on suppose pour tout }n\\\text{au lieu d'un }n\text{ fixé}`,
+        tip: r`\text{Erreur classique : supposer }P(n)\\\text{« pour tout }n\text{ » revient à supposer}\\\text{ce qu'on veut prouver.}` },
+
+      // Q6 — B — Choix d'une hérédité valide parmi 4
+      { q: r`u_0=1,\,u_{n+1}=u_n+2n+1\,;\,\text{prouver }u_n=n^2+1.\\[4pt]\text{À l'hérédité, on suppose }u_n=n^2+1.\\[4pt]\text{Quelle rédaction est \textbf{correcte} ?}`,
+        choices: [
+          r`u_{n+1}=u_n+2n+1=n^2+2n+2=(n+1)^2+1`,
+          r`\text{La formule marche au rang }n,\\\text{donc au rang }n+1`,
+          r`u_{n+1}=(n+1)^2+1\text{ par définition de }P`,
+          r`u_{n+1}=u_n+2(n+1)+1\\\text{donc }u_{n+1}=(n+1)^2+1`
+        ],
+        a: r`u_{n+1}=u_n+2n+1=n^2+2n+2=(n+1)^2+1`,
+        tip: r`\text{Seule rédaction qui : (i) part de la définition,}\\\text{(ii) utilise l'hypothèse, (iii) calcule, (iv)}\\\text{reconnaît la forme cible }(n+1)^2+1.` },
+
+      // Q7 — B — Validation d'une preuve correcte
+      { q: r`u_0=2,\,u_{n+1}=\sqrt{u_n+2}\,;\,\text{prouver }u_n\geq 2.\\[4pt]\text{Hérédité : soit }n\geq 0\text{ fixé, on suppose }u_n\geq 2.\\[3pt]\text{Alors }u_n+2\geq 4\text{ et }\sqrt{u_n+2}\geq\sqrt{4}=2.\\[3pt]\text{Donc }u_{n+1}\geq 2.\\[6pt]\text{Cette rédaction :}`,
+        choices: [
+          r`\text{est correcte et complète}`,
+          r`\text{contient une erreur de calcul}`,
+          r`\text{utilise }\sqrt{\cdot}\text{ croissante sans le justifier}`,
+          r`\text{oublie que }u_n+2\text{ doit être positif}`
+        ],
+        a: r`\text{est correcte et complète}`,
+        tip: r`\sqrt{\cdot}\text{ est croissante sur }[0;+\infty[\,,\\\text{donc préserve les inégalités entre}\\\text{positifs (admis au lycée).}` },
+
+      // Q8 — B — Pétition de principe
+      { q: r`u_0=0,\,u_{n+1}=u_n+2n+3\,;\,\text{prouver }u_n=n^2+2n.\\[4pt]\text{Voici une tentative d'hérédité :}\\[3pt]\text{« Soit }n\geq 0\text{ fixé, on suppose }u_n=n^2+2n.\\[2pt]\text{Alors }u_{n+1}=(n+1)^2+2(n+1)\\\text{par hypothèse de récurrence appliquée au rang }n+1.\\[2pt]\text{Donc }P(n+1)\text{ vraie. »}\\[6pt]\text{Quelle est l'erreur ?}`,
+        choices: [
+          r`\text{Pétition de principe :}\\\text{on suppose }P(n+1)\text{ pour prouver }P(n+1)`,
+          r`\text{Le calcul est juste,}\\\text{rédaction complète}`,
+          r`\text{Il faudrait écrire }u_{n+1}=u_n+2(n+1)+3`,
+          r`\text{L'initialisation n'a pas été faite}`
+        ],
+        a: r`\text{Pétition de principe :}\\\text{on suppose }P(n+1)\text{ pour prouver }P(n+1)`,
+        tip: r`\text{L'hypothèse de récurrence se prend}\\\text{au rang }n\text{ ; il faut \textbf{calculer} }u_{n+1}\\\text{à partir de la définition récurrente.}` },
+
+    ],
+
+    // ── Explicite vs récurrence (1ère Spé) ────────────────────────────────────
+    suites_explicite_recurr: [
+
+      // Q1 — Reconnaissance : définition par récurrence
+      { q: r`\text{Parmi les définitions suivantes,}\\\text{laquelle est une définition par récurrence ?}`,
+        choices: [r`u_n = 3n + 5`, r`u_n = n^2 - 1`, r`u_{n+1} = 2u_n - 3,\; u_0 = 1`, r`u_n = (-1)^n \times n`],
+        a: r`u_{n+1} = 2u_n - 3,\; u_0 = 1`,
+        tip: r`\text{Une définition par récurrence exprime }u_{n+1}\\\text{en fonction de }u_n\text{ (ou des termes précédents).}` },
+
+      // Q2 — Reconnaissance : définition explicite
+      { q: r`\text{Parmi les définitions suivantes,}\\\text{laquelle est une définition explicite ?}`,
+        choices: [r`u_{n+1} = u_n + n,\; u_0 = 0`, r`u_n = \dfrac{2^n}{n+1}`, r`u_{n+1} = (u_n)^2 + 1,\; u_0 = 2`, r`u_{n+1} - u_n = 3`],
+        a: r`u_n = \dfrac{2^n}{n+1}`,
+        tip: r`\text{Une formule explicite donne }u_n\text{ directement}\\\text{à partir de }n\text{, sans référence aux termes précédents.}` },
+
+      // Q3 — Dépendance des termes (récurrence)
+      { q: r`u_{n+1} = u_n + 7,\; u_0 = 2\\[4pt]\text{Pour calculer }u_{100}\text{, il faut :}`,
+        choices: [
+          r`\text{Connaître seulement la formule et }n=100`,
+          r`\text{Connaître }u_{99}\text{ seulement}`,
+          r`\text{Connaître }u_0, u_1, \ldots, u_{99}`,
+          r`\text{Impossible sans informations supplémentaires}`
+        ],
+        a: r`\text{Connaître }u_0, u_1, \ldots, u_{99}`,
+        tip: r`\text{Avec une récurrence, chaque terme dépend}\\\text{du précédent : il faut remonter depuis }u_0.` },
+
+      // Q4 — Calcul direct (explicite)
+      { q: r`u_n = n^2 - 3n + 1\\[4pt]\text{Pour calculer }u_{50}\text{, il faut :}`,
+        choices: [
+          r`\text{Connaître }u_{49}`,
+          r`\text{Calculer tous les termes de }u_0\text{ à }u_{49}`,
+          r`\text{Remplacer }n\text{ par }50\text{ dans la formule}`,
+          r`\text{Faire une démonstration par récurrence}`
+        ],
+        a: r`\text{Remplacer }n\text{ par }50\text{ dans la formule}`,
+        tip: r`\text{La formule explicite permet de calculer}\\\text{chaque terme directement, sans les précédents.}` },
+
+      // Q5 — Piège de l'écriture u_{n-1}
+      { q: r`u_n = u_{n-1} + 4\text{ pour tout }n \geq 1,\; u_0 = 5\\[4pt]\text{Cette suite est :}`,
+        choices: [
+          r`\text{Définie de façon explicite}`,
+          r`\text{Définie par récurrence}`,
+          r`\text{À la fois explicite et récurrente}`,
+          r`\text{Mal définie}`
+        ],
+        a: r`\text{Définie par récurrence}`,
+        tip: r`u_{n-1}\text{ est un terme précédent : c'est une récurrence,}\\\text{équivalente à }u_{n+1}=u_n+4.` },
+
+      // Q6 — Deux écritures d'une suite arithmétique
+      { q: r`\text{Suite arithmétique, raison }3,\; u_0 = 2\\[4pt]\text{Quelles écritures sont valables ?}`,
+        choices: [
+          r`\text{Uniquement }u_{n+1} = u_n + 3`,
+          r`\text{Uniquement }u_n = 2 + 3n`,
+          r`\text{Les deux sont valables et équivalentes}`,
+          r`u_{n+1} = u_n + 3n`
+        ],
+        a: r`\text{Les deux sont valables et équivalentes}`,
+        tip: r`\text{Toute suite arithmétique admet une forme}\\\text{récurrente ET une forme explicite.}` },
+
+      // Q7 — Fausse définition explicite (piège d'indice)
+      { q: r`\text{Laquelle n'est pas une définition explicite valable ?}`,
+        choices: [r`u_n = \sqrt{n}`, r`u_n = u_n - 1 + 2`, r`u_n = \sin(n)`, r`u_n = \dfrac{n+1}{n+2}`],
+        a: r`u_n = u_n - 1 + 2`,
+        tip: r`u_n = u_n - 1 + 2\text{ donne }0 = 1\text{ : absurde.}\\\text{Lire les indices avec attention !}` },
+
+      // Q8 — Synthèse : modélisation population (suite géométrique)
+      { q: r`\text{Une population double chaque année}\\\text{à partir de 100 individus.}\\\text{Quelle(s) écriture(s) modélise(nt) la situation ?}`,
+        choices: [
+          r`u_n = 100 \times 2^n\text{ uniquement}`,
+          r`u_{n+1} = 2u_n,\; u_0 = 100\text{ uniquement}`,
+          r`\text{Les deux sont valables et équivalentes}`,
+          r`u_{n+1} = 2n,\; u_0 = 100`
+        ],
+        a: r`\text{Les deux sont valables et équivalentes}`,
+        tip: r`\text{Suite géométrique de raison }2\text{ : la forme}\\\text{récurrente et la forme explicite sont équivalentes.}` },
+
+      // Q9 — BONUS : récurrence d'ordre 2 (Fibonacci)
+      { q: r`F_0 = 0,\; F_1 = 1,\; F_{n+2} = F_{n+1} + F_n\\\text{(suite de Fibonacci)}\\[4pt]\text{Cette suite est :}`,
+        choices: [
+          r`\text{Définie de façon explicite}`,
+          r`\text{Récurrence d'ordre 1}`,
+          r`\text{Récurrence d'ordre 2}`,
+          r`\text{Mal définie (deux termes initiaux)}`,
+        ],
+        a: r`\text{Récurrence d'ordre 2}`,
+        tip: r`\text{Récurrence d'ordre 2 : chaque terme dépend}\\\text{des deux précédents. Deux termes initiaux sont}\\\text{nécessaires — ce n'est pas un défaut, c'est la définition.}` },
+
+      // Q10 — BONUS : calcul dans une récurrence d'ordre 2
+      { q: r`a_0 = 2,\; a_1 = 3,\; a_{n+2} = 2a_{n+1} - a_n\\[4pt]\text{Que vaut }a_3\text{ ?}`,
+        choices: [`4`, `5`, `6`, `8`],
+        a: `5`,
+        tip: r`a_2 = 2\times 3 - 2 = 4\\\\ a_3 = 2\times 4 - 3 = 5` },
+
+    ],
+
   },
 
   // ════ 9. POLYNÔMES DU 2nd DEGRÉ ══════════════════════════════════════════════
@@ -4795,17 +7231,46 @@ const CATS = [
       {id:"tableau_fill", label:"📝 Tableau à compléter",       levels:["sec","tc","stmg","spe","term"]},
       {id:"arbre",        label:"Arbre",                        levels:["sec","tc","stmg","spe","term"]},
       {id:"contraire",    label:"Événements contraires",        levels:["sec","tc","stmg","spe","term"]},
+      {id:"probas_conditionnelles", label:"Probabilités conditionnelles", levels:["term"]},
+      {id:"probas_independance",    label:"Événements indépendants",      levels:["term"]},
+      {id:"probas_totales",         label:"Probabilités totales",         levels:["term"]},
+      {id:"probas_var_aleatoires",  label:"Variables aléatoires (E, V, σ)", levels:["term"]},
+      {id:"probas_loi_binomiale",   label:"Loi binomiale (Term)",         levels:["term"]},
     ] },
   { id:"derivation",   label:"Dérivation", emoji:"📉", color:"#0891B2", grad:"linear-gradient(135deg,#06B6D4,#0E7490)", light:"#ECFEFF", border:"#A5F3FC",
     subs:[
       {id:"lecture_derivee",label:"Lecture graphique du nombre dérivé", levels:["stmg","spe","term"]},
       {id:"calcul_derivee", label:"Calcul de dérivées (deg. 2 et 3)",   levels:["stmg","spe","term"]},
+      {id:"deriv_vitesse",label:"Vitesse moyenne / instantanée", levels:["tc","spe","term"]},
+      {id:"deriv_tangente",label:"Tangente — lecture graphique", levels:["tc","spe","term"]},
+      {id:"deriv_fonctions_ref",label:"Dérivées des fonctions de référence", levels:["tc","spe","term"]},
+      {id:"deriv_variations",label:"Dérivée et variations", levels:["tc","spe","term"]},
+      {id:"deriv_produit",label:"Dérivée d'un produit", levels:["spe","term"]},
+      {id:"deriv_quotient",label:"Dérivée d'un quotient", levels:["spe","term"]},
+      {id:"deriv_rationnelle",label:"Dérivée de fonction rationnelle", levels:["spe","term"]},
+      {id:"deriv_optimisation",label:"Optimisation (max/min)", levels:["spe","term"]},
+      {id:"deriv_tangente_avancee",label:"Tangente — équation et lectures avancées", levels:["spe","term"]},
+      {id:"derivee_convexite",label:"Convexité et points d'inflexion", levels:["term"]},
+    ] },
+  { id:"limites",      label:"Limites de fonctions", emoji:"♾️", color:"#0E7490", grad:"linear-gradient(135deg,#22D3EE,#155E75)", light:"#ECFEFF", border:"#A5F3FC",
+    subs:[
+      {id:"lim_reference",   label:"Fonctions de référence",       levels:["term"]},
+      {id:"lim_operations",  label:"Opérations sur les limites",   levels:["term"]},
+      {id:"lim_FI",          label:"Formes indéterminées",         levels:["term"]},
+      {id:"lim_asymptotes",  label:"Limites et asymptotes",        levels:["term"]},
+      {id:"lim_comparaison", label:"Comparaison et encadrement",   levels:["term"]},
+    ] },
+  { id:"denombrement", label:"Dénombrement", emoji:"🔢", color:"#7C3AED", grad:"linear-gradient(135deg,#A78BFA,#5B21B6)", light:"#F5F3FF", border:"#DDD6FE",
+    subs:[
+      {id:"denombrement_type", label:"Combinaisons, arrangements, k-uplets", levels:["term"]},
     ] },
   { id:"suites",       label:"Suites numériques", emoji:"🔁", color:"#EA580C", grad:"linear-gradient(135deg,#F97316,#C2410C)", light:"#FFF7ED", border:"#FED7AA",
     subs:[
       {id:"suites_nature",    label:"Nature d'une suite",  levels:["stmg","spe","term"]},
       {id:"suites_termes",    label:"Calculer un terme",   levels:["stmg","spe","term"]},
       {id:"suites_variations",label:"Sens de variation",   levels:["spe","term"]},
+      {id:"suites_recurrence",label:"Démonstration par récurrence", levels:["term"]},
+      {id:"suites_explicite_recurr",label:"Explicite vs récurrence", levels:["spe"]},
     ] },
   { id:"polynomes",    label:"Polynômes du 2nd degré", emoji:"📊", color:"#7C3AED", grad:"linear-gradient(135deg,#A855F7,#6D28D9)", light:"#F5F3FF", border:"#DDD6FE",
     subs:[
@@ -5653,6 +8118,7 @@ const CURRICULUM = {
            probabilites:['tableau','tableau_fill','arbre','contraire'],
            polynomes:['poly2_factorisee'],
            statistiques:['stat_centrale','stat_dispersion'],
+           derivation:['deriv_vitesse','deriv_tangente','deriv_fonctions_ref','deriv_variations'],
            bac:['tronc_annales_s1_2026','tronc_annales_s2_2026','tronc_annales_s3_2026'] }},
   premiere_spe: { label:"1ère Spé Maths", emoji:"🔬", color:"#8B5CF6",
     cats:{ fonctions:['lecture_image','calcul_image','point_courbe','coeff_directeur_calcul','coeff_directeur_lecture','resolution_graphique','tableau_variations','tableau_signes'],
@@ -5660,21 +8126,23 @@ const CURRICULUM = {
            numerique:['decimaux_cm','fractions','puissances','scientifique','conversions','racines_n1','racines_n2','racines_n3','racines_n4'],
            litteral:['eq1','eq_x2','eq_x3','produit_nul','inequation1','developpement','id_remarquables','id_rem_pad','id_rem_difficile','facto_commun','facto_id'],
            probabilites:['tableau','tableau_fill','arbre','contraire'],
-           suites:['suites_nature','suites_termes','suites_variations'],
+           suites:['suites_nature','suites_termes','suites_variations','suites_explicite_recurr'],
            polynomes:['poly2_factorisee','poly_spe_n1','poly_spe_n2','poly_spe_n3','poly_spe_n4'],
            statistiques:['stat_centrale','stat_dispersion','loi_binomiale'],
-           derivation:['lecture_derivee','calcul_derivee'],
+           derivation:['lecture_derivee','calcul_derivee','deriv_vitesse','deriv_tangente','deriv_fonctions_ref','deriv_variations','deriv_produit','deriv_quotient','deriv_rationnelle','deriv_optimisation','deriv_tangente_avancee'],
            bac:['spe_annales_s1_2026','spe_annales_s2_2026'] }},
   terminale_spe: { label:"Terminale Spé", emoji:"🏆", color:"#DC2626",
     cats:{ fonctions:['lecture_image','calcul_image','point_courbe','coeff_directeur_calcul','coeff_directeur_lecture','resolution_graphique','tableau_variations','tableau_signes'],
            pourcentages:['proportions','taux_cm','valeur_finale','evolutions_successives'],
            numerique:['decimaux_cm','fractions','puissances','scientifique','conversions','racines_n1','racines_n2','racines_n3','racines_n4'],
            litteral:['eq1','eq_x2','eq_x3','produit_nul','inequation1','developpement','id_remarquables','id_rem_pad','id_rem_difficile','facto_commun','facto_id'],
-           probabilites:['tableau','tableau_fill','arbre','contraire'],
-           suites:['suites_nature','suites_termes','suites_variations'],
+           probabilites:['tableau','tableau_fill','arbre','contraire','probas_conditionnelles','probas_independance','probas_totales','probas_var_aleatoires','probas_loi_binomiale'],
+           suites:['suites_nature','suites_termes','suites_variations','suites_recurrence','suites_explicite_recurr'],
            polynomes:['poly2_factorisee','poly_spe_n1','poly_spe_n2','poly_spe_n3','poly_spe_n4'],
            statistiques:['stat_centrale','stat_dispersion','loi_binomiale'],
-           derivation:['lecture_derivee','calcul_derivee'],
+           derivation:['lecture_derivee','calcul_derivee','deriv_vitesse','deriv_tangente','deriv_fonctions_ref','deriv_variations','deriv_produit','deriv_quotient','deriv_rationnelle','deriv_optimisation','deriv_tangente_avancee','derivee_convexite'],
+           limites:['lim_reference','lim_operations','lim_FI','lim_asymptotes','lim_comparaison'],
+           denombrement:['denombrement_type'],
            trigonometrie:['valeurs_trigo'],
            bac:['spe_annales_s1_2026','spe_annales_s2_2026'] }},
 };
@@ -6029,7 +8497,7 @@ function DiagnosticScreen({profile, onComplete}) {
     Object.entries(curr.cats).forEach(([catId, subs]) => {
       const sub = subs[0];
       const pool = (DB[catId] && DB[catId][sub]) ? DB[catId][sub] : [];
-      const mcqPool = pool.filter(q => q.choices && !q.exprpad && !q.numpad && !q.gspec && !q.tspec && !q.trespec && !q.dgspec && !q.tvSpec && !q.tsSpec);
+      const mcqPool = pool.filter(q => q.choices && !q.exprpad && !q.numpad && !q.gspec && !q.tspec && !q.trespec && !q.dgspec && !q.tvSpec && !q.tsSpec && !q.svg);
       if(mcqPool.length >= 2) {
         qs.push({...mcqPool[0], _catId:catId, _subId:sub});
         qs.push({...mcqPool[Math.floor(mcqPool.length/2)], _catId:catId, _subId:sub});
@@ -12028,7 +14496,7 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
   const spec    = q.tvSpec || q.tsSpec;
   const specType= q.tvSpec?"tv":q.tsSpec?"ts":null;
   const isTab   = !!spec;
-  const hasVis  = !!(q.gspec || q.tspec || q.trespec);
+  const hasVis  = !!(q.gspec || q.tspec || q.trespec || q.svg);
   const choices = useCallback(()=>q.choices?shuffle(q.choices):[],[q])();
 
   // holes & correctness for tableau mode
@@ -12195,6 +14663,8 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
         width:"100%", boxSizing:"border-box",
       }}>
         {q.gspec   && <div style={{marginBottom:8}}><Graph spec={q.gspec}/></div>}
+        {q.svg     && <div style={{marginBottom:8, display:"flex", justifyContent:"center", maxWidth:"100%", overflow:"hidden"}}
+                            dangerouslySetInnerHTML={{__html: q.svg}}/>}
         {q.trespec && <div style={{marginBottom:10}}><ProbaTree spec={q.trespec}/></div>}
         {q.tspec   && <ProbaTable spec={q.tspec}/>}
         <div style={{
