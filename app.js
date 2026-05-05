@@ -3865,7 +3865,7 @@ const DB = {
         tip: r`\text{Formule du cours : }P_A(B) = \dfrac{P(A \cap B)}{P(A)}\text{ (à condition que }P(A) \neq 0\text{).\\\\ Application : }P_A(B) = \dfrac{0{,}1}{0{,}4} = \dfrac{1}{4} = 0{,}25\text{.\\\\ Le distracteur }0{,}04\text{ correspond au produit }P(A) \tim…` },
       // term_proba_03 — Probabilité conditionnelle dans un tableau croisé — moyenne
       // ⚠️ Question pédagogique majeure : forcer la distinction entre P_A(F), P_F(A) et P(F∩A). À surveiller en classe.
-      { q: r`\text{Dans une classe de }30\text{ élèves,}\\[3pt]\text{18 filles et 12 garçons. 8 filles}\\[3pt]\text{et 4 garçons étudient l'allemand.}\\[4pt]\text{On choisit un élève au hasard.}\\[3pt]\text{Sachant qu'il étudie l'allemand,}\\[3pt]\text{quelle est la proba. que ce soit une fille ?}`,
+      { q: r`\text{Dans une classe de }30\text{ élèves, il y a }18\text{ filles et }12\text{ garçons. }8\text{ filles et }4\text{ garçons étudient l'allemand. On choisit un élève au hasard. Sachant qu'il étudie l'allemand, quelle est la probabilité que ce soit une fille ?}`,
         choices: [
           r`\dfrac{2}{3}`,
           r`\dfrac{8}{18}`,
@@ -3875,7 +3875,7 @@ const DB = {
         a: r`\dfrac{2}{3}`,
         tip: r`\text{On note }F\text{ = \og l'élève est une fille \fg{} et }A\text{ = \og l'élève étudie l'allemand \fg.\\\\ }P_A(F) = \dfrac{P(F \cap A)}{P(A)} = \dfrac{\text{nb filles allemand}}{\text{nb total allemand}} = \dfrac{8}{8 + 4} = \dfrac{8}{12} = \dfra…` },
       // term_proba_04 — Lecture d'un arbre pondéré — moyenne
-      { q: r`\text{On donne ci-dessus l'arbre pondéré}\\[3pt]\text{associé à deux événements }A\text{ et }B\text{.}\\[4pt]\text{Quelle est la valeur de }P(A \cap B)\text{ ?}`,
+      { q: r`\text{On donne ci-dessus l'arbre pondéré associé à deux événements }A\text{ et }B\text{. Quelle est la valeur de }P(A \cap B)\text{ ?}`,
         svg: r`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 300" width="100%" style="background:#fff;font-family:sans-serif">
 <line x1="60" y1="150" x2="200" y2="80" stroke="#111" stroke-width="1.3"/>
 <line x1="60" y1="150" x2="200" y2="220" stroke="#111" stroke-width="1.3"/>
@@ -3919,7 +3919,7 @@ const DB = {
         a: r`0{,}48`,
         tip: r`\text{On part de }P_B(A) = \dfrac{P(A \cap B)}{P(B)}\text{ avec }P(A \cap B) = P(A) \times P_A(B)\text{.\\\\ Donc : }P_B(A) = \dfrac{P(A) \times P_A(B)}{P(B)} = \dfrac{0{,}3 \times 0{,}8}{0{,}5} = \dfrac{0{,}24}{0{,}5} = 0{,}48\text{.\\\\ \textbf{Imp}}…` },
       // term_proba_06 — Probabilité conditionnelle dans un tirage successi — moyenne
-      { q: r`\text{Une urne : }5\text{ boules rouges, }3\text{ vertes.}\\[3pt]\text{On tire successivement sans remise }2\text{ boules.}\\[4pt]\text{Sachant que la 1\textsuperscript{re} est rouge,}\\[3pt]\text{quelle est la proba. que la 2\textsuperscript{e} soit rouge ?}`,
+      { q: r`\text{Une urne contient }5\text{ boules rouges et }3\text{ boules vertes. On tire successivement et sans remise }2\text{ boules. Sachant que la première est rouge, quelle est la probabilité que la seconde soit rouge ?}`,
         choices: [
           r`\dfrac{4}{7}`,
           r`\dfrac{5}{8}`,
@@ -3930,7 +3930,7 @@ const DB = {
         tip: r`\text{On note }R_1\text{ et }R_2\text{ les événements \og la }1^{re}\text{ (resp. }2^e\text{) boule est rouge \fg.\\\\ Sachant }R_1\text{, il reste dans l'urne }4\text{ rouges et }3\text{ vertes, soit }7\text{ boules. Donc }P_{R_1}(R_2) = \dfrac{4}{7}…` },
       // term_proba_07 — Probabilité conditionnelle inverse en contexte — dure
       // ⚠️ Question dure type bac. Distracteur 2 (0,9) piège fréquent : élève confond fiabilité du test et proba conditionnelle inverse.
-      { q: r`\text{Une maladie touche }10\,\%\text{ de la population.}\\[3pt]\text{Test : détecte un malade avec proba. }0{,}9\text{,}\\[2pt]\text{faux positif avec proba. }0{,}2\text{.}\\[4pt]\text{Une personne est testée positive.}\\[3pt]\text{Quelle est la proba. qu'elle soit malade ?}`,
+      { q: r`\text{Une maladie touche }10\,\%\text{ de la population. Un test détecte la maladie avec une probabilité de }0{,}9\text{ chez un malade, et donne un faux positif (test positif chez un non-malade) avec une probabilité de }0{,}2\text{. Une personne est testée positive. Quelle est la probabilité qu'elle soit effectivement malade ?}`,
         choices: [
           r`\dfrac{1}{3}`,
           r`0{,}9`,
@@ -4009,7 +4009,7 @@ const DB = {
         a: r`0{,}54`,
         tip: r`\text{Formule des probabilités totales avec la partition }\{A\,;\,\overline{A}\}\text{ :\\\\ }P(B) = P(A) \times P_A(B) + P(\overline{A}) \times P_{\overline{A}}(B)\text{\\\\ }= 0{,}6 \times 0{,}7 + 0{,}4 \times 0{,}3 = 0{,}42 + 0{,}12 = 0{,}54\text{}…` },
       // term_proba_14 — Probabilités totales par lecture d'arbre — moyenne
-      { q: r`\text{Usine }A\text{ : }60\,\%\text{ des pièces, }2\,\%\text{ défect.}\\[2pt]\text{Usine }B\text{ : }40\,\%\text{ des pièces, }5\,\%\text{ défect.}\\[3pt]\text{(Arbre pondéré ci-dessus.)}\\[4pt]\text{Quelle est la proba. qu'une pièce}\\[2pt]\text{prise au hasard soit défectueuse ?}`,
+      { q: r`\text{Une entreprise possède deux usines }A\text{ et }B\text{. L'usine }A\text{ produit }60\,\%\text{ des pièces, l'usine }B\text{ produit le reste. Parmi les pièces de l'usine }A\text{, }2\,\%\text{ sont défectueuses (événement }D\text{). Parmi celles de l'usine }B\text{, }5\,\%\text{ sont défectueuses. L'arbre pondéré ci-dessus modélise la situation. Quelle est la probabilité qu'une pièce prise au hasard soit défectueuse ?}`,
         svg: r`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" width="100%" style="background:#fff;font-family:sans-serif">
 <line x1="60" y1="150" x2="200" y2="80" stroke="#111" stroke-width="1.3"/>
 <line x1="60" y1="150" x2="200" y2="220" stroke="#111" stroke-width="1.3"/>
@@ -4041,7 +4041,7 @@ const DB = {
         a: r`0{,}032`,
         tip: r`\text{Formule des probabilités totales avec la partition }\{A\,;\,B\}\text{ :\\\\ }P(D) = P(A) \times P_A(D) + P(B) \times P_B(D)\text{\\\\ }= 0{,}6 \times 0{,}02 + 0{,}4 \times 0{,}05 = 0{,}012 + 0{,}020 = 0{,}032\text{.\\\\ Le distracteur }0{,}012\…` },
       // term_proba_15 — Bayes via probabilités totales — moyenne
-      { q: r`\text{Usines }A\text{ (60\,\%, 2\,\% défect.) et }B\text{ (40\,\%, 5\,\%).}\\[3pt]P(D) = 0{,}032\text{ (calculé précédemment).}\\[4pt]\text{Une pièce est défectueuse.}\\[3pt]\text{Quelle est la proba. qu'elle vienne de }A\text{ ?}`,
+      { q: r`\text{On reprend la situation des deux usines }A\text{ (}60\,\%\text{ de la production, }2\,\%\text{ défectueuses) et }B\text{ (}40\,\%\text{, }5\,\%\text{ défectueuses). On a montré que }P(D) = 0{,}032\text{. Une pièce prise au hasard est défectueuse. Quelle est la probabilité qu'elle vienne de l'usine }A\text{ ?}`,
         choices: [
           r`\dfrac{3}{8} = 0{,}375`,
           r`0{,}012`,
@@ -4051,7 +4051,7 @@ const DB = {
         a: r`\dfrac{3}{8} = 0{,}375`,
         tip: r`\text{On cherche }P_D(A) = \dfrac{P(A \cap D)}{P(D)}\text{.\\\\ Le numérateur : }P(A \cap D) = P(A) \times P_A(D) = 0{,}6 \times 0{,}02 = 0{,}012\text{.\\\\ D'où : }P_D(A) = \dfrac{0{,}012}{0{,}032} = \dfrac{12}{32} = \dfrac{3}{8} = 0{,}375\text{.\\\}…` },
       // term_proba_16 — Probabilités totales avec partition à 3 classes — moyenne
-      { q: r`\text{Options : Maths }50\,\%\text{, PC }30\,\%\text{, SVT }20\,\%\text{.}\\[2pt]\text{Latin parmi eux : Maths }10\,\%\text{, PC }20\,\%\text{, SVT }5\,\%\text{.}\\[4pt]\text{Quelle est la proba. qu'un élève}\\[2pt]\text{pris au hasard fasse du Latin ?}`,
+      { q: r`\text{Dans un lycée, }50\,\%\text{ des élèves choisissent l'option Mathématiques, }30\,\%\text{ Physique-Chimie et }20\,\%\text{ SVT (chacun choisit une seule option). Parmi ceux qui font Maths, }10\,\%\text{ font aussi du Latin ; Physique-Chimie : }20\,\%\text{ ; SVT : }5\,\%\text{. Quelle est la probabilité qu'un élève pris au hasard fasse du Latin ?}`,
         choices: [
           r`0{,}12`,
           r`0{,}35`,
@@ -4072,7 +4072,7 @@ const DB = {
         tip: r`\text{Formule des probabilités totales : si }\{A_1, \ldots, A_n\}\text{ est une partition de l'univers, alors pour tout événement }B\text{ :\\\\ }P(B) = \displaystyle\sum_{i=1}^n P(A_i) \times P_{A_i}(B)\text{.\\\\ Le distracteur 2 (}P_B(A_1) + \ldot…` },
       // term_proba_18 — Probabilités totales en contexte (sondage) — dure
       // ⚠️ Question type bac. Bonne pour évaluer la maîtrise complète du chapitre conditionnelles + probas totales.
-      { q: r`\text{Population : }40\,\%\text{ hommes, }60\,\%\text{ femmes.}\\[2pt]\text{Café quotidien : }70\,\%\text{ des hommes, }50\,\%\text{ des femmes.}\\[4pt]\text{Sachant qu'une personne boit du café quotidiennement,}\\[2pt]\text{quelle est la proba. que ce soit un homme ?}`,
+      { q: r`\text{Un sondage s'intéresse à la consommation de café. La population est composée de }40\,\%\text{ d'hommes et }60\,\%\text{ de femmes. }70\,\%\text{ des hommes consomment du café quotidiennement ; chez les femmes, cette proportion est de }50\,\%\text{. Sachant qu'une personne consomme du café quotidiennement, quelle est la probabilité que ce soit un homme ?}`,
         choices: [
           r`\dfrac{14}{29} \approx 0{,}483`,
           r`0{,}40`,
@@ -4106,7 +4106,7 @@ const DB = {
         a: r`1{,}7`,
         tip: r`\text{Définition : }E(X) = \displaystyle\sum_i x_i \times P(X=x_i)\text{.\\\\ }E(X) = 1 \times 0{,}4 + 2 \times 0{,}5 + 3 \times 0{,}1 = 0{,}4 + 1 + 0{,}3 = 1{,}7\text{.\\\\ Le distracteur }2\text{ correspond à la moyenne arithmétique des valeurs (sa}…` },
       // term_proba_21 — Espérance de gain dans un jeu — moyenne
-      { q: r`\text{Jeu : gagner }50\text{ € (proba. }\tfrac{1}{10}\text{)}\\[2pt]\text{ou perdre }5\text{ € (proba. }\tfrac{9}{10}\text{).}\\[4pt]X\text{ = gain algébrique du joueur.}\\[3pt]E(X) = \,?\quad\text{Le jeu est-il favorable ?}`,
+      { q: r`\text{Dans un jeu, on a }1\text{ chance sur }10\text{ de gagner }50\text{ € et }9\text{ chances sur }10\text{ de perdre }5\text{ €. Soit }X\text{ la variable aléatoire donnant le gain (algébrique) du joueur. Quelle est la valeur de }E(X)\text{, et le jeu est-il favorable au joueur ?}`,
         choices: [
           r`E(X) = 0{,}5\text{ €, le jeu est favorable}`,
           r`E(X) = 0{,}5\text{ €, le jeu est défavorable}`,
@@ -4162,7 +4162,7 @@ const DB = {
     // ── Loi binomiale ── (10 questions)
     probas_loi_binomiale: [
       // term_proba_26 — Reconnaître une situation binomiale — facile
-      { q: r`\text{Dans laquelle des situations suivantes}\\[3pt]\text{la variable aléatoire }X\text{ suit-elle une loi binomiale ?}`,
+      { q: r`\text{Dans laquelle des situations suivantes la variable aléatoire }X\text{ suit-elle une loi binomiale ?}`,
         choices: [
           r`\text{On lance }10\text{ fois une pièce truquée (probabilité de pile }0{,}3\text{) et }X\text{ compte le nombre de \og pile \fg}`,
           r`\text{On tire successivement \textbf{sans remise} }5\text{ cartes d'un jeu de }32\text{ et }X\text{ compte le nombre de rois}`,
@@ -4222,7 +4222,7 @@ const DB = {
         a: r`V(X) = 12\text{ et }\sigma(X) \approx 3{,}46`,
         tip: r`\text{Pour }X \sim \mathcal{B}(n\,;\,p)\text{ : }V(X) = np(1-p)\text{ et }\sigma(X) = \sqrt{V(X)}\text{.\\\\ }V(X) = 50 \times 0{,}4 \times 0{,}6 = 12\text{.\\\\ }\sigma(X) = \sqrt{12} \approx 3{,}46\text{.\\\\ Le distracteur 2 (}V = 20 = E(X)\text{)}…` },
       // term_proba_32 — Lecture d'un histogramme binomiale — moyenne
-      { q: r`\text{L'histogramme ci-dessus représente}\\[2pt]X \sim \mathcal{B}(10\,;\,0{,}5)\text{.}\\[4pt]\text{D'après le graphique,}\\[2pt]\text{quelle est approximativement }P(X = 5)\text{ ?}`,
+      { q: r`\text{L'histogramme ci-dessus représente la loi de probabilité d'une variable aléatoire }X\text{ suivant la loi binomiale }\mathcal{B}(10\,;\,0{,}5)\text{. D'après le graphique, quelle est approximativement la valeur de }P(X = 5)\text{ ?}`,
         svg: r`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 320" width="100%" style="background:#fff;font-family:sans-serif">
 <g stroke="#e5e7eb" stroke-width="0.5">
 <line x1="50" y1="228.33" x2="440" y2="228.33"/>
@@ -4301,7 +4301,7 @@ const DB = {
         tip: r`\text{On utilise : }P(5 \leqslant X \leqslant 8) = P(X \leqslant 8) - P(X \leqslant 4)\text{.\\\\ À la calculatrice : }P(X \leqslant 8) \approx 0{,}9050\text{ et }P(X \leqslant 4) \approx 0{,}2173\text{.\\\\ Donc }P(5 \leqslant X \leqslant 8) \approx…` },
       // term_proba_35 — Détermination du paramètre n (seuil) — dure
       // ⚠️ Question type bac (résolution d'inéquation avec ln). Très formatrice mais difficile.
-      { q: r`X \sim \mathcal{B}(n\,;\,0{,}05)\text{ (}n\text{ épreuves, proba. succès }0{,}05\text{).}\\[4pt]\text{Quelle est la plus petite valeur de }n\\[2pt]\text{pour laquelle }P(X \geqslant 1) \geqslant 0{,}99\text{ ?}`,
+      { q: r`\text{On considère }n\text{ épreuves de Bernoulli indépendantes, chacune ayant probabilité }0{,}05\text{ de succès. On note }X\text{ le nombre total de succès, donc }X \sim \mathcal{B}(n\,;\,0{,}05)\text{. Quelle est la plus petite valeur de }n\text{ pour laquelle }P(X \geqslant 1) \geqslant 0{,}99\text{ ?}`,
         choices: [
           r`n = 90`,
           r`n = 20`,
@@ -4629,7 +4629,7 @@ const DB = {
     // ── Vitesse moyenne / instantanée ──
     deriv_vitesse: [
       // tc_vit_02 — distinguer_vmoy_vinst — n1
-      { q: r`\text{Soit }f\text{ la position d'un mobile}\\[3pt]\text{en fonction du temps.}\\[4pt]\text{Comment exprime-t-on la vitesse instantanée}\\[2pt]\text{du mobile à l'instant }t = a\text{ ?}`,
+      { q: r`\text{Soit }f\text{ la position d'un mobile au cours du temps. Comment exprime-t-on la vitesse instantanée du mobile à l'instant }t = a\text{ ?}`,
         choices: [
           r`\dfrac{f(a)}{a}`,
           r`f(a)`,
@@ -4639,7 +4639,7 @@ const DB = {
         a: r`f'(a)`,
         tip: r`\text{La vitesse instantanée à l'instant }a\text{ est le nombre dérivé }f'(a)\text{. Le distracteur D est la vitesse moyenne entre }a\text{ et }b\text{ — c'est différent : c'est une moyenne sur un intervalle, pas une vitesse à un instant précis.}` },
       // tc_vit_05 — lecture_graphique_f_prime — n2
-      { q: r`\text{Ci-contre : position }f(t)\text{ (m) en fonction de }t\text{ (s).}\\[3pt]\text{La tangente en }t = 2\text{ est tracée.}\\[4pt]\text{D'après le graphique, quelle est}\\[2pt]\text{la vitesse instantanée à }t = 2\text{ s ?}`,
+      { q: r`\text{La courbe ci-contre représente la position }f(t)\text{ d'un mobile (en mètres) en fonction du temps }t\text{ (en secondes). On a tracé la tangente à la courbe au point d'abscisse }t = 2\text{. À l'aide du graphique, quelle est la vitesse instantanée du mobile à }t = 2\text{ s ?}`,
         gspec: { fn:x=>x*x-x+2, xr:[0,4], yr:[0,8], extras:c=><>{gTan(x=>x*x-x+2,2,3,c)}{gPt(2,4,c)}{gNote(2.2,4.6,'A',c,'#EF4444')}</> },
         choices: [
           r`f(2) = 4\text{ m/s}`,
@@ -4650,7 +4650,7 @@ const DB = {
         a: r`3\text{ m/s (coefficient directeur de la tangente)}`,
         tip: r`\text{La vitesse instantanée à }t = a\text{ est égale au coefficient directeur de la tangente à la courbe au point d'abscisse }a\text{. Ici, on lit graphiquement une pente de }3\text{, donc }f'(2) = 3\text{ m/s.}` },
       // tc_vit_06 — vitesse_nulle_extremum — n2
-      { q: r`\text{Hauteur d'un objet lancé verticalement :}\\[3pt]h(t) = -5t^2 + 20t\text{ (en mètres, }t\text{ en secondes).}\\[4pt]\text{À quel instant la vitesse est-elle nulle ?}`,
+      { q: r`\text{Un objet est lancé verticalement et sa hauteur (en mètres) après }t\text{ secondes est donnée par }h(t) = -5t^2 + 20t\text{. À quel instant sa vitesse est-elle nulle ?}`,
         choices: [
           r`t = 0\text{ s}`,
           r`t = 2\text{ s}`,
@@ -4680,7 +4680,7 @@ const DB = {
         a: r`\text{Les vitesses sont opposées (même valeur, signes contraires)}`,
         tip: r`f'(t) = 2t - 4\text{. À }t = 1\text{ : }f'(1) = -2\text{ (recule à }2\text{ m/s). À }t = 3\text{ : }f'(3) = +2\text{ (avance à }2\text{ m/s). Les vitesses sont opposées : même valeur absolue, signes contraires.}` },
       // tc_vit_09 — lecture_graphique_signe_vitesse — n2
-      { q: r`\text{Ci-contre : position }f(t)\text{ (m) en fonction de }t\text{ (s).}\\[4pt]\text{À quel(s) instant(s) le mobile avance}\\[2pt]\text{(vitesse positive) ?}`,
+      { q: r`\text{La courbe ci-contre représente la position }f(t)\text{ d'un mobile (en mètres) en fonction du temps }t\text{ (en secondes). À quel(s) instant(s) le mobile avance (vitesse positive) ?}`,
         gspec: { fn:x=>-(x-3)*(x-3)+5, xr:[0,6], yr:[-2,6], extras:c=><>{gPt(3,5,c)}{gDV(3,c)}{gNote(3.1,5.2,'max',c,'#EF4444')}</> },
         choices: [
           r`\text{Pour }t \in [0 \,;\, 3]`,
@@ -4691,7 +4691,7 @@ const DB = {
         a: r`\text{Pour }t \in [0 \,;\, 3]`,
         tip: r`\text{Le mobile avance lorsque sa position augmente, donc lorsque }f\text{ est croissante. Sur le graphique, }f\text{ croît sur }[0\,;\,3]\text{ puis décroît sur }[3\,;\,6]\text{. La vitesse est positive sur }[0\,;\,3]\text{.}` },
       // tc_vit_10 — unite_derivee — n3
-      { q: r`V(t)\text{ : volume d'eau (litres) dans un réservoir}\\[2pt]\text{au temps }t\text{ (heures).}\\[4pt]\text{Que représente }V'(2)\text{ et quelle est son unité ?}`,
+      { q: r`\text{La fonction }V(t)\text{ donne le volume d'eau (en litres) dans un réservoir au temps }t\text{ (en heures). Que représente }V'(2)\text{ et quelle est son unité ?}`,
         choices: [
           r`\text{Le volume d'eau à }t = 2\text{, en litres}`,
           r`\text{Le débit (vitesse de remplissage ou de vidage) à }t = 2\text{, en litres par heure (L/h)}`,
@@ -4757,7 +4757,7 @@ const DB = {
         a: r`f(2) = 4`,
         tip: r`f(2)\text{ est l'ordonnée du point de la courbe d'abscisse }2\text{, c'est-à-dire l'ordonnée du point }A\text{. Sur le graphique, on lit }f(2) = 4\text{.}` },
       // tc_tan_06 — equation_a_partir_lectures — n3
-      { q: r`\text{À partir des lectures graphiques}\\[2pt]\text{de }f(2)\text{ et }f'(2)\text{ (graphique ci-contre),}\\[4pt]\text{quelle est l'équation de la tangente }T\text{ ?}`,
+      { q: r`\text{En utilisant les lectures de }f(2)\text{ et }f'(2)\text{ effectuées sur le graphique ci-contre, quelle est l'équation de la tangente }T\text{ ?}`,
         gspec: { fn:x=>x*x-x+2, xr:[-1,4], yr:[-1,8], extras:c=><>{gTan(x=>x*x-x+2,2,3,c)}{gPt(2,4,c)}{gNote(2.2,4.6,'A',c,'#EF4444')}</> },
         choices: [
           r`y = 3x - 2`,
@@ -4768,7 +4768,7 @@ const DB = {
         a: r`y = 3x - 2`,
         tip: r`\text{Avec }f(2) = 4\text{ et }f'(2) = 3\text{ : tangente }y = 3(x - 2) + 4 = 3x - 6 + 4 = 3x - 2\text{.}` },
       // tc_tan_07 — tangente_horizontale — n2
-      { q: r`\text{La courbe ci-contre admet une tangente}\\[2pt]\text{horizontale au point d'abscisse }a = 1\text{.}\\[4pt]\text{Que peut-on dire de }f'(1)\text{ ?}`,
+      { q: r`\text{La courbe ci-contre admet une tangente horizontale au point d'abscisse }a = 1\text{. Que peut-on dire du nombre dérivé }f'(1)\text{ ?}`,
         gspec: { fn:x=>-(x-1)*(x-1)+4, xr:[-1,4], yr:[-2,5], extras:c=><>{gTan(x=>-(x-1)*(x-1)+4,1,0,c)}{gPt(1,4,c)}{gNote(1.15,4.3,'max',c,'#EF4444')}</> },
         choices: [
           r`f'(1) = 1`,
@@ -4779,7 +4779,7 @@ const DB = {
         a: r`f'(1) = 0`,
         tip: r`\text{Une tangente horizontale a un coefficient directeur nul. Donc }f'(1) = 0\text{. Réciproquement, si }f'(a) = 0\text{ alors la tangente en }a\text{ est horizontale — c'est un critère pour repérer les extremums.}` },
       // tc_tan_08 — tangente_parallele — n4
-      { q: r`\text{Soit }f(x) = x^2 - 4x + 1\text{.}\\[4pt]\text{En quel point la courbe de }f\text{ admet-elle}\\[2pt]\text{une tangente parallèle à }y = 2x + 7\text{ ?}`,
+      { q: r`\text{Soit }f(x) = x^2 - 4x + 1\text{. En quel point la courbe de }f\text{ admet-elle une tangente parallèle à la droite d'équation }y = 2x + 7\text{ ?}`,
         choices: [
           r`\text{Au point d'abscisse }x = 2`,
           r`\text{Au point d'abscisse }x = 3`,
@@ -4863,7 +4863,7 @@ const DB = {
         a: r`f'(x) = \dfrac{2}{\sqrt{x}} - \dfrac{2}{x^2}`,
         tip: r`(4\sqrt{x})' = 4 \times \dfrac{1}{2\sqrt{x}} = \dfrac{2}{\sqrt{x}}\text{ et }\left(\dfrac{2}{x}\right)' = -\dfrac{2}{x^2}\text{. Par linéarité : }f'(x) = \dfrac{2}{\sqrt{x}} - \dfrac{2}{x^2}\text{.}` },
       // tc_ref_08 — constante_disparait — n2
-      { q: r`\text{Parmi les fonctions suivantes,}\\[2pt]\text{lesquelles ont la même dérivée ?}\\[4pt]f(x) = x^2 + 3\text{ ; }g(x) = x^2 - 5\\[2pt]h(x) = 2x^2 + 3\text{ ; }k(x) = x^2 + x`,
+      { q: r`\text{Parmi les fonctions suivantes, lesquelles ont la même dérivée ? }f(x) = x^2 + 3\text{ ; }g(x) = x^2 - 5\text{ ; }h(x) = 2x^2 + 3\text{ ; }k(x) = x^2 + x`,
         choices: [
           r`f\text{ et }g\text{ uniquement}`,
           r`f\text{, }g\text{ et }h`,
@@ -4907,7 +4907,7 @@ const DB = {
         a: r`f\text{ est décroissante sur }]-\infty\,;\,2]\text{ puis croissante sur }[2\,;\,+\infty[`,
         tip: r`f'(x) = 2x - 4\text{, qui s'annule en }x = 2\text{. }f'(x) < 0\text{ pour }x < 2\text{ et }f'(x) > 0\text{ pour }x > 2\text{. Donc }f\text{ décroît sur }]-\infty\,;\,2]\text{ puis croît sur }[2\,;\,+\infty[\text{. Cohére}…` },
       // tc_var_04 — lecture_tableau_variations — n2
-      { q: r`\text{Le tableau de variations ci-contre}\\[2pt]\text{représente }f\text{ sur }[-2\,;\,5]\text{.}\\[4pt]\text{Quelle affirmation est fausse ?}`,
+      { q: r`\text{Le tableau de variations ci-contre représente la fonction }f\text{ sur }[-2\,;\,5]\text{. Quelle affirmation est fausse ?}`,
         gspec: { fn:x=>-0.7*(x-1)*(x-1)+4, xr:[-2,5], yr:[-4,5], extras:c=><>{gPt(1,4,c)}{gPt(-2,-3,c)}{gPt(5,-1,c)}{gDH(0,c,'#94A3B8')}{gNote(1,4.3,'max=4',c,'#EF4444')}{gNote(-2,-2.7,'(-2;-3)',c)}{gNote(4.2,-1,'(5;-1)',c)}</> },
         choices: [
           r`f\text{ admet un maximum égal à }4\text{ sur }[-2\,;\,5]`,
@@ -5012,7 +5012,7 @@ const DB = {
         a: r`28`,
         tip: r`u(x) = x^2 - 4\text{ donne }u'(x) = 2x\text{ ; }v(x) = 3x + 1\text{ donne }v'(x) = 3\text{. }f'(x) = 2x(3x+1) + 3(x^2-4)\text{. En }x = 2\text{ : }f'(2) = 4 \times 7 + 3 \times 0 = 28\text{. Bon réflexe : remarquer que }u(2) = 0\text{ simplifie le calcul.}` },
       // spe_prod_07 — synthese_choix_methode — n4
-      { q: r`\text{Méthode la plus rapide pour dériver :}\\[4pt]\text{(i) }f(x) = (3x + 2)(x - 1)\\[2pt]\text{(ii) }g(x) = x \cdot \sqrt{x}\\[2pt]\text{(iii) }h(x) = (x^2 + 1) \cdot \dfrac{1}{x}`,
+      { q: r`\text{Pour chacune des fonctions suivantes, indiquez quelle est la méthode la plus rapide pour obtenir la dérivée : (i) }f(x) = (3x + 2)(x - 1)\text{ ; (ii) }g(x) = x \cdot \sqrt{x}\text{ ; (iii) }h(x) = (x^2 + 1) \cdot \dfrac{1}{x}`,
         choices: [
           r`\text{(i) développer, (ii) formule produit, (iii) formule produit}`,
           r`\text{(i) formule produit, (ii) formule produit, (iii) développer après transformation}`,
@@ -5170,7 +5170,7 @@ const DB = {
         a: r`\text{Un minimum en }x = 2`,
         tip: r`f'(x) = \dfrac{x^2 - 4}{x^2} = \dfrac{(x-2)(x+2)}{x^2}\text{. Sur }]0\,;\,+\infty[\text{, }x^2 > 0\text{ et }x + 2 > 0\text{, donc le signe de }f'\text{ est celui de }x - 2\text{. }f'\text{ passe du négatif au positif en}…` },
       // spe_rat_07 — lecture_graphique_rationnelle — n2
-      { q: r`\text{Ci-contre : courbe d'une fonction rationnelle}\\[2pt]f\text{ définie sur }\mathbb{R} \setminus \{2\}\text{.}\\[4pt]\text{Quelle affirmation est correcte ?}`,
+      { q: r`\text{La courbe ci-contre représente une fonction rationnelle }f\text{ définie sur }\mathbb{R} \setminus \{2\}\text{. Quelle affirmation est correcte ?}`,
         gspec: { fn:x=>1/(x-2), xr:[-2,6], yr:[-4,4], extras:c=><>{gDV(2,c,'#9CA3AF')}{gNote(2.1,3.5,'x=2',c,'#9CA3AF')}</> },
         choices: [
           r`f\text{ est croissante sur }\mathbb{R}`,
@@ -5185,7 +5185,7 @@ const DB = {
     // ── Optimisation (max/min) ──
     deriv_optimisation: [
       // spe_opt_01 — modelisation_volume — n2
-      { q: r`\text{On découpe 4 carrés de côté }x\text{ aux coins}\\[2pt]\text{d'un carton }20 \times 30\text{ cm,}\\[2pt]\text{puis on plie (boîte sans couvercle).}\\[4pt]\text{Quelle est l'expression de }V(x)\text{ ?}`,
+      { q: r`\text{On découpe quatre carrés de côté }x\text{ aux quatre coins d'un rectangle de carton de dimensions }20 \times 30\text{ cm, puis on plie pour former une boîte sans couvercle. Quelle est l'expression du volume }V(x)\text{ de la boîte en fonction de }x\text{ ?}`,
         choices: [
           r`V(x) = 20 \times 30 \times x`,
           r`V(x) = (20 - x)(30 - x) \times x`,
@@ -5215,7 +5215,7 @@ const DB = {
         a: r`\text{Calculer }V'(x)\text{, étudier son signe et identifier un changement de signe}`,
         tip: r`\text{Pour trouver un maximum d'une fonction sur un intervalle ouvert, on dérive, on étudie le signe de la dérivée, et on identifie un éventuel changement de signe.}` },
       // spe_opt_04 — aire_max_perimetre_fixe — n3
-      { q: r`\text{On dispose de }40\text{ m de clôture}\\[2pt]\text{pour un enclos rectangulaire.}\\[4pt]\text{Quelles dimensions maximisent l'aire ?}`,
+      { q: r`\text{On dispose de }40\text{ mètres de clôture pour entourer un enclos rectangulaire. Quelles sont les dimensions qui maximisent l'aire de l'enclos ?}`,
         choices: [
           r`5 \times 15\text{ (aire = }75\text{ m}^2\text{)}`,
           r`10 \times 10\text{ (aire = }100\text{ m}^2\text{)}`,
@@ -5259,7 +5259,7 @@ const DB = {
     // ── Tangente — équation et lectures avancées ──
     deriv_tangente_avancee: [
       // spe_tana_01 — distinction_au_point_passant_par — n2
-      { q: r`\text{Soit }f\text{ dérivable et }A\text{ un point fixé.}\\[4pt]\text{Quelle différence entre}\\[2pt]\text{« la tangente à }\mathcal{C}_f\text{ \textbf{au} point }A\text{ »}\\[2pt]\text{et « la tangente à }\mathcal{C}_f\text{ \textbf{passant par} }A\text{ » ?}`,
+      { q: r`\text{Soit }f\text{ une fonction dérivable et }A\text{ un point fixé. Quelle est la différence essentielle entre « la tangente à }\mathcal{C}_f\text{ au point }A\text{ » et « la tangente à }\mathcal{C}_f\text{ passant par }A\text{ » ?}`,
         choices: [
           r`\text{Aucune différence, ce sont deux façons de dire la même chose}`,
           r`\text{La première suppose que }A\text{ est sur la courbe ; la seconde non}`,
@@ -5269,7 +5269,7 @@ const DB = {
         a: r`\text{La première suppose que }A\text{ est sur la courbe ; la seconde non}`,
         tip: r`\text{La tangente « au point }A\text{ » suppose que }A\text{ est un point de la courbe : on connaît l'abscisse }a\text{ et la tangente est unique. La tangente « passant par }A\text{ » peut concerner un point }A\text{ ext}…` },
       // spe_tana_02 — mise_en_equation_origine — n3
-      { q: r`\text{Soit }f(x) = x^2 + 4\text{.}\\[3pt]\text{On cherche les points de }\mathcal{C}_f\\[2pt]\text{dont la tangente passe par }O\text{.}\\[4pt]\text{Soit }a\text{ l'abscisse d'un tel point.}\\[2pt]\text{Quelle équation vérifie }a\text{ ?}`,
+      { q: r`\text{Soit }f(x) = x^2 + 4\text{. On cherche les points de la courbe en lesquels la tangente passe par l'origine }O\text{. Soit }a\text{ l'abscisse d'un tel point. Quelle équation doit vérifier }a\text{ ?}`,
         choices: [
           r`a^2 + 4 = 0`,
           r`f'(a) = 0`,
@@ -5309,7 +5309,7 @@ const DB = {
         a: r`a = -1\text{ et }a = 3`,
         tip: r`\Delta = 4 + 12 = 16 > 0\text{, donc deux racines : }a = \dfrac{2 \pm 4}{2}\text{, soit }a = 3\text{ ou }a = -1\text{. Il y a donc deux tangentes à la courbe de }f(x) = x^2\text{ passant par le point }A(1\,;\,-3)\text{ :}…` },
       // spe_tana_06 — position_courbe_tangente_convexite — n4
-      { q: r`\text{Soit }f(x) = x^2\text{.}\\[3pt]\text{La tangente en }a = 1\text{ a pour équation}\\[2pt]y = 2x - 1\text{.}\\[4pt]\text{Quelle est la position de }\mathcal{C}_f\\[2pt]\text{par rapport à cette tangente ?}`,
+      { q: r`\text{Soit }f(x) = x^2\text{. La tangente à la courbe de }f\text{ au point d'abscisse }a = 1\text{ a pour équation }y = 2x - 1\text{. Quelle est la position de la courbe par rapport à cette tangente ?}`,
         choices: [
           r`\text{La courbe est au-dessus de la tangente sur }\mathbb{R}\text{, sauf au point de tangence}`,
           r`\text{La courbe est en-dessous de la tangente sur }\mathbb{R}\text{, sauf au point de tangence}`,
@@ -5498,7 +5498,7 @@ const DB = {
         a: r`\left[0\,;\,+\infty\right[`,
         tip: r`f'(x) = \mathrm{e}^{x} - x - 1\text{, puis }f''(x) = \mathrm{e}^{x} - 1\text{. On résout }f''(x) \geqslant 0 \iff \mathrm{e}^{x} \geqslant 1 \iff x \geqslant 0\text{ (car la fonction exp est strictement croissante et }\mathrm{e}^{0} = 1\text{). Donc }…` },
       // term_convex_09 — Repérer un point d'inflexion sur un graphe — facile
-      { q: r`\text{Ci-dessus : courbe de }f\text{ sur }[-2\,;\,2]\text{.}\\[4pt]\text{La courbe possède un point d'inflexion.}\\[3pt]\text{Quelles sont ses coordonnées ?}`,
+      { q: r`\text{Ci-dessus, la courbe représentative d'une fonction }f\text{ définie sur }[-2\,;\,2]\text{. Cette courbe possède un point d'inflexion. Quelles sont ses coordonnées ?}`,
         svg: r`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 320" width="100%" style="background:#fff;font-family:sans-serif">
 <g stroke="#e5e7eb" stroke-width="0.5">
 <line x1="74.00" y1="20" x2="74.00" y2="290"/>
@@ -5565,7 +5565,7 @@ const DB = {
         a: r`(0\,;\,0)`,
         tip: r`\text{Un point d'inflexion est un point où la courbure change : avant, la courbe est tournée vers le bas (concave) ; après, vers le haut (convexe). Ici, le changement se produit en }x=0\text{, et }f(0)=0\text{. Le point d'inflexion est donc }(0\,;\,0)\text{.}` },
       // term_convex_10 — Déterminer un point d'inflexion par calcul de f'' — facile
-      { q: r`\text{Soit }f(x) = x^3 - 6x^2 + 9x + 1\text{.}\\[4pt]\text{Quelles sont les coordonnées}\\[2pt]\text{du point d'inflexion de }\mathcal{C}_f\text{ ?}`,
+      { q: r`\text{Soit }f\text{ définie sur }\mathbb{R}\text{ par }f(x) = x^3 - 6x^2 + 9x + 1\text{. Quelles sont les coordonnées du point d'inflexion de la courbe }\mathcal{C}_f\text{ ?}`,
         choices: [
           r`(2\,;\,3)`,
           r`(2\,;\,0)`,
@@ -6070,7 +6070,7 @@ const DB = {
     // ── Limites et asymptotes ── (8 questions)
     lim_asymptotes: [
       // term_lim_27 — Lecture graphique d'asymptotes — facile
-      { q: r`\text{Ci-dessus : courbe de }f\text{.}\\[3pt]\text{Les asymptotes sont en vert pointillé.}\\[4pt]\text{Quelles sont les équations}\\[2pt]\text{des asymptotes de }\mathcal{C}_f\text{ ?}`,
+      { q: r`\text{Ci-dessus, la courbe représentative d'une fonction }f\text{. Les asymptotes sont représentées en vert pointillé. Quelles sont les équations des asymptotes de }\mathcal{C}_f\text{ ?}`,
         svg: r`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 320" width="100%" style="background:#fff;font-family:sans-serif">
 <g stroke="#e5e7eb" stroke-width="0.5">
 <line x1="40.00" y1="20" x2="40.00" y2="290"/>
@@ -6319,7 +6319,7 @@ const DB = {
         a: r`21`,
         tip: r`\text{Formule du cours : }\dbinom{n}{k} = \dfrac{n \times (n-1) \times \dots \times (n-k+1)}{k!}\text{ (au numérateur, }k\text{ facteurs en partant de }n\text{).\\\\ Application : }\dbinom{7}{2} = \dfrac{7 \times 6}{2!} = \dfrac{42}{2} = 21\text{.\\\}…` },
       // term_denomb_01 — Identifier un k-uplet (avec répétition) — facile
-      { q: r`\text{On forme un code à }4\text{ chiffres}\\[2pt]\text{parmi }\{0, 1, \dots, 9\}\text{ (répétition permise).}\\[4pt]\text{Combien de codes différents ?}`,
+      { q: r`\text{On forme un code à }4\text{ chiffres choisis parmi }\{0\,;\,1\,;\,\dots\,;\,9\}\text{. Les chiffres peuvent se répéter. Combien de codes différents peut-on former ?}`,
         choices: [
           r`10^{4} = 10\,000`,
           r`10 \times 9 \times 8 \times 7 = 5\,040`,
@@ -6339,7 +6339,7 @@ const DB = {
         a: r`\binom{32}{3} = 4\,960`,
         tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
       // term_denomb_03 — Identifier un arrangement (podium) — facile
-      { q: r`\text{Course de }8\text{ coureurs.}\\[3pt]\text{On note l'ordre des 3 premiers}\\[2pt]\text{(or, argent, bronze).}\\[4pt]\text{Combien de podiums différents ?}`,
+      { q: r`\text{À l'arrivée d'une course de }8\text{ coureurs, on relève l'ordre des }3\text{ premiers (or, argent, bronze). Combien de podiums différents sont possibles ?}`,
         choices: [
           r`8 \times 7 \times 6 = 336`,
           r`\binom{8}{3} = 56`,
@@ -6369,7 +6369,7 @@ const DB = {
         a: r`6 \times 5 = 30`,
         tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
       // term_denomb_06 — Identifier un k-uplet (lancers de dés) — facile
-      { q: r`\text{On lance un dé (6 faces) }3\text{ fois de suite}\\[2pt]\text{et on note le résultat dans l'ordre.}\\[4pt]\text{Combien de résultats différents ?}`,
+      { q: r`\text{On lance un dé équilibré à }6\text{ faces }3\text{ fois de suite et on note le résultat dans l'ordre. Combien de résultats différents sont possibles ?}`,
         choices: [
           r`6^{3} = 216`,
           r`6 \times 5 \times 4 = 120`,
@@ -6379,7 +6379,7 @@ const DB = {
         a: r`6^{3} = 216`,
         tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
       // term_denomb_07 — Combinaison (comité) — moyenne
-      { q: r`\text{Association de }12\text{ membres.}\\[3pt]\text{On forme un comité de }4\text{ personnes}\\[2pt]\text{(sans hiérarchie).}\\[4pt]\text{Combien de comités différents ?}`,
+      { q: r`\text{Une association comporte }12\text{ membres. On souhaite former un comité de }4\text{ personnes (sans hiérarchie particulière). Combien de comités différents peut-on former ?}`,
         choices: [
           r`\binom{12}{4} = 495`,
           r`12 \times 11 \times 10 \times 9 = 11\,880`,
@@ -6399,7 +6399,7 @@ const DB = {
         a: r`10 \times 9 \times 8 = 720`,
         tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
       // term_denomb_09 — K-uplet (mot de passe) — moyenne
-      { q: r`\text{Mot de passe : }5\text{ lettres majuscules (A–Z)}\\[2pt]\text{avec répétition possible.}\\[4pt]\text{Combien de mots de passe différents ?}`,
+      { q: r`\text{On forme un mot de passe de }5\text{ lettres (majuscules) en utilisant l'alphabet }A\text{ à }Z\text{ (}26\text{ lettres). Les lettres peuvent se répéter. Combien de mots de passe différents sont possibles ?}`,
         choices: [
           r`26^{5}`,
           r`26 \times 25 \times 24 \times 23 \times 22`,
@@ -6409,7 +6409,7 @@ const DB = {
         a: r`26^{5}`,
         tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
       // term_denomb_10 — Combinaison (jeu de cartes) — moyenne
-      { q: r`\text{On distribue une \og main \fg{} de }5\text{ cartes}\\[2pt]\text{depuis un jeu de }52\text{ cartes.}\\[4pt]\text{Combien de mains différentes ?}`,
+      { q: r`\text{On distribue une \og main \fg{} de }5\text{ cartes à un joueur, à partir d'un jeu de }52\text{ cartes. Combien de mains différentes peut-il recevoir ?}`,
         choices: [
           r`\binom{52}{5}`,
           r`52 \times 51 \times 50 \times 49 \times 48`,
@@ -6419,7 +6419,7 @@ const DB = {
         a: r`\binom{52}{5}`,
         tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
       // term_denomb_11 — Arrangement (lettres distinctes) — moyenne
-      { q: r`\text{On forme un sigle de }4\text{ lettres}\\[2pt]\textbf{toutes différentes}\text{ parmi les }26\text{ de l'alphabet.}\\[4pt]\text{Combien de sigles peut-on former ?}`,
+      { q: r`\text{On souhaite former un sigle de }4\text{ lettres \textbf{toutes différentes} parmi les }26\text{ lettres de l'alphabet. Combien de sigles peut-on former ?}`,
         choices: [
           r`26 \times 25 \times 24 \times 23 = 358\,800`,
           r`\binom{26}{4} = 14\,950`,
@@ -6429,7 +6429,7 @@ const DB = {
         a: r`26 \times 25 \times 24 \times 23 = 358\,800`,
         tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
       // term_denomb_12 — Combinaison (délégués) — moyenne
-      { q: r`\text{Classe de }28\text{ élèves.}\\[3pt]\text{On choisit }2\text{ délégués}\\[2pt]\text{(sans distinction entre eux).}\\[4pt]\text{Combien de choix possibles ?}`,
+      { q: r`\text{Dans une classe de }28\text{ élèves, on doit choisir }2\text{ délégués (sans distinction entre eux). Combien de choix possibles ?}`,
         choices: [
           r`\binom{28}{2} = 378`,
           r`28 \times 27 = 756`,
@@ -6439,7 +6439,7 @@ const DB = {
         a: r`\binom{28}{2} = 378`,
         tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
       // term_denomb_13 — K-uplet (choix indépendants successifs) — moyenne
-      { q: r`\text{Au self : }7\text{ desserts par jour.}\\[2pt]\text{Lola déjeune }4\text{ jours et choisit}\\[2pt]\text{un dessert chaque jour (répétition permise).}\\[4pt]\text{Combien de \og semaines de desserts \fg{} possibles ?}`,
+      { q: r`\text{Au self, }7\text{ desserts différents sont proposés chaque jour. Lola y déjeune }4\text{ jours dans la semaine et choisit un dessert chaque jour (elle peut reprendre le même). Combien de \og semaines de desserts \fg{} différentes sont possibles pour Lola ?}`,
         choices: [
           r`7^{4} = 2\,401`,
           r`7 \times 6 \times 5 \times 4 = 840`,
@@ -6449,7 +6449,7 @@ const DB = {
         a: r`7^{4} = 2\,401`,
         tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
       // term_denomb_14 — Permutation (anagrammes) — moyenne
-      { q: r`\text{Combien d'anagrammes peut-on former}\\[2pt]\text{avec les lettres du mot \textsc{maths}}\\[2pt]\text{(5 lettres distinctes) ?}`,
+      { q: r`\text{Combien d'anagrammes (mots ayant un sens ou non) peut-on former avec les lettres du mot \textsc{maths} (les }5\text{ lettres sont distinctes) ?}`,
         choices: [
           r`5! = 120`,
           r`5^{5} = 3\,125`,
@@ -6459,7 +6459,7 @@ const DB = {
         a: r`5! = 120`,
         tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
       // term_denomb_15 — Différencier combinaison et arrangement (piège) — moyenne
-      { q: r`\text{Un professeur choisit }3\text{ élèves}\\[2pt]\textbf{simultanément}\text{ parmi }10\\[2pt]\text{(sans rôle distinct).}\\[4pt]\text{Combien de choix possibles ?}`,
+      { q: r`\text{Un professeur doit choisir }3\text{ élèves \textbf{simultanément} parmi }10\text{ pour participer à un projet (sans rôle distinct). Combien de choix possibles ?}`,
         choices: [
           r`\binom{10}{3} = 120`,
           r`10 \times 9 \times 8 = 720`,
@@ -6479,7 +6479,7 @@ const DB = {
         a: r`\binom{8}{2} \times \binom{10}{3} = 3\,360`,
         tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
       // term_denomb_17 — Arrangement avec contrainte de position — dure
-      { q: r`\text{Combien de \og mots \fg{} de }4\text{ lettres}\\[2pt]\textbf{toutes différentes}\text{ (alphabet, }26\text{ lettres)}\\[2pt]\text{avec la 1\textsuperscript{re} lettre = \textsc{m} ?}`,
+      { q: r`\text{Combien de \og mots \fg{} de }4\text{ lettres \textbf{toutes différentes} peut-on former avec l'alphabet (}26\text{ lettres) en imposant que la première lettre soit \textsc{m} ?}`,
         choices: [
           r`25 \times 24 \times 23 = 13\,800`,
           r`26 \times 25 \times 24 \times 23 = 358\,800`,
@@ -6500,7 +6500,7 @@ const DB = {
         a: r`\binom{4}{2} \times \binom{28}{3}`,
         tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
       // term_denomb_19 — Distinguer arrangement et combinaison (formulation — dure
-      { q: r`\text{Urne : }7\text{ boules numérotées de }1\text{ à }7\text{.}\\[2pt]\text{On tire }\textbf{successivement sans remise}\text{ }3\text{ boules}\\[2pt]\text{en notant le numéro dans l'ordre.}\\[4pt]\text{Combien de tirages différents ?}`,
+      { q: r`\text{Une urne contient }7\text{ boules numérotées de }1\text{ à }7\text{. On tire \textbf{successivement, sans remise}, }3\text{ boules, et on note le numéro à chaque tirage (on retient donc l'ordre). Combien de tirages différents peut-on observer ?}`,
         choices: [
           r`7 \times 6 \times 5 = 210`,
           r`\binom{7}{3} = 35`,
@@ -8100,37 +8100,40 @@ const CURRICULUM = {
            probabilites:['tableau','tableau_fill','arbre','contraire'],
            statistiques:['stat_centrale','stat_dispersion'] }},
   premiere_stmg: { label:"1ère STMG", emoji:"📊", color:"#F59E0B",
-    cats:{ fonctions:['lecture_image','calcul_image','point_courbe','coeff_directeur_calcul','coeff_directeur_lecture','equation_droite_lecture','resolution_graphique','tableau_variations','tableau_signes'],
-           pourcentages:['proportions','taux_cm','valeur_finale','evolutions_successives','evolution_reciproque','taux_moyen','indice'],
-           numerique:['decimaux_cm','fractions','puissances','scientifique','conversions','racines_n1'],
-           litteral:['eq1','eq_x2','produit_nul','inequation1','developpement','id_remarquables','facto_commun','manipulation'],
-           probabilites:['tableau','tableau_fill','arbre','contraire'],
-           suites:['suites_nature','suites_termes'],
-           polynomes:['poly2_factorisee'],
-           statistiques:['stat_centrale','stat_dispersion','loi_binomiale','echantillonnage'],
-           derivation:['lecture_derivee','calcul_derivee'],
-           bac:['stmg_annales_s1_2026','stmg_annales_s2_2026'] }},
+    cats:{
+      // ── Thèmes cœur 1ère STMG ──
+      pourcentages:['evolutions_successives','evolution_reciproque','taux_moyen','indice','proportions','taux_cm','valeur_finale'],
+      suites:['suites_nature','suites_termes'],
+      statistiques:['loi_binomiale','echantillonnage','stat_centrale','stat_dispersion'],
+      derivation:['lecture_derivee','calcul_derivee'],
+      polynomes:['poly2_factorisee'],
+      // ── Prérequis seconde ──
+      litteral:['eq_x2','produit_nul','inequation1','developpement','id_remarquables','facto_commun','manipulation','eq1'],
+      fonctions:['tableau_variations','tableau_signes','coeff_directeur_calcul','coeff_directeur_lecture','equation_droite_lecture','resolution_graphique','lecture_image','calcul_image','point_courbe'],
+      bac:['stmg_annales_s1_2026','stmg_annales_s2_2026'] }},
   premiere_tronc: { label:"1ère Tronc commun", emoji:"📘", color:"#3B82F6",
-    cats:{ fonctions:['lecture_image','calcul_image','point_courbe','coeff_directeur_calcul','coeff_directeur_lecture','resolution_graphique','tableau_variations','tableau_signes'],
-           pourcentages:['proportions','taux_cm','valeur_finale','evolutions_successives'],
-           numerique:['decimaux_cm','fractions','puissances','scientifique','conversions','racines_n1','racines_n2'],
-           litteral:['eq1','eq_x2','produit_nul','inequation1','developpement','id_remarquables','facto_commun','facto_id','manipulation'],
-           probabilites:['tableau','tableau_fill','arbre','contraire'],
-           polynomes:['poly2_factorisee'],
-           statistiques:['stat_centrale','stat_dispersion'],
-           derivation:['deriv_vitesse','deriv_tangente','deriv_fonctions_ref','deriv_variations'],
-           bac:['tronc_annales_s1_2026','tronc_annales_s2_2026','tronc_annales_s3_2026'] }},
+    cats:{
+      // ── Thèmes cœur 1ère Tronc commun ──
+      derivation:['deriv_vitesse','deriv_tangente','deriv_fonctions_ref','deriv_variations'],
+      polynomes:['poly2_factorisee'],
+      litteral:['eq_x2','produit_nul','id_remarquables','facto_commun','facto_id','inequation1','developpement','manipulation','eq1'],
+      probabilites:['tableau','tableau_fill','arbre','contraire'],
+      // ── Prérequis seconde ──
+      fonctions:['tableau_variations','tableau_signes','coeff_directeur_calcul','coeff_directeur_lecture','resolution_graphique','lecture_image','calcul_image','point_courbe'],
+      statistiques:['stat_centrale','stat_dispersion'],
+      bac:['tronc_annales_s1_2026','tronc_annales_s2_2026','tronc_annales_s3_2026'] }},
   premiere_spe: { label:"1ère Spé Maths", emoji:"🔬", color:"#8B5CF6",
-    cats:{ fonctions:['lecture_image','calcul_image','point_courbe','coeff_directeur_calcul','coeff_directeur_lecture','resolution_graphique','tableau_variations','tableau_signes'],
-           pourcentages:['proportions','taux_cm','valeur_finale','evolutions_successives'],
-           numerique:['decimaux_cm','fractions','puissances','scientifique','conversions','racines_n1','racines_n2','racines_n3','racines_n4'],
-           litteral:['eq1','eq_x2','eq_x3','produit_nul','inequation1','developpement','id_remarquables','id_rem_pad','id_rem_difficile','facto_commun','facto_id'],
-           probabilites:['tableau','tableau_fill','arbre','contraire'],
-           suites:['suites_nature','suites_termes','suites_variations','suites_explicite_recurr'],
-           polynomes:['poly2_factorisee','poly_spe_n1','poly_spe_n2','poly_spe_n3','poly_spe_n4'],
-           statistiques:['stat_centrale','stat_dispersion','loi_binomiale'],
-           derivation:['lecture_derivee','calcul_derivee','deriv_vitesse','deriv_tangente','deriv_fonctions_ref','deriv_variations','deriv_produit','deriv_quotient','deriv_rationnelle','deriv_optimisation','deriv_tangente_avancee'],
-           bac:['spe_annales_s1_2026','spe_annales_s2_2026'] }},
+    cats:{
+      // ── Thèmes cœur 1ère Spé (prioritaires dans le programme) ──
+      polynomes:['poly_spe_n1','poly_spe_n2','poly_spe_n3','poly_spe_n4','poly2_factorisee'],
+      derivation:['deriv_produit','deriv_quotient','deriv_rationnelle','deriv_optimisation','deriv_tangente_avancee','deriv_vitesse','deriv_tangente','deriv_fonctions_ref','deriv_variations','lecture_derivee','calcul_derivee'],
+      suites:['suites_variations','suites_explicite_recurr','suites_nature','suites_termes'],
+      probabilites:['probas_loi_binomiale','probabilites_var_aleatoires','tableau','tableau_fill','arbre','contraire'],
+      litteral:['eq_x2','eq_x3','id_rem_pad','id_rem_difficile','produit_nul','inequation1','developpement','id_remarquables','facto_commun','facto_id','eq1'],
+      // ── Prérequis seconde (travaillés si lacunes détectées) ──
+      fonctions:['tableau_variations','tableau_signes','coeff_directeur_calcul','coeff_directeur_lecture','equation_droite_lecture','resolution_graphique','lecture_image','calcul_image','point_courbe'],
+      statistiques:['loi_binomiale','stat_centrale','stat_dispersion'],
+      bac:['spe_annales_s1_2026','spe_annales_s2_2026'] }},
   terminale_spe: { label:"Terminale Spé", emoji:"🏆", color:"#DC2626",
     cats:{ fonctions:['lecture_image','calcul_image','point_courbe','coeff_directeur_calcul','coeff_directeur_lecture','resolution_graphique','tableau_variations','tableau_signes'],
            pourcentages:['proportions','taux_cm','valeur_finale','evolutions_successives'],
@@ -8392,6 +8395,19 @@ async function generateWeeklyProgram(profile, allProg, diagResults) {
   // ── Score chaque sous-thème ────────────────────────────────────────────────
   // Priorité : allProg (quiz faits dans l'app) > diagResults (diagnostic initial)
   // Score sur 0-100 : 0=non testé, bas=faible, haut=maîtrisé, 999=3 étoiles
+  //
+  // Pour les niveaux avancés : thèmes cœur du niveau prioritaires ;
+  // prérequis déprioritisés sauf si score vraiment faible (<40).
+  const ADVANCED_LEVELS = ['terminale_spe','premiere_spe','premiere_tronc','premiere_stmg'];
+  const CORE_CATS = {
+    terminale_spe:  ['limites','derivation','suites','probabilites','denombrement','trigonometrie'],
+    premiere_spe:   ['polynomes','derivation','suites','probabilites','litteral'],
+    premiere_tronc: ['derivation','polynomes','litteral','probabilites'],
+    premiere_stmg:  ['pourcentages','suites','statistiques','derivation','polynomes'],
+  };
+  const isAdvanced = ADVANCED_LEVELS.includes(profile.level);
+  const coreCats = CORE_CATS[profile.level] || [];
+
   const subScores = [];
   Object.entries(curr.cats).forEach(([catId, subs]) => {
     // Score catégorie-wide du diagnostic (fallback si allProg vide)
@@ -8421,7 +8437,17 @@ async function generateWeeklyProgram(profile, allProg, diagResults) {
         score = 0;
         source = "unknown";
       }
-      subScores.push({ catId, subId, score, stars: p.stars||0, rate, source });
+      // Pour niveaux avancés : déprioritiser prérequis sauf lacune avérée
+      let effectiveScore = score;
+      if (isAdvanced && !coreCats.includes(catId) && score !== 999) {
+        if (score === 0 || source === 'unknown') {
+          effectiveScore = 60; // prérequis non testé → supposé acquis
+        } else if (score >= 40) {
+          effectiveScore = 999; // prérequis correct → considéré acquis
+        }
+        // score < 40 sur un prérequis → vraie lacune, on garde tel quel
+      }
+      subScores.push({ catId, subId, score: effectiveScore, stars: p.stars||0, rate, source });
     });
   });
 
