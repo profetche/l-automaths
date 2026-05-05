@@ -7166,53 +7166,53 @@ const DB = {
 
     // ── Bloc 1 : Définition et propriétés de base (Q1–Q5) ──────────────────────
     definition: [
-      { q: r`\text{exp}(0) = \,?`,
+      { q: r`e^0 = \,?`,
         choices: [`0`, `1`, r`e`, r`+\infty`],
         a: `1`,
-        tip: r`\text{Par définition : }\exp(0)=1` },
+        tip: r`\text{Par définition : }e^0=1` },
 
-      { q: r`\text{exp}(1) = \,?`,
+      { q: r`e^1 = \,?`,
         choices: [`0`, `1`, r`e`, r`\pi`],
         a: r`e`,
-        tip: r`\text{Par définition : }\exp(1)=e\approx 2{,}718` },
+        tip: r`\text{Par définition : }e^1=e\approx 2{,}718` },
 
-      { q: r`\text{Pour tous réels }a\text{ et }b\text{ :}\\\exp(a+b) = \,?`,
-        choices: [r`\exp(a)+\exp(b)`, r`\exp(a)\times\exp(b)`, r`\exp(a-b)`, r`\exp(a)^b`],
-        a: r`\exp(a)\times\exp(b)`,
-        tip: r`\text{Prop. fondamentale : }\exp(a+b)=\exp(a)\times\exp(b)` },
+      { q: r`\text{Pour tous réels }a\text{ et }b\text{ :}\e^{a+b} = \,?`,
+        choices: [r`e^a+e^b`, r`e^a\times e^b`, r`e^{a-b}`, r`e^a^b`],
+        a: r`e^a\times e^b`,
+        tip: r`\text{Prop. fondamentale : }e^{a+b}=e^a\times e^b` },
 
-      { q: r`\exp(-x) = \,?`,
-        choices: [r`-\exp(x)`, r`\dfrac{1}{\exp(x)}`, r`\exp(x)`, `0`],
-        a: r`\dfrac{1}{\exp(x)}`,
-        tip: r`\exp(x)\times\exp(-x)=\exp(0)=1\;\Rightarrow\;\exp(-x)=\dfrac{1}{\exp(x)}` },
+      { q: r`e^{-x} = \,?`,
+        choices: [r`-e^x`, r`\dfrac{1}{e^x}`, r`e^x`, `0`],
+        a: r`\dfrac{1}{e^x}`,
+        tip: r`e^x\times e^{-x}=e^0=1\;\Rightarrow\;e^{-x}=\dfrac{1}{e^x}` },
 
-      { q: r`\text{Pour tout réel }x\text{, on a :}\\\exp(x) \ldots`,
+      { q: r`\text{Pour tout réel }x\text{, on a :}\e^x \ldots`,
         choices: [r`> 0`, r`\geq 0`, r`< 1`, r`\leq 1`],
         a: r`> 0`,
-        tip: r`\exp(x)>0\text{ pour tout }x\in\mathbb{R}` },
+        tip: r`e^x>0\text{ pour tout }x\in\mathbb{R}` },
     ],
 
     // ── Bloc 2 : Calculs algébriques (Q6–Q10) ──────────────────────────────────
     calculs: [
-      { q: r`\text{Simplifier : }\exp(3)\times\exp(5)`,
-        choices: [r`\exp(15)`, r`\exp(8)`, r`2\exp(8)`, r`\exp(2)`],
-        a: r`\exp(8)`,
-        tip: r`\exp(3)\times\exp(5)=\exp(3+5)=\exp(8)` },
+      { q: r`\text{Simplifier : }e^3\times e^5`,
+        choices: [r`e^{15}`, r`e^8`, r`2e^8`, r`e^2`],
+        a: r`e^8`,
+        tip: r`e^3\times e^5=e^{3+5}=e^8` },
 
-      { q: r`\dfrac{\exp(7)}{\exp(3)} = \,?`,
-        choices: [r`\exp(4)`, r`\exp(10)`, r`\exp\!\left(\tfrac{7}{3}\right)`, `1`],
-        a: r`\exp(4)`,
-        tip: r`\dfrac{\exp(7)}{\exp(3)}=\exp(7-3)=\exp(4)` },
+      { q: r`\dfrac{e^7}{e^3} = \,?`,
+        choices: [r`e^4`, r`e^{10}`, r`e^{\tfrac{7}{3}}`, `1`],
+        a: r`e^4`,
+        tip: r`\dfrac{e^7}{e^3}=e^{7-3}=e^4` },
 
-      { q: r`\left(\exp(2)\right)^5 = \,?`,
-        choices: [r`\exp(7)`, r`\exp(10)`, r`5\exp(2)`, r`\exp(2^5)`],
-        a: r`\exp(10)`,
-        tip: r`\bigl(\exp(2)\bigr)^5=\exp(2\times 5)=\exp(10)` },
+      { q: r`\left(e^2\right)^5 = \,?`,
+        choices: [r`e^7`, r`e^{10}`, r`5e^2`, r`e^{2^5}`],
+        a: r`e^{10}`,
+        tip: r`\bigl(e^2\bigr)^5=e^{2\times 5}=e^{10}` },
 
-      { q: r`\text{Simplifier :}\;\dfrac{\exp(2x+1)\times\exp(-x)}{\exp(3)}`,
-        choices: [r`\exp(x-2)`, r`\exp(x+2)`, r`\exp(x-4)`, r`\exp(3x-2)`],
-        a: r`\exp(x-2)`,
-        tip: r`\exp\bigl((2x+1)+(-x)-3\bigr)=\exp(x-2)` },
+      { q: r`\text{Simplifier :}\;\dfrac{e^{2x+1}\times e^{-x}}{e^3}`,
+        choices: [r`e^{x-2}`, r`e^{x+2}`, r`e^{x-4}`, r`e^{3x-2}`],
+        a: r`e^{x-2}`,
+        tip: r`e^{(2x+1)+(-x)-3}=e^{x-2}` },
 
       { q: r`a=e^0,\quad b=e^1,\quad c=e^{-1}\\\text{Ordre croissant :}`,
         choices: [r`c < a < b`, r`a < c < b`, r`c < b < a`, r`a < b < c`],
@@ -7225,35 +7225,35 @@ const DB = {
       { q: r`\text{La fonction exponentielle est :}`,
         choices: [r`\text{strictement décroissante sur }\mathbb{R}`, r`\text{strictement croissante sur }\mathbb{R}`, r`\text{croissante sur }[0\,;+\infty[`, r`\text{décroissante sur }\mathbb{R}^*`],
         a: r`\text{strictement croissante sur }\mathbb{R}`,
-        tip: r`\exp'(x)=\exp(x)>0\text{ pour tout }x\Rightarrow\text{croissante sur }\mathbb{R}` },
+        tip: r`(e^x)'=e^x>0\text{ pour tout }x\Rightarrow\text{croissante sur }\mathbb{R}` },
 
-      { q: r`\lim_{x\to+\infty}\exp(x) = \,?`,
+      { q: r`\lim_{x\to+\infty}e^x = \,?`,
         choices: [`0`, `1`, `e`, r`+\infty`],
         a: r`+\infty`,
-        tip: r`\lim_{x\to+\infty}\exp(x)=+\infty` },
+        tip: r`\lim_{x\to+\infty}e^x=+\infty` },
 
-      { q: r`\lim_{x\to-\infty}\exp(x) = \,?`,
+      { q: r`\lim_{x\to-\infty}e^x = \,?`,
         choices: [r`-\infty`, `0`, `-1`, r`+\infty`],
         a: `0`,
-        tip: r`\lim_{x\to-\infty}\exp(x)=0\text{ (axe des abscisses = asymptote horizontale)}` },
+        tip: r`\lim_{x\to-\infty}e^x=0\text{ (axe des abscisses = asymptote horizontale)}` },
 
-      { q: r`\exp(2x-1) > \exp(x+3)\;\Leftrightarrow`,
+      { q: r`e^{2x-1} > e^{x+3}\;\Leftrightarrow`,
         choices: [r`2x-1>x+3`, r`2x-1<x+3`, r`x>2`, r`x<4`],
         a: r`2x-1>x+3`,
-        tip: r`\exp\text{ est strictement croissante donc }\exp(A)>\exp(B)\Leftrightarrow A>B` },
+        tip: r`\text{exp est strictement croissante donc }e^A>e^B\Leftrightarrow A>B` },
 
-      { q: r`f(x)=\exp(3-x)\\\lim_{x\to+\infty}f(x)=\,?`,
+      { q: r`f(x)=e^{3-x}\\\lim_{x\to+\infty}f(x)=\,?`,
         choices: [r`+\infty`, `3`, `0`, r`-\infty`],
         a: `0`,
-        tip: r`x\to+\infty\Rightarrow 3-x\to-\infty\Rightarrow\exp(3-x)\to 0` },
+        tip: r`x\to+\infty\Rightarrow 3-x\to-\infty\Rightarrow e^{3-x}\to 0` },
     ],
 
     // ── Bloc 4 : Dérivée (Q16–Q19) ─────────────────────────────────────────────
     derivee: [
-      { q: r`f(x)=\exp(x)\;;\quad f'(x)=\,?`,
-        choices: [r`x\,\exp(x-1)`, r`\exp(x)`, `1`, `0`],
-        a: r`\exp(x)`,
-        tip: r`(\exp)'=\exp\text{ : la fonction exponentielle est sa propre dérivée}` },
+      { q: r`f(x)=e^x\;;\quad f'(x)=\,?`,
+        choices: [r`x\,e^{x-1}`, r`e^x`, `1`, `0`],
+        a: r`e^x`,
+        tip: r`(e^x)'=e^x\text{ : la fonction exponentielle est sa propre dérivée}` },
 
       { q: r`f(x)=3e^{2x}\;;\quad f'(x)=\,?`,
         choices: [r`3e^{2x}`, r`6e^{2x}`, r`6e^{x}`, r`3e^{2x-1}`],
@@ -7273,12 +7273,12 @@ const DB = {
 
     // ── Bloc 5 : Équations et inéquations (Q20–Q22) ────────────────────────────
     equations: [
-      { q: r`\exp(x)=1\;\Leftrightarrow\;x=\,?`,
+      { q: r`e^x=1\;\Leftrightarrow\;x=\,?`,
         choices: [`0`, `1`, `e`, `-1`],
         a: `0`,
-        tip: r`\exp(x)=1=\exp(0)\Rightarrow x=0` },
+        tip: r`e^x=1=e^0\Rightarrow x=0` },
 
-      { q: r`\exp(2x-3)=e^5\;\Leftrightarrow\;x=\,?`,
+      { q: r`e^{2x-3}=e^5\;\Leftrightarrow\;x=\,?`,
         choices: [`4`, `1`, `8`, `-1`],
         a: `4`,
         tip: r`2x-3=5\Rightarrow 2x=8\Rightarrow x=4` },
@@ -7305,6 +7305,157 @@ const DB = {
         choices: [r`y=ex+e`, r`y=x+e`, r`y=e^2\,x+e`, r`y=ex+1`],
         a: r`y=ex+e`,
         tip: r`f(0)=e\;;\ f'(x)=e^{x+1}\Rightarrow f'(0)=e\\y=e(x-0)+e=ex+e` },
+    ],
+  },
+
+
+  // ══════════════════════════════════════════════════════════════════════════════
+  // FONCTION LOGARITHME NEPÉRIEN — 25 questions — Terminale Spé uniquement
+  // ══════════════════════════════════════════════════════════════════════════════
+
+  ln: {
+
+    // ── Bloc 1 : Définition et premières propriétés (Q1–Q5) ────────────────────
+    definition: [
+      { q: r`\ln(1) = \,?`,
+        choices: [`0`, `1`, r`e`, r`-1`],
+        a: `0`,
+        tip: r`e^0=1\text{ donc par définition }\ln(1)=0` },
+
+      { q: r`\ln(e) = \,?`,
+        choices: [`0`, `1`, r`e`, r`e^2`],
+        a: `1`,
+        tip: r`e^1=e\text{ donc }\ln(e)=1` },
+
+      { q: r`\text{Ensemble de définition de }\ln :`,
+        choices: [r`\mathbb{R}`, r`]0\,;+\infty[`, r`[0\,;+\infty[`, r`]-\infty\,;0[`],
+        a: r`]0\,;+\infty[`,
+        tip: r`\ln\text{ est définie uniquement pour les réels strictement positifs}` },
+
+      { q: r`\text{Pour tout }x>0\text{ : }e^{\ln x}=\,?`,
+        choices: [r`x`, r`\ln(e^x)`, `1`, r`e`],
+        a: r`x`,
+        tip: r`e^{\ln x}=x\text{ et }\ln(e^x)=x\text{ : exp et ln sont réciproques}` },
+
+      { q: r`\ln\!\left(e^3\right)=\,?`,
+        choices: [`3`, r`e^3`, r`3e`, r`\ln 3`],
+        a: `3`,
+        tip: r`\ln(e^x)=x\text{ donc }\ln(e^3)=3` },
+    ],
+
+    // ── Bloc 2 : Propriété fondamentale et corollaires (Q6–Q10) ───────────────
+    proprietes: [
+      { q: r`\ln(a\times b)=\,?\quad(a,b>0)`,
+        choices: [r`\ln a\times\ln b`, r`\ln a+\ln b`, r`\ln a-\ln b`, r`\ln(a+b)`],
+        a: r`\ln a+\ln b`,
+        tip: r`\text{Prop. fondamentale : }\ln(ab)=\ln a+\ln b` },
+
+      { q: r`\ln\!\left(\dfrac{a}{b}\right)=\,?\quad(a,b>0)`,
+        choices: [r`\dfrac{\ln a}{\ln b}`, r`\ln a+\ln b`, r`\ln a-\ln b`, r`\ln a\times\ln b`],
+        a: r`\ln a-\ln b`,
+        tip: r`\ln\!\left(\tfrac{a}{b}\right)=\ln a-\ln b` },
+
+      { q: r`\ln(a^n)=\,?\quad(a>0,\,n\in\mathbb{Z})`,
+        choices: [r`(\ln a)^n`, r`n\ln a`, r`\ln(na)`, r`n+\ln a`],
+        a: r`n\ln a`,
+        tip: r`\ln(a^n)=n\ln a` },
+
+      { q: r`\ln\!\left(\dfrac{1}{b}\right)=\,?\quad(b>0)`,
+        choices: [r`\ln b`, r`-\ln b`, r`\dfrac{1}{\ln b}`, `0`],
+        a: r`-\ln b`,
+        tip: r`\ln\!\left(\tfrac{1}{b}\right)=\ln(b^{-1})=-\ln b` },
+
+      { q: r`\ln(\sqrt{a})=\,?\quad(a>0)`,
+        choices: [r`2\ln a`, r`\sqrt{\ln a}`, r`\dfrac{1}{2}\ln a`, r`\ln a-\ln 2`],
+        a: r`\dfrac{1}{2}\ln a`,
+        tip: r`\ln(\sqrt{a})=\ln(a^{1/2})=\tfrac{1}{2}\ln a` },
+    ],
+
+    // ── Bloc 3 : Étude de la fonction (Q11–Q15) ────────────────────────────────
+    etude: [
+      { q: r`\text{La fonction }\ln\text{ est :}`,
+        choices: [r`\text{décroissante sur }]0\,;+\infty[`, r`\text{croissante sur }]0\,;+\infty[`, r`\text{croissante sur }\mathbb{R}`, r`\text{paire sur }]0\,;+\infty[`],
+        a: r`\text{croissante sur }]0\,;+\infty[`,
+        tip: r`(\ln)'(x)=\tfrac{1}{x}>0\text{ sur }]0\,;+\infty[\;\Rightarrow\;\ln\text{ strictement croissante}` },
+
+      { q: r`\lim_{x\to+\infty}\ln(x)=\,?`,
+        choices: [`1`, `0`, r`+\infty`, r`-\infty`],
+        a: r`+\infty`,
+        tip: r`\lim_{x\to+\infty}\ln(x)=+\infty` },
+
+      { q: r`\lim_{x\to 0^+}\ln(x)=\,?`,
+        choices: [`0`, `1`, r`+\infty`, r`-\infty`],
+        a: r`-\infty`,
+        tip: r`\lim_{x\to 0^+}\ln(x)=-\infty\text{ (asymptote verticale en }x=0\text{)}` },
+
+      { q: r`\ln a < \ln b\;\Leftrightarrow`,
+        choices: [r`a>b`, r`a<b`, r`a=b`, r`a\leq b`],
+        a: r`a<b`,
+        tip: r`\ln\text{ est croissante donc }\ln a<\ln b\Leftrightarrow a<b\quad(a,b>0)` },
+
+      { q: r`\ln a > 0\;\Leftrightarrow`,
+        choices: [r`a>0`, r`a>1`, r`0<a<1`, r`a<0`],
+        a: r`a>1`,
+        tip: r`\ln a>0=\ln 1\Leftrightarrow a>1\text{ (ln croissante)}` },
+    ],
+
+    // ── Bloc 4 : Dérivée de ln(u) (Q16–Q19) ───────────────────────────────────
+    derivee: [
+      { q: r`f(x)=\ln(x)\;;\quad f'(x)=\,?`,
+        choices: [r`\ln(x)`, r`\dfrac{1}{x}`, r`x\ln(x)`, r`e^x`],
+        a: r`\dfrac{1}{x}`,
+        tip: r`(\ln x)'=\dfrac{1}{x}\text{ pour }x>0` },
+
+      { q: r`f(x)=\ln(3x+1)\;;\quad f'(x)=\,?`,
+        choices: [r`\ln(3)`, r`\dfrac{3}{3x+1}`, r`\dfrac{1}{3x+1}`, r`3\ln(3x+1)`],
+        a: r`\dfrac{3}{3x+1}`,
+        tip: r`f'(x)=\dfrac{u'}{u}=\dfrac{3}{3x+1}` },
+
+      { q: r`f(x)=\ln(x^2+1)\;;\quad f'(x)=\,?`,
+        choices: [r`\dfrac{1}{x^2+1}`, r`\dfrac{2x}{x^2+1}`, r`2x\ln(x^2+1)`, r`\dfrac{x}{x^2+1}`],
+        a: r`\dfrac{2x}{x^2+1}`,
+        tip: r`u=x^2+1\,,\;u'=2x\;\Rightarrow\;f'=\dfrac{2x}{x^2+1}` },
+
+      { q: r`f(x)=x\ln(x)\;;\quad f'(x)=\,?`,
+        choices: [r`\ln(x)`, r`\dfrac{1}{x}`, r`\ln(x)+1`, r`x+\ln(x)`],
+        a: r`\ln(x)+1`,
+        tip: r`f'=1\times\ln x+x\times\dfrac{1}{x}=\ln x+1` },
+    ],
+
+    // ── Bloc 5 : Équations et inéquations (Q20–Q23) ────────────────────────────
+    equations: [
+      { q: r`\ln(x)=0\;\Leftrightarrow\;x=\,?`,
+        choices: [`0`, `1`, r`e`, r`-1`],
+        a: `1`,
+        tip: r`\ln(x)=0=\ln(1)\Rightarrow x=1` },
+
+      { q: r`\ln(x)=2\;\Leftrightarrow\;x=\,?`,
+        choices: [`2`, r`e^2`, r`\ln 2`, r`2e`],
+        a: r`e^2`,
+        tip: r`\ln(x)=2\Rightarrow x=e^2` },
+
+      { q: r`\ln(2x-1)=\ln(5)\;\Leftrightarrow\;x=\,?`,
+        choices: [`2`, `3`, `4`, r`\dfrac{5}{2}`],
+        a: `3`,
+        tip: r`\ln\text{ injective : }2x-1=5\Rightarrow x=3\quad(\text{vérif. : }2\times3-1=5>0\;\checkmark)` },
+
+      { q: r`\ln(x)\leq 1\;\Leftrightarrow`,
+        choices: [r`x\leq e`, r`x\leq 1`, r`0<x\leq e`, r`x\geq e`],
+        a: r`0<x\leq e`,
+        tip: r`\ln(x)\leq\ln(e)\Leftrightarrow x\leq e\text{ et }x>0\text{ (domaine de ln)}` },
+    ],
+
+    // ── Bloc 6 : Croissance comparée et applications (Q24–Q25) ────────────────
+    applications: [
+      { q: r`\lim_{x\to+\infty}\dfrac{\ln x}{x}=\,?`,
+        choices: [r`+\infty`, `1`, `0`, r`-\infty`],
+        a: `0`,
+        tip: r`\text{Croissance comparée : }x\text{ l'emporte sur }\ln x\text{ en }+\infty` },
+
+      { q: r`f(x)=3-x+2\ln(x)\\\text{Valeur de }f'(1)=\,?`,
+        choices: [`3`, `1`, `2`, r`-1`],
+        a: `1`,
+        tip: r`f'(x)=-1+\dfrac{2}{x}\;\Rightarrow\;f'(1)=-1+2=1` },
     ],
   },
 
@@ -7455,6 +7606,20 @@ const CATS = [
       {id:"derivee",      label:"Dérivée",                  group:"calculs",  levels:["spe","term"]},
       {id:"equations",    label:"Équations / inéquations",  group:"calculs",  levels:["spe","term"]},
       {id:"applications", label:"Applications",             group:"etude",    levels:["spe","term"]},
+    ] },
+  { id:"ln", label:"Fonction logarithme népérien", emoji:"🔢", color:"#7C3AED", grad:"linear-gradient(135deg,#A78BFA,#5B21B6)", light:"#F5F3FF", border:"#DDD6FE",
+    groups:[
+      {id:"bases",    label:"🌱 Bases"},
+      {id:"proprietes", label:"📏 Propriétés"},
+      {id:"etude",    label:"📈 Étude"},
+    ],
+    subs:[
+      {id:"definition",   label:"Définition et premières propriétés", group:"bases",      levels:["term"]},
+      {id:"proprietes",   label:"Propriété fondamentale",             group:"proprietes", levels:["term"]},
+      {id:"etude",        label:"Étude de la fonction",               group:"etude",      levels:["term"]},
+      {id:"derivee",      label:"Dérivée de ln(u)",                   group:"proprietes", levels:["term"]},
+      {id:"equations",    label:"Équations / inéquations",            group:"proprietes", levels:["term"]},
+      {id:"applications", label:"Croissance comparée",                group:"etude",      levels:["term"]},
     ] },
 ];;
 // ── Utils ──────────────────────────────────────────────────────────────────────
@@ -8312,6 +8477,7 @@ const CURRICULUM = {
            derivation:['lecture_derivee','calcul_derivee','deriv_vitesse','deriv_tangente','deriv_fonctions_ref','deriv_variations','deriv_produit','deriv_quotient','deriv_rationnelle','deriv_optimisation','deriv_tangente_avancee','derivee_convexite'],
            limites:['lim_reference','lim_operations','lim_FI','lim_asymptotes','lim_comparaison'],
            expo:['definition','calculs','etude','derivee','equations','applications'],
+           ln:['definition','proprietes','etude','derivee','equations','applications'],
            denombrement:['denombrement_type'],
            trigonometrie:['valeurs_trigo'],
            bac:['spe_annales_s1_2026','spe_annales_s2_2026'] }},
