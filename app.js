@@ -7157,6 +7157,157 @@ const DB = {
     ],
   },
 
+  // ══════════════════════════════════════════════════════════════════════════════
+  // FONCTION EXPONENTIELLE — 25 questions progressives
+  // Première Spé + Terminale Spé
+  // ══════════════════════════════════════════════════════════════════════════════
+
+  expo: {
+
+    // ── Bloc 1 : Définition et propriétés de base (Q1–Q5) ──────────────────────
+    definition: [
+      { q: r`\text{exp}(0) = \,?`,
+        choices: [`0`, `1`, r`e`, r`+\infty`],
+        a: `1`,
+        tip: r`\text{Par définition : }\exp(0)=1` },
+
+      { q: r`\text{exp}(1) = \,?`,
+        choices: [`0`, `1`, r`e`, r`\pi`],
+        a: r`e`,
+        tip: r`\text{Par définition : }\exp(1)=e\approx 2{,}718` },
+
+      { q: r`\text{Pour tous réels }a\text{ et }b\text{ :}\\\exp(a+b) = \,?`,
+        choices: [r`\exp(a)+\exp(b)`, r`\exp(a)\times\exp(b)`, r`\exp(a-b)`, r`\exp(a)^b`],
+        a: r`\exp(a)\times\exp(b)`,
+        tip: r`\text{Prop. fondamentale : }\exp(a+b)=\exp(a)\times\exp(b)` },
+
+      { q: r`\exp(-x) = \,?`,
+        choices: [r`-\exp(x)`, r`\dfrac{1}{\exp(x)}`, r`\exp(x)`, `0`],
+        a: r`\dfrac{1}{\exp(x)}`,
+        tip: r`\exp(x)\times\exp(-x)=\exp(0)=1\;\Rightarrow\;\exp(-x)=\dfrac{1}{\exp(x)}` },
+
+      { q: r`\text{Pour tout réel }x\text{, on a :}\\\exp(x) \ldots`,
+        choices: [r`> 0`, r`\geq 0`, r`< 1`, r`\leq 1`],
+        a: r`> 0`,
+        tip: r`\exp(x)>0\text{ pour tout }x\in\mathbb{R}` },
+    ],
+
+    // ── Bloc 2 : Calculs algébriques (Q6–Q10) ──────────────────────────────────
+    calculs: [
+      { q: r`\text{Simplifier : }\exp(3)\times\exp(5)`,
+        choices: [r`\exp(15)`, r`\exp(8)`, r`2\exp(8)`, r`\exp(2)`],
+        a: r`\exp(8)`,
+        tip: r`\exp(3)\times\exp(5)=\exp(3+5)=\exp(8)` },
+
+      { q: r`\dfrac{\exp(7)}{\exp(3)} = \,?`,
+        choices: [r`\exp(4)`, r`\exp(10)`, r`\exp\!\left(\tfrac{7}{3}\right)`, `1`],
+        a: r`\exp(4)`,
+        tip: r`\dfrac{\exp(7)}{\exp(3)}=\exp(7-3)=\exp(4)` },
+
+      { q: r`\left(\exp(2)\right)^5 = \,?`,
+        choices: [r`\exp(7)`, r`\exp(10)`, r`5\exp(2)`, r`\exp(2^5)`],
+        a: r`\exp(10)`,
+        tip: r`\bigl(\exp(2)\bigr)^5=\exp(2\times 5)=\exp(10)` },
+
+      { q: r`\text{Simplifier :}\;\dfrac{\exp(2x+1)\times\exp(-x)}{\exp(3)}`,
+        choices: [r`\exp(x-2)`, r`\exp(x+2)`, r`\exp(x-4)`, r`\exp(3x-2)`],
+        a: r`\exp(x-2)`,
+        tip: r`\exp\bigl((2x+1)+(-x)-3\bigr)=\exp(x-2)` },
+
+      { q: r`a=e^0,\quad b=e^1,\quad c=e^{-1}\\\text{Ordre croissant :}`,
+        choices: [r`c < a < b`, r`a < c < b`, r`c < b < a`, r`a < b < c`],
+        a: r`c < a < b`,
+        tip: r`e^{-1}\approx 0{,}37<e^0=1<e^1\approx 2{,}72` },
+    ],
+
+    // ── Bloc 3 : Étude de la fonction (Q11–Q15) ────────────────────────────────
+    etude: [
+      { q: r`\text{La fonction exponentielle est :}`,
+        choices: [r`\text{strictement décroissante sur }\mathbb{R}`, r`\text{strictement croissante sur }\mathbb{R}`, r`\text{croissante sur }[0\,;+\infty[`, r`\text{décroissante sur }\mathbb{R}^*`],
+        a: r`\text{strictement croissante sur }\mathbb{R}`,
+        tip: r`\exp'(x)=\exp(x)>0\text{ pour tout }x\Rightarrow\text{croissante sur }\mathbb{R}` },
+
+      { q: r`\lim_{x\to+\infty}\exp(x) = \,?`,
+        choices: [`0`, `1`, `e`, r`+\infty`],
+        a: r`+\infty`,
+        tip: r`\lim_{x\to+\infty}\exp(x)=+\infty` },
+
+      { q: r`\lim_{x\to-\infty}\exp(x) = \,?`,
+        choices: [r`-\infty`, `0`, `-1`, r`+\infty`],
+        a: `0`,
+        tip: r`\lim_{x\to-\infty}\exp(x)=0\text{ (axe des abscisses = asymptote horizontale)}` },
+
+      { q: r`\exp(2x-1) > \exp(x+3)\;\Leftrightarrow`,
+        choices: [r`2x-1>x+3`, r`2x-1<x+3`, r`x>2`, r`x<4`],
+        a: r`2x-1>x+3`,
+        tip: r`\exp\text{ est strictement croissante donc }\exp(A)>\exp(B)\Leftrightarrow A>B` },
+
+      { q: r`f(x)=\exp(3-x)\\\lim_{x\to+\infty}f(x)=\,?`,
+        choices: [r`+\infty`, `3`, `0`, r`-\infty`],
+        a: `0`,
+        tip: r`x\to+\infty\Rightarrow 3-x\to-\infty\Rightarrow\exp(3-x)\to 0` },
+    ],
+
+    // ── Bloc 4 : Dérivée (Q16–Q19) ─────────────────────────────────────────────
+    derivee: [
+      { q: r`f(x)=\exp(x)\;;\quad f'(x)=\,?`,
+        choices: [r`x\,\exp(x-1)`, r`\exp(x)`, `1`, `0`],
+        a: r`\exp(x)`,
+        tip: r`(\exp)'=\exp\text{ : la fonction exponentielle est sa propre dérivée}` },
+
+      { q: r`f(x)=3e^{2x}\;;\quad f'(x)=\,?`,
+        choices: [r`3e^{2x}`, r`6e^{2x}`, r`6e^{x}`, r`3e^{2x-1}`],
+        a: r`6e^{2x}`,
+        tip: r`f'(x)=3\times 2\,e^{2x}=6e^{2x}` },
+
+      { q: r`f(x)=e^{-4x}\;;\quad f'(x)=\,?`,
+        choices: [r`e^{-4x}`, r`-4e^{-4x}`, r`4e^{-4x}`, r`-e^{-4x}`],
+        a: r`-4e^{-4x}`,
+        tip: r`f'(x)=(-4)\,e^{-4x}=-4e^{-4x}` },
+
+      { q: r`f(x)=(2x+1)\,e^x\;;\quad f'(x)=\,?`,
+        choices: [r`2e^x`, r`(2x+1)e^x`, r`(2x+3)e^x`, r`2(2x+1)e^x`],
+        a: r`(2x+3)e^x`,
+        tip: r`f'=2\,e^x+(2x+1)\,e^x=(2+2x+1)e^x=(2x+3)e^x` },
+    ],
+
+    // ── Bloc 5 : Équations et inéquations (Q20–Q22) ────────────────────────────
+    equations: [
+      { q: r`\exp(x)=1\;\Leftrightarrow\;x=\,?`,
+        choices: [`0`, `1`, `e`, `-1`],
+        a: `0`,
+        tip: r`\exp(x)=1=\exp(0)\Rightarrow x=0` },
+
+      { q: r`\exp(2x-3)=e^5\;\Leftrightarrow\;x=\,?`,
+        choices: [`4`, `1`, `8`, `-1`],
+        a: `4`,
+        tip: r`2x-3=5\Rightarrow 2x=8\Rightarrow x=4` },
+
+      { q: r`e^{3x-6}\leq 1\;\Leftrightarrow\;x\,\ldots`,
+        choices: [r`x\geq 2`, r`x\leq 2`, r`x\geq 6`, r`x\leq -2`],
+        a: r`x\leq 2`,
+        tip: r`e^{3x-6}\leq e^0\Leftrightarrow 3x-6\leq 0\Leftrightarrow x\leq 2` },
+    ],
+
+    // ── Bloc 6 : Applications (Q23–Q25) ────────────────────────────────────────
+    applications: [
+      { q: r`N(t)=500\,e^{0{,}3t}\\\text{Population initiale }N(0)=\,?`,
+        choices: [`300`, `500`, r`500\,e^{0{,}3}`, r`e^{0{,}3}`],
+        a: `500`,
+        tip: r`N(0)=500\,e^0=500\times 1=500` },
+
+      { q: r`u_n=3\times\left(\dfrac{1}{e}\right)^n=\,?`,
+        choices: [r`3e^n`, r`3e^{-n}`, r`3\times(-n)`, r`\dfrac{3}{n}`],
+        a: r`3e^{-n}`,
+        tip: r`\left(\tfrac{1}{e}\right)^n=e^{-n}\;\Rightarrow\;u_n=3e^{-n}` },
+
+      { q: r`f(x)=e^{x+1}\\\text{Tangente en }x=0\text{ :}`,
+        choices: [r`y=ex+e`, r`y=x+e`, r`y=e^2\,x+e`, r`y=ex+1`],
+        a: r`y=ex+e`,
+        tip: r`f(0)=e\;;\ f'(x)=e^{x+1}\Rightarrow f'(0)=e\\y=e(x-0)+e=ex+e` },
+    ],
+  },
+
 };
 
 // ── Categories ─────────────────────────────────────────────────────────────────
@@ -7290,6 +7441,20 @@ const CATS = [
   { id:"trigonometrie",label:"Cercle trigonométrique", emoji:"⭕", color:"#0891B2", grad:"linear-gradient(135deg,#06B6D4,#0E7490)", light:"#ECFEFF", border:"#A5F3FC",
     subs:[
       {id:"cercle_trigo",label:"Placer un angle sur le cercle", levels:["spe","term"], levelPicker:true, levelType:"cercle_trigo"},{id:"valeurs_trigo",label:"Valeurs de cos et sin",levels:["spe","term"]},
+    ] },
+  { id:"expo", label:"Fonction exponentielle", emoji:"📐", color:"#16A34A", grad:"linear-gradient(135deg,#22C55E,#15803D)", light:"#F0FDF4", border:"#BBF7D0",
+    groups:[
+      {id:"bases",   label:"🌱 Bases"},
+      {id:"etude",   label:"📈 Étude"},
+      {id:"calculs", label:"🧮 Calculs"},
+    ],
+    subs:[
+      {id:"definition",   label:"Définition et propriétés", group:"bases",   levels:["spe","term"]},
+      {id:"calculs",      label:"Calculs algébriques",      group:"calculs",  levels:["spe","term"]},
+      {id:"etude",        label:"Étude de la fonction",     group:"etude",    levels:["spe","term"]},
+      {id:"derivee",      label:"Dérivée",                  group:"calculs",  levels:["spe","term"]},
+      {id:"equations",    label:"Équations / inéquations",  group:"calculs",  levels:["spe","term"]},
+      {id:"applications", label:"Applications",             group:"etude",    levels:["spe","term"]},
     ] },
 ];;
 // ── Utils ──────────────────────────────────────────────────────────────────────
@@ -8133,6 +8298,7 @@ const CURRICULUM = {
       // ── Prérequis seconde (travaillés si lacunes détectées) ──
       fonctions:['tableau_variations','tableau_signes','coeff_directeur_calcul','coeff_directeur_lecture','equation_droite_lecture','resolution_graphique','lecture_image','calcul_image','point_courbe'],
       statistiques:['loi_binomiale','stat_centrale','stat_dispersion'],
+      expo:['definition','calculs','etude','derivee','equations','applications'],
       bac:['spe_annales_s1_2026','spe_annales_s2_2026'] }},
   terminale_spe: { label:"Terminale Spé", emoji:"🏆", color:"#DC2626",
     cats:{ fonctions:['lecture_image','calcul_image','point_courbe','coeff_directeur_calcul','coeff_directeur_lecture','resolution_graphique','tableau_variations','tableau_signes'],
@@ -8145,6 +8311,7 @@ const CURRICULUM = {
            statistiques:['stat_centrale','stat_dispersion','loi_binomiale'],
            derivation:['lecture_derivee','calcul_derivee','deriv_vitesse','deriv_tangente','deriv_fonctions_ref','deriv_variations','deriv_produit','deriv_quotient','deriv_rationnelle','deriv_optimisation','deriv_tangente_avancee','derivee_convexite'],
            limites:['lim_reference','lim_operations','lim_FI','lim_asymptotes','lim_comparaison'],
+           expo:['definition','calculs','etude','derivee','equations','applications'],
            denombrement:['denombrement_type'],
            trigonometrie:['valeurs_trigo'],
            bac:['spe_annales_s1_2026','spe_annales_s2_2026'] }},

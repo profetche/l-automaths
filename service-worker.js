@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'automaths-v15';
+const CACHE_VERSION = 'automaths-v16';
 const CACHE_NAME = CACHE_VERSION;
 const CORE_ASSETS = ['/', '/index.html', '/app.js'];
 self.addEventListener('install', event => {
