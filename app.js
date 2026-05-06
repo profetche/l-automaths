@@ -53,37 +53,14 @@ function useKaTeX() {
   }, []);
   return ready;
 }
-// ── Rendu KaTeX d'un fragment unique ──
-function MFrag({ tex }) {
+function M({ tex }) {
   const ref = useRef();
   useEffect(() => {
     if (!ref.current || !window.katex) return;
     try { window.katex.render(tex, ref.current, { throwOnError: false }); }
     catch { ref.current.textContent = tex; }
   }, [tex]);
-  return <span ref={ref} style={{display:'inline'}} />;
-}
-
-// ── Composant M : coupe les énoncés longs après les points + retour à la ligne LaTeX ──
-// Les énoncés sont découpés sur les \\[...] (sauts LaTeX) et sur les points qui
-// terminent une phrase dans \text{...}. Chaque fragment est rendu sur sa propre ligne
-// pour que le texte s'étire vers le bas plutôt que vers la droite.
-function M({ tex }) {
-  // Découpe sur les séparateurs de lignes LaTeX : \\[4pt], \\[6pt], \\, etc.
-  const lines = tex.split(/\\\\(?:\[\d+(?:pt|px|em|ex)\])?/);
-  if (lines.length > 1) {
-    return (
-      <span style={{display:'block', textAlign:'center'}}>
-        {lines.map((ln, i) => (
-          <span key={i} style={{display:'block', lineHeight:1.6}}>
-            <MFrag tex={ln.trim()||'\\,'} />
-          </span>
-        ))}
-      </span>
-    );
-  }
-  // Pas de saut de ligne LaTeX : rendu direct (KaTeX + CSS wrap s'occupent du reste)
-  return <MFrag tex={tex} />;
+  return <span ref={ref} />;
 }
 
 // ── Global styles ─────────────────────────────────────────────────────────────
@@ -150,13 +127,12 @@ const GS = ({profile} = {}) => {
     .sigma-gold{animation:sigmaFloat 3s ease-in-out infinite,goldGlow 2s ease-in-out infinite;}
     .katex{font-size:1em !important;}
     .katex-display{overflow-x:auto;overflow-y:hidden;}
-    .katex .mtext span{white-space:normal !important; word-break:break-word; word-wrap:break-word;}
-    /* Question card : texte long → vers le bas, pas vers la droite */
-    .am-q-wrap{overflow:visible !important;}
-    .am-q-wrap .katex{white-space:normal !important;}
-    .am-q-wrap .katex-html{white-space:normal !important; overflow-wrap:break-word;}
-    .am-q-wrap .katex .base{white-space:normal !important; flex-wrap:wrap; justify-content:center;}
-    .am-q-wrap .katex .mord.text .mtext span{white-space:normal !important;}
+    .katex .mtext span{white-space:normal !important; word-break:break-word;}
+    /* Card énoncé : s'étire vers le bas, jamais vers la droite */
+    .am-q-card{width:100%;box-sizing:border-box;overflow:visible;}
+    .am-q-text{width:100%;overflow:visible;}
+    .am-q-text .katex-html{white-space:normal !important;overflow-wrap:anywhere;}
+    .am-q-text .katex .base{white-space:normal !important;flex-wrap:wrap;justify-content:center;}
     ::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:99px;}
   `}</style>
   );
@@ -15101,7 +15077,7 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
     : null;
 
   return (
-    <div style={{display:"flex",flexDirection:"column",minHeight:"100%",padding:"16px 16px 24px",position:"relative",overflowY:"auto",overflowX:"hidden"}}>
+    <div style={{display:"flex",flexDirection:"column",minHeight:"100%",padding:"16px 16px 14px",position:"relative",overflowY:"auto",overflowX:"hidden"}}>
       {/* Modal rappel de cours */}
       {showReminder && reminderAvailable && (
         <CourseReminderModal catId={catId} subId={subId} onClose={()=>setShowReminder(false)}/>
@@ -15146,7 +15122,7 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
       )}
 
       {/* Question card (all non-drag questions) */}
-      {!isDrag && <div className={shake?"shake":""} style={{
+      {!isDrag && <div className={(shake?"shake ":"")+"am-q-card"} style={{
         background:(isNum||isSol||isExpr||isFrac)?"linear-gradient(135deg,#7C3AED,#5B21B6)":"var(--am-bg-light)",
         borderRadius:18,
         padding: isNum && !q.gspec ? "18px" : hasVis||isTab||isSol||isFrac ? "12px 16px" : "18px 16px",
@@ -15181,9 +15157,8 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
             padding: isNum && q.gspec ? "4px 0 2px" : 0,
             maxWidth:"100%", wordWrap:"break-word", overflowWrap:"break-word",
             overflowX:"visible", overflowY:"visible",
-            display:"block",
           };
-        })()} className="am-q-wrap">
+        })()} className="am-q-text">
           <M tex={q.q}/>
         </div>
         {isNum&&<div style={{textAlign:"center",marginTop:4,opacity:.7,fontSize:11,color:"#E0D9FF"}}>Tape ta réponse ↓</div>}
