@@ -5699,10 +5699,70 @@ const DB = {
       { q:r`A=\dfrac{1}{100}+\dfrac{1}{1000}=?`, choices:[r`100{,}001`,r`\dfrac{2}{100000}`,r`0{,}11`,r`0{,}011`], a:r`0{,}011`, tip:r`\frac{10}{1000}+\frac{1}{1000}=\frac{11}{1000}=0{,}011` },
       { q:r`\text{75 minutes correspond à :}`, choices:[r`1{,}15\text{ h}`,r`1{,}25\text{ h}`,r`0{,}75\text{ h}`,r`1{,}4\text{ h}`], a:r`1{,}25\text{ h}`, tip:r`75\div60=1{,}25\text{ h}` },
       { q:r`10^{30}+10^{-30}\text{ est environ égal à :}`, choices:[r`10^0`,`0`,r`10^{30}`,r`2\times10^{30}`], a:r`10^{30}`, tip:r`10^{-30}\approx0\Rightarrow\text{sum}\approx10^{30}` },
-      { q:r`\text{La droite d'équation }y=-2x+5\text{ a pour coefficient directeur :}`, choices:[`-2`,`2`,`5`,`-5`], a:`-2`, tip:r`y=mx+p\Rightarrow m=-2` },
+      { q:r`\text{La seule droite pouvant correspondre à l'équation }y=-2x+5\text{ est :}`,
+        svg:`<svg viewBox="0 0 340 90" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:340px">
+  <text x="22" y="10" font-size="9" font-family="sans-serif" font-weight="bold" fill="#1E293B">a.</text>
+  <text x="107" y="10" font-size="9" font-family="sans-serif" font-weight="bold" fill="#1E293B">b.</text>
+  <text x="192" y="10" font-size="9" font-family="sans-serif" font-weight="bold" fill="#1E293B">c.</text>
+  <text x="277" y="10" font-size="9" font-family="sans-serif" font-weight="bold" fill="#1E293B">d.</text>
+  <g transform="translate(5,12)">
+    <line x1="0" y1="38" x2="72" y2="38" stroke="#94A3B8" stroke-width="0.8"/>
+    <line x1="36" y1="2" x2="36" y2="74" stroke="#94A3B8" stroke-width="0.8"/>
+    <polygon points="72,38 68,36 68,40" fill="#94A3B8"/>
+    <polygon points="36,2 34,6 38,6" fill="#94A3B8"/>
+    <line x1="6" y1="70" x2="66" y2="15" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(90,12)">
+    <line x1="0" y1="38" x2="72" y2="38" stroke="#94A3B8" stroke-width="0.8"/>
+    <line x1="36" y1="2" x2="36" y2="74" stroke="#94A3B8" stroke-width="0.8"/>
+    <polygon points="72,38 68,36 68,40" fill="#94A3B8"/>
+    <polygon points="36,2 34,6 38,6" fill="#94A3B8"/>
+    <line x1="10" y1="70" x2="46" y2="10" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="26" y1="70" x2="62" y2="10" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(175,12)">
+    <line x1="0" y1="38" x2="72" y2="38" stroke="#94A3B8" stroke-width="0.8"/>
+    <line x1="36" y1="2" x2="36" y2="74" stroke="#94A3B8" stroke-width="0.8"/>
+    <polygon points="72,38 68,36 68,40" fill="#94A3B8"/>
+    <polygon points="36,2 34,6 38,6" fill="#94A3B8"/>
+    <line x1="8" y1="12" x2="62" y2="65" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(260,12)">
+    <line x1="0" y1="38" x2="72" y2="38" stroke="#94A3B8" stroke-width="0.8"/>
+    <line x1="36" y1="2" x2="36" y2="74" stroke="#94A3B8" stroke-width="0.8"/>
+    <polygon points="72,38 68,36 68,40" fill="#94A3B8"/>
+    <polygon points="36,2 34,6 38,6" fill="#94A3B8"/>
+    <line x1="50" y1="70" x2="54" y2="6" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="36" y1="4" x2="36" y2="72" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round"/>
+  </g>
+</svg>`,
+        choices:[`a`,`b`,`c`,`d`], a:`c`, tip:r`y=-2x+5\text{ : pente négative }(-2)\text{, ordonnée à l'origine }+5` },
       { q:r`\text{La solution de }3x=0\text{ est :}`, choices:[`x=-3`,r`x=\frac{1}{3}`,r`x=-\frac{1}{3}`,`x=0`], a:`x=0`, tip:r`3x=0\Rightarrow x=0` },
       { q:r`\text{La solution de }\dfrac{144}{x}=9\text{ est :}`, choices:[r`x=144\times9`,r`x=\dfrac{9}{144}`,r`x=\dfrac{144}{9}`,`x=-16`], a:r`x=\dfrac{144}{9}`, tip:r`x=\frac{144}{9}=16` },
-      { q:r`\text{Notes : 10(×1), 13(×1), 12(×1), }x\text{(×2). Moyenne}=15.\\[4pt]x=?`, choices:[`20`,`18`,`15`,r`\text{Impossible}`], a:`20`, tip:r`\frac{10+13+12+2x}{5}=15\Rightarrow x=20` },
+      { q:r`\text{On cherche ce que doit valoir }x\text{ pour que la moyenne soit égale à 15.}`,
+        svg:`<svg viewBox="0 0 280 60" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:280px;margin:6px auto;display:block">
+  <rect x="0" y="0" width="55" height="26" fill="#E2E8F0" stroke="#94A3B8" stroke-width="0.8"/>
+  <rect x="55" y="0" width="45" height="26" fill="#EFF6FF" stroke="#94A3B8" stroke-width="0.8"/>
+  <rect x="100" y="0" width="45" height="26" fill="#EFF6FF" stroke="#94A3B8" stroke-width="0.8"/>
+  <rect x="145" y="0" width="45" height="26" fill="#EFF6FF" stroke="#94A3B8" stroke-width="0.8"/>
+  <rect x="190" y="0" width="45" height="26" fill="#FEF9C3" stroke="#94A3B8" stroke-width="0.8"/>
+  <rect x="0" y="26" width="55" height="26" fill="#E2E8F0" stroke="#94A3B8" stroke-width="0.8"/>
+  <rect x="55" y="26" width="45" height="26" fill="#F8FAFC" stroke="#94A3B8" stroke-width="0.8"/>
+  <rect x="100" y="26" width="45" height="26" fill="#F8FAFC" stroke="#94A3B8" stroke-width="0.8"/>
+  <rect x="145" y="26" width="45" height="26" fill="#F8FAFC" stroke="#94A3B8" stroke-width="0.8"/>
+  <rect x="190" y="26" width="45" height="26" fill="#FEF9C3" stroke="#94A3B8" stroke-width="0.8"/>
+  <text x="27" y="17" text-anchor="middle" font-size="8.5" font-family="sans-serif" font-weight="bold" fill="#475569">Note</text>
+  <text x="77" y="17" text-anchor="middle" font-size="9" font-family="sans-serif" font-weight="600" fill="#1E40AF">10</text>
+  <text x="122" y="17" text-anchor="middle" font-size="9" font-family="sans-serif" font-weight="600" fill="#1E40AF">13</text>
+  <text x="167" y="17" text-anchor="middle" font-size="9" font-family="sans-serif" font-weight="600" fill="#1E40AF">12</text>
+  <text x="212" y="17" text-anchor="middle" font-size="9" font-family="sans-serif" font-weight="700" fill="#92400E">x</text>
+  <text x="27" y="43" text-anchor="middle" font-size="8" font-family="sans-serif" font-weight="bold" fill="#475569">Coeff.</text>
+  <text x="77" y="43" text-anchor="middle" font-size="9" font-family="sans-serif" fill="#334155">1</text>
+  <text x="122" y="43" text-anchor="middle" font-size="9" font-family="sans-serif" fill="#334155">1</text>
+  <text x="167" y="43" text-anchor="middle" font-size="9" font-family="sans-serif" fill="#334155">1</text>
+  <text x="212" y="43" text-anchor="middle" font-size="9" font-family="sans-serif" font-weight="700" fill="#92400E">2</text>
+</svg>`,
+        choices:[`x=20`,`x=18`,`x=15`,r`\text{Impossible}`], a:`x=20`, tip:r`\frac{10+13+12+2x}{5}=15\Rightarrow 35+2x=75\Rightarrow x=20` },
     ],
     stmg_original: [],
     // ── Tronc commun · Annales · Sujet 1 (Voie générale hors spé, 2026) ──────
