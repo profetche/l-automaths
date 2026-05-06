@@ -1,65 +1,60 @@
-// ── AutoMaths Service Worker ───────────────────────────────────────────────────
-// CACHE_VERSION v4  (incrémenté : restructuration catégorie polynômes 7 sous-cat)
+// ── service-worker.js ── AutoMaths PWA ────────────────────────────────────────
+// Stratégie : Network-first avec fallback cache.
+// À chaque nouveau déploiement, incrémenter CACHE_VERSION.
 
 const CACHE_VERSION = 'v4';
 const CACHE_NAME    = `automaths-${CACHE_VERSION}`;
 
-// Ressources à mettre en cache au premier install
 const PRECACHE_URLS = [
   '/',
   '/index.html',
   '/app.js',
 ];
 
-// ── Install : précache ─────────────────────────────────────────────────────────
+// ── Installation : mise en cache des ressources essentielles ──────────────────
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(PRECACHE_URLS))
-      .then(() => self.skipWaiting())   // prend le contrôle immédiatement
+    caches.open(CACHE_NAME).then(cache => cache.addAll(PRECACHE_URLS))
   );
+  // Prendre le contrôle immédiatement sans attendre l'ancienne SW
+  self.skipWaiting();
 });
 
-// ── Activate : purge anciens caches ───────────────────────────────────────────
+// ── Activation : suppression des anciens caches ───────────────────────────────
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys =>
       Promise.all(
         keys
-          .filter(k => k.startsWith('automaths-') && k !== CACHE_NAME)
-          .map(k => caches.delete(k))
+          .filter(key => key !== CACHE_NAME)
+          .map(key => caches.delete(key))
       )
-    ).then(() => self.clients.claim())  // contrôle tous les onglets ouverts
+    )
   );
+  // Prendre le contrôle de tous les clients ouverts
+  self.clients.claim();
 });
 
-// ── Fetch : network-first avec fallback cache ──────────────────────────────────
+// ── Fetch : Network-first, fallback cache ─────────────────────────────────────
 self.addEventListener('fetch', event => {
-  // Ne pas intercepter les requêtes non-GET ni les requêtes cross-origin
+  // On ne gère que les requêtes GET
   if (event.request.method !== 'GET') return;
-  const url = new URL(event.request.url);
-  if (url.origin !== location.origin) return;
 
   event.respondWith(
     fetch(event.request)
-      .then(response => {
-        // Mettre en cache la réponse fraîche
-        if (response && response.status === 200) {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+      .then(networkResponse => {
+        // Mettre à jour le cache avec la réponse réseau fraîche
+        if (networkResponse && networkResponse.status === 200) {
+          const responseClone = networkResponse.clone();
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, responseClone);
+          });
         }
-        return response;
+        return networkResponse;
       })
-      .catch(() =>
-        // Réseau indisponible → fallback sur le cache
-        caches.match(event.request)
-      )
+      .catch(() => {
+        // Réseau indisponible → fallback cache
+        return caches.match(event.request);
+      })
   );
-});
-
-// ── Message : force update depuis app.js ───────────────────────────────────────
-self.addEventListener('message', event => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
-    self.skipWaiting();
-  }
 });
