@@ -15072,7 +15072,7 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
     : null;
 
   return (
-    <div style={{display:"flex",flexDirection:"column",minHeight:"100%",padding:"16px 16px 14px",position:"relative"}}>
+    <div style={{display:"flex",flexDirection:"column",minHeight:"100%",padding:"16px 16px 14px",position:"relative",overflowY:"auto"}}>
       {/* Modal rappel de cours */}
       {showReminder && reminderAvailable && (
         <CourseReminderModal catId={catId} subId={subId} onClose={()=>setShowReminder(false)}/>
@@ -15130,25 +15130,30 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
                             dangerouslySetInnerHTML={{__html: q.svg}}/>}
         {q.trespec && <div style={{marginBottom:10}}><ProbaTree spec={q.trespec}/></div>}
         {q.tspec   && <ProbaTable spec={q.tspec}/>}
-        <div style={{
-          fontSize: isNum && !q.gspec
-            ? (q.q.length > 60 ? 14 : q.q.length > 40 ? 16 : q.q.length > 20 ? 21 : 38)
+        <div style={(() => {
+          // Longueur "visuelle" : on retire les commandes LaTeX pour estimer
+          // le texte effectivement rendu (évite de sous-dimensionner à cause de \frac, \binom…)
+          const visLen = q.q.replace(/\\[a-zA-Z]+\{[^}]*\}/g,'X').replace(/[\\{}]/g,'').length;
+          const fs = isNum && !q.gspec
+            ? (visLen > 60 ? 14 : visLen > 40 ? 16 : visLen > 20 ? 21 : 38)
             : (isNum||isSol) && q.gspec ? 16
             : isSol ? 19
             : hasVis||isTab ? 14
-            // Questions textuelles : paliers étendus pour les annales longues
-            : q.q.length > 150 ? 11
-            : q.q.length > 120 ? 12
-            : q.q.length > 80  ? 14
-            : q.q.length > 50  ? 16
-            : q.q.length > 25  ? 17
-            : 19,
-          fontWeight:700, lineHeight:1.45, textAlign:"center",
-          color:(isNum||isSol||isExpr||isFrac)?"#fff":"#1E293B",
-          fontFamily:(isNum||isSol||isExpr||isFrac)?"'Nunito',sans-serif":"'DM Sans',sans-serif",
-          padding: isNum && q.gspec ? "4px 0 2px" : 0,
-          maxWidth:"100%", overflow:"hidden", wordWrap:"break-word",
-        }}>
+            : visLen > 120 ? 12
+            : visLen > 80  ? 13
+            : visLen > 50  ? 15
+            : visLen > 25  ? 17
+            : 19;
+          return {
+            fontSize: fs,
+            fontWeight:700, lineHeight:1.5, textAlign:"center",
+            color:(isNum||isSol||isExpr||isFrac)?"#fff":"#1E293B",
+            fontFamily:(isNum||isSol||isExpr||isFrac)?"'Nunito',sans-serif":"'DM Sans',sans-serif",
+            padding: isNum && q.gspec ? "4px 0 2px" : 0,
+            maxWidth:"100%", wordWrap:"break-word", overflowWrap:"break-word",
+            overflowX:"auto", overflowY:"visible",
+          };
+        })()}>
           <M tex={q.q}/>
         </div>
         {isNum&&<div style={{textAlign:"center",marginTop:4,opacity:.7,fontSize:11,color:"#E0D9FF"}}>Tape ta réponse ↓</div>}
