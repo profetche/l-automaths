@@ -6296,7 +6296,7 @@ const DB = {
   // ════ 7ter. DÉNOMBREMENT (Term Spé) ════════════════════════════════════════════
   denombrement: {
 
-    // ── Dénombrement — combinaisons, arrangements, k-uplets ── (22 questions)
+    // ── Dénombrement — combinaisons, arrangements, k-uplets ── (40 questions)
     denombrement_type: [
       // term_denomb_00a — Calculer une combinaison — facile
       { q: r`\text{Quelle est la valeur de }\dbinom{5}{3}\text{ ?}`,
@@ -6520,6 +6520,186 @@ const DB = {
         ],
         a: r`10^{4} - 9^{4} = 3\,439`,
         tip: r`\text{Ordre compte\,?}\\\bullet\text{ NON (simultané) }\Rightarrow\dbinom{n}{k}\\\bullet\text{ OUI, sans remise }\Rightarrow n{\times}(n{-}1){\times}\dots\\\bullet\text{ OUI, avec remise }\Rightarrow n^k` },
+      // term_denomb_21 — Propriété C(n,0) et C(n,n) — facile
+      { q: r`\text{Quelle est la valeur de }\dbinom{15}{0}\text{ ?}`,
+        choices: [
+          r`1`,
+          r`15`,
+          r`0`,
+          r`\dfrac{1}{15}`
+        ],
+        a: r`1`,
+        tip: r`\dbinom{n}{0}=1\text{ : il n'y a qu'une seule façon de ne choisir personne.}\\\text{De même }\dbinom{n}{n}=1.` },
+      // term_denomb_22 — Propriété de symétrie C(n,k)=C(n,n-k) — facile
+      { q: r`\text{Quelle propriété permet d'affirmer que }\dbinom{10}{7}=\dbinom{10}{3}\text{ ?}`,
+        choices: [
+          r`\dbinom{n}{k}=\dbinom{n}{n-k}`,
+          r`\dbinom{n}{k}=\dbinom{n-1}{k-1}+\dbinom{n-1}{k}`,
+          r`\dbinom{n}{k}=\dbinom{n}{k-1}`,
+          r`\dbinom{n}{k}=n\times\dbinom{n-1}{k-1}`
+        ],
+        a: r`\dbinom{n}{k}=\dbinom{n}{n-k}`,
+        tip: r`\dbinom{n}{k}=\dbinom{n}{n-k}\text{ : choisir }k\text{ éléments revient à exclure }n{-}k\text{ éléments.}\\\dbinom{10}{7}=\dbinom{10}{3}=120` },
+      // term_denomb_23 — Formule de Pascal — facile
+      { q: r`\text{Quelle est la formule de Pascal ?}`,
+        choices: [
+          r`\dbinom{n}{k}=\dbinom{n-1}{k-1}+\dbinom{n-1}{k}`,
+          r`\dbinom{n}{k}=\dbinom{n}{k-1}+\dbinom{n}{k+1}`,
+          r`\dbinom{n}{k}=\dbinom{n-1}{k}+\dbinom{n-1}{k+1}`,
+          r`\dbinom{n}{k}=\dbinom{n+1}{k-1}-\dbinom{n}{k}`
+        ],
+        a: r`\dbinom{n}{k}=\dbinom{n-1}{k-1}+\dbinom{n-1}{k}`,
+        tip: r`\text{Formule de Pascal : }\dbinom{n}{k}=\dbinom{n-1}{k-1}+\dbinom{n-1}{k}\\\text{Ex : }\dbinom{5}{2}=\dbinom{4}{1}+\dbinom{4}{2}=4+6=10` },
+      // term_denomb_24 — Calcul de C(9,7) par symétrie — facile
+      { q: r`\text{Quelle est la valeur de }\dbinom{9}{7}\text{ ?}`,
+        choices: [
+          r`36`,
+          r`72`,
+          r`9`,
+          r`504`
+        ],
+        a: r`36`,
+        tip: r`\dbinom{9}{7}=\dbinom{9}{2}=\dfrac{9\times 8}{2!}=36\\\text{On utilise la symétrie }\dbinom{n}{k}=\dbinom{n}{n-k}\text{ pour simplifier le calcul.}` },
+      // term_denomb_25 — Principe multiplicatif (menus) — facile
+      { q: r`\text{Un menu est composé d'une entrée, d'un plat et d'un dessert. Il y a }4\text{ entrées, }5\text{ plats et }3\text{ desserts. Combien de menus différents peut-on composer ?}`,
+        choices: [
+          r`4 \times 5 \times 3 = 60`,
+          r`4 + 5 + 3 = 12`,
+          r`\binom{12}{3} = 220`,
+          r`3^{12}`
+        ],
+        a: r`4 \times 5 \times 3 = 60`,
+        tip: r`\text{Principe multiplicatif : des choix \textbf{successifs indépendants} se multiplient.}\\4\times5\times3=60` },
+      // term_denomb_26 — Principe multiplicatif (trajets) — facile
+      { q: r`\text{Pour aller de la ville A à la ville C en passant par B, il existe }3\text{ routes de A à B et }4\text{ routes de B à C. Combien d'itinéraires différents sont possibles ?}`,
+        choices: [
+          r`3 \times 4 = 12`,
+          r`3 + 4 = 7`,
+          r`\binom{7}{2} = 21`,
+          r`4^{3} = 64`
+        ],
+        a: r`3 \times 4 = 12`,
+        tip: r`\text{Principe multiplicatif : }3\text{ choix pour la première étape, }4\text{ pour la seconde.}\\3\times4=12` },
+      // term_denomb_27 — Arrangement (président + secrétaire) — moyenne
+      { q: r`\text{Dans un club de }15\text{ membres, on doit élire un président puis un secrétaire (deux personnes différentes). Combien de binômes (président, secrétaire) différents sont possibles ?}`,
+        choices: [
+          r`15 \times 14 = 210`,
+          r`\binom{15}{2} = 105`,
+          r`15^{2} = 225`,
+          r`2! = 2`
+        ],
+        a: r`15 \times 14 = 210`,
+        tip: r`\text{L'ordre compte (président }\neq\text{ secrétaire) et sans remise.}\\15\times14=210\text{ arrangements de 2 parmi 15.}` },
+      // term_denomb_28 — K-uplet (identifiant alphanumérique) — moyenne
+      { q: r`\text{On forme un identifiant de }3\text{ lettres (de A à Z, }26\text{ lettres) suivies de }2\text{ chiffres (de 0 à 9). Les répétitions sont autorisées. Combien d'identifiants différents existent ?}`,
+        choices: [
+          r`26^{3} \times 10^{2} = 1\,757\,600`,
+          r`26 \times 25 \times 24 \times 10 \times 9 = 1\,404\,000`,
+          r`\binom{26}{3} \times \binom{10}{2} = 2\,600`,
+          r`(26+10)^{5}`
+        ],
+        a: r`26^{3} \times 10^{2} = 1\,757\,600`,
+        tip: r`\text{Principe multiplicatif : }26^3\text{ choix pour les lettres (avec répétition), }10^2\text{ pour les chiffres.}\\26^3\times10^2=17\,576\times100=1\,757\,600` },
+      // term_denomb_29 — Combinaison avec contrainte (au moins Alice) — moyenne
+      { q: r`\text{Un groupe de }6\text{ personnes dont Alice. On choisit }3\text{ personnes. Combien de groupes contiennent \textbf{au moins} Alice ?}`,
+        choices: [
+          r`\binom{5}{2} = 10`,
+          r`\binom{6}{3} = 20`,
+          r`\binom{6}{3} - \binom{5}{3} = 10`,
+          r`5 \times 4 = 20`
+        ],
+        a: r`\binom{5}{2} = 10`,
+        tip: r`\text{Si Alice est dans le groupe, il reste à choisir }2\text{ personnes parmi les }5\text{ autres.}\\\dbinom{5}{2}=10` },
+      // term_denomb_30 — Complémentaire (au moins une carte paire) — moyenne
+      { q: r`\text{On tire }3\text{ cartes d'un jeu de }10\text{ cartes numérotées de 1 à 10. Combien de tirages contiennent \textbf{au moins une} carte paire (2, 4, 6, 8, 10) ?}`,
+        choices: [
+          r`\binom{10}{3} - \binom{5}{3} = 110`,
+          r`\binom{5}{1} \times \binom{5}{2} = 50`,
+          r`\binom{5}{3} = 10`,
+          r`5^{3} = 125`
+        ],
+        a: r`\binom{10}{3} - \binom{5}{3} = 110`,
+        tip: r`\text{Complémentaire : (au moins une paire) = (total) - (aucune paire)}\\\dbinom{10}{3}-\dbinom{5}{3}=120-10=110` },
+      // term_denomb_31 — Combinaison triple (groupes distincts) — moyenne
+      { q: r`\text{On répartit }9\text{ élèves en }3\text{ groupes \textbf{distincts} de }3\text{ (groupe A, B, C). Combien de répartitions sont possibles ?}`,
+        choices: [
+          r`\binom{9}{3} \times \binom{6}{3} \times \binom{3}{3} = 1\,680`,
+          r`\binom{9}{3}^{3}`,
+          r`9! = 362\,880`,
+          r`\binom{9}{3} = 84`
+        ],
+        a: r`\binom{9}{3} \times \binom{6}{3} \times \binom{3}{3} = 1\,680`,
+        tip: r`\text{On choisit 3 pour A, puis 3 pour B parmi les 6 restants, puis 3 pour C.}\\\dbinom{9}{3}\times\dbinom{6}{3}\times\dbinom{3}{3}=84\times20\times1=1\,680` },
+      // term_denomb_32 — Arrangement (palmarès ordonné) — moyenne
+      { q: r`\text{Lors d'une compétition d'éloquence, }6\text{ candidats participent. On attribue les prix : }1^{\text{er}},\,2^{\text{e}},\,3^{\text{e}}\text{ (sans ex-æquo). Combien de palmarès différents sont possibles ?}`,
+        choices: [
+          r`6 \times 5 \times 4 = 120`,
+          r`\binom{6}{3} = 20`,
+          r`6^{3} = 216`,
+          r`6! = 720`
+        ],
+        a: r`6 \times 5 \times 4 = 120`,
+        tip: r`\text{L'ordre compte (palmarès classé), sans remise.}\\6\times5\times4=120\text{ arrangements de 3 parmi 6.}` },
+      // term_denomb_33 — Retrouver n dans C(n,2)=28 — dure
+      { q: r`\text{On sait que }\dbinom{n}{2} = 28\text{. Quelle est la valeur de }n\text{ ?}`,
+        choices: [
+          r`n = 8`,
+          r`n = 7`,
+          r`n = 14`,
+          r`n = 56`
+        ],
+        a: r`n = 8`,
+        tip: r`\dbinom{n}{2}=\dfrac{n(n-1)}{2}=28\Rightarrow n(n-1)=56\Rightarrow n=8\text{ (car }8\times7=56\text{).}` },
+      // term_denomb_34 — Arrangement avec deux contraintes de position — dure
+      { q: r`\text{On forme des mots de }5\text{ lettres toutes différentes avec l'alphabet (26 lettres). Combien de mots \textbf{commencent par A et finissent par Z} ?}`,
+        choices: [
+          r`24 \times 23 \times 22 = 12\,144`,
+          r`26 \times 25 \times 24 \times 23 \times 22`,
+          r`\binom{24}{3} = 2\,024`,
+          r`24^{3} = 13\,824`
+        ],
+        a: r`24 \times 23 \times 22 = 12\,144`,
+        tip: r`\text{A et Z fixés aux extrémités, il reste }3\text{ positions libres parmi }24\text{ lettres restantes (sans répétition).}\\24\times23\times22=12\,144` },
+      // term_denomb_35 — Principe inclusif-exclusif — dure
+      { q: r`\text{Une classe de }30\text{ élèves : }12\text{ font du sport, }10\text{ font de la musique, }5\text{ font les deux. Combien d'élèves font \textbf{au moins} une activité ?}`,
+        choices: [
+          r`12 + 10 - 5 = 17`,
+          r`12 + 10 + 5 = 27`,
+          r`12 + 10 = 22`,
+          r`30 - 5 = 25`
+        ],
+        a: r`12 + 10 - 5 = 17`,
+        tip: r`\text{Principe inclusif-exclusif : }|A\cup B|=|A|+|B|-|A\cap B|=12+10-5=17` },
+      // term_denomb_36 — Complémentaire (au moins une voyelle) — dure
+      { q: r`\text{On forme un mot de passe de }3\text{ lettres (A à Z) avec répétition possible. Combien de mots de passe contiennent \textbf{au moins une voyelle} (A, E, I, O, U) ?}`,
+        choices: [
+          r`26^{3} - 21^{3} = 8\,315`,
+          r`5^{3} = 125`,
+          r`26^{3} - 5^{3} = 17\,451`,
+          r`3 \times 5 \times 21^{2} = 6\,615`
+        ],
+        a: r`26^{3} - 21^{3} = 8\,315`,
+        tip: r`\text{Complémentaire : (au moins une voyelle) = (total) - (aucune voyelle)}\\26^3-21^3=17\,576-9\,261=8\,315\\\text{NB : }21\text{ consonnes, }5\text{ voyelles.}` },
+      // term_denomb_37 — Partition (3 types d'objets dans un tirage) — dure
+      { q: r`\text{Un sac contient }5\text{ billes rouges, }4\text{ bleues et }3\text{ vertes. On tire }4\text{ billes. Combien de tirages contiennent \textbf{exactement} }2\text{ rouges, }1\text{ bleue et }1\text{ verte ?}`,
+        choices: [
+          r`\binom{5}{2} \times \binom{4}{1} \times \binom{3}{1} = 120`,
+          r`\binom{12}{4} = 495`,
+          r`\binom{5}{2} + \binom{4}{1} + \binom{3}{1} = 17`,
+          r`5 \times 4 \times 3 \times 2 = 120`
+        ],
+        a: r`\binom{5}{2} \times \binom{4}{1} \times \binom{3}{1} = 120`,
+        tip: r`\text{Les choix dans chaque couleur sont indépendants : on multiplie.}\\\dbinom{5}{2}\times\dbinom{4}{1}\times\dbinom{3}{1}=10\times4\times3=120` },
+      // term_denomb_38 — Combinaison puis arrangement (groupe + responsable) — dure
+      { q: r`\text{On constitue un groupe de }4\text{ personnes parmi }9\text{, puis on désigne un responsable parmi les }4\text{ choisis. Combien de façons différentes d'effectuer cette opération ?}`,
+        choices: [
+          r`\binom{9}{4} \times 4 = 504`,
+          r`9 \times 8 \times 7 \times 6 = 3\,024`,
+          r`\binom{9}{4} = 126`,
+          r`\binom{9}{4} \times 4! = 3\,024`
+        ],
+        a: r`\binom{9}{4} \times 4 = 504`,
+        tip: r`\text{Étape 1 : choisir 4 parmi 9 (ordre ne compte pas) : }\dbinom{9}{4}=126.\\\text{Étape 2 : désigner 1 responsable parmi les 4 : }4\text{ choix.}\\126\times4=504` },
     ],
   },
   // ════ 8. SUITES NUMÉRIQUES ══════════════════════════════════════════════════
@@ -7811,6 +7991,241 @@ const DB = {
     ],
   },
 
+  // ════ 10. ALGORITHMIQUE EN PYTHON ════════════════════════════════════════════
+  algo_python: {
+
+    // ── Bloc 1 : Syntaxe de définition d'une fonction (5 questions) ──────────
+    algo_syntaxe: [
+      // algo_syn_01 — Nom de la fonction — facile
+      { q: r`\text{Soit le script :}\\\texttt{def carre(x):}\\\quad\texttt{return x*x}\\\text{Comment s'appelle cette fonction ?}`,
+        choices: [r`\texttt{carre}`, r`\texttt{x}`, r`\texttt{return}`, r`\texttt{def}`],
+        a: r`\texttt{carre}`,
+        tip: r`\text{Le mot-clé \texttt{def} est suivi du \textbf{nom} de la fonction, puis des paramètres entre parenthèses.}\\[4pt]\texttt{def \underline{carre}(x):}` },
+      // algo_syn_02 — Élément manquant : le deux-points — facile
+      { q: r`\text{Quel symbole manque-t-il dans cette ligne ?}\\\texttt{def triple(n)}\\\text{(le corps de la fonction est correct)}`,
+        choices: [r`\texttt{:}`, r`\texttt{=}`, r`\texttt{;}`, r`\texttt{,}`],
+        a: r`\texttt{:}`,
+        tip: r`\text{La définition d'une fonction se termine \textbf{obligatoirement} par \texttt{:}}\\[4pt]\texttt{def triple(n)\textbf{:}}` },
+      // algo_syn_03 — Élément manquant : le return — facile
+      { q: r`\text{Que manque-t-il pour que cette fonction renvoie un résultat ?}\\\texttt{def double(x):}\\\quad\texttt{x * 2}`,
+        choices: [r`\texttt{return}`, r`\texttt{print}`, r`\texttt{def}`, r`\texttt{:}`],
+        a: r`\texttt{return}`,
+        tip: r`\text{Sans \texttt{return}, la fonction \textbf{ne renvoie rien} (elle renvoie \texttt{None}).}\\[4pt]\texttt{return x * 2}` },
+      // algo_syn_04 — Identifier le paramètre — facile
+      { q: r`\text{Dans la fonction ci-dessous, quel est le \textbf{paramètre} ?}\\\texttt{def perimetre(r):}\\\quad\texttt{return 2 * 3.14 * r}`,
+        choices: [r`\texttt{r}`, r`\texttt{perimetre}`, r`\texttt{return}`, r`\texttt{3.14}`],
+        a: r`\texttt{r}`,
+        tip: r`\text{Le paramètre est la variable entre parenthèses dans \texttt{def nom(\textbf{paramètre}):}}` },
+      // algo_syn_05 — Erreur d'indentation — facile
+      { q: r`\text{Quel problème contient ce code ?}\\\texttt{def signe(x):}\\\texttt{return x > 0}`,
+        choices: [
+          r`\text{Le \texttt{return} n'est pas indenté}`,
+          r`\text{Il manque le \texttt{:}}`,
+          r`\text{Le nom de la fonction est incorrect}`,
+          r`\text{Le code est correct}`
+        ],
+        a: r`\text{Le \texttt{return} n'est pas indenté}`,
+        tip: r`\text{En Python, le corps d'une fonction \textbf{doit être indenté} (décalé vers la droite).}\\[4pt]\texttt{def signe(x):}\\\quad\texttt{return x > 0}` },
+    ],
+
+    // ── Bloc 2 : Lire une fonction sans boucle (5 questions) ──────────────────
+    algo_fonction: [
+      // algo_fn_01 — if / else simple — facile
+      { q: r`\texttt{def mystere(a):}\\\quad\texttt{if a > 0 :}\\\qquad\texttt{return 2*a}\\\quad\texttt{else :}\\\qquad\texttt{return 3*a}\\[6pt]\text{Que renvoie }\texttt{mystere(-5)}\text{ ?}`,
+        choices: [r`-15`, r`-10`, r`15`, r`10`],
+        a: r`-15`,
+        tip: r`\texttt{-5 > 0}\text{ est faux, donc on entre dans \texttt{else} : }3\times(-5)=-15` },
+      // algo_fn_02 — valeur absolue maison — facile
+      { q: r`\texttt{def f(x):}\\\quad\texttt{if x >= 0 :}\\\qquad\texttt{return x}\\\quad\texttt{else :}\\\qquad\texttt{return -x}\\[6pt]\text{Que renvoie }\texttt{f(-4)}\text{ ?}`,
+        choices: [r`4`, r`-4`, r`0`, r`\text{Erreur}`],
+        a: r`4`,
+        tip: r`\texttt{-4 >= 0}\text{ est faux → \texttt{else} : }-(-4)=4.\text{ C'est la valeur absolue de }x.` },
+      // algo_fn_03 — calcul direct — facile
+      { q: r`\texttt{def aire(b, h):}\\\quad\texttt{return b * h / 2}\\[6pt]\text{Que renvoie }\texttt{aire(6, 4)}\text{ ?}`,
+        choices: [r`12`, r`24`, r`10`, r`3`],
+        a: r`12`,
+        tip: r`\texttt{b = 6,\ h = 4}\text{ : }\dfrac{6\times4}{2}=\dfrac{24}{2}=12` },
+      // algo_fn_04 — deux paramètres avec condition — facile
+      { q: r`\texttt{def max2(a, b):}\\\quad\texttt{if a > b :}\\\qquad\texttt{return a}\\\quad\texttt{else :}\\\qquad\texttt{return b}\\[6pt]\text{Que renvoie }\texttt{max2(3, 7)}\text{ ?}`,
+        choices: [r`7`, r`3`, r`10`, r`21`],
+        a: r`7`,
+        tip: r`\texttt{3 > 7}\text{ est faux → \texttt{else} : on renvoie }\texttt{b = 7}.` },
+      // algo_fn_05 — elif — facile
+      { q: r`\texttt{def note(n):}\\\quad\texttt{if n >= 10 :}\\\qquad\texttt{return "reçu"}\\\quad\texttt{else :}\\\qquad\texttt{return "ajourné"}\\[6pt]\text{Que renvoie }\texttt{note(10)}\text{ ?}`,
+        choices: [r`\texttt{"reçu"}`, r`\texttt{"ajourné"}`, r`10`, r`\text{Erreur}`],
+        a: r`\texttt{"reçu"}`,
+        tip: r`\texttt{10 >= 10}\text{ est vrai → on renvoie \texttt{"reçu"}. La condition est large (}\geq\text{).}` },
+    ],
+
+    // ── Bloc 3 : if / elif / else (10 questions) ──────────────────────────────
+    algo_if: [
+      // algo_if_01 — if simple sans else — facile
+      { q: r`\texttt{def f(x):}\\\quad\texttt{if x > 5 :}\\\qquad\texttt{return "grand"}\\\quad\texttt{return "petit"}\\[6pt]\text{Que renvoie }\texttt{f(5)}\text{ ?}`,
+        choices: [r`\texttt{"petit"}`, r`\texttt{"grand"}`, r`5`, r`\text{Erreur}`],
+        a: r`\texttt{"petit"}`,
+        tip: r`\texttt{5 > 5}\text{ est faux (strictement) → on ne rentre pas dans le \texttt{if}, on arrive à \texttt{return "petit"}.}` },
+      // algo_if_02 — elif — facile
+      { q: r`\texttt{def tarif(age):}\\\quad\texttt{if age < 12 :}\\\qquad\texttt{return "enfant"}\\\quad\texttt{elif age < 18 :}\\\qquad\texttt{return "jeune"}\\\quad\texttt{else :}\\\qquad\texttt{return "adulte"}\\[6pt]\text{Que renvoie }\texttt{tarif(15)}\text{ ?}`,
+        choices: [r`\texttt{"jeune"}`, r`\texttt{"enfant"}`, r`\texttt{"adulte"}`, r`15`],
+        a: r`\texttt{"jeune"}`,
+        tip: r`\texttt{15 < 12}\text{ : faux. }\texttt{15 < 18}\text{ : vrai → \texttt{"jeune"}}.` },
+      // algo_if_03 — condition composée and — facile
+      { q: r`\texttt{def f(x):}\\\quad\texttt{if x > 0 and x < 10 :}\\\qquad\texttt{return True}\\\quad\texttt{else :}\\\qquad\texttt{return False}\\[6pt]\text{Que renvoie }\texttt{f(0)}\text{ ?}`,
+        choices: [r`\texttt{False}`, r`\texttt{True}`, r`0`, r`\text{Erreur}`],
+        a: r`\texttt{False}`,
+        tip: r`\texttt{0 > 0}\text{ est faux → condition \texttt{and} entière fausse → \texttt{False}.}` },
+      // algo_if_04 — ordre des elif — moyenne
+      { q: r`\texttt{def g(n):}\\\quad\texttt{if n > 10 :}\\\qquad\texttt{return "A"}\\\quad\texttt{elif n > 5 :}\\\qquad\texttt{return "B"}\\\quad\texttt{else :}\\\qquad\texttt{return "C"}\\[6pt]\text{Que renvoie }\texttt{g(10)}\text{ ?}`,
+        choices: [r`\texttt{"B"}`, r`\texttt{"A"}`, r`\texttt{"C"}`, r`\text{Erreur}`],
+        a: r`\texttt{"B"}`,
+        tip: r`\texttt{10 > 10}\text{ : faux. }\texttt{10 > 5}\text{ : vrai → \texttt{"B"}}.` },
+      // algo_if_05 — condition sur modulo — moyenne
+      { q: r`\texttt{def parite(n):}\\\quad\texttt{if n \% 2 == 0 :}\\\qquad\texttt{return "pair"}\\\quad\texttt{else :}\\\qquad\texttt{return "impair"}\\[6pt]\text{Que renvoie }\texttt{parite(7)}\text{ ?}`,
+        choices: [r`\texttt{"impair"}`, r`\texttt{"pair"}`, r`1`, r`0`],
+        a: r`\texttt{"impair"}`,
+        tip: r`\texttt{7 \% 2 = 1}\text{ (reste de la division euclidienne de 7 par 2), donc }\texttt{1 == 0}\text{ est faux → \texttt{"impair"}.}` },
+      // algo_if_06 — valeur de retour numérique avec elif — moyenne
+      { q: r`\texttt{def f(x):}\\\quad\texttt{if x < 0 :}\\\qquad\texttt{return -1}\\\quad\texttt{elif x == 0 :}\\\qquad\texttt{return 0}\\\quad\texttt{else :}\\\qquad\texttt{return 1}\\[6pt]\text{Que renvoie }\texttt{f(3)}\text{ ?}`,
+        choices: [r`1`, r`-1`, r`0`, r`3`],
+        a: r`1`,
+        tip: r`\texttt{3 < 0}\text{ : faux. }\texttt{3 == 0}\text{ : faux. → \texttt{else} : renvoie }1.\text{ (C'est la fonction signe.)}` },
+      // algo_if_07 — deux if indépendants (pas elif) — moyenne
+      { q: r`\texttt{def h(x):}\\\quad\texttt{s = 0}\\\quad\texttt{if x > 0 :}\\\qquad\texttt{s = s + 1}\\\quad\texttt{if x > 2 :}\\\qquad\texttt{s = s + 1}\\\quad\texttt{return s}\\[6pt]\text{Que renvoie }\texttt{h(3)}\text{ ?}`,
+        choices: [r`2`, r`1`, r`0`, r`3`],
+        a: r`2`,
+        tip: r`\text{Les deux \texttt{if} sont \textbf{indépendants}. }\texttt{3>0}\text{ : vrai → }s=1\text{. }\texttt{3>2}\text{ : vrai → }s=2.` },
+      // algo_if_08 — piège : if sans return dans une branche — moyenne
+      { q: r`\texttt{def f(x):}\\\quad\texttt{if x > 0 :}\\\qquad\texttt{return x * 2}\\[6pt]\text{Que renvoie }\texttt{f(-3)}\text{ ?}`,
+        choices: [r`\texttt{None}`, r`-6`, r`-3`, r`\text{Erreur}`],
+        a: r`\texttt{None}`,
+        tip: r`\texttt{-3 > 0}\text{ : faux → on ne rentre pas dans le \texttt{if}. Sans \texttt{else}, la fonction renvoie \texttt{None} (rien).}` },
+      // algo_if_09 — condition or — dure
+      { q: r`\texttt{def f(n):}\\\quad\texttt{if n == 0 or n == 1 :}\\\qquad\texttt{return True}\\\quad\texttt{else :}\\\qquad\texttt{return False}\\[6pt]\text{Que renvoie }\texttt{f(1)}\text{ ?}`,
+        choices: [r`\texttt{True}`, r`\texttt{False}`, r`1`, r`\text{Erreur}`],
+        a: r`\texttt{True}`,
+        tip: r`\texttt{1 == 0}\text{ : faux. }\texttt{1 == 1}\text{ : vrai. Avec \texttt{or}, il suffit qu'une condition soit vraie.}` },
+      // algo_if_10 — trois elif imbriqués — dure
+      { q: r`\texttt{def mention(n):}\\\quad\texttt{if n >= 16 :}\\\qquad\texttt{return "TB"}\\\quad\texttt{elif n >= 14 :}\\\qquad\texttt{return "B"}\\\quad\texttt{elif n >= 12 :}\\\qquad\texttt{return "AB"}\\\quad\texttt{else :}\\\qquad\texttt{return "P"}\\[6pt]\text{Que renvoie }\texttt{mention(14)}\text{ ?}`,
+        choices: [r`\texttt{"B"}`, r`\texttt{"TB"}`, r`\texttt{"AB"}`, r`\texttt{"P"}`],
+        a: r`\texttt{"B"}`,
+        tip: r`\texttt{14 >= 16}\text{ : faux. }\texttt{14 >= 14}\text{ : vrai → \texttt{"B"}. On s'arrête, les \texttt{elif} suivants ne sont pas testés.}` },
+    ],
+
+    // ── Bloc 4 : Boucle for (10 questions) ────────────────────────────────────
+    algo_for: [
+      // algo_for_01 — somme simple — facile
+      { q: r`\texttt{s = 0}\\\texttt{for i in range(4) :}\\\quad\texttt{s = s + i}\\\texttt{print(s)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+        choices: [r`6`, r`10`, r`4`, r`0`],
+        a: r`6`,
+        tip: r`\texttt{range(4)} = \{0,1,2,3\}.\text{ Somme : }0+1+2+3=6.` },
+      // algo_for_02 — range(1, n+1) — facile
+      { q: r`\texttt{s = 0}\\\texttt{for i in range(1, 6) :}\\\quad\texttt{s = s + i}\\\texttt{print(s)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+        choices: [r`15`, r`10`, r`6`, r`21`],
+        a: r`15`,
+        tip: r`\texttt{range(1,6)} = \{1,2,3,4,5\}.\text{ Somme : }1+2+3+4+5=15.` },
+      // algo_for_03 — compteur — facile
+      { q: r`\texttt{c = 0}\\\texttt{for i in range(5) :}\\\quad\texttt{c = c + 1}\\\texttt{print(c)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+        choices: [r`5`, r`4`, r`6`, r`0`],
+        a: r`5`,
+        tip: r`\texttt{range(5)} = \{0,1,2,3,4\}\text{ : la boucle s'exécute }5\text{ fois, donc }c=5.` },
+      // algo_for_04 — produit (factorielle) — facile
+      { q: r`\texttt{p = 1}\\\texttt{for i in range(1, 5) :}\\\quad\texttt{p = p * i}\\\texttt{print(p)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+        choices: [r`24`, r`4`, r`12`, r`10`],
+        a: r`24`,
+        tip: r`p\text{ vaut successivement : }1,\ 1\times2=2,\ 2\times3=6,\ 6\times4=24.\\4! = 24.` },
+      // algo_for_05 — valeur de la variable de boucle — facile
+      { q: r`\texttt{for k in range(3) :}\\\quad\texttt{print(k)}\\[6pt]\text{Quelles valeurs sont affichées ?}`,
+        choices: [r`0,\ 1,\ 2`, r`1,\ 2,\ 3`, r`0,\ 1,\ 2,\ 3`, r`1,\ 2`],
+        a: r`0,\ 1,\ 2`,
+        tip: r`\texttt{range(3)}\text{ génère }0, 1, 2\text{ (commence à }0\text{, n'atteint pas }3\text{).}` },
+      // algo_for_06 — range avec pas — moyenne
+      { q: r`\texttt{s = 0}\\\texttt{for i in range(0, 10, 2) :}\\\quad\texttt{s = s + i}\\\texttt{print(s)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+        choices: [r`20`, r`30`, r`25`, r`10`],
+        a: r`20`,
+        tip: r`\texttt{range(0,10,2)} = \{0,2,4,6,8\}.\text{ Somme : }0+2+4+6+8=20.` },
+      // algo_for_07 — boucle avec condition interne — moyenne
+      { q: r`\texttt{c = 0}\\\texttt{for i in range(1, 11) :}\\\quad\texttt{if i \% 2 == 0 :}\\\qquad\texttt{c = c + 1}\\\texttt{print(c)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+        choices: [r`5`, r`10`, r`4`, r`6`],
+        a: r`5`,
+        tip: r`\text{Parmi }\{1,\dots,10\}\text{, les entiers pairs sont }\{2,4,6,8,10\}\text{ : }5\text{ valeurs.}` },
+      // algo_for_08 — accumulation multiplicative avec condition — moyenne
+      { q: r`\texttt{p = 1}\\\texttt{for i in range(1, 6) :}\\\quad\texttt{if i \% 2 != 0 :}\\\qquad\texttt{p = p * i}\\\texttt{print(p)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+        choices: [r`15`, r`120`, r`9`, r`5`],
+        a: r`15`,
+        tip: r`\text{On multiplie les impairs de 1 à 5 : }1\times3\times5=15.` },
+      // algo_for_09 — maximum d'une liste — dure
+      { q: r`\texttt{m = 0}\\\texttt{for x in [3, 7, 2, 9, 4] :}\\\quad\texttt{if x > m :}\\\qquad\texttt{m = x}\\\texttt{print(m)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+        choices: [r`9`, r`7`, r`4`, r`3`],
+        a: r`9`,
+        tip: r`\text{On compare chaque élément au maximum courant }m\text{. Après toute la liste : }m=9.` },
+      // algo_for_10 — boucle imbriquée (table de multiplication) — dure
+      { q: r`\texttt{s = 0}\\\texttt{for i in range(1, 4) :}\\\quad\texttt{for j in range(1, 4) :}\\\qquad\texttt{s = s + 1}\\\texttt{print(s)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+        choices: [r`9`, r`6`, r`12`, r`3`],
+        a: r`9`,
+        tip: r`\text{Boucle imbriquée : }i\in\{1,2,3\}\text{ et }j\in\{1,2,3\}\text{ → }3\times3=9\text{ itérations au total.}` },
+    ],
+
+    // ── Bloc 5 : Boucle while (10 questions) ──────────────────────────────────
+    algo_while: [
+      // algo_wh_01 — décompte simple — facile
+      { q: r`\texttt{n = 3}\\\texttt{while n > 0 :}\\\quad\texttt{n = n - 1}\\\texttt{print(n)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+        choices: [r`0`, r`1`, r`3`, r`-1`],
+        a: r`0`,
+        tip: r`n\text{ vaut successivement }3, 2, 1, 0.\text{ La boucle s'arrête quand }n=0\text{ (condition fausse).}\\n\text{ affiché : }0.` },
+      // algo_wh_02 — somme jusqu'à condition — facile
+      { q: r`\texttt{s = 0}\\\texttt{n = 1}\\\texttt{while n <= 4 :}\\\quad\texttt{s = s + n}\\\quad\texttt{n = n + 1}\\\texttt{print(s)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+        choices: [r`10`, r`4`, r`15`, r`6`],
+        a: r`10`,
+        tip: r`s=0+1+2+3+4=10.\text{ La variable }n\text{ joue le rôle du compteur.}` },
+      // algo_wh_03 — double de n jusqu'à seuil — facile
+      { q: r`\texttt{n = 1}\\\texttt{while n < 10 :}\\\quad\texttt{n = n * 2}\\\texttt{print(n)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+        choices: [r`16`, r`8`, r`10`, r`12`],
+        a: r`16`,
+        tip: r`n\text{ vaut successivement }1, 2, 4, 8, 16.\text{ À }n=8\text{ : }8<10\text{ vrai → }n=16.\text{ À }16<10\text{ : faux → arrêt.}` },
+      // algo_wh_04 — compteur de tours — facile
+      { q: r`\texttt{c = 0}\\\texttt{x = 100}\\\texttt{while x > 1 :}\\\quad\texttt{x = x // 2}\\\quad\texttt{c = c + 1}\\\texttt{print(c)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+        choices: [r`6`, r`7`, r`5`, r`100`],
+        a: r`6`,
+        tip: r`x\text{ vaut : }100, 50, 25, 12, 6, 3, 1.\text{ La boucle tourne }6\text{ fois (}\texttt{//}\text{ est la division entière).}` },
+      // algo_wh_05 — condition avec égalité — facile
+      { q: r`\texttt{n = 10}\\\texttt{while n != 0 :}\\\quad\texttt{n = n - 3}\\\texttt{print(n)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+        choices: [r`-2`, r`0`, r`1`, r`\text{boucle infinie}`],
+        a: r`-2`,
+        tip: r`n\text{ vaut : }10, 7, 4, 1, -2.\text{ La condition }n\neq0\text{ est vraie à chaque fois (}n\text{ ne vaut jamais exactement }0\text{).}` },
+      // algo_wh_06 — nombre de chiffres — moyenne
+      { q: r`\texttt{n = 1000}\\\texttt{c = 0}\\\texttt{while n >= 1 :}\\\quad\texttt{n = n // 10}\\\quad\texttt{c = c + 1}\\\texttt{print(c)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+        choices: [r`4`, r`3`, r`5`, r`10`],
+        a: r`4`,
+        tip: r`n\text{ vaut : }1000, 100, 10, 1, 0.\text{ Boucle tourne }4\text{ fois → }c=4.\text{ (1000 a 4 chiffres.)}` },
+      // algo_wh_07 — seuil de dépassement — moyenne
+      { q: r`\texttt{u = 1}\\\texttt{n = 0}\\\texttt{while u < 100 :}\\\quad\texttt{u = u * 3}\\\quad\texttt{n = n + 1}\\\texttt{print(n)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+        choices: [r`5`, r`4`, r`6`, r`3`],
+        a: r`5`,
+        tip: r`u\text{ vaut : }1, 3, 9, 27, 81, 243.\text{ La boucle tourne }5\text{ fois avant que }u\geq100.` },
+      // algo_wh_08 — algorithme d'Euclide simplifié — moyenne
+      { q: r`\texttt{a = 12}\\\texttt{b = 8}\\\texttt{while b != 0 :}\\\quad\texttt{a, b = b, a \% b}\\\texttt{print(a)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+        choices: [r`4`, r`8`, r`2`, r`12`],
+        a: r`4`,
+        tip: r`\text{C'est l'algorithme d'Euclide.}\\(a,b):(12,8)\to(8,4)\to(4,0).\\\text{À l'arrêt }b=0\text{, }a=4=\text{pgcd}(12,8).` },
+      // algo_wh_09 — piège boucle infinie — dure
+      { q: r`\texttt{n = 1}\\\texttt{while n > 0 :}\\\quad\texttt{n = n + 1}\\[6pt]\text{Que se passe-t-il ?}`,
+        choices: [
+          r`\text{Boucle infinie : }n\text{ augmente sans jamais atteindre }0`,
+          r`\text{La boucle s'arrête quand }n = 0`,
+          r`\text{La boucle ne s'exécute pas}`,
+          r`\text{Erreur de syntaxe}`
+        ],
+        a: r`\text{Boucle infinie : }n\text{ augmente sans jamais atteindre }0`,
+        tip: r`n\text{ part de }1\text{ et augmente. La condition }n>0\text{ reste toujours vraie → boucle infinie.}\\\text{Il faudrait }n=n-1\text{ pour que la boucle se termine.}` },
+      // algo_wh_10 — trouver le premier entier vérifiant une condition — dure
+      { q: r`\texttt{n = 0}\\\texttt{while n * n <= 50 :}\\\quad\texttt{n = n + 1}\\\texttt{print(n)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+        choices: [r`8`, r`7`, r`9`, r`50`],
+        a: r`8`,
+        tip: r`7^2=49\leq50\text{ : on continue. }8^2=64>50\text{ : arrêt. On affiche }n=8.\\(\text{premier entier tel que }n^2>50\text{.)}` },
+    ],
+
+  },
+
 };
 
 // ── Categories ─────────────────────────────────────────────────────────────────
@@ -7974,6 +8389,14 @@ const CATS = [
       {id:"derivee",      label:"Dérivée de ln(u)",                   group:"proprietes", levels:["term"]},
       {id:"equations",    label:"Équations / inéquations",            group:"proprietes", levels:["term"]},
       {id:"applications", label:"Croissance comparée",                group:"etude",      levels:["term"]},
+    ] },
+  { id:"algo_python", label:"Algorithmique Python", emoji:"🐍", color:"#15803D", grad:"linear-gradient(135deg,#22C55E,#15803D)", light:"#F0FDF4", border:"#BBF7D0",
+    subs:[
+      {id:"algo_syntaxe",  label:"Syntaxe d'une fonction",    levels:["sec","tc","stmg","spe","term"]},
+      {id:"algo_fonction", label:"Lire une fonction",          levels:["sec","tc","stmg","spe","term"]},
+      {id:"algo_if",       label:"Conditions if / elif / else",levels:["sec","tc","stmg","spe","term"]},
+      {id:"algo_for",      label:"Boucle for",                 levels:["sec","tc","stmg","spe","term"]},
+      {id:"algo_while",    label:"Boucle while",               levels:["sec","tc","stmg","spe","term"]},
     ] },
 ];;
 // ── Utils ──────────────────────────────────────────────────────────────────────
