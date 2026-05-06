@@ -97,13 +97,14 @@ function QuestionRenderer({ tex }) {
   return (
     <div style={{width:'100%'}}>
       <pre style={{
-        background:'#F0FDF4', border:'1.5px solid #86EFAC', borderRadius:10,
-        padding:'10px 14px', fontFamily:"'Courier New', monospace",
-        fontSize:13, lineHeight:1.75, color:'#15803D',
+        background:'rgba(255,255,255,0.12)', border:'1.5px solid rgba(255,255,255,0.3)',
+        borderRadius:10, padding:'10px 14px',
+        fontFamily:"'Courier New', monospace",
+        fontSize:13, lineHeight:1.75, color:'#E9D5FF',
         textAlign:'left', margin:'0 0 8px 0',
         whiteSpace:'pre', overflowX:'auto',
       }}>{codeLines.join('\n')}</pre>
-      {questionTex && <div style={{textAlign:'center', marginTop:4}}><M tex={questionTex}/></div>}
+      {questionTex && <div style={{textAlign:'center', marginTop:4, color:'#fff'}}><M tex={questionTex}/></div>}
     </div>
   );
 }
@@ -15904,7 +15905,7 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
 
       {/* Question card (all non-drag questions) */}
       {!isDrag && <div className={shake?"shake":""} style={{
-        background:(isNum||isSol||isExpr||isFrac)?"linear-gradient(135deg,#7C3AED,#5B21B6)":"var(--am-bg-light)",
+        background:"linear-gradient(135deg,#7C3AED,#5B21B6)",
         borderRadius:18,
         padding: isNum && !q.gspec ? "18px" : hasVis||isTab||isSol||isFrac ? "12px" : "16px",
         marginBottom:isTab?10:14, boxShadow:"0 3px 12px rgba(0,0,0,.08)",
@@ -15930,8 +15931,8 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
             : q.q.length > 25  ? 17
             : 19,
           fontWeight:700, lineHeight:1.45, textAlign:"center",
-          color:(isNum||isSol||isExpr||isFrac)?"#fff":"#1E293B",
-          fontFamily:(isNum||isSol||isExpr||isFrac)?"'Nunito',sans-serif":"'DM Sans',sans-serif",
+          color:"#fff",
+          fontFamily:"'Nunito',sans-serif",
           padding: isNum && q.gspec ? "4px 0 2px" : 0,
           maxWidth:"100%", overflowX:"auto",
         }}>
