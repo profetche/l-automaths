@@ -8067,10 +8067,10 @@ function Btn({ tex, state, onClick }) {
   const pal = { default:{bg:"#fff",bd:"#E2E8F0",c:"#1E293B"}, selected:{bg:"#EFF6FF",bd:"#3B82F6",c:"#1D4ED8"}, correct:{bg:"#ECFDF5",bd:"#10B981",c:"#065F46"}, wrong:{bg:"#FEF2F2",bd:"#EF4444",c:"#991B1B"} };
   const p = pal[state] || pal.default;
   return (
-    <button onClick={onClick} style={{width:"100%",minHeight:46,padding:"8px 12px",border:`2.5px solid ${p.bd}`,borderRadius:12,background:p.bg,color:p.c,cursor:onClick?"pointer":"default",fontFamily:"'DM Sans',sans-serif",fontSize:14,fontWeight:600,display:"flex",alignItems:"center",gap:7,boxShadow:"0 2px 8px rgba(0,0,0,.05)",transition:"all .15s ease",overflow:"hidden"}}>
+    <button onClick={onClick} style={{width:"100%",minHeight:46,padding:"8px 12px",border:`2.5px solid ${p.bd}`,borderRadius:12,background:p.bg,color:p.c,cursor:onClick?"pointer":"default",fontFamily:"'DM Sans',sans-serif",fontSize:14,fontWeight:600,display:"flex",alignItems:"center",gap:7,boxShadow:"0 2px 8px rgba(0,0,0,.05)",transition:"all .15s ease"}}>
       {state==="correct"&&<span style={{flexShrink:0}}>✅</span>}
       {state==="wrong"  &&<span style={{flexShrink:0}}>❌</span>}
-      <div style={{overflowX:"auto",minWidth:0,flex:1}}><M tex={tex}/></div>
+      <M tex={tex}/>
     </button>
   );
 }
@@ -15397,7 +15397,7 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
           color:(isNum||isSol||isExpr||isFrac)?"#fff":"#1E293B",
           fontFamily:(isNum||isSol||isExpr||isFrac)?"'Nunito',sans-serif":"'DM Sans',sans-serif",
           padding: isNum && q.gspec ? "4px 0 2px" : 0,
-          maxWidth:"100%", overflow:"hidden", wordWrap:"break-word",
+          maxWidth:"100%", overflowX:"auto",
         }}>
           <M tex={q.q}/>
         </div>
