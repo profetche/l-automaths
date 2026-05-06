@@ -4905,7 +4905,7 @@ const DB = {
           r`f\text{ est décroissante sur }\mathbb{R}`
         ],
         a: r`f\text{ est décroissante sur }]-\infty\,;\,2]\text{ puis croissante sur }[2\,;\,+\infty[`,
-        tip: r`f'(x) = 2x - 4\text{, qui s'annule en }x = 2\text{. }f'(x) < 0\text{ pour }x < 2\text{ et }f'(x) > 0\text{ pour }x > 2\text{. Donc }f\text{ décroît sur }]-\infty\,;\,2]\text{ puis croît sur }[2\,;\,+\` },
+        tip: r`f'(x) = 2x - 4\text{, qui s'annule en }x = 2\text{. }f'(x) < 0\text{ pour }x < 2\text{ et }f'(x) > 0\text{ pour }x > 2\text{. Donc }f\text{ décroît sur }]-\infty\,;\,2]\text{ puis croît sur }[2\,;\,+\infty[` },
       // tc_var_04 — lecture_tableau_variations — n2
       { q: r`\text{Le tableau de variations ci-contre représente la fonction }f\text{ sur }[-2\,;\,5]\text{. Quelle affirmation est fausse ?}`,
         gspec: { fn:x=>-0.7*(x-1)*(x-1)+4, xr:[-2,5], yr:[-4,5], extras:c=><>{gPt(1,4,c)}{gPt(-2,-3,c)}{gPt(5,-1,c)}{gDH(0,c,'#94A3B8')}{gNote(1,4.3,'max=4',c,'#EF4444')}{gNote(-2,-2.7,'(-2;-3)',c)}{gNote(4.2,-1,'(5;-1)',c)}</> },
@@ -5486,7 +5486,7 @@ const DB = {
           r`f\text{ n'est convexe sur aucun intervalle de }\left]0\,;\,+\infty\right[`
         ],
         a: r`\left]0\,;\,\dfrac{1}{2}\right]`,
-        tip: r`f'(x) = \ln(x) + 1 - 2x\text{ (en utilisant }(x\ln x)' = \ln x + 1\text{). Puis }f''(x) = \dfrac{1}{x} - 2 = \dfrac{1 - 2x}{x}\text{. Sur }\left]0\,;\,+\infty\right[\text{, }x > 0\text{ donc }f''(x) \` },
+        tip: r`f'(x) = \ln(x) + 1 - 2x\text{ (en utilisant }(x\ln x)' = \ln x + 1\text{). Puis }f''(x) = \dfrac{1}{x} - 2 = \dfrac{1 - 2x}{x}\text{. Sur }\left]0\,;\,+\infty\right[\text{, }x > 0\text{ donc }f''(x) > 0` },
       // term_convex_08 — Étudier la convexité (type bac, exp et polynôme) — dure
       { q: r`\text{Soit }f\text{ définie sur }\mathbb{R}\text{ par }f(x) = \mathrm{e}^{x} - \dfrac{x^2}{2} - x - 1\text{. Sur quel intervalle }f\text{ est-elle convexe ?}`,
         choices: [
