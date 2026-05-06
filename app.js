@@ -12946,14 +12946,82 @@ function SubmodeScreen({mode,onSubmode,onBack}) {
   );
 }
 
-function CategoryScreen({onCat,onBack,subtitle=""}) {
+// ── Configs de filtre niveau pour CategoryScreen ────────────────────────────
+const CAT_FILTER_CONFIGS = {
+  sec: {
+    label: "2nde",
+    ids: ["numerique","pourcentages","litteral","fonctions","statistiques","probabilites"],
+  },
+  premiere: {
+    label: "1ère",
+    ids: ["polynomes","suites","derivation","expo","trigonometrie"],
+  },
+  term: {
+    label: "Terminale",
+    ids: ["polynomes","suites","limites","derivation","probabilites","denombrement","ln","trigonometrie"],
+  },
+  all: {
+    label: "Tout",
+    ids: ["numerique","pourcentages","litteral","fonctions","statistiques","probabilites","polynomes","suites","derivation","expo","trigonometrie","limites","denombrement","ln"],
+  },
+};
+
+// Convertit le level du profil en clé de filtre
+function profileLevelToFilter(level) {
+  if (!level) return "all";
+  if (level === "sec" || level === "tc") return "sec";
+  if (level === "stmg" || level === "spe") return "premiere";
+  if (level === "term") return "term";
+  return "all";
+}
+
+function CategoryScreen({onCat, onBack, subtitle="", profile=null}) {
+  const initFilter = profileLevelToFilter(profile?.level ?? null);
+  const [filter, setFilter] = React.useState(initFilter);
+
+  const cfg = CAT_FILTER_CONFIGS[filter] || CAT_FILTER_CONFIGS.all;
+  const allCats = CATS.filter(c => c.id !== "missions");
+
+  // Construire la liste ordonnée selon le filtre
+  const visibleCats = filter === "all"
+    ? cfg.ids.map(id => allCats.find(c => c.id === id)).filter(Boolean)
+    : cfg.ids.map(id => allCats.find(c => c.id === id)).filter(Boolean);
+
+  const FILTER_TABS = [
+    { key:"sec",      label:"2nde" },
+    { key:"premiere", label:"1ère" },
+    { key:"term",     label:"Terminale" },
+    { key:"all",      label:"Tout" },
+  ];
+
   return (
     <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",padding:"20px 18px"}}>
       <Back onClick={onBack}/>
       <h2 style={{fontFamily:"'Nunito',sans-serif",fontSize:22,fontWeight:900,color:"#1E293B",marginBottom:4}}>Choisis une catégorie</h2>
-      {subtitle&&<p style={{color:"#64748B",fontSize:13,marginBottom:10}}>{subtitle}</p>}
-      <Scroll style={{marginTop:subtitle?0:12}}>
-        {CATS.filter(c=>c.id!=="missions").map((c,i)=>(
+      {subtitle && <p style={{color:"#64748B",fontSize:13,marginBottom:8}}>{subtitle}</p>}
+
+      {/* Filtres niveau */}
+      <div style={{display:"flex",gap:6,marginBottom:14,flexShrink:0}}>
+        {FILTER_TABS.map(tab=>{
+          const active = filter === tab.key;
+          return (
+            <button key={tab.key} onClick={()=>setFilter(tab.key)}
+              style={{
+                flex:1, padding:"6px 4px", borderRadius:10, border:"none",
+                background: active ? "#1E293B" : "#F1F5F9",
+                color: active ? "#fff" : "#64748B",
+                fontFamily:"'Nunito',sans-serif", fontSize:11, fontWeight:800,
+                cursor:"pointer", transition:"all .15s",
+                boxShadow: active ? "0 2px 8px rgba(30,41,59,.25)" : "none",
+              }}>
+              {tab.label}
+            </button>
+          );
+        })}
+      </div>
+
+      <Scroll style={{marginTop:0}}>
+        {visibleCats.map((c,i)=>(
           <button key={c.id} onClick={()=>onCat(c.id)} className="pop-in"
             style={{background:"#fff",border:`2px solid ${c.border}`,borderRadius:14,padding:"12px 15px",cursor:"pointer",display:"flex",alignItems:"center",gap:12,boxShadow:"0 2px 10px rgba(0,0,0,.06)",animationDelay:`${i*.05}s`,flexShrink:0}}>
             <div style={{width:40,height:40,borderRadius:11,background:c.grad,display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,flexShrink:0}}>{c.emoji}</div>
@@ -17002,7 +17070,7 @@ function AutoMaths() {
           {screen==="sprint_result" && sprintResult && <SprintResultScreen result={sprintResult} best={sprintBest} isNewBest={sprintIsNewBest} onReplay={hSprintReplay} onHome={()=>{setSprintResult(null);setSprintIsNewBest(false);setStreakJustCompleted(false);setScreen("home");}}/>}
           {screen==="vigilance"     && profile && <VigilanceScreen profile={profile} qState={qState} onBack={()=>setScreen("dashboard")} onRemediation={hRemediation} onWorkTheme={hWorkTheme}/>}
           {screen==="collection"    && <CollectionScreen onBack={()=>setScreen(profile?"dashboard":"home")} cardsUnlocked={cardsUnlocked}/>}
-          {screen==="category"      && <CategoryScreen  onCat={hCat} onBack={()=>setScreen((mode==="express"||mode==="entrainement")?"training_modes":mode==="test_aleatoire"?"test_aleatoire":"home")} subtitle={mode==="express"?"Choisis une catégorie":mode==="entrainement"?"Choisis une catégorie":mode==="test_aleatoire"?"Toutes les questions de la catégorie":"Puis choisis des sous-thèmes"}/>}
+          {screen==="category"      && <CategoryScreen  profile={profile} onCat={hCat} onBack={()=>setScreen((mode==="express"||mode==="entrainement")?"training_modes":mode==="test_aleatoire"?"test_aleatoire":"home")} subtitle={mode==="express"?"Choisis une catégorie":mode==="entrainement"?"Choisis une catégorie":mode==="test_aleatoire"?"Toutes les questions de la catégorie":"Puis choisis des sous-thèmes"}/>}
           {screen==="subcategory"   && <SubcategoryScreen catId={catId} qCount={mode==="express"?10:20} onStart={hSub} onBack={()=>setScreen(mode==="missions"?"home":"category")} onLevelPicker={hLevelPicker} defaultNiveau={profile?LEVEL_MAP[profile.level]||null:null}/>}
           {screen==="mission_select" && <MissionScreen missionId={missionId} onBack={()=>setScreen("subcategory")} onSelectTheme={(theme)=>{
             setMissionTheme(theme);
