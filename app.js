@@ -4094,7 +4094,7 @@ const DB = {
           r`1`
         ],
         a: r`0{,}5`,
-        tip: r`\text{La somme des probabilités d'une loi vaut toujours }1\text{ : }P(X=1) + P(X=2) + P(X=3) = 1\text{.\\\\ Donc }P(X=3) = 1 - 0{,}2 - 0{,}3 = 0{,}5\text{.}` },
+        tip: r`\text{La somme des probabilités d'une loi vaut toujours }1\text{ : }P(X=1) + P(X=2) + P(X=3) = 1\text{.\\ Donc }P(X=3) = 1 - 0{,}2 - 0{,}3 = 0{,}5\text{.}` },
       // term_proba_20 — Calcul d'une espérance — facile
       { q: r`X\text{ est une variable aléatoire de loi : }P(X=1) = 0{,}4\text{, }P(X=2) = 0{,}5\text{, }P(X=3) = 0{,}1\text{. Quelle est la valeur de }E(X)\text{ ?}`,
         choices: [
@@ -4135,7 +4135,7 @@ const DB = {
           r`5`
         ],
         a: r`13`,
-        tip: r`\text{Linéarité de l'espérance : pour tous réels }a\text{ et }b\text{, }E(aX + b) = a \times E(X) + b\text{.\\\\ }E(Y) = E(2X + 3) = 2 \times E(X) + 3 = 2 \times 5 + 3 = 13\text{.}` },
+        tip: r`\text{Linéarité de l'espérance : pour tous réels }a\text{ et }b\text{, }E(aX + b) = a \times E(X) + b\text{.\\ }E(Y) = E(2X + 3) = 2 \times E(X) + 3 = 2 \times 5 + 3 = 13\text{.}` },
       // term_proba_24 — Variance d'une transformation affine — dure
       // ⚠️ Distracteur 2 (8 = 2*V(X)) extrêmement classique. À surveiller.
       { q: r`X\text{ est une variable aléatoire de variance }V(X) = 4\text{. Soit }Y = 2X - 1\text{. Quelle est la valeur de }V(Y)\text{ ?}`,
@@ -4156,7 +4156,7 @@ const DB = {
           r`\sqrt{10}`
         ],
         a: r`3`,
-        tip: r`\text{Définition : }\sigma(X) = \sqrt{V(X)}\text{.\\\\ }\sigma(X) = \sqrt{9} = 3\text{.\\\\ L'écart-type s'exprime dans la même unité que }X\text{, contrairement à la variance (qui s'exprime dans le carré de l'unité). L'espérance n'intervient pas dans ce calcul.}` },
+        tip: r`\text{Définition : }\sigma(X) = \sqrt{V(X)}\text{.\\ }\sigma(X) = \sqrt{9} = 3\text{.\\ L'écart-type s'exprime dans la même unité que }X\text{, contrairement à la variance (qui s'exprime dans le carré de l'unité). L'espérance n'intervient pas dans ce calcul.}` },
     ],
 
     // ── Loi binomiale ── (10 questions)
@@ -6307,7 +6307,7 @@ const DB = {
           r`\dfrac{1}{10}`
         ],
         a: r`10`,
-        tip: r`\\dbinom{n}{k}=\\dfrac{n{\\times}(n{-}1){\\times}\\dots{\\times}(n{-}k{+}1)}{k!}\\\\\\text{Ex : }\\dbinom{5}{3}=\\dfrac{5{\\times}4{\\times}3}{3!}=10` },
+        tip: r`\dbinom{n}{k}=\dfrac{n{\times}(n{-}1){\times}\dots{\times}(n{-}k{+}1)}{k!}\\\text{Ex : }\dbinom{5}{3}=\dfrac{5{\times}4{\times}3}{3!}=10` },
       // term_denomb_00b — Calculer une combinaison — facile
       { q: r`\text{Quelle est la valeur de }\dbinom{7}{2}\text{ ?}`,
         choices: [
@@ -6317,7 +6317,7 @@ const DB = {
           r`\dfrac{7}{2}`
         ],
         a: r`21`,
-        tip: r`\\dbinom{n}{k}=\\dfrac{n{\\times}(n{-}1){\\times}\\dots{\\times}(n{-}k{+}1)}{k!}\\\\\\text{Ex : }\\dbinom{7}{2}=\\dfrac{7{\\times}6}{2!}=21` },
+        tip: r`\dbinom{n}{k}=\dfrac{n{\times}(n{-}1){\times}\dots{\times}(n{-}k{+}1)}{k!}\\\text{Ex : }\dbinom{7}{2}=\dfrac{7{\times}6}{2!}=21` },
       // term_denomb_01 — Identifier un k-uplet (avec répétition) — facile
       { q: r`\text{On forme un code à }4\text{ chiffres choisis parmi }\{0\,;\,1\,;\,\dots\,;\,9\}\text{. Les chiffres peuvent se répéter. Combien de codes différents peut-on former ?}`,
         choices: [
@@ -6327,7 +6327,7 @@ const DB = {
           r`4! = 24`
         ],
         a: r`10^{4} = 10\,000`,
-        tip: r`\\text{Ordre compte\,?}\\\\\\bullet\\text{ NON (simultané) }\\Rightarrow\\dbinom{n}{k}\\\\\\bullet\\text{ OUI, sans remise }\\Rightarrow n{\\times}(n{-}1){\\times}\\dots\\\\\\bullet\\text{ OUI, avec remise }\\Rightarrow n^k` },
+        tip: r`\text{Ordre compte\,?}\\\bullet\text{ NON (simultané) }\Rightarrow\dbinom{n}{k}\\\bullet\text{ OUI, sans remise }\Rightarrow n{\times}(n{-}1){\times}\dots\\\bullet\text{ OUI, avec remise }\Rightarrow n^k` },
       // term_denomb_02 — Identifier une combinaison (tirage simultané) — facile
       { q: r`\text{On tire \textbf{simultanément} }3\text{ cartes d'un jeu de }32\text{ cartes. Combien de tirages différents sont possibles ?}`,
         choices: [
@@ -6337,7 +6337,7 @@ const DB = {
           r`3! = 6`
         ],
         a: r`\binom{32}{3} = 4\,960`,
-        tip: r`\\text{Ordre compte\,?}\\\\\\bullet\\text{ NON (simultané) }\\Rightarrow\\dbinom{n}{k}\\\\\\bullet\\text{ OUI, sans remise }\\Rightarrow n{\\times}(n{-}1){\\times}\\dots\\\\\\bullet\\text{ OUI, avec remise }\\Rightarrow n^k` },
+        tip: r`\text{Ordre compte\,?}\\\bullet\text{ NON (simultané) }\Rightarrow\dbinom{n}{k}\\\bullet\text{ OUI, sans remise }\Rightarrow n{\times}(n{-}1){\times}\dots\\\bullet\text{ OUI, avec remise }\Rightarrow n^k` },
       // term_denomb_03 — Identifier un arrangement (podium) — facile
       { q: r`\text{À l'arrivée d'une course de }8\text{ coureurs, on relève l'ordre des }3\text{ premiers (or, argent, bronze). Combien de podiums différents sont possibles ?}`,
         choices: [
@@ -6347,7 +6347,7 @@ const DB = {
           r`3! = 6`
         ],
         a: r`8 \times 7 \times 6 = 336`,
-        tip: r`\\text{Ordre compte\,?}\\\\\\bullet\\text{ NON (simultané) }\\Rightarrow\\dbinom{n}{k}\\\\\\bullet\\text{ OUI, sans remise }\\Rightarrow n{\\times}(n{-}1){\\times}\\dots\\\\\\bullet\\text{ OUI, avec remise }\\Rightarrow n^k` },
+        tip: r`\text{Ordre compte\,?}\\\bullet\text{ NON (simultané) }\Rightarrow\dbinom{n}{k}\\\bullet\text{ OUI, sans remise }\Rightarrow n{\times}(n{-}1){\times}\dots\\\bullet\text{ OUI, avec remise }\Rightarrow n^k` },
       // term_denomb_04 — Identifier une permutation — facile
       { q: r`\text{Combien existe-t-il de façons de ranger }5\text{ livres distincts sur une étagère, en ligne ?}`,
         choices: [
@@ -6357,7 +6357,7 @@ const DB = {
           r`5 \times 4 = 20`
         ],
         a: r`5! = 120`,
-        tip: r`\\text{Ordre compte\,?}\\\\\\bullet\\text{ NON (simultané) }\\Rightarrow\\dbinom{n}{k}\\\\\\bullet\\text{ OUI, sans remise }\\Rightarrow n{\\times}(n{-}1){\\times}\\dots\\\\\\bullet\\text{ OUI, avec remise }\\Rightarrow n^k` },
+        tip: r`\text{Ordre compte\,?}\\\bullet\text{ NON (simultané) }\Rightarrow\dbinom{n}{k}\\\bullet\text{ OUI, sans remise }\Rightarrow n{\times}(n{-}1){\times}\dots\\\bullet\text{ OUI, avec remise }\Rightarrow n^k` },
       // term_denomb_05 — Identifier un arrangement (tirage successif sans r — facile
       { q: r`\text{Une urne contient }6\text{ boules numérotées de }1\text{ à }6\text{. On tire \textbf{successivement, sans remise}, }2\text{ boules. Combien de tirages différents sont possibles ?}`,
         choices: [
@@ -6367,7 +6367,7 @@ const DB = {
           r`2! = 2`
         ],
         a: r`6 \times 5 = 30`,
-        tip: r`\\text{Ordre compte\,?}\\\\\\bullet\\text{ NON (simultané) }\\Rightarrow\\dbinom{n}{k}\\\\\\bullet\\text{ OUI, sans remise }\\Rightarrow n{\\times}(n{-}1){\\times}\\dots\\\\\\bullet\\text{ OUI, avec remise }\\Rightarrow n^k` },
+        tip: r`\text{Ordre compte\,?}\\\bullet\text{ NON (simultané) }\Rightarrow\dbinom{n}{k}\\\bullet\text{ OUI, sans remise }\Rightarrow n{\times}(n{-}1){\times}\dots\\\bullet\text{ OUI, avec remise }\Rightarrow n^k` },
       // term_denomb_06 — Identifier un k-uplet (lancers de dés) — facile
       { q: r`\text{On lance un dé équilibré à }6\text{ faces }3\text{ fois de suite et on note le résultat dans l'ordre. Combien de résultats différents sont possibles ?}`,
         choices: [
@@ -6377,7 +6377,7 @@ const DB = {
           r`3! = 6`
         ],
         a: r`6^{3} = 216`,
-        tip: r`\\text{Ordre compte\,?}\\\\\\bullet\\text{ NON (simultané) }\\Rightarrow\\dbinom{n}{k}\\\\\\bullet\\text{ OUI, sans remise }\\Rightarrow n{\\times}(n{-}1){\\times}\\dots\\\\\\bullet\\text{ OUI, avec remise }\\Rightarrow n^k` },
+        tip: r`\text{Ordre compte\,?}\\\bullet\text{ NON (simultané) }\Rightarrow\dbinom{n}{k}\\\bullet\text{ OUI, sans remise }\Rightarrow n{\times}(n{-}1){\times}\dots\\\bullet\text{ OUI, avec remise }\Rightarrow n^k` },
       // term_denomb_07 — Combinaison (comité) — moyenne
       { q: r`\text{Une association comporte }12\text{ membres. On souhaite former un comité de }4\text{ personnes (sans hiérarchie particulière). Combien de comités différents peut-on former ?}`,
         choices: [
@@ -6387,7 +6387,7 @@ const DB = {
           r`4! = 24`
         ],
         a: r`\binom{12}{4} = 495`,
-        tip: r`\\text{Ordre compte\,?}\\\\\\bullet\\text{ NON (simultané) }\\Rightarrow\\dbinom{n}{k}\\\\\\bullet\\text{ OUI, sans remise }\\Rightarrow n{\\times}(n{-}1){\\times}\\dots\\\\\\bullet\\text{ OUI, avec remise }\\Rightarrow n^k` },
+        tip: r`\text{Ordre compte\,?}\\\bullet\text{ NON (simultané) }\Rightarrow\dbinom{n}{k}\\\bullet\text{ OUI, sans remise }\Rightarrow n{\times}(n{-}1){\times}\dots\\\bullet\text{ OUI, avec remise }\Rightarrow n^k` },
       // term_denomb_08 — Arrangement (postes hiérarchisés) — moyenne
       { q: r`\text{Lors d'une compétition, }10\text{ candidats s'affrontent. On distribue }3\text{ médailles \textbf{distinctes} (or, argent, bronze). De combien de façons différentes peut-on attribuer ces médailles ?}`,
         choices: [
@@ -6397,7 +6397,7 @@ const DB = {
           r`3! = 6`
         ],
         a: r`10 \times 9 \times 8 = 720`,
-        tip: r`\\text{Ordre compte\,?}\\\\\\bullet\\text{ NON (simultané) }\\Rightarrow\\dbinom{n}{k}\\\\\\bullet\\text{ OUI, sans remise }\\Rightarrow n{\\times}(n{-}1){\\times}\\dots\\\\\\bullet\\text{ OUI, avec remise }\\Rightarrow n^k` },
+        tip: r`\text{Ordre compte\,?}\\\bullet\text{ NON (simultané) }\Rightarrow\dbinom{n}{k}\\\bullet\text{ OUI, sans remise }\Rightarrow n{\times}(n{-}1){\times}\dots\\\bullet\text{ OUI, avec remise }\Rightarrow n^k` },
       // term_denomb_09 — K-uplet (mot de passe) — moyenne
       { q: r`\text{On forme un mot de passe de }5\text{ lettres (majuscules) en utilisant l'alphabet }A\text{ à }Z\text{ (}26\text{ lettres). Les lettres peuvent se répéter. Combien de mots de passe différents sont possibles ?}`,
         choices: [
@@ -6407,7 +6407,7 @@ const DB = {
           r`5!`
         ],
         a: r`26^{5}`,
-        tip: r`\\text{Ordre compte\,?}\\\\\\bullet\\text{ NON (simultané) }\\Rightarrow\\dbinom{n}{k}\\\\\\bullet\\text{ OUI, sans remise }\\Rightarrow n{\\times}(n{-}1){\\times}\\dots\\\\\\bullet\\text{ OUI, avec remise }\\Rightarrow n^k` },
+        tip: r`\text{Ordre compte\,?}\\\bullet\text{ NON (simultané) }\Rightarrow\dbinom{n}{k}\\\bullet\text{ OUI, sans remise }\Rightarrow n{\times}(n{-}1){\times}\dots\\\bullet\text{ OUI, avec remise }\Rightarrow n^k` },
       // term_denomb_10 — Combinaison (jeu de cartes) — moyenne
       { q: r`\text{On distribue une main de }5\text{ cartes à un joueur, à partir d'un jeu de }52\text{ cartes. Combien de mains différentes peut-il recevoir ?}`,
         choices: [
@@ -6417,7 +6417,7 @@ const DB = {
           r`5!`
         ],
         a: r`\binom{52}{5}`,
-        tip: r`\\text{Ordre compte\,?}\\\\\\bullet\\text{ NON (simultané) }\\Rightarrow\\dbinom{n}{k}\\\\\\bullet\\text{ OUI, sans remise }\\Rightarrow n{\\times}(n{-}1){\\times}\\dots\\\\\\bullet\\text{ OUI, avec remise }\\Rightarrow n^k` },
+        tip: r`\text{Ordre compte\,?}\\\bullet\text{ NON (simultané) }\Rightarrow\dbinom{n}{k}\\\bullet\text{ OUI, sans remise }\Rightarrow n{\times}(n{-}1){\times}\dots\\\bullet\text{ OUI, avec remise }\Rightarrow n^k` },
       // term_denomb_11 — Arrangement (lettres distinctes) — moyenne
       { q: r`\text{On souhaite former un sigle de }4\text{ lettres \textbf{toutes différentes} parmi les }26\text{ lettres de l'alphabet. Combien de sigles peut-on former ?}`,
         choices: [
@@ -6427,7 +6427,7 @@ const DB = {
           r`4! = 24`
         ],
         a: r`26 \times 25 \times 24 \times 23 = 358\,800`,
-        tip: r`\\text{Ordre compte\,?}\\\\\\bullet\\text{ NON (simultané) }\\Rightarrow\\dbinom{n}{k}\\\\\\bullet\\text{ OUI, sans remise }\\Rightarrow n{\\times}(n{-}1){\\times}\\dots\\\\\\bullet\\text{ OUI, avec remise }\\Rightarrow n^k` },
+        tip: r`\text{Ordre compte\,?}\\\bullet\text{ NON (simultané) }\Rightarrow\dbinom{n}{k}\\\bullet\text{ OUI, sans remise }\Rightarrow n{\times}(n{-}1){\times}\dots\\\bullet\text{ OUI, avec remise }\Rightarrow n^k` },
       // term_denomb_12 — Combinaison (délégués) — moyenne
       { q: r`\text{Dans une classe de }28\text{ élèves, on doit choisir }2\text{ délégués (sans distinction entre eux). Combien de choix possibles ?}`,
         choices: [
@@ -6437,7 +6437,7 @@ const DB = {
           r`2! = 2`
         ],
         a: r`\binom{28}{2} = 378`,
-        tip: r`\\text{Ordre compte\,?}\\\\\\bullet\\text{ NON (simultané) }\\Rightarrow\\dbinom{n}{k}\\\\\\bullet\\text{ OUI, sans remise }\\Rightarrow n{\\times}(n{-}1){\\times}\\dots\\\\\\bullet\\text{ OUI, avec remise }\\Rightarrow n^k` },
+        tip: r`\text{Ordre compte\,?}\\\bullet\text{ NON (simultané) }\Rightarrow\dbinom{n}{k}\\\bullet\text{ OUI, sans remise }\Rightarrow n{\times}(n{-}1){\times}\dots\\\bullet\text{ OUI, avec remise }\Rightarrow n^k` },
       // term_denomb_13 — K-uplet (choix indépendants successifs) — moyenne
       { q: r`\text{Au self, }7\text{ desserts différents sont proposés chaque jour. Lola y déjeune }4\text{ jours dans la semaine et choisit un dessert chaque jour (elle peut reprendre le même). Combien de semaines de desserts différentes sont possibles pour Lola ?}`,
         choices: [
@@ -6447,7 +6447,7 @@ const DB = {
           r`4! = 24`
         ],
         a: r`7^{4} = 2\,401`,
-        tip: r`\\text{Ordre compte\,?}\\\\\\bullet\\text{ NON (simultané) }\\Rightarrow\\dbinom{n}{k}\\\\\\bullet\\text{ OUI, sans remise }\\Rightarrow n{\\times}(n{-}1){\\times}\\dots\\\\\\bullet\\text{ OUI, avec remise }\\Rightarrow n^k` },
+        tip: r`\text{Ordre compte\,?}\\\bullet\text{ NON (simultané) }\Rightarrow\dbinom{n}{k}\\\bullet\text{ OUI, sans remise }\Rightarrow n{\times}(n{-}1){\times}\dots\\\bullet\text{ OUI, avec remise }\Rightarrow n^k` },
       // term_denomb_14 — Permutation (anagrammes) — moyenne
       { q: r`\text{Combien d'anagrammes (mots ayant un sens ou non) peut-on former avec les lettres du mot MATHS (les }5\text{ lettres sont distinctes) ?}`,
         choices: [
@@ -6457,7 +6457,7 @@ const DB = {
           r`25 = 5 \times 5`
         ],
         a: r`5! = 120`,
-        tip: r`\\text{Ordre compte\,?}\\\\\\bullet\\text{ NON (simultané) }\\Rightarrow\\dbinom{n}{k}\\\\\\bullet\\text{ OUI, sans remise }\\Rightarrow n{\\times}(n{-}1){\\times}\\dots\\\\\\bullet\\text{ OUI, avec remise }\\Rightarrow n^k` },
+        tip: r`\text{Ordre compte\,?}\\\bullet\text{ NON (simultané) }\Rightarrow\dbinom{n}{k}\\\bullet\text{ OUI, sans remise }\Rightarrow n{\times}(n{-}1){\times}\dots\\\bullet\text{ OUI, avec remise }\Rightarrow n^k` },
       // term_denomb_15 — Différencier combinaison et arrangement (piège) — moyenne
       { q: r`\text{Un professeur doit choisir }3\text{ élèves \textbf{simultanément} parmi }10\text{ pour participer à un projet (sans rôle distinct). Combien de choix possibles ?}`,
         choices: [
@@ -6467,7 +6467,7 @@ const DB = {
           r`3! = 6`
         ],
         a: r`\binom{10}{3} = 120`,
-        tip: r`\\text{Ordre compte\,?}\\\\\\bullet\\text{ NON (simultané) }\\Rightarrow\\dbinom{n}{k}\\\\\\bullet\\text{ OUI, sans remise }\\Rightarrow n{\\times}(n{-}1){\\times}\\dots\\\\\\bullet\\text{ OUI, avec remise }\\Rightarrow n^k` },
+        tip: r`\text{Ordre compte\,?}\\\bullet\text{ NON (simultané) }\Rightarrow\dbinom{n}{k}\\\bullet\text{ OUI, sans remise }\Rightarrow n{\times}(n{-}1){\times}\dots\\\bullet\text{ OUI, avec remise }\Rightarrow n^k` },
       // term_denomb_16 — Combinaison double (composition mixte) — dure
       { q: r`\text{Un comité de }5\text{ personnes doit être formé parmi un groupe de }8\text{ hommes et }10\text{ femmes. Le comité doit comporter exactement }2\text{ hommes et }3\text{ femmes. Combien de comités possibles ?}`,
         choices: [
@@ -6477,7 +6477,7 @@ const DB = {
           r`8 \times 7 \times 10 \times 9 \times 8 = 40\,320`
         ],
         a: r`\binom{8}{2} \times \binom{10}{3} = 3\,360`,
-        tip: r`\\text{Ordre compte\,?}\\\\\\bullet\\text{ NON (simultané) }\\Rightarrow\\dbinom{n}{k}\\\\\\bullet\\text{ OUI, sans remise }\\Rightarrow n{\\times}(n{-}1){\\times}\\dots\\\\\\bullet\\text{ OUI, avec remise }\\Rightarrow n^k` },
+        tip: r`\text{Ordre compte\,?}\\\bullet\text{ NON (simultané) }\Rightarrow\dbinom{n}{k}\\\bullet\text{ OUI, sans remise }\Rightarrow n{\times}(n{-}1){\times}\dots\\\bullet\text{ OUI, avec remise }\Rightarrow n^k` },
       // term_denomb_17 — Arrangement avec contrainte de position — dure
       { q: r`\text{Combien de mots de }4\text{ lettres \textbf{toutes différentes} peut-on former avec l'alphabet (}26\text{ lettres) en imposant que la première lettre soit M ?}`,
         choices: [
@@ -6487,7 +6487,7 @@ const DB = {
           r`26^{3} = 17\,576`
         ],
         a: r`25 \times 24 \times 23 = 13\,800`,
-        tip: r`\\text{Ordre compte\,?}\\\\\\bullet\\text{ NON (simultané) }\\Rightarrow\\dbinom{n}{k}\\\\\\bullet\\text{ OUI, sans remise }\\Rightarrow n{\\times}(n{-}1){\\times}\\dots\\\\\\bullet\\text{ OUI, avec remise }\\Rightarrow n^k` },
+        tip: r`\text{Ordre compte\,?}\\\bullet\text{ NON (simultané) }\Rightarrow\dbinom{n}{k}\\\bullet\text{ OUI, sans remise }\Rightarrow n{\times}(n{-}1){\times}\dots\\\bullet\text{ OUI, avec remise }\Rightarrow n^k` },
       // term_denomb_18 — Combinaison double (mains de cartes contraintes) — dure
       // ⚠️ Distracteur 2 (C(4,2)*C(32,3)) très efficace : élève qui oublie d'exclure les rois du second tirage. Distracteur 4 (4*3 au lieu de C(4,2)) cible la confusion ordre/sans ordre sur les rois.
       { q: r`\text{On distribue une main de }5\text{ cartes à partir d'un jeu de }32\text{ cartes (qui contient }4\text{ rois). Combien de mains contiennent \textbf{exactement} }2\text{ rois ?}`,
@@ -6498,7 +6498,7 @@ const DB = {
           r`4 \times 3 \times \binom{28}{3}`
         ],
         a: r`\binom{4}{2} \times \binom{28}{3}`,
-        tip: r`\\text{Ordre compte\,?}\\\\\\bullet\\text{ NON (simultané) }\\Rightarrow\\dbinom{n}{k}\\\\\\bullet\\text{ OUI, sans remise }\\Rightarrow n{\\times}(n{-}1){\\times}\\dots\\\\\\bullet\\text{ OUI, avec remise }\\Rightarrow n^k` },
+        tip: r`\text{Ordre compte\,?}\\\bullet\text{ NON (simultané) }\Rightarrow\dbinom{n}{k}\\\bullet\text{ OUI, sans remise }\Rightarrow n{\times}(n{-}1){\times}\dots\\\bullet\text{ OUI, avec remise }\Rightarrow n^k` },
       // term_denomb_19 — Distinguer arrangement et combinaison (formulation — dure
       { q: r`\text{Une urne contient }7\text{ boules numérotées de }1\text{ à }7\text{. On tire \textbf{successivement, sans remise}, }3\text{ boules, et on note le numéro à chaque tirage (on retient donc l'ordre). Combien de tirages différents peut-on observer ?}`,
         choices: [
@@ -6508,7 +6508,7 @@ const DB = {
           r`3! = 6`
         ],
         a: r`7 \times 6 \times 5 = 210`,
-        tip: r`\\text{Ordre compte\,?}\\\\\\bullet\\text{ NON (simultané) }\\Rightarrow\\dbinom{n}{k}\\\\\\bullet\\text{ OUI, sans remise }\\Rightarrow n{\\times}(n{-}1){\\times}\\dots\\\\\\bullet\\text{ OUI, avec remise }\\Rightarrow n^k` },
+        tip: r`\text{Ordre compte\,?}\\\bullet\text{ NON (simultané) }\Rightarrow\dbinom{n}{k}\\\bullet\text{ OUI, sans remise }\Rightarrow n{\times}(n{-}1){\times}\dots\\\bullet\text{ OUI, avec remise }\Rightarrow n^k` },
       // term_denomb_20 — Dénombrement par complémentaire — dure
       // ⚠️ Le distracteur 3 (4 × 10³) est l'erreur classique du dénombrement : multiplication abusive sans tenir compte des doubles comptages. Très formateur.
       { q: r`\text{On forme un code à }4\text{ chiffres avec répétition possible (chiffres de }0\text{ à }9\text{). Combien de codes contiennent \textbf{au moins un} }0\text{ ?}`,
@@ -6519,7 +6519,7 @@ const DB = {
           r`10^{4} = 10\,000`
         ],
         a: r`10^{4} - 9^{4} = 3\,439`,
-        tip: r`\\text{Ordre compte\,?}\\\\\\bullet\\text{ NON (simultané) }\\Rightarrow\\dbinom{n}{k}\\\\\\bullet\\text{ OUI, sans remise }\\Rightarrow n{\\times}(n{-}1){\\times}\\dots\\\\\\bullet\\text{ OUI, avec remise }\\Rightarrow n^k` },
+        tip: r`\text{Ordre compte\,?}\\\bullet\text{ NON (simultané) }\Rightarrow\dbinom{n}{k}\\\bullet\text{ OUI, sans remise }\Rightarrow n{\times}(n{-}1){\times}\dots\\\bullet\text{ OUI, avec remise }\Rightarrow n^k` },
     ],
   },
   // ════ 8. SUITES NUMÉRIQUES ══════════════════════════════════════════════════
@@ -6800,7 +6800,7 @@ const DB = {
       { q: r`a_0 = 2,\; a_1 = 3,\; a_{n+2} = 2a_{n+1} - a_n\\[4pt]\text{Que vaut }a_3\text{ ?}`,
         choices: [`4`, `5`, `6`, `8`],
         a: `5`,
-        tip: r`a_2 = 2\times 3 - 2 = 4\\\\ a_3 = 2\times 4 - 3 = 5` },
+        tip: r`a_2 = 2\times 3 - 2 = 4\\ a_3 = 2\times 4 - 3 = 5` },
 
     ],
 
