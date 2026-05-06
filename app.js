@@ -13373,19 +13373,19 @@ function SubmodeScreen({mode,onSubmode,onBack}) {
 const CAT_FILTER_CONFIGS = {
   sec: {
     label: "2nde",
-    ids: ["numerique","pourcentages","litteral","fonctions","statistiques","probabilites"],
+    ids: ["numerique","pourcentages","litteral","fonctions","statistiques","probabilites","algo_python"],
   },
   premiere: {
     label: "1ère",
-    ids: ["polynomes","suites","derivation","expo","trigonometrie"],
+    ids: ["polynomes","suites","derivation","expo","trigonometrie","algo_python"],
   },
   term: {
     label: "Terminale",
-    ids: ["polynomes","suites","limites","derivation","probabilites","denombrement","ln","trigonometrie"],
+    ids: ["polynomes","suites","limites","derivation","probabilites","denombrement","ln","trigonometrie","algo_python"],
   },
   all: {
     label: "Tout",
-    ids: ["numerique","pourcentages","litteral","fonctions","statistiques","probabilites","polynomes","suites","derivation","expo","trigonometrie","limites","denombrement","ln"],
+    ids: ["numerique","pourcentages","litteral","fonctions","statistiques","probabilites","polynomes","suites","derivation","expo","trigonometrie","limites","denombrement","ln","algo_python"],
   },
 };
 
