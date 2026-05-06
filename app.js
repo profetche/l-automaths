@@ -128,6 +128,7 @@ const GS = ({profile} = {}) => {
     .katex{font-size:1em !important;}
     .katex-display{overflow-x:auto;overflow-y:hidden;}
     .katex .mtext span{white-space:normal !important; word-break:break-word;}
+    .katex .texttt{background:#F0FDF4;border:1.5px solid #86EFAC;border-radius:5px;padding:1px 5px;font-family:monospace;color:#15803D;}
     ::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:99px;}
   `}</style>
   );
@@ -8005,7 +8006,7 @@ const DB = {
       { q: r`\text{Quel symbole manque-t-il dans cette ligne ?}\\\texttt{def triple(n)}\\\text{(le corps de la fonction est correct)}`,
         choices: [r`\texttt{:}`, r`\texttt{=}`, r`\texttt{;}`, r`\texttt{,}`],
         a: r`\texttt{:}`,
-        tip: r`\text{La définition d'une fonction se termine \textbf{obligatoirement} par \texttt{:}}\\[4pt]\texttt{def triple(n)\textbf{:}}` },
+        tip: r`\text{La définition d'une fonction se termine \textbf{obligatoirement} par \texttt{:}}\\[4pt]\texttt{def triple(n)}\mathbf{:}` },
       // algo_syn_03 — Élément manquant : le return — facile
       { q: r`\text{Que manque-t-il pour que cette fonction renvoie un résultat ?}\\\texttt{def double(x):}\\\quad\texttt{x * 2}`,
         choices: [r`\texttt{return}`, r`\texttt{print}`, r`\texttt{def}`, r`\texttt{:}`],
@@ -8015,7 +8016,7 @@ const DB = {
       { q: r`\text{Dans la fonction ci-dessous, quel est le \textbf{paramètre} ?}\\\texttt{def perimetre(r):}\\\quad\texttt{return 2 * 3.14 * r}`,
         choices: [r`\texttt{r}`, r`\texttt{perimetre}`, r`\texttt{return}`, r`\texttt{3.14}`],
         a: r`\texttt{r}`,
-        tip: r`\text{Le paramètre est la variable entre parenthèses dans \texttt{def nom(\textbf{paramètre}):}}` },
+        tip: r`\text{Le paramètre est la variable entre parenthèses dans}\\\\\texttt{def nom(}\mathbf{parametre}\texttt{):}` },
       // algo_syn_05 — Erreur d'indentation — facile
       { q: r`\text{Quel problème contient ce code ?}\\\texttt{def signe(x):}\\\texttt{return x > 0}`,
         choices: [

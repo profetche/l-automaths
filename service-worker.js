@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v6';
+const CACHE_VERSION = 'v8';
 const CACHE_NAME = `automaths-${CACHE_VERSION}`;
 
 const STATIC_ASSETS = [
