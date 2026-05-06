@@ -3954,7 +3954,7 @@ const DB = {
         a: r`\text{Oui : }P(A) \times P(B) = 0{,}2 = P(A \cap B)`,
         tip: r`\text{Définition du cours : }A\text{ et }B\text{ sont \textbf{indépendants} si et seulement si }P(A \cap B) = P(A) \times P(B)\text{.\\\\ Calcul : }P(A) \times P(B) = 0{,}5 \times 0{,}4 = 0{,}2\text{, et }P(A \cap B) = 0{,}2\text{. L'égalité est véri}…` },
       // term_proba_09 — Reconnaître une situation d'indépendance — facile
-      { q: r`\text{On lance deux dés équilibrés à }6\text{ faces. Soit }A\text{ = \og le premier dé montre }6\text{ \fg{} et }B\text{ = \og le second dé montre }6\text{ \fg. Quelle est la valeur de }P(A \cap B)\text{ ?}`,
+      { q: r`\text{On lance deux dés équilibrés à }6\text{ faces. Soit }A\text{ = « le premier dé montre }6\text{ » et }B\text{ = « le second dé montre }6\text{ ». Quelle est la valeur de }P(A \cap B)\text{ ?}`,
         choices: [
           r`\dfrac{1}{36}`,
           r`\dfrac{1}{6}`,
@@ -4164,12 +4164,12 @@ const DB = {
       // term_proba_26 — Reconnaître une situation binomiale — facile
       { q: r`\text{Dans laquelle des situations suivantes la variable aléatoire }X\text{ suit-elle une loi binomiale ?}`,
         choices: [
-          r`\text{On lance }10\text{ fois une pièce truquée (probabilité de pile }0{,}3\text{) et }X\text{ compte le nombre de \og pile \fg}`,
+          r`\text{On lance }10\text{ fois une pièce truquée (probabilité de pile }0{,}3\text{) et }X\text{ compte le nombre de « pile »}`,
           r`\text{On tire successivement \textbf{sans remise} }5\text{ cartes d'un jeu de }32\text{ et }X\text{ compte le nombre de rois}`,
           r`\text{On lance un dé jusqu'à obtenir un }6\text{ et }X\text{ est le nombre de lancers nécessaires}`,
           r`X\text{ représente la taille d'un élève pris au hasard dans un lycée}`
         ],
-        a: r`\text{On lance }10\text{ fois une pièce truquée (probabilité de pile }0{,}3\text{) et }X\text{ compte le nombre de \og pile \fg}`,
+        a: r`\text{On lance }10\text{ fois une pièce truquée (probabilité de pile }0{,}3\text{) et }X\text{ compte le nombre de « pile »}`,
         tip: r`\text{Une loi binomiale }\mathcal{B}(n,p)\text{ modélise le nombre de succès lors de }n\text{ \textbf{épreuves de Bernoulli identiques et indépendantes}, chacune ayant probabilité }p\text{ de succès.\\\\ \textbf{Choix 1} : OUI. }10\text{ lancers iden}…` },
       // term_proba_27 — Calcul direct de P(X=k) — facile
       { q: r`X\text{ suit la loi binomiale }\mathcal{B}(5\,;\,0{,}4)\text{. Quelle est la valeur de }P(X = 2)\text{ ?}`,
@@ -4629,7 +4629,7 @@ const DB = {
     // ── Vitesse moyenne / instantanée ──
     deriv_vitesse: [
       // tc_vit_02 — distinguer_vmoy_vinst — n1
-      { q: r`\text{Soit }f\text{ la position d'un mobile. Quelle expression donne la vitesse instantanée à l'instant }t = a\text{ ?}`,
+      { q: r`\text{Soit }f\text{ la position d'un mobile au cours du temps. Comment exprime-t-on la vitesse instantanée du mobile à l'instant }t = a\text{ ?}`,
         choices: [
           r`\dfrac{f(a)}{a}`,
           r`f(a)`,
@@ -6409,7 +6409,7 @@ const DB = {
         a: r`26^{5}`,
         tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
       // term_denomb_10 — Combinaison (jeu de cartes) — moyenne
-      { q: r`\text{On distribue une \og main \fg{} de }5\text{ cartes à un joueur, à partir d'un jeu de }52\text{ cartes. Combien de mains différentes peut-il recevoir ?}`,
+      { q: r`\text{On distribue une main de }5\text{ cartes à un joueur, à partir d'un jeu de }52\text{ cartes. Combien de mains différentes peut-il recevoir ?}`,
         choices: [
           r`\binom{52}{5}`,
           r`52 \times 51 \times 50 \times 49 \times 48`,
@@ -6439,7 +6439,7 @@ const DB = {
         a: r`\binom{28}{2} = 378`,
         tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
       // term_denomb_13 — K-uplet (choix indépendants successifs) — moyenne
-      { q: r`\text{Au self, }7\text{ desserts différents sont proposés chaque jour. Lola y déjeune }4\text{ jours dans la semaine et choisit un dessert chaque jour (elle peut reprendre le même). Combien de \og semaines de desserts \fg{} différentes sont possibles pour Lola ?}`,
+      { q: r`\text{Au self, }7\text{ desserts différents sont proposés chaque jour. Lola y déjeune }4\text{ jours dans la semaine et choisit un dessert chaque jour (elle peut reprendre le même). Combien de semaines de desserts différentes sont possibles pour Lola ?}`,
         choices: [
           r`7^{4} = 2\,401`,
           r`7 \times 6 \times 5 \times 4 = 840`,
@@ -6449,7 +6449,7 @@ const DB = {
         a: r`7^{4} = 2\,401`,
         tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
       // term_denomb_14 — Permutation (anagrammes) — moyenne
-      { q: r`\text{Combien d'anagrammes (mots ayant un sens ou non) peut-on former avec les lettres du mot \textsc{maths} (les }5\text{ lettres sont distinctes) ?}`,
+      { q: r`\text{Combien d'anagrammes (mots ayant un sens ou non) peut-on former avec les lettres du mot MATHS (les }5\text{ lettres sont distinctes) ?}`,
         choices: [
           r`5! = 120`,
           r`5^{5} = 3\,125`,
@@ -6479,7 +6479,7 @@ const DB = {
         a: r`\binom{8}{2} \times \binom{10}{3} = 3\,360`,
         tip: r`\text{\textbf{Arbre de décision :}\\\\ \textbf{1. L'ordre compte-t-il ?}\\\\ }\bullet\text{ \textbf{NON} (tirage simultané) }\Rightarrow\text{ \textbf{COMBINAISON} }\binom{n}{k}\text{\\\\ }\bullet\text{ \textbf{OUI} (tirage successif) }\to\text{ ques}…` },
       // term_denomb_17 — Arrangement avec contrainte de position — dure
-      { q: r`\text{Combien de \og mots \fg{} de }4\text{ lettres \textbf{toutes différentes} peut-on former avec l'alphabet (}26\text{ lettres) en imposant que la première lettre soit \textsc{m} ?}`,
+      { q: r`\text{Combien de mots de }4\text{ lettres \textbf{toutes différentes} peut-on former avec l'alphabet (}26\text{ lettres) en imposant que la première lettre soit M ?}`,
         choices: [
           r`25 \times 24 \times 23 = 13\,800`,
           r`26 \times 25 \times 24 \times 23 = 358\,800`,
