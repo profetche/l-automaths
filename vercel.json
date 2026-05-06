@@ -1,6 +1,7 @@
 {
   "version": 2,
   "buildCommand": null,
+  "installCommand": "echo skip",
   "outputDirectory": ".",
   "routes": [
     { "src": "/", "dest": "/index.html" },
