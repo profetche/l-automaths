@@ -63,6 +63,51 @@ function M({ tex }) {
   return <span ref={ref} />;
 }
 
+// ── CodeBlock : rendu des questions algo Python ────────────────────────────────
+function parseAlgoTex(tex) {
+  // tex au runtime (String.raw) : \\\\ = 2 backslashes = saut de ligne LaTeX
+  // Cherche la dernière marque de séparation \\[Npt] avant la question texte
+  const lastSep = tex.lastIndexOf('\\\\[');
+  let codePart = lastSep >= 0 ? tex.slice(0, lastSep) : tex;
+  let questionPart = lastSep >= 0 ? tex.slice(lastSep).replace(/^\\\\\\\[[\d]+pt\]/, '') : null;
+
+  // Découpe les lignes sur \\\\ (2 backslashes = séparateur LaTeX)
+  const rawLines = codePart.split('\\\\\\\\');
+
+  const lines = rawLines.map(line => {
+    let indent = 0;
+    let l = line.trim();
+    // \qquad (6 chars) = 4 espaces, \quad (5 chars) = 2 espaces
+    while (l.startsWith('\\qquad')) { indent += 4; l = l.slice(6).trim(); }
+    while (l.startsWith('\\quad'))  { indent += 2; l = l.slice(5).trim(); }
+    // Extrait contenu de \texttt{...}
+    l = l.replace(/\\texttt\{([^}]*)\}/g, '$1');
+    // Nettoie \text{...} résiduels
+    l = l.replace(/\\text\{([^}]*)\}/g, '$1');
+    return ' '.repeat(indent) + l;
+  }).filter(l => l.trim() !== '');
+
+  return { codeLines: lines, questionTex: questionPart };
+}
+
+function QuestionRenderer({ tex }) {
+  const isAlgo = /^\\texttt\{(def |for |while |if |n[ =]|s[ =]|c[ =]|p[ =]|u[ =]|m[ =]|a[ ,]|b[ ,])/.test(tex.trim());
+  if (!isAlgo) return <M tex={tex}/>;
+  const { codeLines, questionTex } = parseAlgoTex(tex);
+  return (
+    <div style={{width:'100%'}}>
+      <pre style={{
+        background:'#F0FDF4', border:'1.5px solid #86EFAC', borderRadius:10,
+        padding:'10px 14px', fontFamily:"'Courier New', monospace",
+        fontSize:13, lineHeight:1.75, color:'#15803D',
+        textAlign:'left', margin:'0 0 8px 0',
+        whiteSpace:'pre', overflowX:'auto',
+      }}>{codeLines.join('\n')}</pre>
+      {questionTex && <div style={{textAlign:'center', marginTop:4}}><M tex={questionTex}/></div>}
+    </div>
+  );
+}
+
 // ── Global styles ─────────────────────────────────────────────────────────────
 const GS = ({profile} = {}) => {
   // Thème courant (fallback sur "ocean" si profile absent / sans pref)
@@ -128,7 +173,6 @@ const GS = ({profile} = {}) => {
     .katex{font-size:1em !important;}
     .katex-display{overflow-x:auto;overflow-y:hidden;}
     .katex .mtext span{white-space:normal !important; word-break:break-word;}
-    .katex .texttt{background:#F0FDF4;border:1.5px solid #86EFAC;border-radius:5px;padding:1px 5px;font-family:monospace;color:#15803D;}
     ::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:99px;}
   `}</style>
   );
@@ -15891,7 +15935,7 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
           padding: isNum && q.gspec ? "4px 0 2px" : 0,
           maxWidth:"100%", overflowX:"auto",
         }}>
-          <M tex={q.q}/>
+          <QuestionRenderer tex={q.q}/>
         </div>
         {isNum&&<div style={{textAlign:"center",marginTop:4,opacity:.7,fontSize:11,color:"#E0D9FF"}}>Tape ta réponse ↓</div>}
         {isSol&&<div style={{textAlign:"center",marginTop:4,opacity:.7,fontSize:11,color:"#E0D9FF"}}>Tape l'ensemble solution ↓</div>}
