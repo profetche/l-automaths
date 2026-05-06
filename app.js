@@ -4629,7 +4629,7 @@ const DB = {
     // ── Vitesse moyenne / instantanée ──
     deriv_vitesse: [
       // tc_vit_02 — distinguer_vmoy_vinst — n1
-      { q: r`\text{Soit }f\text{ la position d'un mobile au cours du temps. Comment exprime-t-on la vitesse instantanée du mobile à l'instant }t = a\text{ ?}`,
+      { q: r`\text{Soit }f\text{ la position d'un mobile. Quelle expression donne la vitesse instantanée à l'instant }t = a\text{ ?}`,
         choices: [
           r`\dfrac{f(a)}{a}`,
           r`f(a)`,
@@ -7266,7 +7266,7 @@ const DB = {
 
   expo: {
 
-    // ── Bloc 1 : Définition et propriétés de base ──────────────────────────────
+    // ── Bloc 1 : Définition et propriétés de base (Q1–Q5) ──────────────────────
     definition: [
       { q: r`e^0 = \,?`,
         choices: [`0`, `1`, r`e`, r`+\infty`],
@@ -7278,8 +7278,8 @@ const DB = {
         a: r`e`,
         tip: r`\text{Par définition : }e^1=e\approx 2{,}718` },
 
-      { q: r`\text{Pour tous réels }a\text{ et }b : e^{a+b} = \,?`,
-        choices: [r`e^a+e^b`, r`e^a\times e^b`, r`e^{a-b}`, r`{e^a}^b`],
+      { q: r`\text{Pour tous réels }a\text{ et }b\text{ :}\e^{a+b} = \,?`,
+        choices: [r`e^a+e^b`, r`e^a\times e^b`, r`e^{a-b}`, r`e^a^b`],
         a: r`e^a\times e^b`,
         tip: r`\text{Prop. fondamentale : }e^{a+b}=e^a\times e^b` },
 
@@ -7288,38 +7288,13 @@ const DB = {
         a: r`\dfrac{1}{e^x}`,
         tip: r`e^x\times e^{-x}=e^0=1\;\Rightarrow\;e^{-x}=\dfrac{1}{e^x}` },
 
-      { q: r`\text{Pour tout réel }x\text{ on a :}\; e^x \ldots`,
+      { q: r`\text{Pour tout réel }x\text{, on a :}\e^x \ldots`,
         choices: [r`> 0`, r`\geq 0`, r`< 1`, r`\leq 1`],
         a: r`> 0`,
         tip: r`e^x>0\text{ pour tout }x\in\mathbb{R}` },
-
-      { q: r`e^{a-b} = \,?\quad(a,b\in\mathbb{R})`,
-        choices: [r`e^a - e^b`, r`\dfrac{e^a}{e^b}`, r`e^a + e^{-b}`, r`e^{-a+b}`],
-        a: r`\dfrac{e^a}{e^b}`,
-        tip: r`e^{a-b}=\dfrac{e^a}{e^b}\text{ (règle de la soustraction d'exposants)}` },
-
-      { q: r`\text{Quelle valeur approchée de }e\text{ ?}`,
-        choices: [`2{,}303`, `2{,}718`, `3{,}141`, `1{,}618`],
-        a: `2{,}718`,
-        tip: r`e\approx 2{,}718\text{ — constante de Néper}` },
-
-      { q: r`e^{2x}\text{ peut s'écrire :}`,
-        choices: [r`2e^x`, r`(e^x)^2`, r`e^2\times e^x`, r`e^{x+2}`],
-        a: r`(e^x)^2`,
-        tip: r`e^{2x}=(e^x)^2\text{ par la règle }(e^a)^n=e^{an}` },
-
-      { q: r`e^0+e^1 = \,?`,
-        choices: [r`e`, r`1+e`, r`2e`, `2`],
-        a: r`1+e`,
-        tip: r`e^0=1\text{ et }e^1=e\text{ donc }e^0+e^1=1+e` },
-
-      { q: r`\text{Laquelle est vraie pour tout }x\in\mathbb{R}\text{ ?}`,
-        choices: [r`e^x\geq x`, r`e^x\leq x`, r`e^x= x`, r`e^x<0`],
-        a: r`e^x\geq x`,
-        tip: r`\text{On peut montrer que }e^x\geq x+1\geq x\text{ pour tout réel }x` },
     ],
 
-    // ── Bloc 2 : Calculs algébriques ───────────────────────────────────────────
+    // ── Bloc 2 : Calculs algébriques (Q6–Q10) ──────────────────────────────────
     calculs: [
       { q: r`\text{Simplifier : }e^3\times e^5`,
         choices: [r`e^{15}`, r`e^8`, r`2e^8`, r`e^2`],
@@ -7332,7 +7307,7 @@ const DB = {
         tip: r`\dfrac{e^7}{e^3}=e^{7-3}=e^4` },
 
       { q: r`\left(e^2\right)^5 = \,?`,
-        choices: [r`e^7`, r`e^{10}`, r`5e^2`, r`e^{32}`],
+        choices: [r`e^7`, r`e^{10}`, r`5e^2`, r`e^{2^5}`],
         a: r`e^{10}`,
         tip: r`\bigl(e^2\bigr)^5=e^{2\times 5}=e^{10}` },
 
@@ -7345,34 +7320,9 @@ const DB = {
         choices: [r`c < a < b`, r`a < c < b`, r`c < b < a`, r`a < b < c`],
         a: r`c < a < b`,
         tip: r`e^{-1}\approx 0{,}37<e^0=1<e^1\approx 2{,}72` },
-
-      { q: r`\text{Simplifier : }e^{x+2}\times e^{3-x}`,
-        choices: [r`e^5`, r`e^{2x+5}`, r`e^{x+5}`, r`e^{-2x+5}`],
-        a: r`e^5`,
-        tip: r`e^{(x+2)+(3-x)}=e^{x+2+3-x}=e^5` },
-
-      { q: r`\dfrac{e^{5x}}{e^{2x}} = \,?`,
-        choices: [r`e^{10x}`, r`e^{3x}`, r`e^{7x}`, r`e^{2x}`],
-        a: r`e^{3x}`,
-        tip: r`\dfrac{e^{5x}}{e^{2x}}=e^{5x-2x}=e^{3x}` },
-
-      { q: r`\left(e^x\right)^3 = \,?`,
-        choices: [r`e^{x+3}`, r`3e^x`, r`e^{3x}`, r`e^{x^3}`],
-        a: r`e^{3x}`,
-        tip: r`\bigl(e^x\bigr)^3=e^{x\times 3}=e^{3x}` },
-
-      { q: r`\text{Simplifier : }e^{2x-1}\times e^{1-x}`,
-        choices: [r`e^{3x-2}`, r`e^x`, r`e^{x-2}`, r`e^{2x}`],
-        a: r`e^x`,
-        tip: r`e^{(2x-1)+(1-x)}=e^{2x-1+1-x}=e^x` },
-
-      { q: r`e^x\times e^{-x} = \,?`,
-        choices: [r`0`, r`1`, r`e^{x^2}`, r`2`],
-        a: r`1`,
-        tip: r`e^x\times e^{-x}=e^{x+(-x)}=e^0=1` },
     ],
 
-    // ── Bloc 3 : Étude de la fonction ─────────────────────────────────────────
+    // ── Bloc 3 : Étude de la fonction (Q11–Q15) ────────────────────────────────
     etude: [
       { q: r`\text{La fonction exponentielle est :}`,
         choices: [r`\text{strictement décroissante sur }\mathbb{R}`, r`\text{strictement croissante sur }\mathbb{R}`, r`\text{croissante sur }[0\,;+\infty[`, r`\text{décroissante sur }\mathbb{R}^*`],
@@ -7398,34 +7348,9 @@ const DB = {
         choices: [r`+\infty`, `3`, `0`, r`-\infty`],
         a: `0`,
         tip: r`x\to+\infty\Rightarrow 3-x\to-\infty\Rightarrow e^{3-x}\to 0` },
-
-      { q: r`\text{La courbe de }x\mapsto e^x\text{ admet :}`,
-        choices: [r`\text{une asymptote verticale en }x=0`, r`\text{une asymptote horizontale }y=0`, r`\text{une asymptote oblique}`, r`\text{aucune asymptote}`],
-        a: r`\text{une asymptote horizontale }y=0`,
-        tip: r`\lim_{x\to-\infty}e^x=0\text{ donc }y=0\text{ est asymptote horizontale en }-\infty` },
-
-      { q: r`e^a < e^b\;\Leftrightarrow`,
-        choices: [r`a>b`, r`a<b`, r`a=b`, r`a\geq b`],
-        a: r`a<b`,
-        tip: r`\text{exp est strictement croissante : }e^a<e^b\Leftrightarrow a<b` },
-
-      { q: r`f(x)=e^{x-2}\\\text{Quel est le signe de }f(x)\text{ ?}`,
-        choices: [r`f(x)<0\text{ si }x<2`, r`f(x)>0\text{ pour tout }x`, r`f(x)=0\text{ si }x=2`, r`f(x)<0\text{ pour tout }x`],
-        a: r`f(x)>0\text{ pour tout }x`,
-        tip: r`e^u>0\text{ pour tout }u\in\mathbb{R},\text{ donc }e^{x-2}>0\text{ toujours}` },
-
-      { q: r`\lim_{x\to+\infty}e^{-x} = \,?`,
-        choices: [r`+\infty`, r`-\infty`, `0`, `1`],
-        a: `0`,
-        tip: r`x\to+\infty\Rightarrow -x\to-\infty\Rightarrow e^{-x}\to 0` },
-
-      { q: r`\text{Sur }\mathbb{R},\; e^x\text{ est :}`,
-        choices: [r`\text{parfois nulle}`, r`\text{parfois négative}`, r`\text{toujours strictement positive}`, r`\text{majorée}`],
-        a: r`\text{toujours strictement positive}`,
-        tip: r`e^x>0\text{ pour tout }x\in\mathbb{R}\text{ : jamais nulle, jamais négative}` },
     ],
 
-    // ── Bloc 4 : Dérivée ───────────────────────────────────────────────────────
+    // ── Bloc 4 : Dérivée (Q16–Q19) ─────────────────────────────────────────────
     derivee: [
       { q: r`f(x)=e^x\;;\quad f'(x)=\,?`,
         choices: [r`x\,e^{x-1}`, r`e^x`, `1`, `0`],
@@ -7446,29 +7371,9 @@ const DB = {
         choices: [r`2e^x`, r`(2x+1)e^x`, r`(2x+3)e^x`, r`2(2x+1)e^x`],
         a: r`(2x+3)e^x`,
         tip: r`f'=2\,e^x+(2x+1)\,e^x=(2+2x+1)e^x=(2x+3)e^x` },
-
-      { q: r`f(x)=e^{5x-1}\;;\quad f'(x)=\,?`,
-        choices: [r`e^{5x-1}`, r`5e^{5x}`, r`5e^{5x-1}`, r`(5x-1)e^{5x-2}`],
-        a: r`5e^{5x-1}`,
-        tip: r`f'(x)=5\,e^{5x-1}\text{ (règle de la chaîne : multiplier par la dérivée de l'exposant)}` },
-
-      { q: r`f(x)=e^{x^2}\;;\quad f'(x)=\,?`,
-        choices: [r`e^{x^2}`, r`2x\,e^{x^2}`, r`x^2\,e^{x^2-1}`, r`2e^{x^2}`],
-        a: r`2x\,e^{x^2}`,
-        tip: r`u=x^2,\;u'=2x\;\Rightarrow\;f'=2x\,e^{x^2}` },
-
-      { q: r`f(x)=-e^{x}\;;\quad f'(x)=\,?`,
-        choices: [r`e^x`, r`-e^x`, r`-xe^{x-1}`, `0`],
-        a: r`-e^x`,
-        tip: r`f'(x)=-(e^x)'=-e^x` },
-
-      { q: r`f(x)=x^2 e^x\;;\quad f'(x)=\,?`,
-        choices: [r`2x\,e^x`, r`x^2 e^x`, r`(x^2+2x)e^x`, r`2xe^{x-1}`],
-        a: r`(x^2+2x)e^x`,
-        tip: r`f'=(x^2)'e^x+x^2(e^x)'=2xe^x+x^2e^x=(x^2+2x)e^x` },
     ],
 
-    // ── Bloc 5 : Équations et inéquations ─────────────────────────────────────
+    // ── Bloc 5 : Équations et inéquations (Q20–Q22) ────────────────────────────
     equations: [
       { q: r`e^x=1\;\Leftrightarrow\;x=\,?`,
         choices: [`0`, `1`, `e`, `-1`],
@@ -7484,24 +7389,9 @@ const DB = {
         choices: [r`x\geq 2`, r`x\leq 2`, r`x\geq 6`, r`x\leq -2`],
         a: r`x\leq 2`,
         tip: r`e^{3x-6}\leq e^0\Leftrightarrow 3x-6\leq 0\Leftrightarrow x\leq 2` },
-
-      { q: r`e^{x+1}=e^{3}\;\Leftrightarrow\;x=\,?`,
-        choices: [`2`, `3`, `4`, `1`],
-        a: `2`,
-        tip: r`x+1=3\Rightarrow x=2` },
-
-      { q: r`e^x < e^{2}\;\Leftrightarrow`,
-        choices: [r`x>2`, r`x<2`, r`x\geq 2`, r`x=2`],
-        a: r`x<2`,
-        tip: r`\text{exp croissante : }e^x<e^2\Leftrightarrow x<2` },
-
-      { q: r`e^{2x}=e^{x+3}\;\Leftrightarrow\;x=\,?`,
-        choices: [`1`, `2`, `3`, `6`],
-        a: `3`,
-        tip: r`2x=x+3\Rightarrow x=3` },
     ],
 
-    // ── Bloc 6 : Applications ─────────────────────────────────────────────────
+    // ── Bloc 6 : Applications (Q23–Q25) ────────────────────────────────────────
     applications: [
       { q: r`N(t)=500\,e^{0{,}3t}\\\text{Population initiale }N(0)=\,?`,
         choices: [`300`, `500`, r`500\,e^{0{,}3}`, r`e^{0{,}3}`],
@@ -7517,21 +7407,6 @@ const DB = {
         choices: [r`y=ex+e`, r`y=x+e`, r`y=e^2\,x+e`, r`y=ex+1`],
         a: r`y=ex+e`,
         tip: r`f(0)=e\;;\ f'(x)=e^{x+1}\Rightarrow f'(0)=e\\y=e(x-0)+e=ex+e` },
-
-      { q: r`P(t)=100\,e^{0{,}05t}\\\text{Valeur de }P(0)=\,?`,
-        choices: [`0`, `100`, r`100e`, r`100e^{0{,}05}`],
-        a: `100`,
-        tip: r`P(0)=100\,e^0=100\times 1=100` },
-
-      { q: r`C(t)=C_0\,e^{-kt}\;(k>0)\\\text{Que vaut }\lim_{t\to+\infty}C(t)\text{ ?}`,
-        choices: [r`C_0`, `0`, r`+\infty`, r`-\infty`],
-        a: `0`,
-        tip: r`t\to+\infty\Rightarrow -kt\to-\infty\Rightarrow e^{-kt}\to 0\Rightarrow C(t)\to 0` },
-
-      { q: r`f(x)=e^{2x}\\\text{Équation de la tangente en }x=0\text{ :}`,
-        choices: [r`y=2x+1`, r`y=x+1`, r`y=2x`, r`y=2e\,x+1`],
-        a: r`y=2x+1`,
-        tip: r`f(0)=e^0=1\;;\;f'(x)=2e^{2x}\Rightarrow f'(0)=2\\y=2(x-0)+1=2x+1` },
     ],
   },
 
