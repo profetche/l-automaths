@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v10';
+const CACHE_VERSION = 'v11';
 const CACHE_NAME = `automaths-${CACHE_VERSION}`;
 const PRECACHE_URLS = ['/', '/index.html', '/app.js'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(PRECACHE_URLS))); self.skipWaiting(); });

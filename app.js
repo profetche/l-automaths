@@ -7266,7 +7266,7 @@ const DB = {
 
   expo: {
 
-    // ── Bloc 1 : Définition et propriétés de base (Q1–Q5) ──────────────────────
+    // ── Bloc 1 : Définition et propriétés de base ──────────────────────────────
     definition: [
       { q: r`e^0 = \,?`,
         choices: [`0`, `1`, r`e`, r`+\infty`],
@@ -7292,9 +7292,34 @@ const DB = {
         choices: [r`> 0`, r`\geq 0`, r`< 1`, r`\leq 1`],
         a: r`> 0`,
         tip: r`e^x>0\text{ pour tout }x\in\mathbb{R}` },
+
+      { q: r`e^{a-b} = \,?\quad(a,b\in\mathbb{R})`,
+        choices: [r`e^a - e^b`, r`\dfrac{e^a}{e^b}`, r`e^a \cdot e^{-b}`, r`\dfrac{e^a}{e^b}\text{ et }e^a\cdot e^{-b}`],
+        a: r`\dfrac{e^a}{e^b}\text{ et }e^a\cdot e^{-b}`,
+        tip: r`e^{a-b}=e^a\times e^{-b}=\dfrac{e^a}{e^b}` },
+
+      { q: r`\left(e^a\right)^n = \,?\quad(n\in\mathbb{Z})`,
+        choices: [r`n\,e^a`, r`e^{a+n}`, r`e^{an}`, r`e^{a^n}`],
+        a: r`e^{an}`,
+        tip: r`\bigl(e^a\bigr)^n=e^{a\times n}=e^{an}` },
+
+      { q: r`e^x = 0\text{ pour :}`,
+        choices: [r`x=0`, r`x=-\infty`, r`\text{aucun réel}`, r`x=1`],
+        a: r`\text{aucun réel}`,
+        tip: r`e^x>0\text{ pour tout }x\in\mathbb{R}\text{, donc jamais nul}` },
+
+      { q: r`\text{Signe de }e^x - 1\text{ pour }x>0 :`,
+        choices: [r`\text{négatif}`, r`\text{nul}`, r`\text{positif}`, r`\text{indéterminé}`],
+        a: r`\text{positif}`,
+        tip: r`x>0\Rightarrow e^x>e^0=1\Rightarrow e^x-1>0` },
+
+      { q: r`e^{2x} = \,?`,
+        choices: [r`2e^x`, r`(e^x)^2`, r`e^{x^2}`, r`2^x`],
+        a: r`(e^x)^2`,
+        tip: r`e^{2x}=\bigl(e^x\bigr)^2\text{ (puissance d'une puissance)}` },
     ],
 
-    // ── Bloc 2 : Calculs algébriques (Q6–Q10) ──────────────────────────────────
+    // ── Bloc 2 : Calculs algébriques ───────────────────────────────────────────
     calculs: [
       { q: r`\text{Simplifier : }e^3\times e^5`,
         choices: [r`e^{15}`, r`e^8`, r`2e^8`, r`e^2`],
@@ -7320,9 +7345,34 @@ const DB = {
         choices: [r`c < a < b`, r`a < c < b`, r`c < b < a`, r`a < b < c`],
         a: r`c < a < b`,
         tip: r`e^{-1}\approx 0{,}37<e^0=1<e^1\approx 2{,}72` },
+
+      { q: r`e^{x+2}\times e^{-x}=\,?`,
+        choices: [r`e^2`, r`1`, r`e^{2x}`, r`e^{x^2}`],
+        a: r`e^2`,
+        tip: r`e^{x+2}\times e^{-x}=e^{x+2-x}=e^2` },
+
+      { q: r`\dfrac{e^{3x}}{e^{x+1}}=\,?`,
+        choices: [r`e^{2x+1}`, r`e^{2x-1}`, r`e^{3}`, r`e^{4x+1}`],
+        a: r`e^{2x-1}`,
+        tip: r`e^{3x-(x+1)}=e^{2x-1}` },
+
+      { q: r`\text{Simplifier :}\;\bigl(e^{x-1}\bigr)^2`,
+        choices: [r`e^{x^2-1}`, r`e^{2x-2}`, r`2e^{x-1}`, r`e^{2x-1}`],
+        a: r`e^{2x-2}`,
+        tip: r`\bigl(e^{x-1}\bigr)^2=e^{2(x-1)}=e^{2x-2}` },
+
+      { q: r`e^x\times e^x=\,?`,
+        choices: [r`2e^x`, r`e^{x^2}`, r`e^{2x}`, r`(2e)^x`],
+        a: r`e^{2x}`,
+        tip: r`e^x\times e^x=e^{x+x}=e^{2x}` },
+
+      { q: r`\dfrac{1}{e^{x+1}}=\,?`,
+        choices: [r`e^{x+1}`, r`e^{-x-1}`, r`-e^{x+1}`, r`e^{1-x}`],
+        a: r`e^{-x-1}`,
+        tip: r`\dfrac{1}{e^{x+1}}=e^{-(x+1)}=e^{-x-1}` },
     ],
 
-    // ── Bloc 3 : Étude de la fonction (Q11–Q15) ────────────────────────────────
+    // ── Bloc 3 : Étude de la fonction ──────────────────────────────────────────
     etude: [
       { q: r`\text{La fonction exponentielle est :}`,
         choices: [r`\text{strictement décroissante sur }\mathbb{R}`, r`\text{strictement croissante sur }\mathbb{R}`, r`\text{croissante sur }[0\,;+\infty[`, r`\text{décroissante sur }\mathbb{R}^*`],
@@ -7348,9 +7398,34 @@ const DB = {
         choices: [r`+\infty`, `3`, `0`, r`-\infty`],
         a: `0`,
         tip: r`x\to+\infty\Rightarrow 3-x\to-\infty\Rightarrow e^{3-x}\to 0` },
+
+      { q: r`\text{Asymptote de }y=e^x\text{ en }-\infty :`,
+        choices: [r`y=1`, r`y=0`, r`x=0`, r`\text{pas d'asymptote}`],
+        a: r`y=0`,
+        tip: r`\lim_{x\to-\infty}e^x=0\Rightarrow\text{asymptote horizontale }y=0` },
+
+      { q: r`e^x < e^3\;\Leftrightarrow`,
+        choices: [r`x>3`, r`x<3`, r`x\geq 3`, r`x\leq 3`],
+        a: r`x<3`,
+        tip: r`\text{exp croissante : }e^x<e^3\Leftrightarrow x<3` },
+
+      { q: r`\lim_{x\to+\infty}e^{-x}=\,?`,
+        choices: [r`+\infty`, r`-\infty`, `0`, `1`],
+        a: `0`,
+        tip: r`-x\to-\infty\text{ quand }x\to+\infty\Rightarrow e^{-x}\to 0` },
+
+      { q: r`f(x)=e^{2x}\text{ est :}`,
+        choices: [r`\text{paire}`, r`\text{impaire}`, r`\text{ni paire ni impaire}`, r`\text{décroissante}`],
+        a: r`\text{ni paire ni impaire}`,
+        tip: r`f(-x)=e^{-2x}\neq f(x)\text{ et }\neq -f(x)` },
+
+      { q: r`e^a = e^b\;\Leftrightarrow`,
+        choices: [r`a\cdot b=1`, r`a+b=0`, r`a=b`, r`a^2=b^2`],
+        a: r`a=b`,
+        tip: r`\text{exp est injective : }e^a=e^b\Leftrightarrow a=b` },
     ],
 
-    // ── Bloc 4 : Dérivée (Q16–Q19) ─────────────────────────────────────────────
+    // ── Bloc 4 : Dérivée ───────────────────────────────────────────────────────
     derivee: [
       { q: r`f(x)=e^x\;;\quad f'(x)=\,?`,
         choices: [r`x\,e^{x-1}`, r`e^x`, `1`, `0`],
@@ -7371,9 +7446,29 @@ const DB = {
         choices: [r`2e^x`, r`(2x+1)e^x`, r`(2x+3)e^x`, r`2(2x+1)e^x`],
         a: r`(2x+3)e^x`,
         tip: r`f'=2\,e^x+(2x+1)\,e^x=(2+2x+1)e^x=(2x+3)e^x` },
+
+      { q: r`f(x)=e^{x^2}\;;\quad f'(x)=\,?`,
+        choices: [r`e^{x^2}`, r`2xe^{x^2}`, r`2e^{x^2}`, r`x^2 e^{x^2-1}`],
+        a: r`2xe^{x^2}`,
+        tip: r`u=x^2,\;u'=2x\Rightarrow f'=u'e^u=2x\,e^{x^2}` },
+
+      { q: r`f(x)=e^{-x^2+1}\;;\quad f'(x)=\,?`,
+        choices: [r`e^{-x^2+1}`, r`-2x\,e^{-x^2+1}`, r`2x\,e^{-x^2+1}`, r`(-x^2+1)e^{-x^2}`],
+        a: r`-2x\,e^{-x^2+1}`,
+        tip: r`u=-x^2+1,\;u'=-2x\Rightarrow f'=-2x\,e^{-x^2+1}` },
+
+      { q: r`f(x)=x^2 e^x\;;\quad f'(x)=\,?`,
+        choices: [r`2x\,e^x`, r`x^2 e^x`, r`(x^2+2x)e^x`, r`2xe^x+x^2`],
+        a: r`(x^2+2x)e^x`,
+        tip: r`f'=2x\,e^x+x^2\,e^x=(x^2+2x)e^x` },
+
+      { q: r`f(x)=\dfrac{e^x}{x}\;;\quad f'(x)=\,?\quad(x\neq 0)`,
+        choices: [r`\dfrac{e^x}{x^2}`, r`\dfrac{e^x(x-1)}{x^2}`, r`\dfrac{e^x(x+1)}{x^2}`, r`e^x`],
+        a: r`\dfrac{e^x(x-1)}{x^2}`,
+        tip: r`f'=\dfrac{e^x\cdot x - e^x\cdot 1}{x^2}=\dfrac{e^x(x-1)}{x^2}` },
     ],
 
-    // ── Bloc 5 : Équations et inéquations (Q20–Q22) ────────────────────────────
+    // ── Bloc 5 : Équations et inéquations ──────────────────────────────────────
     equations: [
       { q: r`e^x=1\;\Leftrightarrow\;x=\,?`,
         choices: [`0`, `1`, `e`, `-1`],
@@ -7389,9 +7484,24 @@ const DB = {
         choices: [r`x\geq 2`, r`x\leq 2`, r`x\geq 6`, r`x\leq -2`],
         a: r`x\leq 2`,
         tip: r`e^{3x-6}\leq e^0\Leftrightarrow 3x-6\leq 0\Leftrightarrow x\leq 2` },
+
+      { q: r`e^{x^2}=e^{4}\;\Leftrightarrow\;x=\,?`,
+        choices: [r`x=2`, r`x=-2`, r`x=2\text{ ou }x=-2`, r`x=4`],
+        a: r`x=2\text{ ou }x=-2`,
+        tip: r`x^2=4\Rightarrow x=2\text{ ou }x=-2` },
+
+      { q: r`e^{2x}>e^{x+3}\;\Leftrightarrow`,
+        choices: [r`x>3`, r`x<3`, r`x>-3`, r`x<-3`],
+        a: r`x>3`,
+        tip: r`2x>x+3\Rightarrow x>3` },
+
+      { q: r`e^x=e^{-x}\;\Leftrightarrow\;x=\,?`,
+        choices: [r`x=1`, r`x=-1`, r`x=0`, r`\text{impossible}`],
+        a: r`x=0`,
+        tip: r`x=-x\Rightarrow 2x=0\Rightarrow x=0` },
     ],
 
-    // ── Bloc 6 : Applications (Q23–Q25) ────────────────────────────────────────
+    // ── Bloc 6 : Applications ──────────────────────────────────────────────────
     applications: [
       { q: r`N(t)=500\,e^{0{,}3t}\\\text{Population initiale }N(0)=\,?`,
         choices: [`300`, `500`, r`500\,e^{0{,}3}`, r`e^{0{,}3}`],
@@ -7407,17 +7517,32 @@ const DB = {
         choices: [r`y=ex+e`, r`y=x+e`, r`y=e^2\,x+e`, r`y=ex+1`],
         a: r`y=ex+e`,
         tip: r`f(0)=e\;;\ f'(x)=e^{x+1}\Rightarrow f'(0)=e\\y=e(x-0)+e=ex+e` },
+
+      { q: r`P(t)=P_0\,e^{kt}\text{ double quand :}`,
+        choices: [r`t=2`, r`e^{kt}=2`, r`kt=2`, r`P_0=2`],
+        a: r`e^{kt}=2`,
+        tip: r`P(t)=2P_0\Rightarrow e^{kt}=2` },
+
+      { q: r`f(x)=e^{2x}-1\\\text{Signe sur }\mathbb{R}^+_* :`,
+        choices: [r`\text{toujours négatif}`, r`\text{toujours positif}`, r`\text{s'annule en }x=\frac{1}{2}`, r`\text{nul pour tout }x`],
+        a: r`\text{toujours positif}`,
+        tip: r`x>0\Rightarrow 2x>0\Rightarrow e^{2x}>1\Rightarrow e^{2x}-1>0` },
+
+      { q: r`\lim_{x\to+\infty}\dfrac{e^x}{x^2}=\,?`,
+        choices: [r`0`, r`1`, r`+\infty`, r`-\infty`],
+        a: r`+\infty`,
+        tip: r`\text{Croissance comparée : }e^x\text{ l'emporte sur }x^2` },
     ],
   },
 
 
   // ══════════════════════════════════════════════════════════════════════════════
-  // FONCTION LOGARITHME NEPÉRIEN — 25 questions — Terminale Spé uniquement
+  // FONCTION LOGARITHME NEPÉRIEN — 50 questions — Terminale Spé uniquement
   // ══════════════════════════════════════════════════════════════════════════════
 
   ln: {
 
-    // ── Bloc 1 : Définition et premières propriétés (Q1–Q5) ────────────────────
+    // ── Bloc 1 : Définition et premières propriétés ────────────────────────────
     definition: [
       { q: r`\ln(1) = \,?`,
         choices: [`0`, `1`, r`e`, r`-1`],
@@ -7443,9 +7568,34 @@ const DB = {
         choices: [`3`, r`e^3`, r`3e`, r`\ln 3`],
         a: `3`,
         tip: r`\ln(e^x)=x\text{ donc }\ln(e^3)=3` },
+
+      { q: r`\ln(e^{-2})=\,?`,
+        choices: [r`-2`, r`2`, r`\dfrac{1}{e^2}`, r`e^{-2}`],
+        a: r`-2`,
+        tip: r`\ln(e^x)=x\Rightarrow\ln(e^{-2})=-2` },
+
+      { q: r`\ln(e^{1/2})=\,?`,
+        choices: [r`2`, r`\dfrac{1}{2}`, r`\sqrt{e}`, r`e^2`],
+        a: r`\dfrac{1}{2}`,
+        tip: r`\ln(e^{1/2})=\dfrac{1}{2}` },
+
+      { q: r`e^{\ln 5}=\,?`,
+        choices: [r`5`, r`\ln 5`, r`e^5`, r`25`],
+        a: r`5`,
+        tip: r`e^{\ln x}=x\Rightarrow e^{\ln 5}=5` },
+
+      { q: r`\ln\text{ est définie en }x=0\text{ ?}`,
+        choices: [r`\text{oui, }\ln(0)=0`, r`\text{oui, }\ln(0)=-\infty`, r`\text{non}`, r`\text{oui, }\ln(0)=1`],
+        a: r`\text{non}`,
+        tip: r`\ln\text{ n'est définie que sur }]0\,;+\infty[\text{, pas en }0` },
+
+      { q: r`\ln(e^{x+1})=\,?`,
+        choices: [r`x`, r`x+1`, r`e^{x+1}`, r`(x+1)\ln e`],
+        a: r`x+1`,
+        tip: r`\ln(e^u)=u\Rightarrow\ln(e^{x+1})=x+1` },
     ],
 
-    // ── Bloc 2 : Propriété fondamentale et corollaires (Q6–Q10) ───────────────
+    // ── Bloc 2 : Propriété fondamentale et corollaires ─────────────────────────
     proprietes: [
       { q: r`\ln(a\times b)=\,?\quad(a,b>0)`,
         choices: [r`\ln a\times\ln b`, r`\ln a+\ln b`, r`\ln a-\ln b`, r`\ln(a+b)`],
@@ -7471,9 +7621,34 @@ const DB = {
         choices: [r`2\ln a`, r`\sqrt{\ln a}`, r`\dfrac{1}{2}\ln a`, r`\ln a-\ln 2`],
         a: r`\dfrac{1}{2}\ln a`,
         tip: r`\ln(\sqrt{a})=\ln(a^{1/2})=\tfrac{1}{2}\ln a` },
+
+      { q: r`\ln(2)+\ln(3)=\,?`,
+        choices: [r`\ln(5)`, r`\ln(6)`, r`\ln(8)`, r`6`],
+        a: r`\ln(6)`,
+        tip: r`\ln(2)+\ln(3)=\ln(2\times 3)=\ln(6)` },
+
+      { q: r`\ln(12)-\ln(4)=\,?`,
+        choices: [r`\ln(8)`, r`\ln(3)`, r`\ln(48)`, r`\ln(16)`],
+        a: r`\ln(3)`,
+        tip: r`\ln(12)-\ln(4)=\ln\!\left(\tfrac{12}{4}\right)=\ln(3)` },
+
+      { q: r`3\ln(2)=\,?`,
+        choices: [r`\ln(6)`, r`\ln(8)`, r`\ln(2^3)=\ln(8)`, r`\ln(9)`],
+        a: r`\ln(8)`,
+        tip: r`3\ln(2)=\ln(2^3)=\ln(8)` },
+
+      { q: r`\ln(a^2)=\,?\quad(a>0)`,
+        choices: [r`(\ln a)^2`, r`2\ln a`, r`\ln(2a)`, r`a\ln 2`],
+        a: r`2\ln a`,
+        tip: r`\ln(a^2)=2\ln a` },
+
+      { q: r`\ln\!\left(\dfrac{e^2}{e+1}\right)=\,?`,
+        choices: [r`2-\ln(e+1)`, r`\ln(e^2)-\ln(e+1)`, r`\text{les deux}`, r`2\ln e-\ln(e+1)`],
+        a: r`\text{les deux}`,
+        tip: r`\ln\!\left(\tfrac{e^2}{e+1}\right)=\ln(e^2)-\ln(e+1)=2-\ln(e+1)` },
     ],
 
-    // ── Bloc 3 : Étude de la fonction (Q11–Q15) ────────────────────────────────
+    // ── Bloc 3 : Étude de la fonction ──────────────────────────────────────────
     etude: [
       { q: r`\text{La fonction }\ln\text{ est :}`,
         choices: [r`\text{décroissante sur }]0\,;+\infty[`, r`\text{croissante sur }]0\,;+\infty[`, r`\text{croissante sur }\mathbb{R}`, r`\text{paire sur }]0\,;+\infty[`],
@@ -7499,9 +7674,34 @@ const DB = {
         choices: [r`a>0`, r`a>1`, r`0<a<1`, r`a<0`],
         a: r`a>1`,
         tip: r`\ln a>0=\ln 1\Leftrightarrow a>1\text{ (ln croissante)}` },
+
+      { q: r`\ln a < 0\;\Leftrightarrow`,
+        choices: [r`a<0`, r`a<1`, r`0<a<1`, r`a>1`],
+        a: r`0<a<1`,
+        tip: r`\ln a<0=\ln 1\Leftrightarrow 0<a<1` },
+
+      { q: r`\text{Asymptote de }\ln\text{ en }0^+ :`,
+        choices: [r`y=0`, r`x=1`, r`x=0`, r`y=1`],
+        a: r`x=0`,
+        tip: r`\lim_{x\to 0^+}\ln(x)=-\infty\Rightarrow\text{asymptote verticale }x=0` },
+
+      { q: r`\ln(x)\leq 0\;\Leftrightarrow`,
+        choices: [r`x\leq 0`, r`0<x\leq 1`, r`x\leq 1`, r`x\geq 1`],
+        a: r`0<x\leq 1`,
+        tip: r`\ln(x)\leq 0=\ln 1\Leftrightarrow x\leq 1\text{ et }x>0` },
+
+      { q: r`\ln\text{ s'annule en :}`,
+        choices: [r`x=0`, r`x=e`, r`x=1`, r`\text{jamais}`],
+        a: r`x=1`,
+        tip: r`\ln(1)=0` },
+
+      { q: r`\ln(e^2)=\,?`,
+        choices: [r`e^2`, r`2e`, r`2`, r`\ln 2`],
+        a: r`2`,
+        tip: r`\ln(e^2)=2\ln e=2\times 1=2` },
     ],
 
-    // ── Bloc 4 : Dérivée de ln(u) (Q16–Q19) ───────────────────────────────────
+    // ── Bloc 4 : Dérivée de ln(u) ──────────────────────────────────────────────
     derivee: [
       { q: r`f(x)=\ln(x)\;;\quad f'(x)=\,?`,
         choices: [r`\ln(x)`, r`\dfrac{1}{x}`, r`x\ln(x)`, r`e^x`],
@@ -7522,9 +7722,29 @@ const DB = {
         choices: [r`\ln(x)`, r`\dfrac{1}{x}`, r`\ln(x)+1`, r`x+\ln(x)`],
         a: r`\ln(x)+1`,
         tip: r`f'=1\times\ln x+x\times\dfrac{1}{x}=\ln x+1` },
+
+      { q: r`f(x)=\ln(2x)\;;\quad f'(x)=\,?`,
+        choices: [r`\dfrac{2}{2x}=\dfrac{1}{x}`, r`\dfrac{1}{2x}`, r`2\ln(2x)`, r`\ln(2)`],
+        a: r`\dfrac{2}{2x}=\dfrac{1}{x}`,
+        tip: r`u=2x,\;u'=2\Rightarrow f'=\dfrac{2}{2x}=\dfrac{1}{x}` },
+
+      { q: r`f(x)=\ln(x^2)\;;\quad f'(x)=\,?\quad(x\neq0)`,
+        choices: [r`\dfrac{1}{x^2}`, r`\dfrac{2}{x}`, r`2x\ln(x)`, r`\dfrac{2x}{x^2}`],
+        a: r`\dfrac{2}{x}`,
+        tip: r`u=x^2,\;u'=2x\Rightarrow f'=\dfrac{2x}{x^2}=\dfrac{2}{x}` },
+
+      { q: r`f(x)=(\ln x)^2\;;\quad f'(x)=\,?`,
+        choices: [r`2\ln x`, r`\dfrac{2\ln x}{x}`, r`\dfrac{1}{x^2}`, r`2\ln x \cdot x`],
+        a: r`\dfrac{2\ln x}{x}`,
+        tip: r`\text{Dérivée de }u^2\text{ avec }u=\ln x:\;2u\cdot u'=2\ln x\cdot\tfrac{1}{x}` },
+
+      { q: r`f(x)=\ln(e^x+1)\;;\quad f'(x)=\,?`,
+        choices: [r`e^x`, r`\dfrac{e^x}{e^x+1}`, r`\dfrac{1}{e^x+1}`, r`\ln(e^x)`],
+        a: r`\dfrac{e^x}{e^x+1}`,
+        tip: r`u=e^x+1,\;u'=e^x\Rightarrow f'=\dfrac{e^x}{e^x+1}` },
     ],
 
-    // ── Bloc 5 : Équations et inéquations (Q20–Q23) ────────────────────────────
+    // ── Bloc 5 : Équations et inéquations ──────────────────────────────────────
     equations: [
       { q: r`\ln(x)=0\;\Leftrightarrow\;x=\,?`,
         choices: [`0`, `1`, r`e`, r`-1`],
@@ -7545,9 +7765,19 @@ const DB = {
         choices: [r`x\leq e`, r`x\leq 1`, r`0<x\leq e`, r`x\geq e`],
         a: r`0<x\leq e`,
         tip: r`\ln(x)\leq\ln(e)\Leftrightarrow x\leq e\text{ et }x>0\text{ (domaine de ln)}` },
+
+      { q: r`\ln(x)=1\;\Leftrightarrow\;x=\,?`,
+        choices: [`1`, r`e`, r`e^2`, `10`],
+        a: r`e`,
+        tip: r`\ln(x)=1=\ln(e)\Rightarrow x=e` },
+
+      { q: r`\ln(x^2-3)=0\;\Rightarrow\;x=\,?`,
+        choices: [r`x=2`, r`x=-2`, r`x=2\text{ ou }x=-2`, r`x=4`],
+        a: r`x=2\text{ ou }x=-2`,
+        tip: r`x^2-3=1\Rightarrow x^2=4\Rightarrow x=\pm2\quad(\text{vérif. }x^2-3>0\;\checkmark)` },
     ],
 
-    // ── Bloc 6 : Croissance comparée et applications (Q24–Q25) ────────────────
+    // ── Bloc 6 : Croissance comparée et applications ───────────────────────────
     applications: [
       { q: r`\lim_{x\to+\infty}\dfrac{\ln x}{x}=\,?`,
         choices: [r`+\infty`, `1`, `0`, r`-\infty`],
@@ -7558,6 +7788,26 @@ const DB = {
         choices: [`3`, `1`, `2`, r`-1`],
         a: `1`,
         tip: r`f'(x)=-1+\dfrac{2}{x}\;\Rightarrow\;f'(1)=-1+2=1` },
+
+      { q: r`\lim_{x\to 0^+}x\ln(x)=\,?`,
+        choices: [r`+\infty`, r`-\infty`, `0`, r`1`],
+        a: `0`,
+        tip: r`\text{Croissance comparée : }x\ln x\to 0\text{ en }0^+` },
+
+      { q: r`\lim_{x\to+\infty}\dfrac{\ln x}{\sqrt{x}}=\,?`,
+        choices: [r`+\infty`, `1`, `0`, r`-\infty`],
+        a: `0`,
+        tip: r`\sqrt{x}\text{ l'emporte sur }\ln x\text{ en }+\infty` },
+
+      { q: r`f(x)=\ln(x)-x+2\\\text{Signe de }f'(x)\text{ pour }x>1 :`,
+        choices: [r`\text{positif}`, r`\text{négatif}`, r`\text{nul}`, r`\text{indéterminé}`],
+        a: r`\text{négatif}`,
+        tip: r`f'(x)=\tfrac{1}{x}-1=\tfrac{1-x}{x}<0\text{ pour }x>1` },
+
+      { q: r`\text{Pour }x>0\text{ : }\ln(x)<x-1\text{ ou }\ln(x)\leq x-1 ?`,
+        choices: [r`\ln(x)<x-1`, r`\ln(x)\leq x-1`, r`\ln(x)=x-1`, r`\ln(x)>x-1`],
+        a: r`\ln(x)\leq x-1`,
+        tip: r`\ln x\leq x-1\text{ pour tout }x>0\text{, égalité en }x=1` },
     ],
   },
 
@@ -7670,11 +7920,11 @@ const CATS = [
     ] },
   { id:"suites",       label:"Suites numériques", emoji:"🔁", color:"#EA580C", grad:"linear-gradient(135deg,#F97316,#C2410C)", light:"#FFF7ED", border:"#FED7AA",
     subs:[
+      {id:"suites_explicite_recurr",label:"Explicite vs récurrence", levels:["spe"]},
       {id:"suites_nature",    label:"Nature d'une suite",  levels:["stmg","spe","term"]},
       {id:"suites_termes",    label:"Calculer un terme",   levels:["stmg","spe","term"]},
       {id:"suites_variations",label:"Sens de variation",   levels:["spe","term"]},
       {id:"suites_recurrence",label:"Démonstration par récurrence", levels:["term"]},
-      {id:"suites_explicite_recurr",label:"Explicite vs récurrence", levels:["spe"]},
     ] },
   { id:"polynomes",    label:"Polynômes du 2nd degré", emoji:"📊", color:"#7C3AED", grad:"linear-gradient(135deg,#A855F7,#6D28D9)", light:"#F5F3FF", border:"#DDD6FE",
     subs:[
@@ -7817,10 +8067,10 @@ function Btn({ tex, state, onClick }) {
   const pal = { default:{bg:"#fff",bd:"#E2E8F0",c:"#1E293B"}, selected:{bg:"#EFF6FF",bd:"#3B82F6",c:"#1D4ED8"}, correct:{bg:"#ECFDF5",bd:"#10B981",c:"#065F46"}, wrong:{bg:"#FEF2F2",bd:"#EF4444",c:"#991B1B"} };
   const p = pal[state] || pal.default;
   return (
-    <button onClick={onClick} style={{width:"100%",minHeight:46,padding:"8px 12px",border:`2.5px solid ${p.bd}`,borderRadius:12,background:p.bg,color:p.c,cursor:onClick?"pointer":"default",fontFamily:"'DM Sans',sans-serif",fontSize:14,fontWeight:600,display:"flex",alignItems:"center",gap:7,boxShadow:"0 2px 8px rgba(0,0,0,.05)",transition:"all .15s ease"}}>
+    <button onClick={onClick} style={{width:"100%",minHeight:46,padding:"8px 12px",border:`2.5px solid ${p.bd}`,borderRadius:12,background:p.bg,color:p.c,cursor:onClick?"pointer":"default",fontFamily:"'DM Sans',sans-serif",fontSize:14,fontWeight:600,display:"flex",alignItems:"center",gap:7,boxShadow:"0 2px 8px rgba(0,0,0,.05)",transition:"all .15s ease",overflow:"hidden"}}>
       {state==="correct"&&<span style={{flexShrink:0}}>✅</span>}
       {state==="wrong"  &&<span style={{flexShrink:0}}>❌</span>}
-      <M tex={tex}/>
+      <div style={{overflowX:"auto",minWidth:0,flex:1}}><M tex={tex}/></div>
     </button>
   );
 }
