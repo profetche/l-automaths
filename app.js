@@ -128,11 +128,6 @@ const GS = ({profile} = {}) => {
     .katex{font-size:1em !important;}
     .katex-display{overflow-x:auto;overflow-y:hidden;}
     .katex .mtext span{white-space:normal !important; word-break:break-word;}
-    /* Card énoncé : s'étire vers le bas, jamais vers la droite */
-    .am-q-card{width:100%;box-sizing:border-box;overflow:visible;}
-    .am-q-text{width:100%;overflow:visible;}
-    .am-q-text .katex-html{white-space:normal !important;overflow-wrap:anywhere;}
-    .am-q-text .katex .base{white-space:normal !important;flex-wrap:wrap;justify-content:center;}
     ::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:99px;}
   `}</style>
   );
@@ -15077,7 +15072,7 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
     : null;
 
   return (
-    <div style={{display:"flex",flexDirection:"column",minHeight:"100%",padding:"16px 16px 14px",position:"relative",overflowY:"auto",overflowX:"hidden"}}>
+    <div style={{display:"flex",flexDirection:"column",minHeight:"100%",padding:"16px 16px 14px",position:"relative"}}>
       {/* Modal rappel de cours */}
       {showReminder && reminderAvailable && (
         <CourseReminderModal catId={catId} subId={subId} onClose={()=>setShowReminder(false)}/>
@@ -15122,43 +15117,38 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
       )}
 
       {/* Question card (all non-drag questions) */}
-      {!isDrag && <div className={(shake?"shake ":"")+"am-q-card"} style={{
+      {!isDrag && <div className={shake?"shake":""} style={{
         background:(isNum||isSol||isExpr||isFrac)?"linear-gradient(135deg,#7C3AED,#5B21B6)":"var(--am-bg-light)",
         borderRadius:18,
-        padding: isNum && !q.gspec ? "18px" : hasVis||isTab||isSol||isFrac ? "12px 16px" : "18px 16px",
+        padding: isNum && !q.gspec ? "18px" : hasVis||isTab||isSol||isFrac ? "12px" : "16px",
         marginBottom:isTab?10:14, boxShadow:"0 3px 12px rgba(0,0,0,.08)",
         border:"none", flexShrink:0,
-        width:"100%", boxSizing:"border-box", overflow:"visible",
+        width:"100%", boxSizing:"border-box",
       }}>
         {q.gspec   && <div style={{marginBottom:8}}><Graph spec={q.gspec}/></div>}
         {q.svg     && <div style={{marginBottom:8, display:"flex", justifyContent:"center", maxWidth:"100%", overflow:"hidden"}}
                             dangerouslySetInnerHTML={{__html: q.svg}}/>}
         {q.trespec && <div style={{marginBottom:10}}><ProbaTree spec={q.trespec}/></div>}
         {q.tspec   && <ProbaTable spec={q.tspec}/>}
-        <div style={(() => {
-          // Longueur "visuelle" : on retire les commandes LaTeX pour estimer
-          // le texte effectivement rendu (évite de sous-dimensionner à cause de \frac, \binom…)
-          const visLen = q.q.replace(/\\[a-zA-Z]+\{[^}]*\}/g,'X').replace(/[\\{}]/g,'').length;
-          const fs = isNum && !q.gspec
-            ? (visLen > 60 ? 14 : visLen > 40 ? 16 : visLen > 20 ? 21 : 38)
+        <div style={{
+          fontSize: isNum && !q.gspec
+            ? (q.q.length > 60 ? 14 : q.q.length > 40 ? 16 : q.q.length > 20 ? 21 : 38)
             : (isNum||isSol) && q.gspec ? 16
             : isSol ? 19
             : hasVis||isTab ? 14
-            : visLen > 120 ? 12
-            : visLen > 80  ? 13
-            : visLen > 50  ? 15
-            : visLen > 25  ? 17
-            : 19;
-          return {
-            fontSize: fs,
-            fontWeight:700, lineHeight:1.5, textAlign:"center",
-            color:(isNum||isSol||isExpr||isFrac)?"#fff":"#1E293B",
-            fontFamily:(isNum||isSol||isExpr||isFrac)?"'Nunito',sans-serif":"'DM Sans',sans-serif",
-            padding: isNum && q.gspec ? "4px 0 2px" : 0,
-            maxWidth:"100%", wordWrap:"break-word", overflowWrap:"break-word",
-            overflowX:"visible", overflowY:"visible",
-          };
-        })()} className="am-q-text">
+            // Questions textuelles : paliers étendus pour les annales longues
+            : q.q.length > 150 ? 11
+            : q.q.length > 120 ? 12
+            : q.q.length > 80  ? 14
+            : q.q.length > 50  ? 16
+            : q.q.length > 25  ? 17
+            : 19,
+          fontWeight:700, lineHeight:1.45, textAlign:"center",
+          color:(isNum||isSol||isExpr||isFrac)?"#fff":"#1E293B",
+          fontFamily:(isNum||isSol||isExpr||isFrac)?"'Nunito',sans-serif":"'DM Sans',sans-serif",
+          padding: isNum && q.gspec ? "4px 0 2px" : 0,
+          maxWidth:"100%", overflow:"hidden", wordWrap:"break-word",
+        }}>
           <M tex={q.q}/>
         </div>
         {isNum&&<div style={{textAlign:"center",marginTop:4,opacity:.7,fontSize:11,color:"#E0D9FF"}}>Tape ta réponse ↓</div>}
