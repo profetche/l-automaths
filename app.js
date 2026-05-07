@@ -4680,6 +4680,54 @@ const DB = {
       { q:r`\text{Si }f(x)=x^3-3x^2+3x-1\\[5pt]\text{Alors }f'(x)=`, choices:[r`3x^2-6x+3`,r`3x^2-3x+3`,r`x^2-6x+3`,r`3x^2-6x-1`], a:r`3x^2-6x+3`, tip:r`3x^2-6x+3=3(x-1)^2` },
     ],
 
+    // ── Primitives ──
+    primitives: [
+      { q:r`Soit $f$ définie sur $\mathbb{R}$. $F$ est une primitive de $f$ sur $\mathbb{R}$ si :`, choices:[r`F\text{ est continue sur }\mathbb{R}`,r`F\text{ est dérivable sur }\mathbb{R}\text{ et }F'=f`,r`f\text{ est dérivable et }f'=F`,r`F\text{ et }f\text{ sont toutes deux continues}`], a:r`F\text{ est dérivable sur }\mathbb{R}\text{ et }F'=f`, tip:r`\text{Définition : }F'=f\text{ sur l'intervalle}` },
+      { q:r`F(x)=x^2\text{ est-elle une primitive de }f(x)=2x\text{ sur }\mathbb{R}\text{ ?}`, choices:[r`\text{Non, }F\text{ n'est pas continue}`,r`\text{Oui, car }F'(x)=2x=f(x)`,r`\text{Non, }F\neq f`,r`\text{Oui, car }F(0)=0`], a:r`\text{Oui, car }F'(x)=2x=f(x)`, tip:r`F'(x)=2x=f(x)\checkmark` },
+      { q:r`\text{Si }F\text{ est une primitive de }f\text{ sur }I\text{, toutes les primitives de }f\text{ sur }I\text{ sont :}`, choices:[r`F(x)+x`,r`F(x)+C,\ C\in\mathbb{R}`,r`kF(x),\ k\in\mathbb{R}`,r`F(x)\cdot C,\ C\in\mathbb{R}`], a:r`F(x)+C,\ C\in\mathbb{R}`, tip:r`G(x)=F(x)+C\text{ avec }C\in\mathbb{R}` },
+      { q:r`\text{Laquelle de ces affirmations est vraie ?}`, choices:[r`\text{Toute fonction a une unique primitive}`,r`\text{Si }f\text{ a une primitive, elle en a une infinité}`,r`\text{Deux primitives de }f\text{ sont toujours égales}`,r`\text{La primitive est unique si }f\text{ est continue}`], a:r`\text{Si }f\text{ a une primitive, elle en a une infinité}`, tip:r`\text{Deux primitives diffèrent d'une constante}` },
+      { q:r`\text{Primitive de }f(x)=2x\text{ sur }\mathbb{R}\text{ telle que }F(0)=3\text{ ?}`, choices:[r`F(x)=x^2`,r`F(x)=x^2+3`,r`F(x)=2x^2+3`,r`F(x)=x^2-3`], a:r`F(x)=x^2+3`, tip:r`F(x)=x^2+C,\ F(0)=C=3` },
+      { q:r`\text{Une primitive de }f(x)=x^4\text{ sur }\mathbb{R}\text{ est :}`, choices:[r`4x^3`,r`\dfrac{x^5}{5}`,r`\dfrac{x^4}{4}`,r`x^5`], a:r`\dfrac{x^5}{5}`, tip:r`\int x^n=\dfrac{x^{n+1}}{n+1}` },
+      { q:r`\text{Une primitive de }f(x)=e^x\text{ sur }\mathbb{R}\text{ est :}`, choices:[r`xe^x`,r`e^x+1`,r`e^x`,r`\dfrac{e^x}{x}`], a:r`e^x`, tip:r`(e^x)'=e^x` },
+      { q:r`\text{Une primitive de }f(x)=\cos x\text{ sur }\mathbb{R}\text{ est :}`, choices:[r`-\sin x`,r`\cos x`,r`\sin x`,r`-\cos x`], a:r`\sin x`, tip:r`(\sin x)'=\cos x` },
+      { q:r`\text{Une primitive de }f(x)=\dfrac{1}{x^2}\text{ sur }\mathbb{R}^*_+\text{ est :}`, choices:[r`\ln x`,r`-\dfrac{1}{x}`,r`\dfrac{2}{x^3}`,r`\dfrac{1}{x}`], a:r`-\dfrac{1}{x}`, tip:r`\left(-\dfrac{1}{x}\right)'=\dfrac{1}{x^2}` },
+      { q:r`\text{Une primitive de }f(x)=\dfrac{1}{x}\text{ sur }\mathbb{R}^*_+\text{ est :}`, choices:[r`\dfrac{1}{x^2}`,r`-\dfrac{1}{x^2}`,r`\ln|x|`,r`x\ln x`], a:r`\ln|x|`, tip:r`(\ln|x|)'=\dfrac{1}{x}` },
+      { q:r`\text{Une primitive de }f(x)=3x^2-4x+5\text{ sur }\mathbb{R}\text{ est :}`, choices:[r`6x-4`,r`x^3-2x^2+5x`,r`x^3-4x^2+5x`,r`3x^3-4x^2+5x`], a:r`x^3-2x^2+5x`, tip:r`x^3-2x^2+5x+C` },
+      { q:r`\text{Une primitive de }f(x)=2e^x+\cos x\text{ sur }\mathbb{R}\text{ est :}`, choices:[r`2e^x-\sin x`,r`2e^x+\sin x`,r`e^x+\sin x`,r`2xe^x+\cos x`], a:r`2e^x+\sin x`, tip:r`2e^x+\sin x+C` },
+      { q:r`\text{Une primitive de }f(x)=6x^2e^{x^3}\text{ sur }\mathbb{R}\text{ est :}`, choices:[r`3x^2e^{x^3}`,r`2e^{x^3}`,r`e^{x^3}`,r`6x^3e^{x^3}`], a:r`2e^{x^3}`, tip:r`f=2\cdot(3x^2)e^{x^3}=2\cdot(e^{x^3})'\Rightarrow F=2e^{x^3}` },
+      { q:r`\text{Une primitive de }f(x)=\dfrac{2x}{x^2+1}\text{ sur }\mathbb{R}\text{ est :}`, choices:[r`\dfrac{2}{(x^2+1)^2}`,r`\ln(x^2+1)`,r`2\ln(x^2+1)`,r`\dfrac{1}{x^2+1}`], a:r`\ln(x^2+1)`, tip:r`\dfrac{u'}{u}\text{ avec }u=x^2+1\Rightarrow\ln(x^2+1)` },
+      { q:r`\text{Une primitive de }f(x)=\dfrac{3}{\sqrt{3x+1}}\text{ sur }\left]-\tfrac{1}{3};+\infty\right[\text{ est :}`, choices:[r`\dfrac{3}{2}\sqrt{3x+1}`,r`6\sqrt{3x+1}`,r`2\sqrt{3x+1}`,r`\sqrt{3x+1}`], a:r`2\sqrt{3x+1}`, tip:r`\dfrac{u'}{\sqrt{u}}\text{ avec }u=3x+1\Rightarrow 2\sqrt{u}` },
+      { q:r`\text{Une primitive de }f(x)=\sin(2x)\text{ sur }\mathbb{R}\text{ est :}`, choices:[r`\cos(2x)`,r`2\cos(2x)`,r`-\dfrac{1}{2}\cos(2x)`,r`-2\cos(2x)`], a:r`-\dfrac{1}{2}\cos(2x)`, tip:r`\sin(2x)=\tfrac{1}{2}\cdot2\sin(2x)\Rightarrow-\tfrac{1}{2}\cos(2x)` },
+      { q:r`\text{Pour }\int x^2e^x\,dx\text{, la méthode au programme de Terminale est :}`, choices:[r`u'e^u\text{ directement}`,r`\text{Calcul intégral (chapitre suivant)}`,r`u'u^n`,r`\dfrac{u'}{u}`], a:r`\text{Calcul intégral (chapitre suivant)}`, tip:r`x^2e^x\text{ n'est pas de la forme }u'e^u\text{ ; cela relève du calcul intégral}` },
+      { q:r`\text{La primitive de }f(x)=5e^{5x}\text{ telle que }F(0)=2\text{ est :}`, choices:[r`F(x)=5e^{5x}`,r`F(x)=e^{5x}+1`,r`F(x)=25e^{5x}+2`,r`F(x)=e^{5x}+2`], a:r`F(x)=e^{5x}+1`, tip:r`F(x)=e^{5x}+C,\ F(0)=1+C=2\Rightarrow C=1` },
+      { q:r`\text{Une primitive de }f(x)=\dfrac{1}{\sqrt{x}}\text{ sur }\mathbb{R}^*_+\text{ est :}`, choices:[r`\dfrac{1}{2\sqrt{x}}`,r`-\dfrac{1}{2x^{3/2}}`,r`2\sqrt{x}`,r`\sqrt{x}`], a:r`2\sqrt{x}`, tip:r`x^{-1/2}\Rightarrow\dfrac{x^{1/2}}{1/2}=2\sqrt{x},\ (2\sqrt{x})'=\dfrac{1}{\sqrt{x}}` },
+      { q:r`\text{Pour }f(x)=\cos(5x)-3\sin(3x-1)\text{, une primitive }F\text{ vérifie }F(0)=0\text{. La constante }C\text{ vaut :}`, choices:[r`C=0`,r`C=-\cos(-1)`,r`C=\cos(-1)`,r`C=1`], a:r`C=-\cos(-1)`, tip:r`F(x)=\tfrac{1}{5}\sin(5x)+\cos(3x-1)+C,\ F(0)=\cos(-1)+C=0` },
+    ],
+
+    // ── Équations différentielles ──
+    equa_diff: [
+      { q:r`\text{Une équation différentielle est :}`, choices:[r`\text{Une équation en }x\in\mathbb{R}`,r`\text{Une égalité reliant une fonction et sa dérivée}`,r`\text{Une fonction sur un intervalle}`,r`\text{Un système à deux inconnues}`], a:r`\text{Une égalité reliant une fonction et sa dérivée}`, tip:r`\text{L'inconnue est une fonction, pas un nombre}` },
+      { q:r`\text{Une solution de }(E):y'=f\text{ sur }I\text{ est :}`, choices:[r`\text{Un réel }k\text{ tel que }f(k)=0`,r`\text{Une constante }C`,r`\text{Une fonction }F\text{ dérivable telle que }F'=f`,r`\text{La dérivée de }f`], a:r`\text{Une fonction }F\text{ dérivable telle que }F'=f`, tip:r`\text{Résoudre }y'=f\text{ = trouver les primitives de }f` },
+      { q:r`\text{Résoudre }(E):y'=6x^2-4\text{ sur }\mathbb{R}\text{, c'est trouver :}`, choices:[r`\text{Un réel tel que }6x^2-4=0`,r`\text{Toutes les fonctions }F\text{ telles que }F'=6x^2-4`,r`\text{La dérivée de }6x^2-4`,r`\text{La valeur de }x\text{ telle que }y=0`], a:r`\text{Toutes les fonctions }F\text{ telles que }F'=6x^2-4`, tip:r`\text{Solutions : }F(x)=2x^3-4x+C` },
+      { q:r`\text{Pour montrer que }F(x)=3x^2+2x+5\text{ est solution de }(E):y'=6x+2\text{, on :}`, choices:[r`\text{Vérifie }F(0)=5`,r`\text{Calcule }F'(x)\text{ et vérifie }F'(x)=6x+2`,r`\text{Trouve la constante }C`,r`\text{Vérifie que }F\text{ est continue}`], a:r`\text{Calcule }F'(x)\text{ et vérifie }F'(x)=6x+2`, tip:r`F'(x)=6x+2\checkmark\text{ (exercice 3 du cours)}` },
+      { q:r`\text{Les solutions de }(E):y'=3y\text{ sur }\mathbb{R}\text{ sont :}`, choices:[r`x\mapsto 3ke^x`,r`x\mapsto ke^{3x}`,r`x\mapsto e^{3x}+k`,r`x\mapsto ke^x`], a:r`x\mapsto ke^{3x}`, tip:r`y'=ay\Rightarrow ke^{ax}.\text{ Ici }a=3` },
+      { q:r`\text{Les solutions de }(E):y'+5y=0\text{ sont :}`, choices:[r`ke^{5x}`,r`ke^{-5x}`,r`ke^{x/5}`,r`5ke^x`], a:r`ke^{-5x}`, tip:r`y'=-5y\Rightarrow ke^{-5x}` },
+      { q:r`\text{L'unique solution de }3y'+5y=0\text{ telle que }y(1)=e^{-5/3}\text{ est :}`, choices:[r`y(x)=e^{-5x/3}`,r`y(x)=3e^{-5x/3}`,r`y(x)=e^{-5/3}`,r`y(x)=ke^{-5x}`], a:r`y(x)=e^{-5x/3}`, tip:r`ke^{-5/3}=e^{-5/3}\Rightarrow k=1` },
+      { q:r`\text{Parmi ces fonctions, laquelle est solution de }(E):y'=2y\text{ ?}`, choices:[r`f(x)=2e^x`,r`f(x)=e^{2x}+1`,r`f(x)=3e^{2x}`,r`f(x)=x^2`], a:r`f(x)=3e^{2x}`, tip:r`f'=6e^{2x}=2\times3e^{2x}=2f\checkmark` },
+      { q:r`\text{Si }f\text{ et }g\text{ sont solutions de }y'=ay\text{, laquelle de ces affirmations est FAUSSE ?}`, choices:[r`f+g\text{ est solution}`,r`kf\text{ est solution }\forall k\in\mathbb{R}`,r`f\cdot g\text{ est solution}`,r`f-g\text{ est solution}`], a:r`f\cdot g\text{ est solution}`, tip:r`(fg)'=f'g+fg'\neq a(fg)\text{ en général}` },
+      { q:r`\text{Pour }(E):y'=2y+6\text{, la solution particulière constante est :}`, choices:[r`y=-3`,r`y=3`,r`y=6`,r`y=-6`], a:r`y=-3`, tip:r`y'=0\Rightarrow 0=2y+6\Rightarrow y=-3=-b/a` },
+      { q:r`\text{La forme générale des solutions de }y'=2y+6\text{ est :}`, choices:[r`ke^{2x}`,r`ke^{2x}-3`,r`ke^{2x}+3`,r`ke^{-2x}-3`], a:r`ke^{2x}-3`, tip:r`ke^{ax}-b/a\text{ avec }a=2,b=6` },
+      { q:r`(E):2y'-y=3\text{ s'écrit sous forme standard :}`, choices:[r`y'=2y+3`,r`y'=\dfrac{1}{2}y+\dfrac{3}{2}`,r`y'=\dfrac{1}{2}y+3`,r`y'=y+\dfrac{3}{2}`], a:r`y'=\dfrac{1}{2}y+\dfrac{3}{2}`, tip:r`2y'=y+3\Rightarrow y'=\tfrac{1}{2}y+\tfrac{3}{2}` },
+      { q:r`\text{La forme générale des solutions de }2y'-y=3\text{ est :}`, choices:[r`ke^{x/2}+3`,r`ke^{x/2}-3`,r`ke^{2x}+3`,r`ke^{x/2}`], a:r`ke^{x/2}-3`, tip:r`a=1/2,\ y_p=-b/a=-3\Rightarrow ke^{x/2}-3` },
+      { q:r`\text{L'unique solution de }2y'-y=3\text{ telle que }y(0)=-1\text{ est :}`, choices:[r`y(x)=2e^{x/2}-3`,r`y(x)=e^{x/2}-3`,r`y(x)=2e^{x/2}+3`,r`y(x)=-e^{x/2}-3`], a:r`y(x)=2e^{x/2}-3`, tip:r`k-3=-1\Rightarrow k=2` },
+      { q:r`\text{Pour }(E):y'-2y=x^2\text{, vérifier que }g(x)=-\tfrac{1}{2}x^2-\tfrac{1}{2}x-\tfrac{1}{4}\text{ est sol. part., on calcule :}`, choices:[r`g(0)`,r`g'(x)-2g(x)\text{ et on vérifie }=x^2`,r`g''(x)`,r`g(x)-x^2`], a:r`g'(x)-2g(x)\text{ et on vérifie }=x^2`, tip:r`\text{On substitue dans l'équa. diff.}` },
+      { q:r`\text{Si }g\text{ est solution particulière de }y'=ay+f\text{, la forme générale des solutions est :}`, choices:[r`ke^{ax}`,r`ke^{ax}+g(x)`,r`g(x)+b,\ b\in\mathbb{R}`,r`ke^{ax}\cdot g(x)`], a:r`ke^{ax}+g(x)`, tip:r`\text{Propriété 6 du cours}` },
+      { q:r`\text{Pour }(E):y'-2y=x^2\text{ avec }g=-\tfrac{1}{2}x^2-\tfrac{1}{2}x-\tfrac{1}{4}\text{, la forme générale est :}`, choices:[r`ke^{2x}-\tfrac{1}{2}x^2-\tfrac{1}{2}x-\tfrac{1}{4}`,r`ke^{-2x}-\tfrac{1}{2}x^2-\tfrac{1}{2}x-\tfrac{1}{4}`,r`ke^{2x}+\tfrac{1}{2}x^2+\tfrac{1}{2}x+\tfrac{1}{4}`,r`ke^{x/2}-\tfrac{1}{2}x^2`], a:r`ke^{2x}-\tfrac{1}{2}x^2-\tfrac{1}{2}x-\tfrac{1}{4}`, tip:r`\text{Éq. homogène }y'=2y\Rightarrow ke^{2x}` },
+      { q:r`\text{Laquelle est de type }y'=ay+b\text{ (b constante) ?}`, choices:[r`y'-3y=x`,r`y'+y=e^x`,r`2y'-6y=-10`,r`y'-y=\cos x`], a:r`2y'-6y=-10`, tip:r`2y'-6y=-10\Leftrightarrow y'=3y-5,\ b=-5\text{ constante}` },
+      { q:r`\text{La fonction nulle }y=0\text{ est solution de }y'=ay\text{ car :}`, choices:[r`a=0`,r`y'=0\text{ et }ay=a\cdot0=0`,r`e^{ax}=0\text{ pour }x=0`,r`\text{Ce n'est pas une solution}`], a:r`y'=0\text{ et }ay=a\cdot0=0`, tip:r`y=0\text{ correspond à }k=0\text{ dans }ke^{ax}` },
+      { q:r`\text{Le lien entre primitives et }(E):y'=f\text{ est :}`, choices:[r`\text{Il n'y en a aucun}`,r`\text{Résoudre }y'=f\text{ = trouver toutes les primitives de }f`,r`\text{Résoudre }y'=f\text{ = dériver }f`,r`\text{La primitive de }f\text{ est l'unique solution}`], a:r`\text{Résoudre }y'=f\text{ = trouver toutes les primitives de }f`, tip:r`F\text{ primitive de }f\Leftrightarrow F\text{ solution de }y'=f` },
+    ],
+
     // ── Vitesse moyenne / instantanée ──
     deriv_vitesse: [
       // tc_vit_02 — distinguer_vmoy_vinst — n1
@@ -8375,6 +8423,14 @@ const CATS = [
       {id:"deriv_tangente_avancee",label:"Tangente — équation et lectures avancées", levels:["spe","term"]},
       {id:"derivee_convexite",label:"Convexité et points d'inflexion", levels:["term"]},
     ] },
+  { id:"primitives",   label:"Primitives", emoji:"∫", color:"#059669", grad:"linear-gradient(135deg,#10B981,#047857)", light:"#ECFDF5", border:"#A7F3D0",
+    subs:[
+      {id:"primitives", label:"Primitives — 20 QCM progressifs", levels:["spe","term"]},
+    ] },
+  { id:"equa_diff",   label:"Équations différentielles", emoji:"Δ", color:"#7B2D8B", grad:"linear-gradient(135deg,#A855F7,#6B21A8)", light:"#FAF5FF", border:"#E9D5FF",
+    subs:[
+      {id:"equa_diff", label:"Équa. diff. — 20 QCM progressifs", levels:["spe","term"]},
+    ] },
   { id:"limites",      label:"Limites de fonctions", emoji:"♾️", color:"#0E7490", grad:"linear-gradient(135deg,#22D3EE,#155E75)", light:"#ECFEFF", border:"#A5F3FC",
     subs:[
       {id:"lim_reference",   label:"Fonctions de référence",       levels:["term"]},
@@ -9564,7 +9620,7 @@ async function generateWeeklyProgram(profile, allProg, diagResults) {
   // prérequis déprioritisés sauf si score vraiment faible (<40).
   const ADVANCED_LEVELS = ['terminale_spe','premiere_spe','premiere_tronc','premiere_stmg'];
   const CORE_CATS = {
-    terminale_spe:  ['limites','derivation','suites','probabilites','denombrement','trigonometrie'],
+    terminale_spe:  ['limites','derivation','primitives','equa_diff','suites','probabilites','denombrement','trigonometrie'],
     premiere_spe:   ['polynomes','derivation','suites','probabilites','litteral'],
     premiere_tronc: ['derivation','polynomes','litteral','probabilites'],
     premiere_stmg:  ['pourcentages','suites','statistiques','derivation','polynomes'],
@@ -13435,11 +13491,11 @@ const CAT_FILTER_CONFIGS = {
   },
   term: {
     label: "Terminale",
-    ids: ["polynomes","suites","limites","derivation","probabilites","denombrement","ln","trigonometrie","algo_python"],
+    ids: ["polynomes","suites","limites","derivation","primitives","equa_diff","probabilites","denombrement","ln","trigonometrie","algo_python"],
   },
   all: {
     label: "Tout",
-    ids: ["numerique","pourcentages","litteral","fonctions","statistiques","probabilites","polynomes","suites","derivation","expo","trigonometrie","limites","denombrement","ln","algo_python"],
+    ids: ["numerique","pourcentages","litteral","fonctions","statistiques","probabilites","polynomes","suites","derivation","primitives","equa_diff","expo","trigonometrie","limites","denombrement","ln","algo_python"],
   },
 };
 
