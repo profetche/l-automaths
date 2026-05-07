@@ -65,39 +65,49 @@ function M({ tex }) {
 
 // ── CodeBlock : rendu des questions algo Python ────────────────────────────────
 function parseAlgoTex(tex) {
-  // tex au runtime (String.raw) : \\\\ = 2 backslashes = saut de ligne LaTeX
-  // Cherche la dernière marque de séparation \\[Npt] avant la question texte
-  const lastSep = tex.lastIndexOf('\\\\[');
-  let codePart = lastSep >= 0 ? tex.slice(0, lastSep) : tex;
-  let questionPart = lastSep >= 0 ? tex.slice(lastSep).replace(/^\\\\\\\[[\d]+pt\]/, '') : null;
+  // Au runtime (String.raw), le fichier contient :
+  //   \texttt  = 1 backslash + texttt
+  //   \\       = 2 backslashes = séparateur de ligne LaTeX
+  //   \quad    = 1 backslash + quad (indentation 1 niveau)
+  //   \qquad   = 1 backslash + qquad (indentation 2 niveaux)
+  //   \\[6pt]  = 2 backslashes + [ = marque fin-de-code / début-question
+  // En JS string normale : "\\\\" = 2 backslashes, "\\quad" = \quad
 
-  // Découpe les lignes sur \\\\ (2 backslashes = séparateur LaTeX)
-  const rawLines = codePart.split('\\\\\\\\');
+  var SEP      = "\\\\";      // 2 backslashes = séparateur de ligne
+  var SEP_END  = "\\\\[";    // 2 backslashes + [ = fin du code
+  var QQUAD    = "\\qquad";  // 1 backslash + qquad
+  var QUAD     = "\\quad";   // 1 backslash + quad
 
-  const lines = rawLines.map(line => {
-    let indent = 0;
-    let l = line.trim();
-    // \qquad (6 chars) = 4 espaces, \quad (5 chars) = 2 espaces
-    while (l.startsWith('\\qquad')) { indent += 4; l = l.slice(6).trim(); }
-    while (l.startsWith('\\quad'))  { indent += 2; l = l.slice(5).trim(); }
-    // Extrait contenu de \texttt{...}
+  var sepIdx = tex.indexOf(SEP_END);
+  var codePart     = sepIdx >= 0 ? tex.slice(0, sepIdx) : tex;
+  var questionRaw  = sepIdx >= 0 ? tex.slice(sepIdx).replace(/^\\\\\[\d+pt\]/, '') : null;
+
+  var rawLines = codePart.split(SEP);
+
+  var lines = rawLines.map(function(line) {
+    var indent = 0;
+    var l = line.trim();
+    while (l.indexOf(QQUAD) === 0) { indent += 4; l = l.slice(QQUAD.length).trim(); }
+    while (l.indexOf(QUAD)  === 0) { indent += 2; l = l.slice(QUAD.length).trim();  }
     l = l.replace(/\\texttt\{([^}]*)\}/g, '$1');
-    // Nettoie \text{...} résiduels
-    l = l.replace(/\\text\{([^}]*)\}/g, '$1');
-    return ' '.repeat(indent) + l;
-  }).filter(l => l.trim() !== '');
+    l = l.replace(/\\text\{([^}]*)\}/g,   '$1');
+    return Array(indent + 1).join(' ') + l;
+  }).filter(function(l) { return l.trim() !== ''; });
 
-  return { codeLines: lines, questionTex: questionPart };
+  return { codeLines: lines, questionTex: questionRaw };
 }
 
 function QuestionRenderer({ tex }) {
-  const isAlgo = /^\\texttt\{(def |for |while |if |n[ =]|s[ =]|c[ =]|p[ =]|u[ =]|m[ =]|a[ ,]|b[ ,])/.test(tex.trim());
+  var t = tex.trim();
+  var isAlgo = /^\\texttt\{(def |for |while |if |n[ =]|s[ =]|c[ =]|p[ =]|u[ =]|m[ =]|a[ ,=]|b[ ,=])/.test(t);
   if (!isAlgo) return <M tex={tex}/>;
-  const { codeLines, questionTex } = parseAlgoTex(tex);
+  var parsed = parseAlgoTex(t);
+  var codeLines = parsed.codeLines;
+  var questionTex = parsed.questionTex;
   return (
     <div style={{width:'100%'}}>
       <pre style={{
-        background:'rgba(255,255,255,0.12)', border:'1.5px solid rgba(255,255,255,0.3)',
+        background:'rgba(255,255,255,0.13)', border:'1.5px solid rgba(255,255,255,0.3)',
         borderRadius:10, padding:'10px 14px',
         fontFamily:"'Courier New', monospace",
         fontSize:13, lineHeight:1.75, color:'#E9D5FF',
@@ -107,9 +117,7 @@ function QuestionRenderer({ tex }) {
       {questionTex && <div style={{textAlign:'center', marginTop:4, color:'#fff'}}><M tex={questionTex}/></div>}
     </div>
   );
-}
-
-// ── Global styles ─────────────────────────────────────────────────────────────
+}// ── Global styles ─────────────────────────────────────────────────────────────
 const GS = ({profile} = {}) => {
   // Thème courant (fallback sur "ocean" si profile absent / sans pref)
   // On duplique la logique locale car getTheme est défini plus bas dans le fichier.
