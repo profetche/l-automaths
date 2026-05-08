@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v4';
+const CACHE_VERSION = 'v5';
 const CACHE_NAME = `automaths-${CACHE_VERSION}`;
 
 // ── Installation : pas de pre-cache, on laisse le réseau primer ──────────────

@@ -5725,11 +5725,7 @@ const DB = {
         a: r`y = -3x + 5`,
         tip: r`\text{On a }f'(x) = 3x^2 - 6x\text{ et }f''(x) = 6x - 6\text{. }f''(x) = 0 \iff x = 1\text{, et }f''\text{ change de signe (négatif avant, positif après), donc }A\text{ a pour abscisse }1\text{. Puis }` },
     ],
-  },
 
-
-  // ════ Continuité ══════════════════════════════════════════════
-  continuite: {
     continuite: [
       // cont_01 — Définition de la continuité en un point — facile
       { q: r`\text{Soit }f\text{ une fonction définie sur un intervalle }I\text{ contenant }a\text{. On dit que }f\text{ est continue en }a\text{ si :}`,
@@ -5898,7 +5894,8 @@ const DB = {
     ],
   },
 
-  // ════ Primitives ══════════════════════════════════════════════
+
+  // ════ Primitives  // ════ Primitives ══════════════════════════════════════════════
   primitives: {
     primitives: [
       { q:r`\text{Soit }f\text{ définie sur }\mathbb{R}\text{. }F\text{ est une primitive de }f\text{ sur }\mathbb{R}\text{ si :}`, choices:[r`F\text{ est continue sur }\mathbb{R}`,r`F\text{ est dérivable sur }\mathbb{R}\text{ et }F'=f`,r`f\text{ est dérivable et }f'=F`,r`F\text{ et }f\text{ sont toutes deux continues}`], a:r`F\text{ est dérivable sur }\mathbb{R}\text{ et }F'=f`, tip:r`\text{Définition : }F'=f\text{ sur l'intervalle}` },
@@ -13672,7 +13669,7 @@ const CAT_FILTER_CONFIGS = {
   },
   term: {
     label: "Terminale",
-    ids: ["polynomes","suites","limites","derivation","primitives","equa_diff","probabilites","denombrement","ln","trigonometrie","algo_python"],
+    ids: ["polynomes","suites","limites","derivation","expo","primitives","equa_diff","probabilites","denombrement","ln","trigonometrie","algo_python"],
   },
   all: {
     label: "Tout",
