@@ -5727,6 +5727,177 @@ const DB = {
     ],
   },
 
+
+  // ════ Continuité ══════════════════════════════════════════════
+  continuite: {
+    continuite: [
+      // cont_01 — Définition de la continuité en un point — facile
+      { q: r`\text{Soit }f\text{ une fonction définie sur un intervalle }I\text{ contenant }a\text{. On dit que }f\text{ est continue en }a\text{ si :}`,
+        choices: [
+          r`f(a)\text{ existe}`,
+          r`\displaystyle\lim_{x \to a} f(x) = f(a)`,
+          r`f\text{ est dérivable en }a`,
+          r`f\text{ est définie sur }I`
+        ],
+        a: r`\displaystyle\lim_{x \to a} f(x) = f(a)`,
+        tip: r`\text{Définition : }f\text{ est continue en }a\text{ si et seulement si }\displaystyle\lim_{x \to a} f(x) = f(a)\text{. Il faut que la limite existe ET soit égale à l'image.}` },
+
+      // cont_02 — Dérivabilité implique continuité — facile
+      { q: r`\text{Si }f\text{ est dérivable en }a\text{, alors }f\text{ est :}`,
+        choices: [
+          r`\text{Nécessairement continue en }a`,
+          r`\text{Pas forcément continue en }a`,
+          r`\text{Discontinue en }a`,
+          r`\text{Continue uniquement si }f'(a) = 0`
+        ],
+        a: r`\text{Nécessairement continue en }a`,
+        tip: r`\text{Théorème : dérivabilité implique continuité. Si }f\text{ est dérivable en }a\text{, alors }\displaystyle\lim_{x \to a}\frac{f(x)-f(a)}{x-a}=f'(a)\text{ existe, ce qui force }\lim_{x\to a}f(x)=f(a)\text{.}` },
+
+      // cont_03 — La réciproque est fausse — facile
+      { q: r`\text{La réciproque du théorème « dérivable implique continue » est-elle vraie ?}`,
+        choices: [
+          r`\text{Oui, continue implique dérivable}`,
+          r`\text{Non, une fonction peut être continue sans être dérivable}`,
+          r`\text{Oui, si }f'(a)\text{ existe alors }f\text{ est continue}`,
+          r`\text{Non, continue implique discontinue}`
+        ],
+        a: r`\text{Non, une fonction peut être continue sans être dérivable}`,
+        tip: r`\text{La réciproque est FAUSSE. Un contre-exemple classique : }f(x)=|x|\text{ est continue en }0\text{ (}\lim_{x\to 0}|x|=0=f(0)\text{) mais n'est pas dérivable en }0\text{ car les limites à gauche et à droite du taux de variation diffèrent (}-1\text{ et }+1\text{).}` },
+
+      // cont_04 — Contre-exemple : |x| continue non dérivable — moyenne
+      { q: r`\text{On considère }f(x) = |x|\text{. Laquelle de ces affirmations est vraie ?}`,
+        choices: [
+          r`f\text{ est dérivable en }0`,
+          r`f\text{ est continue en }0\text{ mais pas dérivable en }0`,
+          r`f\text{ est discontinue en }0`,
+          r`f\text{ est dérivable en }0\text{ avec }f'(0) = 1`
+        ],
+        a: r`f\text{ est continue en }0\text{ mais pas dérivable en }0`,
+        tip: r`\text{Continuité : }\lim_{x\to 0}|x|=0=f(0)\checkmark\text{. Dérivabilité : le taux }\frac{|h|}{h}\text{ vaut }+1\text{ si }h>0\text{ et }-1\text{ si }h<0\text{. Les limites à gauche et à droite sont différentes, donc }f\text{ n'est pas dérivable en }0\text{.}` },
+
+      // cont_05 — Contre-exemple : fonction non continue — moyenne
+      { q: r`\text{On définit }f\text{ sur }\mathbb{R}\text{ par }f(x)=\begin{cases}x+1 & \text{si }x<0 \\ x-1 & \text{si }x\geqslant 0\end{cases}\text{. }f\text{ est-elle continue en }0\text{ ?}`,
+        choices: [
+          r`\text{Oui, car }f(0) = -1`,
+          r`\text{Non, car }\displaystyle\lim_{x \to 0^-} f(x) \neq \displaystyle\lim_{x \to 0^+} f(x)`,
+          r`\text{Oui, car la limite existe}`,
+          r`\text{Non, car }f\text{ n'est pas définie en }0`
+        ],
+        a: r`\text{Non, car }\displaystyle\lim_{x \to 0^-} f(x) \neq \displaystyle\lim_{x \to 0^+} f(x)`,
+        tip: r`\text{Limite à gauche : }\lim_{x\to 0^-}(x+1)=1\text{. Limite à droite : }\lim_{x\to 0^+}(x-1)=-1\text{. Les deux limites sont différentes, donc la limite en }0\text{ n'existe pas : }f\text{ est discontinue en }0\text{.}` },
+
+      // cont_06 — Continuité sur un intervalle — facile
+      { q: r`\text{On dit que }f\text{ est continue sur un intervalle }I\text{ si :}`,
+        choices: [
+          r`f\text{ est dérivable sur }I`,
+          r`f\text{ est continue en tout point de }I`,
+          r`f\text{ est bornée sur }I`,
+          r`\displaystyle\lim_{x \to +\infty} f(x)\text{ existe}`
+        ],
+        a: r`f\text{ est continue en tout point de }I`,
+        tip: r`\text{Définition : }f\text{ est continue sur }I\text{ si elle est continue en chaque point }a\in I\text{. En pratique, toutes les fonctions « classiques » (polynômes, exp, ln, trigo) sont continues sur leur domaine de définition.}` },
+
+      // cont_07 — TVI : existence d'un antécédent — moyenne
+      { q: r`\text{Soit }f\text{ continue sur }[a\,;\,b]\text{. On a }f(a)=1\text{ et }f(b)=5\text{. D'après le TVI, pour tout }k\in[1\,;\,5]\text{ :}`,
+        choices: [
+          r`f\text{ est constante sur }[a\,;\,b]`,
+          r`\text{Il existe }c\in[a\,;\,b]\text{ tel que }f(c)=k`,
+          r`\text{Il existe un unique }c\in[a\,;\,b]\text{ tel que }f(c)=k`,
+          r`k\text{ doit être compris entre }a\text{ et }b`
+        ],
+        a: r`\text{Il existe }c\in[a\,;\,b]\text{ tel que }f(c)=k`,
+        tip: r`\text{Théorème des valeurs intermédiaires : si }f\text{ est continue sur }[a;b]\text{ et }k\text{ est compris entre }f(a)\text{ et }f(b)\text{, il existe au moins un }c\in[a;b]\text{ tel que }f(c)=k\text{. L'unicité n'est pas garantie en général.}` },
+
+      // cont_08 — Corollaire (bijection) : unicité avec monotonie stricte — moyenne
+      { q: r`\text{Soit }f\text{ continue et strictement monotone sur }[a\,;\,b]\text{. Pour tout }k\text{ compris entre }f(a)\text{ et }f(b)\text{, l'équation }f(x)=k\text{ admet :}`,
+        choices: [
+          r`\text{Aucune solution dans }[a\,;\,b]`,
+          r`\text{Au moins une solution dans }[a\,;\,b]`,
+          r`\text{Exactement une solution dans }[a\,;\,b]`,
+          r`\text{Exactement deux solutions dans }[a\,;\,b]`
+        ],
+        a: r`\text{Exactement une solution dans }[a\,;\,b]`,
+        tip: r`\text{Corollaire du TVI (théorème de la bijection) : la stricte monotonie garantit l'unicité. En effet, si }f(c_1)=f(c_2)=k\text{ avec }c_1<c_2\text{, la monotonie stricte imposerait }f(c_1)<f(c_2)\text{ (ou }f(c_1)>f(c_2)\text{), contradiction.}` },
+
+      // cont_09 — Encadrement d'une solution par dichotomie — moyenne
+      { q: r`\text{On sait que }f\text{ est continue et strictement croissante sur }[1\,;\,2]\text{ avec }f(1)=-1\text{ et }f(2)=3\text{. On cherche }\alpha\text{ tel que }f(\alpha)=0\text{. }f(1{,}5)=0{,}8>0\text{. Peut-on conclure que }\alpha\in[1\,;\,1{,}5]\text{ ?}`,
+        choices: [
+          r`\text{Non, car }f(1{,}5)>0`,
+          r`\text{Oui, car }f(1)<0<f(1{,}5)\text{ et }f\text{ est continue et strictement croissante}`,
+          r`\text{Non, }\alpha\text{ pourrait être dans }[1{,}5\,;\,2]`,
+          r`\text{Oui, mais uniquement si }f\text{ est un polynôme}`
+        ],
+        a: r`\text{Oui, car }f(1)<0<f(1{,}5)\text{ et }f\text{ est continue et strictement croissante}`,
+        tip: r`f(1)=-1<0\text{ et }f(1{,}5)=0{,}8>0\text{. Comme }f\text{ est continue et strictement croissante sur }[1;1{,}5]\text{, le corollaire du TVI garantit qu'il existe un unique }\alpha\in[1;1{,}5]\text{ tel que }f(\alpha)=0\text{.}` },
+
+      // cont_10 — Théorème du point fixe — moyenne
+      { q: r`\text{Soit }f\text{ continue sur }[0\,;\,1]\text{ avec }f([0\,;\,1])\subset[0\,;\,1]\text{. Alors :}`,
+        choices: [
+          r`f\text{ est forcément croissante}`,
+          r`\text{Il existe }c\in[0\,;\,1]\text{ tel que }f(c)=c`,
+          r`f\text{ est constante}`,
+          r`\text{Il existe }c\in[0\,;\,1]\text{ tel que }f(c)=0`
+        ],
+        a: r`\text{Il existe }c\in[0\,;\,1]\text{ tel que }f(c)=c`,
+        tip: r`\text{Théorème du point fixe : posons }g(x)=f(x)-x\text{. }g(0)=f(0)-0\geqslant 0\text{ et }g(1)=f(1)-1\leqslant 0\text{. Par le TVI, il existe }c\in[0;1]\text{ tel que }g(c)=0\text{, c'est-à-dire }f(c)=c\text{. C'est un point fixe de }f\text{.}` },
+
+      // cont_11 — Application point fixe aux suites — moyenne
+      { q: r`\text{Soit }(u_n)\text{ définie par }u_0\in[0\,;\,1]\text{ et }u_{n+1}=f(u_n)\text{ où }f\text{ est continue sur }[0\,;\,1]\text{ avec }f([0\,;\,1])\subset[0\,;\,1]\text{. Si }(u_n)\text{ converge vers }\ell\text{, alors :}`,
+        choices: [
+          r`\ell = 0`,
+          r`\ell = f(0)`,
+          r`\ell\text{ est solution de }f(\ell) = \ell`,
+          r`\ell = 1`
+        ],
+        a: r`\ell\text{ est solution de }f(\ell) = \ell`,
+        tip: r`\text{Si }u_n\to\ell\text{, alors }u_{n+1}=f(u_n)\to f(\ell)\text{ par continuité de }f\text{. Or }u_{n+1}\to\ell\text{ aussi. Par unicité de la limite : }f(\ell)=\ell\text{. La limite est un point fixe de }f\text{.}` },
+
+      // cont_12 — Identifier la limite d'une suite récurrente — dure
+      { q: r`\text{Soit }(u_n)\text{ définie par }u_0=0{,}5\text{ et }u_{n+1}=\dfrac{u_n+2}{3}\text{. On admet que }(u_n)\text{ converge. Sa limite }\ell\text{ vérifie :}`,
+        choices: [
+          r`\ell = 0{,}5`,
+          r`3\ell = \ell + 2`,
+          r`\ell^2 = \ell + 2`,
+          r`\ell = \dfrac{\ell}{3} + 2`
+        ],
+        a: r`3\ell = \ell + 2`,
+        tip: r`\text{Si }u_n\to\ell\text{, alors }u_{n+1}\to\ell\text{ et }\frac{u_n+2}{3}\to\frac{\ell+2}{3}\text{. Par unicité : }\ell=\frac{\ell+2}{3}\text{, soit }3\ell=\ell+2\text{, d'où }\ell=1\text{.}` },
+
+      // cont_13 — Encadrement à l'unité près — dure
+      { q: r`\text{On sait que }f(x) = x^3 - 2x - 1\text{ est continue et strictement croissante sur }[1\,;\,2]\text{. }f(1) = -2\text{ et }f(2) = 3\text{. Il existe un unique }\alpha \in [1\,;\,2]\text{ tel que }f(\alpha) = 0\text{. Sachant que }f(1{,}5) = -0{,}625\text{, donner un encadrement de }\alpha\text{ à l'unité près.}`,
+        choices: [
+          r`\alpha \in [1\,;\,1{,}5]`,
+          r`\alpha \in [1{,}5\,;\,2]`,
+          r`\alpha \in [1\,;\,2]\text{ seulement}`,
+          r`\alpha = 1{,}5`
+        ],
+        a: r`\alpha \in [1{,}5\,;\,2]`,
+        tip: r`f(1{,}5)=-0{,}625<0\text{ et }f(2)=3>0\text{. Comme }f\text{ est continue et strictement croissante sur }[1{,}5\,;\,2]\text{, le corollaire du TVI donne }\alpha\in[1{,}5\,;\,2]\text{. (L'encadrement à l'unité était }[1;2]\text{, à }0{,}5\text{ près c'est }[1{,}5;2]\text{.)}` },
+
+      // cont_14 — Fonctions continues classiques — facile
+      { q: r`\text{Parmi les fonctions suivantes, laquelle est continue sur son domaine de définition ?}`,
+        choices: [
+          r`f(x) = \dfrac{1}{x-2}\text{ en }x=2`,
+          r`g(x) = \sqrt{x}\text{ sur }[0\,;\,+\infty[`,
+          r`h(x) = E(x)\text{ (partie entière) en }x=1`,
+          r`k(x) = \dfrac{|x|}{x}\text{ en }x=0`
+        ],
+        a: r`g(x) = \sqrt{x}\text{ sur }[0\,;\,+\infty[`,
+        tip: r`\text{La fonction racine carrée est continue sur }[0;+\infty[\text{ : c'est une fonction de référence classique. Les autres ont des discontinuités : }\frac{1}{x-2}\text{ n'est pas définie en }2\text{, la partie entière saute en tout entier, et }\frac{|x|}{x}\text{ n'est pas définie en }0\text{.}` },
+
+      // cont_15 — Continuité de la racine carrée en 0 — dure
+      { q: r`\text{On considère }f(x)=\sqrt{x}\text{ sur }[0\,;\,+\infty[\text{. }f\text{ est-elle dérivable en }0\text{ ?}`,
+        choices: [
+          r`\text{Oui, avec }f'(0) = 0`,
+          r`\text{Oui, avec }f'(0) = \dfrac{1}{2}`,
+          r`\text{Non : }\displaystyle\lim_{h \to 0^+} \dfrac{\sqrt{h}}{h} = +\infty`,
+          r`\text{Non, car }f\text{ n'est pas continue en }0`
+        ],
+        a: r`\text{Non : }\displaystyle\lim_{h \to 0^+} \dfrac{\sqrt{h}}{h} = +\infty`,
+        tip: r`\text{Le taux de variation en }0\text{ vaut }\frac{\sqrt{h}-\sqrt{0}}{h-0}=\frac{\sqrt{h}}{h}=\frac{1}{\sqrt{h}}\xrightarrow[h\to 0^+]{}+\infty\text{. La limite est infinie : }f\text{ n'est pas dérivable en }0\text{. Pourtant }f\text{ est bien continue en }0\text{ (}f(0)=0=\lim_{x\to 0^+}\sqrt{x}\text{). C'est le contre-exemple « racine carrée ».}` },
+    ],
+  },
+
   // ════ Primitives ══════════════════════════════════════════════
   primitives: {
     primitives: [
@@ -8428,6 +8599,7 @@ const CATS = [
       {id:"deriv_optimisation",label:"Optimisation (max/min)", levels:["spe","term"]},
       {id:"deriv_tangente_avancee",label:"Tangente — équation et lectures avancées", levels:["spe","term"]},
       {id:"derivee_convexite",label:"Convexité et points d'inflexion", levels:["term"]},
+      {id:"continuite",       label:"Continuité",                          levels:["term"]},
     ] },
   { id:"primitives",   label:"Primitives", emoji:"∫", color:"#059669", grad:"linear-gradient(135deg,#10B981,#047857)", light:"#ECFDF5", border:"#A7F3D0",
     subs:[
@@ -9359,20 +9531,23 @@ const CURRICULUM = {
       expo:['definition','calculs','etude','derivee','equations','applications'],
       bac:['spe_annales_s1_2026','spe_annales_s2_2026'] }},
   terminale_spe: { label:"Terminale Spé", emoji:"🏆", color:"#DC2626",
-    cats:{ fonctions:['lecture_image','calcul_image','point_courbe','coeff_directeur_calcul','coeff_directeur_lecture','resolution_graphique','tableau_variations','tableau_signes'],
+    cats:{ polynomes:['poly2_definition','poly2_racines','poly2_discriminant','poly2_canonique','poly2_variations','poly2_signe','poly2_inequations'],
+           expo:['definition','calculs','etude','derivee','equations','applications'],
+           suites:['suites_nature','suites_termes','suites_variations','suites_recurrence','suites_explicite_recurr'],
+           limites:['lim_reference','lim_operations','lim_FI','lim_asymptotes','lim_comparaison'],
+           derivation:['lecture_derivee','calcul_derivee','deriv_vitesse','deriv_tangente','deriv_fonctions_ref','deriv_variations','deriv_produit','deriv_quotient','deriv_rationnelle','deriv_optimisation','deriv_tangente_avancee','derivee_convexite','continuite'],
+           ln:['definition','proprietes','etude','derivee','equations','applications'],
+           primitives:['primitives'],
+           equa_diff:['equa_diff'],
+           probabilites:['tableau','tableau_fill','arbre','contraire','probas_conditionnelles','probas_independance','probas_totales','probas_var_aleatoires','probas_loi_binomiale'],
+           denombrement:['denombrement_type'],
+           trigonometrie:['valeurs_trigo'],
+           algo_python:['algo_syntaxe','algo_fonction','algo_if','algo_for','algo_while'],
+           fonctions:['lecture_image','calcul_image','point_courbe','coeff_directeur_calcul','coeff_directeur_lecture','resolution_graphique','tableau_variations','tableau_signes'],
            pourcentages:['proportions','taux_cm','valeur_finale','evolutions_successives'],
            numerique:['decimaux_cm','fractions','puissances','scientifique','conversions','racines_n1','racines_n2','racines_n3','racines_n4'],
            litteral:['eq1','eq_x2','eq_x3','produit_nul','inequation1','developpement','id_remarquables','id_rem_pad','id_rem_difficile','facto_commun','facto_id'],
-           probabilites:['tableau','tableau_fill','arbre','contraire','probas_conditionnelles','probas_independance','probas_totales','probas_var_aleatoires','probas_loi_binomiale'],
-           suites:['suites_nature','suites_termes','suites_variations','suites_recurrence','suites_explicite_recurr'],
-           polynomes:['poly2_definition','poly2_racines','poly2_discriminant','poly2_canonique','poly2_variations','poly2_signe','poly2_inequations'],
            statistiques:['stat_centrale','stat_dispersion','loi_binomiale'],
-           derivation:['lecture_derivee','calcul_derivee','deriv_vitesse','deriv_tangente','deriv_fonctions_ref','deriv_variations','deriv_produit','deriv_quotient','deriv_rationnelle','deriv_optimisation','deriv_tangente_avancee','derivee_convexite'],
-           limites:['lim_reference','lim_operations','lim_FI','lim_asymptotes','lim_comparaison'],
-           expo:['definition','calculs','etude','derivee','equations','applications'],
-           ln:['definition','proprietes','etude','derivee','equations','applications'],
-           denombrement:['denombrement_type'],
-           trigonometrie:['valeurs_trigo'],
            bac:['spe_annales_s1_2026','spe_annales_s2_2026'] }},
 };
 
