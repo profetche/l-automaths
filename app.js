@@ -182,6 +182,9 @@ const GS = ({profile} = {}) => {
     .katex{font-size:1em !important;}
     .katex-display{overflow-x:auto;overflow-y:hidden;}
     .katex .mtext span{white-space:normal !important; word-break:break-word;}
+    .fade-in .katex-html{overflow-x:auto;display:block;}
+    .fade-in .katex{overflow-x:auto;display:inline-block;max-width:100%;}
+    .fade-in{overflow-x:hidden;}
     ::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:99px;}
   `}</style>
   );
@@ -13669,11 +13672,11 @@ const CAT_FILTER_CONFIGS = {
   },
   term: {
     label: "Terminale",
-    ids: ["polynomes","suites","limites","derivation","expo","primitives","equa_diff","probabilites","denombrement","ln","trigonometrie","algo_python"],
+    ids: ["polynomes","expo","suites","limites","derivation","primitives","equa_diff","probabilites","denombrement","ln","trigonometrie","algo_python"],
   },
   all: {
     label: "Tout",
-    ids: ["numerique","pourcentages","litteral","fonctions","statistiques","probabilites","polynomes","suites","derivation","primitives","equa_diff","expo","trigonometrie","limites","denombrement","ln","algo_python"],
+    ids: ["numerique","pourcentages","litteral","fonctions","statistiques","probabilites","polynomes","expo","suites","derivation","primitives","equa_diff","trigonometrie","limites","denombrement","ln","algo_python"],
   },
 };
 
@@ -16300,7 +16303,7 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
             color:wasCorrect?"#065F46":"#991B1B",
             display:"flex",alignItems:"center",gap:6}}>
             {wasCorrect ? "✅ Exact !" : (
-              <span style={{display:"flex",alignItems:"center",gap:6,flexWrap:"wrap"}}>
+              <span style={{display:"flex",alignItems:"center",gap:6,flexWrap:"wrap",overflowX:"auto",minWidth:0}}>
                 ❌ La bonne réponse : <M tex={q.a}/>
               </span>
             )}
@@ -16324,12 +16327,12 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
             <div style={{
               background:wasCorrect?"rgba(16,185,129,0.08)":"rgba(239,68,68,0.06)",
               borderRadius:10,padding:"8px 11px",
-              borderLeft:`3px solid ${wasCorrect?"#10B981":"#EF4444"}`}}>
+              borderLeft:`3px solid ${wasCorrect?"#10B981":"#EF4444"}`,overflowX:"auto"}}>
               <div style={{fontSize:9,fontWeight:700,color:"#94A3B8",
                 textTransform:"uppercase",letterSpacing:0.8,marginBottom:5}}>
                 {wasCorrect?"Méthode":"Rappel — pourquoi ?"}
               </div>
-              <div style={{fontSize:12,color:"#475569"}}>
+              <div style={{fontSize:12,color:"#475569",overflowX:"auto"}}>
                 <M tex={q.tip}/>
               </div>
               {!wasCorrect && parseTrigoAngle(q.q)!==null && <MiniTrigoFeedback qTex={q.q}/>}
@@ -16351,12 +16354,12 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
             <div style={{
               background:wasCorrect?"rgba(16,185,129,0.08)":"rgba(239,68,68,0.06)",
               borderRadius:10,padding:"8px 11px",
-              borderLeft:`3px solid ${wasCorrect?"#10B981":"#EF4444"}`}}>
+              borderLeft:`3px solid ${wasCorrect?"#10B981":"#EF4444"}`,overflowX:"auto"}}>
               <div style={{fontSize:9,fontWeight:700,color:"#94A3B8",
                 textTransform:"uppercase",letterSpacing:0.8,marginBottom:5}}>
                 {wasCorrect?"Méthode":"Rappel — pourquoi ?"}
               </div>
-              <div style={{fontSize:12,color:"#475569"}}>
+              <div style={{fontSize:12,color:"#475569",overflowX:"auto"}}>
                 <M tex={q.tip}/>
               </div>
             </div>
@@ -16370,7 +16373,7 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
           <div style={{fontWeight:700,fontSize:13,color:wasCorrect?"#065F46":"#991B1B"}}>
             {wasCorrect ? `✅ Bravo ! S=${q.a}` : `❌ La réponse était S=${q.a}`}
           </div>
-          <div style={{color:"#475569",fontSize:11,marginTop:4}}>💡 <M tex={q.tip}/></div>
+          <div style={{color:"#475569",fontSize:11,marginTop:4,overflowX:"auto"}}>💡 <M tex={q.tip}/></div>
         </div>
       )}
 
@@ -16396,7 +16399,7 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
               <div style={{fontWeight:800,fontSize:12,color:"#991B1B",marginBottom:5}}>
                 ❌ La bonne réponse : <M tex={q.a}/>
               </div>
-              <div style={{background:"#fff",borderRadius:8,padding:"7px 10px",fontSize:11,color:"#475569"}}>
+              <div style={{background:"#fff",borderRadius:8,padding:"7px 10px",fontSize:11,color:"#475569",overflowX:"auto"}}>
                 💡 <M tex={q.tip}/>
               </div>
             </>
@@ -16426,7 +16429,7 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
               <div style={{fontWeight:800,fontSize:13,color:"#991B1B",marginBottom:6}}>
                 ❌ La bonne réponse : <M tex={q.a}/>
               </div>
-              <div style={{background:"#fff",borderRadius:10,padding:"8px 11px",fontSize:11,color:"#475569"}}>
+              <div style={{background:"#fff",borderRadius:10,padding:"8px 11px",fontSize:11,color:"#475569",overflowX:"auto"}}>
                 💡 <M tex={q.tip}/>
               </div>
             </>
@@ -16440,7 +16443,7 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
           <div style={{fontWeight:700,fontSize:12,marginBottom:3,color:wasCorrect?"#065F46":"#991B1B"}}>
             {wasCorrect?"✅ Tableau parfait !":"❌ Erreurs — les corrections s'affichent dans le tableau"}
           </div>
-          <div style={{color:"#475569",fontSize:11}}>💡 <M tex={q.tip}/></div>
+          <div style={{color:"#475569",fontSize:11,overflowX:"auto"}}>💡 <M tex={q.tip}/></div>
         </div>
       )}
 
