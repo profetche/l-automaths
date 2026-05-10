@@ -181,7 +181,8 @@ const GS = ({profile} = {}) => {
     .sigma-gold{animation:sigmaFloat 3s ease-in-out infinite,goldGlow 2s ease-in-out infinite;}
     .katex{font-size:1em !important;}
     .katex-display{overflow-x:auto;overflow-y:hidden;}
-    .katex .mtext span{white-space:normal !important; word-break:break-word;}
+    .katex .mtext{white-space:normal !important; word-break:break-word;}
+    .katex .mord,.katex .mrel,.katex .mbin,.katex .mop,.katex .mpunct{white-space:nowrap;}
     .fade-in .katex-html{overflow-x:auto;display:block;}
     .fade-in .katex{overflow-x:auto;display:inline-block;max-width:100%;}
     .fade-in{overflow-x:hidden;}
