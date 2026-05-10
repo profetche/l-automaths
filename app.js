@@ -16305,14 +16305,14 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
   if (sessionQueue.current === null) sessionQueue.current = [...questions];
   // idx pointe dans sessionQueue.current ; questions est le tableau original (pour le score final)
 
-  // ── Feedback 👍/👎 par question ──────────────────────────────────────────
+  // ── Feedback "As-tu compris ?" par question ──────────────────────────────
   const [qFeedback, setQFeedback] = useState({}); // { queueIdx: "up"|"down" }
   const [qFeedbackLoaded, setQFeedbackLoaded] = useState({});
   useEffect(() => {
     loadQFeedback().then(d => setQFeedbackLoaded(d)).catch(()=>{});
   }, []);
 
-  // Clé unique pour retrouver une question dans le feedback global (même logique que qState)
+  // Clé unique pour retrouver une question dans DB (même logique que qState)
   const getQKey = (question) => {
     for (const cId of Object.keys(DB)) {
       for (const sId of Object.keys(DB[cId])) {
@@ -16325,13 +16325,57 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
     return null;
   };
 
+  // Retrouve catId, subId et index DB d'une question
+  const getQLocation = (question) => {
+    for (const cId of Object.keys(DB)) {
+      for (const sId of Object.keys(DB[cId])) {
+        const arr = DB[cId][sId];
+        if (!Array.isArray(arr)) continue;
+        const i = arr.indexOf(question);
+        if (i >= 0) return { cId, sId, i };
+      }
+    }
+    return null;
+  };
+
   const handleQFeedback = async (direction) => {
     const question = sessionQueue.current[idx];
     const key = getQKey(question);
+    const loc = getQLocation(question);
+
+    // Mettre à jour l'état local immédiatement
     setQFeedback(prev => ({ ...prev, [idx]: direction }));
     if (key) {
       await setQFeedbackEntry(key, direction);
       setQFeedbackLoaded(prev => ({ ...prev, [key]: direction }));
+    }
+
+    // Agir sur progA pour piloter la révision espacée
+    if (loc) {
+      try {
+        const prog = await loadProgA(loc.cId, loc.sId);
+        const fail = prog.fail || [];
+        if (direction === 'down') {
+          // 👎 "Pas encore" → priorité haute : ajouter à fail si absent
+          const newFail = [...new Set([...fail, loc.i])].slice(0, 10);
+          await saveProgA(loc.cId, loc.sId, { ...prog, fail: newFail, lp: Date.now() });
+        } else {
+          // 👍 "Oui" → retirer de fail (urgence levée) mais laisser en learning
+          // dans qState — la question reviendra, juste moins vite
+          const prunedFail = fail.filter(fi => fi !== loc.i);
+          await saveProgA(loc.cId, loc.sId, { ...prog, fail: prunedFail, lp: Date.now() });
+          // Réinitialiser le streak qState pour forcer une vérification ultérieure
+          // (status reste "learning", streak remis à 1 pour ne pas sauter à "mastered")
+          const qs = await loadQState();
+          if (key && qs[key] && qs[key].status !== 'mastered') {
+            const entry = qs[key];
+            // On plafonne le streak à 1 : l'élève doit encore réussir 2 fois de suite
+            const newEntry = { ...entry, streak: Math.min(entry.streak || 0, 1) };
+            const newQs = { ...qs, [key]: newEntry };
+            await saveQState(newQs);
+          }
+        }
+      } catch {} // Ne jamais bloquer pour ça
     }
   };
 
@@ -16874,25 +16918,52 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
         </button>
       )}
 
-      {/* ── FEEDBACK 👍/👎 par question ── */}
+      {/* ── FEEDBACK "As-tu compris ?" ── */}
       {didAnswer && (() => {
         const qKey = getQKey(q);
         const currentFeedback = qFeedback[idx] || (qKey ? qFeedbackLoaded[qKey] : null);
         return (
-          <div style={{display:"flex",alignItems:"center",gap:8,marginTop:8,flexShrink:0,justifyContent:"flex-end"}}>
-            <span style={{fontSize:9,color:"#94A3B8",fontWeight:600}}>Cette question :</span>
-            {["up","down"].map(dir => (
-              <button key={dir} onClick={()=>handleQFeedback(dir)}
-                style={{
-                  background: currentFeedback===dir ? (dir==="up"?"#ECFDF5":"#FEF2F2") : "#F8FAFC",
-                  border: `1.5px solid ${currentFeedback===dir?(dir==="up"?"#10B981":"#EF4444"):"#E2E8F0"}`,
-                  borderRadius:8, padding:"4px 10px", cursor:"pointer",
-                  fontSize:13, transition:"all .15s",
-                  color: currentFeedback===dir ? (dir==="up"?"#065F46":"#991B1B") : "#94A3B8"
-                }}>
-                {dir==="up"?"👍":"👎"}
-              </button>
-            ))}
+          <div style={{flexShrink:0,marginTop:10}}>
+            {!currentFeedback ? (
+              <div style={{
+                background:"#F8FAFC",border:"1.5px solid #E2E8F0",
+                borderRadius:12,padding:"10px 14px",
+                display:"flex",alignItems:"center",gap:10,flexWrap:"wrap"
+              }}>
+                <span style={{fontSize:11,color:"#64748B",fontWeight:600,flex:1,minWidth:120}}>
+                  As-tu compris pourquoi ?
+                </span>
+                <div style={{display:"flex",gap:8,flexShrink:0}}>
+                  <button onClick={()=>handleQFeedback("up")} style={{
+                    display:"flex",alignItems:"center",gap:5,
+                    background:"#ECFDF5",border:"1.5px solid #10B981",
+                    borderRadius:9,padding:"7px 13px",cursor:"pointer",
+                    fontSize:12,fontWeight:700,color:"#065F46"
+                  }}>👍 Oui</button>
+                  <button onClick={()=>handleQFeedback("down")} style={{
+                    display:"flex",alignItems:"center",gap:5,
+                    background:"#FEF2F2",border:"1.5px solid #EF4444",
+                    borderRadius:9,padding:"7px 13px",cursor:"pointer",
+                    fontSize:12,fontWeight:700,color:"#991B1B"
+                  }}>👎 Pas encore</button>
+                </div>
+              </div>
+            ) : (
+              <div style={{
+                background: currentFeedback==="up" ? "#F0FDF4" : "#FFF7ED",
+                border: `1.5px solid ${currentFeedback==="up"?"#86EFAC":"#FCD34D"}`,
+                borderRadius:12,padding:"9px 14px",
+                display:"flex",alignItems:"center",gap:8
+              }}>
+                <span style={{fontSize:14}}>{currentFeedback==="up"?"✅":"🔁"}</span>
+                <span style={{fontSize:11,fontWeight:600,
+                  color: currentFeedback==="up"?"#166534":"#92400E",lineHeight:1.4}}>
+                  {currentFeedback==="up"
+                    ? "Bien ! Sigma vérifiera quand même dans quelques jours."
+                    : "Sigma te la reposera très bientôt."}
+                </span>
+              </div>
+            )}
           </div>
         );
       })()}

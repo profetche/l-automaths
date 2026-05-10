@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v11';
+const CACHE_VERSION = 'v12';
 const CACHE_NAME = `automaths-${CACHE_VERSION}`;
 
 const STATIC_ASSETS = [
@@ -24,7 +24,6 @@ self.addEventListener('activate', event => {
   self.clients.claim();
 });
 
-// Network-first strategy
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
   event.respondWith(
