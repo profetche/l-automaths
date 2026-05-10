@@ -11308,6 +11308,95 @@ const MASTERY_STREAK = 3;             // 3 bonnes réponses consécutives = maî
 const MASTERY_REFRESH_DAYS = 30;      // une question "mastered" vue il y a >30j revient à revoir
 const MASTERY_CELEBRATED_K = 'user:mastery_celebrated'; // liste de "catId:subId" déjà félicitées (bonus XP donné une seule fois)
 
+// ── Stats hebdomadaires — résumé du lundi ──────────────────────────────────
+const WEEKLY_STATS_K = 'user:weekly_stats'; // { weekStart: 'Mon Jan 01 2025', correct: N, wrong: N, bySubFail: {catId:subId: N}, bySubCorrect: {catId:subId: N} }
+async function loadWeeklyStats() {
+  try { const r = await _storage.get(WEEKLY_STATS_K); return r?.value ? JSON.parse(r.value) : null; } catch { return null; }
+}
+async function saveWeeklyStats(d) { try { await _storage.set(WEEKLY_STATS_K, JSON.stringify(d)); } catch {} }
+
+function getWeekStart() {
+  const now = new Date();
+  const day = now.getDay(); // 0=dim, 1=lun...
+  const diff = (day === 0 ? -6 : 1) - day; // décalage vers lundi
+  const mon = new Date(now); mon.setDate(now.getDate() + diff);
+  mon.setHours(0,0,0,0);
+  return mon.toDateString();
+}
+
+// Met à jour les stats de la semaine courante avec les résultats d'un quiz.
+// questionsData = [{catId, subId, correct: bool}]
+async function updateWeeklyStats(questionsData) {
+  try {
+    const weekStart = getWeekStart();
+    let stats = await loadWeeklyStats();
+    if (!stats || stats.weekStart !== weekStart) {
+      stats = { weekStart, correct: 0, wrong: 0, bySubFail: {}, bySubCorrect: {} };
+    }
+    for (const { catId, subId, correct } of questionsData) {
+      if (correct) {
+        stats.correct++;
+        const k = `${catId}:${subId}`;
+        stats.bySubCorrect[k] = (stats.bySubCorrect[k] || 0) + 1;
+      } else {
+        stats.wrong++;
+        if (catId && subId) {
+          const k = `${catId}:${subId}`;
+          stats.bySubFail[k] = (stats.bySubFail[k] || 0) + 1;
+        }
+      }
+    }
+    await saveWeeklyStats(stats);
+  } catch {}
+}
+
+// Génère une phrase de résumé hebdomadaire pour le dashboard.
+function getWeeklySummaryMsg(stats, getCatInfo, getSubInfo) {
+  if (!stats) return null;
+  const weekStart = getWeekStart();
+  if (stats.weekStart !== weekStart) return null; // semaine passée — pas pertinent
+  const total = stats.correct + stats.wrong;
+  if (total < 5) return null; // pas encore assez de données cette semaine
+  const pct = Math.round(stats.correct / total * 100);
+
+  // Trouver le point faible (sous-cat avec le plus d'erreurs, au moins 2)
+  let worstKey = null, worstCount = 1;
+  for (const [k, n] of Object.entries(stats.bySubFail || {})) {
+    if (n > worstCount) { worstCount = n; worstKey = k; }
+  }
+  // Trouver le point fort (sous-cat avec le plus de bonnes, au moins 3)
+  let bestKey = null, bestCount = 2;
+  for (const [k, n] of Object.entries(stats.bySubCorrect || {})) {
+    if (n > bestCount) { bestCount = n; bestKey = k; }
+  }
+
+  const worstLabel = worstKey ? (() => {
+    const [cId, sId] = worstKey.split(':');
+    return getSubInfo(cId, sId)?.label || null;
+  })() : null;
+  const bestLabel = bestKey ? (() => {
+    const [cId, sId] = bestKey.split(':');
+    return getSubInfo(cId, sId)?.label || null;
+  })() : null;
+
+  let msg = `📊 Cette semaine : ${stats.correct + stats.wrong} questions, ${pct}% de réussite.`;
+  if (worstLabel) msg += ` Point faible : ${worstLabel}.`;
+  if (bestLabel && bestKey !== worstKey) msg += ` Point fort : ${bestLabel} ✅`;
+  return msg;
+}
+
+// ── Feedback question (👍/👎 par question) ────────────────────────────────
+const QFEEDBACK_K = 'user:q_feedback'; // { "catId:subId:idx": "up" | "down" }
+async function loadQFeedback() {
+  try { const r = await _storage.get(QFEEDBACK_K); return r?.value ? JSON.parse(r.value) : {}; } catch { return {}; }
+}
+async function saveQFeedback(d) { try { await _storage.set(QFEEDBACK_K, JSON.stringify(d)); } catch {} }
+async function setQFeedbackEntry(key, value) {
+  const d = await loadQFeedback();
+  d[key] = value;
+  await saveQFeedback(d);
+}
+
 // ── Compte progressif : compteur lifetime et gestion du prompt de création ────
 const LIFETIME_CORRECT_K = 'user:lifetime_correct'; // total cumulé de bonnes réponses (jamais remis à zéro)
 const PROMPT_DISMISSED_AT_K = 'user:prompt_dismissed_at'; // valeur du compteur au moment du refus
@@ -12791,8 +12880,13 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
   const [shield, setShield] = useState(false);
   const [tab, setTab] = useState('programme'); // 'programme' | 'parcours' | 'recompenses'
   const [menuOpen, setMenuOpen] = useState(false); // menu déroulant ⋯ (actions rares)
+  const [weeklyStats, setWeeklyStats] = useState(null);
 
   const dailyChallenge = React.useMemo(() => getDailyChallenge(profile, allProg, diagResults), [profile.level, allProg, diagResults]);
+
+  useEffect(() => {
+    loadWeeklyStats().then(s => setWeeklyStats(s)).catch(()=>{});
+  }, []);
 
   useEffect(() => {
     const entries = [];
@@ -12989,6 +13083,20 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
           <span style={{fontSize:14}}>🤖</span>
           <span style={{fontSize:11,color:"#334155",fontWeight:600,flex:1}}>{sigmaMsg}</span>
         </div>
+
+        {/* ── Résumé hebdomadaire ── */}
+        {(() => {
+          const msg = getWeeklySummaryMsg(weeklyStats, getCatInfo, getSubInfo);
+          if (!msg) return null;
+          return (
+            <div style={{background:"#F0F9FF",borderRadius:12,padding:"9px 12px",marginBottom:10,
+              display:"flex",alignItems:"flex-start",gap:8,
+              border:"1px solid #BAE6FD",boxShadow:"0 2px 8px rgba(0,0,0,.04)"}}>
+              <span style={{fontSize:14,flexShrink:0}}>📊</span>
+              <span style={{fontSize:11,color:"#0369A1",fontWeight:600,flex:1,lineHeight:1.5}}>{msg}</span>
+            </div>
+          );
+        })()}
 
         {/* ══ TAB : PROGRAMME (défi du jour + programme hebdo + vigilance) ══ */}
         {tab==="programme"&&(
@@ -16190,6 +16298,66 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
   const reminderAvailable = (quizMode === "practice" || quizMode === "daily") && !!getCourseReminder(catId, subId);
   // Track failed question indices for spaced repetition
   const failedIdx = React.useRef([]);
+
+  // ── Ré-injection mid-session : file de questions à rejouer 2 places plus loin ──
+  // On travaille sur un tableau mutable (ref) initialisé à partir de questions.
+  const sessionQueue = React.useRef(null);
+  if (sessionQueue.current === null) sessionQueue.current = [...questions];
+  // idx pointe dans sessionQueue.current ; questions est le tableau original (pour le score final)
+
+  // ── Feedback 👍/👎 par question ──────────────────────────────────────────
+  const [qFeedback, setQFeedback] = useState({}); // { queueIdx: "up"|"down" }
+  const [qFeedbackLoaded, setQFeedbackLoaded] = useState({});
+  useEffect(() => {
+    loadQFeedback().then(d => setQFeedbackLoaded(d)).catch(()=>{});
+  }, []);
+
+  // Clé unique pour retrouver une question dans le feedback global (même logique que qState)
+  const getQKey = (question) => {
+    for (const cId of Object.keys(DB)) {
+      for (const sId of Object.keys(DB[cId])) {
+        const arr = DB[cId][sId];
+        if (!Array.isArray(arr)) continue;
+        const i = arr.indexOf(question);
+        if (i >= 0) return `${cId}:${sId}:${i}`;
+      }
+    }
+    return null;
+  };
+
+  const handleQFeedback = async (direction) => {
+    const question = sessionQueue.current[idx];
+    const key = getQKey(question);
+    setQFeedback(prev => ({ ...prev, [idx]: direction }));
+    if (key) {
+      await setQFeedbackEntry(key, direction);
+      setQFeedbackLoaded(prev => ({ ...prev, [key]: direction }));
+    }
+  };
+
+  // ── Analyse pattern d'erreur par sous-catégorie (cross-session via qState) ──
+  const [subErrPattern, setSubErrPattern] = useState(null);
+  useEffect(() => {
+    // Charger le qState local pour détecter les blocages persistants
+    loadQState().then(qSt => {
+      if (!catId || !subId) return;
+      // Compter les tentatives/échecs sur cette sous-cat
+      let attempts = 0, failures = 0;
+      for (const [k, entry] of Object.entries(qSt || {})) {
+        if (!k.startsWith(`${catId}:${subId}:`)) continue;
+        if (!entry || typeof entry.attempts !== 'number') continue;
+        attempts += entry.attempts;
+        failures += (entry.attempts - (entry.successes || 0));
+      }
+      if (attempts >= 4 && failures / attempts >= 0.55) {
+        // Trouver la sous-catégorie la plus problématique parmi toutes
+        // pour donner un message ciblé
+        const sub = getSubInfo(catId, subId);
+        const label = sub?.label || subId;
+        setSubErrPattern(`Sigma a remarqué que tu butes souvent sur « ${label} ». Prends le temps de revoir la méthode avant de continuer.`);
+      }
+    }).catch(() => {});
+  }, [catId, subId]);
   // ── Tableau fill mode ──
   const [activeFill,setActiveFill] = useState(-1);
   const [fills,setFills]           = useState({});
@@ -16198,7 +16366,8 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
   const [dragCorrect,setDragCorrect]   = useState(false);
 
   const cat     = getCat(catId) || { id:catId, label:"En route pour le Bac", emoji:"🏆", color:"#F59E0B", grad:"linear-gradient(135deg,#F59E0B,#B45309)", light:"#FFFBEB", border:"#FDE68A", subs:[] };
-  const q       = questions[idx];
+  // sessionQueue peut être plus long que questions si des questions ont été ré-injectées après erreur
+  const q       = sessionQueue.current[idx] || questions[Math.min(idx, questions.length-1)];
   const isNum   = !!q.numpad;
   const isSol   = !!q.solpad;
   const isEq    = !!q.eqpad;
@@ -16297,11 +16466,27 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
 
   const nextQ=()=>{
     const isCorrectNow = isDrag?dragCorrect:(isNum||isSol||isEq||isExpr||isFrac)?padState==="correct":isTab?allCorrect:selected===q.a;
-    if(!isCorrectNow) failedIdx.current = [...new Set([...failedIdx.current, idx])];
+    // Marquer l'échec sur l'index dans le tableau original (pour onFinish)
+    if(!isCorrectNow) {
+      const origIdx = questions.indexOf(q);
+      if(origIdx>=0) failedIdx.current = [...new Set([...failedIdx.current, origIdx])];
+      // Ré-injection : insérer la question 2 places plus loin dans sessionQueue
+      // (max 1 ré-injection par question pour éviter les boucles infinies)
+      const alreadyReinjected = sessionQueue.current.slice(idx+1).includes(q);
+      if(!alreadyReinjected) {
+        const insertAt = Math.min(idx+3, sessionQueue.current.length);
+        sessionQueue.current = [
+          ...sessionQueue.current.slice(0, insertAt),
+          q,
+          ...sessionQueue.current.slice(insertAt),
+        ];
+      }
+    }
     // Le score a déjà été incrémenté par validateTab/pick/validatePad au moment de la
     // validation de la réponse. On ne le re-incrémente PAS ici, sinon la dernière
     // bonne réponse compterait double (bug du 110% : 11 sur 10 questions).
-    if(idx+1>=questions.length){onFinish(score, failedIdx.current);return;}
+    // La session se termine quand on a traité toutes les questions du tableau original.
+    if(idx+1>=sessionQueue.current.length){onFinish(score, failedIdx.current);return;}
     setIdx(i=>i+1);
   };
 
@@ -16336,7 +16521,7 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
           else onBack();
         }} style={{background:"none",border:"none",cursor:"pointer",color:"#94A3B8",fontSize:18,padding:0,flexShrink:0}}>✕</button>
         <div style={{flex:1,background:"#E2E8F0",borderRadius:99,height:9,overflow:"hidden"}}>
-          <div style={{height:"100%",width:`${(idx/questions.length)*100}%`,background:cat.color,borderRadius:99,transition:"width .4s ease"}}/>
+          <div style={{height:"100%",width:`${(idx/sessionQueue.current.length)*100}%`,background:cat.color,borderRadius:99,transition:"width .4s ease"}}/>
         </div>
         {reminderAvailable && (
           <button onClick={()=>setShowReminder(true)}
@@ -16348,7 +16533,10 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
           </button>
         )}
         <div style={{background:"#FEF3C7",color:"#92400E",borderRadius:99,padding:"3px 9px",fontSize:11,fontWeight:700}}>🔥{streak}</div>
-        <div style={{background:cat.light,color:cat.color,borderRadius:99,padding:"3px 9px",fontSize:11,fontWeight:700,border:`1px solid ${cat.border}`}}>{idx+1}/{questions.length}</div>
+        <div style={{background:cat.light,color:cat.color,borderRadius:99,padding:"3px 9px",fontSize:11,fontWeight:700,border:`1px solid ${cat.border}`}}>
+          {idx+1}/{sessionQueue.current.length}
+          {sessionQueue.current.length > questions.length && <span style={{fontSize:9,opacity:.7}}> 🔄</span>}
+        </div>
       </div>
 
       {/* Tag */}
@@ -16664,12 +16852,50 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
         </div>
       )}
 
+      {/* ── MESSAGE PATTERN D'ERREUR SOUS-CATÉGORIE ── */}
+      {subErrPattern && !wasCorrect && didAnswer && (
+        <div className="fade-in" style={{
+          marginTop:8, background:"#FFF7ED",
+          border:"2px solid #F59E0B", borderRadius:14,
+          padding:"10px 14px", flexShrink:0,
+          display:"flex", alignItems:"flex-start", gap:8
+        }}>
+          <span style={{fontSize:18,flexShrink:0}}>🧐</span>
+          <div style={{fontSize:11,color:"#92400E",fontWeight:600,lineHeight:1.5}}>
+            {subErrPattern}
+          </div>
+        </div>
+      )}
+
       {/* ── NEXT BUTTON ── */}
       {didAnswer && (
         <button onClick={nextQ} className="pop-in" style={{marginTop:14,border:"none",borderRadius:14,padding:"15px",background:wasCorrect?"linear-gradient(135deg,#10B981,#059669)":"linear-gradient(135deg,#3B82F6,#1D4ED8)",color:"#fff",fontFamily:"'Nunito',sans-serif",fontSize:15,fontWeight:800,cursor:"pointer",boxShadow:wasCorrect?"0 5px 18px rgba(16,185,129,.4)":"0 5px 18px rgba(37,99,235,.4)",flexShrink:0}}>
-          {idx+1>=questions.length?"Voir les résultats 🏆":"Suivante →"}
+          {idx+1>=sessionQueue.current.length?"Voir les résultats 🏆":"Suivante →"}
         </button>
       )}
+
+      {/* ── FEEDBACK 👍/👎 par question ── */}
+      {didAnswer && (() => {
+        const qKey = getQKey(q);
+        const currentFeedback = qFeedback[idx] || (qKey ? qFeedbackLoaded[qKey] : null);
+        return (
+          <div style={{display:"flex",alignItems:"center",gap:8,marginTop:8,flexShrink:0,justifyContent:"flex-end"}}>
+            <span style={{fontSize:9,color:"#94A3B8",fontWeight:600}}>Cette question :</span>
+            {["up","down"].map(dir => (
+              <button key={dir} onClick={()=>handleQFeedback(dir)}
+                style={{
+                  background: currentFeedback===dir ? (dir==="up"?"#ECFDF5":"#FEF2F2") : "#F8FAFC",
+                  border: `1.5px solid ${currentFeedback===dir?(dir==="up"?"#10B981":"#EF4444"):"#E2E8F0"}`,
+                  borderRadius:8, padding:"4px 10px", cursor:"pointer",
+                  fontSize:13, transition:"all .15s",
+                  color: currentFeedback===dir ? (dir==="up"?"#065F46":"#991B1B") : "#94A3B8"
+                }}>
+                {dir==="up"?"👍":"👎"}
+              </button>
+            ))}
+          </div>
+        );
+      })()}
 
       {/* ── ABANDON CONFIRMATION MODAL ── */}
       {showAbandon && (
@@ -17426,6 +17652,23 @@ function AutoMaths() {
     setScore(sc);
     const total = questions.length;
     const pct   = Math.round(sc/total*100);
+
+    // ── Stats hebdomadaires ─────────────────────────────────────────────────
+    try {
+      const failSet = new Set(failedIdx || []);
+      const weeklyData = questions.map((q, i) => {
+        let cId = catId, sId = subId;
+        // Essayer de retrouver la vraie sous-cat si le pool est mixte
+        for (const c of Object.keys(DB)) {
+          for (const s of Object.keys(DB[c])) {
+            if (Array.isArray(DB[c][s]) && DB[c][s].includes(q)) { cId = c; sId = s; break; }
+          }
+          if (cId !== catId) break;
+        }
+        return { catId: cId, subId: sId, correct: !failSet.has(i) };
+      });
+      await updateWeeklyStats(weeklyData);
+    } catch {}
 
     // ── XP + Badges (safe, won't block quiz) ────────────────────────────────
     try {
