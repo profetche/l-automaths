@@ -9554,6 +9554,7 @@ const CURRICULUM = {
 // ── Storage helpers ──────────────────────────────────────────────────────────
 const PK = (c,s) => `prg:${c}:${s}`;
 const PROF_K = 'user:prof';
+const LAST_SHARE_K = 'user:last_share'; // date ISO du dernier envoi du lien au prof
 const EMPTY_P = () => ({pc:0,pt:0,tb:0,stars:0});
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -10471,6 +10472,7 @@ function SendToTeacherScreen({profile, onBack}) {
           url: link,
         });
         setStatus('shared');
+        try { await _storage.set(LAST_SHARE_K, new Date().toISOString()); } catch {}
       } catch (e) {
         // L'utilisateur a annulé le partage, on ne fait rien
       }
@@ -10485,6 +10487,7 @@ function SendToTeacherScreen({profile, onBack}) {
       await navigator.clipboard.writeText(link);
       setStatus('copied');
       setTimeout(() => setStatus(''), 2500);
+      try { await _storage.set(LAST_SHARE_K, new Date().toISOString()); } catch {}
     } catch {
       const ta = document.getElementById('teacher-link-area');
       if (ta) { ta.select(); document.execCommand('copy'); setStatus('copied'); }
@@ -13317,8 +13320,25 @@ function SplashScreen({onStart, onMySpace, onRestore, profile}) {
 }
 
 // ── MENU ─────────────────────────────────────────────────────────────────────
-function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress}) {
+function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onBackup}) {
   const th = getTheme(profile);
+  const [daysSinceShare, setDaysSinceShare] = React.useState(null);
+
+  React.useEffect(() => {
+    if (!profile) return;
+    (async () => {
+      try {
+        const r = await _storage.get(LAST_SHARE_K);
+        if (r?.value) {
+          const last = new Date(r.value);
+          const diff = Math.floor((Date.now() - last.getTime()) / 86400000);
+          setDaysSinceShare(diff);
+        } else {
+          setDaysSinceShare(999); // jamais partagé
+        }
+      } catch { setDaysSinceShare(null); }
+    })();
+  }, [profile]);
 
   // Modes secondaires (compacts, 3 cartes en grille)
   const secondaryModes = [
@@ -13461,6 +13481,32 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress}) {
               Crée un compte pour garder tes progrès
             </div>
           </div>
+        )}
+
+        {/* ── Nudge partage prof ── */}
+        {profile && onBackup && daysSinceShare !== null && daysSinceShare >= 7 && (
+          <button onClick={onBackup} style={{
+            marginTop:10, width:"100%",
+            background:"rgba(255,255,255,0.07)",
+            border:"1px solid rgba(245,158,11,0.35)",
+            borderRadius:10, padding:"8px 12px",
+            display:"flex", alignItems:"center", gap:10,
+            cursor:"pointer", textAlign:"left",
+          }}>
+            <div style={{fontSize:16, flexShrink:0}}>📨</div>
+            <div style={{flex:1, minWidth:0}}>
+              <div style={{fontFamily:"'Nunito',sans-serif", fontWeight:800,
+                fontSize:12, color:"#FCD34D", lineHeight:1.2}}>
+                {daysSinceShare >= 999
+                  ? "Partage ton suivi avec ton prof"
+                  : `Suivi non envoyé depuis ${daysSinceShare} jour${daysSinceShare > 1 ? "s" : ""}`}
+              </div>
+              <div style={{fontSize:10, color:"rgba(255,255,255,.5)", marginTop:1}}>
+                Appuie pour générer le lien → 1 clic
+              </div>
+            </div>
+            <div style={{color:"rgba(245,158,11,0.7)", fontSize:14, flexShrink:0}}>›</div>
+          </button>
         )}
       </div>
 
@@ -17777,7 +17823,7 @@ function AutoMaths() {
           {screen==="diag_result"   && profile && diagResults && <DiagnosticResultScreen profile={profile} diagResults={diagResults} onStart={hDiagResultNext}/>}
           {screen==="weekly_program"&& profile && weekProgram  && <WeeklyProgramScreen profile={profile} program={weekProgram} allProg={allProgCache} onStartSession={hProgramSession} onSkip={hProgramSkip}/>}
           {screen==="dashboard"     && profile && <DashboardScreen profile={profile} diagResults={diagResults} cardsUnlocked={cardsUnlocked} qState={qState} onStartPractice={hStartPractice} onStartTest={hStartTest} onGoHome={()=>setScreen("home")} onEditProfile={hEditProfile} onLogout={hLogout} onBackup={hBackup} onReminder={()=>setScreen("reminder")} onPreferences={()=>setScreen("preferences")} onVigilance={hVigilance} onCollection={()=>setScreen("collection")} onShowProgram={async()=>{const wp=await generateWeeklyProgram(profile,allProgCache,diagResults);setWeekProgram(wp);setScreen("weekly_program");}}/>}
-          {screen==="home"          && <HomeScreen onMode={hMode} profile={profile} onDashboard={profile?hDashboard:null} onSplash={()=>setScreen("splash")} streakProgress={streakProgress}/>}
+          {screen==="home"          && <HomeScreen onMode={hMode} profile={profile} onDashboard={profile?hDashboard:null} onSplash={()=>setScreen("splash")} streakProgress={streakProgress} onBackup={profile?hBackup:null}/>}
           {screen==="test_aleatoire" && <TestAleatoireScreen onGlobal={hTestGlobal} onCategory={hTestCategory} onBack={()=>setScreen(mode==="test_aleatoire"?"training_modes":"home")}/>}
           {screen==="training_modes" && <TrainingModesScreen onMode={hTrainingMode} onBack={()=>setScreen("home")}/>}
           {screen==="sprint"        && <SprintScreen    pool={getSprintPool()} onFinish={hSprintFinish} onBack={()=>{setSprintResult(null);setScreen("home");}}/>}
