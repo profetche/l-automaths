@@ -1,20 +1,21 @@
-const CACHE_VERSION = 'v12';
+const CACHE_VERSION = 'v11';
 const CACHE_NAME = `automaths-${CACHE_VERSION}`;
 
-const STATIC_ASSETS = [
+const ASSETS = [
   '/',
   '/index.html',
   '/app.js',
-  '/manifest.json',
 ];
 
+// Installation : mise en cache des assets
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(STATIC_ASSETS))
+    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
   );
   self.skipWaiting();
 });
 
+// Activation : suppression des anciens caches
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys =>
@@ -24,6 +25,7 @@ self.addEventListener('activate', event => {
   self.clients.claim();
 });
 
+// Fetch : network-first avec fallback cache
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
   event.respondWith(
