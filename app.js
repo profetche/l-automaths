@@ -13978,46 +13978,57 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
   return (
     <div style={{display:"flex",flexDirection:"column",height:"100%",background:"var(--am-bg-light)"}}>
 
-      {/* ── Header ── */}
+      {/* ── Header compact ─────────────────────────────────────────────────── */}
       <div style={{background:`linear-gradient(160deg,var(--am-bg-dark-1) 0%,var(--am-bg-dark-2) 100%)`,
-        padding:"14px 16px 16px",flexShrink:0,position:"relative"}}>
-        {/* Top row */}
+        padding:"12px 16px 14px",flexShrink:0,position:"relative"}}>
+
+        {/* Ligne 1 : avatar + nom + streak + menu */}
         <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:10}}>
-          <img src={SIGMA_IMG} alt="Sigma" style={{width:38,height:38,objectFit:"contain"}}/>
+          <img src={SIGMA_IMG} alt="Sigma" style={{width:36,height:36,objectFit:"contain"}}/>
           <div style={{flex:1,minWidth:0}}>
             <div style={{color:"#64748B",fontSize:9,fontWeight:600}}>Bonjour 👋</div>
-            <div style={{color:"#fff",fontSize:16,fontWeight:900,fontFamily:"'Nunito',sans-serif",lineHeight:1.1}}>{profile.name}</div>
-            <div style={{display:"flex",gap:4,marginTop:3,flexWrap:"wrap"}}>
-              <span style={{background:"rgba(255,255,255,0.08)",borderRadius:99,padding:"1px 7px",
-                color:"#94A3B8",fontSize:9,fontWeight:600}}>{curr.emoji} {curr.label}</span>
-            </div>
+            <div style={{color:"#fff",fontSize:15,fontWeight:900,fontFamily:"'Nunito',sans-serif",lineHeight:1.1}}>{profile.name}</div>
+            <span style={{background:"rgba(255,255,255,0.08)",borderRadius:99,padding:"1px 7px",
+              color:"#94A3B8",fontSize:9,fontWeight:600}}>{curr.emoji} {curr.label}</span>
           </div>
-          {/* Boutons primaires : Accueil + Menu ⋯ */}
-          <div style={{display:"flex",gap:6,alignItems:"center",flexShrink:0}}>
-            <button onClick={onGoHome} title="Accueil"
-              style={{background:"rgba(255,255,255,0.12)",border:"none",
-                borderRadius:10,padding:"8px 10px",color:"#fff",cursor:"pointer",
-                fontSize:14,fontWeight:700,lineHeight:1}}>🏠</button>
-            <button onClick={()=>setMenuOpen(v=>!v)} title="Plus d'options"
-              style={{background: menuOpen ? "rgba(245,158,11,0.25)" : "rgba(255,255,255,0.06)",
-                border:"none",borderRadius:10,padding:"8px 10px",
-                color: menuOpen ? "#FCD34D" : "#CBD5E1",cursor:"pointer",
-                fontSize:14,fontWeight:900,lineHeight:1}}>⋯</button>
+          {/* Streak — icône seule */}
+          {(profile.streak||0) > 0 && (
+            <div style={{display:"flex",alignItems:"center",gap:4,background:"rgba(245,158,11,0.15)",
+              borderRadius:99,padding:"4px 10px",flexShrink:0}}>
+              <span style={{fontSize:16}}>🔥</span>
+              <span style={{color:"#FCD34D",fontWeight:900,fontSize:14,fontFamily:"'Nunito',sans-serif"}}>{profile.streak}</span>
+            </div>
+          )}
+          {/* Menu ⋯ */}
+          <button onClick={()=>setMenuOpen(v=>!v)} title="Plus d'options"
+            style={{background:menuOpen?"rgba(245,158,11,0.25)":"rgba(255,255,255,0.06)",
+              border:"none",borderRadius:10,padding:"8px 10px",
+              color:menuOpen?"#FCD34D":"#CBD5E1",cursor:"pointer",
+              fontSize:14,fontWeight:900,lineHeight:1,flexShrink:0}}>⋯</button>
+        </div>
+
+        {/* Barre XP */}
+        <div>
+          <div style={{display:"flex",justifyContent:"space-between",marginBottom:3}}>
+            <span style={{color:"#94A3B8",fontSize:9,fontWeight:600}}>⚡ {xp} XP — {lvl.emoji} {lvl.label}</span>
+            {nextLvl&&<span style={{color:"#64748B",fontSize:9}}>{nextLvl.xpNeeded - xp} XP → {nextLvl.emoji} {nextLvl.label}</span>}
+          </div>
+          <div style={{height:5,background:"rgba(255,255,255,0.08)",borderRadius:99,overflow:"hidden"}}>
+            <div style={{height:"100%",width:`${xpPct}%`,
+              background:`linear-gradient(90deg,${lvl.color},${nextLvl?.color||lvl.color})`,
+              borderRadius:99,transition:"width 1s ease"}}/>
           </div>
         </div>
 
-        {/* Menu déroulant — actions secondaires */}
+        {/* Menu déroulant */}
         {menuOpen && (
           <>
-            {/* Overlay pour fermer en cliquant ailleurs */}
             <div onClick={()=>setMenuOpen(false)}
               style={{position:"fixed",inset:0,background:"transparent",zIndex:40}}/>
-            <div style={{
-              position:"absolute",top:56,right:14,zIndex:41,
+            <div style={{position:"absolute",top:56,right:14,zIndex:41,
               background:"#fff",borderRadius:12,minWidth:200,
               boxShadow:"0 10px 32px rgba(0,0,0,0.25)",overflow:"hidden",
-              animation:"fadeIn .15s ease"
-            }}>
+              animation:"fadeIn .15s ease"}}>
               <button onClick={()=>{setMenuOpen(false);onEditProfile();}}
                 style={{display:"flex",alignItems:"center",gap:10,width:"100%",
                   padding:"11px 14px",border:"none",background:"#fff",cursor:"pointer",
@@ -14061,236 +14072,163 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
             </div>
           </>
         )}
+      </div>
 
-        {/* XP bar */}
-        <div style={{marginBottom:10}}>
-          <div style={{display:"flex",justifyContent:"space-between",marginBottom:3}}>
-            <span style={{color:"#94A3B8",fontSize:9,fontWeight:600}}>⚡ {xp} XP</span>
-            {nextLvl&&<span style={{color:"#64748B",fontSize:9}}>{nextLvl.xpNeeded - xp} XP → {nextLvl.emoji} {nextLvl.label}</span>}
-          </div>
-          <div style={{height:6,background:"rgba(255,255,255,0.08)",borderRadius:99,overflow:"hidden"}}>
-            <div style={{height:"100%",width:`${xpPct}%`,background:`linear-gradient(90deg,${lvl.color},${nextLvl?.color||lvl.color})`,
-              borderRadius:99,transition:"width 1s ease"}}/>
-          </div>
-        </div>
+      {/* ── Body scrollable ─────────────────────────────────────────────────── */}
+      <div style={{flex:1,overflowY:"auto",padding:"14px 14px 24px"}}>
 
-        {/* Stats row */}
-        <div style={{display:"flex",gap:6}}>
-          {[
-            {icon:"⭐",val:totalStars,    label:"étoiles"},
-            {icon:"🎯",val:`${mastered}/${total}`, label:"maîtrisées"},
-            {icon:"🔥",val:profile.streak||0, label:"jours"},
-            {icon:"🛡️",val:shield?"1":"0", label:"bouclier", dim:!shield},
-          ].map(s=>(
-            <div key={s.label} style={{flex:1,background:"rgba(255,255,255,0.06)",
-              borderRadius:10,padding:"6px 4px",textAlign:"center",opacity:s.dim?.4:1}}>
-              <div style={{fontSize:12}}>{s.icon}</div>
-              <div style={{color:"#fff",fontWeight:900,fontSize:13,fontFamily:"'Nunito',sans-serif"}}>{s.val}</div>
-              <div style={{color:"#475569",fontSize:7,textTransform:"uppercase",letterSpacing:0.4}}>{s.label}</div>
+        {/* ── Défi du Jour (toujours visible, compact) ────────────────────── */}
+        <div style={{background:dailyDone
+            ?"linear-gradient(135deg,#10B981,#047857)"
+            :"linear-gradient(135deg,#F59E0B,#B45309)",
+          borderRadius:16,padding:"13px 14px",marginBottom:14,
+          boxShadow:dailyDone?"0 4px 16px rgba(16,185,129,.25)":"0 4px 16px rgba(245,158,11,.25)",
+          display:"flex",alignItems:"center",gap:12}}>
+          <span style={{fontSize:28,flexShrink:0}}>{dailyDone?"✅":"🎯"}</span>
+          <div style={{flex:1,minWidth:0}}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:14,color:"#fff",lineHeight:1.1}}>
+              {dailyDone?"Défi du Jour — Complété !":"Défi du Jour"}
             </div>
-          ))}
-        </div>
-      </div>
-
-      {/* ── Tabs (3 au lieu de 4) ── */}
-      <div style={{display:"flex",background:"#fff",borderBottom:"2px solid #F1F5F9",flexShrink:0}}>
-        {[
-          {id:"programme",icon:"📅", label:"Programme"},
-          {id:"parcours", icon:"📊", label:"Parcours"},
-          {id:"recompenses",icon:"🏆", label:"Récompenses"},
-        ].map(t=>(
-          <button key={t.id} onClick={()=>setTab(t.id)}
-            style={{flex:1,padding:"9px 4px",border:"none",background:"none",cursor:"pointer",
-              borderBottom:`2.5px solid ${tab===t.id?lvl.color:"transparent"}`,
-              color:tab===t.id?"#1E293B":"#94A3B8",fontSize:10,fontWeight:700,
-              fontFamily:"'Nunito',sans-serif",display:"flex",flexDirection:"column",alignItems:"center",gap:1}}>
-            <span style={{fontSize:14}}>{t.icon}</span>
-            <span>{t.label}</span>
-          </button>
-        ))}
-      </div>
-
-      {/* ── Body ── */}
-      <div style={{flex:1,overflowY:"auto",padding:"12px 12px 20px"}}>
-
-        {/* Sigma message */}
-        <div style={{background:"#fff",borderRadius:12,padding:"9px 12px",marginBottom:10,
-          display:"flex",alignItems:"center",gap:8,boxShadow:"0 2px 8px rgba(0,0,0,.05)"}}>
-          <span style={{fontSize:14}}>🤖</span>
-          <span style={{fontSize:11,color:"#334155",fontWeight:600,flex:1}}>{sigmaMsg}</span>
+            <div style={{color:"rgba(255,255,255,0.75)",fontSize:10,marginTop:2}}>
+              {getCatInfo(dailyChallenge.catId)?.label||dailyChallenge.catId} · {dailyChallenge.questions.length} questions
+            </div>
+          </div>
+          {!dailyDone && (
+            <button onClick={()=>onStartPractice(dailyChallenge.catId, dailyChallenge.subId, true)}
+              style={{background:"rgba(255,255,255,0.22)",border:"none",borderRadius:10,
+                padding:"8px 12px",color:"#fff",fontFamily:"'Nunito',sans-serif",
+                fontSize:12,fontWeight:800,cursor:"pointer",flexShrink:0,whiteSpace:"nowrap"}}>
+              +{XP_DAILY} XP →
+            </button>
+          )}
+          {dailyDone && (
+            <div style={{background:"rgba(255,255,255,0.15)",borderRadius:99,padding:"3px 10px",
+              color:"#fff",fontSize:9,fontWeight:700,flexShrink:0}}>Reviens demain 🌅</div>
+          )}
         </div>
 
-        {/* ── Résumé hebdomadaire ── */}
+        {/* ── Résumé hebdo si dispo ────────────────────────────────────────── */}
         {(() => {
           const msg = getWeeklySummaryMsg(weeklyStats, getCatInfo, getSubInfo);
           if (!msg) return null;
           return (
-            <div style={{background:"#F0F9FF",borderRadius:12,padding:"9px 12px",marginBottom:10,
-              display:"flex",alignItems:"flex-start",gap:8,
-              border:"1px solid #BAE6FD",boxShadow:"0 2px 8px rgba(0,0,0,.04)"}}>
+            <div style={{background:"#F0F9FF",borderRadius:12,padding:"9px 12px",marginBottom:12,
+              display:"flex",alignItems:"flex-start",gap:8,border:"1px solid #BAE6FD"}}>
               <span style={{fontSize:14,flexShrink:0}}>📊</span>
               <span style={{fontSize:11,color:"#0369A1",fontWeight:600,flex:1,lineHeight:1.5}}>{msg}</span>
             </div>
           );
         })()}
 
-        {/* ══ TAB : PROGRAMME (défi du jour + programme hebdo + vigilance) ══ */}
-        {tab==="programme"&&(
-          <div className="slide-up">
-            {/* 1. Défi du jour */}
-            <div style={{background:dailyDone?"linear-gradient(135deg,#10B981,#047857)":"linear-gradient(135deg,#F59E0B,#B45309)",
-              borderRadius:18,padding:"16px",marginBottom:12,
-              boxShadow:dailyDone?"0 6px 20px rgba(16,185,129,.3)":"0 6px 20px rgba(245,158,11,.3)"}}>
-              <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:10}}>
-                <span style={{fontSize:32}}>{dailyDone?"✅":"🎯"}</span>
-                <div>
-                  <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,color:"#fff"}}>
-                    {dailyDone?"Défi du Jour — Complété !":"Défi du Jour"}
-                  </div>
-                  <div style={{color:"rgba(255,255,255,0.7)",fontSize:11}}>
-                    {getCatInfo(dailyChallenge.catId)?.label||dailyChallenge.catId} · {dailyChallenge.questions.length} questions
-                  </div>
-                </div>
-                <div style={{marginLeft:"auto",background:"rgba(255,255,255,0.2)",
-                  borderRadius:99,padding:"2px 8px",color:"#fff",fontSize:9,fontWeight:700}}>
-                  +{XP_DAILY} XP
-                </div>
-              </div>
-              {!dailyDone&&(
-                <button onClick={()=>onStartPractice(dailyChallenge.catId, dailyChallenge.subId, true)}
-                  style={{width:"100%",padding:"11px",borderRadius:12,border:"none",
-                    background:"rgba(255,255,255,0.25)",color:"#fff",
-                    fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:800,cursor:"pointer"}}>
-                  Relever le défi → 🚀
-                </button>
-              )}
-              {dailyDone&&(
-                <div style={{textAlign:"center",color:"rgba(255,255,255,0.8)",fontSize:12,fontWeight:600}}>
-                  Reviens demain pour le prochain défi 🌅
-                </div>
-              )}
+        {/* ── QUE VEUX-TU FAIRE ? ─────────────────────────────────────────── */}
+        <div style={{fontSize:9,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
+          letterSpacing:1.2,marginBottom:8}}>Que veux-tu faire ?</div>
+
+        {/* Grande carte S'entraîner */}
+        <button onClick={onGoHome}
+          style={{width:"100%",background:`linear-gradient(135deg,${lvl.color},${getNextLevel(xp)?.color||lvl.color})`,
+            borderRadius:18,padding:"18px 18px",marginBottom:10,border:"none",cursor:"pointer",
+            display:"flex",alignItems:"center",gap:14,
+            boxShadow:`0 6px 20px ${lvl.color}44`,textAlign:"left"}}>
+          <span style={{fontSize:36,flexShrink:0}}>🦆</span>
+          <div style={{flex:1}}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:18,color:"#fff",lineHeight:1.1}}>
+              S'entraîner
             </div>
-
-            {/* Streak shield */}
-            <div style={{background:"#fff",borderRadius:14,padding:"12px 14px",
-              boxShadow:"0 2px 8px rgba(0,0,0,.05)",marginBottom:10}}>
-              <div style={{display:"flex",alignItems:"center",gap:10}}>
-                <span style={{fontSize:24}}>{shield?"🛡️":"🛡️"}</span>
-                <div style={{flex:1}}>
-                  <div style={{fontWeight:800,fontSize:12,color:shield?"#10B981":"#94A3B8"}}>
-                    {shield?"Bouclier actif":"Bouclier de streak"}
-                  </div>
-                  <div style={{color:"#64748B",fontSize:10,marginTop:1}}>
-                    {shield?"Protège ton streak si tu manques un jour":"Joue 5 jours de suite pour l'obtenir"}
-                  </div>
-                </div>
-                {shield&&<span style={{fontSize:20}}>✅</span>}
-                {!shield&&(
-                  <div style={{textAlign:"right"}}>
-                    <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,color:"#F59E0B"}}>
-                      {profile.streak||0}/5
-                    </div>
-                    <div style={{fontSize:9,color:"#94A3B8"}}>jours</div>
-                  </div>
-                )}
-              </div>
-              <div style={{marginTop:8}}>
-                <Prog pct={Math.min(100,(profile.streak||0)/5*100)} color="orange"/>
-              </div>
+            <div style={{color:"rgba(255,255,255,0.75)",fontSize:11,marginTop:3}}>
+              Choisis ton chapitre · ton format · à ton rythme
             </div>
+          </div>
+          <span style={{color:"rgba(255,255,255,0.6)",fontSize:20}}>›</span>
+        </button>
 
-            {/* Accès rapide : Points de vigilance (intégré au programme) */}
-            {onVigilance && (() => {
-              let vigilanceCount = 0;
-              if (qState) {
-                for (const k of Object.keys(qState)) {
-                  const e = qState[k];
-                  if (!e || e.status !== "learning") continue;
-                  const failRate = e.attempts > 0 ? 1 - (e.successes / e.attempts) : 0;
-                  if (e.attempts >= 2 && failRate >= 0.4) vigilanceCount++;
-                }
-              }
-              // Si rien à revoir, on n'affiche rien — pas de bruit inutile
-              if (vigilanceCount === 0) return null;
-              return (
-                <button onClick={onVigilance}
-                  style={{background:"#fff",border:"2px solid #FECACA",borderRadius:14,
-                    padding:"12px 14px",cursor:"pointer",textAlign:"left",width:"100%",
-                    display:"flex",alignItems:"center",gap:12,marginBottom:10,
-                    boxShadow:"0 2px 8px rgba(0,0,0,.05)"}}>
-                  <span style={{fontSize:22}}>🎯</span>
-                  <div style={{flex:1}}>
-                    <div style={{fontSize:12,fontWeight:800,color:"#B91C1C"}}>
-                      Points de vigilance
-                    </div>
-                    <div style={{fontSize:10,color:"#64748B",fontWeight:600,lineHeight:1.3,marginTop:2}}>
-                      {vigilanceCount === 1
-                        ? "1 thème où tu butes — session de remédiation disponible"
-                        : `${vigilanceCount} thèmes où tu butes — session de remédiation disponible`}
-                    </div>
-                  </div>
-                  <span style={{color:"#B91C1C",fontSize:16}}>›</span>
-                </button>
-              );
-            })()}
+        {/* Ligne 3 tuiles : Sprint · Missions · Bac */}
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:10}}>
+          {[
+            {label:"Sprint",    sub:"5 min chrono",    emoji:"⏱️",  color:"#10B981", action:()=>onGoHome()},
+            {label:"Missions",  sub:"Objectifs Sigma", emoji:"🚀",  color:"#3B82F6", action:()=>onGoHome()},
+            {label:"Bac",       sub:"Annales",          emoji:"🏆",  color:"#F59E0B", action:()=>onGoHome()},
+          ].map(tile=>(
+            <button key={tile.label} onClick={tile.action}
+              style={{background:tile.color,borderRadius:14,padding:"14px 6px",
+                border:"none",cursor:"pointer",textAlign:"center",
+                boxShadow:`0 4px 14px ${tile.color}55`}}>
+              <div style={{fontSize:26,marginBottom:4}}>{tile.emoji}</div>
+              <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:12,color:"#fff",lineHeight:1.1}}>{tile.label}</div>
+              <div style={{color:"rgba(255,255,255,0.75)",fontSize:9,marginTop:2}}>{tile.sub}</div>
+            </button>
+          ))}
+        </div>
 
-            {/* Suggested */}
-            {suggested&&(
-              <div style={{marginBottom:10}}>
-                <div style={{fontSize:9,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
-                  letterSpacing:1,marginBottom:6}}>💡 Suggéré pour toi</div>
-                <div style={{background:`linear-gradient(135deg,${lvl.color},${getNextLevel(xp)?.color||lvl.color})`,
-                  borderRadius:14,padding:"13px",display:"flex",alignItems:"center",gap:10}}>
-                  <span style={{fontSize:22}}>{getCatInfo(suggested.c)?.emoji||"📚"}</span>
-                  <div style={{flex:1}}>
-                    <div style={{color:"rgba(255,255,255,0.6)",fontSize:9,fontWeight:700,textTransform:"uppercase"}}>
-                      {getCatInfo(suggested.c)?.label||suggested.c}</div>
-                    <div style={{color:"#fff",fontWeight:800,fontSize:12,fontFamily:"'Nunito',sans-serif",marginTop:1}}>
-                      {getSubInfo(suggested.c,suggested.s)?.label||suggested.s}</div>
-                  </div>
-                  <button onClick={()=>onStartPractice(suggested.c,suggested.s)}
-                    style={{background:"rgba(255,255,255,0.2)",border:"none",borderRadius:9,
-                      padding:"7px 11px",color:"#fff",fontWeight:800,fontSize:11,cursor:"pointer"}}>
-                    ✏️ Go
-                  </button>
+        {/* Points de vigilance — si thèmes problématiques */}
+        {onVigilance && (() => {
+          let vigilanceCount = 0;
+          if (qState) {
+            for (const k of Object.keys(qState)) {
+              const e = qState[k];
+              if (!e || e.status !== "learning") continue;
+              const failRate = e.attempts > 0 ? 1 - (e.successes / e.attempts) : 0;
+              if (e.attempts >= 2 && failRate >= 0.4) vigilanceCount++;
+            }
+          }
+          if (vigilanceCount === 0) return null;
+          return (
+            <button onClick={onVigilance}
+              style={{background:"#fff",border:"2px solid #FECACA",borderRadius:14,
+                padding:"11px 14px",cursor:"pointer",textAlign:"left",width:"100%",
+                display:"flex",alignItems:"center",gap:12,marginBottom:10,
+                boxShadow:"0 2px 8px rgba(0,0,0,.05)"}}>
+              <span style={{fontSize:20}}>🎯</span>
+              <div style={{flex:1}}>
+                <div style={{fontSize:12,fontWeight:800,color:"#B91C1C"}}>Points de vigilance</div>
+                <div style={{fontSize:10,color:"#64748B",fontWeight:600,lineHeight:1.3,marginTop:1}}>
+                  {vigilanceCount === 1
+                    ? "1 thème où tu butes — session de remédiation disponible"
+                    : `${vigilanceCount} thèmes où tu butes — session de remédiation disponible`}
                 </div>
               </div>
-            )}
+              <span style={{color:"#B91C1C",fontSize:16}}>›</span>
+            </button>
+          );
+        })()}
 
-            {/* Programme hebdo adaptatif */}
-            <div style={{background:'#fff',borderRadius:16,padding:'16px',
-              boxShadow:'0 2px 8px rgba(0,0,0,.05)',marginBottom:10,textAlign:'center'}}>
-              <div style={{fontSize:28,marginBottom:6}}>📅</div>
-              <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:14,color:'#1E293B',marginBottom:4}}>
-                Mon programme de la semaine
-              </div>
-              <div style={{color:'#64748B',fontSize:11,lineHeight:1.5,marginBottom:12}}>
-                5 jours ciblés sur tes points faibles
-              </div>
-              <button onClick={onShowProgram}
-                style={{width:'100%',padding:'11px',borderRadius:12,border:'none',
-                  background:'linear-gradient(135deg,#7C3AED,#5B21B6)',
-                  color:'#fff',fontFamily:"'Nunito',sans-serif",
-                  fontSize:13,fontWeight:800,cursor:'pointer',
-                  boxShadow:'0 3px 10px rgba(124,58,237,.3)'}}>
-                Générer mon programme 🚀
+        {/* Mon parcours */}
+        <button onClick={()=>setTab("parcours")}
+          style={{background:"#fff",borderRadius:14,padding:"13px 16px",
+            border:"none",cursor:"pointer",width:"100%",
+            display:"flex",alignItems:"center",gap:12,marginBottom:10,
+            boxShadow:"0 2px 8px rgba(0,0,0,.05)",textAlign:"left"}}>
+          <span style={{fontSize:22}}>🏅</span>
+          <div style={{flex:1}}>
+            <div style={{fontWeight:800,fontSize:13,color:"#1E293B",fontFamily:"'Nunito',sans-serif"}}>Mon parcours</div>
+            <div style={{fontSize:10,color:"#64748B",marginTop:1}}>
+              {mastered}/{total} thèmes maîtrisés · {totalStars} ⭐ · Progression & stats
+            </div>
+          </div>
+          <span style={{color:"#CBD5E1",fontSize:18}}>→</span>
+        </button>
+
+        {/* ── Tabs Parcours / Récompenses (masqués sous le fold) ─────────── */}
+        {tab !== "programme" && (
+          <div style={{display:"flex",background:"#fff",borderRadius:12,marginBottom:12,
+            border:"1px solid #F1F5F9",overflow:"hidden"}}>
+            {[
+              {id:"parcours",   label:"Parcours",     icon:"📊"},
+              {id:"recompenses",label:"Récompenses",  icon:"🏆"},
+            ].map(t=>(
+              <button key={t.id} onClick={()=>setTab(t.id)}
+                style={{flex:1,padding:"9px 4px",border:"none",background:tab===t.id?lvl.color:"#fff",
+                  cursor:"pointer",color:tab===t.id?"#fff":"#94A3B8",fontSize:10,fontWeight:700,
+                  fontFamily:"'Nunito',sans-serif",display:"flex",flexDirection:"column",
+                  alignItems:"center",gap:1,transition:"background .2s"}}>
+                <span style={{fontSize:14}}>{t.icon}</span>
+                <span>{t.label}</span>
               </button>
-            </div>
-
-            {/* Révision espacée */}
-            <div style={{background:'#FEF9C3',borderRadius:12,padding:'10px 12px',
-              border:'1px solid #FDE68A'}}>
-              <div style={{fontWeight:800,fontSize:11,color:'#92400E',marginBottom:3}}>
-                🔁 Révision espacée activée
-              </div>
-              <div style={{fontSize:10,color:'#B45309',lineHeight:1.4}}>
-                Sigma te repropose les questions ratées au bon moment pour les ancrer durablement.
-              </div>
-            </div>
+            ))}
           </div>
         )}
 
-        {/* ══ TAB : PARCOURS ══ */}
+        {/* ══ TAB PARCOURS ══ */}
         {tab==="parcours"&&(
           <div className="slide-up">
             {Object.entries(curr.cats).map(([catId,subs])=>{
@@ -14339,9 +14277,9 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
                               </button>
                               <button onClick={()=>ct&&onStartTest(catId,subId)} disabled={!ct}
                                 style={{flex:1,padding:"6px 2px",borderRadius:8,border:"none",
-                                  background:ct?"#10B981":"#E2E8F0",color:ct?"#fff":"#9CA3AF",
+                                  background:ct?"#10B981":"#E2E8F0",color:ct?"#fff":"#94A3B8",
                                   fontSize:9,fontWeight:700,cursor:ct?"pointer":"not-allowed"}}>
-                                {ct?"🏆 Tester":"🔒 Tester"}
+                                🎯 Tester
                               </button>
                             </div>
                           </div>
@@ -14352,69 +14290,46 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
                 </div>
               );
             })}
-            <button onClick={onGoHome}
-              style={{width:"100%",padding:"10px",borderRadius:12,border:"1.5px solid #E2E8F0",
-                background:"transparent",color:"#64748B",fontSize:11,fontWeight:700,
-                cursor:"pointer",marginTop:4}}>
-              Explorer toutes les catégories →
-            </button>
           </div>
         )}
 
-        {/* ══ TAB : RÉCOMPENSES (cartes Sigma + badges) ══ */}
+        {/* ══ TAB RÉCOMPENSES ══ */}
         {tab==="recompenses"&&(
           <div className="slide-up">
-            {/* Section Cartes Sigma */}
-            {onCollection && (() => {
-              const cardsCount = (cardsUnlocked || []).length;
-              const totalCards = (typeof CARDS !== "undefined" && Array.isArray(CARDS)) ? CARDS.length : 20;
-              return (
-                <button onClick={onCollection}
-                  style={{background:"linear-gradient(135deg,#F59E0B,#B45309)",
-                    border:"none",borderRadius:16,padding:"14px 16px",cursor:"pointer",
-                    textAlign:"left",width:"100%",display:"flex",alignItems:"center",gap:12,
-                    marginBottom:14,boxShadow:"0 5px 16px rgba(245,158,11,.3)"}}>
-                  <span style={{fontSize:32}}>🎴</span>
-                  <div style={{flex:1}}>
-                    <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:15,color:"#fff"}}>
-                      Ma collection Sigma
+            <div style={{background:"#fff",borderRadius:16,padding:"16px",
+              boxShadow:"0 2px 8px rgba(0,0,0,.05)",marginBottom:12}}>
+              <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:14,
+                color:"#1E293B",marginBottom:12,textAlign:"center"}}>🏆 Mes badges</div>
+              <div style={{display:"flex",flexWrap:"wrap",gap:8,justifyContent:"center"}}>
+                {badges.length===0&&<div style={{color:"#94A3B8",fontSize:12}}>Aucun badge encore — continue !</div>}
+                {badges.map(bId=>{
+                  const b=BADGES[bId]; if(!b) return null;
+                  return (
+                    <div key={bId} style={{background:"#F8FAFC",borderRadius:12,padding:"8px 10px",
+                      textAlign:"center",minWidth:70,border:"1px solid #E2E8F0"}}>
+                      <div style={{fontSize:22}}>{b.emoji||"🎖️"}</div>
+                      <div style={{fontSize:9,fontWeight:700,color:"#334155",marginTop:3,lineHeight:1.3}}>{b.label}</div>
                     </div>
-                    <div style={{color:"rgba(255,255,255,.85)",fontSize:11,fontWeight:600,marginTop:2}}>
-                      {cardsCount}/{totalCards} cartes débloquées
-                    </div>
-                  </div>
-                  <span style={{color:"#fff",fontSize:22,fontWeight:900}}>›</span>
-                </button>
-              );
-            })()}
-
-            {/* Section Badges complémentaires */}
-            <div style={{fontSize:9,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
-              letterSpacing:1,marginBottom:8,marginTop:6}}>
-              🎖️ Badges — {badges.filter(b=>BADGES.find(B=>B.id===b)).length}/{BADGES.filter(b=>!b.secret).length} débloqués
+                  );
+                })}
+              </div>
             </div>
-            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
-              {BADGES.map(b=>{
-                const unlocked = badges.includes(b.id);
-                const isSecret = b.secret && !unlocked;
-                return (
-                  <div key={b.id} style={{background:"#fff",borderRadius:14,padding:"12px 10px",
-                    textAlign:"center",boxShadow:"0 2px 8px rgba(0,0,0,.05)",
-                    opacity:unlocked?1:0.45,
-                    border:unlocked?`2px solid ${lvl.color}`:"2px solid transparent"}}>
-                    <div style={{fontSize:28,filter:unlocked?"none":"grayscale(1)"}}>{isSecret?"🔒":b.emoji}</div>
-                    <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:11,
-                      color:unlocked?"#1E293B":"#94A3B8",marginTop:4}}>
-                      {isSecret?"🔒":b.label}
-                    </div>
-                    <div style={{fontSize:9,color:"#CBD5E1",marginTop:2,lineHeight:1.3}}>
-                      {isSecret?"Mission secrète...":b.desc}
-                    </div>
-                    {unlocked&&<div style={{marginTop:6,fontSize:9,color:lvl.color,fontWeight:700}}>✓ Débloqué !</div>}
+            {onCollection&&(
+              <button onClick={onCollection}
+                style={{background:"linear-gradient(135deg,#7C3AED,#5B21B6)",borderRadius:14,
+                  padding:"13px 16px",border:"none",cursor:"pointer",width:"100%",
+                  display:"flex",alignItems:"center",gap:12,marginBottom:10,
+                  boxShadow:"0 4px 16px rgba(124,58,237,.25)",textAlign:"left"}}>
+                <span style={{fontSize:24}}>🎴</span>
+                <div style={{flex:1}}>
+                  <div style={{fontWeight:900,fontSize:13,color:"#fff",fontFamily:"'Nunito',sans-serif"}}>Ma collection Sigma</div>
+                  <div style={{fontSize:10,color:"rgba(255,255,255,0.75)",marginTop:1}}>
+                    {cardsUnlocked||0} carte{(cardsUnlocked||0)>1?"s":""} débloquée{(cardsUnlocked||0)>1?"s":""}
                   </div>
-                );
-              })}
-            </div>
+                </div>
+                <span style={{color:"rgba(255,255,255,0.6)",fontSize:18}}>›</span>
+              </button>
+            )}
           </div>
         )}
 
@@ -14423,216 +14338,6 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
   );
 }
 
-
-// ── PostPracticeResultScreen ──────────────────────────────────────────────────
-function PostPracticeResultScreen({score, total, catId, subId, mode, prevStars, newStars, onRetry, onDashboard, onHome}) {
-  const pct = Math.round(score/total*100);
-  const ct = pct>=60&&total>=5;
-  const gotStars = newStars>prevStars;
-  const EMOJI_TIER = pct===100?"🤩":pct>=80?"😎":pct>=60?"😊":pct>=40?"😅":"😬";
-  const MSG_TIER = pct===100?"Parfait ! Incroyable ! 🎉":pct>=80?"Excellent boulot 🔥":pct>=60?"Bien joué ! Continue 💪":pct>=40?"Pas mal, encore un effort 📚":"Courage, c'est en forgeant... 💙";
-
-  return (
-    <div className="slide-up" style={{display:"flex",flexDirection:"column",alignItems:"center",
-      justifyContent:"center",height:"100%",padding:"24px",gap:12,background:"var(--am-bg-light)"}}>
-
-      {gotStars?(
-        <div className="pop-in" style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
-          <div className="sigma-float">
-            <Sigma emotion={newStars>=3?"love":"cool"} size={180}/>
-          </div>
-          <div className="sigma-shadow" style={{marginTop:-4}}/>
-        </div>
-      ):(
-        <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
-          <div className="sigma-float">
-            <Sigma emotion={pct>=60?"happy":"sad"} size={180}/>
-          </div>
-          <div className="sigma-shadow" style={{marginTop:-4}}/>
-        </div>
-      )}
-
-      {/* Score ring */}
-      <div style={{textAlign:"center"}}>
-        <div style={{fontFamily:"'Nunito',sans-serif",fontSize:52,fontWeight:900,
-          color:pct>=80?"#10B981":pct>=60?"#F59E0B":"#EF4444",lineHeight:1}}>
-          {pct}%
-        </div>
-        <div style={{color:"#64748B",fontSize:12,marginTop:2}}>{score}/{total} correctes</div>
-      </div>
-
-      {/* Message */}
-      <div style={{background:"#fff",borderRadius:14,padding:"12px 16px",textAlign:"center",
-        fontSize:13,fontWeight:700,color:"#334155",maxWidth:260,
-        boxShadow:"0 2px 8px rgba(0,0,0,.06)"}}>
-        {EMOJI_TIER} {MSG_TIER}
-      </div>
-
-      {/* Stars earned */}
-      {mode==='test'&&(
-        <div style={{background:gotStars?"#FEF9C3":"#F8FAFC",borderRadius:14,padding:"12px 20px",
-          textAlign:"center",border:`2px solid ${gotStars?"#FDE68A":"#E2E8F0"}`}}>
-          <div style={{fontSize:10,color:"#94A3B8",fontWeight:700,marginBottom:6}}>
-            {gotStars?"🎉 Nouvelle performance !":"Résultat du test"}
-          </div>
-          <div style={{display:"flex",gap:4,justifyContent:"center"}}>
-            {[1,2,3].map(i=>(
-              <span key={i} className={i<=newStars?"pop-in":""} style={{fontSize:28,
-                opacity:i<=newStars?1:0.18,animationDelay:`${i*0.15}s`}}>⭐</span>
-            ))}
-          </div>
-          <div style={{fontSize:10,color:"#64748B",marginTop:6}}>
-            {newStars===3?"★★★ Maîtrise parfaite !":newStars===2?"★★☆ Très bien !":newStars===1?"★☆☆ Acquis !":"Pas encore d'étoile..."}
-          </div>
-        </div>
-      )}
-
-      {/* Test unlock */}
-      {mode==='practice'&&ct&&(
-        <div style={{background:"#ECFDF5",borderRadius:12,padding:"8px 14px",
-          fontSize:11,color:"#065F46",fontWeight:600,textAlign:"center"}}>
-          🔓 Test débloqué ! Tu peux valider des étoiles.
-        </div>
-      )}
-
-      {/* Buttons */}
-      <div style={{display:"flex",flexDirection:"column",gap:8,width:"100%",maxWidth:280}}>
-        <button onClick={onRetry}
-          style={{padding:"13px",borderRadius:14,border:"none",
-            background:"linear-gradient(135deg,#7C3AED,#5B21B6)",color:"#fff",
-            fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:800,cursor:"pointer"}}>
-          🔄 Rejouer
-        </button>
-        <button onClick={onDashboard}
-          style={{padding:"13px",borderRadius:14,border:"2px solid #E2E8F0",
-            background:"#fff",color:"#334155",
-            fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:800,cursor:"pointer"}}>
-          📊 Mon tableau de bord
-        </button>
-        <button onClick={onHome}
-          style={{padding:"10px",borderRadius:14,border:"none",background:"transparent",
-            color:"#94A3B8",fontFamily:"'Nunito',sans-serif",fontSize:12,fontWeight:600,cursor:"pointer"}}>
-          Toutes les catégories
-        </button>
-      </div>
-    </div>
-  );
-}
-
-
-function SplashScreen({onStart, onMySpace, onRestore, profile}) {
-  const th = getTheme(profile);
-  return (
-    <div style={{position:"relative",height:"100%",overflow:"hidden",
-      background: th.bgMain,
-      display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",
-      padding:"22px 22px 18px"}}>
-
-      {[[10,8],[80,18],[55,5],[20,40],[90,35],[5,60],[75,65],[40,72],[15,82],[85,78]].map(([l,t],i)=>(
-        <div key={i} style={{position:"absolute",left:`${l}%`,top:`${t}%`,
-          width:i%3===0?3:2,height:i%3===0?3:2,
-          borderRadius:"50%",background: th.starColor, opacity:i%2===0?0.25:0.12}}/>
-      ))}
-
-      <div className="slide-up" style={{zIndex:1,display:"flex",flexDirection:"column",
-        alignItems:"center",width:"100%"}}>
-
-        <div style={{display:"flex",flexDirection:"column",alignItems:"center",marginBottom:6,width:"100%"}}>
-          <div className="sigma-float">
-            <img src={SIGMA_IMG} alt="Sigma"
-              style={{width:180,height:180,objectFit:"contain",display:"block",
-                filter:"drop-shadow(0 8px 24px rgba(0,0,0,0.45))"}}/>
-          </div>
-          <div className="sigma-shadow" style={{marginTop:-4}}/>
-        </div>
-
-        <div style={{textAlign:"center",marginBottom:4}}>
-          <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:11,
-            letterSpacing:5,color:"#64748B",textTransform:"uppercase",marginBottom:6}}>
-            Travailler ses maths avec
-          </div>
-          <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:13,color: th.dark?"#94A3B8":"#64748B",letterSpacing:1}}>l'</div>
-          <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,
-            fontSize:42,color: th.dark?"#fff":"#1E293B",letterSpacing:-1.5,lineHeight:.95,marginTop:-4}}>
-            Auto<span style={{color:"#F59E0B"}}>Maths</span>
-          </div>
-          <div style={{height:3,background:"linear-gradient(90deg,#F59E0B,#EF4444)",
-            borderRadius:99,width:100,margin:"9px auto 0",opacity:.8}}/>
-        </div>
-
-        <div style={{textAlign:"center",color:"#94A3B8",fontSize:13,lineHeight:1.6,marginTop:14,marginBottom:20}}>
-          Sigma, ton assistante maths.<br/>
-          <span style={{color:"#F59E0B",fontWeight:700}}>5 min par jour</span>
-          <span style={{color:"#64748B"}}>, t'as tout compris.</span>
-        </div>
-
-        {/* Mon espace — highlighted if has profile */}
-        {onMySpace && (
-          <button onClick={onMySpace}
-            style={{width:"100%",padding:"16px",border:"none",borderRadius:18,cursor:"pointer",
-              background:profile?"linear-gradient(135deg,#F59E0B,#EF4444)":"linear-gradient(135deg,#7C3AED,#5B21B6)",
-              color:"#fff",fontFamily:"'Nunito',sans-serif",fontSize:17,fontWeight:900,
-              boxShadow:profile?"0 10px 28px rgba(245,158,11,.35)":"0 10px 28px rgba(124,58,237,.35)",
-              marginBottom:10}}>
-            {profile?`Continuer, ${profile.name} ! 📊`:"Mon espace 👤"}
-          </button>
-        )}
-
-        {/* Explore librement */}
-        <button onClick={onStart}
-          style={{width:"100%",padding:profile?"12px":"16px",border:"none",
-            borderRadius:18,cursor:"pointer",letterSpacing:.3,
-            background:profile?"rgba(255,255,255,0.07)":"linear-gradient(135deg,#F59E0B,#EF4444)",
-            color:profile?"#64748B":"#fff",fontFamily:"'Nunito',sans-serif",
-            fontSize:profile?13:17,fontWeight:900,
-            boxShadow:profile?"none":"0 10px 28px rgba(245,158,11,.35)"}}>
-          {profile?"Explorer librement →":"Mode libre 🎒"}
-        </button>
-
-        <div style={{marginTop:14,display:"flex",flexDirection:"column",alignItems:"center",gap:5}}>
-          <div style={{display:"flex",gap:6,alignItems:"center"}}>
-            <span style={{color:"#F59E0B",fontSize:13,letterSpacing:2}}>★★★★★</span>
-            <span style={{color:"#475569",fontSize:11}}>par un vrai prof</span>
-          </div>
-          <div style={{display:"flex",gap:7,flexWrap:"wrap",justifyContent:"center"}}>
-            {["🚫 sans calc.","⏱ 5 min/jour","📈 Idéal pour le bac de première"].map(t=>(
-              <span key={t} style={{fontSize:10,color:"#475569",fontWeight:600,
-                background:"rgba(255,255,255,.06)",borderRadius:99,padding:"3px 9px",
-                border:"1px solid rgba(255,255,255,.1)"}}>
-                {t}</span>
-            ))}
-          </div>
-          {/* Restauration : encart bien visible quand pas de profil
-              (cas d'un élève qui se reconnecte après déconnexion / clear cache) */}
-          {onRestore && !profile && (
-            <button onClick={onRestore}
-              style={{marginTop:14,padding:"11px 16px",borderRadius:14,
-                background:"rgba(59,130,246,0.12)",border:"1.5px solid rgba(59,130,246,0.4)",
-                cursor:"pointer",display:"flex",alignItems:"center",gap:10,
-                color:"#93C5FD",fontFamily:"'Nunito',sans-serif",fontSize:12,fontWeight:800,
-                width:"100%",justifyContent:"center"}}>
-              <span style={{fontSize:18}}>💾</span>
-              <span style={{display:"flex",flexDirection:"column",alignItems:"flex-start",gap:1}}>
-                <span style={{fontSize:12,color:"#fff"}}>Déjà un compte ?</span>
-                <span style={{fontSize:10,fontWeight:600,color:"#93C5FD"}}>Restaure ta sauvegarde →</span>
-              </span>
-            </button>
-          )}
-          {/* Lien discret quand il y a déjà un profil (cas rare : un élève veut
-              importer une autre sauvegarde par-dessus) */}
-          {onRestore && profile && (
-            <button onClick={onRestore}
-              style={{marginTop:8,background:"transparent",border:"none",cursor:"pointer",
-                color:"#64748B",fontSize:11,fontWeight:600,textDecoration:"underline",
-                textDecorationColor:"rgba(100,116,139,0.4)"}}>
-              💾 Restaurer une sauvegarde
-            </button>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}
 
 // ── MENU ─────────────────────────────────────────────────────────────────────
 function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onBackup}) {
