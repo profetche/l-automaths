@@ -14294,7 +14294,7 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
         )}
 
         {/* ══ TAB RÉCOMPENSES ══ */}
-        tab==="recompenses"&&(
+        {tab==="recompenses"&&(
           <div className="slide-up">
             {/* Section Cartes Sigma */}
             {onCollection && (() => {
