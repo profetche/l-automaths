@@ -14991,7 +14991,7 @@ const CAT_FILTER_CONFIGS = {
   },
   term: {
     label: "Terminale",
-    ids: ["polynomes","expo","suites","limites","derivation","equa_diff","probabilites","denombrement","ln","trigonometrie","primitives","geometrie","algo_python"],
+    ids: ["polynomes","expo","suites","limites","derivation","probabilites","denombrement","ln","trigonometrie","primitives","equa_diff","geometrie","algo_python"],
   },
   all: {
     label: "Tout",
