@@ -5443,7 +5443,7 @@ const DB = {
     // ── Dérivée et variations ──
     deriv_variations: [
       // tc_var_01 — lien_signe_f_prime_variations — n1
-      { q: r`\text{Soit }f\text{ une fonction dérivable sur un intervalle }I\text{. Quelle affirmation est correcte ?}`,
+      { q: r`\text{Soit }f\text{ une fonction dérivable sur un intervalle }I\text{.}\\[4pt]\text{Quelle affirmation est correcte ?}`,
         choices: [
           r`\text{Si }f'(x) > 0\text{ sur }I\text{, alors }f\text{ est positive sur }I`,
           r`\text{Si }f'(x) > 0\text{ sur }I\text{, alors }f\text{ est croissante sur }I`,
@@ -5453,7 +5453,7 @@ const DB = {
         a: r`\text{Si }f'(x) > 0\text{ sur }I\text{, alors }f\text{ est croissante sur }I`,
         tip: r`\text{La règle fondamentale : si }f'(x) > 0\text{ sur un intervalle, alors }f\text{ est strictement croissante sur cet intervalle. Distracteur A : confond signe de }f\text{ et signe de }f'\text{. Dist}` },
       // tc_var_02 — intervalle_decroissance — n2
-      { q: r`\text{Soit }f\text{ une fonction dont la dérivée est }f'(x) = 2x - 6\text{. Sur quel intervalle la fonction }f\text{ est-elle décroissante ?}`,
+      { q: r`\text{Soit }f\text{ une fonction dont la dérivée est }f'(x) = 2x - 6\text{.}\\[4pt]\text{Sur quel intervalle la fonction }f\text{ est-elle décroissante ?}`,
         choices: [
           r`]-\infty\,;\,3]`,
           r`[3\,;\,+\infty[`,
@@ -5463,7 +5463,7 @@ const DB = {
         a: r`]-\infty\,;\,3]`,
         tip: r`f\text{ décroissante }\iff f'(x) \leq 0\text{. On résout : }2x - 6 \leq 0\text{, soit }x \leq 3\text{. Donc }f\text{ est décroissante sur }]-\infty\,;\,3]\text{.}` },
       // tc_var_03 — variations_trinome — n2
-      { q: r`\text{Soit }f\text{ la fonction définie sur }\mathbb{R}\text{ par }f(x) = x^2 - 4x + 1\text{. Quelles sont les variations de }f\text{ ?}`,
+      { q: r`\text{Soit }f(x) = x^2 - 4x + 1\text{. On donne }f'(x) = 2x - 4\text{.}\\[4pt]\text{Quelles sont les variations de }f\text{ ?}`,
         choices: [
           r`f\text{ est croissante sur }]-\infty\,;\,2]\text{ puis décroissante sur }[2\,;\,+\infty[`,
           r`f\text{ est décroissante sur }]-\infty\,;\,2]\text{ puis croissante sur }[2\,;\,+\infty[`,
@@ -5471,9 +5471,9 @@ const DB = {
           r`f\text{ est décroissante sur }\mathbb{R}`
         ],
         a: r`f\text{ est décroissante sur }]-\infty\,;\,2]\text{ puis croissante sur }[2\,;\,+\infty[`,
-        tip: r`f'(x) = 2x - 4\text{, qui s'annule en }x = 2\text{. }f'(x) < 0\text{ pour }x < 2\text{ et }f'(x) > 0\text{ pour }x > 2\text{. Donc }f\text{ décroît sur }]-\infty\,;\,2]\text{ puis croît sur }[2\,;\,+\infty[` },
+        tip: r`f'(x) = 2x - 4\text{ s'annule en }x = 2\text{. }f'(x) < 0\text{ pour }x < 2\text{ et }f'(x) > 0\text{ pour }x > 2\text{. Donc }f\text{ décroît sur }]-\infty\,;\,2]\text{ puis croît sur }[2\,;\,+\infty[` },
       // tc_var_04 — lecture_tableau_variations — n2
-      { q: r`\text{Le tableau de variations ci-contre représente la fonction }f\text{ sur }[-2\,;\,5]\text{. Quelle affirmation est fausse ?}`,
+      { q: r`\text{Le graphique ci-contre représente la fonction }f\text{ sur }[-2\,;\,5]\text{.}\\[4pt]\text{Quelle affirmation est fausse ?}`,
         gspec: { fn:x=>-0.7*(x-1)*(x-1)+4, xr:[-2,5], yr:[-4,5], extras:c=><>{gPt(1,4,c)}{gPt(-2,-3,c)}{gPt(5,-1,c)}{gDH(0,c,'#94A3B8')}{gNote(1,4.3,'max=4',c,'#EF4444')}{gNote(-2,-2.7,'(-2;-3)',c)}{gNote(4.2,-1,'(5;-1)',c)}</> },
         choices: [
           r`f\text{ admet un maximum égal à }4\text{ sur }[-2\,;\,5]`,
@@ -5484,17 +5484,17 @@ const DB = {
         a: r`f\text{ est positive sur tout l'intervalle }[-2\,;\,5]`,
         tip: r`f(-2) = -3 < 0\text{ et }f(5) = -1 < 0\text{ : }f\text{ n'est pas positive sur tout l'intervalle. A est vrai : maximum = 4. B est vrai : maximum atteint au sommet, en }x = 1\text{. C est vrai : la tangente est horizontale au maximum.}` },
       // tc_var_05 — changement_signe_extremum — n3
-      { q: r`\text{Soit }f\text{ une fonction dérivable sur }\mathbb{R}\text{, dont la dérivée }f'\text{ a le tableau de signes suivant : }f'(x) > 0\text{ sur }]-\infty\,;\,1[\text{, }f'(1) = 0\text{, }f'(x) < 0\text{ sur }]1\,;\,+\infty[\text{. Que peut-on dire de }f\text{ en }x = 1\text{ ?}`,
+      { q: r`\text{On sait que : }f'(x) > 0\text{ sur }]-\infty\,;\,1[\text{, }f'(1) = 0\text{, }f'(x) < 0\text{ sur }]1\,;\,+\infty[\text{.}\\[4pt]\text{Que peut-on dire de }f\text{ en }x = 1\text{ ?}`,
         choices: [
           r`f\text{ admet un minimum en }x = 1`,
           r`f\text{ admet un maximum en }x = 1`,
-          r`f\text{ admet un point d'inflexion (changement de courbure) en }x = 1`,
+          r`f\text{ admet un point d'inflexion en }x = 1`,
           r`\text{On ne peut rien conclure}`
         ],
         a: r`f\text{ admet un maximum en }x = 1`,
         tip: r`f'\text{ passe du positif au négatif en traversant }x = 1\text{ : }f\text{ est croissante avant, décroissante après. Donc }f\text{ admet un maximum en }x = 1\text{. Règle : à un changement de signe de}` },
       // tc_var_06 — piege_f_prime_nul_sans_changement — n4
-      { q: r`\text{Soit }f\text{ une fonction dérivable telle que }f'(x) = 3x^2\text{. Que peut-on dire de }f\text{ en }x = 0\text{ ?}`,
+      { q: r`\text{Soit }f\text{ une fonction dérivable telle que }f'(x) = 3x^2\text{.}\\[4pt]\text{Que peut-on dire de }f\text{ en }x = 0\text{ ?}`,
         choices: [
           r`f\text{ admet un minimum en }x = 0`,
           r`f\text{ admet un maximum en }x = 0`,
@@ -5660,7 +5660,7 @@ const DB = {
         tip: r`\text{Sur le graphique : }f\text{ croît avant }-1\text{, décroît entre }-1\text{ et }1\text{, recroît après. Donc max en }-1\text{ et min en }1.` },
 
       // tc_var_21 — conclusion_signe_fprime_zero_sans_extremum — n4
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f\text{ une fonction telle que }f'(x) = (x-2)^2\text{. Quelle est la bonne conclusion ?}`,
+      { q: r`\text{Soit }f\text{ une fonction telle que }f'(x) = (x-2)^2\text{.}\\[4pt]\text{Quelle est la bonne conclusion ?}`,
         choices:[
           r`f\text{ admet un minimum en }x=2`,
           r`f\text{ admet un maximum en }x=2`,
@@ -5711,7 +5711,7 @@ const DB = {
         tip: r`f'=(x+2)(x-4)\text{. Coeff. positif : positif hors }[-2\,;\,4]\text{. }f\text{ croissante sur }]-\infty\,;\,-2]\text{, décroissante sur }[-2\,;\,4]\text{, croissante sur }[4\,;\,+\infty[.` },
 
       // tc_var_25 — QCM_lien_fprime_et_variations — n2
-      { q: r`\text{On a représenté le tableau de signes de }f'\text{ ci-dessous :}\\[6pt]f'(x)<0\text{ sur }]-\infty\,;\,-2[\quad f'(-2)=0\quad f'(x)>0\text{ sur }]-2\,;\,+\infty[\\[6pt]\text{Quelle est la bonne description des variations de }f\text{ ?}`,
+      { q: r`\text{On sait que : }f'(x)<0\text{ sur }]-\infty\,;\,-2[\text{, }f'(-2)=0\text{, }f'(x)>0\text{ sur }]-2\,;\,+\infty[\text{.}\\[4pt]\text{Quelle est la bonne description des variations de }f\text{ ?}`,
         choices:[
           r`f\text{ est croissante sur }]-\infty\,;\,-2]\text{, décroissante sur }[-2\,;\,+\infty[`,
           r`f\text{ est décroissante sur }]-\infty\,;\,-2]\text{, croissante sur }[-2\,;\,+\infty[`,
@@ -5722,7 +5722,7 @@ const DB = {
         tip: r`f'<0\Rightarrow f\text{ décroissante. }f'>0\Rightarrow f\text{ croissante. Changement de signe en }-2\text{ (de }-\text{ à }+\text{) : }f\text{ admet un minimum en }x=-2.` },
 
       // tc_var_26 — QCM_phrase_clé_reformulée — n1
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Parmi les propositions suivantes, laquelle est correcte ?}`,
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[4pt]\text{Parmi les propositions suivantes, laquelle est correcte ?}`,
         choices:[
           r`\text{Si }f(x)>0\text{ sur }I\text{, alors }f\text{ est croissante sur }I`,
           r`\text{Si }f'(x)>0\text{ sur }I\text{, alors }f\text{ est croissante sur }I`,
@@ -5759,7 +5759,7 @@ const DB = {
         tip: r`f'(x)=-6x+12\text{, racine }x=2\text{. Positif avant, négatif après. Maximum }f(2)=-12+24-7=5.` },
 
       // tc_var_29 — synthèse_lien_extremum_signe — n3
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f\text{ dérivable sur }\mathbb{R}\text{. On donne le tableau de variations :}\\[4pt]f\text{ croît sur }]-\infty\,;\,-1]\text{, décroît sur }[-1\,;\,3]\text{, croît sur }[3\,;\,+\infty[\text{.}\\[6pt]\text{Que peut-on dire de }f'(-1)\text{ et }f'(3)\text{ ?}`,
+      { q: r`\text{Soit }f\text{ dérivable sur }\mathbb{R}\text{, croissante sur }]-\infty\,;\,-1]\text{, décroissante sur }[-1\,;\,3]\text{, croissante sur }[3\,;\,+\infty[\text{.}\\[4pt]\text{Que peut-on dire de }f'(-1)\text{ et }f'(3)\text{ ?}`,
         choices:[
           r`f'(-1)=0\text{ et }f'(3)=0`,
           r`f'(-1)>0\text{ et }f'(3)>0`,
@@ -11170,8 +11170,8 @@ const CATS = [
     ] },
   { id:"derivation",   label:"Dérivation", emoji:"📉", color:"#0891B2", grad:"linear-gradient(135deg,#06B6D4,#0E7490)", light:"#ECFEFF", border:"#A5F3FC",
     subs:[
-      {id:"lecture_derivee",label:"Lecture graphique du nombre dérivé", levels:["stmg","spe","term"]},
-      {id:"calcul_derivee", label:"Calcul de dérivées (deg. 2 et 3)",   levels:["stmg","spe","term"]},
+      {id:"lecture_derivee",label:"Lecture graphique du nombre dérivé", levels:["tc","stmg","spe","term"]},
+      {id:"calcul_derivee", label:"Calcul de dérivées (deg. 2 et 3)",   levels:["tc","stmg","spe","term"]},
       {id:"deriv_vitesse",label:"Vitesse moyenne / instantanée", levels:["tc","spe","term"]},
       {id:"deriv_tangente",label:"Tangente — lecture graphique", levels:["tc","stmg","spe","term"]},
       {id:"deriv_fonctions_ref",label:"Dérivées des fonctions de référence", levels:["spe","term"]},
@@ -12113,7 +12113,7 @@ const CURRICULUM = {
   premiere_tronc: { label:"1ère Tronc commun", emoji:"📘", color:"#3B82F6",
     cats:{
       // ── Thèmes cœur 1ère Tronc commun ──
-      derivation:['deriv_vitesse','deriv_tangente','deriv_variations'],
+      derivation:['deriv_vitesse','deriv_tangente','deriv_variations','lecture_derivee','calcul_derivee'],
       polynomes:['poly2_definition','poly2_racines','poly2_discriminant','poly2_variations'],
       litteral:['eq_x2','produit_nul','id_remarquables','facto_commun','facto_id','inequation1','developpement','manipulation','eq1'],
       probabilites:['tableau','tableau_fill','arbre','contraire'],
