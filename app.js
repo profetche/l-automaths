@@ -7320,90 +7320,6 @@ const DB = {
         choices: [`9`, `6`, `3`, `-9`], a: `9`, tip: r`x_1\times x_2=3\times3=9=c/a` },
       { q: r`a=2,\,x_1=-1,\,x_2=4\\[4pt]\dfrac{c}{a}=x_1\times x_2\Rightarrow c=\,?`,
         choices: [`-8`, `8`, `-4`, `4`], a: `-8`, tip: r`c=a\times x_1x_2=2\times(-4)=-8` },
-
-      // Niveau difficile : somme x1+x2 depuis le trinome
-      { q: r`x^2-7x+10\\[4pt]x_1+x_2=-\dfrac{b}{a}=\,?`,
-        choices: [`7`, `-7`, `10`, `-10`],
-        a: `7`,
-        tip: r`a=1,\,b=-7\Rightarrow x_1+x_2=-\dfrac{-7}{1}=7` },
-      { q: r`x^2+3x-4\\[4pt]x_1+x_2=-\dfrac{b}{a}=\,?`,
-        choices: [`-3`, `3`, `-4`, `4`],
-        a: `-3`,
-        tip: r`a=1,\,b=3\Rightarrow x_1+x_2=-\dfrac{3}{1}=-3` },
-      { q: r`2x^2-6x+1\\[4pt]x_1+x_2=-\dfrac{b}{a}=\,?`,
-        choices: [`3`, `-3`, `6`, `-1`],
-        a: `3`,
-        tip: r`a=2,\,b=-6\Rightarrow x_1+x_2=-\dfrac{-6}{2}=3` },
-      { q: r`3x^2+9x-2\\[4pt]x_1+x_2=-\dfrac{b}{a}=\,?`,
-        choices: [`-3`, `3`, `-9`, `9`],
-        a: `-3`,
-        tip: r`a=3,\,b=9\Rightarrow x_1+x_2=-\dfrac{9}{3}=-3` },
-      { q: r`-x^2+4x+5\\[4pt]x_1+x_2=-\dfrac{b}{a}=\,?`,
-        choices: [`4`, `-4`, `5`, `-5`],
-        a: `4`,
-        tip: r`a=-1,\,b=4\Rightarrow x_1+x_2=-\dfrac{4}{-1}=4` },
-      { q: r`2x^2+10x-3\\[4pt]x_1+x_2=-\dfrac{b}{a}=\,?`,
-        choices: [`-5`, `5`, `10`, `-10`],
-        a: `-5`,
-        tip: r`a=2,\,b=10\Rightarrow x_1+x_2=-\dfrac{10}{2}=-5` },
-      { q: r`4x^2-8x+1\\[4pt]x_1+x_2=-\dfrac{b}{a}=\,?`,
-        choices: [`2`, `-2`, `8`, `-8`],
-        a: `2`,
-        tip: r`a=4,\,b=-8\Rightarrow x_1+x_2=-\dfrac{-8}{4}=2` },
-      { q: r`-2x^2+6x+7\\[4pt]x_1+x_2=-\dfrac{b}{a}=\,?`,
-        choices: [`3`, `-3`, `6`, `-6`],
-        a: `3`,
-        tip: r`a=-2,\,b=6\Rightarrow x_1+x_2=-\dfrac{6}{-2}=3` },
-      { q: r`5x^2-15x+2\\[4pt]x_1+x_2=-\dfrac{b}{a}=\,?`,
-        choices: [`3`, `-3`, `15`, `-15`],
-        a: `3`,
-        tip: r`a=5,\,b=-15\Rightarrow x_1+x_2=-\dfrac{-15}{5}=3` },
-      { q: r`-3x^2+12x-1\\[4pt]x_1+x_2=-\dfrac{b}{a}=\,?`,
-        choices: [`4`, `-4`, `12`, `-12`],
-        a: `4`,
-        tip: r`a=-3,\,b=12\Rightarrow x_1+x_2=-\dfrac{12}{-3}=4` },
-
-      // Niveau difficile : produit x1*x2 depuis le trinome
-      { q: r`x^2-7x+10\\[4pt]x_1\times x_2=\dfrac{c}{a}=\,?`,
-        choices: [`10`, `-10`, `7`, `-7`],
-        a: `10`,
-        tip: r`a=1,\,c=10\Rightarrow x_1x_2=\dfrac{10}{1}=10` },
-      { q: r`x^2+3x-4\\[4pt]x_1\times x_2=\dfrac{c}{a}=\,?`,
-        choices: [`-4`, `4`, `-3`, `3`],
-        a: `-4`,
-        tip: r`a=1,\,c=-4\Rightarrow x_1x_2=\dfrac{-4}{1}=-4` },
-      { q: r`2x^2-6x+8\\[4pt]x_1\times x_2=\dfrac{c}{a}=\,?`,
-        choices: [`4`, `-4`, `8`, `-8`],
-        a: `4`,
-        tip: r`a=2,\,c=8\Rightarrow x_1x_2=\dfrac{8}{2}=4` },
-      { q: r`3x^2+9x-6\\[4pt]x_1\times x_2=\dfrac{c}{a}=\,?`,
-        choices: [`-2`, `2`, `-6`, `6`],
-        a: `-2`,
-        tip: r`a=3,\,c=-6\Rightarrow x_1x_2=\dfrac{-6}{3}=-2` },
-      { q: r`-x^2+4x+5\\[4pt]x_1\times x_2=\dfrac{c}{a}=\,?`,
-        choices: [`-5`, `5`, `4`, `-4`],
-        a: `-5`,
-        tip: r`a=-1,\,c=5\Rightarrow x_1x_2=\dfrac{5}{-1}=-5` },
-      { q: r`2x^2+10x-14\\[4pt]x_1\times x_2=\dfrac{c}{a}=\,?`,
-        choices: [`-7`, `7`, `-14`, `14`],
-        a: `-7`,
-        tip: r`a=2,\,c=-14\Rightarrow x_1x_2=\dfrac{-14}{2}=-7` },
-      { q: r`4x^2-8x+12\\[4pt]x_1\times x_2=\dfrac{c}{a}=\,?`,
-        choices: [`3`, `-3`, `12`, `-12`],
-        a: `3`,
-        tip: r`a=4,\,c=12\Rightarrow x_1x_2=\dfrac{12}{4}=3` },
-      { q: r`-2x^2+6x+10\\[4pt]x_1\times x_2=\dfrac{c}{a}=\,?`,
-        choices: [`-5`, `5`, `10`, `-10`],
-        a: `-5`,
-        tip: r`a=-2,\,c=10\Rightarrow x_1x_2=\dfrac{10}{-2}=-5` },
-      { q: r`5x^2-15x+20\\[4pt]x_1\times x_2=\dfrac{c}{a}=\,?`,
-        choices: [`4`, `-4`, `20`, `-20`],
-        a: `4`,
-        tip: r`a=5,\,c=20\Rightarrow x_1x_2=\dfrac{20}{5}=4` },
-      { q: r`-3x^2+12x-9\\[4pt]x_1\times x_2=\dfrac{c}{a}=\,?`,
-        choices: [`3`, `-3`, `9`, `-9`],
-        a: `3`,
-        tip: r`a=-3,\,c=-9\Rightarrow x_1x_2=\dfrac{-9}{-3}=3` },
     ],
 
     // ── 3. Discriminant et résolution ─────────────────────────────────────────
@@ -8590,6 +8506,198 @@ const DB = {
 
   },
 
+  // ══════════════════════════════════════════════════════════════════════════════
+  // PRODUIT SCALAIRE DANS LE PLAN — 20 QCM progressifs
+  // Première Spé · Sans calculatrice · Schémas SVG
+  // ══════════════════════════════════════════════════════════════════════════════
+  produit_scalaire: {
+
+    plan: [
+
+      // ── ps_01 · Norme d'un vecteur — lecture directe ─────────────────────────
+      { q: r`\text{On donne }\vec{u}=\overrightarrow{AB}\text{ avec }AB=5\text{ cm.}\\[4pt]\text{Quelle est la valeur de }\|\vec{u}\|\text{ ?}`,
+        choices: [r`5`, r`25`, r`\sqrt{5}`, r`10`],
+        a: r`5`,
+        tip: r`\text{La norme de }\overrightarrow{AB}\text{ est simplement la longueur }AB.\\\|\overrightarrow{AB}\| = AB = 5\text{ cm.}` },
+
+      // ── ps_02 · Carré scalaire — définition ──────────────────────────────────
+      { q: r`\text{Que vaut }\vec{u}\cdot\vec{u}\text{ si }\|\vec{u}\|=3\text{ ?}`,
+        choices: [r`9`, r`3`, r`6`, r`\sqrt{3}`],
+        a: r`9`,
+        tip: r`\vec{u}\cdot\vec{u}=\|\vec{u}\|^2=3^2=9.\\\text{Le carré scalaire d'un vecteur est le carré de sa norme.}` },
+
+      // ── ps_03 · Angle droit → produit scalaire nul ───────────────────────────
+      { q: r`\text{Les droites }(AB)\text{ et }(AC)\text{ sont perpendiculaires.}\\[4pt]\text{Que vaut }\overrightarrow{AB}\cdot\overrightarrow{AC}\text{ ?}`,
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" width="100%" style="background:#fff;font-family:sans-serif">
+  <line x1="50" y1="140" x2="180" y2="140" stroke="#2563EB" stroke-width="2"/>
+  <line x1="50" y1="140" x2="50" y2="30" stroke="#DC2626" stroke-width="2"/>
+  <rect x="50" y="128" width="12" height="12" fill="none" stroke="#555" stroke-width="1.5"/>
+  <text x="185" y="145" font-size="14" fill="#2563EB" font-weight="bold">B</text>
+  <text x="38" y="25" font-size="14" fill="#DC2626" font-weight="bold">C</text>
+  <text x="35" y="155" font-size="14" fill="#333" font-weight="bold">A</text>
+</svg>`,
+        choices: [r`0`, r`AB\times AC`, r`-AB\times AC`, r`1`],
+        a: r`0`,
+        tip: r`\overrightarrow{AB}\cdot\overrightarrow{AC}=\|\overrightarrow{AB}\|\times\|\overrightarrow{AC}\|\times\cos(90°)=0.\\[4pt]\text{Deux vecteurs sont orthogonaux }\Leftrightarrow\text{ leur produit scalaire est nul.}` },
+
+      // ── ps_04 · Formule cos — angle 60° ──────────────────────────────────────
+      { q: r`\text{Dans le triangle équilatéral }ABC\text{ de côté }4,\\[4pt]\text{calculer }\overrightarrow{AB}\cdot\overrightarrow{AC}.`,
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" width="100%" style="background:#fff;font-family:sans-serif">
+  <polygon points="120,30 40,170 200,170" fill="#EFF6FF" stroke="#2563EB" stroke-width="2"/>
+  <text x="113" y="22" font-size="14" font-weight="bold" fill="#333">A</text>
+  <text x="22" y="182" font-size="14" font-weight="bold" fill="#333">B</text>
+  <text x="202" y="182" font-size="14" font-weight="bold" fill="#333">C</text>
+  <text x="67" y="112" font-size="13" fill="#2563EB">4</text>
+  <text x="163" y="112" font-size="13" fill="#2563EB">4</text>
+  <text x="115" y="188" font-size="13" fill="#2563EB">4</text>
+  <path d="M120,30 a18,18 0 0,1 10,16" fill="none" stroke="#F59E0B" stroke-width="1.5"/>
+  <text x="128" y="58" font-size="12" fill="#B45309">60°</text>
+</svg>`,
+        choices: [r`8`, r`16`, r`4`, r`4\sqrt{3}`],
+        a: r`8`,
+        tip: r`\overrightarrow{AB}\cdot\overrightarrow{AC}=AB\times AC\times\cos(\widehat{BAC})=4\times4\times\cos(60°)=16\times\tfrac{1}{2}=8.` },
+
+      // ── ps_05 · Formule cos — angle obtus 120° ───────────────────────────────
+      { q: r`\text{Dans un triangle }ABC,\ AB=3,\ AC=2\text{ et }\widehat{BAC}=120°.\\[4pt]\text{Calculer }\overrightarrow{AB}\cdot\overrightarrow{AC}.`,
+        choices: [r`-3`, r`3`, r`6`, r`-6`],
+        a: r`-3`,
+        tip: r`\overrightarrow{AB}\cdot\overrightarrow{AC}=3\times2\times\cos(120°)=6\times\!\left(-\tfrac{1}{2}\right)=-3.\\[4pt]\text{Attention : }\cos(120°)=-\tfrac{1}{2}.` },
+
+      // ── ps_06 · Projection orthogonale — H sur [AB], angle aigu ──────────────
+      { q: r`\text{H est le pied de la hauteur issue de C sur }(AB).\\[4pt]\text{Quelle formule donne }\overrightarrow{AB}\cdot\overrightarrow{AC}\text{ ?}`,
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 180" width="100%" style="background:#fff;font-family:sans-serif">
+  <line x1="30" y1="150" x2="260" y2="150" stroke="#2563EB" stroke-width="2"/>
+  <line x1="100" y1="150" x2="170" y2="50" stroke="#DC2626" stroke-width="2"/>
+  <line x1="170" y1="50" x2="170" y2="150" stroke="#888" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <rect x="170" y="138" width="12" height="12" fill="none" stroke="#555" stroke-width="1.5"/>
+  <text x="22" y="165" font-size="14" font-weight="bold" fill="#333">A</text>
+  <text x="255" y="165" font-size="14" font-weight="bold" fill="#333">B</text>
+  <text x="172" y="44" font-size="14" font-weight="bold" fill="#DC2626">C</text>
+  <text x="164" y="168" font-size="13" fill="#555">H</text>
+</svg>`,
+        choices: [r`AB\times AH`, r`-AB\times AH`, r`AB\times CH`, r`AH\times CH`],
+        a: r`AB\times AH`,
+        tip: r`\text{H appartient à la demi-droite }[AB)\Rightarrow\overrightarrow{AB}\cdot\overrightarrow{AC}=AB\times AH.\\[4pt]\text{(On utilise la formule de projection orthogonale.)}` },
+
+      // ── ps_07 · Projection — H en dehors de [AB] (angle obtus) ──────────────
+      { q: r`\text{H est le projeté orthogonal de C sur }(AB),\\[4pt]\text{mais H n'appartient pas à }[AB]\text{ (angle obtus en A).}\\[4pt]\text{Que vaut }\overrightarrow{AB}\cdot\overrightarrow{AC}\text{ ?}`,
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 180" width="100%" style="background:#fff;font-family:sans-serif">
+  <line x1="30" y1="150" x2="260" y2="150" stroke="#2563EB" stroke-width="2"/>
+  <line x1="150" y1="150" x2="80" y2="60" stroke="#DC2626" stroke-width="2"/>
+  <line x1="80" y1="60" x2="80" y2="150" stroke="#888" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <rect x="80" y="138" width="12" height="12" fill="none" stroke="#555" stroke-width="1.5"/>
+  <text x="142" y="168" font-size="14" font-weight="bold" fill="#333">A</text>
+  <text x="252" y="168" font-size="14" font-weight="bold" fill="#333">B</text>
+  <text x="66" y="56" font-size="14" font-weight="bold" fill="#DC2626">C</text>
+  <text x="65" y="168" font-size="13" fill="#555">H</text>
+</svg>`,
+        choices: [r`-AB\times AH`, r`AB\times AH`, r`AB\times BH`, r`0`],
+        a: r`-AB\times AH`,
+        tip: r`\text{H n'appartient pas à }[AB]\text{ : il est « de l'autre côté » de A.}\\\overrightarrow{AB}\cdot\overrightarrow{AC}=-AB\times AH.` },
+
+      // ── ps_08 · Coordonnées — formule xx'+yy' ────────────────────────────────
+      { q: r`\vec{u}=\begin{pmatrix}3\\-2\end{pmatrix}\ \text{et}\ \vec{v}=\begin{pmatrix}1\\4\end{pmatrix}.\\[6pt]\text{Calculer }\vec{u}\cdot\vec{v}.`,
+        choices: [r`-5`, r`5`, r`-3`, r`14`],
+        a: r`-5`,
+        tip: r`\vec{u}\cdot\vec{v}=3\times1+(-2)\times4=3-8=-5.\\[4pt]\text{Formule : }\vec{u}(x;y),\ \vec{v}(x';y')\Rightarrow\vec{u}\cdot\vec{v}=xx'+yy'.` },
+
+      // ── ps_09 · Coordonnées — résultat positif ───────────────────────────────
+      { q: r`\vec{u}=\begin{pmatrix}-2\\3\end{pmatrix}\ \text{et}\ \vec{v}=\begin{pmatrix}-1\\-1\end{pmatrix}.\\[6pt]\text{Calculer }\vec{u}\cdot\vec{v}.`,
+        choices: [r`-1`, r`1`, r`5`, r`-5`],
+        a: r`-1`,
+        tip: r`\vec{u}\cdot\vec{v}=(-2)\times(-1)+3\times(-1)=2-3=-1.` },
+
+      // ── ps_10 · Norme via coordonnées ────────────────────────────────────────
+      { q: r`\vec{u}=\begin{pmatrix}3\\4\end{pmatrix}.\\[6pt]\text{Calculer }\|\vec{u}\|.`,
+        choices: [r`5`, r`7`, r`\sqrt{7}`, r`25`],
+        a: r`5`,
+        tip: r`\|\vec{u}\|^2=3^2+4^2=9+16=25\Rightarrow\|\vec{u}\|=5.\\[4pt]\text{(Triangle 3-4-5 pythagoricien.)}` },
+
+      // ── ps_11 · Orthogonalité par coordonnées ────────────────────────────────
+      { q: r`\vec{u}=\begin{pmatrix}2\\3\end{pmatrix}\ \text{et}\ \vec{v}=\begin{pmatrix}a\\-2\end{pmatrix}.\\[6pt]\text{Pour quelle valeur de }a\text{ les vecteurs sont-ils orthogonaux ?}`,
+        choices: [r`3`, r`-3`, r`4`, r`-4`],
+        a: r`3`,
+        tip: r`\vec{u}\perp\vec{v}\Leftrightarrow\vec{u}\cdot\vec{v}=0\Leftrightarrow2a+3\times(-2)=0\Leftrightarrow2a=6\Leftrightarrow a=3.` },
+
+      // ── ps_12 · Orthogonalité géométrique — rectangle ────────────────────────
+      { q: r`ABCD\text{ est un rectangle.}\\[4pt]\text{Parmi les produits suivants, lequel vaut }0\text{ ?}`,
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 160" width="100%" style="background:#fff;font-family:sans-serif">
+  <rect x="50" y="40" width="180" height="90" fill="#EFF6FF" stroke="#2563EB" stroke-width="2"/>
+  <rect x="50" y="40" width="14" height="14" fill="none" stroke="#555" stroke-width="1.5"/>
+  <rect x="216" y="40" width="14" height="14" fill="none" stroke="#555" stroke-width="1.5"/>
+  <rect x="50" y="116" width="14" height="14" fill="none" stroke="#555" stroke-width="1.5"/>
+  <rect x="216" y="116" width="14" height="14" fill="none" stroke="#555" stroke-width="1.5"/>
+  <text x="34" y="38" font-size="14" font-weight="bold" fill="#333">A</text>
+  <text x="238" y="38" font-size="14" font-weight="bold" fill="#333">B</text>
+  <text x="238" y="148" font-size="14" font-weight="bold" fill="#333">C</text>
+  <text x="34" y="148" font-size="14" font-weight="bold" fill="#333">D</text>
+</svg>`,
+        choices: [r`\overrightarrow{AB}\cdot\overrightarrow{AD}`, r`\overrightarrow{AB}\cdot\overrightarrow{AC}`, r`\overrightarrow{AB}\cdot\overrightarrow{BC}`, r`\overrightarrow{AC}\cdot\overrightarrow{BD}`],
+        a: r`\overrightarrow{AB}\cdot\overrightarrow{AD}`,
+        tip: r`(AB)\perp(AD)\text{ car ABCD est un rectangle}\Rightarrow\overrightarrow{AB}\cdot\overrightarrow{AD}=0.` },
+
+      // ── ps_13 · Identité remarquable vectorielle ──────────────────────────────
+      { q: r`\text{Développer }(\vec{u}+\vec{v})\cdot(\vec{u}-\vec{v}).`,
+        choices: [r`\|\vec{u}\|^2-\|\vec{v}\|^2`, r`\|\vec{u}\|^2+\|\vec{v}\|^2`, r`\|\vec{u}-\vec{v}\|^2`, r`0`],
+        a: r`\|\vec{u}\|^2-\|\vec{v}\|^2`,
+        tip: r`(\vec{u}+\vec{v})\cdot(\vec{u}-\vec{v})=\vec{u}\cdot\vec{u}-\vec{u}\cdot\vec{v}+\vec{v}\cdot\vec{u}-\vec{v}\cdot\vec{v}=\|\vec{u}\|^2-\|\vec{v}\|^2.\\[4pt]\text{(Identité remarquable scalaire : }(a+b)(a-b)=a^2-b^2.\text{)}` },
+
+      // ── ps_14 · Al-Kashi — trouver un côté ───────────────────────────────────
+      { q: r`\text{Dans le triangle }ABC,\ AB=5,\ AC=3,\ \widehat{BAC}=60°.\\[4pt]\text{Calculer }BC^2\text{ grâce au théorème d'Al-Kashi.}`,
+        choices: [r`19`, r`34`, r`25`, r`9`],
+        a: r`19`,
+        tip: r`BC^2=AB^2+AC^2-2\times AB\times AC\times\cos A\\=25+9-2\times5\times3\times\tfrac{1}{2}=34-15=19.` },
+
+      // ── ps_15 · Al-Kashi — trouver un angle ──────────────────────────────────
+      { q: r`\text{Dans le triangle }ABC,\ AB=4,\ AC=3,\ BC=\sqrt{13}.\\[4pt]\text{Quelle est la valeur de }\cos(\widehat{BAC})\text{ ?}`,
+        choices: [r`\dfrac{1}{2}`, r`-\dfrac{1}{2}`, r`\dfrac{\sqrt{3}}{2}`, r`0`],
+        a: r`\dfrac{1}{2}`,
+        tip: r`BC^2=AB^2+AC^2-2\cdot AB\cdot AC\cdot\cos A\\13=16+9-24\cos A\Rightarrow24\cos A=12\Rightarrow\cos A=\tfrac{1}{2}.` },
+
+      // ── ps_16 · Cercle de diamètre [AB] — reconnaître la propriété ────────────
+      { q: r`M\text{ est un point tel que }\overrightarrow{MA}\cdot\overrightarrow{MB}=0.\\[4pt]\text{Que peut-on conclure ?}`,
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 180" width="100%" style="background:#fff;font-family:sans-serif">
+  <circle cx="130" cy="100" r="60" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.8"/>
+  <line x1="70" y1="100" x2="190" y2="100" stroke="#2563EB" stroke-width="2"/>
+  <circle cx="130" cy="40" r="4" fill="#DC2626"/>
+  <line x1="70" y1="100" x2="130" y2="40" stroke="#DC2626" stroke-width="1.5"/>
+  <line x1="190" y1="100" x2="130" y2="40" stroke="#DC2626" stroke-width="1.5"/>
+  <rect x="124" y="40" width="10" height="10" fill="none" stroke="#555" stroke-width="1.5" transform="rotate(-38,130,45)"/>
+  <text x="56" y="112" font-size="14" font-weight="bold" fill="#333">A</text>
+  <text x="192" y="112" font-size="14" font-weight="bold" fill="#333">B</text>
+  <text x="133" y="34" font-size="14" font-weight="bold" fill="#DC2626">M</text>
+</svg>`,
+        choices: [r`M\text{ est sur le cercle de diamètre }[AB]`, r`M\text{ est le milieu de }[AB]`, r`MA=MB`, r`M\text{ est sur la médiatrice de }[AB]`],
+        a: r`M\text{ est sur le cercle de diamètre }[AB]`,
+        tip: r`\overrightarrow{MA}\cdot\overrightarrow{MB}=0\Leftrightarrow M\text{ appartient au cercle de diamètre }[AB].\\[4pt]\text{(Propriété fondamentale : }M\text{ voit }[AB]\text{ sous un angle droit.)}` },
+
+      // ── ps_17 · Cercle diamètre — équation cartésienne ───────────────────────
+      { q: r`A(1;0)\text{ et }B(5;0).\text{ M}(x;y)\text{ appartient au cercle de diamètre }[AB].\\[4pt]\text{Quelle équation M vérifie-t-il ?}`,
+        choices: [r`(x-1)(x-5)+y^2=0`, r`x^2+y^2=25`, r`(x-3)^2+y^2=4`, r`x^2-6x+y^2=0`],
+        a: r`(x-1)(x-5)+y^2=0`,
+        tip: r`\overrightarrow{MA}\cdot\overrightarrow{MB}=0\Leftrightarrow(1-x)(5-x)+(0-y)(0-y)=0\\\Leftrightarrow(x-1)(x-5)+y^2=0.` },
+
+      // ── ps_18 · Produit scalaire et bilinéarité ───────────────────────────────
+      { q: r`\text{Sachant que }\|\vec{u}\|=2,\ \|\vec{v}\|=3,\ \vec{u}\cdot\vec{v}=1,\\[4pt]\text{calculer }(2\vec{u})\cdot\vec{v}.`,
+        choices: [r`2`, r`6`, r`12`, r`1`],
+        a: r`2`,
+        tip: r`(2\vec{u})\cdot\vec{v}=2(\vec{u}\cdot\vec{v})=2\times1=2.\\[4pt]\text{Le produit scalaire est linéaire : on peut sortir les scalaires.}` },
+
+      // ── ps_19 · Question transversale — distance + orthogonalité ──────────────
+      { q: r`A(2;-3)\text{ et }B(5;1).\text{ Calculer }\overrightarrow{AB}\cdot\overrightarrow{AB}.`,
+        choices: [r`25`, r`5`, r`-25`, r`7`],
+        a: r`25`,
+        tip: r`\overrightarrow{AB}=\begin{pmatrix}3\\4\end{pmatrix}\Rightarrow\overrightarrow{AB}\cdot\overrightarrow{AB}=\|\overrightarrow{AB}\|^2=3^2+4^2=25.\\[4pt]\text{Vérification : }AB=\sqrt{9+16}=5\Rightarrow AB^2=25.` },
+
+      // ── ps_20 · Synthèse — angle entre deux vecteurs via coordonnées ──────────
+      { q: r`\vec{u}=\begin{pmatrix}1\\\sqrt{3}\end{pmatrix}\ \text{et}\ \vec{v}=\begin{pmatrix}2\\0\end{pmatrix}.\\[6pt]\text{Quel est le cosinus de l'angle entre }\vec{u}\text{ et }\vec{v}\text{ ?}`,
+        choices: [r`\dfrac{1}{2}`, r`\dfrac{\sqrt{3}}{2}`, r`\dfrac{1}{\sqrt{3}}`, r`1`],
+        a: r`\dfrac{1}{2}`,
+        tip: r`\vec{u}\cdot\vec{v}=1\times2+\sqrt{3}\times0=2.\\[4pt]\|\vec{u}\|=\sqrt{1+3}=2,\quad\|\vec{v}\|=2.\\[4pt]\cos\theta=\dfrac{\vec{u}\cdot\vec{v}}{\|\vec{u}\|\times\|\vec{v}\|}=\dfrac{2}{2\times2}=\dfrac{1}{2}\Rightarrow\theta=60°.` },
+
+    ],
+  },
+
 };
 
 // ── Categories ─────────────────────────────────────────────────────────────────
@@ -8762,6 +8870,10 @@ const CATS = [
       {id:"derivee",      label:"Dérivée de ln(u)",                   group:"proprietes", levels:["term"]},
       {id:"equations",    label:"Équations / inéquations",            group:"proprietes", levels:["term"]},
       {id:"applications", label:"Croissance comparée",                group:"etude",      levels:["term"]},
+    ] },
+  { id:"produit_scalaire", label:"Produit scalaire", emoji:"📐", color:"#0F766E", grad:"linear-gradient(135deg,#14B8A6,#0F766E)", light:"#F0FDFA", border:"#99F6E4",
+    subs:[
+      {id:"plan", label:"Produit scalaire dans le plan", levels:["spe"]},
     ] },
   { id:"algo_python", label:"Algorithmique Python", emoji:"🐍", color:"#15803D", grad:"linear-gradient(135deg,#22C55E,#15803D)", light:"#F0FDF4", border:"#BBF7D0",
     subs:[
@@ -9614,7 +9726,8 @@ const CURRICULUM = {
       fonctions:['tableau_variations','tableau_signes','coeff_directeur_calcul','coeff_directeur_lecture','equation_droite_lecture','resolution_graphique','lecture_image','calcul_image','point_courbe'],
       statistiques:['loi_binomiale','stat_centrale','stat_dispersion'],
       expo:['definition','calculs','etude','derivee','equations','applications'],
-      bac:['spe_annales_s1_2026','spe_annales_s2_2026'] }},
+      bac:['spe_annales_s1_2026','spe_annales_s2_2026'],
+      produit_scalaire:['plan'] }},
   terminale_spe: { label:"Terminale Spé", emoji:"🏆", color:"#DC2626",
     cats:{ polynomes:['poly2_definition','poly2_racines','poly2_discriminant','poly2_canonique','poly2_variations','poly2_signe','poly2_inequations'],
            expo:['definition','calculs','etude','derivee','equations','applications'],
@@ -16389,14 +16502,14 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
   if (sessionQueue.current === null) sessionQueue.current = [...questions];
   // idx pointe dans sessionQueue.current ; questions est le tableau original (pour le score final)
 
-  // ── Feedback "As-tu compris ?" par question ──────────────────────────────
+  // ── Feedback 👍/👎 par question ──────────────────────────────────────────
   const [qFeedback, setQFeedback] = useState({}); // { queueIdx: "up"|"down" }
   const [qFeedbackLoaded, setQFeedbackLoaded] = useState({});
   useEffect(() => {
     loadQFeedback().then(d => setQFeedbackLoaded(d)).catch(()=>{});
   }, []);
 
-  // Clé unique pour retrouver une question dans DB (même logique que qState)
+  // Clé unique pour retrouver une question dans le feedback global (même logique que qState)
   const getQKey = (question) => {
     for (const cId of Object.keys(DB)) {
       for (const sId of Object.keys(DB[cId])) {
@@ -16409,57 +16522,13 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
     return null;
   };
 
-  // Retrouve catId, subId et index DB d'une question
-  const getQLocation = (question) => {
-    for (const cId of Object.keys(DB)) {
-      for (const sId of Object.keys(DB[cId])) {
-        const arr = DB[cId][sId];
-        if (!Array.isArray(arr)) continue;
-        const i = arr.indexOf(question);
-        if (i >= 0) return { cId, sId, i };
-      }
-    }
-    return null;
-  };
-
   const handleQFeedback = async (direction) => {
     const question = sessionQueue.current[idx];
     const key = getQKey(question);
-    const loc = getQLocation(question);
-
-    // Mettre à jour l'état local immédiatement
     setQFeedback(prev => ({ ...prev, [idx]: direction }));
     if (key) {
       await setQFeedbackEntry(key, direction);
       setQFeedbackLoaded(prev => ({ ...prev, [key]: direction }));
-    }
-
-    // Agir sur progA pour piloter la révision espacée
-    if (loc) {
-      try {
-        const prog = await loadProgA(loc.cId, loc.sId);
-        const fail = prog.fail || [];
-        if (direction === 'down') {
-          // 👎 "Pas encore" → priorité haute : ajouter à fail si absent
-          const newFail = [...new Set([...fail, loc.i])].slice(0, 10);
-          await saveProgA(loc.cId, loc.sId, { ...prog, fail: newFail, lp: Date.now() });
-        } else {
-          // 👍 "Oui" → retirer de fail (urgence levée) mais laisser en learning
-          // dans qState — la question reviendra, juste moins vite
-          const prunedFail = fail.filter(fi => fi !== loc.i);
-          await saveProgA(loc.cId, loc.sId, { ...prog, fail: prunedFail, lp: Date.now() });
-          // Réinitialiser le streak qState pour forcer une vérification ultérieure
-          // (status reste "learning", streak remis à 1 pour ne pas sauter à "mastered")
-          const qs = await loadQState();
-          if (key && qs[key] && qs[key].status !== 'mastered') {
-            const entry = qs[key];
-            // On plafonne le streak à 1 : l'élève doit encore réussir 2 fois de suite
-            const newEntry = { ...entry, streak: Math.min(entry.streak || 0, 1) };
-            const newQs = { ...qs, [key]: newEntry };
-            await saveQState(newQs);
-          }
-        }
-      } catch {} // Ne jamais bloquer pour ça
     }
   };
 
@@ -17002,52 +17071,25 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
         </button>
       )}
 
-      {/* ── FEEDBACK "As-tu compris ?" ── */}
+      {/* ── FEEDBACK 👍/👎 par question ── */}
       {didAnswer && (() => {
         const qKey = getQKey(q);
         const currentFeedback = qFeedback[idx] || (qKey ? qFeedbackLoaded[qKey] : null);
         return (
-          <div style={{flexShrink:0,marginTop:10}}>
-            {!currentFeedback ? (
-              <div style={{
-                background:"#F8FAFC",border:"1.5px solid #E2E8F0",
-                borderRadius:12,padding:"10px 14px",
-                display:"flex",alignItems:"center",gap:10,flexWrap:"wrap"
-              }}>
-                <span style={{fontSize:11,color:"#64748B",fontWeight:600,flex:1,minWidth:120}}>
-                  As-tu compris pourquoi ?
-                </span>
-                <div style={{display:"flex",gap:8,flexShrink:0}}>
-                  <button onClick={()=>handleQFeedback("up")} style={{
-                    display:"flex",alignItems:"center",gap:5,
-                    background:"#ECFDF5",border:"1.5px solid #10B981",
-                    borderRadius:9,padding:"7px 13px",cursor:"pointer",
-                    fontSize:12,fontWeight:700,color:"#065F46"
-                  }}>👍 Oui</button>
-                  <button onClick={()=>handleQFeedback("down")} style={{
-                    display:"flex",alignItems:"center",gap:5,
-                    background:"#FEF2F2",border:"1.5px solid #EF4444",
-                    borderRadius:9,padding:"7px 13px",cursor:"pointer",
-                    fontSize:12,fontWeight:700,color:"#991B1B"
-                  }}>👎 Pas encore</button>
-                </div>
-              </div>
-            ) : (
-              <div style={{
-                background: currentFeedback==="up" ? "#F0FDF4" : "#FFF7ED",
-                border: `1.5px solid ${currentFeedback==="up"?"#86EFAC":"#FCD34D"}`,
-                borderRadius:12,padding:"9px 14px",
-                display:"flex",alignItems:"center",gap:8
-              }}>
-                <span style={{fontSize:14}}>{currentFeedback==="up"?"✅":"🔁"}</span>
-                <span style={{fontSize:11,fontWeight:600,
-                  color: currentFeedback==="up"?"#166534":"#92400E",lineHeight:1.4}}>
-                  {currentFeedback==="up"
-                    ? "Bien ! Sigma vérifiera quand même dans quelques jours."
-                    : "Sigma te la reposera très bientôt."}
-                </span>
-              </div>
-            )}
+          <div style={{display:"flex",alignItems:"center",gap:8,marginTop:8,flexShrink:0,justifyContent:"flex-end"}}>
+            <span style={{fontSize:9,color:"#94A3B8",fontWeight:600}}>Cette question :</span>
+            {["up","down"].map(dir => (
+              <button key={dir} onClick={()=>handleQFeedback(dir)}
+                style={{
+                  background: currentFeedback===dir ? (dir==="up"?"#ECFDF5":"#FEF2F2") : "#F8FAFC",
+                  border: `1.5px solid ${currentFeedback===dir?(dir==="up"?"#10B981":"#EF4444"):"#E2E8F0"}`,
+                  borderRadius:8, padding:"4px 10px", cursor:"pointer",
+                  fontSize:13, transition:"all .15s",
+                  color: currentFeedback===dir ? (dir==="up"?"#065F46":"#991B1B") : "#94A3B8"
+                }}>
+                {dir==="up"?"👍":"👎"}
+              </button>
+            ))}
           </div>
         );
       })()}
