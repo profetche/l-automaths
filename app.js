@@ -5113,7 +5113,7 @@ const DB = {
         a: r`y = f'(a)(x - a) + f(a)`,
         tip: r`\text{La formule à connaître par cœur : }y = f'(a)(x - a) + f(a)\text{. Le coefficient directeur est }f'(a)\text{, et la tangente passe par le point }(a \,;\, f(a))\text{.}` },
       // tc_tan_02 — calcul_equation_a_positif — n2
-      { q: r`\text{Soit }f(x) = x^2\text{. Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 1\text{ ?}`,
+      { q: r`\text{Soit }f(x) = x^2\text{.}\\[4pt]\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 1\text{ ?}`,
         choices: [
           r`y = 2x - 1`,
           r`y = 2x + 1`,
@@ -5121,9 +5121,9 @@ const DB = {
           r`y = 2x`
         ],
         a: r`y = 2x - 1`,
-        tip: r`f(1) = 1\text{ et }f'(x) = 2x\text{ donc }f'(1) = 2\text{. Tangente : }y = 2(x - 1) + 1 = 2x - 1\text{.}` },
+        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\[4pt]f'(x) = 2x \Rightarrow f'(1) = 2\\[2pt]f(1) = 1\\[4pt]y = 2(x - 1) + 1 = 2x - 1` },
       // tc_tan_03 — calcul_equation_a_negatif — n3
-      { q: r`\text{Soit }f(x) = x^2 + 1\text{. Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = -2\text{ ?}`,
+      { q: r`\text{Soit }f(x) = x^2 + 1\text{.}\\[4pt]\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = -2\text{ ?}`,
         choices: [
           r`y = -4x - 3`,
           r`y = -4x + 3`,
@@ -5131,7 +5131,7 @@ const DB = {
           r`y = -4x - 5`
         ],
         a: r`y = -4x - 3`,
-        tip: r`f(-2) = 4 + 1 = 5\text{ et }f'(-2) = -4\text{. Tangente : }y = -4(x - (-2)) + 5 = -4(x + 2) + 5 = -4x - 3\text{. Attention au signe : }(x - a)\text{ avec }a = -2\text{ devient }(x + 2)\text{.}` },
+        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\[4pt]f'(x) = 2x \Rightarrow f'(-2) = -4\\[2pt]f(-2) = 4 + 1 = 5\\[4pt]y = -4(x-(-2)) + 5 = -4(x+2) + 5 = -4x - 3\\[2pt]\text{⚠ }(x - a)\text{ avec }a=-2\text{ devient }(x+2)` },
       // tc_tan_04 — lecture_graphique_pente — n2
       { q: r`\text{Sur la figure ci-contre, la droite }T\text{ est la tangente à la courbe de }f\text{ au point d'abscisse }a = 2\text{. Quelle est la valeur de }f'(2)\text{ ?}`,
         gspec: { fn:x=>x*x-x+2, xr:[-1,4], yr:[-1,8], extras:c=><>{gTan(x=>x*x-x+2,2,3,c)}{gPt(2,4,c)}{gNote(2.2,4.6,'A',c,'#EF4444')}</> },
@@ -5190,7 +5190,7 @@ const DB = {
       // ── Questions tangente applicatives — polynômes — STMG / TC ──
 
       // tc_tan_09 — equation_deg2_a=2 — n2
-      { q: r`\text{Soit }f(x) = x^2 - 3x + 1\text{. Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 2\text{ ?}`,
+      { q: r`\text{Soit }f(x) = x^2 - 3x + 1\text{.}\\[4pt]\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 2\text{ ?}`,
         gspec: { fn:x=>x*x-3*x+1, xr:[-1,4], yr:[-3,3], extras:c=><>{gTan(x=>x*x-3*x+1,2,1,c)}{gPt(2,-1,c)}</> },
         choices: [
           r`y = x - 3`,
@@ -5199,10 +5199,10 @@ const DB = {
           r`y = -x + 1`
         ],
         a: r`y = x - 3`,
-        tip: r`f'(x)=2x-3\text{, donc }f'(2)=1\text{. }f(2)=4-6+1=-1\text{. Tangente : }y=1\cdot(x-2)+(-1)=x-3.` },
+        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\[4pt]f'(x)=2x-3 \Rightarrow f'(2)=1\\[2pt]f(2)=4-6+1=-1\\[4pt]y=1\cdot(x-2)+(-1)=x-3` },
 
       // tc_tan_10 — equation_deg2_a=0 — n2
-      { q: r`\text{Soit }f(x) = 2x^2 + x - 5\text{. Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 0\text{ ?}`,
+      { q: r`\text{Soit }f(x) = 2x^2 + x - 5\text{.}\\[4pt]\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 0\text{ ?}`,
         gspec: { fn:x=>2*x*x+x-5, xr:[-2,2], yr:[-7,3], extras:c=><>{gTan(x=>2*x*x+x-5,0,1,c)}{gPt(0,-5,c)}</> },
         choices: [
           r`y = x - 5`,
@@ -5211,10 +5211,10 @@ const DB = {
           r`y = 5x - 5`
         ],
         a: r`y = x - 5`,
-        tip: r`f'(x)=4x+1\text{, donc }f'(0)=1\text{. }f(0)=-5\text{. Tangente : }y=1\cdot(x-0)+(-5)=x-5.` },
+        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\[4pt]f'(x)=4x+1 \Rightarrow f'(0)=1\\[2pt]f(0)=-5\\[4pt]y=1\cdot(x-0)+(-5)=x-5` },
 
       // tc_tan_11 — equation_deg2_a_negatif — n2
-      { q: r`\text{Soit }f(x) = x^2 + 4x\text{. Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = -1\text{ ?}`,
+      { q: r`\text{Soit }f(x) = x^2 + 4x\text{.}\\[4pt]\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = -1\text{ ?}`,
         gspec: { fn:x=>x*x+4*x, xr:[-4,2], yr:[-5,3], extras:c=><>{gTan(x=>x*x+4*x,-1,2,c)}{gPt(-1,-3,c)}</> },
         choices: [
           r`y = 2x - 1`,
@@ -5223,10 +5223,10 @@ const DB = {
           r`y = -2x - 5`
         ],
         a: r`y = 2x - 1`,
-        tip: r`f'(x)=2x+4\text{, donc }f'(-1)=2\text{. }f(-1)=1-4=-3\text{. Tangente : }y=2(x+1)+(-3)=2x-1.` },
+        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\[4pt]f'(x)=2x+4 \Rightarrow f'(-1)=2\\[2pt]f(-1)=1-4=-3\\[4pt]y=2(x-(-1))+(-3)=2(x+1)-3=2x-1\\[2pt]\text{⚠ }(x-a)\text{ avec }a=-1\text{ devient }(x+1)` },
 
       // tc_tan_12 — tangente_horizontale_sommet — n2
-      { q: r`\text{Soit }f(x) = -x^2 + 6x\text{. On cherche la tangente en }a = 3\text{.}\\[4pt]f'(x) = -2x + 6\text{ ; }f'(3) = 0\text{ ; }f(3) = 9\text{. Quelle est la tangente ?}`,
+      { q: r`\text{Soit }f(x) = -x^2 + 6x\text{.}\\[4pt]f'(x) = -2x + 6\text{ ; }f'(3) = 0\text{ ; }f(3) = 9\text{. Quelle est la tangente en }a = 3\text{ ?}`,
         gspec: { fn:x=>-x*x+6*x, xr:[-1,7], yr:[-1,10], extras:c=><>{gTan(x=>-x*x+6*x,3,0,c)}{gPt(3,9,c)}{gNote(3.2,9.3,'max',c,'#EF4444')}</> },
         choices: [
           r`y = 9`,
@@ -5235,10 +5235,10 @@ const DB = {
           r`y = -6x + 27`
         ],
         a: r`y = 9`,
-        tip: r`f'(3)=0\text{ : tangente horizontale au sommet. }y=0\cdot(x-3)+9=9\text{. La tangente est une droite horizontale.}` },
+        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\[4pt]f'(3)=0\text{ et }f(3)=9\\[4pt]y=0\cdot(x-3)+9=9\\[2pt]\text{Tangente horizontale : }f'(a)=0\text{ au sommet.}` },
 
       // tc_tan_13 — equation_deg3_tc — n3
-      { q: r`\text{Soit }f(x) = x^3 - 3x\text{. Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 2\text{ ?}`,
+      { q: r`\text{Soit }f(x) = x^3 - 3x\text{.}\\[4pt]\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 2\text{ ?}`,
         gspec: { fn:x=>x*x*x-3*x, xr:[-0.5,3], yr:[-3,8], extras:c=><>{gTan(x=>x*x*x-3*x,2,9,c)}{gPt(2,2,c)}</> },
         choices: [
           r`y = 9x - 16`,
@@ -5247,10 +5247,10 @@ const DB = {
           r`y = 3x - 4`
         ],
         a: r`y = 9x - 16`,
-        tip: r`f'(x)=3x^2-3\text{, donc }f'(2)=9\text{. }f(2)=8-6=2\text{. Tangente : }y=9(x-2)+2=9x-16.` },
+        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\[4pt]f'(x)=3x^2-3 \Rightarrow f'(2)=9\\[2pt]f(2)=8-6=2\\[4pt]y=9(x-2)+2=9x-16` },
 
       // tc_tan_14 — equation_deg2_coefficients — n2
-      { q: r`\text{Soit }f(x) = 3x^2 - 2x + 1\text{. Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 1\text{ ?}`,
+      { q: r`\text{Soit }f(x) = 3x^2 - 2x + 1\text{.}\\[4pt]\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 1\text{ ?}`,
         gspec: { fn:x=>3*x*x-2*x+1, xr:[-1,3], yr:[-1,8], extras:c=><>{gTan(x=>3*x*x-2*x+1,1,4,c)}{gPt(1,2,c)}</> },
         choices: [
           r`y = 4x - 2`,
@@ -5259,10 +5259,10 @@ const DB = {
           r`y = 6x - 4`
         ],
         a: r`y = 4x - 2`,
-        tip: r`f'(x)=6x-2\text{, donc }f'(1)=4\text{. }f(1)=3-2+1=2\text{. Tangente : }y=4(x-1)+2=4x-2.` },
+        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\[4pt]f'(x)=6x-2 \Rightarrow f'(1)=4\\[2pt]f(1)=3-2+1=2\\[4pt]y=4(x-1)+2=4x-2` },
 
       // tc_tan_15 — identifier_equation_parmi_quatre — n2
-      { q: r`\text{Soit }f(x) = x^2 - 4\text{. Parmi les équations suivantes, laquelle est la tangente à la courbe de }f\text{ au point d'abscisse }a = 3\text{ ?}`,
+      { q: r`\text{Soit }f(x) = x^2 - 4\text{.}\\[4pt]\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 3\text{ ?}`,
         gspec: { fn:x=>x*x-4, xr:[-1,5], yr:[-5,8], extras:c=><>{gTan(x=>x*x-4,3,6,c)}{gPt(3,5,c)}</> },
         choices: [
           r`y = 6x - 13`,
@@ -5271,10 +5271,10 @@ const DB = {
           r`y = 6x - 4`
         ],
         a: r`y = 6x - 13`,
-        tip: r`f'(x)=2x\text{, donc }f'(3)=6\text{. }f(3)=9-4=5\text{. Tangente : }y=6(x-3)+5=6x-13.` },
+        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\[4pt]f'(x)=2x \Rightarrow f'(3)=6\\[2pt]f(3)=9-4=5\\[4pt]y=6(x-3)+5=6x-13` },
 
       // tc_tan_16 — calculer_f_et_fprime_puis_tangente — n3
-      { q: r`\text{Soit }f(x) = -2x^2 + 4x + 1\text{. Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = -1\text{ ?}`,
+      { q: r`\text{Soit }f(x) = -2x^2 + 4x + 1\text{.}\\[4pt]\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = -1\text{ ?}`,
         gspec: { fn:x=>-2*x*x+4*x+1, xr:[-3,3], yr:[-8,4], extras:c=><>{gTan(x=>-2*x*x+4*x+1,-1,-8,c)}{gPt(-1,-5,c)}</> },
         choices: [
           r`y = -8x - 13`,
@@ -5283,10 +5283,10 @@ const DB = {
           r`y = -8x - 5`
         ],
         a: r`y = -8x - 13`,
-        tip: r`f'(x)=-4x+4\text{, donc }f'(-1)=-8\text{. }f(-1)=-2-4+1=-5\text{. Tangente : }y=-8(x+1)+(-5)=-8x-13.` },
+        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\[4pt]f'(x)=-4x+4 \Rightarrow f'(-1)=-8\\[2pt]f(-1)=-2-4+1=-5\\[4pt]y=-8(x+1)+(-5)=-8x-13\\[2pt]\text{⚠ }(x-a)\text{ avec }a=-1\text{ devient }(x+1)` },
 
       // tc_tan_17 — tangente_deg2_depuis_graphique — n2
-      { q: r`\text{Sur la figure ci-contre, la droite }T\text{ est la tangente à la courbe de }f(x)=x^2-2x\text{ au point d'abscisse }a = 3\text{. Quelle est son équation ?}`,
+      { q: r`\text{Soit }f(x) = x^2 - 2x\text{.}\\[4pt]\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 3\text{ ?}`,
         gspec: { fn:x=>x*x-2*x, xr:[-1,5], yr:[-2,8], extras:c=><>{gTan(x=>x*x-2*x,3,4,c)}{gPt(3,3,c)}{gNote(3.2,3.4,'A',c,'#EF4444')}</> },
         choices: [
           r`y = 4x - 9`,
@@ -5295,10 +5295,10 @@ const DB = {
           r`y = 2x - 3`
         ],
         a: r`y = 4x - 9`,
-        tip: r`f'(x)=2x-2\text{, donc }f'(3)=4\text{. }f(3)=9-6=3\text{. Tangente : }y=4(x-3)+3=4x-9.` },
+        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\[4pt]f'(x)=2x-2 \Rightarrow f'(3)=4\\[2pt]f(3)=9-6=3\\[4pt]y=4(x-3)+3=4x-9` },
 
       // tc_tan_18 — etapes_methodiques_stmg — n2
-      { q: r`\text{On pose }f(x) = x^2 + 2x - 3\text{.}\\[4pt]\text{Étape 1 : }f'(x) = 2x + 2\text{. Étape 2 : }f'(1) = 4\text{. Étape 3 : }f(1) = 0\text{.}\\[4pt]\text{Quelle est l'équation de la tangente en }a = 1\text{ ?}`,
+      { q: r`\text{Soit }f(x) = x^2 + 2x - 3\text{.}\\[4pt]f'(x) = 2x + 2\text{ ; }f'(1) = 4\text{ ; }f(1) = 0\text{. Quelle est la tangente en }a = 1\text{ ?}`,
         gspec: { fn:x=>x*x+2*x-3, xr:[-3,3], yr:[-4,5], extras:c=><>{gTan(x=>x*x+2*x-3,1,4,c)}{gPt(1,0,c)}</> },
         choices: [
           r`y = 4x - 4`,
@@ -5307,7 +5307,7 @@ const DB = {
           r`y = 2x - 2`
         ],
         a: r`y = 4x - 4`,
-        tip: r`y=f'(1)(x-1)+f(1)=4(x-1)+0=4x-4.` },
+        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\[4pt]y=4(x-1)+0=4x-4` },
 
       // tc_tan_19 — synthèse_lecture_et_calcul — n3
       { q: r`\text{Soit }f(x) = x^3 - 6x^2 + 9x\text{. On donne }f'(x) = 3x^2 - 12x + 9\text{.}\\[4pt]\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 1\text{ ?}`,
@@ -5319,7 +5319,7 @@ const DB = {
           r`y = -3x + 7`
         ],
         a: r`y = 4`,
-        tip: r`f'(1)=3-12+9=0\text{ : tangente horizontale au maximum. }f(1)=1-6+9=4\text{. Tangente : }y=4.` },
+        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\[4pt]f'(1)=3-12+9=0 \Rightarrow \text{tangente horizontale}\\[2pt]f(1)=1-6+9=4\\[4pt]y=0\cdot(x-1)+4=4` },
 
       // tc_tan_20 — QCM_erreur_frequente — n2
       { q: r`\text{Soit }f(x) = x^2\text{. Un élève écrit : "La tangente en }a = 2\text{ est }y = 2x\text{."  Cette réponse est :}`,
@@ -5503,17 +5503,6 @@ const DB = {
         ],
         a: r`f\text{ n'admet ni minimum ni maximum en }x = 0`,
         tip: r`f'(x) = 3x^2 \geq 0\text{ pour tout }x\text{, et }f'(0) = 0\text{. Mais }f'\text{ ne change pas de signe en }0\text{ (elle reste positive ou nulle). Donc }f\text{ est croissante sur }\mathbb{R}\text{ }` },
-      // tc_var_07 — etude_complete_polynome_3 — n4
-      { q: r`\text{Soit }f\text{ définie sur }\mathbb{R}\text{ par }f(x) = x^3 - 3x\text{. On peut affirmer que :}`,
-        choices: [
-          r`f\text{ est croissante sur }\mathbb{R}`,
-          r`f\text{ est croissante sur }]-\infty\,;\,-1]\text{, décroissante sur }[-1\,;\,1]\text{, croissante sur }[1\,;\,+\infty[`,
-          r`f\text{ est décroissante sur }]-\infty\,;\,-1]\text{, croissante sur }[-1\,;\,1]\text{, décroissante sur }[1\,;\,+\infty[`,
-          r`f\text{ admet un maximum en }x = 1\text{ et un minimum en }x = -1`
-        ],
-        a: r`f\text{ est croissante sur }]-\infty\,;\,-1]\text{, décroissante sur }[-1\,;\,1]\text{, croissante sur }[1\,;\,+\infty[`,
-        tip: r`f'(x) = 3x^2 - 3 = 3(x-1)(x+1)\text{. Racines }-1\text{ et }1\text{ ; trinôme positif à l'extérieur (car }a = 3 > 0\text{). Donc }f' > 0\text{ sur }]-\infty\,;\,-1[\text{ et }]1\,;\,+\infty[\text{, et}` },
-
       // ── Tableaux signe de f' → variations de f ──
       // Phrase-clé : "Étudier les variations d'une fonction revient à étudier le signe de sa dérivée."
 
@@ -5580,7 +5569,7 @@ const DB = {
         tip: r`f'>0\Rightarrow f\text{ croissante avant }x=2\text{. }f'<0\Rightarrow f\text{ décroissante après. }f(2)=7\text{ est un maximum.}` },
 
       // tc_var_14 — tableau_complet_deg2_a_poser — n2
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = x^2 - 2x - 3\text{.}\\[4pt]\text{a) Calcule }f'(x)\text{. b) Complète le tableau de signes de }f'\text{. c) Dresse le tableau de variations de }f\text{.}`,
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = x^2 - 2x - 3\text{. On a }f'(x) = 2x - 2\text{.}\\[4pt]\text{Complète le tableau de signes de }f'\text{, puis le tableau de variations de }f\text{.}`,
         gspec:{ fn:x=>x*x-2*x-3, xr:[-2,4], yr:[-5,4], label:"f",
           extras:c=><>{gDV(1,c,C_MIN)}{gDH(-4,c,C_MIN)}{gPt(1,-4,c,C_MIN)}</> },
         tsSpec:{ xVals:["-∞","1","+∞"],
@@ -5592,7 +5581,7 @@ const DB = {
         tip: r`f'(x)=2x-2\text{, racine }x=1\text{. Négatif avant, positif après. Minimum }f(1)=1-2-3=-4.` },
 
       // tc_var_15 — tableau_complet_deg2_negatif — n2
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = -x^2 + 4x\text{.}\\[4pt]\text{a) Calcule }f'(x)\text{. b) Complète le tableau de signes de }f'\text{. c) Dresse le tableau de variations de }f\text{.}`,
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = -x^2 + 4x\text{. On a }f'(x) = -2x + 4\text{.}\\[4pt]\text{Complète le tableau de signes de }f'\text{, puis le tableau de variations de }f\text{.}`,
         gspec:{ fn:x=>-x*x+4*x, xr:[-1,5], yr:[-1,5], label:"f",
           extras:c=><>{gDV(2,c,C_MAX)}{gDH(4,c,C_MAX)}{gPt(2,4,c,C_MAX)}</> },
         tsSpec:{ xVals:["-∞","2","+∞"],
@@ -5632,7 +5621,7 @@ const DB = {
         tip: r`f'\text{ est négative pour }x>2\text{. Or }f'\text{ négative }\Rightarrow f\text{ décroissante. Donc }f\text{ est décroissante sur }[2\,;\,+\infty[.` },
 
       // tc_var_18 — tableau_degre2_coefficients — n2
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = 2x^2 - 8x + 3\text{.}\\[4pt]\text{a) Calcule }f'(x)\text{. b) Complète le tableau de signes de }f'\text{. c) Dresse le tableau de variations de }f\text{.}`,
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = 2x^2 - 8x + 3\text{. On a }f'(x) = 4x - 8\text{.}\\[4pt]\text{Complète le tableau de signes de }f'\text{, puis le tableau de variations de }f\text{.}`,
         gspec:{ fn:x=>2*x*x-8*x+3, xr:[-1,5], yr:[-6,4], label:"f",
           extras:c=><>{gDV(2,c,C_MIN)}{gDH(-5,c,C_MIN)}{gPt(2,-5,c,C_MIN)}</> },
         tsSpec:{ xVals:["-∞","2","+∞"],
@@ -5682,7 +5671,7 @@ const DB = {
         tip: r`f'(x)=(x-2)^2\geq 0\text{ pour tout }x\text{, et }f'(2)=0\text{ mais ne change pas de signe. Donc }f\text{ est croissante sur }\mathbb{R}\text{ (sans extremum en }x=2\text{).}` },
 
       // tc_var_22 — tableau_degre3_calculer_fprime — n3
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = -x^3 + 3x^2\text{.}\\[4pt]\text{a) Calcule }f'(x)\text{. b) Factorise }f'(x)\text{. c) Complète les tableaux de signe et de variations.}`,
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = -x^3 + 3x^2\text{. On donne }f'(x) = -3x^2 + 6x = -3x(x-2)\text{.}\\[4pt]\text{Complète le tableau de signes de }f'\text{, puis le tableau de variations de }f\text{.}`,
         gspec:{ fn:x=>-x*x*x+3*x*x, xr:[-1,4], yr:[-1,5], label:"f",
           extras:c=><>{gDV(0,c,C_MIN)}{gDH(0,c,C_MIN)}{gPt(0,0,c,C_MIN)}{gDV(2,c,C_MAX)}{gDH(4,c,C_MAX)}{gPt(2,4,c,C_MAX)}</> },
         tsSpec:{ xVals:["-∞","0","2","+∞"],
@@ -5696,7 +5685,7 @@ const DB = {
         tip: r`f'(x)=-3x^2+6x=-3x(x-2)\text{. Racines }0\text{ et }2\text{. Coeff. }a=-3<0\text{ : positif entre les racines. Minimum }f(0)=0\text{, maximum }f(2)=4.` },
 
       // tc_var_23 — tableau_complet_from_scratch_n3 — n3
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = x^2 + 6x + 5\text{.}\\[4pt]\text{Calcule }f'(x)\text{, dresse le tableau de signes de }f'\text{, puis le tableau de variations de }f\text{.}`,
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = x^2 + 6x + 5\text{. On a }f'(x) = 2x + 6\text{.}\\[4pt]\text{Complète le tableau de signes de }f'\text{, puis le tableau de variations de }f\text{.}`,
         gspec:{ fn:x=>x*x+6*x+5, xr:[-6,1], yr:[-5,5], label:"f",
           extras:c=><>{gDV(-3,c,C_MIN)}{gDH(-4,c,C_MIN)}{gPt(-3,-4,c,C_MIN)}</> },
         tsSpec:{ xVals:["-∞","-3","+∞"],
@@ -5758,7 +5747,7 @@ const DB = {
         tip: r`f'=3(x+\sqrt{3})(x-\sqrt{3})\text{. Maximum }f(-\sqrt{3})=6\sqrt{3}\approx 10{,}4\text{, minimum }f(\sqrt{3})=-6\sqrt{3}\approx -10{,}4.` },
 
       // tc_var_28 — tableau_complet_stmg_polynome — n2
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = -3x^2 + 12x - 7\text{.}\\[4pt]\text{a) Calcule }f'(x)\text{. b) Complète le tableau de signes de }f'\text{. c) Dresse le tableau de variations.}`,
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = -3x^2 + 12x - 7\text{. On a }f'(x) = -6x + 12\text{.}\\[4pt]\text{Complète le tableau de signes de }f'\text{, puis le tableau de variations de }f\text{.}`,
         gspec:{ fn:x=>-3*x*x+12*x-7, xr:[-0.5,4.5], yr:[-8,6], label:"f",
           extras:c=><>{gDV(2,c,C_MAX)}{gDH(5,c,C_MAX)}{gPt(2,5,c,C_MAX)}</> },
         tsSpec:{ xVals:["-∞","2","+∞"],
