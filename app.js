@@ -7717,6 +7717,131 @@ const DB = {
         choices: [r`\dfrac{\sqrt{2}}{2}`, r`-\dfrac{\sqrt{2}}{2}`, r`\dfrac{1}{2}`, `-1`],
         a: r`\dfrac{\sqrt{2}}{2}`, tip: r`\cos\!\tfrac{7\pi}{4}=\cos\!\tfrac{\pi}{4}=\tfrac{\sqrt{2}}{2}` },
     ],
+
+    // ── Fonctions sin et cos : propriétés, symétries, équations ───────────────
+    trigo_fonctions: [
+
+      // tf_01 — Identité fondamentale
+      { q: r`\text{Pour tout réel }x,\text{ quelle est la relation fondamentale vérifiée par }\cos x\text{ et }\sin x\text{ ?}`,
+        choices: [r`\cos^2 x+\sin^2 x=1`, r`\cos x+\sin x=1`, r`\cos^2 x-\sin^2 x=1`, r`\cos x\times\sin x=1`],
+        a: r`\cos^2 x+\sin^2 x=1`,
+        tip: r`\cos^2 x+\sin^2 x=1\text{ pour tout }x\in\mathbb{R}.\\[4pt]\text{C'est le théorème de Pythagore appliqué au cercle de rayon 1.}` },
+
+      // tf_02 — Périodicité de cos
+      { q: r`\cos\!\left(x+2\pi\right)=\,?`,
+        choices: [r`\cos x`, r`-\cos x`, r`\sin x`, r`\cos x+2\pi`],
+        a: r`\cos x`,
+        tip: r`\text{cos est }2\pi\text{-périodique : }\cos(x+2\pi)=\cos x\text{ pour tout }x.` },
+
+      // tf_03 — Périodicité de sin
+      { q: r`\sin\!\left(x+2\pi\right)=\,?`,
+        choices: [r`\sin x`, r`-\sin x`, r`\cos x`, r`\sin x+1`],
+        a: r`\sin x`,
+        tip: r`\text{sin est }2\pi\text{-périodique : }\sin(x+2\pi)=\sin x\text{ pour tout }x.` },
+
+      // tf_04 — Parité de cos (fonction paire)
+      { q: r`\cos(-x)=\,?`,
+        choices: [r`\cos x`, r`-\cos x`, r`\sin x`, r`-\sin x`],
+        a: r`\cos x`,
+        tip: r`\text{cos est une fonction \textbf{paire} : }\cos(-x)=\cos x.\\[4pt]\text{Géométriquement : symétrie par rapport à l'axe des ordonnées.}` },
+
+      // tf_05 — Imparité de sin
+      { q: r`\sin(-x)=\,?`,
+        choices: [r`-\sin x`, r`\sin x`, r`\cos x`, r`-\cos x`],
+        a: r`-\sin x`,
+        tip: r`\text{sin est une fonction \textbf{impaire} : }\sin(-x)=-\sin x.\\[4pt]\text{Géométriquement : symétrie centrale par rapport à O.}` },
+
+      // tf_06 — Symétrie π−x pour cos
+      { q: r`\cos(\pi-x)=\,?`,
+        choices: [r`-\cos x`, r`\cos x`, r`-\sin x`, r`\sin x`],
+        a: r`-\cos x`,
+        tip: r`\cos(\pi-x)=-\cos x.\\[4pt]\text{Symétrie par rapport à l'axe des ordonnées du demi-cercle supérieur.}` },
+
+      // tf_07 — Symétrie π−x pour sin
+      { q: r`\sin(\pi-x)=\,?`,
+        choices: [r`\sin x`, r`-\sin x`, r`\cos x`, r`-\cos x`],
+        a: r`\sin x`,
+        tip: r`\sin(\pi-x)=\sin x.\\[4pt]\text{Sur le cercle : les points d'angles }x\text{ et }\pi-x\text{ ont la même ordonnée.}` },
+
+      // tf_08 — Symétrie π+x pour cos
+      { q: r`\cos(\pi+x)=\,?`,
+        choices: [r`-\cos x`, r`\cos x`, r`\sin x`, r`-\sin x`],
+        a: r`-\cos x`,
+        tip: r`\cos(\pi+x)=-\cos x.\\[4pt]\text{Ajouter }\pi\text{ revient à faire une symétrie centrale : abscisse opposée.}` },
+
+      // tf_09 — Symétrie π+x pour sin
+      { q: r`\sin(\pi+x)=\,?`,
+        choices: [r`-\sin x`, r`\sin x`, r`-\cos x`, r`\cos x`],
+        a: r`-\sin x`,
+        tip: r`\sin(\pi+x)=-\sin x.\\[4pt]\text{Symétrie centrale : ordonnée opposée.}` },
+
+      // tf_10 — Application symétrie : simplifier cos(π − π/3)
+      { q: r`\cos\!\left(\pi-\dfrac{\pi}{3}\right)=\,?`,
+        choices: [r`-\dfrac{1}{2}`, r`\dfrac{1}{2}`, r`-\dfrac{\sqrt{3}}{2}`, r`\dfrac{\sqrt{3}}{2}`],
+        a: r`-\dfrac{1}{2}`,
+        tip: r`\cos\!\left(\pi-\tfrac{\pi}{3}\right)=-\cos\!\tfrac{\pi}{3}=-\tfrac{1}{2}.` },
+
+      // tf_11 — Application symétrie : sin(π + π/6)
+      { q: r`\sin\!\left(\pi+\dfrac{\pi}{6}\right)=\,?`,
+        choices: [r`-\dfrac{1}{2}`, r`\dfrac{1}{2}`, r`-\dfrac{\sqrt{3}}{2}`, r`\dfrac{\sqrt{3}}{2}`],
+        a: r`-\dfrac{1}{2}`,
+        tip: r`\sin\!\left(\pi+\tfrac{\pi}{6}\right)=-\sin\!\tfrac{\pi}{6}=-\tfrac{1}{2}.` },
+
+      // tf_12 — Application parité : cos(−π/4)
+      { q: r`\cos\!\left(-\dfrac{\pi}{4}\right)=\,?`,
+        choices: [r`\dfrac{\sqrt{2}}{2}`, r`-\dfrac{\sqrt{2}}{2}`, r`\dfrac{1}{2}`, r`-\dfrac{1}{2}`],
+        a: r`\dfrac{\sqrt{2}}{2}`,
+        tip: r`\cos\!\left(-\tfrac{\pi}{4}\right)=\cos\!\tfrac{\pi}{4}=\tfrac{\sqrt{2}}{2}\text{ (cos est paire).}` },
+
+      // tf_13 — Équation cos(x)=1/2 sur [0;2π]
+      { q: r`\text{Les solutions de }\cos x=\dfrac{1}{2}\text{ sur }[0\,;\,2\pi]\text{ sont :}`,
+        choices: [r`\dfrac{\pi}{3}\text{ et }\dfrac{5\pi}{3}`, r`\dfrac{\pi}{3}\text{ et }\dfrac{2\pi}{3}`, r`\dfrac{\pi}{6}\text{ et }\dfrac{5\pi}{6}`, r`\dfrac{\pi}{3}\text{ seulement}`],
+        a: r`\dfrac{\pi}{3}\text{ et }\dfrac{5\pi}{3}`,
+        tip: r`\cos x=\cos\!\tfrac{\pi}{3}\Leftrightarrow x=\tfrac{\pi}{3}+2k\pi\text{ ou }x=-\tfrac{\pi}{3}+2k\pi.\\[4pt]\text{Sur }[0;2\pi]: x=\tfrac{\pi}{3}\text{ et }x=2\pi-\tfrac{\pi}{3}=\tfrac{5\pi}{3}.` },
+
+      // tf_14 — Équation sin(x)=1/2 sur [0;2π]
+      { q: r`\text{Les solutions de }\sin x=\dfrac{1}{2}\text{ sur }[0\,;\,2\pi]\text{ sont :}`,
+        choices: [r`\dfrac{\pi}{6}\text{ et }\dfrac{5\pi}{6}`, r`\dfrac{\pi}{6}\text{ et }\dfrac{7\pi}{6}`, r`\dfrac{\pi}{3}\text{ et }\dfrac{2\pi}{3}`, r`\dfrac{\pi}{6}\text{ seulement}`],
+        a: r`\dfrac{\pi}{6}\text{ et }\dfrac{5\pi}{6}`,
+        tip: r`\sin x=\sin\!\tfrac{\pi}{6}\Leftrightarrow x=\tfrac{\pi}{6}+2k\pi\text{ ou }x=\pi-\tfrac{\pi}{6}+2k\pi.\\[4pt]\text{Sur }[0;2\pi]: x=\tfrac{\pi}{6}\text{ et }x=\tfrac{5\pi}{6}.` },
+
+      // tf_15 — Équation cos(x)=0
+      { q: r`\text{Les solutions de }\cos x=0\text{ sur }[0\,;\,2\pi]\text{ sont :}`,
+        choices: [r`\dfrac{\pi}{2}\text{ et }\dfrac{3\pi}{2}`, r`0\text{ et }\pi`, r`\dfrac{\pi}{2}\text{ seulement}`, r`\pi\text{ et }2\pi`],
+        a: r`\dfrac{\pi}{2}\text{ et }\dfrac{3\pi}{2}`,
+        tip: r`\cos x=0\Leftrightarrow x=\tfrac{\pi}{2}+k\pi.\\[4pt]\text{Sur }[0;2\pi]: x=\tfrac{\pi}{2}\text{ et }x=\tfrac{3\pi}{2}.` },
+
+      // tf_16 — Équation sin(x)=−1 sur [0;2π]
+      { q: r`\text{L'unique solution de }\sin x=-1\text{ sur }[0\,;\,2\pi]\text{ est :}`,
+        choices: [r`\dfrac{3\pi}{2}`, r`\dfrac{\pi}{2}`, r`\pi`, r`\dfrac{5\pi}{2}`],
+        a: r`\dfrac{3\pi}{2}`,
+        tip: r`\sin x=-1\Leftrightarrow x=\dfrac{3\pi}{2}+2k\pi.\\[4pt]\text{Sur }[0;2\pi]: x=\dfrac{3\pi}{2}\text{ (point le plus bas du cercle).}` },
+
+      // tf_17 — Signe de sin sur [0;π]
+      { q: r`\text{Sur }]0\,;\,\pi[\,,\ \sin x\text{ est :}`,
+        choices: [r`\text{strictement positif}`, r`\text{strictement négatif}`, r`\text{nul}`, r`\text{parfois positif, parfois négatif}`],
+        a: r`\text{strictement positif}`,
+        tip: r`\text{Sur }]0;\pi[,\text{ le point }M(\cos x;\sin x)\text{ est dans le demi-cercle supérieur.}\\\sin x>0\text{ pour tout }x\in]0;\pi[.` },
+
+      // tf_18 — Variations de cos sur [0;π]
+      { q: r`\text{Sur }[0\,;\,\pi],\text{ la fonction cosinus est :}`,
+        choices: [r`\text{strictement décroissante}`, r`\text{strictement croissante}`, r`\text{constante}`, r`\text{d'abord croissante puis décroissante}`],
+        a: r`\text{strictement décroissante}`,
+        tip: r`\text{Sur }[0;\pi],\ \cos\text{ passe de }1\text{ (en }0\text{) à }-1\text{ (en }\pi\text{) : elle est strictement décroissante.}` },
+
+      // tf_19 — Utiliser cos²+sin²=1 pour trouver cos
+      { q: r`\sin x=\dfrac{3}{5}\text{ et }x\in\left[0\,;\,\dfrac{\pi}{2}\right].\\[4pt]\text{Que vaut }\cos x\text{ ?}`,
+        choices: [r`\dfrac{4}{5}`, r`-\dfrac{4}{5}`, r`\dfrac{3}{4}`, r`\dfrac{16}{25}`],
+        a: r`\dfrac{4}{5}`,
+        tip: r`\cos^2 x=1-\sin^2 x=1-\tfrac{9}{25}=\tfrac{16}{25}.\\[4pt]x\in[0;\tfrac{\pi}{2}]\Rightarrow\cos x>0\Rightarrow\cos x=\tfrac{4}{5}.` },
+
+      // tf_20 — Simplification chaînée
+      { q: r`\text{Simplifier }\sin\!\left(\pi+\dfrac{\pi}{4}\right)+\cos\!\left(-\dfrac{\pi}{4}\right).`,
+        choices: [r`0`, r`\sqrt{2}`, r`-\sqrt{2}`, r`\dfrac{\sqrt{2}}{2}`],
+        a: r`0`,
+        tip: r`\sin\!\left(\pi+\tfrac{\pi}{4}\right)=-\sin\!\tfrac{\pi}{4}=-\tfrac{\sqrt{2}}{2}.\\[4pt]\cos\!\left(-\tfrac{\pi}{4}\right)=\cos\!\tfrac{\pi}{4}=\tfrac{\sqrt{2}}{2}.\\[4pt]\text{Somme }=-\tfrac{\sqrt{2}}{2}+\tfrac{\sqrt{2}}{2}=0.` },
+
+    ],
   },
 
   // ══════════════════════════════════════════════════════════════════════════════
@@ -7992,6 +8117,71 @@ const DB = {
         choices: [r`0`, r`1`, r`+\infty`, r`-\infty`],
         a: r`+\infty`,
         tip: r`\text{Croissance comparée : }e^x\text{ l'emporte sur }x^2` },
+    ],
+
+    // ── Bloc 7 : Inégalités, comparaisons et signe ────────────────────────────
+    expo_comparaisons: [
+
+      // ec_01 — e^x > 1 ⟺ x > 0
+      { q: r`e^x > 1\;\Leftrightarrow`,
+        choices: [r`x>0`, r`x<0`, r`x>e`, r`x\geq 1`],
+        a: r`x>0`,
+        tip: r`e^x>1=e^0\Leftrightarrow x>0\text{ (exp strictement croissante).}` },
+
+      // ec_02 — e^x < 1 ⟺ x < 0
+      { q: r`e^x < 1\;\Leftrightarrow`,
+        choices: [r`x<0`, r`x>0`, r`x<1`, r`x\leq 0`],
+        a: r`x<0`,
+        tip: r`e^x<e^0\Leftrightarrow x<0.` },
+
+      // ec_03 — e^(2x−1) > 1
+      { q: r`e^{2x-1}>1\;\Leftrightarrow`,
+        choices: [r`x>\dfrac{1}{2}`, r`x<\dfrac{1}{2}`, r`x>1`, r`x<1`],
+        a: r`x>\dfrac{1}{2}`,
+        tip: r`e^{2x-1}>e^0\Leftrightarrow 2x-1>0\Leftrightarrow x>\tfrac{1}{2}.` },
+
+      // ec_04 — signe de e^x − e^3
+      { q: r`\text{Signe de }e^x - e^3\text{ selon }x :`,
+        choices: [r`\text{positif si }x>3,\text{ négatif si }x<3`, r`\text{toujours positif}`, r`\text{positif si }x>0`, r`\text{négatif si }x>3`],
+        a: r`\text{positif si }x>3,\text{ négatif si }x<3`,
+        tip: r`e^x-e^3>0\Leftrightarrow e^x>e^3\Leftrightarrow x>3.\\e^x-e^3<0\Leftrightarrow x<3.` },
+
+      // ec_05 — comparer e^a et e^b avec a < b
+      { q: r`\text{Si }a<b,\text{ alors }e^a\ldots e^b`,
+        choices: [r`e^a < e^b`, r`e^a > e^b`, r`e^a = e^b`, r`\text{on ne peut pas conclure}`],
+        a: r`e^a < e^b`,
+        tip: r`\text{exp est strictement croissante : }a<b\Rightarrow e^a<e^b.` },
+
+      // ec_06 — e^(x²) ≥ 1 pour tout x
+      { q: r`\text{Pour tout réel }x,\;e^{x^2}\ldots 1`,
+        choices: [r`\geq 1`, r`\leq 1`, r`= 1`, r`> 1`],
+        a: r`\geq 1`,
+        tip: r`x^2\geq 0\Rightarrow e^{x^2}\geq e^0=1\text{ (égalité en }x=0\text{).}` },
+
+      // ec_07 — résoudre e^(x²−4) ≤ 1
+      { q: r`e^{x^2-4}\leq 1\;\Leftrightarrow`,
+        choices: [r`-2\leq x\leq 2`, r`x\leq 2`, r`x^2\leq 1`, r`x\geq 2`],
+        a: r`-2\leq x\leq 2`,
+        tip: r`e^{x^2-4}\leq e^0\Leftrightarrow x^2-4\leq 0\Leftrightarrow x^2\leq 4\Leftrightarrow -2\leq x\leq 2.` },
+
+      // ec_08 — comparer e^(−x) et e^(x) selon le signe de x
+      { q: r`\text{Pour }x>0,\text{ comparer }e^{-x}\text{ et }e^x :`,
+        choices: [r`e^{-x}<e^x`, r`e^{-x}>e^x`, r`e^{-x}=e^x`, r`\text{Impossible à dire}`],
+        a: r`e^{-x}<e^x`,
+        tip: r`x>0\Rightarrow -x<x\Rightarrow e^{-x}<e^x\text{ (exp croissante).}` },
+
+      // ec_09 — signe de (e^x − 1)(e^x + 2)
+      { q: r`\text{Signe de }(e^x-1)(e^x+2)\text{ selon }x :`,
+        choices: [r`\text{positif si }x>0,\text{ négatif si }x<0`, r`\text{toujours positif}`, r`\text{toujours négatif}`, r`\text{nul pour }x=0\text{ ou }x=-2`],
+        a: r`\text{positif si }x>0,\text{ négatif si }x<0`,
+        tip: r`e^x+2>0\text{ toujours (car }e^x>0>-2\text{).}\\e^x-1>0\Leftrightarrow x>0.\\\text{Donc le produit a le signe de }(e^x-1).` },
+
+      // ec_10 — encadrement e^x entre deux valeurs
+      { q: r`\text{Pour }0\leq x\leq 1,\text{ on a :}`,
+        choices: [r`1\leq e^x\leq e`, r`0\leq e^x\leq 1`, r`e\leq e^x\leq e^2`, r`0\leq e^x\leq e^2`],
+        a: r`1\leq e^x\leq e`,
+        tip: r`\text{exp croissante et }0\leq x\leq 1\Rightarrow e^0\leq e^x\leq e^1\Rightarrow 1\leq e^x\leq e.` },
+
     ],
   },
 
@@ -9195,7 +9385,9 @@ const CATS = [
     ] },
   { id:"trigonometrie",label:"Cercle trigonométrique", emoji:"⭕", color:"#0891B2", grad:"linear-gradient(135deg,#06B6D4,#0E7490)", light:"#ECFEFF", border:"#A5F3FC",
     subs:[
-      {id:"cercle_trigo",label:"Placer un angle sur le cercle", levels:["spe","term"], levelPicker:true, levelType:"cercle_trigo"},{id:"valeurs_trigo",label:"Valeurs de cos et sin",levels:["spe","term"]},
+      {id:"cercle_trigo",    label:"Placer un angle sur le cercle",       levels:["spe","term"], levelPicker:true, levelType:"cercle_trigo"},
+      {id:"valeurs_trigo",   label:"Valeurs de cos et sin",               levels:["spe","term"]},
+      {id:"trigo_fonctions", label:"Propriétés, symétries et équations",  levels:["spe","term"]},
     ] },
   { id:"expo", label:"Fonction exponentielle", emoji:"📐", color:"#16A34A", grad:"linear-gradient(135deg,#22C55E,#15803D)", light:"#F0FDF4", border:"#BBF7D0",
     groups:[
@@ -9204,12 +9396,13 @@ const CATS = [
       {id:"calculs", label:"🧮 Calculs"},
     ],
     subs:[
-      {id:"definition",   label:"Définition et propriétés", group:"bases",   levels:["spe","term"]},
-      {id:"calculs",      label:"Calculs algébriques",      group:"calculs",  levels:["spe","term"]},
-      {id:"etude",        label:"Étude de la fonction",     group:"etude",    levels:["spe","term"]},
-      {id:"derivee",      label:"Dérivée",                  group:"calculs",  levels:["spe","term"]},
-      {id:"equations",    label:"Équations / inéquations",  group:"calculs",  levels:["spe","term"]},
-      {id:"applications", label:"Applications",             group:"etude",    levels:["spe","term"]},
+      {id:"definition",        label:"Définition et propriétés", group:"bases",   levels:["spe","term"]},
+      {id:"calculs",           label:"Calculs algébriques",      group:"calculs",  levels:["spe","term"]},
+      {id:"etude",             label:"Étude de la fonction",     group:"etude",    levels:["spe","term"]},
+      {id:"derivee",           label:"Dérivée",                  group:"calculs",  levels:["spe","term"]},
+      {id:"equations",         label:"Équations / inéquations",  group:"calculs",  levels:["spe","term"]},
+      {id:"expo_comparaisons", label:"Inégalités et comparaisons", group:"etude",  levels:["spe","term"]},
+      {id:"applications",      label:"Applications",             group:"etude",    levels:["spe","term"]},
     ] },
   { id:"ln", label:"Fonction logarithme népérien", emoji:"🔢", color:"#7C3AED", grad:"linear-gradient(135deg,#A78BFA,#5B21B6)", light:"#F5F3FF", border:"#DDD6FE",
     groups:[
@@ -10087,13 +10280,14 @@ const CURRICULUM = {
       // ── Prérequis seconde (travaillés si lacunes détectées) ──
       fonctions:['tableau_variations','tableau_signes','coeff_directeur_calcul','coeff_directeur_lecture','equation_droite_lecture','resolution_graphique','lecture_image','calcul_image','point_courbe'],
       statistiques:['loi_binomiale','stat_centrale','stat_dispersion'],
-      expo:['definition','calculs','etude','derivee','equations','applications'],
+      expo:['definition','calculs','etude','derivee','equations','expo_comparaisons','applications'],
       bac:['spe_annales_s1_2026','spe_annales_s2_2026'],
       produit_scalaire:['plan'],
+      trigonometrie:['valeurs_trigo','trigo_fonctions'],
       geometrie:['vecteurs_bases','chasles','geom_analytique','vecteurs_colineaires'] }},
   terminale_spe: { label:"Terminale Spé", emoji:"🏆", color:"#DC2626",
     cats:{ polynomes:['poly2_definition','poly2_racines','poly2_discriminant','poly2_canonique','poly2_variations','poly2_signe','poly2_inequations'],
-           expo:['definition','calculs','etude','derivee','equations','applications'],
+           expo:['definition','calculs','etude','derivee','equations','expo_comparaisons','applications'],
            suites:['suites_nature','suites_termes','suites_variations','suites_recurrence','suites_explicite_recurr'],
            limites:['lim_reference','lim_operations','lim_FI','lim_asymptotes','lim_comparaison'],
            derivation:['lecture_derivee','calcul_derivee','deriv_vitesse','deriv_tangente','deriv_fonctions_ref','deriv_variations','deriv_produit','deriv_quotient','deriv_rationnelle','deriv_optimisation','deriv_tangente_avancee','derivee_convexite','continuite'],
@@ -10102,7 +10296,7 @@ const CURRICULUM = {
            equa_diff:['equa_diff'],
            probabilites:['tableau','tableau_fill','arbre','contraire','probas_conditionnelles','probas_independance','probas_totales','probas_var_aleatoires','probas_loi_binomiale'],
            denombrement:['denombrement_type'],
-           trigonometrie:['valeurs_trigo'],
+           trigonometrie:['valeurs_trigo','trigo_fonctions'],
            algo_python:['algo_syntaxe','algo_fonction','algo_if','algo_for','algo_while'],
            fonctions:['lecture_image','calcul_image','point_courbe','coeff_directeur_calcul','coeff_directeur_lecture','resolution_graphique','tableau_variations','tableau_signes'],
            pourcentages:['proportions','taux_cm','valeur_finale','evolutions_successives'],
