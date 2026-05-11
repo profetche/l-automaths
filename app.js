@@ -12569,7 +12569,7 @@ async function generateWeeklyProgram(profile, allProg, diagResults) {
   const CORE_CATS = {
     terminale_spe:  ['limites','derivation','primitives','equa_diff','suites','probabilites','denombrement','trigonometrie'],
     premiere_spe:   ['polynomes','derivation','suites','probabilites','litteral'],
-    premiere_tronc: ['derivation','polynomes','litteral','probabilites'],
+    premiere_tronc: ['derivation','expo','suites','polynomes','litteral','probabilites'],
     premiere_stmg:  ['pourcentages','suites','statistiques','derivation','polynomes'],
   };
   const isAdvanced = ADVANCED_LEVELS.includes(profile.level);
@@ -16938,7 +16938,7 @@ const CAT_FILTER_CONFIGS = {
   },
   tc: {
     label: "1ère Tronc commun",
-    ids: ["numerique","pourcentages","litteral","fonctions","statistiques","probabilites","polynomes","suites","derivation"],
+    ids: ["numerique","pourcentages","litteral","fonctions","statistiques","probabilites","polynomes","suites","expo","derivation"],
   },
   stmg: {
     label: "1ère STMG",
