@@ -12221,6 +12221,212 @@ function ProfileSetupScreen({onComplete, onBack, onRestore}) {
   );
 }
 
+// ── MonParcoursScreen — Parcours & Récompenses ─────────────────────────────
+function MonParcoursScreen({profile, onBack, onStartPractice, onStartTest, onCollection, cardsUnlocked, badges}) {
+  const curr = CURRICULUM[profile.level] || CURRICULUM.seconde;
+  const [allProg, setAllProg] = useState({});
+  const [expanded, setExpanded] = useState(null);
+  const [tab, setTab] = useState("parcours");
+  const [loading, setLoading] = useState(true);
+  const lvl = getXpLevel(0);
+  const [xp, setXp] = useState(0);
+  const [badgesLocal, setBadgesLocal] = useState([]);
+
+  useEffect(() => {
+    const entries = [];
+    Object.entries(curr.cats).forEach(([c,subs])=>subs.forEach(s=>entries.push([c,s])));
+    Promise.all([
+      ...entries.map(([c,s])=>_storage.get(PK(c,s)).catch(()=>null)),
+      loadXP(),
+      loadBadges(),
+    ]).then(res => {
+      const progRes = res.slice(0, entries.length);
+      const xpVal = res[entries.length];
+      const bdg = res[entries.length+1];
+      const p = {};
+      progRes.forEach((r,i) => { const [c,s]=entries[i]; p[`${c}:${s}`]=r?.value?JSON.parse(r.value):EMPTY_P(); });
+      setAllProg(p);
+      setXp(xpVal||0);
+      setBadgesLocal(bdg||[]);
+    }).catch(()=>{}).finally(()=>setLoading(false));
+  }, [profile.level]);
+
+  const lvlReal = getXpLevel(xp);
+  const gp  = (c,s) => allProg[`${c}:${s}`]||EMPTY_P();
+  const rate = p => p.pt>0 ? Math.round(p.pc/p.pt*100) : null;
+  const canTest = p => p.pt>=5 && (rate(p)||0)>=60;
+
+  const allSubs = [];
+  Object.entries(curr.cats).forEach(([c,subs])=>subs.forEach(s=>allSubs.push({c,s,p:gp(c,s)})));
+  const totalStars = allSubs.reduce((a,x)=>a+(x.p.stars||0),0);
+  const mastered   = allSubs.filter(x=>x.p.stars>=1).length;
+  const total      = allSubs.length;
+
+  const Prog = ({pct, color="purple"}) => {
+    const c = color==="green"?"#10B981":color==="orange"?"#F59E0B":color==="red"?"#EF4444":lvlReal.color||"#7C3AED";
+    return <div style={{height:4,background:"#E2E8F0",borderRadius:99,overflow:"hidden"}}>
+      <div style={{height:"100%",width:`${pct||0}%`,background:c,borderRadius:99,transition:"width .6s ease"}}/>
+    </div>;
+  };
+
+  return (
+    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"var(--am-bg-light)"}}>
+      {/* Header */}
+      <div style={{background:`linear-gradient(160deg,var(--am-bg-dark-1),var(--am-bg-dark-2))`,
+        padding:"14px 16px 16px",flexShrink:0}}>
+        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:12}}>
+          <button onClick={onBack} style={{background:"rgba(255,255,255,0.1)",border:"none",
+            borderRadius:10,padding:"8px 12px",color:"#fff",cursor:"pointer",fontSize:13,fontWeight:700}}>←</button>
+          <div style={{flex:1}}>
+            <div style={{color:"#fff",fontSize:16,fontWeight:900,fontFamily:"'Nunito',sans-serif"}}>
+              Mon parcours — Mes récompenses
+            </div>
+            <div style={{color:"#94A3B8",fontSize:10,marginTop:2}}>
+              {mastered}/{total} thèmes maîtrisés · {totalStars} ⭐
+            </div>
+          </div>
+        </div>
+        {/* Tabs */}
+        <div style={{display:"flex",background:"rgba(255,255,255,0.08)",borderRadius:10,padding:2,gap:2}}>
+          {[{id:"parcours",label:"📊 Parcours"},{id:"recompenses",label:"🏆 Récompenses"}].map(t=>(
+            <button key={t.id} onClick={()=>setTab(t.id)}
+              style={{flex:1,padding:"7px 4px",border:"none",cursor:"pointer",borderRadius:8,
+                background:tab===t.id?"#fff":"transparent",
+                color:tab===t.id?"#1E293B":"rgba(255,255,255,0.6)",
+                fontSize:11,fontWeight:700,fontFamily:"'Nunito',sans-serif",transition:"all .2s"}}>
+              {t.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Body */}
+      <div style={{flex:1,overflowY:"auto",padding:"12px 12px 24px"}}>
+        {loading && <div style={{textAlign:"center",padding:40,color:"#94A3B8"}}>Chargement...</div>}
+
+        {/* ══ TAB PARCOURS ══ */}
+        {!loading && tab==="parcours" && (
+          <div>
+            {Object.entries(curr.cats).map(([catId,subs])=>{
+              const cat=getCatInfo(catId);
+              const catProgs=subs.map(s=>gp(catId,s));
+              const catStars=catProgs.reduce((a,p)=>a+(p.stars||0),0);
+              const catMax=subs.length*3;
+              const catPct=catMax?Math.round(catStars/catMax*100):0;
+              const isExp=expanded===catId;
+              return (
+                <div key={catId} style={{marginBottom:8,background:"#fff",borderRadius:14,
+                  boxShadow:"0 2px 8px rgba(0,0,0,.05)",overflow:"hidden"}}>
+                  <button onClick={()=>setExpanded(isExp?null:catId)}
+                    style={{width:"100%",padding:"11px 12px",background:"none",border:"none",
+                      cursor:"pointer",display:"flex",alignItems:"center",gap:9,textAlign:"left"}}>
+                    <span style={{fontSize:18}}>{cat?.emoji||"📚"}</span>
+                    <div style={{flex:1}}>
+                      <div style={{fontWeight:800,fontSize:12,color:"#1E293B",fontFamily:"'Nunito',sans-serif"}}>{cat?.label||catId}</div>
+                      <div style={{display:"flex",alignItems:"center",gap:6,marginTop:3}}>
+                        <div style={{flex:1}}><Prog pct={catPct} color={catPct>=80?"green":catPct>=50?"orange":"red"}/></div>
+                        <span style={{fontSize:8,color:"#94A3B8",fontWeight:600,flexShrink:0}}>{catStars}/{catMax}⭐</span>
+                      </div>
+                    </div>
+                    <span style={{color:"#CBD5E1",fontSize:9,transform:isExp?"rotate(180deg)":"none",transition:".2s"}}>▼</span>
+                  </button>
+                  {isExp&&(
+                    <div style={{borderTop:"1px solid #F1F5F9"}}>
+                      {subs.map(subId=>{
+                        const p=gp(catId,subId); const r=rate(p); const ct=canTest(p);
+                        const sl=getSubInfo(catId,subId)?.label||subId;
+                        const pColor=r===null?"#F8FAFC":r<50?"#FEF2F2":r<70?"#FFFBEB":"#F0FDF4";
+                        const statusIcon=p.stars>=3?"🏆":p.stars>=2?"⭐⭐":p.stars>=1?"⭐":r!==null&&r<50?"🔴":r!==null?"✅":"○";
+                        return (
+                          <div key={subId} style={{padding:"9px 12px",borderBottom:"1px solid #F8FAFC",background:pColor}}>
+                            <div style={{display:"flex",alignItems:"center",gap:5,marginBottom:p.pt>0?4:5}}>
+                              <span style={{fontSize:11,flexShrink:0}}>{statusIcon}</span>
+                              <div style={{flex:1,fontSize:10,fontWeight:700,color:"#334155",lineHeight:1.3}}>{sl}</div>
+                              {r!==null&&<span style={{fontSize:9,color:"#64748B",fontWeight:700,flexShrink:0}}>{r}%</span>}
+                            </div>
+                            {p.pt>0&&<div style={{marginBottom:5}}><Prog pct={r} color={r>=80?"green":r>=60?"orange":"red"}/></div>}
+                            <div style={{display:"flex",gap:5}}>
+                              <button onClick={()=>onStartPractice(catId,subId)}
+                                style={{flex:1,padding:"6px 2px",borderRadius:8,border:"none",
+                                  background:lvlReal.color,color:"#fff",fontSize:9,fontWeight:700,cursor:"pointer"}}>
+                                ✏️ S'entraîner
+                              </button>
+                              <button onClick={()=>ct&&onStartTest(catId,subId)} disabled={!ct}
+                                style={{flex:1,padding:"6px 2px",borderRadius:8,border:"none",
+                                  background:ct?"#10B981":"#E2E8F0",color:ct?"#fff":"#94A3B8",
+                                  fontSize:9,fontWeight:700,cursor:ct?"pointer":"not-allowed"}}>
+                                🎯 Tester
+                              </button>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {/* ══ TAB RÉCOMPENSES ══ */}
+        {!loading && tab==="recompenses" && (
+          <div>
+            {onCollection && (() => {
+              const cardsCount = (cardsUnlocked || []).length;
+              const totalCards = (typeof CARDS !== "undefined" && Array.isArray(CARDS)) ? CARDS.length : 20;
+              return (
+                <button onClick={onCollection}
+                  style={{background:"linear-gradient(135deg,#F59E0B,#B45309)",
+                    border:"none",borderRadius:16,padding:"14px 16px",cursor:"pointer",
+                    textAlign:"left",width:"100%",display:"flex",alignItems:"center",gap:12,
+                    marginBottom:14,boxShadow:"0 5px 16px rgba(245,158,11,.3)"}}>
+                  <span style={{fontSize:32}}>🎴</span>
+                  <div style={{flex:1}}>
+                    <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:15,color:"#fff"}}>
+                      Ma collection Sigma
+                    </div>
+                    <div style={{color:"rgba(255,255,255,.85)",fontSize:11,fontWeight:600,marginTop:2}}>
+                      {cardsCount}/{totalCards} cartes débloquées
+                    </div>
+                  </div>
+                  <span style={{color:"#fff",fontSize:22,fontWeight:900}}>›</span>
+                </button>
+              );
+            })()}
+            <div style={{fontSize:9,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
+              letterSpacing:1,marginBottom:8,marginTop:6}}>
+              🎖️ Badges — {badgesLocal.filter(b=>BADGES.find(B=>B.id===b)).length}/{BADGES.filter(b=>!b.secret).length} débloqués
+            </div>
+            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
+              {BADGES.map(b=>{
+                const unlocked = badgesLocal.includes(b.id);
+                const isSecret = b.secret && !unlocked;
+                return (
+                  <div key={b.id} style={{background:"#fff",borderRadius:14,padding:"12px 10px",
+                    textAlign:"center",boxShadow:"0 2px 8px rgba(0,0,0,.05)",
+                    opacity:unlocked?1:0.45,
+                    border:unlocked?`2px solid ${lvlReal.color}`:"2px solid transparent"}}>
+                    <div style={{fontSize:28,filter:unlocked?"none":"grayscale(1)"}}>{isSecret?"🔒":b.emoji}</div>
+                    <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:11,
+                      color:unlocked?"#1E293B":"#94A3B8",marginTop:4}}>
+                      {isSecret?"🔒":b.label}
+                    </div>
+                    <div style={{fontSize:9,color:"#CBD5E1",marginTop:2,lineHeight:1.3}}>
+                      {isSecret?"Mission secrète...":b.desc}
+                    </div>
+                    {unlocked&&<div style={{marginTop:6,fontSize:9,color:lvlReal.color,fontWeight:700}}>✓ Débloqué !</div>}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 // ── DashboardScreen ───────────────────────────────────────────────────────────
 // ════════════════════════════════════════════════════════════════════════════
 //  GAMIFICATION — XP · Badges · Défi du Jour · Combo
@@ -13722,7 +13928,7 @@ function CardUnlockModal({cards, onClose}) {
 
 
 // ── VigilanceScreen — "Points de vigilance" avec analyse individuelle ────────
-function VigilanceScreen({profile, qState, onBack, onRemediation, onWorkTheme}) {
+function VigilanceScreen({profile, qState, onBack, onRemediation, onWorkTheme, suggested, onStartPractice, lvlColor}) {
   // Analyser qState : grouper par (catId, subId) et calculer les stats
   // On identifie :
   //   - questions learning (en cours)
@@ -13783,9 +13989,9 @@ function VigilanceScreen({profile, qState, onBack, onRemediation, onWorkTheme}) 
         </div>
         <div>
           <h2 style={{fontFamily:"'Nunito',sans-serif",fontSize:18,fontWeight:900,color:"#1E293B",margin:0}}>
-            Points de vigilance
+            Remédiation
           </h2>
-          <p style={{color:"#64748B",fontSize:11,margin:"2px 0 0 0"}}>Tes thèmes à retravailler</p>
+          <p style={{color:"#64748B",fontSize:11,margin:"2px 0 0 0"}}>Tes thèmes à retravailler · suggestions Sigma</p>
         </div>
       </div>
 
@@ -13835,6 +14041,33 @@ function VigilanceScreen({profile, qState, onBack, onRemediation, onWorkTheme}) 
           </div>
           <span style={{fontSize:18}}>›</span>
         </button>
+      )}
+
+      {/* ── Suggéré pour toi (depuis sigma) ─────────────────────── */}
+      {suggested && (
+        <div style={{marginBottom:12}}>
+          <div style={{fontSize:9,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
+            letterSpacing:1,marginBottom:6}}>💡 Suggéré pour toi</div>
+          <div style={{background:`linear-gradient(135deg,${lvlColor||"#7C3AED"},#5B21B6)`,
+            borderRadius:14,padding:"13px",display:"flex",alignItems:"center",gap:10}}>
+            <span style={{fontSize:22}}>{getCatInfo(suggested.c)?.emoji||"📚"}</span>
+            <div style={{flex:1}}>
+              <div style={{color:"rgba(255,255,255,0.6)",fontSize:9,fontWeight:700,textTransform:"uppercase"}}>
+                {getCatInfo(suggested.c)?.label||suggested.c}
+              </div>
+              <div style={{color:"#fff",fontWeight:800,fontSize:12,fontFamily:"'Nunito',sans-serif",marginTop:1}}>
+                {getSubInfo(suggested.c,suggested.s)?.label||suggested.s}
+              </div>
+            </div>
+            {onStartPractice && (
+              <button onClick={()=>onStartPractice(suggested.c,suggested.s)}
+                style={{background:"rgba(255,255,255,0.2)",border:"none",borderRadius:9,
+                  padding:"7px 11px",color:"#fff",fontWeight:800,fontSize:11,cursor:"pointer"}}>
+                ✏️ Go
+              </button>
+            )}
+          </div>
+        </div>
       )}
 
       <Scroll>
@@ -13905,7 +14138,7 @@ function VigilanceScreen({profile, qState, onBack, onRemediation, onWorkTheme}) 
   );
 }
 
-function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEditProfile, onLogout, onShowProgram, onBackup, onReminder, onPreferences, onVigilance, onCollection, diagResults, cardsUnlocked, qState}) {
+function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMode, onEditProfile, onLogout, onShowProgram, onBackup, onReminder, onPreferences, onVigilance, onCollection, onParcours, diagResults, cardsUnlocked, qState}) {
   const curr = CURRICULUM[profile.level] || CURRICULUM.seconde;
   const [allProg, setAllProg] = useState({});
   const [loading, setLoading] = useState(true);
@@ -14125,12 +14358,12 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
           letterSpacing:1.2,marginBottom:8}}>Que veux-tu faire ?</div>
 
         {/* Grande carte S'entraîner */}
-        <button onClick={onGoHome}
+        <button onClick={()=>onMode("entrainement")}
           style={{width:"100%",background:`linear-gradient(135deg,${lvl.color},${getNextLevel(xp)?.color||lvl.color})`,
             borderRadius:18,padding:"18px 18px",marginBottom:10,border:"none",cursor:"pointer",
             display:"flex",alignItems:"center",gap:14,
             boxShadow:`0 6px 20px ${lvl.color}44`,textAlign:"left"}}>
-          <span style={{fontSize:36,flexShrink:0}}>🦆</span>
+          <span style={{fontSize:36,flexShrink:0}}>💪</span>
           <div style={{flex:1}}>
             <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:18,color:"#fff",lineHeight:1.1}}>
               S'entraîner
@@ -14145,9 +14378,9 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
         {/* Ligne 3 tuiles : Sprint · Missions · Bac */}
         <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:10}}>
           {[
-            {label:"Sprint",    sub:"5 min chrono",    emoji:"⏱️",  color:"#10B981", action:()=>onGoHome()},
-            {label:"Missions",  sub:"Objectifs Sigma", emoji:"🚀",  color:"#3B82F6", action:()=>onGoHome()},
-            {label:"Bac",       sub:"Annales",          emoji:"🏆",  color:"#F59E0B", action:()=>onGoHome()},
+            {label:"Sprint",    sub:"5 min chrono",    emoji:"⏱️",  color:"#10B981", action:()=>onMode("sprint")},
+            {label:"Missions",  sub:"Objectifs Sigma", emoji:"🚀",  color:"#3B82F6", action:()=>onMode("missions")},
+            {label:"Bac",       sub:"Annales",          emoji:"🏆",  color:"#F59E0B", action:()=>onMode("bac")},
           ].map(tile=>(
             <button key={tile.label} onClick={tile.action}
               style={{background:tile.color,borderRadius:14,padding:"14px 6px",
@@ -14180,7 +14413,7 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
                 boxShadow:"0 2px 8px rgba(0,0,0,.05)"}}>
               <span style={{fontSize:20}}>🎯</span>
               <div style={{flex:1}}>
-                <div style={{fontSize:12,fontWeight:800,color:"#B91C1C"}}>Points de vigilance</div>
+                <div style={{fontSize:12,fontWeight:800,color:"#B91C1C"}}>Remédiation</div>
                 <div style={{fontSize:10,color:"#64748B",fontWeight:600,lineHeight:1.3,marginTop:1}}>
                   {vigilanceCount === 1
                     ? "1 thème où tu butes — session de remédiation disponible"
@@ -14192,20 +14425,26 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
           );
         })()}
 
-        {/* Mon parcours */}
-        <button onClick={()=>setTab("parcours")}
-          style={{background:"#fff",borderRadius:14,padding:"13px 16px",
+        {/* Mon parcours — Mes récompenses */}
+        <button onClick={onParcours}
+          style={{background:"#fff",borderRadius:14,padding:"16px 18px",
             border:"none",cursor:"pointer",width:"100%",
-            display:"flex",alignItems:"center",gap:12,marginBottom:10,
-            boxShadow:"0 2px 8px rgba(0,0,0,.05)",textAlign:"left"}}>
-          <span style={{fontSize:22}}>🏅</span>
+            display:"flex",alignItems:"center",gap:14,marginBottom:10,
+            boxShadow:"0 3px 12px rgba(0,0,0,.08)",textAlign:"left"}}>
+          <div style={{width:44,height:44,borderRadius:12,
+            background:"linear-gradient(135deg,#7C3AED,#5B21B6)",
+            display:"flex",alignItems:"center",justifyContent:"center",fontSize:22,flexShrink:0}}>
+            🏅
+          </div>
           <div style={{flex:1}}>
-            <div style={{fontWeight:800,fontSize:13,color:"#1E293B",fontFamily:"'Nunito',sans-serif"}}>Mon parcours</div>
-            <div style={{fontSize:10,color:"#64748B",marginTop:1}}>
-              {mastered}/{total} thèmes maîtrisés · {totalStars} ⭐ · Progression & stats
+            <div style={{fontWeight:900,fontSize:14,color:"#1E293B",fontFamily:"'Nunito',sans-serif"}}>
+              Mon parcours — Mes récompenses
+            </div>
+            <div style={{fontSize:10,color:"#64748B",marginTop:2}}>
+              {mastered}/{total} thèmes maîtrisés · {totalStars} ⭐ · badges & collection
             </div>
           </div>
-          <span style={{color:"#CBD5E1",fontSize:18}}>→</span>
+          <span style={{color:"#94A3B8",fontSize:20}}>→</span>
         </button>
 
         {/* ── Tabs Parcours / Récompenses (masqués sous le fold) ─────────── */}
@@ -19207,14 +19446,33 @@ function AutoMaths() {
           {screen==="diagnostic"    && profile && <DiagnosticScreen profile={profile} onComplete={hDiagComplete}/>}
           {screen==="diag_result"   && profile && diagResults && <DiagnosticResultScreen profile={profile} diagResults={diagResults} onStart={hDiagResultNext}/>}
           {screen==="weekly_program"&& profile && weekProgram  && <WeeklyProgramScreen profile={profile} program={weekProgram} allProg={allProgCache} onStartSession={hProgramSession} onSkip={hProgramSkip}/>}
-          {screen==="dashboard"     && profile && <DashboardScreen profile={profile} diagResults={diagResults} cardsUnlocked={cardsUnlocked} qState={qState} onStartPractice={hStartPractice} onStartTest={hStartTest} onGoHome={()=>setScreen("home")} onEditProfile={hEditProfile} onLogout={hLogout} onBackup={hBackup} onReminder={()=>setScreen("reminder")} onPreferences={()=>setScreen("preferences")} onVigilance={hVigilance} onCollection={()=>setScreen("collection")} onShowProgram={async()=>{const wp=await generateWeeklyProgram(profile,allProgCache,diagResults);setWeekProgram(wp);setScreen("weekly_program");}}/>}
+          {screen==="dashboard"     && profile && <DashboardScreen profile={profile} diagResults={diagResults} cardsUnlocked={cardsUnlocked} qState={qState} onStartPractice={hStartPractice} onStartTest={hStartTest} onGoHome={()=>setScreen("home")} onMode={hMode} onParcours={()=>setScreen("parcours_detail")} onEditProfile={hEditProfile} onLogout={hLogout} onBackup={hBackup} onReminder={()=>setScreen("reminder")} onPreferences={()=>setScreen("preferences")} onVigilance={hVigilance} onCollection={()=>setScreen("collection")} onShowProgram={async()=>{const wp=await generateWeeklyProgram(profile,allProgCache,diagResults);setWeekProgram(wp);setScreen("weekly_program");}}/>}
           {screen==="home"          && <HomeScreen onMode={hMode} profile={profile} onDashboard={profile?hDashboard:null} onSplash={()=>setScreen("splash")} streakProgress={streakProgress} onBackup={profile?hBackup:null}/>}
           {screen==="test_aleatoire" && <TestAleatoireScreen onGlobal={hTestGlobal} onCategory={hTestCategory} onBack={()=>setScreen(mode==="test_aleatoire"?"training_modes":"home")}/>}
           {screen==="training_modes" && <TrainingModesScreen onMode={hTrainingMode} onBack={()=>setScreen("home")}/>}
           {screen==="sprint"        && <SprintScreen    pool={getSprintPool()} onFinish={hSprintFinish} onBack={()=>{setSprintResult(null);setScreen("home");}}/>}
           {screen==="sprint_result" && sprintResult && <SprintResultScreen result={sprintResult} best={sprintBest} isNewBest={sprintIsNewBest} onReplay={hSprintReplay} onHome={()=>{setSprintResult(null);setSprintIsNewBest(false);setStreakJustCompleted(false);setScreen("home");}}/>}
-          {screen==="vigilance"     && profile && <VigilanceScreen profile={profile} qState={qState} onBack={()=>setScreen("dashboard")} onRemediation={hRemediation} onWorkTheme={hWorkTheme}/>}
+          {screen==="vigilance"     && profile && <VigilanceScreen profile={profile} qState={qState} onBack={()=>setScreen("dashboard")} onRemediation={hRemediation} onWorkTheme={hWorkTheme}
+            suggested={(() => {
+              const curr2 = CURRICULUM[profile.level] || CURRICULUM.seconde;
+              const allSubs2 = [];
+              Object.entries(curr2.cats).forEach(([c,subs])=>subs.forEach(s=>allSubs2.push({c,s})));
+              return allSubs2.filter(x => {
+                const p = allProgCache[`${x.c}:${x.s}`];
+                return !p || (p.stars||0) < 3;
+              }).sort((a,b)=>{
+                const pa = allProgCache[`${a.c}:${a.s}`]; const pb = allProgCache[`${b.c}:${b.s}`];
+                const ra = pa?.pt>0?Math.round(pa.pc/pa.pt*100):null;
+                const rb = pb?.pt>0?Math.round(pb.pc/pb.pt*100):null;
+                if(!ra&&!rb) return 0; if(!ra) return -1; if(!rb) return 1;
+                return ra-rb;
+              })[0] || null;
+            })()}
+            onStartPractice={hStartPractice}
+            lvlColor={getXpLevel(0).color}
+          />}
           {screen==="collection"    && <CollectionScreen onBack={()=>setScreen(profile?"dashboard":"home")} cardsUnlocked={cardsUnlocked}/>}
+          {screen==="parcours_detail" && profile && <MonParcoursScreen profile={profile} onBack={()=>setScreen("dashboard")} onStartPractice={hStartPractice} onStartTest={hStartTest} onCollection={()=>setScreen("collection")} cardsUnlocked={cardsUnlocked} badges={null}/>}
           {screen==="category"      && <CategoryScreen  profile={profile} onCat={hCat} onBack={()=>setScreen((mode==="express"||mode==="entrainement")?"training_modes":mode==="test_aleatoire"?"test_aleatoire":"home")} subtitle={mode==="express"?"Choisis une catégorie":mode==="entrainement"?"Choisis une catégorie":mode==="test_aleatoire"?"Toutes les questions de la catégorie":"Puis choisis des sous-thèmes"}/>}
           {screen==="subcategory"   && <SubcategoryScreen catId={catId} qCount={mode==="express"?10:20} onStart={hSub} onBack={()=>setScreen(mode==="missions"?"home":"category")} onLevelPicker={hLevelPicker} defaultNiveau={profile?LEVEL_MAP[profile.level]||null:null}/>}
           {screen==="mission_select" && <MissionScreen missionId={missionId} onBack={()=>setScreen("subcategory")} onSelectTheme={(theme)=>{
