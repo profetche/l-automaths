@@ -9510,7 +9510,236 @@ const DB = {
         choices: [r`\dfrac{1}{2}`, r`\dfrac{\sqrt{3}}{2}`, r`\dfrac{1}{\sqrt{3}}`, r`1`],
         a: r`\dfrac{1}{2}`,
         tip: r`\vec{u}\cdot\vec{v}=1\times2+\sqrt{3}\times0=2.\\[4pt]\|\vec{u}\|=\sqrt{1+3}=2,\quad\|\vec{v}\|=2.\\[4pt]\cos\theta=\dfrac{\vec{u}\cdot\vec{v}}{\|\vec{u}\|\times\|\vec{v}\|}=\dfrac{2}{2\times2}=\dfrac{1}{2}\Rightarrow\theta=60°.` },
+    ],
 
+
+    espace: [
+
+      // ── BLOC 1 : Formule et calcul direct (Q1-Q8) ──────────────────────
+
+      // pse_01 — formule par coordonnées — facile
+      { q: r`\vec{u}(1\,;\,2\,;\,3)\text{ et }\vec{v}(4\,;\,-1\,;\,2).\\\text{Calculer }\vec{u}\cdot\vec{v}.`,
+        choices:[r`8`, r`10`, r`-4`, r`6`],
+        a: r`8`,
+        tip: r`\vec{u}\cdot\vec{v}=1\times4+2\times(-1)+3\times2=4-2+6=8.\\\text{La formule en 3D est }a_1b_1+a_2b_2+a_3b_3.` },
+
+      // pse_02 — formule correcte en 3D — facile
+      { q: r`\text{Si }\vec{u}(a_1;a_2;a_3)\text{ et }\vec{v}(b_1;b_2;b_3)\text{, le produit scalaire est :}`,
+        choices:[
+          r`a_1b_1+a_2b_2+a_3b_3`,
+          r`a_1b_1+a_2b_2`,
+          r`a_1b_2+a_2b_3+a_3b_1`,
+          r`\sqrt{a_1^2+a_2^2+a_3^2}`
+        ],
+        a: r`a_1b_1+a_2b_2+a_3b_3`,
+        tip: r`\text{En 3D, le produit scalaire se calcule composante par composante : }\vec{u}\cdot\vec{v}=a_1b_1+a_2b_2+a_3b_3.` },
+
+      // pse_03 — calcul direct — facile
+      { q: r`\vec{u}(2\,;\,0\,;\,-1)\text{ et }\vec{v}(3\,;\,5\,;\,2).\\\text{Calculer }\vec{u}\cdot\vec{v}.`,
+        choices:[r`4`, r`8`, r`-2`, r`10`],
+        a: r`4`,
+        tip: r`\vec{u}\cdot\vec{v}=2\times3+0\times5+(-1)\times2=6+0-2=4.` },
+
+      // pse_04 — norme en 3D — facile
+      { q: r`\|\vec{u}\|\text{ si }\vec{u}(2\,;\,1\,;\,-2)\text{ ?}`,
+        choices:[r`3`, r`5`, r`\sqrt{5}`, r`9`],
+        a: r`3`,
+        tip: r`\|\vec{u}\|=\sqrt{2^2+1^2+(-2)^2}=\sqrt{4+1+4}=\sqrt{9}=3.` },
+
+      // pse_05 — carré scalaire — facile
+      { q: r`\vec{u}(1\,;\,2\,;\,2).\\\text{Calculer }\vec{u}\cdot\vec{u}.`,
+        choices:[r`9`, r`5`, r`3`, r`6`],
+        a: r`9`,
+        tip: r`\vec{u}\cdot\vec{u}=\|\vec{u}\|^2=1^2+2^2+2^2=1+4+4=9.\\\text{Le carré scalaire est le carré de la norme.}` },
+
+      // pse_06 — commutativité — facile
+      { q: r`\vec{u}(3\,;\,-1\,;\,4)\text{ et }\vec{v}(1\,;\,2\,;\,0).\\\text{Vaut-il mieux calculer }\vec{u}\cdot\vec{v}\text{ ou }\vec{v}\cdot\vec{u}\ ?`,
+        choices:[
+          r`\text{Les deux sont égaux : }\vec{u}\cdot\vec{v}=\vec{v}\cdot\vec{u}=1`,
+          r`\vec{u}\cdot\vec{v}=1\text{ et }\vec{v}\cdot\vec{u}=-1`,
+          r`\vec{u}\cdot\vec{v}=0\text{ uniquement}`,
+          r`\text{Seul }\vec{u}\cdot\vec{v}\text{ est défini}`
+        ],
+        a: r`\text{Les deux sont égaux : }\vec{u}\cdot\vec{v}=\vec{v}\cdot\vec{u}=1`,
+        tip: r`\vec{u}\cdot\vec{v}=3\times1+(-1)\times2+4\times0=3-2+0=1=\vec{v}\cdot\vec{u}.\\\text{Le produit scalaire est commutatif.}` },
+
+      // pse_07 — bilinéarité — moyen
+      { q: r`\vec{u}\cdot\vec{v}=6\text{ et }\vec{u}\cdot\vec{w}=2.\\\text{Calculer }\vec{u}\cdot(2\vec{v}+\vec{w}).`,
+        choices:[r`14`, r`16`, r`8`, r`12`],
+        a: r`14`,
+        tip: r`\vec{u}\cdot(2\vec{v}+\vec{w})=2(\vec{u}\cdot\vec{v})+\vec{u}\cdot\vec{w}=2\times6+2=12+2=14.` },
+
+      // pse_08 — formule angle — moyen
+      { q: r`\vec{u}\cdot\vec{v}=\|\vec{u}\|\times\|\vec{v}\|\times\cos\theta.\\\text{Si }\|\vec{u}\|=2,\|\vec{v}\|=3,\theta=60°\text{ : valeur de }\vec{u}\cdot\vec{v}\ ?`,
+        choices:[r`3`, r`6`, r`\sqrt{3}`, r`1`],
+        a: r`3`,
+        tip: r`\vec{u}\cdot\vec{v}=2\times3\times\cos60°=6\times\frac{1}{2}=3.` },
+
+      // ── BLOC 2 : Orthogonalité et applications (Q9-Q17) ─────────────────
+
+      // pse_09 — orthogonalité — facile
+      { q: r`\vec{u}(1\,;\,-2\,;\,1)\text{ et }\vec{v}(2\,;\,1\,;\,0).\\\text{Ces vecteurs sont-ils orthogonaux ?}`,
+        choices:[
+          r`\text{Oui, }\vec{u}\cdot\vec{v}=0`,
+          r`\text{Non, }\vec{u}\cdot\vec{v}\neq0`,
+          r`\text{Oui, ils sont colinéaires}`,
+          r`\text{Non, ils ont des composantes différentes}`
+        ],
+        a: r`\text{Oui, }\vec{u}\cdot\vec{v}=0`,
+        tip: r`\vec{u}\cdot\vec{v}=1\times2+(-2)\times1+1\times0=2-2+0=0\Rightarrow\vec{u}\perp\vec{v}.` },
+
+      // pse_10 — trouver k pour orthogonalité — moyen
+      { q: r`\vec{u}(1\,;\,2\,;\,k)\text{ et }\vec{v}(2\,;\,-1\,;\,2).\\\text{Pour quelle valeur de }k\text{ sont-ils orthogonaux ?}`,
+        choices:[r`0`, r`2`, r`-2`, r`1`],
+        a: r`0`,
+        tip: r`\vec{u}\cdot\vec{v}=1\times2+2\times(-1)+k\times2=2-2+2k=2k.\\\vec{u}\perp\vec{v}\Leftrightarrow 2k=0\Leftrightarrow k=0.` },
+
+      // pse_11 — vecteur normal orthogonal aux vecteurs du plan — moyen
+      { q: r`\vec{n}(1\,;\,2\,;\,-1)\text{ est le normal d'un plan.}\\\vec{v}(3\,;\,1\,;\,5)\text{ est-il dans ce plan ?}`,
+        choices:[
+          r`\text{Oui, car }\vec{n}\cdot\vec{v}=0`,
+          r`\text{Non, car }\vec{n}\cdot\vec{v}\neq0`,
+          r`\text{Oui, car }\vec{v}\text{ a 3 composantes}`,
+          r`\text{Non, car }\vec{v}\text{ est colinéaire à }\vec{n}`
+        ],
+        a: r`\text{Oui, car }\vec{n}\cdot\vec{v}=0`,
+        tip: r`\vec{n}\cdot\vec{v}=1\times3+2\times1+(-1)\times5=3+2-5=0\Rightarrow\vec{v}\perp\vec{n}\Rightarrow\vec{v}\text{ est dans le plan.}` },
+
+      // pse_12 — droite perpendiculaire à un plan — moyen
+      { q: r`\text{La droite de vecteur directeur }\vec{u}(2\,;\,-1\,;\,3)\\\text{est-elle perpendiculaire au plan }2x-y+3z=0\ ?`,
+        choices:[
+          r`\text{Oui, }\vec{u}\text{ est colinéaire au normal }\vec{n}(2\,;\,-1\,;\,3)`,
+          r`\text{Non, }\vec{u}\cdot\vec{n}=0`,
+          r`\text{Oui, car }\vec{u}\cdot\vec{n}=0`,
+          r`\text{Non, leurs normes sont différentes}`
+        ],
+        a: r`\text{Oui, }\vec{u}\text{ est colinéaire au normal }\vec{n}(2\,;\,-1\,;\,3)`,
+        tip: r`\vec{n}(2;-1;3)=\vec{u}\text{ : ils sont identiques (colinéaires)}\Rightarrow\text{la droite est }\perp\text{ au plan.}` },
+
+      // pse_13 — angle entre deux vecteurs — moyen
+      { q: r`\vec{u}(1\,;\,0\,;\,0)\text{ et }\vec{v}(0\,;\,1\,;\,0).\\\text{Quel est l'angle entre eux ?}`,
+        choices:[r`90°`, r`0°`, r`60°`, r`45°`],
+        a: r`90°`,
+        tip: r`\vec{u}\cdot\vec{v}=0\Rightarrow\cos\theta=0\Rightarrow\theta=90°.\\\text{Les vecteurs de base sont orthogonaux.}` },
+
+      // pse_14 — angle entre deux droites de l'espace — difficile
+      { q: r`\vec{u}(1\,;\,1\,;\,0)\text{ et }\vec{v}(1\,;\,0\,;\,1).\\\text{Calculer }\cos\theta\text{ entre ces vecteurs.}`,
+        choices:[
+          r`\dfrac{1}{2}`,
+          r`0`,
+          r`\dfrac{1}{\sqrt{2}}`,
+          r`1`
+        ],
+        a: r`\dfrac{1}{2}`,
+        tip: r`\vec{u}\cdot\vec{v}=1,\quad\|\vec{u}\|=\sqrt{2},\quad\|\vec{v}\|=\sqrt{2}.\\\cos\theta=\dfrac{1}{\sqrt{2}\times\sqrt{2}}=\dfrac{1}{2}.` },
+
+      // pse_15 — plans perpendiculaires — moyen
+      { q: r`\mathcal{P}_1: x+y-z=0\text{ et }\mathcal{P}_2: x-y+z=0.\\\text{Ces plans sont-ils perpendiculaires ?}`,
+        choices:[
+          r`\text{Oui, }\vec{n_1}\cdot\vec{n_2}=-1\neq0\text{ — non !}`,
+          r`\text{Non, }\vec{n_1}\cdot\vec{n_2}=-1\neq0`,
+          r`\text{Oui, }\vec{n_1}\cdot\vec{n_2}=0`,
+          r`\text{Non, leurs normaux sont colinéaires}`
+        ],
+        a: r`\text{Non, }\vec{n_1}\cdot\vec{n_2}=-1\neq0`,
+        tip: r`\vec{n_1}(1;1;-1),\quad\vec{n_2}(1;-1;1).\\\vec{n_1}\cdot\vec{n_2}=1-1-1=-1\neq0\Rightarrow\text{non perpendiculaires.}` },
+
+      // pse_16 — distance point/plan via normale — difficile
+      { q: r`\text{Parmi les droites suivantes, laquelle est}\\\text{perpendiculaire au plan }x+2y-2z+1=0\ ?`,
+        choices:[
+          r`\begin{cases}x=t\\y=2t\\z=-2t\end{cases}`,
+          r`\begin{cases}x=1+t\\y=t\\z=t\end{cases}`,
+          r`\begin{cases}x=t\\y=t\\z=t\end{cases}`,
+          r`\begin{cases}x=2t\\y=-t\\z=t\end{cases}`
+        ],
+        a: r`\begin{cases}x=t\\y=2t\\z=-2t\end{cases}`,
+        tip: r`\vec{n}(1;2;-2).\\\text{La 1ère droite a vecteur directeur }\vec{u}(1;2;-2)=\vec{n}\text{ : colinéaires}\Rightarrow\perp\text{ au plan.}` },
+
+      // pse_17 — synthèse orthogonalité/parallélisme — difficile
+      { q: r`\text{Droite }d_1\text{ de vecteur directeur }\vec{u}(1;2;-2)\\\text{et droite }d_2\text{ de vecteur directeur }\vec{v}(2;-1;0).\\\text{Ces droites sont :}`,
+        choices:[
+          r`\text{Perpendiculaires (}\vec{u}\cdot\vec{v}=0\text{)}`,
+          r`\text{Parallèles}`,
+          r`\text{Confondues}`,
+          r`\text{Quelconques (}\vec{u}\cdot\vec{v}\neq0\text{)}`
+        ],
+        a: r`\text{Perpendiculaires (}\vec{u}\cdot\vec{v}=0\text{)}`,
+        tip: r`\vec{u}\cdot\vec{v}=1\times2+2\times(-1)+(-2)\times0=2-2+0=0\Rightarrow d_1\perp d_2.` },
+
+      // ── BLOC 3 : Applications géométriques (Q18-Q25) ────────────────────
+
+      // pse_18 — vérifier l'orthogonalité de deux plans — moyen
+      { q: r`\mathcal{P}_1: 2x-y+z=0\text{ et }\mathcal{P}_2: x+2y+0z=0.\\\vec{n_1}\cdot\vec{n_2}=\ ?`,
+        choices:[r`0`, r`3`, r`-1`, r`2`],
+        a: r`0`,
+        tip: r`\vec{n_1}(2;-1;1),\quad\vec{n_2}(1;2;0).\\\vec{n_1}\cdot\vec{n_2}=2\times1+(-1)\times2+1\times0=2-2+0=0\Rightarrow\mathcal{P}_1\perp\mathcal{P}_2.` },
+
+      // pse_19 — trouver le normal à partir de 2 vecteurs du plan — difficile
+      { q: r`\text{Le plan }\mathcal{P}\text{ contient }\vec{u}(1;0;1)\text{ et }\vec{v}(0;1;1).\\\text{Vérifier que }\vec{n}(−1;−1;1)\text{ est normal.}`,
+        choices:[
+          r`\text{Oui : }\vec{n}\cdot\vec{u}=0\text{ et }\vec{n}\cdot\vec{v}=0`,
+          r`\text{Non : }\vec{n}\cdot\vec{u}\neq0`,
+          r`\text{Oui, car }\|\vec{n}\|=\sqrt{3}`,
+          r`\text{Non : }\vec{n}\cdot\vec{v}\neq0`
+        ],
+        a: r`\text{Oui : }\vec{n}\cdot\vec{u}=0\text{ et }\vec{n}\cdot\vec{v}=0`,
+        tip: r`\vec{n}\cdot\vec{u}=(-1)\times1+(-1)\times0+1\times1=-1+0+1=0\ \checkmark\\\vec{n}\cdot\vec{v}=(-1)\times0+(-1)\times1+1\times1=0-1+1=0\ \checkmark` },
+
+      // pse_20 — équation de plan via normal et point — moyen
+      { q: r`\text{Plan de normal }\vec{n}(2;1;-3)\text{ passant par }A(1;0;1).\\\text{Son équation est :}`,
+        choices:[
+          r`2x+y-3z+1=0`,
+          r`2x+y-3z-1=0`,
+          r`2x+y-3z=0`,
+          r`x+2y-3z+1=0`
+        ],
+        a: r`2x+y-3z+1=0`,
+        tip: r`\text{Équation : }2x+y-3z+d=0.\\\text{Point }A(1;0;1): 2(1)+0-3(1)+d=0\Rightarrow-1+d=0\Rightarrow d=1.\\\text{Équation : }2x+y-3z+1=0.` },
+
+      // pse_21 — distance entre deux plans parallèles — difficile
+      { q: r`\text{Les plans }x+2y-2z+3=0\text{ et }x+2y-2z-6=0\text{ sont :}`,
+        choices:[
+          r`\text{Parallèles distincts}`,
+          r`\text{Confondus}`,
+          r`\text{Perpendiculaires}`,
+          r`\text{Sécants}`
+        ],
+        a: r`\text{Parallèles distincts}`,
+        tip: r`\vec{n_1}(1;2;-2)=\vec{n_2}\text{ : colinéaires}\Rightarrow\text{parallèles.}\\\text{Pour confondus : }A(0;0;\frac{3}{2})\in\mathcal{P}_1\text{ : }0+0-3+3=0\ \checkmark\\\text{Mais dans }\mathcal{P}_2: 0+0-3-6=-9\neq0\Rightarrow\text{distincts.}` },
+
+      // pse_22 — angle droite/plan — difficile
+      { q: r`\text{La droite }d\text{ de vecteur directeur }\vec{u}(1;0;0)\\\text{et le plan }z=0.\text{ L'angle entre }d\text{ et le plan est :}`,
+        choices:[r`0°`, r`90°`, r`45°`, r`60°`],
+        a: r`0°`,
+        tip: r`\vec{n}(0;0;1)\text{ (normal au plan }z=0\text{).}\\\vec{u}\cdot\vec{n}=0\Rightarrow\vec{u}\perp\vec{n}\Rightarrow\vec{u}\text{ est parallèle au plan}\Rightarrow\text{angle}=0°.` },
+
+      // pse_23 — droite perpendiculaire au plan et passant par un point — difficile
+      { q: r`\text{La droite }\perp\text{ au plan }x-y+z=5\text{ passant par }A(1;2;3)\\\text{a pour représentation paramétrique :}`,
+        choices:[
+          r`\begin{cases}x=1+t\\y=2-t\\z=3+t\end{cases}`,
+          r`\begin{cases}x=1+t\\y=2+t\\z=3+t\end{cases}`,
+          r`\begin{cases}x=t\\y=-t\\z=t\end{cases}`,
+          r`\begin{cases}x=1-t\\y=2+t\\z=3-t\end{cases}`
+        ],
+        a: r`\begin{cases}x=1+t\\y=2-t\\z=3+t\end{cases}`,
+        tip: r`\vec{n}(1;-1;1)\text{ est le vecteur directeur de la droite }\perp\text{ au plan.}\\\text{Passant par }A(1;2;3): x=1+t,\ y=2-t,\ z=3+t.` },
+
+      // pse_24 — synthèse : trouver k pour plans perpendiculaires — difficile
+      { q: r`\mathcal{P}_1: kx+y-z=0\text{ et }\mathcal{P}_2: x+ky+2z=0.\\\text{Pour quelle valeur de }k\text{ sont-ils perpendiculaires ?}`,
+        choices:[r`k=2`, r`k=1`, r`k=0`, r`k=-1`],
+        a: r`k=2`,
+        tip: r`\vec{n_1}(k;1;-1),\quad\vec{n_2}(1;k;2).\\\vec{n_1}\cdot\vec{n_2}=k+k-2=2k-2=0\Rightarrow k=1.\\\text{Vérification : }\vec{n_1}(1;1;-1)\cdot\vec{n_2}(1;1;2)=1+1-2=0\ \checkmark` },
+
+      // pse_25 — synthèse finale — difficile
+      { q: r`\text{Droite }d:\begin{cases}x=1+t\\y=2-t\\z=t\end{cases}\text{ et plan }\mathcal{P}: x+y+z=6.\\\text{En quel point }d\text{ coupe-t-elle }\mathcal{P}\ ?`,
+        choices:[
+          r`(4\,;\,-1\,;\,3)`,
+          r`(1\,;\,2\,;\,0)`,
+          r`d\text{ est parallèle à }\mathcal{P}`,
+          r`(2\,;\,1\,;\,1)`
+        ],
+        a: r`(4\,;\,-1\,;\,3)`,
+        tip: r`(1+t)+(2-t)+t=6\Rightarrow3+t=6\Rightarrow t=3.\\\text{Point : }x=1+3=4,\ y=2-3=-1,\ z=3.\\\text{Vérification : }4+(-1)+3=6\ \checkmark` },
     ],
   },
 
@@ -9861,6 +10090,578 @@ const DB = {
 
     ],
 
+    // ── Géométrie dans l'espace ──────────────────────────────────────────────
+
+    geom_espace_positions: [
+      // ── Positions relatives : droite/droite ─────────────────────────────
+
+      // gep_01 — deux droites gauches — facile
+      { q: r`\text{Deux droites de l'espace sont dites "gauches" si elles sont :}`,
+        choices:[
+          r`\text{Non coplanaires (ni parallèles, ni sécantes)}`,
+          r`\text{Parallèles et distinctes}`,
+          r`\text{Sécantes en un point}`,
+          r`\text{Confondues}`
+        ],
+        a: r`\text{Non coplanaires (ni parallèles, ni sécantes)}`,
+        tip: r`\text{Dans l'espace, deux droites peuvent être : coplanaires (parallèles, sécantes ou confondues) ou non coplanaires = "gauches".}` },
+
+      // gep_02 — positions relatives droite/droite — facile
+      { q: r`\text{Dans l'espace, deux droites distinctes peuvent avoir combien de configurations ?}`,
+        choices:[
+          r`\text{3 : parallèles, sécantes, gauches}`,
+          r`\text{2 : parallèles, sécantes}`,
+          r`\text{4 : parallèles, sécantes, gauches, perpendiculaires}`,
+          r`\text{1 : toujours sécantes}`
+        ],
+        a: r`\text{3 : parallèles, sécantes, gauches}`,
+        tip: r`\text{Parallèles : même direction, pas de point commun. Sécantes : un point commun. Gauches : non coplanaires.}` },
+
+      // gep_03 — arêtes d'un cube gauches — moyen
+      { q: r`\text{Dans un cube }ABCDA'B'C'D'\text{, les droites }(AB)\text{ et }(D'C')\text{ sont :}`,
+        choices:[
+          r`\text{Parallèles}`,
+          r`\text{Gauches}`,
+          r`\text{Sécantes}`,
+          r`\text{Confondues}`
+        ],
+        a: r`\text{Parallèles}`,
+        tip: r`AB \parallel DC \parallel D'C' \parallel A'B'\text{. Les arêtes opposées d'un cube de même direction sont parallèles.}` },
+
+      // gep_04 — arêtes gauches dans un cube — moyen
+      { q: r`\text{Dans un cube }ABCDA'B'C'D'\text{, les droites }(AB)\text{ et }(DD')\text{ sont :}`,
+        choices:[
+          r`\text{Gauches}`,
+          r`\text{Sécantes}`,
+          r`\text{Parallèles}`,
+          r`\text{Confondues}`
+        ],
+        a: r`\text{Gauches}`,
+        tip: r`(AB)\text{ est horizontale (direction }\vec{AB}\text{), }(DD')\text{ est verticale (direction }\vec{DD'}\text{). Elles ne se croisent pas et ne sont pas parallèles : elles sont gauches.}` },
+
+      // ── Positions relatives : droite/plan ───────────────────────────────
+
+      // gep_05 — droite parallèle à un plan — facile
+      { q: r`\text{Une droite }d\text{ est parallèle à un plan }\mathcal{P}\text{ si et seulement si :}`,
+        choices:[
+          r`d\text{ n'a aucun point commun avec }\mathcal{P}`,
+          r`d\text{ est incluse dans }\mathcal{P}`,
+          r`d\text{ coupe }\mathcal{P}\text{ en un point}`,
+          r`d\text{ est perpendiculaire à }\mathcal{P}`
+        ],
+        a: r`d\text{ n'a aucun point commun avec }\mathcal{P}`,
+        tip: r`\text{Droite // plan : aucun point commun. Droite }\subset\text{ plan : infinité de points communs. Droite sécante : exactement un point commun.}` },
+
+      // gep_06 — droite/plan : 3 configurations — facile
+      { q: r`\text{Une droite et un plan de l'espace peuvent être dans combien de configurations distinctes ?}`,
+        choices:[
+          r`3`,
+          r`2`,
+          r`4`,
+          r`1`
+        ],
+        a: r`3`,
+        tip: r`\text{(1) Incluse dans le plan, (2) Parallèle au plan (aucun point commun), (3) Sécante (un seul point commun).}` },
+
+      // gep_07 — condition droite // plan via vecteurs — moyen
+      { q: r`\text{Une droite de vecteur directeur }\vec{u}\text{ est parallèle au plan }\mathcal{P}\text{ de vecteur normal }\vec{n}\text{ si :}`,
+        choices:[
+          r`\vec{u} \cdot \vec{n} = 0`,
+          r`\vec{u} \cdot \vec{n} \neq 0`,
+          r`\vec{u} = \vec{n}`,
+          r`\vec{u} \cdot \vec{n} = 1`
+        ],
+        a: r`\vec{u} \cdot \vec{n} = 0`,
+        tip: r`\vec{u} \perp \vec{n} \Leftrightarrow \vec{u}\cdot\vec{n}=0.\text{ Si }\vec{u}\text{ est perpendiculaire au normal, la droite est parallèle (ou incluse dans) le plan.}` },
+
+      // ── Positions relatives : plan/plan ─────────────────────────────────
+
+      // gep_08 — deux plans parallèles — facile
+      { q: r`\text{Deux plans parallèles distincts ont :}`,
+        choices:[
+          r`\text{Aucun point commun}`,
+          r`\text{Une droite en commun}`,
+          r`\text{Un point en commun}`,
+          r`\text{Un plan en commun}`
+        ],
+        a: r`\text{Aucun point commun}`,
+        tip: r`\text{Deux plans sécants se coupent selon une droite. Deux plans parallèles distincts n'ont aucun point commun.}` },
+
+      // gep_09 — intersection de deux plans sécants — facile
+      { q: r`\text{Deux plans sécants se coupent selon :}`,
+        choices:[
+          r`\text{Une droite}`,
+          r`\text{Un point}`,
+          r`\text{Un segment}`,
+          r`\text{Un plan}`
+        ],
+        a: r`\text{Une droite}`,
+        tip: r`\text{L'intersection de deux plans non parallèles est toujours une droite (infinité de points communs alignés).}` },
+
+      // gep_10 — condition plans parallèles via normaux — moyen
+      { q: r`\text{Deux plans }{\mathcal{P}_1}\text{ et }{\mathcal{P}_2}\text{ de vecteurs normaux }\vec{n_1}\text{ et }\vec{n_2}\text{ sont parallèles si et seulement si :}`,
+        choices:[
+          r`\vec{n_1}\text{ et }\vec{n_2}\text{ sont colinéaires}`,
+          r`\vec{n_1} \cdot \vec{n_2} = 0`,
+          r`\vec{n_1} = \vec{n_2}`,
+          r`\vec{n_1} \cdot \vec{n_2} = 1`
+        ],
+        a: r`\vec{n_1}\text{ et }\vec{n_2}\text{ sont colinéaires}`,
+        tip: r`\text{Deux plans sont parallèles} \Leftrightarrow \text{leurs normaux sont colinéaires (même direction). Attention : }\vec{n_1}=\vec{n_2}\text{ est un cas particulier de colinéarité.}` },
+
+      // gep_11 — plans perpendiculaires — moyen
+      { q: r`\text{Deux plans sont perpendiculaires si et seulement si leurs vecteurs normaux sont :}`,
+        choices:[
+          r`\text{Orthogonaux (produit scalaire nul)}`,
+          r`\text{Colinéaires}`,
+          r`\text{Égaux}`,
+          r`\text{De même norme}`
+        ],
+        a: r`\text{Orthogonaux (produit scalaire nul)}`,
+        tip: r`\mathcal{P}_1 \perp \mathcal{P}_2 \Leftrightarrow \vec{n_1} \cdot \vec{n_2} = 0.\text{ Les normaux sont perpendiculaires entre eux.}` },
+
+      // gep_12 — synthèse positions relatives — moyen
+      { q: r`\text{Dans l'espace, deux plans distincts sont nécessairement :}`,
+        choices:[
+          r`\text{Parallèles ou sécants}`,
+          r`\text{Toujours sécants}`,
+          r`\text{Toujours parallèles}`,
+          r`\text{Gauches}`
+        ],
+        a: r`\text{Parallèles ou sécants}`,
+        tip: r`\text{"Gauche" ne s'applique qu'aux droites. Deux plans distincts : soit parallèles (aucun pt commun), soit sécants (intersection = droite).}` },
+    ],
+
+    geom_espace_vecteurs: [
+      // ── Vecteur normal, base d'un plan ──────────────────────────────────
+
+      // gev_01 — définition vecteur normal — facile
+      { q: r`\text{Un vecteur }\vec{n}\text{ est normal au plan }\mathcal{P}\text{ si :}`,
+        choices:[
+          r`\vec{n}\text{ est orthogonal à tout vecteur de }\mathcal{P}`,
+          r`\vec{n}\text{ est inclus dans }\mathcal{P}`,
+          r`\vec{n}\text{ est parallèle à }\mathcal{P}`,
+          r`\vec{n}\text{ a une norme égale à }1`
+        ],
+        a: r`\vec{n}\text{ est orthogonal à tout vecteur de }\mathcal{P}`,
+        tip: r`\vec{n}\text{ est normal à }\mathcal{P} \Leftrightarrow \vec{n}\text{ est perpendiculaire à tous les vecteurs contenus dans }\mathcal{P}.` },
+
+      // gev_02 — lire le normal depuis l'équation — facile
+      { q: r`\text{Le plan d'équation }2x - 3y + z + 5 = 0\text{ a pour vecteur normal :}`,
+        choices:[
+          r`\vec{n}(2\,;\,-3\,;\,1)`,
+          r`\vec{n}(2\,;\,3\,;\,1)`,
+          r`\vec{n}(2\,;\,-3\,;\,5)`,
+          r`\vec{n}(-2\,;\,3\,;\,-1)`
+        ],
+        a: r`\vec{n}(2\,;\,-3\,;\,1)`,
+        tip: r`\text{Le plan }ax+by+cz+d=0\text{ a pour vecteur normal }\vec{n}(a\,;\,b\,;\,c).\text{ Le coefficient }d\text{ n'intervient pas dans le normal.}` },
+
+      // gev_03 — base d'un plan : 2 vecteurs non colinéaires — facile
+      { q: r`\text{Pour définir un plan, il faut choisir deux vecteurs }\vec{u}\text{ et }\vec{v}\text{ vérifiant :}`,
+        choices:[
+          r`\vec{u}\text{ et }\vec{v}\text{ non colinéaires}`,
+          r`\vec{u}\text{ et }\vec{v}\text{ colinéaires}`,
+          r`\vec{u} = \vec{v}`,
+          r`\vec{u} \cdot \vec{v} = 0`
+        ],
+        a: r`\vec{u}\text{ et }\vec{v}\text{ non colinéaires}`,
+        tip: r`\text{Deux vecteurs non colinéaires "engendrent" un plan (base). Si colinéaires, ils définissent seulement une droite.}` },
+
+      // gev_04 — 3 points non alignés définissent un plan — facile
+      { q: r`\text{Trois points }A, B, C\text{ définissent un unique plan si et seulement si :}`,
+        choices:[
+          r`A, B, C\text{ ne sont pas alignés}`,
+          r`A, B, C\text{ sont alignés}`,
+          r`\overrightarrow{AB} = \overrightarrow{AC}`,
+          r`AB = BC`
+        ],
+        a: r`A, B, C\text{ ne sont pas alignés}`,
+        tip: r`\text{3 points non alignés} \Leftrightarrow \overrightarrow{AB}\text{ et }\overrightarrow{AC}\text{ non colinéaires} \Rightarrow \text{unique plan passant par }A, B, C.` },
+
+      // gev_05 — vecteur directeur d'une droite — facile
+      { q: r`\text{La droite passant par }A(1\,;\,0\,;\,2)\text{ et }B(3\,;\,1\,;\,5)\text{ a pour vecteur directeur :}`,
+        choices:[
+          r`\overrightarrow{AB}(2\,;\,1\,;\,3)`,
+          r`\overrightarrow{AB}(3\,;\,1\,;\,5)`,
+          r`\overrightarrow{AB}(1\,;\,0\,;\,2)`,
+          r`\overrightarrow{AB}(-2\,;\,-1\,;\,-3)`
+        ],
+        a: r`\overrightarrow{AB}(2\,;\,1\,;\,3)`,
+        tip: r`\overrightarrow{AB}=B-A=(3-1\,;\,1-0\,;\,5-2)=(2\,;\,1\,;\,3).\text{ Tout multiple non nul convient aussi.}` },
+
+      // gev_06 — colinéarité de vecteurs en 3D — moyen
+      { q: r`\text{Les vecteurs }\vec{u}(2\,;\,-4\,;\,6)\text{ et }\vec{v}(1\,;\,-2\,;\,3)\text{ sont-ils colinéaires ?}`,
+        choices:[
+          r`\text{Oui, car }\vec{u} = 2\vec{v}`,
+          r`\text{Non, car leurs composantes sont différentes}`,
+          r`\text{Oui, car }\vec{u}\cdot\vec{v}=0`,
+          r`\text{Non, car ils ont 3 composantes}`
+        ],
+        a: r`\text{Oui, car }\vec{u} = 2\vec{v}`,
+        tip: r`\vec{u}=2\vec{v}\Leftrightarrow(2;-4;6)=2\times(1;-2;3)\checkmark.\text{ Deux vecteurs sont colinéaires ssi l'un est multiple de l'autre.}` },
+
+      // gev_07 — vecteur normal et appartenance au plan — moyen
+      { q: r`\vec{n}(1\,;\,2\,;\,-1)\text{ est normal au plan }\mathcal{P}.\text{ Le vecteur }\vec{v}(3\,;\,0\,;\,3)\text{ est-il dans }\mathcal{P}\text{ ?}`,
+        choices:[
+          r`\text{Oui, car }\vec{v}\cdot\vec{n}=0`,
+          r`\text{Non, car }\vec{v}\cdot\vec{n}\neq 0`,
+          r`\text{Oui, car }\vec{v}\text{ a 3 composantes}`,
+          r`\text{Non, car }\vec{v}\text{ n'est pas colinéaire à }\vec{n}`
+        ],
+        a: r`\text{Oui, car }\vec{v}\cdot\vec{n}=0`,
+        tip: r`\vec{v}\cdot\vec{n}=3\times 1+0\times 2+3\times(-1)=3+0-3=0.\text{ Donc }\vec{v}\perp\vec{n}\Rightarrow\vec{v}\text{ est dans le plan.}` },
+
+      // gev_08 — droite perpendiculaire à un plan — moyen
+      { q: r`\text{Une droite de vecteur directeur }\vec{u}\text{ est perpendiculaire au plan de normal }\vec{n}\text{ si :}`,
+        choices:[
+          r`\vec{u}\text{ et }\vec{n}\text{ sont colinéaires}`,
+          r`\vec{u}\cdot\vec{n}=0`,
+          r`\vec{u}=\vec{n}`,
+          r`\vec{u}\cdot\vec{n}=1`
+        ],
+        a: r`\vec{u}\text{ et }\vec{n}\text{ sont colinéaires}`,
+        tip: r`\text{La droite est }\perp\text{ au plan} \Leftrightarrow \vec{u}\text{ est colinéaire à }\vec{n}\text{ (même direction que le normal).}` },
+
+      // gev_09 — vérifier qu'un vecteur est normal — moyen
+      { q: r`\text{Le plan }\mathcal{P}\text{ contient }\vec{u}(1\,;\,0\,;\,-1)\text{ et }\vec{v}(0\,;\,1\,;\,1).\\\text{Vérifier que }\vec{n}(1\,;\,-1\,;\,1)\text{ est normal à }\mathcal{P}.`,
+        choices:[
+          r`\text{Oui : }\vec{n}\cdot\vec{u}=0\text{ et }\vec{n}\cdot\vec{v}=0`,
+          r`\text{Non : }\vec{n}\cdot\vec{u}\neq 0`,
+          r`\text{Oui : }\vec{n}\text{ a 3 composantes}`,
+          r`\text{Non : }\vec{n}\cdot\vec{v}\neq 0`
+        ],
+        a: r`\text{Oui : }\vec{n}\cdot\vec{u}=0\text{ et }\vec{n}\cdot\vec{v}=0`,
+        tip: r`\vec{n}\cdot\vec{u}=1\cdot1+(-1)\cdot0+1\cdot(-1)=0\ \checkmark\quad\vec{n}\cdot\vec{v}=1\cdot0+(-1)\cdot1+1\cdot1=0\ \checkmark` },
+
+      // gev_10 — base d'un plan ou d'une droite ? — moyen
+      { q: r`\vec{u}(1\,;\,2\,;\,3)\text{ et }\vec{v}(2\,;\,4\,;\,6).\text{ Ces deux vecteurs définissent :}`,
+        choices:[
+          r`\text{Une droite (une direction)}`,
+          r`\text{Un plan}`,
+          r`\text{Un repère de l'espace}`,
+          r`\text{Rien, ils sont nuls}`
+        ],
+        a: r`\text{Une droite (une direction)}`,
+        tip: r`\vec{v}=2\vec{u}\text{ : ils sont colinéaires. Deux vecteurs colinéaires ne définissent qu'une seule direction, pas un plan.}` },
+
+      // gev_11 — trouver un vecteur dans le plan — difficile
+      { q: r`\mathcal{P}\text{ a pour normal }\vec{n}(2\,;\,1\,;\,-2).\\\text{Lequel de ces vecteurs est dans }\mathcal{P}\text{ ?}`,
+        choices:[
+          r`\vec{w}(1\,;\,0\,;\,1)`,
+          r`\vec{w}(2\,;\,1\,;\,-2)`,
+          r`\vec{w}(1\,;\,1\,;\,1)`,
+          r`\vec{w}(2\,;\,2\,;\,2)`
+        ],
+        a: r`\vec{w}(1\,;\,0\,;\,1)`,
+        tip: r`\vec{w}\cdot\vec{n}=2\cdot1+1\cdot0+(-2)\cdot1=2+0-2=0\ \checkmark.\text{ Les autres : }(2;1;-2)\cdot\vec{n}=4+1+4\neq 0,\text{ etc.}` },
+
+      // gev_12 — résumé : objet géométrique selon les données — difficile
+      { q: r`\text{On se donne un point }A\text{ et un vecteur }\vec{n}\text{ non nul. Ces données définissent :}`,
+        choices:[
+          r`\text{Un unique plan}`,
+          r`\text{Une unique droite}`,
+          r`\text{Plusieurs plans possibles}`,
+          r`\text{Un repère de l'espace}`
+        ],
+        a: r`\text{Un unique plan}`,
+        tip: r`\text{Un point }+\text{ un vecteur normal }\Rightarrow\text{ un unique plan (passant par }A\text{, perpendiculaire à }\vec{n}\text{).}` },
+    ],
+
+    geom_espace_equations: [
+      // ── Équations de plan ────────────────────────────────────────────────
+
+      // geq_01 — forme générale — facile
+      { q: r`\text{L'équation cartésienne d'un plan dans l'espace est de la forme :}`,
+        choices:[
+          r`ax + by + cz + d = 0`,
+          r`ax + by + d = 0`,
+          r`ax^2 + by^2 + cz^2 = 0`,
+          r`ax + b = 0`
+        ],
+        a: r`ax + by + cz + d = 0`,
+        tip: r`\text{Forme cartésienne : }ax+by+cz+d=0\text{ avec }(a,b,c)\neq(0,0,0).\text{ Le vecteur normal est }\vec{n}(a\,;\,b\,;\,c).` },
+
+      // geq_02 — reconnaître un plan — facile
+      { q: r`\text{Parmi ces expressions, laquelle est l'équation d'un plan ?}`,
+        choices:[
+          r`3x - y + 2z - 6 = 0`,
+          r`x^2 + y^2 + z^2 = 1`,
+          r`y = x^2`,
+          r`x = y = z`
+        ],
+        a: r`3x - y + 2z - 6 = 0`,
+        tip: r`\text{Un plan a une équation linéaire en }x, y, z.\text{ La sphère }x^2+y^2+z^2=1\text{ est du 2nd degré ; }y=x^2\text{ est une parabole.}` },
+
+      // geq_03 — vérifier l'appartenance d'un point — facile
+      { q: r`\text{Le point }A(1\,;\,2\,;\,-1)\text{ appartient-il au plan }x + 2y + 3z + 2 = 0\text{ ?}`,
+        choices:[
+          r`\text{Oui}`,
+          r`\text{Non}`,
+          r`\text{Impossible à déterminer}`,
+          r`\text{Seulement si }z=0`
+        ],
+        a: r`\text{Oui}`,
+        tip: r`1+2\times 2+3\times(-1)+2=1+4-3+2=4\neq 0.\\\text{Donc non — le calcul donne 4, pas 0.}` },
+
+      // geq_04 — corriger geq_03 — facile
+      { q: r`\text{Le point }B(1\,;\,0\,;\,-1)\text{ appartient-il au plan }2x + y - 2z - 4 = 0\text{ ?}`,
+        choices:[
+          r`\text{Oui}`,
+          r`\text{Non}`,
+          r`\text{Cela dépend de la valeur de }y`,
+          r`\text{Seulement si }x > 0`
+        ],
+        a: r`\text{Oui}`,
+        tip: r`2\times 1+0-2\times(-1)-4=2+0+2-4=0\ \checkmark.\text{ Le point vérifie l'équation : il appartient au plan.}` },
+
+      // geq_05 — trouver d depuis un point et un normal — moyen
+      { q: r`\text{Un plan a pour normal }\vec{n}(1\,;\,-1\,;\,2)\text{ et passe par }A(0\,;\,1\,;\,1).\\\text{Son équation est :}`,
+        choices:[
+          r`x - y + 2z - 1 = 0`,
+          r`x - y + 2z + 1 = 0`,
+          r`x - y + 2z = 0`,
+          r`x + y - 2z + 1 = 0`
+        ],
+        a: r`x - y + 2z - 1 = 0`,
+        tip: r`\text{Équation : }x-y+2z+d=0.\text{ On substitue }A(0;1;1): 0-1+2+d=0\Rightarrow d=-1.\text{ D'où }x-y+2z-1=0.` },
+
+      // geq_06 — identifier le normal depuis l'équation — facile
+      { q: r`\text{Le vecteur normal au plan }-x + 4y - 2z + 7 = 0\text{ est :}`,
+        choices:[
+          r`\vec{n}(-1\,;\,4\,;\,-2)`,
+          r`\vec{n}(1\,;\,4\,;\,2)`,
+          r`\vec{n}(-1\,;\,4\,;\,7)`,
+          r`\vec{n}(7\,;\,4\,;\,-2)`
+        ],
+        a: r`\vec{n}(-1\,;\,4\,;\,-2)`,
+        tip: r`\text{Pour }ax+by+cz+d=0\text{, le normal est }\vec{n}(a;b;c).\text{ Ici }a=-1, b=4, c=-2, d=7\text{ (}d\text{ ne fait pas partie du normal).}` },
+
+      // geq_07 — plans parallèles — moyen
+      { q: r`\text{Le plan }\mathcal{P}_1:x+2y-z+3=0\text{ et }\mathcal{P}_2:2x+4y-2z-1=0\text{ sont :}`,
+        choices:[
+          r`\text{Parallèles}`,
+          r`\text{Sécants}`,
+          r`\text{Confondus}`,
+          r`\text{Perpendiculaires}`
+        ],
+        a: r`\text{Parallèles}`,
+        tip: r`\vec{n_1}(1;2;-1)\text{ et }\vec{n_2}(2;4;-2)=2\vec{n_1}\text{ : colinéaires} \Rightarrow \text{plans parallèles.}\\\text{Pour vérifier s'ils sont confondus : }A(0;0;-3)\in\mathcal{P}_1\text{ mais }2(0)+4(0)-2(-3)-1=5\neq 0\Rightarrow\text{distincts.}` },
+
+      // geq_08 — plans perpendiculaires — moyen
+      { q: r`\text{Le plan }\mathcal{P}_1:x-y+z=0\text{ et }\mathcal{P}_2:x+y+z=0\text{ sont-ils perpendiculaires ?}`,
+        choices:[
+          r`\text{Non, }\vec{n_1}\cdot\vec{n_2}=1\neq 0`,
+          r`\text{Oui, }\vec{n_1}\cdot\vec{n_2}=0`,
+          r`\text{Oui, leurs normaux sont colinéaires}`,
+          r`\text{Non, ils n'ont pas le même }d`
+        ],
+        a: r`\text{Non, }\vec{n_1}\cdot\vec{n_2}=1\neq 0`,
+        tip: r`\vec{n_1}(1;-1;1),\ \vec{n_2}(1;1;1).\\\vec{n_1}\cdot\vec{n_2}=1\times1+(-1)\times1+1\times1=1-1+1=1\neq 0\Rightarrow\text{non perpendiculaires.}` },
+
+      // geq_09 — plan passant par 3 points — difficile
+      { q: r`\text{Un plan passe par }A(1\,;\,0\,;\,0),\,B(0\,;\,1\,;\,0),\,C(0\,;\,0\,;\,1).\\\text{Son équation est :}`,
+        choices:[
+          r`x + y + z = 1`,
+          r`x + y + z = 0`,
+          r`x - y + z = 1`,
+          r`x + y - z = 1`
+        ],
+        a: r`x + y + z = 1`,
+        tip: r`\text{On vérifie : }A\text{ : }1+0+0=1\ \checkmark,\ B\text{ : }0+1+0=1\ \checkmark,\ C\text{ : }0+0+1=1\ \checkmark.\\\vec{n}(1;1;1)\text{ et le plan coupe les axes en }(1,0,0),(0,1,0),(0,0,1).` },
+
+      // geq_10 — point hors du plan — moyen
+      { q: r`\text{Le point }P(2\,;\,1\,;\,3)\text{ appartient-il au plan }x - y + 2z - 7 = 0\text{ ?}`,
+        choices:[
+          r`\text{Oui}`,
+          r`\text{Non}`,
+          r`\text{Seulement si }z > 0`,
+          r`\text{Impossible à déterminer}`
+        ],
+        a: r`\text{Oui}`,
+        tip: r`2-1+2\times3-7=2-1+6-7=0\ \checkmark.\text{ Le point }P\text{ vérifie l'équation.}` },
+
+      // geq_11 — plan horizontal/vertical — moyen
+      { q: r`\text{Le plan d'équation }z = 3\text{ est :}`,
+        choices:[
+          r`\text{Horizontal (parallèle au plan }xOy\text{)}`,
+          r`\text{Vertical (parallèle à l'axe }Oz\text{)}`,
+          r`\text{Le plan }xOz`,
+          r`\text{Le plan }yOz`
+        ],
+        a: r`\text{Horizontal (parallèle au plan }xOy\text{)}`,
+        tip: r`z=3\Leftrightarrow 0\cdot x+0\cdot y+1\cdot z-3=0.\text{ Normal }\vec{n}(0;0;1)=\vec{k}\text{ : le plan est perpendiculaire à }Oz\text{, donc parallèle à }xOy.` },
+
+      // geq_12 — plan passant par l'origine — moyen
+      { q: r`\text{Le plan }2x - y + 3z = 0\text{ passe-t-il par l'origine }O(0;0;0)\text{ ?}`,
+        choices:[
+          r`\text{Oui, car }2(0)-0+3(0)=0`,
+          r`\text{Non, car }d=0\text{ est interdit}`,
+          r`\text{Impossible à déterminer}`,
+          r`\text{Non, car le plan n'a pas de terme constant}`
+        ],
+        a: r`\text{Oui, car }2(0)-0+3(0)=0`,
+        tip: r`\text{Un plan d'équation }ax+by+cz=0\text{ (sans terme constant) passe toujours par l'origine : vérification immédiate en }(0;0;0).` },
+
+      // geq_13 — synthèse normale/équation/point — difficile
+      { q: r`\text{Un plan }\mathcal{P}\text{ a normal }\vec{n}(0\,;\,1\,;\,0)\text{ et passe par }A(3\,;\,2\,;\,5).\\\text{Son équation est :}`,
+        choices:[
+          r`y = 2`,
+          r`y + 2 = 0`,
+          r`x + z = 8`,
+          r`y = 0`
+        ],
+        a: r`y = 2`,
+        tip: r`\vec{n}(0;1;0)\Rightarrow\text{plan de la forme }0\cdot x+1\cdot y+0\cdot z+d=0\Leftrightarrow y+d=0.\\\text{Point }A(3;2;5): 2+d=0\Rightarrow d=-2.\text{ Équation : }y-2=0\Leftrightarrow y=2.` },
+    ],
+
+    geom_espace_droites: [
+      // ── Représentations paramétriques de droites ─────────────────────────
+
+      // ged_01 — forme d'une représentation paramétrique — facile
+      { q: r`\text{La représentation paramétrique d'une droite passant par }A(x_0;y_0;z_0)\\\text{de vecteur directeur }\vec{u}(a;b;c)\text{ est :}`,
+        choices:[
+          r`\begin{cases}x=x_0+ta\\y=y_0+tb\\z=z_0+tc\end{cases},\ t\in\mathbb{R}`,
+          r`ax+by+cz+d=0`,
+          r`\begin{cases}x=a\\y=b\\z=c\end{cases}`,
+          r`\begin{cases}x=x_0 a\\y=y_0 b\\z=z_0 c\end{cases}`
+        ],
+        a: r`\begin{cases}x=x_0+ta\\y=y_0+tb\\z=z_0+tc\end{cases},\ t\in\mathbb{R}`,
+        tip: r`\text{Paramétrique : point de départ + }t\times\text{vecteur directeur. }t\text{ parcourt }\mathbb{R}\text{ pour donner tous les points de la droite.}` },
+
+      // ged_02 — lire le vecteur directeur — facile
+      { q: r`\text{La droite }\begin{cases}x=1+2t\\y=3-t\\z=t\end{cases}\text{ a pour vecteur directeur :}`,
+        choices:[
+          r`\vec{u}(2\,;\,-1\,;\,1)`,
+          r`\vec{u}(1\,;\,3\,;\,0)`,
+          r`\vec{u}(2\,;\,3\,;\,1)`,
+          r`\vec{u}(1\,;\,-1\,;\,0)`
+        ],
+        a: r`\vec{u}(2\,;\,-1\,;\,1)`,
+        tip: r`\text{Les coefficients de }t\text{ donnent le vecteur directeur : }x=1+\mathbf{2}t,\ y=3+\mathbf{(-1)}t,\ z=\mathbf{1}t\Rightarrow\vec{u}(2;-1;1).` },
+
+      // ged_03 — lire le point de départ — facile
+      { q: r`\text{La droite }\begin{cases}x=2+t\\y=-1+3t\\z=4-2t\end{cases}\text{ passe par le point :}`,
+        choices:[
+          r`A(2\,;\,-1\,;\,4)`,
+          r`A(1\,;\,3\,;\,-2)`,
+          r`A(0\,;\,0\,;\,0)`,
+          r`A(2\,;\,3\,;\,-2)`
+        ],
+        a: r`A(2\,;\,-1\,;\,4)`,
+        tip: r`\text{Pour }t=0\text{ : }x=2,\ y=-1,\ z=4.\text{ Le point de départ est obtenu pour }t=0.` },
+
+      // ged_04 — vérifier qu'un point est sur la droite — moyen
+      { q: r`\text{La droite }d:\begin{cases}x=1+t\\y=2t\\z=3-t\end{cases}.\text{ Le point }B(3\,;\,4\,;\,1)\text{ est-il sur }d\text{ ?}`,
+        choices:[
+          r`\text{Oui, pour }t=2`,
+          r`\text{Non}`,
+          r`\text{Oui, pour }t=3`,
+          r`\text{Impossible à déterminer}`
+        ],
+        a: r`\text{Oui, pour }t=2`,
+        tip: r`x=3\Rightarrow 1+t=3\Rightarrow t=2.\ \text{Vérif : }y=2\times2=4\ \checkmark,\ z=3-2=1\ \checkmark.\text{ Les 3 équations sont satisfaites.}` },
+
+      // ged_05 — point pas sur la droite — moyen
+      { q: r`\text{La droite }d:\begin{cases}x=t\\y=1+t\\z=2t\end{cases}.\text{ Le point }C(1\,;\,3\,;\,2)\text{ est-il sur }d\text{ ?}`,
+        choices:[
+          r`\text{Non}`,
+          r`\text{Oui, pour }t=1`,
+          r`\text{Oui, pour }t=2`,
+          r`\text{Oui, pour }t=3`
+        ],
+        a: r`\text{Non}`,
+        tip: r`x=1\Rightarrow t=1.\text{ Vérif }y:1+1=2\neq 3.\text{ Le point ne vérifie pas toutes les équations : il n'est pas sur }d.` },
+
+      // ged_06 — deux droites parallèles — moyen
+      { q: r`d_1:\begin{cases}x=1+2t\\y=3t\\z=-t\end{cases}\quad d_2:\begin{cases}x=4t\\y=6t\\z=-2t\end{cases}.\\\text{Ces droites sont-elles parallèles ?}`,
+        choices:[
+          r`\text{Oui, }\vec{u_2}=2\vec{u_1}`,
+          r`\text{Non, leurs vecteurs directeurs sont différents}`,
+          r`\text{Oui, elles ont le même point de départ}`,
+          r`\text{Non, }d_2\text{ passe par l'origine}`
+        ],
+        a: r`\text{Oui, }\vec{u_2}=2\vec{u_1}`,
+        tip: r`\vec{u_1}(2;3;-1),\ \vec{u_2}(4;6;-2)=2(2;3;-1)=2\vec{u_1}\text{ : colinéaires}\Rightarrow\text{parallèles (ou confondues).}` },
+
+      // ged_07 — droites confondues ou parallèles ? — difficile
+      { q: r`d_1:\begin{cases}x=1+t\\y=2t\\z=3t\end{cases}\quad d_2:\begin{cases}x=3+t\\y=4+2t\\z=6+3t\end{cases}.\\\text{Ces droites sont :}`,
+        choices:[
+          r`\text{Parallèles distinctes}`,
+          r`\text{Confondues}`,
+          r`\text{Sécantes}`,
+          r`\text{Gauches}`
+        ],
+        a: r`\text{Parallèles distinctes}`,
+        tip: r`\vec{u_1}=\vec{u_2}(1;2;3)\text{ : colinéaires, donc parallèles.}\\\text{Le point }A(3;4;6)\in d_2.\text{ Test dans }d_1: x=3\Rightarrow t=2,\ y=4\ \checkmark,\ z=6\ \checkmark.\\\text{Donc }A\in d_1\text{ aussi — elles sont confondues !}` },
+
+      // ged_08 — droite perpendiculaire à un plan — moyen
+      { q: r`\text{La droite }d:\begin{cases}x=1+2t\\y=-t\\z=3t\end{cases}\text{ est-elle perpendiculaire au plan }2x-y+3z+5=0\text{ ?}`,
+        choices:[
+          r`\text{Oui, }\vec{u}=(2;-1;3)\text{ est colinéaire à }\vec{n}=(2;-1;3)`,
+          r`\text{Non, }\vec{u}\cdot\vec{n}=0`,
+          r`\text{Oui, }\vec{u}\cdot\vec{n}=0`,
+          r`\text{Non, }\vec{u}\text{ n'est pas le vecteur nul}`
+        ],
+        a: r`\text{Oui, }\vec{u}=(2;-1;3)\text{ est colinéaire à }\vec{n}=(2;-1;3)`,
+        tip: r`\vec{u}=(2;-1;3)=\vec{n}\text{ : ils sont identiques (donc colinéaires)} \Rightarrow d\perp\mathcal{P}.` },
+
+      // ged_09 — droite parallèle à un plan — moyen
+      { q: r`\text{La droite de vecteur directeur }\vec{u}(1\,;\,1\,;\,-1)\text{ est-elle parallèle au plan }x+y+z=0\text{ ?}`,
+        choices:[
+          r`\text{Oui, }\vec{u}\cdot\vec{n}=0`,
+          r`\text{Non, }\vec{u}\cdot\vec{n}\neq 0`,
+          r`\text{Oui, }\vec{u}=\vec{n}`,
+          r`\text{Non, }\vec{u}\text{ est dans le plan}`
+        ],
+        a: r`\text{Non, }\vec{u}\cdot\vec{n}\neq 0`,
+        tip: r`\vec{n}(1;1;1),\ \vec{u}\cdot\vec{n}=1+1-1=1\neq 0\Rightarrow\vec{u}\not\perp\vec{n}\Rightarrow\text{la droite coupe le plan (elle n'est pas parallèle).}` },
+
+      // ged_10 — intersection droite/plan — difficile
+      { q: r`d:\begin{cases}x=t\\y=1+t\\z=2\end{cases}\text{ coupe le plan }x+y-z=0\text{ en :}`,
+        choices:[
+          r`\text{Le point }\left(-\frac{1}{2}\,;\,\frac{1}{2}\,;\,2\right)`,
+          r`\text{Le point }(1\,;\,2\,;\,2)`,
+          r`d\text{ est parallèle au plan}`,
+          r`d\text{ est incluse dans le plan}`
+        ],
+        a: r`\text{Le point }\left(-\frac{1}{2}\,;\,\frac{1}{2}\,;\,2\right)`,
+        tip: r`\text{On substitue dans }x+y-z=0: t+(1+t)-2=0\Rightarrow 2t-1=0\Rightarrow t=\frac{1}{2}.\\\text{Point : }x=-\frac{1}{2},\ y=\frac{1}{2},\ z=2.` },
+
+      // ged_11 — droite incluse dans un plan — difficile
+      { q: r`d:\begin{cases}x=1+t\\y=2-t\\z=1+t\end{cases}\text{ est-elle incluse dans le plan }x-y+z-2=0\text{ ?}`,
+        choices:[
+          r`\text{Oui}`,
+          r`\text{Non}`,
+          r`\text{La droite est parallèle au plan}`,
+          r`\text{La droite coupe le plan en un point}`
+        ],
+        a: r`\text{Oui}`,
+        tip: r`\vec{u}\cdot\vec{n}=1\cdot1+(-1)\cdot(-1)+1\cdot1=1+1+1=3\neq 0.\\\text{Donc la droite coupe le plan — elle n'est pas incluse.}` },
+
+      // ged_12 — synthèse droite/plan — difficile
+      { q: r`\text{La droite }d\text{ a vecteur directeur }\vec{u}(1;2;-1).\\\text{Elle est parallèle au plan }x+y+z+4=0\text{ ?}`,
+        choices:[
+          r`\text{Non, }\vec{u}\cdot\vec{n}=1+2-1=2\neq 0`,
+          r`\text{Oui, }\vec{u}\cdot\vec{n}=0`,
+          r`\text{Non, }\vec{u}=\vec{n}`,
+          r`\text{Oui, les normaux sont colinéaires}`
+        ],
+        a: r`\text{Non, }\vec{u}\cdot\vec{n}=1+2-1=2\neq 0`,
+        tip: r`\vec{n}(1;1;1).\quad\vec{u}\cdot\vec{n}=1\times1+2\times1+(-1)\times1=2\neq0\Rightarrow\vec{u}\not\perp\vec{n}\Rightarrow d\text{ coupe }\mathcal{P}.` },
+
+      // ged_13 — droites gauches — difficile
+      { q: r`d_1:\begin{cases}x=t\\y=0\\z=t\end{cases}\quad d_2:\begin{cases}x=0\\y=t\\z=1\end{cases}.\\\text{Ces droites sont :}`,
+        choices:[
+          r`\text{Gauches}`,
+          r`\text{Parallèles}`,
+          r`\text{Sécantes}`,
+          r`\text{Confondues}`
+        ],
+        a: r`\text{Gauches}`,
+        tip: r`\vec{u_1}(1;0;1),\ \vec{u_2}(0;1;0)\text{ non colinéaires.}\\\text{Pour sécantes : }t=0,\ 0=0,\ t=1\Rightarrow t=0\text{ et }t=1\text{ simultanément : impossible.}\\\text{Pas parallèles, pas sécantes}\Rightarrow\text{gauches.}` },
+    ],
+
   },
 
 };
@@ -10043,14 +10844,19 @@ const CATS = [
     ] },
   { id:"produit_scalaire", label:"Produit scalaire", emoji:"📐", color:"#0F766E", grad:"linear-gradient(135deg,#14B8A6,#0F766E)", light:"#F0FDFA", border:"#99F6E4",
     subs:[
-      {id:"plan", label:"Produit scalaire dans le plan", levels:["spe"]},
+      {id:"plan",    label:"Produit scalaire dans le plan",    levels:["spe"]},
+      {id:"espace",  label:"Produit scalaire dans l'espace",   levels:["term"]},
     ] },
   { id:"geometrie", label:"Géométrie & vecteurs", emoji:"📏", color:"#7C3AED", grad:"linear-gradient(135deg,#A78BFA,#6D28D9)", light:"#F5F3FF", border:"#DDD6FE",
     subs:[
-      {id:"vecteurs_bases",      label:"Vecteurs : placement et égalité",  levels:["sec","tc","spe","term"]},
-      {id:"chasles",             label:"Relation de Chasles",               levels:["sec","tc","spe","term"]},
-      {id:"geom_analytique",     label:"Géométrie analytique",              levels:["sec","tc","spe","term"]},
-      {id:"vecteurs_colineaires",label:"Vecteurs colinéaires",              levels:["sec","tc","spe","term"]},
+      {id:"vecteurs_bases",           label:"Vecteurs : placement et égalité",      levels:["sec","tc","spe","term"]},
+      {id:"chasles",                  label:"Relation de Chasles",                   levels:["sec","tc","spe","term"]},
+      {id:"geom_analytique",          label:"Géométrie analytique",                  levels:["sec","tc","spe","term"]},
+      {id:"vecteurs_colineaires",     label:"Vecteurs colinéaires",                  levels:["sec","tc","spe","term"]},
+      {id:"geom_espace_positions",    label:"Positions relatives dans l'espace",     levels:["term"]},
+      {id:"geom_espace_vecteurs",     label:"Vecteurs et plans dans l'espace",       levels:["term"]},
+      {id:"geom_espace_equations",    label:"Équations de plan",                     levels:["term"]},
+      {id:"geom_espace_droites",      label:"Droites dans l'espace",                 levels:["term"]},
     ] },
   { id:"algo_python", label:"Algorithmique Python", emoji:"🐍", color:"#15803D", grad:"linear-gradient(135deg,#22C55E,#15803D)", light:"#F0FDF4", border:"#BBF7D0",
     subs:[
@@ -10868,7 +11674,7 @@ const CURRICULUM = {
            litteral:['eq1','produit_nul','inequation1','developpement','id_remarquables','facto_commun','facto_id','manipulation'],
            probabilites:['tableau','tableau_fill','arbre','contraire'],
            statistiques:['stat_centrale','stat_dispersion'],
-           geometrie:['vecteurs_bases','chasles','geom_analytique','vecteurs_colineaires'] }},
+           geometrie:['vecteurs_bases','chasles','geom_analytique','vecteurs_colineaires','geom_espace_positions','geom_espace_vecteurs','geom_espace_equations','geom_espace_droites'] }},
   premiere_stmg: { label:"1ère STMG", emoji:"📊", color:"#F59E0B",
     cats:{
       // ── Thèmes cœur 1ère STMG ──
@@ -10905,9 +11711,9 @@ const CURRICULUM = {
       statistiques:['loi_binomiale','stat_centrale','stat_dispersion'],
       expo:['definition','calculs','etude','derivee','equations','expo_comparaisons','applications'],
       bac:['spe_annales_s1_2026','spe_annales_s2_2026'],
-      produit_scalaire:['plan'],
+      produit_scalaire:['plan','espace'],
       trigonometrie:['valeurs_trigo','trigo_fonctions'],
-      geometrie:['vecteurs_bases','chasles','geom_analytique','vecteurs_colineaires'] }},
+      geometrie:['vecteurs_bases','chasles','geom_analytique','vecteurs_colineaires','geom_espace_positions','geom_espace_vecteurs','geom_espace_equations','geom_espace_droites'] }},
   terminale_spe: { label:"Terminale Spé", emoji:"🏆", color:"#DC2626",
     cats:{ polynomes:['poly2_definition','poly2_racines','poly2_discriminant','poly2_canonique','poly2_variations','poly2_signe','poly2_inequations'],
            expo:['definition','calculs','etude','derivee','equations','expo_comparaisons','applications'],
@@ -15540,13 +16346,27 @@ const CAT_FILTER_CONFIGS = {
     label: "2nde",
     ids: ["numerique","pourcentages","litteral","fonctions","geometrie","statistiques","probabilites","algo_python"],
   },
+  // ── 1ère ──
   premiere: {
     label: "1ère",
     ids: ["polynomes","suites","derivation","expo","trigonometrie","produit_scalaire","geometrie","algo_python"],
   },
+  premiere_spe: {
+    label: "1ère Spé",
+    ids: ["polynomes","suites","derivation","expo","trigonometrie","produit_scalaire","geometrie","algo_python"],
+  },
+  tc: {
+    label: "1ère Tronc commun",
+    ids: ["numerique","pourcentages","litteral","fonctions","statistiques","probabilites","polynomes","suites","derivation"],
+  },
+  stmg: {
+    label: "1ère STMG",
+    ids: ["numerique","pourcentages","litteral","fonctions","statistiques","probabilites","polynomes","suites","derivation"],
+  },
+  // ── Terminale ──
   term: {
     label: "Terminale",
-    ids: ["polynomes","expo","suites","limites","derivation","ln","probabilites","denombrement","trigonometrie","equa_diff","primitives","geometrie","algo_python"],
+    ids: ["polynomes","expo","suites","limites","derivation","ln","probabilites","denombrement","trigonometrie","equa_diff","primitives","geometrie","produit_scalaire","algo_python"],
   },
   all: {
     label: "Tout",
@@ -15557,19 +16377,32 @@ const CAT_FILTER_CONFIGS = {
 // Convertit le level du profil en clé de filtre
 function profileLevelToFilter(level) {
   if (!level) return "all";
-  if (level === "sec" || level === "tc") return "sec";
-  if (level === "stmg" || level === "spe") return "premiere";
+  if (level === "sec") return "sec";
+  if (level === "tc")   return "tc";
+  if (level === "stmg") return "stmg";
+  if (level === "spe")  return "premiere_spe";
   if (level === "term") return "term";
   return "all";
 }
 
 function CategoryScreen({onCat, onBack, subtitle="", profile=null}) {
   const initFilter = profileLevelToFilter(profile?.level ?? null);
+  // Initialiser le sous-filtre 1ère selon le profil
+  const initSubFilter = (() => {
+    const lv = profile?.level;
+    if (lv === "premiere_tronc") return "tc";
+    if (lv === "premiere_stmg") return "stmg";
+    if (lv === "premiere_spe")  return "premiere_spe";
+    return "premiere_spe";
+  })();
   const [filter, setFilter] = React.useState(initFilter);
-  // Sous-filtre 1ère uniquement
-  const [subFilter, setSubFilter] = React.useState("premiere_spe");
+  const [subFilter, setSubFilter] = React.useState(initSubFilter);
 
-  const activeFilter = filter === "premiere" ? subFilter : filter;
+  // stmg/tc sont des sous-filtres de "premiere" — afficher onglet 1ère actif
+  const displayFilter = (filter === "stmg" || filter === "tc") ? "premiere" : filter;
+  const activeFilter = (filter === "premiere" || filter === "stmg" || filter === "tc")
+    ? subFilter
+    : filter;
   const cfg = CAT_FILTER_CONFIGS[activeFilter] || CAT_FILTER_CONFIGS.all;
   const allCats = CATS.filter(c => c.id !== "missions");
   const visibleCats = cfg.ids.map(id => allCats.find(c => c.id === id)).filter(Boolean);
@@ -15596,9 +16429,9 @@ function CategoryScreen({onCat, onBack, subtitle="", profile=null}) {
       {/* Filtres niveau */}
       <div style={{display:"flex",gap:6,marginBottom: filter==="premiere" ? 8 : 14,flexShrink:0}}>
         {FILTER_TABS.map(tab=>{
-          const active = filter === tab.key;
+          const active = displayFilter === tab.key;
           return (
-            <button key={tab.key} onClick={()=>setFilter(tab.key)}
+            <button key={tab.key} onClick={()=>{ setFilter(tab.key); if(tab.key==="premiere") setSubFilter(initSubFilter); }}
               style={{
                 flex:1, padding:"6px 4px", borderRadius:10, border:"none",
                 background: active ? "#1E293B" : "#F1F5F9",
