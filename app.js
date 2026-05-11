@@ -4553,7 +4553,7 @@ const DB = {
         tip: r`\text{BT majore la probabilité d'être loin de l'espérance (l'extérieur). Elle minorera ensuite l'intérieur par complémentarité.}` },
 
       // gn_17 — Application directe BT — facile
-      { q: r`X\text{ a pour espérance }5\text{ et variance }4.\text{ Majorer }p(|X-5|\geqslant 2).`,
+      { q: r`X\text{ a pour espérance }5\text{ et variance }4.\\[4pt]\text{ Majorer }p(|X-5|\geqslant 2).`,
         choices: [
           r`p(|X-5|\geqslant 2)\leqslant 1`,
           r`p(|X-5|\geqslant 2)\leqslant \dfrac{4}{4}=1`,
@@ -4564,7 +4564,7 @@ const DB = {
         tip: r`\dfrac{V(X)}{\delta^2}=\dfrac{4}{2^2}=\dfrac{4}{4}=1.\text{ BT donne ici une borne triviale (toute proba est }\leqslant 1\text{). Elle est utile quand }\delta\text{ est grand devant }\sigma(X).` },
 
       // gn_18 — Application utile BT — moyen
-      { q: r`X\text{ a pour espérance }5\text{ et variance }4.\text{ Majorer }p(|X-5|\geqslant 10).`,
+      { q: r`X\text{ a pour espérance }5\text{ et variance }4.\\[4pt]\text{ Majorer }p(|X-5|\geqslant 10).`,
         choices: [
           r`p(|X-5|\geqslant 10)\leqslant 0{,}04`,
           r`p(|X-5|\geqslant 10)\leqslant 4`,
@@ -4575,7 +4575,7 @@ const DB = {
         tip: r`\dfrac{V(X)}{\delta^2}=\dfrac{4}{100}=0{,}04.\text{ La probabilité d'être à plus de 10 unités de l'espérance est au plus 4\,\%.}` },
 
       // gn_19 — BT pour minorer l'intérieur — moyen (la logique clé !)
-      { q: r`X\text{ a espérance }5\text{ et variance }4.\text{ Minorer }p(3 < X < 7).`,
+      { q: r`X\text{ a espérance }5\text{ et variance }4.\\[4pt]\text{ Minorer }p(3 < X < 7).`,
         choices: [
           r`p(3<X<7)\geqslant 1-\dfrac{4}{4}=0`,
           r`p(3<X<7)\geqslant \dfrac{4}{4}=1`,
@@ -4586,7 +4586,7 @@ const DB = {
         tip: r`3<X<7\Leftrightarrow|X-5|<2.\text{ BT donne }p(|X-5|\geqslant 2)\leqslant\frac{4}{4}=1.\text{ Donc }p(|X-5|<2)\geqslant 0.\text{ Borne triviale ici — BT est utile quand }\delta>\sigma(X).` },
 
       // gn_20 — BT pour minorer l'intérieur (cas utile) — moyen
-      { q: r`X\text{ a espérance }10\text{ et variance }4.\text{ Minorer }p(6 < X < 14).`,
+      { q: r`X\text{ a espérance }10\text{ et variance }4.\\[4pt]\text{ Minorer }p(6 < X < 14).`,
         choices: [
           r`p(6<X<14)\geqslant \dfrac{3}{4}=0{,}75`,
           r`p(6<X<14)\geqslant 0{,}04`,
@@ -4608,7 +4608,7 @@ const DB = {
         tip: r`\dfrac{V(X)}{\delta^2}\leqslant 0{,}01\Leftrightarrow\delta^2\geqslant\dfrac{9}{0{,}01}=900\Leftrightarrow\delta\geqslant 30.` },
 
       // gn_22 — BT avec σ(X) — moyen
-      { q: r`\sigma(X)=5,\ E(X)=20.\text{ Majorer }p(|X-20|\geqslant 25).`,
+      { q: r`\sigma(X)=5,\ E(X)=20.\\[4pt]\text{ Majorer }p(|X-20|\geqslant 25).`,
         choices: [
           r`p(|X-20|\geqslant 25)\leqslant \dfrac{25}{625}=\dfrac{1}{25}`,
           r`p(|X-20|\geqslant 25)\leqslant \dfrac{5}{25}=0{,}2`,
@@ -4643,7 +4643,7 @@ const DB = {
         tip: r`\text{C'est BT appliquée à }M_n\text{, sachant }V(M_n)=\frac{V(X)}{n}.\text{ Le facteur }n\text{ au dénominateur montre que }M_n\text{ se concentre autour de }E(X)\text{ quand }n\to+\infty.` },
 
       // gn_25 — Application inégalité de concentration — moyen
-      { q: r`V(X)=9,\ n=100,\ \delta=0{,}3.\text{ Majorer }p(|M_{100}-E(X)|\geqslant 0{,}3).`,
+      { q: r`V(X)=9,\ n=100,\ \delta=0{,}3.\\[4pt]\text{ Majorer }p(|M_{100}-E(X)|\geqslant 0{,}3).`,
         choices: [
           r`p(|M_{100}-E(X)|\geqslant 0{,}3)\leqslant 1`,
           r`p(|M_{100}-E(X)|\geqslant 0{,}3)\leqslant \dfrac{9}{100\times 0{,}09}=1`,
@@ -4654,7 +4654,7 @@ const DB = {
         tip: r`\dfrac{V(X)}{n\delta^2}=\dfrac{9}{100\times(0{,}3)^2}=\dfrac{9}{9}=1.\text{ Borne triviale : }\delta\text{ trop petit. Il faut augmenter }\delta\text{ ou }n\text{ pour obtenir une borne utile.}` },
 
       // gn_26 — Concentration utile — moyen
-      { q: r`V(X)=4,\ n=400.\text{ Majorer }p(|M_{400}-E(X)|\geqslant 0{,}1).`,
+      { q: r`V(X)=4,\ n=400.\\[4pt]\text{ Majorer }p(|M_{400}-E(X)|\geqslant 0{,}1).`,
         choices: [
           r`p(|M_{400}-E(X)|\geqslant 0{,}1)\leqslant \dfrac{4}{400\times 0{,}01}=1`,
           r`p(|M_{400}-E(X)|\geqslant 0{,}1)\leqslant \dfrac{4}{4}=1`,
@@ -4665,7 +4665,7 @@ const DB = {
         tip: r`\dfrac{V(X)}{n\delta^2}=\dfrac{4}{400\times 0{,}01}=\dfrac{4}{4}=1.\text{ Hmm — borne triviale. Essayons }\delta=0{,}2:\dfrac{4}{400\times0{,}04}=\dfrac{4}{16}=\frac{1}{4}=0{,}25.\ \checkmark` },
 
       // gn_27 — Minorer l'intérieur avec concentration — moyen
-      { q: r`V(X)=1,\ n=100.\text{ Minorer }p(|M_{100}-E(X)|<0{,}5).`,
+      { q: r`V(X)=1,\ n=100.\\[4pt]\text{ Minorer }p(|M_{100}-E(X)|<0{,}5).`,
         choices: [
           r`p(|M_{100}-E(X)|<0{,}5)\geqslant 0{,}96`,
           r`p(|M_{100}-E(X)|<0{,}5)\geqslant 0{,}5`,
@@ -9869,10 +9869,10 @@ const DB = {
 const CATS = [
   { id:"missions",     label:"Les missions", emoji:"🎯", color:"#1E40AF", grad:"linear-gradient(135deg,#1E40AF,#1E3A8A)", light:"#EFF6FF", border:"#BFDBFE",
     subs:[
-      {id:"mission_bases",      label:"Travailler mes bases",        levels:["sec","tc","stmg","spe","term"], isMission:true},
-      {id:"mission_spe",        label:"Objectif Première Spé",       levels:["sec","spe"], isMission:true},
+      {id:"mission_bases",      label:"Travailler mes bases",        levels:["sec","tc","spe"], isMission:true},
+      {id:"mission_spe",        label:"Objectif : Prendre la spé en première", levels:["sec","tc","spe"], isMission:true},
       {id:"mission_stmg",       label:"Objectif Bac STMG",           levels:["stmg"], isMission:true},
-      {id:"mission_bac",        label:"Objectif Bac en Terminale",   levels:["term"], isMission:true, disabled:true},
+      {id:"mission_bac",        label:"Objectif Bac en Terminale",   levels:["term"], isMission:true},
     ] },
   { id:"fonctions",    label:"Généralités sur les fonctions", emoji:"📈", color:"#2563EB", grad:"linear-gradient(135deg,#3B82F6,#1D4ED8)", light:"#EFF6FF", border:"#BFDBFE",
     groups:[
@@ -9942,7 +9942,7 @@ const CATS = [
       {id:"probas_totales",         label:"Probabilités totales",         levels:["term"]},
       {id:"probas_var_aleatoires",  label:"Variables aléatoires (E, V, σ)", levels:["term"]},
       {id:"probas_loi_binomiale",   label:"Loi binomiale (Term)",         levels:["term"]},
-      {id:"grands_nombres",            label:"Grands nombres & Bienaymé-T.", levels:["term"]},
+      {id:"grands_nombres",            label:"Concentration — Loi des grands nombres", levels:["term"]},
     ] },
   { id:"derivation",   label:"Dérivation", emoji:"📉", color:"#0891B2", grad:"linear-gradient(135deg,#06B6D4,#0E7490)", light:"#ECFEFF", border:"#A5F3FC",
     subs:[
@@ -15546,7 +15546,7 @@ const CAT_FILTER_CONFIGS = {
   },
   term: {
     label: "Terminale",
-    ids: ["polynomes","expo","suites","limites","derivation","probabilites","denombrement","ln","trigonometrie","primitives","equa_diff","geometrie","algo_python"],
+    ids: ["polynomes","expo","suites","limites","derivation","ln","probabilites","denombrement","trigonometrie","equa_diff","primitives","geometrie","algo_python"],
   },
   all: {
     label: "Tout",
@@ -15566,20 +15566,25 @@ function profileLevelToFilter(level) {
 function CategoryScreen({onCat, onBack, subtitle="", profile=null}) {
   const initFilter = profileLevelToFilter(profile?.level ?? null);
   const [filter, setFilter] = React.useState(initFilter);
+  // Sous-filtre 1ère uniquement
+  const [subFilter, setSubFilter] = React.useState("premiere_spe");
 
-  const cfg = CAT_FILTER_CONFIGS[filter] || CAT_FILTER_CONFIGS.all;
+  const activeFilter = filter === "premiere" ? subFilter : filter;
+  const cfg = CAT_FILTER_CONFIGS[activeFilter] || CAT_FILTER_CONFIGS.all;
   const allCats = CATS.filter(c => c.id !== "missions");
-
-  // Construire la liste ordonnée selon le filtre
-  const visibleCats = filter === "all"
-    ? cfg.ids.map(id => allCats.find(c => c.id === id)).filter(Boolean)
-    : cfg.ids.map(id => allCats.find(c => c.id === id)).filter(Boolean);
+  const visibleCats = cfg.ids.map(id => allCats.find(c => c.id === id)).filter(Boolean);
 
   const FILTER_TABS = [
     { key:"sec",      label:"2nde" },
     { key:"premiere", label:"1ère" },
     { key:"term",     label:"Terminale" },
     { key:"all",      label:"Tout" },
+  ];
+
+  const PREMIERE_SUBTABS = [
+    { key:"premiere_spe", label:"Spé" },
+    { key:"tc",           label:"Tronc commun" },
+    { key:"stmg",         label:"STMG" },
   ];
 
   return (
@@ -15589,7 +15594,7 @@ function CategoryScreen({onCat, onBack, subtitle="", profile=null}) {
       {subtitle && <p style={{color:"#64748B",fontSize:13,marginBottom:8}}>{subtitle}</p>}
 
       {/* Filtres niveau */}
-      <div style={{display:"flex",gap:6,marginBottom:14,flexShrink:0}}>
+      <div style={{display:"flex",gap:6,marginBottom: filter==="premiere" ? 8 : 14,flexShrink:0}}>
         {FILTER_TABS.map(tab=>{
           const active = filter === tab.key;
           return (
@@ -15607,6 +15612,28 @@ function CategoryScreen({onCat, onBack, subtitle="", profile=null}) {
           );
         })}
       </div>
+
+      {/* Sous-filtres 1ère */}
+      {filter === "premiere" && (
+        <div style={{display:"flex",gap:5,marginBottom:14,flexShrink:0}}>
+          {PREMIERE_SUBTABS.map(tab=>{
+            const active = subFilter === tab.key;
+            return (
+              <button key={tab.key} onClick={()=>setSubFilter(tab.key)}
+                style={{
+                  flex:1, padding:"5px 3px", borderRadius:8, border:"none",
+                  background: active ? "#7C3AED" : "#F3F0FF",
+                  color: active ? "#fff" : "#7C3AED",
+                  fontFamily:"'Nunito',sans-serif", fontSize:10, fontWeight:800,
+                  cursor:"pointer", transition:"all .15s",
+                  boxShadow: active ? "0 2px 6px rgba(124,58,237,.3)" : "none",
+                }}>
+                {tab.label}
+              </button>
+            );
+          })}
+        </div>
+      )}
 
       <Scroll style={{marginTop:0}}>
         {visibleCats.map((c,i)=>(
@@ -16499,7 +16526,7 @@ const MISSIONS = {
   },
   mission_spe: {
     id: "mission_spe",
-    label: "Objectif Première Spé",
+    label: "Objectif : Prendre la spé en première",
     emoji: "🚀",
     desc: "Prépare-toi pour la Spé Maths",
     color: "#7C3AED",
