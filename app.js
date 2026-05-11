@@ -5186,6 +5186,174 @@ const DB = {
         ],
         a: r`\text{Au point d'abscisse }x = 3`,
         tip: r`\text{Deux droites sont parallèles si et seulement si elles ont le même coefficient directeur. La droite }y = 2x + 7\text{ a pour coefficient directeur }2\text{. On cherche donc }x\text{ tel que }f'(x) = 2\text{, soit }2x - 4 = 2\text{, donc }x = 3\text{.}` },
+
+      // ── Questions tangente applicatives — polynômes — STMG / TC ──
+
+      // tc_tan_09 — equation_deg2_a=2 — n2
+      { q: r`\text{Soit }f(x) = x^2 - 3x + 1\text{. Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 2\text{ ?}`,
+        gspec: { fn:x=>x*x-3*x+1, xr:[-1,4], yr:[-3,3], extras:c=><>{gTan(x=>x*x-3*x+1,2,1,c)}{gPt(2,-1,c)}</> },
+        choices: [
+          r`y = x - 3`,
+          r`y = x - 1`,
+          r`y = x + 1`,
+          r`y = -x + 1`
+        ],
+        a: r`y = x - 3`,
+        tip: r`f'(x)=2x-3\text{, donc }f'(2)=1\text{. }f(2)=4-6+1=-1\text{. Tangente : }y=1\cdot(x-2)+(-1)=x-3.` },
+
+      // tc_tan_10 — equation_deg2_a=0 — n2
+      { q: r`\text{Soit }f(x) = 2x^2 + x - 5\text{. Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 0\text{ ?}`,
+        gspec: { fn:x=>2*x*x+x-5, xr:[-2,2], yr:[-7,3], extras:c=><>{gTan(x=>2*x*x+x-5,0,1,c)}{gPt(0,-5,c)}</> },
+        choices: [
+          r`y = x - 5`,
+          r`y = x + 5`,
+          r`y = -x - 5`,
+          r`y = 5x - 5`
+        ],
+        a: r`y = x - 5`,
+        tip: r`f'(x)=4x+1\text{, donc }f'(0)=1\text{. }f(0)=-5\text{. Tangente : }y=1\cdot(x-0)+(-5)=x-5.` },
+
+      // tc_tan_11 — equation_deg2_a_negatif — n2
+      { q: r`\text{Soit }f(x) = x^2 + 4x\text{. Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = -1\text{ ?}`,
+        gspec: { fn:x=>x*x+4*x, xr:[-4,2], yr:[-5,3], extras:c=><>{gTan(x=>x*x+4*x,-1,2,c)}{gPt(-1,-3,c)}</> },
+        choices: [
+          r`y = 2x - 1`,
+          r`y = 2x + 1`,
+          r`y = 2x - 5`,
+          r`y = -2x - 5`
+        ],
+        a: r`y = 2x - 1`,
+        tip: r`f'(x)=2x+4\text{, donc }f'(-1)=2\text{. }f(-1)=1-4=-3\text{. Tangente : }y=2(x+1)+(-3)=2x-1.` },
+
+      // tc_tan_12 — tangente_horizontale_sommet — n2
+      { q: r`\text{Soit }f(x) = -x^2 + 6x\text{. On cherche la tangente en }a = 3\text{.}\\[4pt]f'(x) = -2x + 6\text{ ; }f'(3) = 0\text{ ; }f(3) = 9\text{. Quelle est la tangente ?}`,
+        gspec: { fn:x=>-x*x+6*x, xr:[-1,7], yr:[-1,10], extras:c=><>{gTan(x=>-x*x+6*x,3,0,c)}{gPt(3,9,c)}{gNote(3.2,9.3,'max',c,'#EF4444')}</> },
+        choices: [
+          r`y = 9`,
+          r`y = 3`,
+          r`y = 6x - 9`,
+          r`y = -6x + 27`
+        ],
+        a: r`y = 9`,
+        tip: r`f'(3)=0\text{ : tangente horizontale au sommet. }y=0\cdot(x-3)+9=9\text{. La tangente est une droite horizontale.}` },
+
+      // tc_tan_13 — equation_deg3_tc — n3
+      { q: r`\text{Soit }f(x) = x^3 - 3x\text{. Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 2\text{ ?}`,
+        gspec: { fn:x=>x*x*x-3*x, xr:[-0.5,3], yr:[-3,8], extras:c=><>{gTan(x=>x*x*x-3*x,2,9,c)}{gPt(2,2,c)}</> },
+        choices: [
+          r`y = 9x - 16`,
+          r`y = 9x + 16`,
+          r`y = 9x - 2`,
+          r`y = 3x - 4`
+        ],
+        a: r`y = 9x - 16`,
+        tip: r`f'(x)=3x^2-3\text{, donc }f'(2)=9\text{. }f(2)=8-6=2\text{. Tangente : }y=9(x-2)+2=9x-16.` },
+
+      // tc_tan_14 — equation_deg2_coefficients — n2
+      { q: r`\text{Soit }f(x) = 3x^2 - 2x + 1\text{. Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 1\text{ ?}`,
+        gspec: { fn:x=>3*x*x-2*x+1, xr:[-1,3], yr:[-1,8], extras:c=><>{gTan(x=>3*x*x-2*x+1,1,4,c)}{gPt(1,2,c)}</> },
+        choices: [
+          r`y = 4x - 2`,
+          r`y = 4x + 2`,
+          r`y = 2x - 2`,
+          r`y = 6x - 4`
+        ],
+        a: r`y = 4x - 2`,
+        tip: r`f'(x)=6x-2\text{, donc }f'(1)=4\text{. }f(1)=3-2+1=2\text{. Tangente : }y=4(x-1)+2=4x-2.` },
+
+      // tc_tan_15 — identifier_equation_parmi_quatre — n2
+      { q: r`\text{Soit }f(x) = x^2 - 4\text{. Parmi les équations suivantes, laquelle est la tangente à la courbe de }f\text{ au point d'abscisse }a = 3\text{ ?}`,
+        gspec: { fn:x=>x*x-4, xr:[-1,5], yr:[-5,8], extras:c=><>{gTan(x=>x*x-4,3,6,c)}{gPt(3,5,c)}</> },
+        choices: [
+          r`y = 6x - 13`,
+          r`y = 6x + 13`,
+          r`y = 3x - 4`,
+          r`y = 6x - 4`
+        ],
+        a: r`y = 6x - 13`,
+        tip: r`f'(x)=2x\text{, donc }f'(3)=6\text{. }f(3)=9-4=5\text{. Tangente : }y=6(x-3)+5=6x-13.` },
+
+      // tc_tan_16 — calculer_f_et_fprime_puis_tangente — n3
+      { q: r`\text{Soit }f(x) = -2x^2 + 4x + 1\text{. Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = -1\text{ ?}`,
+        gspec: { fn:x=>-2*x*x+4*x+1, xr:[-3,3], yr:[-8,4], extras:c=><>{gTan(x=>-2*x*x+4*x+1,-1,-8,c)}{gPt(-1,-5,c)}</> },
+        choices: [
+          r`y = -8x - 13`,
+          r`y = -8x + 13`,
+          r`y = 8x + 3`,
+          r`y = -8x - 5`
+        ],
+        a: r`y = -8x - 13`,
+        tip: r`f'(x)=-4x+4\text{, donc }f'(-1)=-8\text{. }f(-1)=-2-4+1=-5\text{. Tangente : }y=-8(x+1)+(-5)=-8x-13.` },
+
+      // tc_tan_17 — tangente_deg2_depuis_graphique — n2
+      { q: r`\text{Sur la figure ci-contre, la droite }T\text{ est la tangente à la courbe de }f(x)=x^2-2x\text{ au point d'abscisse }a = 3\text{. Quelle est son équation ?}`,
+        gspec: { fn:x=>x*x-2*x, xr:[-1,5], yr:[-2,8], extras:c=><>{gTan(x=>x*x-2*x,3,4,c)}{gPt(3,3,c)}{gNote(3.2,3.4,'A',c,'#EF4444')}</> },
+        choices: [
+          r`y = 4x - 9`,
+          r`y = 4x - 3`,
+          r`y = 4x + 3`,
+          r`y = 2x - 3`
+        ],
+        a: r`y = 4x - 9`,
+        tip: r`f'(x)=2x-2\text{, donc }f'(3)=4\text{. }f(3)=9-6=3\text{. Tangente : }y=4(x-3)+3=4x-9.` },
+
+      // tc_tan_18 — etapes_methodiques_stmg — n2
+      { q: r`\text{On pose }f(x) = x^2 + 2x - 3\text{.}\\[4pt]\text{Étape 1 : }f'(x) = 2x + 2\text{. Étape 2 : }f'(1) = 4\text{. Étape 3 : }f(1) = 0\text{.}\\[4pt]\text{Quelle est l'équation de la tangente en }a = 1\text{ ?}`,
+        gspec: { fn:x=>x*x+2*x-3, xr:[-3,3], yr:[-4,5], extras:c=><>{gTan(x=>x*x+2*x-3,1,4,c)}{gPt(1,0,c)}</> },
+        choices: [
+          r`y = 4x - 4`,
+          r`y = 4x + 4`,
+          r`y = 4x`,
+          r`y = 2x - 2`
+        ],
+        a: r`y = 4x - 4`,
+        tip: r`y=f'(1)(x-1)+f(1)=4(x-1)+0=4x-4.` },
+
+      // tc_tan_19 — synthèse_lecture_et_calcul — n3
+      { q: r`\text{Soit }f(x) = x^3 - 6x^2 + 9x\text{. On donne }f'(x) = 3x^2 - 12x + 9\text{.}\\[4pt]\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 1\text{ ?}`,
+        gspec: { fn:x=>x*x*x-6*x*x+9*x, xr:[-0.5,4.5], yr:[-1,5], extras:c=><>{gTan(x=>x*x*x-6*x*x+9*x,1,0,c)}{gPt(1,4,c)}{gNote(1.15,4.3,'max',c,'#EF4444')}</> },
+        choices: [
+          r`y = 4`,
+          r`y = x + 3`,
+          r`y = 3x + 1`,
+          r`y = -3x + 7`
+        ],
+        a: r`y = 4`,
+        tip: r`f'(1)=3-12+9=0\text{ : tangente horizontale au maximum. }f(1)=1-6+9=4\text{. Tangente : }y=4.` },
+
+      // tc_tan_20 — QCM_erreur_frequente — n2
+      { q: r`\text{Soit }f(x) = x^2\text{. Un élève écrit : "La tangente en }a = 2\text{ est }y = 2x\text{."  Cette réponse est :}`,
+        choices: [
+          r`\text{Correcte}`,
+          r`\text{Fausse : il a oublié de soustraire }f(a)`,
+          r`\text{Fausse : il a confondu }f'(a)\text{ et }f(a)`,
+          r`\text{Fausse : la pente est }f(2)=4\text{, pas }f'(2)=4`
+        ],
+        a: r`\text{Fausse : il a oublié de soustraire }f(a)`,
+        tip: r`f'(2)=4\text{ et }f(2)=4\text{. Tangente correcte : }y=4(x-2)+4=4x-4\text{. L'erreur : écrire }y=f'(a)\cdot x\text{ au lieu de }y=f'(a)(x-a)+f(a).` },
+
+      // tc_tan_21 — piege_f_et_fprime_egaux — n3
+      { q: r`\text{Soit }f(x) = x^2\text{. En }a = 2\text{, on a }f(2) = 4\text{ et }f'(2) = 4\text{. Quelle est la tangente ?}`,
+        gspec: { fn:x=>x*x, xr:[-1,4], yr:[-2,8], extras:c=><>{gTan(x=>x*x,2,4,c)}{gPt(2,4,c)}</> },
+        choices: [
+          r`y = 4x`,
+          r`y = 4x + 4`,
+          r`y = 4x - 4`,
+          r`y = 2x`
+        ],
+        a: r`y = 4x - 4`,
+        tip: r`y=f'(2)(x-2)+f(2)=4(x-2)+4=4x-8+4=4x-4\text{. Piège : quand }f(a)=f'(a)\text{, ne pas confondre les rôles de chacun.}` },
+
+      // tc_tan_22 — degré_1_tangente_est_la_droite — n1
+      { q: r`\text{Soit }f(x) = 3x - 1\text{ (fonction affine). Quelle est la tangente à la courbe de }f\text{ en tout point ?}`,
+        choices: [
+          r`y = 3x - 1\text{ (la droite elle-même)}`,
+          r`y = 3x`,
+          r`y = -x + 3`,
+          r`\text{Elle change selon le point}`
+        ],
+        a: r`y = 3x - 1\text{ (la droite elle-même)}`,
+        tip: r`f'(x)=3\text{ pour tout }x\text{. En }a\text{ : }y=3(x-a)+(3a-1)=3x-3a+3a-1=3x-1\text{. La tangente à une droite est la droite elle-même.}` },
     ],
 
     // ── Dérivées des fonctions de référence ──
@@ -5345,6 +5513,272 @@ const DB = {
         ],
         a: r`f\text{ est croissante sur }]-\infty\,;\,-1]\text{, décroissante sur }[-1\,;\,1]\text{, croissante sur }[1\,;\,+\infty[`,
         tip: r`f'(x) = 3x^2 - 3 = 3(x-1)(x+1)\text{. Racines }-1\text{ et }1\text{ ; trinôme positif à l'extérieur (car }a = 3 > 0\text{). Donc }f' > 0\text{ sur }]-\infty\,;\,-1[\text{ et }]1\,;\,+\infty[\text{, et}` },
+
+      // ── Tableaux signe de f' → variations de f ──
+      // Phrase-clé : "Étudier les variations d'une fonction revient à étudier le signe de sa dérivée."
+
+      // tc_var_08 — tableau_degre2_croissant — n1
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = x^2 - 4x + 1\text{. On a }f'(x) = 2x - 4\text{.}\\[4pt]\text{Complète le tableau de signes de }f'\text{, puis déduis-en les variations de }f\text{.}`,
+        gspec:{ fn:x=>x*x-4*x+1, xr:[-1,5], yr:[-4,4], label:"f",
+          extras:c=><>{gDV(2,c,C_MIN)}{gDH(-3,c,C_MIN)}{gPt(2,-3,c,C_MIN)}</> },
+        tsSpec:{ xVals:["-∞","2","+∞"],
+          cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tvSpec:{ xVals:["-∞","2","+∞"],
+          cells:[{v:"+∞",hole:false,kind:"fixed"},{v:"↘",hole:true,kind:"arrow"},
+                 {v:"-3",hole:true,kind:"num"},{v:"↗",hole:true,kind:"arrow"},
+                 {v:"+∞",hole:false,kind:"fixed"}] },
+        tip: r`f'(x)=2x-4\text{ s'annule en }x=2\text{. Négatif avant, positif après : }f\text{ décroît sur }]-\infty\,;\,2]\text{, croît sur }[2\,;\,+\infty[\text{. Minimum }f(2)=-3.` },
+
+      // tc_var_09 — tableau_degre2_decroissant — n1
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = -x^2 + 6x - 5\text{. On a }f'(x) = -2x + 6\text{.}\\[4pt]\text{Complète le tableau de signes de }f'\text{, puis déduis-en les variations de }f\text{.}`,
+        gspec:{ fn:x=>-x*x+6*x-5, xr:[-1,7], yr:[-6,5], label:"f",
+          extras:c=><>{gDV(3,c,C_MAX)}{gDH(4,c,C_MAX)}{gPt(3,4,c,C_MAX)}</> },
+        tsSpec:{ xVals:["-∞","3","+∞"],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
+        tvSpec:{ xVals:["-∞","3","+∞"],
+          cells:[{v:"-∞",hole:false,kind:"fixed"},{v:"↗",hole:true,kind:"arrow"},
+                 {v:"4",hole:true,kind:"num"},{v:"↘",hole:true,kind:"arrow"},
+                 {v:"-∞",hole:false,kind:"fixed"}] },
+        tip: r`f'(x)=-2x+6\text{ s'annule en }x=3\text{. Positif avant, négatif après : }f\text{ croît sur }]-\infty\,;\,3]\text{, décroît sur }[3\,;\,+\infty[\text{. Maximum }f(3)=4.` },
+
+      // tc_var_10 — tableau_degre1_croissant — n1
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = 3x - 2\text{. On a }f'(x) = 3\text{.}\\[4pt]\text{Complète le tableau de signes de }f'\text{, puis déduis-en les variations de }f\text{.}`,
+        gspec:{ fn:x=>3*x-2, xr:[-2,3], yr:[-6,6], label:"f",
+          extras:c=><></> },
+        tsSpec:{ xVals:["-∞","+∞"],
+          cells:[{v:"+",hole:true,kind:"sign"}] },
+        tvSpec:{ xVals:["-∞","+∞"],
+          cells:[{v:"-∞",hole:false,kind:"fixed"},{v:"↗",hole:true,kind:"arrow"},
+                 {v:"+∞",hole:false,kind:"fixed"}] },
+        tip: r`f'(x)=3>0\text{ pour tout }x\text{. La dérivée est strictement positive sur }\mathbb{R}\text{ : }f\text{ est strictement croissante sur }\mathbb{R}\text{.}` },
+
+      // tc_var_11 — tableau_degre1_decroissant — n1
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = -2x + 5\text{. On a }f'(x) = -2\text{.}\\[4pt]\text{Complète le tableau de signes de }f'\text{, puis déduis-en les variations de }f\text{.}`,
+        gspec:{ fn:x=>-2*x+5, xr:[-1,4], yr:[-4,7], label:"f",
+          extras:c=><></> },
+        tsSpec:{ xVals:["-∞","+∞"],
+          cells:[{v:"-",hole:true,kind:"sign"}] },
+        tvSpec:{ xVals:["-∞","+∞"],
+          cells:[{v:"+∞",hole:false,kind:"fixed"},{v:"↘",hole:true,kind:"arrow"},
+                 {v:"-∞",hole:false,kind:"fixed"}] },
+        tip: r`f'(x)=-2<0\text{ pour tout }x\text{. La dérivée est strictement négative sur }\mathbb{R}\text{ : }f\text{ est strictement décroissante sur }\mathbb{R}\text{.}` },
+
+      // tc_var_12 — tableau_lire_signe_donné — n2
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{On sait que }f'(x) < 0\text{ sur }]-\infty\,;\,1[\text{, }f'(1) = 0\text{, }f'(x) > 0\text{ sur }]1\,;\,+\infty[\text{.}\\[4pt]\text{Complète le tableau de variations de }f\text{ sachant que }f(1) = -5\text{.}`,
+        tvSpec:{ xVals:["-∞","1","+∞"],
+          cells:[{v:"+∞",hole:false,kind:"fixed"},{v:"↘",hole:true,kind:"arrow"},
+                 {v:"-5",hole:true,kind:"num"},{v:"↗",hole:true,kind:"arrow"},
+                 {v:"+∞",hole:false,kind:"fixed"}] },
+        tip: r`f'<0\Rightarrow f\text{ décroissante avant }x=1\text{. }f'>0\Rightarrow f\text{ croissante après. }f(1)=-5\text{ est un minimum.}` },
+
+      // tc_var_13 — tableau_lire_signe_donné_max — n2
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{On sait que }f'(x) > 0\text{ sur }]-\infty\,;\,2[\text{, }f'(2) = 0\text{, }f'(x) < 0\text{ sur }]2\,;\,+\infty[\text{.}\\[4pt]\text{Complète le tableau de variations de }f\text{ sachant que }f(2) = 7\text{.}`,
+        tvSpec:{ xVals:["-∞","2","+∞"],
+          cells:[{v:"-∞",hole:false,kind:"fixed"},{v:"↗",hole:true,kind:"arrow"},
+                 {v:"7",hole:true,kind:"num"},{v:"↘",hole:true,kind:"arrow"},
+                 {v:"-∞",hole:false,kind:"fixed"}] },
+        tip: r`f'>0\Rightarrow f\text{ croissante avant }x=2\text{. }f'<0\Rightarrow f\text{ décroissante après. }f(2)=7\text{ est un maximum.}` },
+
+      // tc_var_14 — tableau_complet_deg2_a_poser — n2
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = x^2 - 2x - 3\text{.}\\[4pt]\text{a) Calcule }f'(x)\text{. b) Complète le tableau de signes de }f'\text{. c) Dresse le tableau de variations de }f\text{.}`,
+        gspec:{ fn:x=>x*x-2*x-3, xr:[-2,4], yr:[-5,4], label:"f",
+          extras:c=><>{gDV(1,c,C_MIN)}{gDH(-4,c,C_MIN)}{gPt(1,-4,c,C_MIN)}</> },
+        tsSpec:{ xVals:["-∞","1","+∞"],
+          cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tvSpec:{ xVals:["-∞","1","+∞"],
+          cells:[{v:"+∞",hole:false,kind:"fixed"},{v:"↘",hole:true,kind:"arrow"},
+                 {v:"-4",hole:true,kind:"num"},{v:"↗",hole:true,kind:"arrow"},
+                 {v:"+∞",hole:false,kind:"fixed"}] },
+        tip: r`f'(x)=2x-2\text{, racine }x=1\text{. Négatif avant, positif après. Minimum }f(1)=1-2-3=-4.` },
+
+      // tc_var_15 — tableau_complet_deg2_negatif — n2
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = -x^2 + 4x\text{.}\\[4pt]\text{a) Calcule }f'(x)\text{. b) Complète le tableau de signes de }f'\text{. c) Dresse le tableau de variations de }f\text{.}`,
+        gspec:{ fn:x=>-x*x+4*x, xr:[-1,5], yr:[-1,5], label:"f",
+          extras:c=><>{gDV(2,c,C_MAX)}{gDH(4,c,C_MAX)}{gPt(2,4,c,C_MAX)}</> },
+        tsSpec:{ xVals:["-∞","2","+∞"],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
+        tvSpec:{ xVals:["-∞","2","+∞"],
+          cells:[{v:"-∞",hole:false,kind:"fixed"},{v:"↗",hole:true,kind:"arrow"},
+                 {v:"4",hole:true,kind:"num"},{v:"↘",hole:true,kind:"arrow"},
+                 {v:"-∞",hole:false,kind:"fixed"}] },
+        tip: r`f'(x)=-2x+4\text{, racine }x=2\text{. Positif avant, négatif après. Maximum }f(2)=-4+8=4.` },
+
+      // tc_var_16 — tableau_complet_deg3_donner_fprime — n3
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = 2x^3 - 6x\text{. On donne }f'(x) = 6x^2 - 6 = 6(x-1)(x+1)\text{.}\\[4pt]\text{Complète le tableau de signes de }f'\text{, puis le tableau de variations de }f\text{.}`,
+        gspec:{ fn:x=>2*x*x*x-6*x, xr:[-2.5,2.5], yr:[-5,5], label:"f",
+          extras:c=><>{gDV(-1,c,C_MAX)}{gDH(4,c,C_MAX)}{gPt(-1,4,c,C_MAX)}{gDV(1,c,C_MIN)}{gDH(-4,c,C_MIN)}{gPt(1,-4,c,C_MIN)}</> },
+        tsSpec:{ xVals:["-∞","-1","1","+∞"],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},
+                 {v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tvSpec:{ xVals:["-∞","-1","1","+∞"],
+          cells:[{v:"-∞",hole:false,kind:"fixed"},{v:"↗",hole:true,kind:"arrow"},
+                 {v:"4",hole:true,kind:"num"},{v:"↘",hole:true,kind:"arrow"},
+                 {v:"-4",hole:true,kind:"num"},{v:"↗",hole:true,kind:"arrow"},
+                 {v:"+∞",hole:false,kind:"fixed"}] },
+        tip: r`f'(x)=6(x-1)(x+1)\text{. Racines }-1\text{ et }1\text{, coeff. positif : }f'>0\text{ hors }[-1\,;\,1]\text{. Maximum }f(-1)=4\text{, minimum }f(1)=-4.` },
+
+      // tc_var_17 — deduire_variations_signe_fprime_graphe — n2
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Le graphique ci-contre représente }f'\text{. Sur quel intervalle }f\text{ est-elle décroissante ?}`,
+        gspec:{ fn:x=>-2*x+4, xr:[-1,5], yr:[-4,6], label:"f'",
+          preExtras:c=><>{gShade(x=>-2*x+4,c.x1,2,c,C_POS)}{gShade(x=>-2*x+4,2,c.x2,c,C_NEG)}</>,
+          extras:c=><>{gPt(2,0,c,"#475569")}{gSign(0.5,2.5,"+",c,"#059669")}{gSign(3.5,-1.5,"-",c,"#DC2626")}</> },
+        choices:[
+          r`]-\infty\,;\,2]`,
+          r`[2\,;\,+\infty[`,
+          r`\mathbb{R}\text{ entier}`,
+          r`\text{On ne peut pas savoir}`
+        ],
+        a: r`[2\,;\,+\infty[`,
+        tip: r`f'\text{ est négative pour }x>2\text{. Or }f'\text{ négative }\Rightarrow f\text{ décroissante. Donc }f\text{ est décroissante sur }[2\,;\,+\infty[.` },
+
+      // tc_var_18 — tableau_degre2_coefficients — n2
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = 2x^2 - 8x + 3\text{.}\\[4pt]\text{a) Calcule }f'(x)\text{. b) Complète le tableau de signes de }f'\text{. c) Dresse le tableau de variations de }f\text{.}`,
+        gspec:{ fn:x=>2*x*x-8*x+3, xr:[-1,5], yr:[-6,4], label:"f",
+          extras:c=><>{gDV(2,c,C_MIN)}{gDH(-5,c,C_MIN)}{gPt(2,-5,c,C_MIN)}</> },
+        tsSpec:{ xVals:["-∞","2","+∞"],
+          cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tvSpec:{ xVals:["-∞","2","+∞"],
+          cells:[{v:"+∞",hole:false,kind:"fixed"},{v:"↘",hole:true,kind:"arrow"},
+                 {v:"-5",hole:true,kind:"num"},{v:"↗",hole:true,kind:"arrow"},
+                 {v:"+∞",hole:false,kind:"fixed"}] },
+        tip: r`f'(x)=4x-8\text{, racine }x=2\text{. Minimum }f(2)=8-16+3=-5.` },
+
+      // tc_var_19 — tableau_trois_colonnes_fprime_donné — n3
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = x^3 - 6x^2 + 9x\text{. On donne }f'(x) = 3x^2 - 12x + 9 = 3(x-1)(x-3)\text{.}\\[4pt]\text{Complète le tableau de signes de }f'\text{, puis le tableau de variations de }f\text{.}`,
+        gspec:{ fn:x=>x*x*x-6*x*x+9*x, xr:[-0.5,4.5], yr:[-1,5], label:"f",
+          extras:c=><>{gDV(1,c,C_MAX)}{gDH(4,c,C_MAX)}{gPt(1,4,c,C_MAX)}{gDV(3,c,C_MIN)}{gDH(0,c,C_MIN)}{gPt(3,0,c,C_MIN)}</> },
+        tsSpec:{ xVals:["-∞","1","3","+∞"],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},
+                 {v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tvSpec:{ xVals:["-∞","1","3","+∞"],
+          cells:[{v:"-∞",hole:false,kind:"fixed"},{v:"↗",hole:true,kind:"arrow"},
+                 {v:"4",hole:true,kind:"num"},{v:"↘",hole:true,kind:"arrow"},
+                 {v:"0",hole:true,kind:"num"},{v:"↗",hole:true,kind:"arrow"},
+                 {v:"+∞",hole:false,kind:"fixed"}] },
+        tip: r`f'(x)=3(x-1)(x-3)\text{. Racines }1\text{ et }3\text{, coeff. positif : }f'>0\text{ hors }[1\,;\,3]\text{. Maximum }f(1)=4\text{, minimum }f(3)=0.` },
+
+      // tc_var_20 — lire_tableau_donné_et_conclure — n2
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{On donne le tableau de variations de }f\text{ ci-contre. Quelle affirmation est vraie ?}`,
+        gspec:{ fn:x=>x*x*x-3*x+2, xr:[-2.5,2.5], yr:[-2,5], label:"f",
+          extras:c=><>{gDV(-1,c,C_MAX)}{gDH(4,c,C_MAX)}{gPt(-1,4,c,C_MAX)}{gDV(1,c,C_MIN)}{gDH(0,c,C_MIN)}{gPt(1,0,c,C_MIN)}</> },
+        choices:[
+          r`f\text{ est croissante sur }[-1\,;\,1]`,
+          r`f\text{ admet un minimum en }x=-1`,
+          r`f\text{ admet un maximum en }x=-1\text{ et un minimum en }x=1`,
+          r`f(0)>f(2)`
+        ],
+        a: r`f\text{ admet un maximum en }x=-1\text{ et un minimum en }x=1`,
+        tip: r`\text{Sur le graphique : }f\text{ croît avant }-1\text{, décroît entre }-1\text{ et }1\text{, recroît après. Donc max en }-1\text{ et min en }1.` },
+
+      // tc_var_21 — conclusion_signe_fprime_zero_sans_extremum — n4
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f\text{ une fonction telle que }f'(x) = (x-2)^2\text{. Quelle est la bonne conclusion ?}`,
+        choices:[
+          r`f\text{ admet un minimum en }x=2`,
+          r`f\text{ admet un maximum en }x=2`,
+          r`f\text{ est croissante sur }\mathbb{R}`,
+          r`f\text{ est décroissante sur }\mathbb{R}`
+        ],
+        a: r`f\text{ est croissante sur }\mathbb{R}`,
+        tip: r`f'(x)=(x-2)^2\geq 0\text{ pour tout }x\text{, et }f'(2)=0\text{ mais ne change pas de signe. Donc }f\text{ est croissante sur }\mathbb{R}\text{ (sans extremum en }x=2\text{).}` },
+
+      // tc_var_22 — tableau_degre3_calculer_fprime — n3
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = -x^3 + 3x^2\text{.}\\[4pt]\text{a) Calcule }f'(x)\text{. b) Factorise }f'(x)\text{. c) Complète les tableaux de signe et de variations.}`,
+        gspec:{ fn:x=>-x*x*x+3*x*x, xr:[-1,4], yr:[-1,5], label:"f",
+          extras:c=><>{gDV(0,c,C_MIN)}{gDH(0,c,C_MIN)}{gPt(0,0,c,C_MIN)}{gDV(2,c,C_MAX)}{gDH(4,c,C_MAX)}{gPt(2,4,c,C_MAX)}</> },
+        tsSpec:{ xVals:["-∞","0","2","+∞"],
+          cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},
+                 {v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
+        tvSpec:{ xVals:["-∞","0","2","+∞"],
+          cells:[{v:"+∞",hole:false,kind:"fixed"},{v:"↘",hole:true,kind:"arrow"},
+                 {v:"0",hole:true,kind:"num"},{v:"↗",hole:true,kind:"arrow"},
+                 {v:"4",hole:true,kind:"num"},{v:"↘",hole:true,kind:"arrow"},
+                 {v:"-∞",hole:false,kind:"fixed"}] },
+        tip: r`f'(x)=-3x^2+6x=-3x(x-2)\text{. Racines }0\text{ et }2\text{. Coeff. }a=-3<0\text{ : positif entre les racines. Minimum }f(0)=0\text{, maximum }f(2)=4.` },
+
+      // tc_var_23 — tableau_complet_from_scratch_n3 — n3
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = x^2 + 6x + 5\text{.}\\[4pt]\text{Calcule }f'(x)\text{, dresse le tableau de signes de }f'\text{, puis le tableau de variations de }f\text{.}`,
+        gspec:{ fn:x=>x*x+6*x+5, xr:[-6,1], yr:[-5,5], label:"f",
+          extras:c=><>{gDV(-3,c,C_MIN)}{gDH(-4,c,C_MIN)}{gPt(-3,-4,c,C_MIN)}</> },
+        tsSpec:{ xVals:["-∞","-3","+∞"],
+          cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tvSpec:{ xVals:["-∞","-3","+∞"],
+          cells:[{v:"+∞",hole:false,kind:"fixed"},{v:"↘",hole:true,kind:"arrow"},
+                 {v:"-4",hole:true,kind:"num"},{v:"↗",hole:true,kind:"arrow"},
+                 {v:"+∞",hole:false,kind:"fixed"}] },
+        tip: r`f'(x)=2x+6\text{, racine }x=-3\text{. Minimum }f(-3)=9-18+5=-4.` },
+
+      // tc_var_24 — tableau_produit_signe_fprime_n3 — n3
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{On donne }f'(x)=(x+2)(x-4)\text{.}\\[4pt]\text{Complète le tableau de signes de }f'\text{, puis déduis-en les variations de }f\text{.}`,
+        gspec:{ fn:x=>(1/3)*x*x*x-x*x-8*x+5, xr:[-4,6], yr:[-20,15], label:"f",
+          extras:c=><>{gDV(-2,c,C_MAX)}{gDV(4,c,C_MIN)}</> },
+        tsSpec:{ xVals:["-∞","-2","4","+∞"],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},
+                 {v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tvSpec:{ xVals:["-∞","-2","4","+∞"],
+          cells:[{v:"-∞",hole:false,kind:"fixed"},{v:"↗",hole:true,kind:"arrow"},
+                 {v:"max",hole:true,kind:"num"},{v:"↘",hole:true,kind:"arrow"},
+                 {v:"min",hole:true,kind:"num"},{v:"↗",hole:true,kind:"arrow"},
+                 {v:"+∞",hole:false,kind:"fixed"}] },
+        tip: r`f'=(x+2)(x-4)\text{. Coeff. positif : positif hors }[-2\,;\,4]\text{. }f\text{ croissante sur }]-\infty\,;\,-2]\text{, décroissante sur }[-2\,;\,4]\text{, croissante sur }[4\,;\,+\infty[.` },
+
+      // tc_var_25 — QCM_lien_fprime_et_variations — n2
+      { q: r`\text{On a représenté le tableau de signes de }f'\text{ ci-dessous :}\\[6pt]f'(x)<0\text{ sur }]-\infty\,;\,-2[\quad f'(-2)=0\quad f'(x)>0\text{ sur }]-2\,;\,+\infty[\\[6pt]\text{Quelle est la bonne description des variations de }f\text{ ?}`,
+        choices:[
+          r`f\text{ est croissante sur }]-\infty\,;\,-2]\text{, décroissante sur }[-2\,;\,+\infty[`,
+          r`f\text{ est décroissante sur }]-\infty\,;\,-2]\text{, croissante sur }[-2\,;\,+\infty[`,
+          r`f\text{ est croissante sur }\mathbb{R}`,
+          r`f\text{ est décroissante sur }\mathbb{R}`
+        ],
+        a: r`f\text{ est décroissante sur }]-\infty\,;\,-2]\text{, croissante sur }[-2\,;\,+\infty[`,
+        tip: r`f'<0\Rightarrow f\text{ décroissante. }f'>0\Rightarrow f\text{ croissante. Changement de signe en }-2\text{ (de }-\text{ à }+\text{) : }f\text{ admet un minimum en }x=-2.` },
+
+      // tc_var_26 — QCM_phrase_clé_reformulée — n1
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Parmi les propositions suivantes, laquelle est correcte ?}`,
+        choices:[
+          r`\text{Si }f(x)>0\text{ sur }I\text{, alors }f\text{ est croissante sur }I`,
+          r`\text{Si }f'(x)>0\text{ sur }I\text{, alors }f\text{ est croissante sur }I`,
+          r`\text{Si }f\text{ croît sur }I\text{, alors }f(x)>0\text{ sur }I`,
+          r`\text{Si }f(x)>0\text{ sur }I\text{, alors }f'(x)>0\text{ sur }I`
+        ],
+        a: r`\text{Si }f'(x)>0\text{ sur }I\text{, alors }f\text{ est croissante sur }I`,
+        tip: r`\text{La phrase-clé : signe de }f'\Rightarrow\text{variations de }f\text{. Attention : signe de }f\text{ et signe de }f'\text{ sont deux choses distinctes !}` },
+
+      // tc_var_27 — tableau_degre3_etude_complete — n4
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = x^3 - 9x\text{. On donne }f'(x) = 3x^2 - 9 = 3(x-\sqrt{3})(x+\sqrt{3})\text{.}\\[4pt]\text{Complète les deux tableaux.}`,
+        gspec:{ fn:x=>x*x*x-9*x, xr:[-4,4], yr:[-12,12], label:"f",
+          extras:c=><>{gDV(-Math.sqrt(3),c,C_MAX)}{gDV(Math.sqrt(3),c,C_MIN)}</> },
+        tsSpec:{ xVals:["-∞","-√3","√3","+∞"],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},
+                 {v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tvSpec:{ xVals:["-∞","-√3","√3","+∞"],
+          cells:[{v:"-∞",hole:false,kind:"fixed"},{v:"↗",hole:true,kind:"arrow"},
+                 {v:"6√3",hole:true,kind:"num"},{v:"↘",hole:true,kind:"arrow"},
+                 {v:"-6√3",hole:true,kind:"num"},{v:"↗",hole:true,kind:"arrow"},
+                 {v:"+∞",hole:false,kind:"fixed"}] },
+        tip: r`f'=3(x+\sqrt{3})(x-\sqrt{3})\text{. Maximum }f(-\sqrt{3})=6\sqrt{3}\approx 10{,}4\text{, minimum }f(\sqrt{3})=-6\sqrt{3}\approx -10{,}4.` },
+
+      // tc_var_28 — tableau_complet_stmg_polynome — n2
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = -3x^2 + 12x - 7\text{.}\\[4pt]\text{a) Calcule }f'(x)\text{. b) Complète le tableau de signes de }f'\text{. c) Dresse le tableau de variations.}`,
+        gspec:{ fn:x=>-3*x*x+12*x-7, xr:[-0.5,4.5], yr:[-8,6], label:"f",
+          extras:c=><>{gDV(2,c,C_MAX)}{gDH(5,c,C_MAX)}{gPt(2,5,c,C_MAX)}</> },
+        tsSpec:{ xVals:["-∞","2","+∞"],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
+        tvSpec:{ xVals:["-∞","2","+∞"],
+          cells:[{v:"-∞",hole:false,kind:"fixed"},{v:"↗",hole:true,kind:"arrow"},
+                 {v:"5",hole:true,kind:"num"},{v:"↘",hole:true,kind:"arrow"},
+                 {v:"-∞",hole:false,kind:"fixed"}] },
+        tip: r`f'(x)=-6x+12\text{, racine }x=2\text{. Positif avant, négatif après. Maximum }f(2)=-12+24-7=5.` },
+
+      // tc_var_29 — synthèse_lien_extremum_signe — n3
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f\text{ dérivable sur }\mathbb{R}\text{. On donne le tableau de variations :}\\[4pt]f\text{ croît sur }]-\infty\,;\,-1]\text{, décroît sur }[-1\,;\,3]\text{, croît sur }[3\,;\,+\infty[\text{.}\\[6pt]\text{Que peut-on dire de }f'(-1)\text{ et }f'(3)\text{ ?}`,
+        choices:[
+          r`f'(-1)=0\text{ et }f'(3)=0`,
+          r`f'(-1)>0\text{ et }f'(3)>0`,
+          r`f'(-1)<0\text{ et }f'(3)<0`,
+          r`f'(-1)=1\text{ et }f'(3)=-1`
+        ],
+        a: r`f'(-1)=0\text{ et }f'(3)=0`,
+        tip: r`\text{Aux extremums, la tangente est horizontale : }f'=0\text{. En }-1\text{ (maximum) et en }3\text{ (minimum) : }f'(-1)=f'(3)=0.` },
     ],
 
     // ── Dérivée d'un produit ──
@@ -10750,9 +11184,9 @@ const CATS = [
       {id:"lecture_derivee",label:"Lecture graphique du nombre dérivé", levels:["stmg","spe","term"]},
       {id:"calcul_derivee", label:"Calcul de dérivées (deg. 2 et 3)",   levels:["stmg","spe","term"]},
       {id:"deriv_vitesse",label:"Vitesse moyenne / instantanée", levels:["tc","spe","term"]},
-      {id:"deriv_tangente",label:"Tangente — lecture graphique", levels:["tc","spe","term"]},
-      {id:"deriv_fonctions_ref",label:"Dérivées des fonctions de référence", levels:["tc","spe","term"]},
-      {id:"deriv_variations",label:"Dérivée et variations", levels:["tc","spe","term"]},
+      {id:"deriv_tangente",label:"Tangente — lecture graphique", levels:["tc","stmg","spe","term"]},
+      {id:"deriv_fonctions_ref",label:"Dérivées des fonctions de référence", levels:["spe","term"]},
+      {id:"deriv_variations",label:"Dérivée et variations", levels:["tc","stmg","spe","term"]},
       {id:"deriv_produit",label:"Dérivée d'un produit", levels:["spe","term"]},
       {id:"deriv_quotient",label:"Dérivée d'un quotient", levels:["spe","term"]},
       {id:"deriv_rationnelle",label:"Dérivée de fonction rationnelle", levels:["spe","term"]},
@@ -11681,7 +12115,7 @@ const CURRICULUM = {
       pourcentages:['evolutions_successives','evolution_reciproque','taux_moyen','indice','proportions','taux_cm','valeur_finale'],
       suites:['suites_nature','suites_termes'],
       statistiques:['loi_binomiale','echantillonnage','stat_centrale','stat_dispersion'],
-      derivation:['lecture_derivee','calcul_derivee'],
+      derivation:['lecture_derivee','calcul_derivee','deriv_variations','deriv_tangente'],
       polynomes:['poly2_definition'],
       // ── Prérequis seconde ──
       litteral:['eq_x2','produit_nul','inequation1','developpement','id_remarquables','facto_commun','manipulation','eq1'],
@@ -11690,7 +12124,7 @@ const CURRICULUM = {
   premiere_tronc: { label:"1ère Tronc commun", emoji:"📘", color:"#3B82F6",
     cats:{
       // ── Thèmes cœur 1ère Tronc commun ──
-      derivation:['deriv_vitesse','deriv_tangente','deriv_fonctions_ref','deriv_variations'],
+      derivation:['deriv_vitesse','deriv_tangente','deriv_variations'],
       polynomes:['poly2_definition','poly2_racines','poly2_discriminant','poly2_variations'],
       litteral:['eq_x2','produit_nul','id_remarquables','facto_commun','facto_id','inequation1','developpement','manipulation','eq1'],
       probabilites:['tableau','tableau_fill','arbre','contraire'],
