@@ -14294,45 +14294,273 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onEdi
         )}
 
         {/* ══ TAB RÉCOMPENSES ══ */}
-        {tab==="recompenses"&&(
+        tab==="recompenses"&&(
           <div className="slide-up">
-            <div style={{background:"#fff",borderRadius:16,padding:"16px",
-              boxShadow:"0 2px 8px rgba(0,0,0,.05)",marginBottom:12}}>
-              <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:14,
-                color:"#1E293B",marginBottom:12,textAlign:"center"}}>🏆 Mes badges</div>
-              <div style={{display:"flex",flexWrap:"wrap",gap:8,justifyContent:"center"}}>
-                {badges.length===0&&<div style={{color:"#94A3B8",fontSize:12}}>Aucun badge encore — continue !</div>}
-                {badges.map(bId=>{
-                  const b=BADGES[bId]; if(!b) return null;
-                  return (
-                    <div key={bId} style={{background:"#F8FAFC",borderRadius:12,padding:"8px 10px",
-                      textAlign:"center",minWidth:70,border:"1px solid #E2E8F0"}}>
-                      <div style={{fontSize:22}}>{b.emoji||"🎖️"}</div>
-                      <div style={{fontSize:9,fontWeight:700,color:"#334155",marginTop:3,lineHeight:1.3}}>{b.label}</div>
+            {/* Section Cartes Sigma */}
+            {onCollection && (() => {
+              const cardsCount = (cardsUnlocked || []).length;
+              const totalCards = (typeof CARDS !== "undefined" && Array.isArray(CARDS)) ? CARDS.length : 20;
+              return (
+                <button onClick={onCollection}
+                  style={{background:"linear-gradient(135deg,#F59E0B,#B45309)",
+                    border:"none",borderRadius:16,padding:"14px 16px",cursor:"pointer",
+                    textAlign:"left",width:"100%",display:"flex",alignItems:"center",gap:12,
+                    marginBottom:14,boxShadow:"0 5px 16px rgba(245,158,11,.3)"}}>
+                  <span style={{fontSize:32}}>🎴</span>
+                  <div style={{flex:1}}>
+                    <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:15,color:"#fff"}}>
+                      Ma collection Sigma
                     </div>
-                  );
-                })}
-              </div>
-            </div>
-            {onCollection&&(
-              <button onClick={onCollection}
-                style={{background:"linear-gradient(135deg,#7C3AED,#5B21B6)",borderRadius:14,
-                  padding:"13px 16px",border:"none",cursor:"pointer",width:"100%",
-                  display:"flex",alignItems:"center",gap:12,marginBottom:10,
-                  boxShadow:"0 4px 16px rgba(124,58,237,.25)",textAlign:"left"}}>
-                <span style={{fontSize:24}}>🎴</span>
-                <div style={{flex:1}}>
-                  <div style={{fontWeight:900,fontSize:13,color:"#fff",fontFamily:"'Nunito',sans-serif"}}>Ma collection Sigma</div>
-                  <div style={{fontSize:10,color:"rgba(255,255,255,0.75)",marginTop:1}}>
-                    {cardsUnlocked||0} carte{(cardsUnlocked||0)>1?"s":""} débloquée{(cardsUnlocked||0)>1?"s":""}
+                    <div style={{color:"rgba(255,255,255,.85)",fontSize:11,fontWeight:600,marginTop:2}}>
+                      {cardsCount}/{totalCards} cartes débloquées
+                    </div>
                   </div>
-                </div>
-                <span style={{color:"rgba(255,255,255,0.6)",fontSize:18}}>›</span>
-              </button>
-            )}
+                  <span style={{color:"#fff",fontSize:22,fontWeight:900}}>›</span>
+                </button>
+              );
+            })()}
+
+            {/* Section Badges complémentaires */}
+            <div style={{fontSize:9,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
+              letterSpacing:1,marginBottom:8,marginTop:6}}>
+              🎖️ Badges — {badges.filter(b=>BADGES.find(B=>B.id===b)).length}/{BADGES.filter(b=>!b.secret).length} débloqués
+            </div>
+            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
+              {BADGES.map(b=>{
+                const unlocked = badges.includes(b.id);
+                const isSecret = b.secret && !unlocked;
+                return (
+                  <div key={b.id} style={{background:"#fff",borderRadius:14,padding:"12px 10px",
+                    textAlign:"center",boxShadow:"0 2px 8px rgba(0,0,0,.05)",
+                    opacity:unlocked?1:0.45,
+                    border:unlocked?`2px solid ${lvl.color}`:"2px solid transparent"}}>
+                    <div style={{fontSize:28,filter:unlocked?"none":"grayscale(1)"}}>{isSecret?"🔒":b.emoji}</div>
+                    <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:11,
+                      color:unlocked?"#1E293B":"#94A3B8",marginTop:4}}>
+                      {isSecret?"🔒":b.label}
+                    </div>
+                    <div style={{fontSize:9,color:"#CBD5E1",marginTop:2,lineHeight:1.3}}>
+                      {isSecret?"Mission secrète...":b.desc}
+                    </div>
+                    {unlocked&&<div style={{marginTop:6,fontSize:9,color:lvl.color,fontWeight:700}}>✓ Débloqué !</div>}
+                  </div>
+                );
+              })}
+            </div>
           </div>
         )}
 
+      </div>
+    </div>
+  );
+}
+
+
+// ── PostPracticeResultScreen ──────────────────────────────────────────────────
+function PostPracticeResultScreen({score, total, catId, subId, mode, prevStars, newStars, onRetry, onDashboard, onHome}) {
+  const pct = Math.round(score/total*100);
+  const ct = pct>=60&&total>=5;
+  const gotStars = newStars>prevStars;
+  const EMOJI_TIER = pct===100?"🤩":pct>=80?"😎":pct>=60?"😊":pct>=40?"😅":"😬";
+  const MSG_TIER = pct===100?"Parfait ! Incroyable ! 🎉":pct>=80?"Excellent boulot 🔥":pct>=60?"Bien joué ! Continue 💪":pct>=40?"Pas mal, encore un effort 📚":"Courage, c'est en forgeant... 💙";
+
+  return (
+    <div className="slide-up" style={{display:"flex",flexDirection:"column",alignItems:"center",
+      justifyContent:"center",height:"100%",padding:"24px",gap:12,background:"var(--am-bg-light)"}}>
+
+      {gotStars?(
+        <div className="pop-in" style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
+          <div className="sigma-float">
+            <Sigma emotion={newStars>=3?"love":"cool"} size={180}/>
+          </div>
+          <div className="sigma-shadow" style={{marginTop:-4}}/>
+        </div>
+      ):(
+        <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
+          <div className="sigma-float">
+            <Sigma emotion={pct>=60?"happy":"sad"} size={180}/>
+          </div>
+          <div className="sigma-shadow" style={{marginTop:-4}}/>
+        </div>
+      )}
+
+      {/* Score ring */}
+      <div style={{textAlign:"center"}}>
+        <div style={{fontFamily:"'Nunito',sans-serif",fontSize:52,fontWeight:900,
+          color:pct>=80?"#10B981":pct>=60?"#F59E0B":"#EF4444",lineHeight:1}}>
+          {pct}%
+        </div>
+        <div style={{color:"#64748B",fontSize:12,marginTop:2}}>{score}/{total} correctes</div>
+      </div>
+
+      {/* Message */}
+      <div style={{background:"#fff",borderRadius:14,padding:"12px 16px",textAlign:"center",
+        fontSize:13,fontWeight:700,color:"#334155",maxWidth:260,
+        boxShadow:"0 2px 8px rgba(0,0,0,.06)"}}>
+        {EMOJI_TIER} {MSG_TIER}
+      </div>
+
+      {/* Stars earned */}
+      {mode==='test'&&(
+        <div style={{background:gotStars?"#FEF9C3":"#F8FAFC",borderRadius:14,padding:"12px 20px",
+          textAlign:"center",border:`2px solid ${gotStars?"#FDE68A":"#E2E8F0"}`}}>
+          <div style={{fontSize:10,color:"#94A3B8",fontWeight:700,marginBottom:6}}>
+            {gotStars?"🎉 Nouvelle performance !":"Résultat du test"}
+          </div>
+          <div style={{display:"flex",gap:4,justifyContent:"center"}}>
+            {[1,2,3].map(i=>(
+              <span key={i} className={i<=newStars?"pop-in":""} style={{fontSize:28,
+                opacity:i<=newStars?1:0.18,animationDelay:`${i*0.15}s`}}>⭐</span>
+            ))}
+          </div>
+          <div style={{fontSize:10,color:"#64748B",marginTop:6}}>
+            {newStars===3?"★★★ Maîtrise parfaite !":newStars===2?"★★☆ Très bien !":newStars===1?"★☆☆ Acquis !":"Pas encore d'étoile..."}
+          </div>
+        </div>
+      )}
+
+      {/* Test unlock */}
+      {mode==='practice'&&ct&&(
+        <div style={{background:"#ECFDF5",borderRadius:12,padding:"8px 14px",
+          fontSize:11,color:"#065F46",fontWeight:600,textAlign:"center"}}>
+          🔓 Test débloqué ! Tu peux valider des étoiles.
+        </div>
+      )}
+
+      {/* Buttons */}
+      <div style={{display:"flex",flexDirection:"column",gap:8,width:"100%",maxWidth:280}}>
+        <button onClick={onRetry}
+          style={{padding:"13px",borderRadius:14,border:"none",
+            background:"linear-gradient(135deg,#7C3AED,#5B21B6)",color:"#fff",
+            fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:800,cursor:"pointer"}}>
+          🔄 Rejouer
+        </button>
+        <button onClick={onDashboard}
+          style={{padding:"13px",borderRadius:14,border:"2px solid #E2E8F0",
+            background:"#fff",color:"#334155",
+            fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:800,cursor:"pointer"}}>
+          📊 Mon tableau de bord
+        </button>
+        <button onClick={onHome}
+          style={{padding:"10px",borderRadius:14,border:"none",background:"transparent",
+            color:"#94A3B8",fontFamily:"'Nunito',sans-serif",fontSize:12,fontWeight:600,cursor:"pointer"}}>
+          Toutes les catégories
+        </button>
+      </div>
+    </div>
+  );
+}
+
+
+function SplashScreen({onStart, onMySpace, onRestore, profile}) {
+  const th = getTheme(profile);
+  return (
+    <div style={{position:"relative",height:"100%",overflow:"hidden",
+      background: th.bgMain,
+      display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",
+      padding:"22px 22px 18px"}}>
+
+      {[[10,8],[80,18],[55,5],[20,40],[90,35],[5,60],[75,65],[40,72],[15,82],[85,78]].map(([l,t],i)=>(
+        <div key={i} style={{position:"absolute",left:`${l}%`,top:`${t}%`,
+          width:i%3===0?3:2,height:i%3===0?3:2,
+          borderRadius:"50%",background: th.starColor, opacity:i%2===0?0.25:0.12}}/>
+      ))}
+
+      <div className="slide-up" style={{zIndex:1,display:"flex",flexDirection:"column",
+        alignItems:"center",width:"100%"}}>
+
+        <div style={{display:"flex",flexDirection:"column",alignItems:"center",marginBottom:6,width:"100%"}}>
+          <div className="sigma-float">
+            <img src={SIGMA_IMG} alt="Sigma"
+              style={{width:180,height:180,objectFit:"contain",display:"block",
+                filter:"drop-shadow(0 8px 24px rgba(0,0,0,0.45))"}}/>
+          </div>
+          <div className="sigma-shadow" style={{marginTop:-4}}/>
+        </div>
+
+        <div style={{textAlign:"center",marginBottom:4}}>
+          <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:11,
+            letterSpacing:5,color:"#64748B",textTransform:"uppercase",marginBottom:6}}>
+            Travailler ses maths avec
+          </div>
+          <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:13,color: th.dark?"#94A3B8":"#64748B",letterSpacing:1}}>l'</div>
+          <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,
+            fontSize:42,color: th.dark?"#fff":"#1E293B",letterSpacing:-1.5,lineHeight:.95,marginTop:-4}}>
+            Auto<span style={{color:"#F59E0B"}}>Maths</span>
+          </div>
+          <div style={{height:3,background:"linear-gradient(90deg,#F59E0B,#EF4444)",
+            borderRadius:99,width:100,margin:"9px auto 0",opacity:.8}}/>
+        </div>
+
+        <div style={{textAlign:"center",color:"#94A3B8",fontSize:13,lineHeight:1.6,marginTop:14,marginBottom:20}}>
+          Sigma, ton assistante maths.<br/>
+          <span style={{color:"#F59E0B",fontWeight:700}}>5 min par jour</span>
+          <span style={{color:"#64748B"}}>, t'as tout compris.</span>
+        </div>
+
+        {/* Mon espace — highlighted if has profile */}
+        {onMySpace && (
+          <button onClick={onMySpace}
+            style={{width:"100%",padding:"16px",border:"none",borderRadius:18,cursor:"pointer",
+              background:profile?"linear-gradient(135deg,#F59E0B,#EF4444)":"linear-gradient(135deg,#7C3AED,#5B21B6)",
+              color:"#fff",fontFamily:"'Nunito',sans-serif",fontSize:17,fontWeight:900,
+              boxShadow:profile?"0 10px 28px rgba(245,158,11,.35)":"0 10px 28px rgba(124,58,237,.35)",
+              marginBottom:10}}>
+            {profile?`Continuer, ${profile.name} ! 📊`:"Mon espace 👤"}
+          </button>
+        )}
+
+        {/* Explore librement */}
+        <button onClick={onStart}
+          style={{width:"100%",padding:profile?"12px":"16px",border:"none",
+            borderRadius:18,cursor:"pointer",letterSpacing:.3,
+            background:profile?"rgba(255,255,255,0.07)":"linear-gradient(135deg,#F59E0B,#EF4444)",
+            color:profile?"#64748B":"#fff",fontFamily:"'Nunito',sans-serif",
+            fontSize:profile?13:17,fontWeight:900,
+            boxShadow:profile?"none":"0 10px 28px rgba(245,158,11,.35)"}}>
+          {profile?"Explorer librement →":"Mode libre 🎒"}
+        </button>
+
+        <div style={{marginTop:14,display:"flex",flexDirection:"column",alignItems:"center",gap:5}}>
+          <div style={{display:"flex",gap:6,alignItems:"center"}}>
+            <span style={{color:"#F59E0B",fontSize:13,letterSpacing:2}}>★★★★★</span>
+            <span style={{color:"#475569",fontSize:11}}>par un vrai prof</span>
+          </div>
+          <div style={{display:"flex",gap:7,flexWrap:"wrap",justifyContent:"center"}}>
+            {["🚫 sans calc.","⏱ 5 min/jour","📈 Idéal pour le bac de première"].map(t=>(
+              <span key={t} style={{fontSize:10,color:"#475569",fontWeight:600,
+                background:"rgba(255,255,255,.06)",borderRadius:99,padding:"3px 9px",
+                border:"1px solid rgba(255,255,255,.1)"}}>
+                {t}</span>
+            ))}
+          </div>
+          {/* Restauration : encart bien visible quand pas de profil
+              (cas d'un élève qui se reconnecte après déconnexion / clear cache) */}
+          {onRestore && !profile && (
+            <button onClick={onRestore}
+              style={{marginTop:14,padding:"11px 16px",borderRadius:14,
+                background:"rgba(59,130,246,0.12)",border:"1.5px solid rgba(59,130,246,0.4)",
+                cursor:"pointer",display:"flex",alignItems:"center",gap:10,
+                color:"#93C5FD",fontFamily:"'Nunito',sans-serif",fontSize:12,fontWeight:800,
+                width:"100%",justifyContent:"center"}}>
+              <span style={{fontSize:18}}>💾</span>
+              <span style={{display:"flex",flexDirection:"column",alignItems:"flex-start",gap:1}}>
+                <span style={{fontSize:12,color:"#fff"}}>Déjà un compte ?</span>
+                <span style={{fontSize:10,fontWeight:600,color:"#93C5FD"}}>Restaure ta sauvegarde →</span>
+              </span>
+            </button>
+          )}
+          {/* Lien discret quand il y a déjà un profil (cas rare : un élève veut
+              importer une autre sauvegarde par-dessus) */}
+          {onRestore && profile && (
+            <button onClick={onRestore}
+              style={{marginTop:8,background:"transparent",border:"none",cursor:"pointer",
+                color:"#64748B",fontSize:11,fontWeight:600,textDecoration:"underline",
+                textDecorationColor:"rgba(100,116,139,0.4)"}}>
+              💾 Restaurer une sauvegarde
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
