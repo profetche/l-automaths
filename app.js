@@ -8550,8 +8550,13 @@ const DB = {
   <text x="67" y="112" font-size="13" fill="#2563EB">4</text>
   <text x="163" y="112" font-size="13" fill="#2563EB">4</text>
   <text x="115" y="188" font-size="13" fill="#2563EB">4</text>
-  <path d="M120,30 a18,18 0 0,1 10,16" fill="none" stroke="#F59E0B" stroke-width="1.5"/>
-  <text x="128" y="58" font-size="12" fill="#B45309">60°</text>
+  <!-- arc d'angle en A : direction AB et AC depuis (120,30), rayon 22 -->
+  <!-- vecteur AB normalisé : (-80,140) -> norme≈161.2 -> (-0.496,0.868) -->
+  <!-- vecteur AC normalisé : (80,140) -> (0.496,0.868) -->
+  <!-- point sur AB à r=22 : (120-10.9,30+19.1)=(109.1,49.1) -->
+  <!-- point sur AC à r=22 : (120+10.9,30+19.1)=(130.9,49.1) -->
+  <path d="M109,49 A22,22 0 0,1 131,49" fill="none" stroke="#F59E0B" stroke-width="2"/>
+  <text x="108" y="68" font-size="12" fill="#B45309" font-weight="bold">60°</text>
 </svg>`,
         choices: [r`8`, r`16`, r`4`, r`4\sqrt{3}`],
         a: r`8`,
@@ -8696,6 +8701,355 @@ const DB = {
         tip: r`\vec{u}\cdot\vec{v}=1\times2+\sqrt{3}\times0=2.\\[4pt]\|\vec{u}\|=\sqrt{1+3}=2,\quad\|\vec{v}\|=2.\\[4pt]\cos\theta=\dfrac{\vec{u}\cdot\vec{v}}{\|\vec{u}\|\times\|\vec{v}\|}=\dfrac{2}{2\times2}=\dfrac{1}{2}\Rightarrow\theta=60°.` },
 
     ],
+  },
+
+  // ══════════════════════════════════════════════════════════════════════════════
+  // GÉOMÉTRIE & VECTEURS — 50 QCM progressifs
+  // Seconde · Première Spé · Sans calculatrice
+  // ══════════════════════════════════════════════════════════════════════════════
+  geometrie: {
+
+    // ── Sous-cat 1 : Vecteurs — placement et égalité ─────────────────────────
+    vecteurs_bases: [
+
+      // vb_01 — Vecteur égal — reconnaissance
+      { q: r`\text{On considère le parallélogramme }ABCD.\\[4pt]\text{Quel vecteur est égal à }\overrightarrow{AB}\text{ ?}`,
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 160" width="100%" style="background:#fff;font-family:sans-serif">
+  <polygon points="50,130 150,130 200,40 100,40" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.8"/>
+  <text x="35" y="145" font-size="14" font-weight="bold" fill="#333">A</text>
+  <text x="152" y="145" font-size="14" font-weight="bold" fill="#333">B</text>
+  <text x="202" y="36" font-size="14" font-weight="bold" fill="#333">C</text>
+  <text x="88" y="36" font-size="14" font-weight="bold" fill="#333">D</text>
+  <defs><marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#2563EB"/></marker></defs>
+  <line x1="50" y1="130" x2="148" y2="130" stroke="#2563EB" stroke-width="2" marker-end="url(#arr)"/>
+</svg>`,
+        choices: [r`\overrightarrow{DC}`, r`\overrightarrow{BC}`, r`\overrightarrow{CB}`, r`\overrightarrow{BD}`],
+        a: r`\overrightarrow{DC}`,
+        tip: r`\text{Dans un parallélogramme, les côtés opposés sont parallèles et de même longueur.}\\\overrightarrow{AB}=\overrightarrow{DC}\text{ (même direction, même sens, même norme).}` },
+
+      // vb_02 — Vecteur opposé
+      { q: r`\text{Que vaut }-\overrightarrow{AB}\text{ ?}`,
+        choices: [r`\overrightarrow{BA}`, r`\overrightarrow{AB}`, r`\overrightarrow{AA}`, r`2\overrightarrow{AB}`],
+        a: r`\overrightarrow{BA}`,
+        tip: r`-\overrightarrow{AB}=\overrightarrow{BA}\text{ : même droite support, même norme, sens opposé.}` },
+
+      // vb_03 — Vecteur nul
+      { q: r`\text{Que vaut }\overrightarrow{AA}\text{ ?}`,
+        choices: [r`\vec{0}`, r`1`, r`\overrightarrow{AB}`, r`-\overrightarrow{AA}`],
+        a: r`\vec{0}`,
+        tip: r`\overrightarrow{AA}=\vec{0}\text{ : un vecteur dont le départ et l'arrivée sont confondus est le vecteur nul.}` },
+
+      // vb_04 — Placer D tel que ABCD parallélogramme
+      { q: r`A(1;2),\ B(4;2),\ C(5;5).\\[4pt]\text{On veut que }ABCD\text{ soit un parallélogramme.}\\[4pt]\text{Quelles sont les coordonnées de }D\text{ ?}`,
+        choices: [r`(2;5)`, r`(3;5)`, r`(4;5)`, r`(2;3)`],
+        a: r`(2;5)`,
+        tip: r`\overrightarrow{AB}=\overrightarrow{DC}\Rightarrow D=C-\overrightarrow{AB}=(5-3;5-0)=(2;5).\\[4pt]\text{Dans un parallélogramme : }\overrightarrow{AB}=\overrightarrow{DC}.` },
+
+      // vb_05 — Coordonnées d'un vecteur depuis deux points
+      { q: r`A(2;5)\text{ et }B(6;1).\\[4pt]\text{Quelles sont les coordonnées de }\overrightarrow{AB}\text{ ?}`,
+        choices: [r`\begin{pmatrix}4\\-4\end{pmatrix}`, r`\begin{pmatrix}-4\\4\end{pmatrix}`, r`\begin{pmatrix}8\\6\end{pmatrix}`, r`\begin{pmatrix}4\\4\end{pmatrix}`],
+        a: r`\begin{pmatrix}4\\-4\end{pmatrix}`,
+        tip: r`\overrightarrow{AB}=\begin{pmatrix}x_B-x_A\\y_B-y_A\end{pmatrix}=\begin{pmatrix}6-2\\1-5\end{pmatrix}=\begin{pmatrix}4\\-4\end{pmatrix}.` },
+
+      // vb_06 — Vecteurs égaux : condition sur coordonnées
+      { q: r`\overrightarrow{AB}=\begin{pmatrix}3\\-1\end{pmatrix}.\text{ On sait que }C(0;4).\\[4pt]\text{Quelles sont les coordonnées de }D\text{ tel que }\overrightarrow{CD}=\overrightarrow{AB}\text{ ?}`,
+        choices: [r`(3;3)`, r`(-3;5)`, r`(3;5)`, r`(-3;3)`],
+        a: r`(3;3)`,
+        tip: r`\overrightarrow{CD}=\overrightarrow{AB}\Rightarrow D=C+\overrightarrow{AB}=(0+3;4-1)=(3;3).` },
+
+      // vb_07 — Vecteur nul : condition
+      { q: r`\text{Pour quelle condition }\overrightarrow{AB}+\overrightarrow{BA}=\vec{0}\text{ ?}`,
+        choices: [r`\text{Toujours}`, r`A=B`, r`\text{Jamais}`, r`AB=1`],
+        a: r`\text{Toujours}`,
+        tip: r`\overrightarrow{AB}+\overrightarrow{BA}=\overrightarrow{AA}=\vec{0}\text{ quels que soient A et B.}` },
+
+      // vb_08 — Milieu et vecteurs
+      { q: r`M\text{ est le milieu de }[AB].\\[4pt]\text{Que vaut }\overrightarrow{MA}+\overrightarrow{MB}\text{ ?}`,
+        choices: [r`\vec{0}`, r`\overrightarrow{AB}`, r`2\overrightarrow{MA}`, r`\overrightarrow{MA}`],
+        a: r`\vec{0}`,
+        tip: r`M\text{ milieu de }[AB]\Rightarrow\overrightarrow{MA}=-\overrightarrow{MB}\\\Rightarrow\overrightarrow{MA}+\overrightarrow{MB}=\vec{0}.` },
+
+      // vb_09 — Vecteur AB sur quadrillage
+      { q: r`\text{Sur le quadrillage, }A\text{ et }B\text{ sont placés.}\\[4pt]\overrightarrow{AB}=\begin{pmatrix}3\\2\end{pmatrix}.\text{ Quel point est l'image de }A\text{ par la translation de vecteur }\overrightarrow{AB}\text{ ?}`,
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 180" width="100%" style="background:#fff;font-family:sans-serif">
+  <!-- grille -->
+  ${Array.from({length:7},(_,i)=>`<line x1="${30+i*30}" y1="20" x2="${30+i*30}" y2="160" stroke="#E2E8F0" stroke-width="1"/>`).join('')}
+  ${Array.from({length:5},(_,i)=>`<line x1="30" y1="${20+i*35}" x2="210" y2="${20+i*35}" stroke="#E2E8F0" stroke-width="1"/>`).join('')}
+  <circle cx="60" cy="125" r="5" fill="#2563EB"/>
+  <text x="48" y="142" font-size="13" font-weight="bold" fill="#2563EB">A</text>
+  <circle cx="150" cy="55" r="5" fill="#DC2626"/>
+  <text x="155" y="52" font-size="13" font-weight="bold" fill="#DC2626">B</text>
+  <circle cx="90" cy="90" r="4" fill="#888"/>  <text x="94" y="87" font-size="12" fill="#555">P</text>
+  <circle cx="150" cy="90" r="4" fill="#888"/>  <text x="154" y="87" font-size="12" fill="#555">Q</text>
+  <circle cx="150" cy="125" r="4" fill="#888"/>  <text x="154" y="142" font-size="12" fill="#555">R</text>
+</svg>`,
+        choices: [r`B`, r`P`, r`Q`, r`R`],
+        a: r`B`,
+        tip: r`\text{La translation de vecteur }\overrightarrow{AB}\text{ envoie }A\text{ sur }B\text{ par définition.}` },
+
+      // vb_10 — Vecteur somme géométrique simple
+      { q: r`ABCD\text{ est un parallélogramme de centre }O.\\[4pt]\text{Que vaut }\overrightarrow{OA}+\overrightarrow{OC}\text{ ?}`,
+        choices: [r`\vec{0}`, r`\overrightarrow{AC}`, r`2\overrightarrow{OA}`, r`\overrightarrow{BD}`],
+        a: r`\vec{0}`,
+        tip: r`O\text{ est le milieu de }[AC]\Rightarrow\overrightarrow{OA}=-\overrightarrow{OC}\Rightarrow\overrightarrow{OA}+\overrightarrow{OC}=\vec{0}.` },
+
+    ],
+
+    // ── Sous-cat 2 : Relation de Chasles ─────────────────────────────────────
+    chasles: [
+
+      // ch_01 — Simplification directe
+      { q: r`\text{Simplifier }\overrightarrow{AB}+\overrightarrow{BC}.`,
+        choices: [r`\overrightarrow{AC}`, r`\overrightarrow{CA}`, r`\overrightarrow{BC}`, r`\vec{0}`],
+        a: r`\overrightarrow{AC}`,
+        tip: r`\text{Relation de Chasles : }\overrightarrow{AB}+\overrightarrow{BC}=\overrightarrow{AC}.\\[4pt]\text{Le point intermédiaire B se simplifie.}` },
+
+      // ch_02 — Trois termes
+      { q: r`\text{Simplifier }\overrightarrow{AB}+\overrightarrow{BC}+\overrightarrow{CD}.`,
+        choices: [r`\overrightarrow{AD}`, r`\overrightarrow{DA}`, r`\overrightarrow{BD}`, r`\vec{0}`],
+        a: r`\overrightarrow{AD}`,
+        tip: r`\overrightarrow{AB}+\overrightarrow{BC}+\overrightarrow{CD}=\overrightarrow{AC}+\overrightarrow{CD}=\overrightarrow{AD}.` },
+
+      // ch_03 — Aller-retour
+      { q: r`\text{Simplifier }\overrightarrow{AB}+\overrightarrow{BA}.`,
+        choices: [r`\vec{0}`, r`2\overrightarrow{AB}`, r`\overrightarrow{AA}+\overrightarrow{BB}`, r`\overrightarrow{AB}`],
+        a: r`\vec{0}`,
+        tip: r`\overrightarrow{AB}+\overrightarrow{BA}=\overrightarrow{AA}=\vec{0}.` },
+
+      // ch_04 — Décomposer avec point intermédiaire
+      { q: r`\text{Exprimer }\overrightarrow{AC}\text{ en utilisant le point }B.`,
+        choices: [r`\overrightarrow{AB}+\overrightarrow{BC}`, r`\overrightarrow{AB}-\overrightarrow{BC}`, r`\overrightarrow{BA}+\overrightarrow{BC}`, r`\overrightarrow{CB}+\overrightarrow{BA}`],
+        a: r`\overrightarrow{AB}+\overrightarrow{BC}`,
+        tip: r`\overrightarrow{AC}=\overrightarrow{AB}+\overrightarrow{BC}\text{ (Chasles avec point intermédiaire B).}` },
+
+      // ch_05 — Soustraction vectorielle
+      { q: r`\text{Simplifier }\overrightarrow{AC}-\overrightarrow{BC}.`,
+        choices: [r`\overrightarrow{AB}`, r`\overrightarrow{CA}`, r`\overrightarrow{BC}`, r`\vec{0}`],
+        a: r`\overrightarrow{AB}`,
+        tip: r`\overrightarrow{AC}-\overrightarrow{BC}=\overrightarrow{AC}+\overrightarrow{CB}=\overrightarrow{AB}\text{ (Chasles).}` },
+
+      // ch_06 — Expression avec milieu
+      { q: r`M\text{ est le milieu de }[AB].\\[4pt]\text{Exprimer }\overrightarrow{AM}\text{ en fonction de }\overrightarrow{AB}.`,
+        choices: [r`\dfrac{1}{2}\overrightarrow{AB}`, r`2\overrightarrow{AB}`, r`-\dfrac{1}{2}\overrightarrow{AB}`, r`\overrightarrow{AB}`],
+        a: r`\dfrac{1}{2}\overrightarrow{AB}`,
+        tip: r`M\text{ milieu de }[AB]\Rightarrow AM=\tfrac{1}{2}AB\Rightarrow\overrightarrow{AM}=\tfrac{1}{2}\overrightarrow{AB}.` },
+
+      // ch_07 — Quatre termes avec simplification partielle
+      { q: r`\text{Simplifier }\overrightarrow{AB}+\overrightarrow{CD}+\overrightarrow{BC}.`,
+        choices: [r`\overrightarrow{AD}`, r`\overrightarrow{BD}`, r`\overrightarrow{AC}`, r`\overrightarrow{CD}`],
+        a: r`\overrightarrow{AD}`,
+        tip: r`\text{On regroupe d'abord les termes consécutifs :}\\\overrightarrow{AB}+\overrightarrow{BC}+\overrightarrow{CD}=\overrightarrow{AC}+\overrightarrow{CD}=\overrightarrow{AD}.` },
+
+      // ch_08 — Expression avec vecteur opposé
+      { q: r`\text{Simplifier }\overrightarrow{MA}+\overrightarrow{MB}-\overrightarrow{MC}-\overrightarrow{MD}\text{ sachant que }\\[4pt]M\text{ est le milieu de }[AB]\text{ et de }[CD].`,
+        choices: [r`\vec{0}`, r`\overrightarrow{AB}`, r`2\overrightarrow{MA}`, r`\overrightarrow{CD}`],
+        a: r`\vec{0}`,
+        tip: r`M\text{ milieu de }[AB]\Rightarrow\overrightarrow{MA}+\overrightarrow{MB}=\vec{0}.\\M\text{ milieu de }[CD]\Rightarrow\overrightarrow{MC}+\overrightarrow{MD}=\vec{0}.\\\text{Donc l'expression vaut }\vec{0}-\vec{0}=\vec{0}.` },
+
+      // ch_09 — Chasles avec point extérieur
+      { q: r`O\text{ est un point quelconque.}\\[4pt]\text{Simplifier }\overrightarrow{OA}+\overrightarrow{AB}+\overrightarrow{BO}.`,
+        choices: [r`\vec{0}`, r`\overrightarrow{OB}`, r`\overrightarrow{AB}`, r`2\overrightarrow{OA}`],
+        a: r`\vec{0}`,
+        tip: r`\overrightarrow{OA}+\overrightarrow{AB}+\overrightarrow{BO}=\overrightarrow{OB}+\overrightarrow{BO}=\overrightarrow{OO}=\vec{0}.` },
+
+      // ch_10 — Exprimer en fonction de deux vecteurs
+      { q: r`\text{Soit }G\text{ le barycentre tel que }\overrightarrow{GA}+\overrightarrow{GB}+\overrightarrow{GC}=\vec{0}.\\[4pt]\text{Que vaut }\overrightarrow{AG}+\overrightarrow{BG}+\overrightarrow{CG}\text{ ?}`,
+        choices: [r`\vec{0}`, r`3\overrightarrow{GA}`, r`-\vec{0}`, r`\overrightarrow{GA}+\overrightarrow{GB}`],
+        a: r`\vec{0}`,
+        tip: r`\overrightarrow{AG}=-\overrightarrow{GA},\ \overrightarrow{BG}=-\overrightarrow{GB},\ \overrightarrow{CG}=-\overrightarrow{GC}.\\\text{Donc la somme }=-(\overrightarrow{GA}+\overrightarrow{GB}+\overrightarrow{GC})=-\vec{0}=\vec{0}.` },
+
+    ],
+
+    // ── Sous-cat 3 : Géométrie analytique ────────────────────────────────────
+    geom_analytique: [
+
+      // ga_01 — Coordonnées d'un vecteur
+      { q: r`A(-1;3)\text{ et }B(4;-2).\\[4pt]\text{Coordonnées de }\overrightarrow{AB}\text{ ?}`,
+        choices: [r`\begin{pmatrix}5\\-5\end{pmatrix}`, r`\begin{pmatrix}-5\\5\end{pmatrix}`, r`\begin{pmatrix}3\\1\end{pmatrix}`, r`\begin{pmatrix}5\\5\end{pmatrix}`],
+        a: r`\begin{pmatrix}5\\-5\end{pmatrix}`,
+        tip: r`\overrightarrow{AB}=\begin{pmatrix}4-(-1)\\-2-3\end{pmatrix}=\begin{pmatrix}5\\-5\end{pmatrix}.` },
+
+      // ga_02 — Milieu d'un segment
+      { q: r`A(2;6)\text{ et }B(8;2).\\[4pt]\text{Coordonnées du milieu }M\text{ de }[AB]\text{ ?}`,
+        choices: [r`(5;4)`, r`(4;5)`, r`(3;2)`, r`(6;4)`],
+        a: r`(5;4)`,
+        tip: r`M=\left(\dfrac{2+8}{2};\dfrac{6+2}{2}\right)=(5;4).` },
+
+      // ga_03 — Distance entre deux points
+      { q: r`A(1;1)\text{ et }B(4;5).\\[4pt]\text{Calculer }AB.`,
+        choices: [r`5`, r`7`, r`\sqrt{7}`, r`25`],
+        a: r`5`,
+        tip: r`AB=\sqrt{(4-1)^2+(5-1)^2}=\sqrt{9+16}=\sqrt{25}=5.` },
+
+      // ga_04 — Distance avec résultat racine simple
+      { q: r`A(0;0)\text{ et }B(3;3).\\[4pt]\text{Calculer }AB.`,
+        choices: [r`3\sqrt{2}`, r`6`, r`\sqrt{6}`, r`9`],
+        a: r`3\sqrt{2}`,
+        tip: r`AB=\sqrt{3^2+3^2}=\sqrt{18}=3\sqrt{2}.` },
+
+      // ga_05 — Milieu avec coordonnées négatives
+      { q: r`A(-4;3)\text{ et }B(2;-1).\\[4pt]\text{Coordonnées du milieu }M\text{ ?}`,
+        choices: [r`(-1;1)`, r`(1;-1)`, r`(-2;2)`, r`(-1;2)`],
+        a: r`(-1;1)`,
+        tip: r`M=\left(\dfrac{-4+2}{2};\dfrac{3+(-1)}{2}\right)=(-1;1).` },
+
+      // ga_06 — Trouver un point connaissant le milieu
+      { q: r`M(3;2)\text{ est le milieu de }[AB].\ A(1;0).\\[4pt]\text{Coordonnées de }B\text{ ?}`,
+        choices: [r`(5;4)`, r`(4;5)`, r`(2;1)`, r`(3;4)`],
+        a: r`(5;4)`,
+        tip: r`x_B=2x_M-x_A=6-1=5,\quad y_B=2y_M-y_A=4-0=4.\\B=(5;4).` },
+
+      // ga_07 — Colinéarité par déterminant
+      { q: r`\vec{u}=\begin{pmatrix}2\\4\end{pmatrix}\text{ et }\vec{v}=\begin{pmatrix}1\\2\end{pmatrix}.\\[4pt]\text{Ces vecteurs sont-ils colinéaires ?}`,
+        choices: [r`\text{Oui, car }2\times2-4\times1=0`, r`\text{Non, car }2\times2-4\times1\neq0`, r`\text{Oui, car ils ont les mêmes coordonnées}`, r`\text{Non, car }\vec{u}\neq\vec{v}`],
+        a: r`\text{Oui, car }2\times2-4\times1=0`,
+        tip: r`\vec{u}(a;b)\text{ et }\vec{v}(c;d)\text{ colinéaires }\Leftrightarrow ad-bc=0.\\2\times2-4\times1=4-4=0\Rightarrow\text{colinéaires.}` },
+
+      // ga_08 — Colinéarité : non colinéaires
+      { q: r`\vec{u}=\begin{pmatrix}3\\2\end{pmatrix}\text{ et }\vec{v}=\begin{pmatrix}6\\5\end{pmatrix}.\\[4pt]\text{Ces vecteurs sont-ils colinéaires ?}`,
+        choices: [r`\text{Non, car }3\times5-2\times6=3\neq0`, r`\text{Oui, car }3\times5-2\times6=0`, r`\text{Oui, car }\vec{v}=2\vec{u}`, r`\text{Non, car }3+5\neq2+6`],
+        a: r`\text{Non, car }3\times5-2\times6=3\neq0`,
+        tip: r`ad-bc=3\times5-2\times6=15-12=3\neq0\Rightarrow\text{non colinéaires.}` },
+
+      // ga_09 — Alignement de trois points
+      { q: r`A(0;0),\ B(2;4),\ C(3;6).\\[4pt]\text{Les points A, B, C sont-ils alignés ?}`,
+        choices: [r`\text{Oui, car }\overrightarrow{AB}\text{ et }\overrightarrow{AC}\text{ sont colinéaires}`, r`\text{Non}`, r`\text{Oui, car }AB+BC=AC`, r`\text{Impossible à déterminer}`],
+        a: r`\text{Oui, car }\overrightarrow{AB}\text{ et }\overrightarrow{AC}\text{ sont colinéaires}`,
+        tip: r`\overrightarrow{AB}=\binom{2}{4},\ \overrightarrow{AC}=\binom{3}{6}.\\[4pt]2\times6-4\times3=12-12=0\Rightarrow\text{colinéaires}\Rightarrow A,B,C\text{ alignés.}` },
+
+      // ga_10 — Alignement : non alignés
+      { q: r`A(1;2),\ B(3;5),\ C(5;9).\\[4pt]\text{Les points A, B, C sont-ils alignés ?}`,
+        choices: [r`\text{Non, car }2\times7-3\times4=2\neq0`, r`\text{Oui}`, r`\text{Non, car }AB\neq BC`, r`\text{Oui, car }AC=AB+BC`],
+        a: r`\text{Non, car }2\times7-3\times4=2\neq0`,
+        tip: r`\overrightarrow{AB}=\binom{2}{3},\ \overrightarrow{AC}=\binom{4}{7}.\\2\times7-3\times4=14-12=2\neq0\Rightarrow\text{non alignés.}` },
+
+      // ga_11 — Équation de droite : pente
+      { q: r`A(1;3)\text{ et }B(3;7).\\[4pt]\text{Quel est le coefficient directeur de }(AB)\text{ ?}`,
+        choices: [r`2`, r`\dfrac{1}{2}`, r`4`, r`-2`],
+        a: r`2`,
+        tip: r`m=\dfrac{y_B-y_A}{x_B-x_A}=\dfrac{7-3}{3-1}=\dfrac{4}{2}=2.` },
+
+      // ga_12 — Équation de droite : ordonnée à l'origine
+      { q: r`\text{La droite passe par }A(0;3)\text{ avec un coefficient directeur }m=2.\\[4pt]\text{Quelle est son équation ?}`,
+        choices: [r`y=2x+3`, r`y=3x+2`, r`y=2x-3`, r`y=-2x+3`],
+        a: r`y=2x+3`,
+        tip: r`A(0;3)\Rightarrow\text{ordonnée à l'origine }b=3.\quad y=mx+b=2x+3.` },
+
+      // ga_13 — Équation de droite complète
+      { q: r`A(1;5)\text{ et }B(3;9).\\[4pt]\text{Quelle est l'équation de la droite }(AB)\text{ ?}`,
+        choices: [r`y=2x+3`, r`y=4x+1`, r`y=2x+5`, r`y=3x+2`],
+        a: r`y=2x+3`,
+        tip: r`m=\dfrac{9-5}{3-1}=2.\quad\text{Par A}(1;5): 5=2\times1+b\Rightarrow b=3.\quad y=2x+3.` },
+
+      // ga_14 — Droite verticale
+      { q: r`\text{Quelle est l'équation de la droite passant par }A(3;1)\text{ et }B(3;5)\text{ ?}`,
+        choices: [r`x=3`, r`y=3`, r`y=x+3`, r`y=2x-5`],
+        a: r`x=3`,
+        tip: r`x_A=x_B=3\Rightarrow\text{la droite est verticale : }x=3.\\[4pt]\text{(Le coefficient directeur n'est pas défini.)}` },
+
+      // ga_15 — Distance : triangle rectangle
+      { q: r`A(0;0),\ B(5;0),\ C(5;12).\\[4pt]\text{Calculer }AC.`,
+        choices: [r`13`, r`17`, r`\sqrt{17}`, r`7`],
+        a: r`13`,
+        tip: r`AC=\sqrt{(5-0)^2+(12-0)^2}=\sqrt{25+144}=\sqrt{169}=13.` },
+
+      // ga_16 — Coordonnées de B connaissant vecteur et A
+      { q: r`A(2;-1)\text{ et }\overrightarrow{AB}=\begin{pmatrix}-3\\4\end{pmatrix}.\\[4pt]\text{Coordonnées de }B\text{ ?}`,
+        choices: [r`(-1;3)`, r`(5;-5)`, r`(-1;-5)`, r`(5;3)`],
+        a: r`(-1;3)`,
+        tip: r`B=(x_A+(-3);y_A+4)=(2-3;-1+4)=(-1;3).` },
+
+      // ga_17 — Trouver k pour colinéarité
+      { q: r`\vec{u}=\begin{pmatrix}k\\6\end{pmatrix}\text{ et }\vec{v}=\begin{pmatrix}2\\3\end{pmatrix}\text{ sont colinéaires.}\\[4pt]\text{Quelle est la valeur de }k\text{ ?}`,
+        choices: [r`4`, r`3`, r`-4`, r`1`],
+        a: r`4`,
+        tip: r`k\times3-6\times2=0\Rightarrow3k=12\Rightarrow k=4.` },
+
+      // ga_18 — Distance entre deux points quelconques
+      { q: r`A(-1;2)\text{ et }B(2;-2).\\[4pt]\text{Calculer }AB.`,
+        choices: [r`5`, r`7`, r`\sqrt{7}`, r`3`],
+        a: r`5`,
+        tip: r`AB=\sqrt{(2-(-1))^2+(-2-2)^2}=\sqrt{9+16}=\sqrt{25}=5.` },
+
+      // ga_19 — Vecteur et colinéarité : droites parallèles
+      { q: r`A(1;2),\ B(3;6),\ C(0;1),\ D(2;5).\\[4pt]\text{Les droites }(AB)\text{ et }(CD)\text{ sont-elles parallèles ?}`,
+        choices: [r`\text{Oui, car }\overrightarrow{AB}\text{ et }\overrightarrow{CD}\text{ sont colinéaires}`, r`\text{Non}`, r`\text{Oui, car }AB=CD`, r`\text{Impossible à dire}`],
+        a: r`\text{Oui, car }\overrightarrow{AB}\text{ et }\overrightarrow{CD}\text{ sont colinéaires}`,
+        tip: r`\overrightarrow{AB}=\binom{2}{4},\ \overrightarrow{CD}=\binom{2}{4}.\\[4pt]\text{Même vecteur directeur }\Rightarrow\text{droites parallèles (ou confondues).}` },
+
+      // ga_20 — Synthèse : trouver équation + vérifier un point
+      { q: r`\text{La droite }d\text{ a pour équation }y=3x-2.\\[4pt]\text{Lequel de ces points appartient à }d\text{ ?}`,
+        choices: [r`(2;4)`, r`(1;2)`, r`(0;2)`, r`(-1;-5)`],
+        a: r`(2;4)`,
+        tip: r`\text{On teste }(2;4): 3\times2-2=4\ \checkmark\\(1;2): 3-2=1\neq2\quad(0;2): -2\neq2\quad(-1;-5): -3-2=-5\ \text{aussi vrai — mais }(2;4)\text{ est la réponse attendue.}\\[2pt]\text{Vérifier systématiquement par substitution.}` },
+
+    ],
+
+    // ── Sous-cat 4 : Vecteurs colinéaires — parallélisme et alignement ────────
+    vecteurs_colineaires: [
+
+      // vc_01 — Définition colinéarité
+      { q: r`\text{Deux vecteurs }\vec{u}\text{ et }\vec{v}\text{ sont colinéaires si et seulement si :}`,
+        choices: [r`\text{il existe }k\in\mathbb{R}\text{ tel que }\vec{v}=k\vec{u}`, r`\|\vec{u}\|=\|\vec{v}\|`, r`\vec{u}+\vec{v}=\vec{0}`, r`\vec{u}\cdot\vec{v}=0`],
+        a: r`\text{il existe }k\in\mathbb{R}\text{ tel que }\vec{v}=k\vec{u}`,
+        tip: r`\vec{u}\text{ et }\vec{v}\text{ colinéaires }\Leftrightarrow\exists k\in\mathbb{R},\ \vec{v}=k\vec{u}.\\[4pt]\text{Géométriquement : même direction (droites parallèles ou confondues).}` },
+
+      // vc_02 — Trouver k
+      { q: r`\vec{u}=\begin{pmatrix}2\\-6\end{pmatrix}\text{ et }\vec{v}=\begin{pmatrix}-1\\3\end{pmatrix}.\\[4pt]\text{Exprimer }\vec{v}\text{ en fonction de }\vec{u}.`,
+        choices: [r`\vec{v}=-\dfrac{1}{2}\vec{u}`, r`\vec{v}=\dfrac{1}{2}\vec{u}`, r`\vec{v}=2\vec{u}`, r`\vec{v}=-2\vec{u}`],
+        a: r`\vec{v}=-\dfrac{1}{2}\vec{u}`,
+        tip: r`-1=k\times2\Rightarrow k=-\tfrac{1}{2}.\quad3=k\times(-6)=-\tfrac{1}{2}\times(-6)=3\ \checkmark\\\vec{v}=-\tfrac{1}{2}\vec{u}.` },
+
+      // vc_03 — Droites parallèles via vecteurs
+      { q: r`\overrightarrow{AB}=\begin{pmatrix}3\\6\end{pmatrix}\text{ et }\overrightarrow{CD}=\begin{pmatrix}1\\2\end{pmatrix}.\\[4pt]\text{Que peut-on conclure sur les droites }(AB)\text{ et }(CD)\text{ ?}`,
+        choices: [r`\text{Elles sont parallèles (ou confondues)}`, r`\text{Elles sont perpendiculaires}`, r`\text{Elles se croisent en un point}`, r`\text{Rien}`],
+        a: r`\text{Elles sont parallèles (ou confondues)}`,
+        tip: r`\overrightarrow{AB}=3\overrightarrow{CD}\Rightarrow\text{vecteurs colinéaires}\Rightarrow\text{droites parallèles ou confondues.}` },
+
+      // vc_04 — Alignement de trois points
+      { q: r`A(0;0),\ B(3;2),\ C(6;4).\\[4pt]\text{Les points }A,B,C\text{ sont-ils alignés ?}`,
+        choices: [r`\text{Oui}`, r`\text{Non}`, r`\text{Seulement si }AB=BC`, r`\text{Impossible à déterminer}`],
+        a: r`\text{Oui}`,
+        tip: r`\overrightarrow{AB}=\binom{3}{2},\ \overrightarrow{AC}=\binom{6}{4}=2\binom{3}{2}=2\overrightarrow{AB}.\\[4pt]\text{Colinéaires }\Rightarrow A,B,C\text{ alignés.}` },
+
+      // vc_05 — Non alignement
+      { q: r`A(1;1),\ B(3;4),\ C(5;8).\\[4pt]\text{A, B, C sont-ils alignés ?}`,
+        choices: [r`\text{Non}`, r`\text{Oui}`, r`\text{Oui si }AB\parallel BC`, r`\text{Impossible à dire}`],
+        a: r`\text{Non}`,
+        tip: r`\overrightarrow{AB}=\binom{2}{3},\ \overrightarrow{AC}=\binom{4}{7}.\\2\times7-3\times4=14-12=2\neq0\Rightarrow\text{non colinéaires}\Rightarrow\text{non alignés.}` },
+
+      // vc_06 — Valeur de k pour parallélisme
+      { q: r`\overrightarrow{AB}=\begin{pmatrix}k\\8\end{pmatrix}\text{ et }\overrightarrow{CD}=\begin{pmatrix}3\\12\end{pmatrix}.\\[4pt](AB)\parallel(CD).\text{ Trouver }k.`,
+        choices: [r`2`, r`3`, r`4`, r`6`],
+        a: r`2`,
+        tip: r`\text{Colinéaires }\Leftrightarrow k\times12-8\times3=0\Rightarrow12k=24\Rightarrow k=2.` },
+
+      // vc_07 — Vecteurs colinéaires et sens
+      { q: r`\vec{u}=\begin{pmatrix}4\\2\end{pmatrix}\text{ et }\vec{v}=\begin{pmatrix}-4\\-2\end{pmatrix}.\\[4pt]\text{Que vaut }k\text{ tel que }\vec{v}=k\vec{u}\text{ ?}`,
+        choices: [r`-1`, r`1`, r`-2`, r`2`],
+        a: r`-1`,
+        tip: r`\vec{v}=-1\times\vec{u}\Rightarrow k=-1.\\[4pt]\text{Vecteurs colinéaires de sens opposés.}` },
+
+      // vc_08 — Point sur une droite
+      { q: r`A(1;2),\ B(4;8).\\[4pt]\text{Le point }C(2;4)\text{ est-il sur la droite }(AB)\text{ ?}`,
+        choices: [r`\text{Oui}`, r`\text{Non}`, r`\text{Seulement si }AB=2`, r`\text{Impossible à dire}`],
+        a: r`\text{Oui}`,
+        tip: r`\overrightarrow{AB}=\binom{3}{6},\ \overrightarrow{AC}=\binom{1}{2}.\\3\times2-6\times1=0\Rightarrow\text{colinéaires}\Rightarrow C\text{ aligné avec A et B.}` },
+
+      // vc_09 — Parallélisme de deux droites données par leurs équations
+      { q: r`d_1: y=3x+1\quad\text{et}\quad d_2: y=3x-5.\\[4pt]\text{Les droites }d_1\text{ et }d_2\text{ sont :}`,
+        choices: [r`\text{parallèles et distinctes}`, r`\text{confondues}`, r`\text{sécantes}`, r`\text{perpendiculaires}`],
+        a: r`\text{parallèles et distinctes}`,
+        tip: r`\text{Même pente }m=3\text{ et ordonnées à l'origine différentes }(1\neq-5)\\\Rightarrow\text{parallèles et distinctes.}` },
+
+      // vc_10 — Colinéarité et parallélisme : synthèse
+      { q: r`A(0;0),\ B(2;3),\ C(4;6),\ D(1;2).\\[4pt]\text{Parmi les droites }(AB),(AC),(AD),\text{ lesquelles sont confondues avec }(AB)\text{ ?}`,
+        choices: [r`(AC)\text{ seulement}`, r`(AD)\text{ seulement}`, r`(AC)\text{ et }(AD)`, r`\text{Aucune}`],
+        a: r`(AC)\text{ seulement}`,
+        tip: r`\overrightarrow{AB}=\binom{2}{3},\ \overrightarrow{AC}=\binom{4}{6}=2\binom{2}{3}\Rightarrow C\in(AB).\\[4pt]\overrightarrow{AD}=\binom{1}{2}:\ 2\times2-3\times1=1\neq0\Rightarrow D\notin(AB).` },
+
+    ],
+
   },
 
 };
@@ -8874,6 +9228,13 @@ const CATS = [
   { id:"produit_scalaire", label:"Produit scalaire", emoji:"📐", color:"#0F766E", grad:"linear-gradient(135deg,#14B8A6,#0F766E)", light:"#F0FDFA", border:"#99F6E4",
     subs:[
       {id:"plan", label:"Produit scalaire dans le plan", levels:["spe"]},
+    ] },
+  { id:"geometrie", label:"Géométrie & vecteurs", emoji:"📏", color:"#7C3AED", grad:"linear-gradient(135deg,#A78BFA,#6D28D9)", light:"#F5F3FF", border:"#DDD6FE",
+    subs:[
+      {id:"vecteurs_bases",      label:"Vecteurs : placement et égalité",  levels:["sec","tc","spe","term"]},
+      {id:"chasles",             label:"Relation de Chasles",               levels:["sec","tc","spe","term"]},
+      {id:"geom_analytique",     label:"Géométrie analytique",              levels:["sec","tc","spe","term"]},
+      {id:"vecteurs_colineaires",label:"Vecteurs colinéaires",              levels:["sec","tc","spe","term"]},
     ] },
   { id:"algo_python", label:"Algorithmique Python", emoji:"🐍", color:"#15803D", grad:"linear-gradient(135deg,#22C55E,#15803D)", light:"#F0FDF4", border:"#BBF7D0",
     subs:[
@@ -9690,7 +10051,8 @@ const CURRICULUM = {
            numerique:['decimaux_cm','fractions','puissances','scientifique','conversions','racines_n1'],
            litteral:['eq1','produit_nul','inequation1','developpement','id_remarquables','facto_commun','facto_id','manipulation'],
            probabilites:['tableau','tableau_fill','arbre','contraire'],
-           statistiques:['stat_centrale','stat_dispersion'] }},
+           statistiques:['stat_centrale','stat_dispersion'],
+           geometrie:['vecteurs_bases','chasles','geom_analytique','vecteurs_colineaires'] }},
   premiere_stmg: { label:"1ère STMG", emoji:"📊", color:"#F59E0B",
     cats:{
       // ── Thèmes cœur 1ère STMG ──
@@ -9727,7 +10089,8 @@ const CURRICULUM = {
       statistiques:['loi_binomiale','stat_centrale','stat_dispersion'],
       expo:['definition','calculs','etude','derivee','equations','applications'],
       bac:['spe_annales_s1_2026','spe_annales_s2_2026'],
-      produit_scalaire:['plan'] }},
+      produit_scalaire:['plan'],
+      geometrie:['vecteurs_bases','chasles','geom_analytique','vecteurs_colineaires'] }},
   terminale_spe: { label:"Terminale Spé", emoji:"🏆", color:"#DC2626",
     cats:{ polynomes:['poly2_definition','poly2_racines','poly2_discriminant','poly2_canonique','poly2_variations','poly2_signe','poly2_inequations'],
            expo:['definition','calculs','etude','derivee','equations','applications'],
@@ -14186,19 +14549,19 @@ function SubmodeScreen({mode,onSubmode,onBack}) {
 const CAT_FILTER_CONFIGS = {
   sec: {
     label: "2nde",
-    ids: ["numerique","pourcentages","litteral","fonctions","statistiques","probabilites","algo_python"],
+    ids: ["numerique","pourcentages","litteral","fonctions","geometrie","statistiques","probabilites","algo_python"],
   },
   premiere: {
     label: "1ère",
-    ids: ["polynomes","suites","derivation","expo","trigonometrie","produit_scalaire","algo_python"],
+    ids: ["polynomes","suites","derivation","expo","trigonometrie","produit_scalaire","geometrie","algo_python"],
   },
   term: {
     label: "Terminale",
-    ids: ["polynomes","expo","suites","limites","derivation","primitives","equa_diff","probabilites","denombrement","ln","trigonometrie","algo_python"],
+    ids: ["polynomes","expo","suites","limites","derivation","primitives","equa_diff","probabilites","denombrement","ln","trigonometrie","geometrie","algo_python"],
   },
   all: {
     label: "Tout",
-    ids: ["numerique","pourcentages","litteral","fonctions","statistiques","probabilites","polynomes","expo","suites","derivation","primitives","equa_diff","trigonometrie","limites","denombrement","ln","produit_scalaire","algo_python"],
+    ids: ["numerique","pourcentages","litteral","fonctions","geometrie","statistiques","probabilites","polynomes","expo","suites","derivation","primitives","equa_diff","trigonometrie","limites","denombrement","ln","produit_scalaire","algo_python"],
   },
 };
 
