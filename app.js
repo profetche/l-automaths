@@ -4983,7 +4983,32 @@ const DB = {
         tip:r`f'(x)=-\frac{x}{2}+\frac{1}{2}\ \Rightarrow\ f'(1)=0` },
     ],
     calcul_derivee: [
-      { q:r`\text{Si }f(x)=4x-7\\[5pt]\text{Alors }f'(x)=`, choices:[`4`,`-7`,`4x`,`0`], a:`4`, tip:r`(ax+b)'=a` },
+      // ── Formules de base nommées (programme TC) ──
+      { q:r`\text{Formule de base : quelle est la dérivée de la fonction constante }f(x)=k\text{ ?}`,
+        choices:[r`f'(x)=0`,r`f'(x)=k`,r`f'(x)=1`,r`f'(x)=kx`],
+        a:r`f'(x)=0`,
+        tip:r`\text{Une fonction constante ne varie pas : sa dérivée est nulle.}\\[4pt](k)'=0\text{ quelle que soit la constante }k.` },
+      { q:r`\text{Formule de base : quelle est la dérivée de la fonction identité }f(x)=x\text{ ?}`,
+        choices:[r`f'(x)=1`,r`f'(x)=x`,r`f'(x)=0`,r`f'(x)=2x`],
+        a:r`f'(x)=1`,
+        tip:r`(x)'=1\text{. La droite }y=x\text{ a une pente constante de }1\text{ : sa dérivée est donc }1\text{ en tout point.}` },
+      { q:r`\text{Formule de base : quelle est la dérivée de }f(x)=x^2\text{ ?}`,
+        choices:[r`f'(x)=2x`,r`f'(x)=x`,r`f'(x)=2`,r`f'(x)=x^2`],
+        a:r`f'(x)=2x`,
+        tip:r`(x^2)'=2x\text{. Règle : on multiplie par l'exposant et on diminue l'exposant de 1 : }x^2\to 2\cdot x^{2-1}=2x.` },
+      { q:r`\text{Formule de base : quelle est la dérivée de }f(x)=x^3\text{ ?}`,
+        choices:[r`f'(x)=3x^2`,r`f'(x)=3x`,r`f'(x)=x^2`,r`f'(x)=3x^3`],
+        a:r`f'(x)=3x^2`,
+        tip:r`(x^3)'=3x^2\text{. Même règle : }x^3\to 3\cdot x^{3-1}=3x^2.` },
+      { q:r`\text{Soit }f(x)=5x^2\text{. On utilise la règle : }(af(x))'=a\cdot f'(x)\text{.}\\[4pt]\text{Quelle est }f'(x)\text{ ?}`,
+        choices:[r`10x`,r`5x`,r`10x^2`,r`2x`],
+        a:r`10x`,
+        tip:r`(5x^2)'=5\cdot(x^2)'=5\times2x=10x\text{. On multiplie le coefficient par la dérivée de }x^2.` },
+      { q:r`\text{Soit }f(x)=3x^3-2x^2+x-4\text{. On dérive terme à terme.}\\[4pt]\text{Quelle est }f'(x)\text{ ?}`,
+        choices:[r`9x^2-4x+1`,r`9x^2-4x`,r`3x^2-4x+1`,r`9x^2-2x+1`],
+        a:r`9x^2-4x+1`,
+        tip:r`(3x^3)'=9x^2\text{, }(-2x^2)'=-4x\text{, }(x)'=1\text{, }(-4)'=0\text{. Terme à terme : }f'(x)=9x^2-4x+1.` },
+      // ── Exercices de calcul (deg 1, 2, 3) ──
       { q:r`\text{Si }f(x)=3x^2\\[5pt]\text{Alors }f'(x)=`, choices:[`6x`,`3x`,`6`,r`3x^2`], a:`6x`, tip:r`(ax^n)'=nax^{n-1}\Rightarrow3\times2x` },
       { q:r`\text{Si }f(x)=x^2+5x-3\\[5pt]\text{Alors }f'(x)=`, choices:[`2x+5`,`2x-3`,`x+5`,`2x`], a:`2x+5`, tip:r`2x+5` },
       { q:r`\text{Si }f(x)=2x^3+x^2\\[5pt]\text{Alors }f'(x)=`, choices:[r`6x^2+2x`,r`6x^2+x`,r`2x^2+2x`,r`6x^2+2`], a:r`6x^2+2x`, tip:r`6x^2+2x` },
@@ -8895,8 +8920,136 @@ const DB = {
 
   expo: {
 
-    // ── Bloc 1 : Définition et propriétés de base ──────────────────────────────
-    definition: [
+    // ── Bloc TC : Fonctions exponentielles x↦aˣ (programme tronc commun) ──────
+    expo_tc: [
+      // tc_expo_01 — définition_base — n1
+      { q: r`\text{Soit }f(x) = 2^x\text{.}\\[4pt]\text{Quelle est la valeur de }f(0)\text{ ?}`,
+        choices:[r`0`,r`1`,r`2`,r`-1`],
+        a:r`1`,
+        tip:r`\text{Pour tout }a>0\text{, }a^0=1\text{. Ici }2^0=1.` },
+
+      // tc_expo_02 — valeurs_usuelles — n1
+      { q: r`\text{Soit }f(x) = 3^x\text{.}\\[4pt]\text{Calcule }f(2)\text{.}`,
+        choices:[r`6`,r`9`,r`8`,r`27`],
+        a:r`9`,
+        tip:r`3^2=3\times3=9.` },
+
+      // tc_expo_03 — propriété_produit — n1
+      { q: r`\text{Soit }a>0\text{. Quelle propriété est vraie ?}`,
+        choices:[r`a^{m+n}=a^m+a^n`,r`a^{m+n}=a^m\times a^n`,r`a^{m\times n}=a^m+a^n`,r`a^{m+n}=m\cdot a^n`],
+        a:r`a^{m+n}=a^m\times a^n`,
+        tip:r`a^{m+n}=a^m\times a^n\text{. C'est l'extension de la règle des puissances entières.}` },
+
+      // tc_expo_04 — propriété_quotient — n1
+      { q: r`\text{Soit }a>0\text{. Quelle est la valeur de }\dfrac{a^m}{a^n}\text{ ?}`,
+        choices:[r`a^{m+n}`,r`a^{m-n}`,r`a^{m\times n}`,r`a^{m\div n}`],
+        a:r`a^{m-n}`,
+        tip:r`\dfrac{a^m}{a^n}=a^{m-n}\text{. On soustrait les exposants.}` },
+
+      // tc_expo_05 — signe_toujours_positif — n1
+      { q: r`\text{Soit }a>0\text{ et }x\in\mathbb{R}\text{.}\\[4pt]\text{Quel est le signe de }a^x\text{ ?}`,
+        choices:[r`a^x>0\text{ toujours}`,r`a^x\geq 0`,r`a^x<0\text{ si }x<0`,r`\text{Dépend de }a`],
+        a:r`a^x>0\text{ toujours}`,
+        tip:r`\text{Pour tout }a>0\text{, }a^x>0\text{ quel que soit }x\in\mathbb{R}.` },
+
+      // tc_expo_06 — variations_a>1 — n2
+      { q: r`\text{Soit }f(x)=2^x\text{.}\\[4pt]\text{La fonction }f\text{ est :}`,
+        choices:[r`\text{strictement croissante sur }\mathbb{R}`,r`\text{strictement décroissante sur }\mathbb{R}`,r`\text{constante}`,r`\text{croissante puis décroissante}`],
+        a:r`\text{strictement croissante sur }\mathbb{R}`,
+        tip:r`\text{Si }a>1\text{, la fonction }x\mapsto a^x\text{ est strictement croissante.}\\[4pt]2>1\Rightarrow 2^x\text{ croissante.}` },
+
+      // tc_expo_07 — variations_0<a<1 — n2
+      { q: r`\text{Soit }f(x)=\left(\dfrac{1}{2}\right)^x\text{.}\\[4pt]\text{La fonction }f\text{ est :}`,
+        choices:[r`\text{strictement décroissante sur }\mathbb{R}`,r`\text{strictement croissante sur }\mathbb{R}`,r`\text{constante}`,r`\text{décroissante puis croissante}`],
+        a:r`\text{strictement décroissante sur }\mathbb{R}`,
+        tip:r`0<\frac{1}{2}<1\Rightarrow x\mapsto\left(\frac{1}{2}\right)^x\text{ est strictement décroissante.}` },
+
+      // tc_expo_08 — exposant_negatif — n2
+      { q: r`\text{Soit }f(x)=2^x\text{.}\\[4pt]\text{Que vaut }f(-3)\text{ ?}`,
+        choices:[r`-8`,r`\dfrac{1}{8}`,r`\dfrac{1}{6}`,r`-\dfrac{1}{8}`],
+        a:r`\dfrac{1}{8}`,
+        tip:r`2^{-3}=\dfrac{1}{2^3}=\dfrac{1}{8}\text{. Un exposant négatif donne l'inverse.}` },
+
+      // tc_expo_09 — exposant_fractionnaire — n2
+      { q: r`\text{Que vaut }4^{1/2}\text{ ?}`,
+        choices:[r`2`,r`4`,r`8`,r`\dfrac{1}{2}`],
+        a:r`2`,
+        tip:r`a^{1/n}=\sqrt[n]{a}\text{. Donc }4^{1/2}=\sqrt{4}=2.` },
+
+      // tc_expo_10 — exposant_1_3 — n2
+      { q: r`\text{Que vaut }8^{1/3}\text{ ?}`,
+        choices:[r`2`,r`3`,r`4`,r`\dfrac{8}{3}`],
+        a:r`2`,
+        tip:r`8^{1/3}=\sqrt[3]{8}=2\text{, car }2^3=8.` },
+
+      // tc_expo_11 — calcul_avec_propriétés — n2
+      { q: r`\text{Simplifie : }2^3\times 2^4`,
+        choices:[r`2^{12}`,r`2^7`,r`4^7`,r`2^1`],
+        a:r`2^7`,
+        tip:r`2^3\times 2^4=2^{3+4}=2^7=128.` },
+
+      // tc_expo_12 — calcul_quotient — n2
+      { q: r`\text{Simplifie : }\dfrac{3^8}{3^5}`,
+        choices:[r`3^{40}`,r`3^{13}`,r`3^3`,r`1^3`],
+        a:r`3^3`,
+        tip:r`\dfrac{3^8}{3^5}=3^{8-5}=3^3=27.` },
+
+      // tc_expo_13 — taux_évolution_suite_géo — n2
+      { q: r`\text{Un capital de 1 000 € est placé à }5\%\text{ par an.}\\[4pt]\text{Quelle expression donne le capital après }n\text{ années ?}`,
+        choices:[r`1000+0{,}05n`,r`1000\times(1{,}05)^n`,r`1000\times n^{0{,}05}`,r`1000\times 1{,}05\times n`],
+        a:r`1000\times(1{,}05)^n`,
+        tip:r`\text{Chaque année on multiplie par }(1+0{,}05)=1{,}05\text{. Après }n\text{ années : }1000\times(1{,}05)^n.` },
+
+      // tc_expo_14 — taux_moyen — n3
+      { q: r`\text{Un capital double en 2 ans. Quel est le taux d'évolution moyen annuel ?}`,
+        choices:[r`50\,\%`,r`100\,\%`,r`(\sqrt{2}-1)\times100\,\%`,r`41\,\%`],
+        a:r`(\sqrt{2}-1)\times100\,\%`,
+        tip:r`\text{Si le taux moyen est }t\text{, alors }(1+t)^2=2\text{, donc }1+t=\sqrt{2}\text{, soit }t=\sqrt{2}-1\approx0{,}414\text{, soit environ }41{,}4\,\%.` },
+
+      // tc_expo_15 — comparaison_puissances — n2
+      { q: r`\text{Soit }f(x)=2^x\text{. Parmi les affirmations suivantes, laquelle est vraie ?}`,
+        choices:[r`f(3)<f(2)`,r`f(-1)>f(0)`,r`f(3)>f(2)`,r`f(0)<0`],
+        a:r`f(3)>f(2)`,
+        tip:r`2^x\text{ est croissante : }3>2\Rightarrow 2^3>2^2\text{, soit }8>4.\checkmark` },
+
+      // tc_expo_16 — graphique_allure — n2
+      { q: r`\text{La courbe de }f(x)=2^x\text{ passe par :}`,
+        gspec:{ fn:x=>Math.pow(2,x), xr:[-3,3], yr:[-0.5,6], label:"f",
+          extras:c=><>{gPt(0,1,c,'#EF4444')}{gPt(1,2,c,'#EF4444')}{gPt(-1,0.5,c,'#EF4444')}</> },
+        choices:[r`(0\,;\,0)`,r`(0\,;\,1)`,r`(1\,;\,1)`,r`(0\,;\,2)`],
+        a:r`(0\,;\,1)`,
+        tip:r`2^0=1\text{, donc la courbe passe par }(0\,;\,1)\text{. Toute courbe }x\mapsto a^x\text{ passe par }(0\,;\,1).` },
+
+      // tc_expo_17 — asymptote — n2
+      { q: r`\text{Soit }f(x)=2^x\text{. Que se passe-t-il quand }x\to-\infty\text{ ?}`,
+        gspec:{ fn:x=>Math.pow(2,x), xr:[-5,3], yr:[-0.2,4], label:"f",
+          extras:c=><>{gDH(0,c,'#94A3B8')}</> },
+        choices:[r`f(x)\to+\infty`,r`f(x)\to-\infty`,r`f(x)\to0^+`,r`f(x)\to1`],
+        a:r`f(x)\to0^+`,
+        tip:r`2^x\to 0^+\text{ quand }x\to-\infty\text{. L'axe des abscisses est une asymptote horizontale.}` },
+
+      // tc_expo_18 — modèle_décroissance — n3
+      { q: r`\text{Une population de bactéries est divisée par 2 chaque heure.}\\[4pt]\text{Partant de }N_0\text{ bactéries, combien en reste-t-il après }t\text{ heures ?}`,
+        choices:[r`N_0\times 2^t`,r`N_0\times\left(\dfrac{1}{2}\right)^t`,r`\dfrac{N_0}{2t}`,r`N_0-2t`],
+        a:r`N_0\times\left(\dfrac{1}{2}\right)^t`,
+        tip:r`\text{Chaque heure on multiplie par }\frac{1}{2}\text{. Après }t\text{ heures : }N_0\times\left(\frac{1}{2}\right)^t=N_0\times 2^{-t}.` },
+
+      // tc_expo_19 — problème_seuil_graphique — n3
+      { q: r`\text{On place 500 € à }10\%\text{ par an. Le capital }C_n=500\times(1{,}1)^n\text{.}\\[4pt]\text{Au bout de combien d'années dépasse-t-on 800 € ?}`,
+        gspec:{ fn:x=>500*Math.pow(1.1,x), xr:[-1,8], yr:[400,900], label:"C",
+          extras:c=><>{gDH(800,c,'#EF4444')}{gNote(0.2,820,'800 €',c,'#EF4444')}</> },
+        choices:[r`3\text{ ans}`,r`5\text{ ans}`,r`7\text{ ans}`,r`10\text{ ans}`],
+        a:r`5\text{ ans}`,
+        tip:r`500\times(1{,}1)^4\approx 732\text{ ; }500\times(1{,}1)^5\approx 805>800\text{. Donc au bout de }5\text{ ans.}` },
+
+      // tc_expo_20 — lien_suite_géo_expo — n3
+      { q: r`\text{Une suite géométrique de raison }q=1{,}03\text{ et de premier terme }u_0=1000\text{.}\\[4pt]\text{La fonction }f(x)=1000\times(1{,}03)^x\text{ modélise cette suite. Que représente }f(10)\text{ ?}`,
+        choices:[r`u_0+10\times 1{,}03`,r`u_{10}\text{, le terme de rang }10`,r`u_{1{,}03}`,r`10\text{ fois }u_0`],
+        a:r`u_{10}\text{, le terme de rang }10`,
+        tip:r`f(n)=1000\times(1{,}03)^n=u_n\text{. La fonction exponentielle prolonge la suite géométrique au continu.}` },
+    ],
+
+
       { q: r`e^0 = \,?`,
         choices: [`0`, `1`, r`e`, r`+\infty`],
         a: `1`,
@@ -11208,8 +11361,8 @@ const CATS = [
   { id:"suites",       label:"Suites numériques", emoji:"🔁", color:"#EA580C", grad:"linear-gradient(135deg,#F97316,#C2410C)", light:"#FFF7ED", border:"#FED7AA",
     subs:[
       {id:"suites_explicite_recurr",label:"Explicite vs récurrence", levels:["spe"]},
-      {id:"suites_nature",    label:"Nature d'une suite",  levels:["stmg","spe","term"]},
-      {id:"suites_termes",    label:"Calculer un terme",   levels:["stmg","spe","term"]},
+      {id:"suites_nature",    label:"Nature d'une suite",  levels:["tc","stmg","spe","term"]},
+      {id:"suites_termes",    label:"Calculer un terme",   levels:["tc","stmg","spe","term"]},
       {id:"suites_variations",label:"Sens de variation",   levels:["spe","term"]},
       {id:"suites_recurrence",label:"Démonstration par récurrence", levels:["term"]},
     ] },
@@ -11238,18 +11391,20 @@ const CATS = [
     ] },
   { id:"expo", label:"Fonction exponentielle", emoji:"📐", color:"#16A34A", grad:"linear-gradient(135deg,#22C55E,#15803D)", light:"#F0FDF4", border:"#BBF7D0",
     groups:[
-      {id:"bases",   label:"🌱 Bases"},
+      {id:"tc",      label:"🌱 Tronc commun"},
+      {id:"bases",   label:"📗 Bases (eˣ)"},
       {id:"etude",   label:"📈 Étude"},
       {id:"calculs", label:"🧮 Calculs"},
     ],
     subs:[
-      {id:"definition",        label:"Définition et propriétés", group:"bases",   levels:["spe","term"]},
-      {id:"calculs",           label:"Calculs algébriques",      group:"calculs",  levels:["spe","term"]},
-      {id:"etude",             label:"Étude de la fonction",     group:"etude",    levels:["spe","term"]},
-      {id:"derivee",           label:"Dérivée",                  group:"calculs",  levels:["spe","term"]},
-      {id:"equations",         label:"Équations / inéquations",  group:"calculs",  levels:["spe","term"]},
-      {id:"expo_comparaisons", label:"Inégalités et comparaisons", group:"etude",  levels:["spe","term"]},
-      {id:"applications",      label:"Applications",             group:"etude",    levels:["spe","term"]},
+      {id:"expo_tc",          label:"Fonctions x↦aˣ",          group:"tc",      levels:["tc","stmg","spe","term"]},
+      {id:"definition",       label:"Définition et propriétés", group:"bases",   levels:["spe","term"]},
+      {id:"calculs",          label:"Calculs algébriques",      group:"calculs", levels:["spe","term"]},
+      {id:"etude",            label:"Étude de la fonction",     group:"etude",   levels:["spe","term"]},
+      {id:"derivee",          label:"Dérivée",                  group:"calculs", levels:["spe","term"]},
+      {id:"equations",        label:"Équations / inéquations",  group:"calculs", levels:["spe","term"]},
+      {id:"expo_comparaisons",label:"Inégalités et comparaisons",group:"etude",  levels:["spe","term"]},
+      {id:"applications",     label:"Applications",             group:"etude",   levels:["spe","term"]},
     ] },
   { id:"ln", label:"Fonction logarithme népérien", emoji:"🔢", color:"#7C3AED", grad:"linear-gradient(135deg,#A78BFA,#5B21B6)", light:"#F5F3FF", border:"#DDD6FE",
     groups:[
@@ -12114,6 +12269,8 @@ const CURRICULUM = {
     cats:{
       // ── Thèmes cœur 1ère Tronc commun ──
       derivation:['deriv_vitesse','deriv_tangente','deriv_variations','lecture_derivee','calcul_derivee'],
+      expo:['expo_tc'],
+      suites:['suites_nature','suites_termes'],
       polynomes:['poly2_definition','poly2_racines','poly2_discriminant','poly2_variations'],
       litteral:['eq_x2','produit_nul','id_remarquables','facto_commun','facto_id','inequation1','developpement','manipulation','eq1'],
       probabilites:['tableau','tableau_fill','arbre','contraire'],
