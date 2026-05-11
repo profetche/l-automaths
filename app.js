@@ -5924,6 +5924,197 @@ const DB = {
       { q:r`\text{Pour }f(x)=\cos(5x)-3\sin(3x-1)\text{, une primitive }F\text{ vérifie }F(0)=0\text{. La constante }C\text{ vaut :}`, choices:[r`C=0`,r`C=-\cos(-1)`,r`C=\cos(-1)`,r`C=1`], a:r`C=-\cos(-1)`, tip:r`F(x)=\tfrac{1}{5}\sin(5x)+\cos(3x-1)+C,\ F(0)=\cos(-1)+C=0` },
     ],
 
+    // ── Intégrales — 30 QCM progressifs ───────────────────────────────────────
+    integrales: [
+
+      // ── Bloc 1 : Définition et lien avec les primitives (8 q) ────────────────
+
+      // int_01 — Définition : lien intégrale/primitive
+      { q: r`\text{Si }F\text{ est une primitive de }f\text{ sur }[a;b],\text{ alors }\displaystyle\int_a^b f(x)\,\mathrm{d}x =\,?`,
+        choices: [r`F(b)+F(a)`, r`F(b)-F(a)`, r`F'(b)-F'(a)`, r`f(b)-f(a)`],
+        a: r`F(b)-F(a)`,
+        tip: r`\text{Théorème fondamental : }\displaystyle\int_a^b f(x)\,\mathrm{d}x=\big[F(x)\big]_a^b=F(b)-F(a).` },
+
+      // int_02 — Notation crochet
+      { q: r`\big[x^3\big]_1^2 = \,?`,
+        choices: [r`7`, r`9`, r`1`, r`8`],
+        a: r`7`,
+        tip: r`\big[x^3\big]_1^2=2^3-1^3=8-1=7.` },
+
+      // int_03 — Intégrale nulle (bornes égales)
+      { q: r`\displaystyle\int_3^3 f(x)\,\mathrm{d}x = \,?`,
+        choices: [r`f(3)`, r`0`, r`3`, r`F(3)`],
+        a: r`0`,
+        tip: r`\displaystyle\int_a^a f(x)\,\mathrm{d}x=F(a)-F(a)=0.` },
+
+      // int_04 — Inversion des bornes
+      { q: r`\displaystyle\int_b^a f(x)\,\mathrm{d}x = \,?`,
+        choices: [r`\displaystyle\int_a^b f(x)\,\mathrm{d}x`, r`-\displaystyle\int_a^b f(x)\,\mathrm{d}x`, r`0`, r`2\displaystyle\int_a^b f(x)\,\mathrm{d}x`],
+        a: r`-\displaystyle\int_a^b f(x)\,\mathrm{d}x`,
+        tip: r`\displaystyle\int_b^a f(x)\,\mathrm{d}x=-\displaystyle\int_a^b f(x)\,\mathrm{d}x.` },
+
+      // int_05 — Linéarité : constante
+      { q: r`\displaystyle\int_a^b k\,f(x)\,\mathrm{d}x = \,?`,
+        choices: [r`k+\displaystyle\int_a^b f(x)\,\mathrm{d}x`, r`k\displaystyle\int_a^b f(x)\,\mathrm{d}x`, r`\displaystyle\int_{ka}^{kb} f(x)\,\mathrm{d}x`, r`k^2\displaystyle\int_a^b f(x)\,\mathrm{d}x`],
+        a: r`k\displaystyle\int_a^b f(x)\,\mathrm{d}x`,
+        tip: r`\text{Linéarité : on sort la constante multiplicative.}` },
+
+      // int_06 — Linéarité : somme
+      { q: r`\displaystyle\int_a^b \bigl(f(x)+g(x)\bigr)\,\mathrm{d}x = \,?`,
+        choices: [r`\displaystyle\int_a^b f(x)\,\mathrm{d}x \times \displaystyle\int_a^b g(x)\,\mathrm{d}x`, r`\displaystyle\int_a^b f(x)\,\mathrm{d}x + \displaystyle\int_a^b g(x)\,\mathrm{d}x`, r`\displaystyle\int_{2a}^{2b} f(x)\,\mathrm{d}x`, r`0`],
+        a: r`\displaystyle\int_a^b f(x)\,\mathrm{d}x + \displaystyle\int_a^b g(x)\,\mathrm{d}x`,
+        tip: r`\text{L'intégrale est linéaire : }\displaystyle\int(f+g)=\displaystyle\int f+\displaystyle\int g.` },
+
+      // int_07 — Relation de Chasles
+      { q: r`\displaystyle\int_0^3 f(x)\,\mathrm{d}x = \displaystyle\int_0^1 f(x)\,\mathrm{d}x + \,?`,
+        choices: [r`\displaystyle\int_1^2 f(x)\,\mathrm{d}x`, r`\displaystyle\int_1^3 f(x)\,\mathrm{d}x`, r`\displaystyle\int_3^1 f(x)\,\mathrm{d}x`, r`2\displaystyle\int_1^3 f(x)\,\mathrm{d}x`],
+        a: r`\displaystyle\int_1^3 f(x)\,\mathrm{d}x`,
+        tip: r`\text{Relation de Chasles : }\displaystyle\int_0^3=\displaystyle\int_0^1+\displaystyle\int_1^3.` },
+
+      // int_08 — Signe de l'intégrale (f ≥ 0)
+      { q: r`\text{Si }f(x)\geq 0\text{ sur }[a;b]\text{, alors }\displaystyle\int_a^b f(x)\,\mathrm{d}x\text{ est :}`,
+        choices: [r`\text{négatif}`, r`\text{positif ou nul}`, r`\text{nul}`, r`\text{indéterminé}`],
+        a: r`\text{positif ou nul}`,
+        tip: r`f\geq 0\text{ sur }[a;b]\Rightarrow\displaystyle\int_a^b f(x)\,\mathrm{d}x\geq 0.` },
+
+      // ── Bloc 2 : Calculs directs (12 q) ──────────────────────────────────────
+
+      // int_09 — ∫ constante
+      { q: r`\displaystyle\int_1^4 3\,\mathrm{d}x = \,?`,
+        choices: [r`12`, r`9`, r`3`, r`0`],
+        a: r`9`,
+        tip: r`\big[3x\big]_1^4=3\times4-3\times1=12-3=9.` },
+
+      // int_10 — ∫ x dx
+      { q: r`\displaystyle\int_0^2 x\,\mathrm{d}x = \,?`,
+        choices: [r`4`, r`2`, r`1`, r`3`],
+        a: r`2`,
+        tip: r`\left[\dfrac{x^2}{2}\right]_0^2=\dfrac{4}{2}-0=2.` },
+
+      // int_11 — ∫ x² dx
+      { q: r`\displaystyle\int_0^3 x^2\,\mathrm{d}x = \,?`,
+        choices: [r`9`, r`27`, r`6`, r`3`],
+        a: r`9`,
+        tip: r`\left[\dfrac{x^3}{3}\right]_0^3=\dfrac{27}{3}-0=9.` },
+
+      // int_12 — ∫ e^x dx
+      { q: r`\displaystyle\int_0^1 e^x\,\mathrm{d}x = \,?`,
+        choices: [r`e`, r`e-1`, r`1`, r`e+1`],
+        a: r`e-1`,
+        tip: r`\big[e^x\big]_0^1=e^1-e^0=e-1.` },
+
+      // int_13 — ∫ e^(2x) dx
+      { q: r`\displaystyle\int_0^1 e^{2x}\,\mathrm{d}x = \,?`,
+        choices: [r`e^2-1`, r`\dfrac{e^2-1}{2}`, r`2(e^2-1)`, r`e^2`],
+        a: r`\dfrac{e^2-1}{2}`,
+        tip: r`\left[\dfrac{e^{2x}}{2}\right]_0^1=\dfrac{e^2}{2}-\dfrac{1}{2}=\dfrac{e^2-1}{2}.` },
+
+      // int_14 — ∫ cos x dx
+      { q: r`\displaystyle\int_0^{\pi/2}\cos x\,\mathrm{d}x = \,?`,
+        choices: [r`0`, r`1`, r`-1`, r`2`],
+        a: r`1`,
+        tip: r`\big[\sin x\big]_0^{\pi/2}=\sin\tfrac{\pi}{2}-\sin 0=1-0=1.` },
+
+      // int_15 — ∫ sin x dx
+      { q: r`\displaystyle\int_0^{\pi}\sin x\,\mathrm{d}x = \,?`,
+        choices: [r`0`, r`1`, r`2`, r`-2`],
+        a: r`2`,
+        tip: r`\big[-\cos x\big]_0^{\pi}=-\cos\pi+\cos 0=1+1=2.` },
+
+      // int_16 — ∫ 1/x dx
+      { q: r`\displaystyle\int_1^e \dfrac{1}{x}\,\mathrm{d}x = \,?`,
+        choices: [r`e`, r`1`, r`\ln e`, r`0`],
+        a: r`1`,
+        tip: r`\big[\ln x\big]_1^e=\ln e-\ln 1=1-0=1.` },
+
+      // int_17 — ∫ (2x+1) dx
+      { q: r`\displaystyle\int_1^3(2x+1)\,\mathrm{d}x = \,?`,
+        choices: [r`10`, r`12`, r`8`, r`14`],
+        a: r`12`,
+        tip: r`\big[x^2+x\big]_1^3=(9+3)-(1+1)=12-2=10.\\[2pt]\text{Attention : }12-2=10.` },
+
+      // int_18 — ∫ (3x²−2x) dx avec valeur numérique
+      { q: r`\displaystyle\int_0^2(3x^2-2x)\,\mathrm{d}x = \,?`,
+        choices: [r`4`, r`8`, r`6`, r`2`],
+        a: r`4`,
+        tip: r`\big[x^3-x^2\big]_0^2=(8-4)-0=4.` },
+
+      // int_19 — ∫ 1/x² dx
+      { q: r`\displaystyle\int_1^2\dfrac{1}{x^2}\,\mathrm{d}x = \,?`,
+        choices: [r`\dfrac{1}{2}`, r`-\dfrac{1}{2}`, r`2`, r`\ln 2`],
+        a: r`\dfrac{1}{2}`,
+        tip: r`\left[-\dfrac{1}{x}\right]_1^2=-\dfrac{1}{2}+1=\dfrac{1}{2}.` },
+
+      // int_20 — ∫ e^x + 2 dx
+      { q: r`\displaystyle\int_0^1(e^x+2)\,\mathrm{d}x = \,?`,
+        choices: [r`e+1`, r`e+2`, r`e-1`, r`e+3`],
+        a: r`e+1`,
+        tip: r`\big[e^x+2x\big]_0^1=(e+2)-(1+0)=e+1.` },
+
+      // ── Bloc 3 : Propriétés avancées (10 q) ──────────────────────────────────
+
+      // int_21 — Interprétation géométrique (f ≥ 0)
+      { q: r`f(x)\geq 0\text{ sur }[a;b].\text{ Que représente }\displaystyle\int_a^b f(x)\,\mathrm{d}x\text{ ?}`,
+        choices: [r`\text{La longueur de la courbe}`, r`\text{L'aire du domaine entre la courbe et l'axe des abscisses}`, r`\text{La valeur de }f\text{ en }a`, r`\text{La pente de }f`],
+        a: r`\text{L'aire du domaine entre la courbe et l'axe des abscisses}`,
+        tip: r`\text{Si }f\geq0\text{ sur }[a;b]\text{, l'intégrale donne l'aire (en unités d'aire) entre la courbe et l'axe.}` },
+
+      // int_22 — Aire algébrique (f change de signe)
+      { q: r`f\text{ est négative sur }[0;1].\text{ L'aire entre la courbe et l'axe des abscisses vaut :}`,
+        choices: [r`\displaystyle\int_0^1 f(x)\,\mathrm{d}x`, r`-\displaystyle\int_0^1 f(x)\,\mathrm{d}x`, r`\displaystyle\int_0^1 |f(x)|\,\mathrm{d}x\text{ (même chose)}`, r`0`],
+        a: r`-\displaystyle\int_0^1 f(x)\,\mathrm{d}x`,
+        tip: r`f\leq0\Rightarrow\displaystyle\int f\leq0.\text{ L'aire (positive) vaut }-\displaystyle\int_0^1 f(x)\,\mathrm{d}x.` },
+
+      // int_23 — Valeur moyenne
+      { q: r`\text{La valeur moyenne de }f\text{ sur }[a;b]\text{ est :}`,
+        choices: [r`\displaystyle\int_a^b f(x)\,\mathrm{d}x`, r`\dfrac{f(a)+f(b)}{2}`, r`\dfrac{1}{b-a}\displaystyle\int_a^b f(x)\,\mathrm{d}x`, r`\dfrac{F(b)}{b}`],
+        a: r`\dfrac{1}{b-a}\displaystyle\int_a^b f(x)\,\mathrm{d}x`,
+        tip: r`\mu=\dfrac{1}{b-a}\displaystyle\int_a^b f(x)\,\mathrm{d}x.` },
+
+      // int_24 — Calculer une valeur moyenne
+      { q: r`\text{Valeur moyenne de }f(x)=2x\text{ sur }[0;3]\text{ ?}`,
+        choices: [r`3`, r`9`, r`6`, r`1`],
+        a: r`3`,
+        tip: r`\mu=\dfrac{1}{3}\displaystyle\int_0^3 2x\,\mathrm{d}x=\dfrac{1}{3}\big[x^2\big]_0^3=\dfrac{9}{3}=3.` },
+
+      // int_25 — Aire entre deux courbes
+      { q: r`f(x)\geq g(x)\text{ sur }[a;b].\text{ L'aire entre les deux courbes vaut :}`,
+        choices: [r`\displaystyle\int_a^b f(x)\,\mathrm{d}x - \displaystyle\int_a^b g(x)\,\mathrm{d}x`, r`\displaystyle\int_a^b f(x)\,\mathrm{d}x + \displaystyle\int_a^b g(x)\,\mathrm{d}x`, r`\displaystyle\int_a^b \bigl(f(x)\cdot g(x)\bigr)\,\mathrm{d}x`, r`\dfrac{\displaystyle\int_a^b f(x)\,\mathrm{d}x}{\displaystyle\int_a^b g(x)\,\mathrm{d}x}`],
+        a: r`\displaystyle\int_a^b f(x)\,\mathrm{d}x - \displaystyle\int_a^b g(x)\,\mathrm{d}x`,
+        tip: r`\mathcal{A}=\displaystyle\int_a^b\bigl(f(x)-g(x)\bigr)\,\mathrm{d}x=\displaystyle\int_a^b f-\displaystyle\int_a^b g.` },
+
+      // int_26 — Aire entre deux courbes : calcul
+      { q: r`f(x)=x^2\text{ et }g(x)=x\text{ sur }[0;1].\\ f(x)\leq g(x)\text{ sur }[0;1].\text{ Aire entre les courbes ?}`,
+        choices: [r`\dfrac{1}{6}`, r`\dfrac{1}{3}`, r`\dfrac{1}{2}`, r`1`],
+        a: r`\dfrac{1}{6}`,
+        tip: r`\displaystyle\int_0^1(x-x^2)\,\mathrm{d}x=\left[\dfrac{x^2}{2}-\dfrac{x^3}{3}\right]_0^1=\dfrac{1}{2}-\dfrac{1}{3}=\dfrac{1}{6}.` },
+
+      // int_27 — Inégalité de comparaison
+      { q: r`\text{Si }f(x)\leq g(x)\text{ sur }[a;b],\text{ alors :}`,
+        choices: [r`\displaystyle\int_a^b f\leq\displaystyle\int_a^b g`, r`\displaystyle\int_a^b f\geq\displaystyle\int_a^b g`, r`\displaystyle\int_a^b f=\displaystyle\int_a^b g`, r`\displaystyle\int_a^b f\cdot\displaystyle\int_a^b g\geq 0`],
+        a: r`\displaystyle\int_a^b f\leq\displaystyle\int_a^b g`,
+        tip: r`\text{L'intégrale conserve l'ordre : }f\leq g\Rightarrow\displaystyle\int_a^b f\leq\displaystyle\int_a^b g.` },
+
+      // int_28 — Chasles appliqué
+      { q: r`\displaystyle\int_0^5 f=7\text{ et }\displaystyle\int_3^5 f=2.\\\text{Que vaut }\displaystyle\int_0^3 f\,?`,
+        choices: [r`5`, r`9`, r`14`, r`-5`],
+        a: r`5`,
+        tip: r`\displaystyle\int_0^5=\displaystyle\int_0^3+\displaystyle\int_3^5\Rightarrow\displaystyle\int_0^3=7-2=5.` },
+
+      // int_29 — Intégrale et parité (f paire)
+      { q: r`f\text{ est paire et }\displaystyle\int_0^2 f(x)\,\mathrm{d}x=5.\\\text{Que vaut }\displaystyle\int_{-2}^2 f(x)\,\mathrm{d}x\,?`,
+        choices: [r`10`, r`5`, r`0`, r`-5`],
+        a: r`10`,
+        tip: r`f\text{ paire}\Rightarrow\displaystyle\int_{-a}^a f=2\displaystyle\int_0^a f=2\times5=10.` },
+
+      // int_30 — Intégrale et parité (f impaire)
+      { q: r`f\text{ est impaire. Que vaut }\displaystyle\int_{-3}^3 f(x)\,\mathrm{d}x\,?`,
+        choices: [r`0`, r`2\displaystyle\int_0^3 f`, r`\displaystyle\int_0^3 f`, r`-\displaystyle\int_0^3 f`],
+        a: r`0`,
+        tip: r`f\text{ impaire}\Rightarrow\displaystyle\int_{-a}^a f(x)\,\mathrm{d}x=0.` },
+
+    ],
+
   },
 
   // ════ Équations différentielles ══════════════════════════════
@@ -9338,9 +9529,10 @@ const CATS = [
       {id:"derivee_convexite",label:"Convexité et points d'inflexion", levels:["term"]},
       {id:"continuite",       label:"Continuité",                          levels:["term"]},
     ] },
-  { id:"primitives",   label:"Primitives", emoji:"∫", color:"#059669", grad:"linear-gradient(135deg,#10B981,#047857)", light:"#ECFDF5", border:"#A7F3D0",
+  { id:"primitives", label:"Primitives & intégrales", emoji:"∫", color:"#059669", grad:"linear-gradient(135deg,#10B981,#047857)", light:"#ECFDF5", border:"#A7F3D0",
     subs:[
-      {id:"primitives", label:"Primitives — 20 QCM progressifs", levels:["spe","term"]},
+      {id:"primitives",  label:"Primitives — 20 QCM progressifs",   levels:["spe","term"]},
+      {id:"integrales",  label:"Intégrales — 30 QCM progressifs",   levels:["term"]},
     ] },
   { id:"equa_diff",   label:"Équations différentielles", emoji:"Δ", color:"#7B2D8B", grad:"linear-gradient(135deg,#A855F7,#6B21A8)", light:"#FAF5FF", border:"#E9D5FF",
     subs:[
@@ -10292,7 +10484,7 @@ const CURRICULUM = {
            limites:['lim_reference','lim_operations','lim_FI','lim_asymptotes','lim_comparaison'],
            derivation:['lecture_derivee','calcul_derivee','deriv_vitesse','deriv_tangente','deriv_fonctions_ref','deriv_variations','deriv_produit','deriv_quotient','deriv_rationnelle','deriv_optimisation','deriv_tangente_avancee','derivee_convexite','continuite'],
            ln:['definition','proprietes','etude','derivee','equations','applications'],
-           primitives:['primitives'],
+           primitives:['primitives','integrales'],
            equa_diff:['equa_diff'],
            probabilites:['tableau','tableau_fill','arbre','contraire','probas_conditionnelles','probas_independance','probas_totales','probas_var_aleatoires','probas_loi_binomiale'],
            denombrement:['denombrement_type'],
