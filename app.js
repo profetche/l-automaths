@@ -9049,7 +9049,8 @@ const DB = {
         tip:r`f(n)=1000\times(1{,}03)^n=u_n\text{. La fonction exponentielle prolonge la suite géométrique au continu.}` },
     ],
 
-
+    // ── Bloc 1 : Définition et propriétés de base ──────────────────────────────
+    definition: [
       { q: r`e^0 = \,?`,
         choices: [`0`, `1`, r`e`, r`+\infty`],
         a: `1`,
