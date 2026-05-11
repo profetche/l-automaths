@@ -4369,6 +4369,346 @@ const DB = {
         a: r`n = 90`,
         tip: r`P(X \geqslant 1) = 1 - P(X = 0) = 1 - 0{,}95^{n}\text{.}` },
     ],
+    grands_nombres: [
+      // ── BLOC 1 : Valeur absolue et intervalles (Q1-Q8) ──────────────────
+
+      // gn_01 — Sens de |x - a| — très facile
+      { q: r`\text{Que signifie }|x - 5| < 2\text{ géométriquement ?}`,
+        choices: [
+          r`\text{La distance de }x\text{ à }5\text{ est inférieure à }2`,
+          r`\text{La distance de }x\text{ à }2\text{ est inférieure à }5`,
+          r`x\text{ est supérieur à }5`,
+          r`x\text{ est compris entre }-2\text{ et }2`
+        ],
+        a: r`\text{La distance de }x\text{ à }5\text{ est inférieure à }2`,
+        tip: r`|x-a|\text{ est la distance de }x\text{ à }a\text{ sur la droite réelle.}` },
+
+      // gn_02 — Traduction intervalle de |x - a| < r — facile
+      { q: r`|x - 3| < 2\text{ est équivalent à :}`,
+        choices: [
+          r`1 < x < 5`,
+          r`-2 < x < 2`,
+          r`x < 5`,
+          r`1 \leqslant x \leqslant 5`
+        ],
+        a: r`1 < x < 5`,
+        tip: r`|x-3|<2\Leftrightarrow -2<x-3<2\Leftrightarrow 1<x<5\text{. L'inégalité est stricte des deux côtés.}` },
+
+      // gn_03 — Traduction intervalle de |x - a| ≤ r — facile
+      { q: r`|x - 10| \leqslant 0{,}5\text{ est équivalent à :}`,
+        choices: [
+          r`9{,}5 \leqslant x \leqslant 10{,}5`,
+          r`9{,}5 < x < 10{,}5`,
+          r`x \leqslant 10{,}5`,
+          r`|x| \leqslant 10{,}5`
+        ],
+        a: r`9{,}5 \leqslant x \leqslant 10{,}5`,
+        tip: r`|x-10|\leqslant 0{,}5\Leftrightarrow -0{,}5\leqslant x-10\leqslant 0{,}5\Leftrightarrow 9{,}5\leqslant x\leqslant 10{,}5` },
+
+      // gn_04 — Sens de |x - a| ≥ r — facile
+      { q: r`|x - 4| \geqslant 1\text{ est équivalent à :}`,
+        choices: [
+          r`x \leqslant 3\text{ ou }x \geqslant 5`,
+          r`3 \leqslant x \leqslant 5`,
+          r`x \leqslant 5`,
+          r`x \geqslant 5`
+        ],
+        a: r`x \leqslant 3\text{ ou }x \geqslant 5`,
+        tip: r`|x-4|\geqslant 1\Leftrightarrow x-4\leqslant -1\text{ ou }x-4\geqslant 1\Leftrightarrow x\leqslant 3\text{ ou }x\geqslant 5\text{. BT minorera ce type d'événement "extérieur".}` },
+
+      // gn_05 — Traduction dans l'autre sens — facile
+      { q: r`x \in [7\,;\,13]\text{ s'écrit avec une valeur absolue :}`,
+        choices: [
+          r`|x - 10| \leqslant 3`,
+          r`|x - 10| \geqslant 3`,
+          r`|x| \leqslant 10`,
+          r`|x - 3| \leqslant 10`
+        ],
+        a: r`|x - 10| \leqslant 3`,
+        tip: r`\text{Centre }=\frac{7+13}{2}=10\text{, rayon }=\frac{13-7}{2}=3.\text{ Donc }x\in[7;13]\Leftrightarrow|x-10|\leqslant 3.` },
+
+      // gn_06 — Complémentaire d'un intervalle centré — moyen
+      { q: r`\text{Le complémentaire de l'intervalle }]E(X)-\delta\,;\,E(X)+\delta[\text{ est :}`,
+        choices: [
+          r`\{x\ |\ |x - E(X)| \geqslant \delta\}`,
+          r`\{x\ |\ |x - E(X)| \leqslant \delta\}`,
+          r`\{x\ |\ |x| \geqslant \delta\}`,
+          r`\{x\ |\ x \geqslant E(X)+\delta\}`
+        ],
+        a: r`\{x\ |\ |x - E(X)| \geqslant \delta\}`,
+        tip: r`x\notin\,]E(X)-\delta\,;\,E(X)+\delta[\,\Leftrightarrow|x-E(X)|\geqslant\delta.\text{ C'est "l'extérieur" que BT va majorer.}` },
+
+      // gn_07 — Lien entre p(|X - E(X)| < δ) et p(|X - E(X)| ≥ δ) — moyen
+      { q: r`\text{Si }p(|X - E(X)| \geqslant \delta) \leqslant 0{,}1\text{, alors }p(|X - E(X)| < \delta)\text{ vaut au moins :}`,
+        choices: [
+          r`0{,}9`,
+          r`0{,}1`,
+          r`0{,}5`,
+          r`1`
+        ],
+        a: r`0{,}9`,
+        tip: r`p(A)+p(\bar{A})=1.\text{ Donc }p(|X-E(X)|<\delta)=1-p(|X-E(X)|\geqslant\delta)\geqslant 1-0{,}1=0{,}9.` },
+
+      // gn_08 — Identifier l'intérieur/extérieur — moyen
+      { q: r`\text{On pose }\delta=2\text{ et }E(X)=5.\text{ L'événement "}X\in[3\,;\,7]\text{" s'écrit :}`,
+        choices: [
+          r`|X - 5| \leqslant 2`,
+          r`|X - 5| \geqslant 2`,
+          r`|X - 2| \leqslant 5`,
+          r`|X| \leqslant 7`
+        ],
+        a: r`|X - 5| \leqslant 2`,
+        tip: r`[3\,;\,7]=[5-2\,;\,5+2]\text{, donc }X\in[3\,;\,7]\Leftrightarrow|X-5|\leqslant 2.\text{ C'est "l'intérieur" autour de l'espérance.}` },
+
+      // ── BLOC 2 : Variable aléatoire moyenne Mₙ (Q9-Q15) ────────────────
+
+      // gn_09 — Définition de Mₙ — facile
+      { q: r`X_1, X_2, \dots, X_n\text{ sont }n\text{ variables aléatoires i.i.d. La variable aléatoire moyenne }M_n\text{ est :}`,
+        choices: [
+          r`M_n = \dfrac{X_1 + X_2 + \cdots + X_n}{n}`,
+          r`M_n = X_1 \times X_2 \times \cdots \times X_n`,
+          r`M_n = n \times E(X)`,
+          r`M_n = \sqrt{X_1^2 + \cdots + X_n^2}`
+        ],
+        a: r`M_n = \dfrac{X_1 + X_2 + \cdots + X_n}{n}`,
+        tip: r`M_n\text{ est la moyenne empirique de }n\text{ expériences identiques et indépendantes. Elle est elle-même une variable aléatoire.}` },
+
+      // gn_10 — Espérance de Mₙ — facile
+      { q: r`\text{Si }X\sim\mathcal{B}(1\,;\,0{,}4)\text{, quelle est }E(M_n)\text{ pour tout }n ?`,
+        choices: [
+          r`0{,}4`,
+          r`0{,}4n`,
+          r`\dfrac{0{,}4}{n}`,
+          r`0{,}6`
+        ],
+        a: r`0{,}4`,
+        tip: r`E(M_n)=E(X)=0{,}4\text{ quelle que soit la taille }n\text{ de l'échantillon. }M_n\text{ est un estimateur non biaisé de }E(X).` },
+
+      // gn_11 — Variance de Mₙ — moyen
+      { q: r`\text{Si }V(X) = 9\text{ et }n = 100\text{, quelle est }V(M_n) ?`,
+        choices: [
+          r`\dfrac{9}{100} = 0{,}09`,
+          r`9 \times 100 = 900`,
+          r`9`,
+          r`\dfrac{100}{9}`
+        ],
+        a: r`\dfrac{9}{100} = 0{,}09`,
+        tip: r`V(M_n)=\dfrac{V(X)}{n}=\dfrac{9}{100}=0{,}09.\text{ Plus }n\text{ est grand, plus }M_n\text{ est concentrée autour de }E(X).` },
+
+      // gn_12 — Écart-type de Mₙ — moyen
+      { q: r`\text{Si }\sigma(X) = 6\text{ et }n = 9\text{, quel est }\sigma(M_n) ?`,
+        choices: [
+          r`2`,
+          r`6`,
+          r`54`,
+          r`\dfrac{2}{3}`
+        ],
+        a: r`2`,
+        tip: r`\sigma(M_n)=\dfrac{\sigma(X)}{\sqrt{n}}=\dfrac{6}{\sqrt{9}}=\dfrac{6}{3}=2.\text{ L'écart-type de }M_n\text{ diminue comme }\frac{1}{\sqrt{n}}.` },
+
+      // gn_13 — Effet de n sur la dispersion — moyen
+      { q: r`\text{On quadruple la taille }n\text{ de l'échantillon. L'écart-type }\sigma(M_n)\text{ est :}`,
+        choices: [
+          r`\text{divisé par }2`,
+          r`\text{divisé par }4`,
+          r`\text{multiplié par }4`,
+          r`\text{inchangé}`
+        ],
+        a: r`\text{divisé par }2`,
+        tip: r`\sigma(M_n)=\dfrac{\sigma(X)}{\sqrt{n}}.\text{ Si }n\to 4n\text{, alors }\sqrt{4n}=2\sqrt{n}\text{, donc }\sigma(M_n)\text{ est divisé par }2.` },
+
+      // gn_14 — Formule V(Mₙ) avec loi binomiale — difficile
+      { q: r`X\sim\mathcal{B}(1\,;\,0{,}3).\text{ Pour }n=300\text{, calculer }V(M_n).`,
+        choices: [
+          r`\dfrac{0{,}21}{300} = 0{,}0007`,
+          r`0{,}21`,
+          r`\dfrac{0{,}3}{300}`,
+          r`300 \times 0{,}21`
+        ],
+        a: r`\dfrac{0{,}21}{300} = 0{,}0007`,
+        tip: r`X\sim\mathcal{B}(1\,;0{,}3)\Rightarrow V(X)=0{,}3\times 0{,}7=0{,}21.\text{ Donc }V(M_n)=\dfrac{0{,}21}{300}\approx0{,}0007.` },
+
+      // gn_15 — Identifier ce que représente Mₙ en contexte — moyen
+      { q: r`\text{Un élève est noté }X_i\text{ à chaque contrôle. La variable }M_{20}\text{ représente :}`,
+        choices: [
+          r`\text{La moyenne des }20\text{ notes de l'élève}`,
+          r`\text{La note maximale sur }20`,
+          r`\text{La somme des }20\text{ notes}`,
+          r`\text{L'espérance théorique des notes}`
+        ],
+        a: r`\text{La moyenne des }20\text{ notes de l'élève}`,
+        tip: r`M_n=\dfrac{X_1+\cdots+X_n}{n}\text{ est la moyenne observée. Elle est aléatoire car elle dépend des résultats obtenus.}` },
+
+      // ── BLOC 3 : Inégalité de Bienaymé-Tchebychev (Q16-Q23) ─────────────
+
+      // gn_16 — Énoncé de BT — facile
+      { q: r`\text{L'inégalité de Bienaymé-Tchebychev affirme que, pour tout }\delta>0\text{ :}`,
+        choices: [
+          r`p(|X - E(X)| \geqslant \delta) \leqslant \dfrac{V(X)}{\delta^2}`,
+          r`p(|X - E(X)| \geqslant \delta) \geqslant \dfrac{V(X)}{\delta^2}`,
+          r`p(|X - E(X)| < \delta) \leqslant \dfrac{V(X)}{\delta^2}`,
+          r`p(|X - E(X)| \geqslant \delta) \leqslant \dfrac{\delta^2}{V(X)}`
+        ],
+        a: r`p(|X - E(X)| \geqslant \delta) \leqslant \dfrac{V(X)}{\delta^2}`,
+        tip: r`\text{BT majore la probabilité d'être loin de l'espérance (l'extérieur). Elle minorera ensuite l'intérieur par complémentarité.}` },
+
+      // gn_17 — Application directe BT — facile
+      { q: r`X\text{ a pour espérance }5\text{ et variance }4.\text{ Majorer }p(|X-5|\geqslant 2).`,
+        choices: [
+          r`p(|X-5|\geqslant 2)\leqslant 1`,
+          r`p(|X-5|\geqslant 2)\leqslant \dfrac{4}{4}=1`,
+          r`p(|X-5|\geqslant 2)\leqslant \dfrac{4}{2}=2`,
+          r`p(|X-5|\geqslant 2)\leqslant \dfrac{4}{2^2}=1`
+        ],
+        a: r`p(|X-5|\geqslant 2)\leqslant \dfrac{4}{4}=1`,
+        tip: r`\dfrac{V(X)}{\delta^2}=\dfrac{4}{2^2}=\dfrac{4}{4}=1.\text{ BT donne ici une borne triviale (toute proba est }\leqslant 1\text{). Elle est utile quand }\delta\text{ est grand devant }\sigma(X).` },
+
+      // gn_18 — Application utile BT — moyen
+      { q: r`X\text{ a pour espérance }5\text{ et variance }4.\text{ Majorer }p(|X-5|\geqslant 10).`,
+        choices: [
+          r`p(|X-5|\geqslant 10)\leqslant 0{,}04`,
+          r`p(|X-5|\geqslant 10)\leqslant 4`,
+          r`p(|X-5|\geqslant 10)\leqslant 0{,}4`,
+          r`p(|X-5|\geqslant 10)\leqslant 2`
+        ],
+        a: r`p(|X-5|\geqslant 10)\leqslant 0{,}04`,
+        tip: r`\dfrac{V(X)}{\delta^2}=\dfrac{4}{100}=0{,}04.\text{ La probabilité d'être à plus de 10 unités de l'espérance est au plus 4\,\%.}` },
+
+      // gn_19 — BT pour minorer l'intérieur — moyen (la logique clé !)
+      { q: r`X\text{ a espérance }5\text{ et variance }4.\text{ Minorer }p(3 < X < 7).`,
+        choices: [
+          r`p(3<X<7)\geqslant 1-\dfrac{4}{4}=0`,
+          r`p(3<X<7)\geqslant \dfrac{4}{4}=1`,
+          r`p(3<X<7)\geqslant 0{,}5`,
+          r`p(3<X<7)\geqslant 0{,}04`
+        ],
+        a: r`p(3<X<7)\geqslant 1-\dfrac{4}{4}=0`,
+        tip: r`3<X<7\Leftrightarrow|X-5|<2.\text{ BT donne }p(|X-5|\geqslant 2)\leqslant\frac{4}{4}=1.\text{ Donc }p(|X-5|<2)\geqslant 0.\text{ Borne triviale ici — BT est utile quand }\delta>\sigma(X).` },
+
+      // gn_20 — BT pour minorer l'intérieur (cas utile) — moyen
+      { q: r`X\text{ a espérance }10\text{ et variance }4.\text{ Minorer }p(6 < X < 14).`,
+        choices: [
+          r`p(6<X<14)\geqslant \dfrac{3}{4}=0{,}75`,
+          r`p(6<X<14)\geqslant 0{,}04`,
+          r`p(6<X<14)\leqslant 0{,}75`,
+          r`p(6<X<14)=1`
+        ],
+        a: r`p(6<X<14)\geqslant \dfrac{3}{4}=0{,}75`,
+        tip: r`6<X<14\Leftrightarrow|X-10|<4.\text{ BT : }p(|X-10|\geqslant 4)\leqslant\frac{4}{16}=\frac{1}{4}.\text{ Donc }p(|X-10|<4)\geqslant 1-\frac{1}{4}=\frac{3}{4}=0{,}75.` },
+
+      // gn_21 — Choisir δ pour obtenir une borne donnée — difficile
+      { q: r`V(X)=9.\text{ Pour quelle valeur de }\delta\text{ obtient-on }p(|X-E(X)|\geqslant\delta)\leqslant 0{,}01 ?`,
+        choices: [
+          r`\delta = 30`,
+          r`\delta = 3`,
+          r`\delta = 0{,}01`,
+          r`\delta = 9`
+        ],
+        a: r`\delta = 30`,
+        tip: r`\dfrac{V(X)}{\delta^2}\leqslant 0{,}01\Leftrightarrow\delta^2\geqslant\dfrac{9}{0{,}01}=900\Leftrightarrow\delta\geqslant 30.` },
+
+      // gn_22 — BT avec σ(X) — moyen
+      { q: r`\sigma(X)=5,\ E(X)=20.\text{ Majorer }p(|X-20|\geqslant 25).`,
+        choices: [
+          r`p(|X-20|\geqslant 25)\leqslant \dfrac{25}{625}=\dfrac{1}{25}`,
+          r`p(|X-20|\geqslant 25)\leqslant \dfrac{5}{25}=0{,}2`,
+          r`p(|X-20|\geqslant 25)\leqslant \dfrac{25}{5}=5`,
+          r`p(|X-20|\geqslant 25)\leqslant 0{,}5`
+        ],
+        a: r`p(|X-20|\geqslant 25)\leqslant \dfrac{25}{625}=\dfrac{1}{25}`,
+        tip: r`V(X)=\sigma(X)^2=25.\text{ BT : }\dfrac{V(X)}{\delta^2}=\dfrac{25}{25^2}=\dfrac{25}{625}=\dfrac{1}{25}=0{,}04.` },
+
+      // gn_23 — Erreur classique sur BT — difficile
+      { q: r`V(X)=4,\ E(X)=10.\text{ Peut-on conclure }p(|X-10|<3)\geqslant 0{,}55 ?`,
+        choices: [
+          r`\text{Oui, car BT donne }p(|X-10|\geqslant 3)\leqslant\frac{4}{9}\approx 0{,}44`,
+          r`\text{Non, BT ne s'applique qu'aux entiers}`,
+          r`\text{Non, car }\frac{4}{9}>1`,
+          r`\text{Oui, car }p\geqslant 0{,}5\text{ toujours}`
+        ],
+        a: r`\text{Oui, car BT donne }p(|X-10|\geqslant 3)\leqslant\frac{4}{9}\approx 0{,}44`,
+        tip: r`\frac{V(X)}{\delta^2}=\frac{4}{9}\approx 0{,}44.\text{ Donc }p(|X-10|<3)\geqslant 1-\frac{4}{9}=\frac{5}{9}\approx 0{,}55.\ \checkmark` },
+
+      // ── BLOC 4 : Inégalité de concentration et loi faible (Q24-Q30) ──────
+
+      // gn_24 — Inégalité de concentration — facile
+      { q: r`\text{L'inégalité de concentration pour }M_n\text{ affirme que, pour tout }\delta>0\text{ :}`,
+        choices: [
+          r`p(|M_n - E(X)| \geqslant \delta) \leqslant \dfrac{V(X)}{n\delta^2}`,
+          r`p(|M_n - E(X)| \geqslant \delta) \geqslant \dfrac{V(X)}{n\delta^2}`,
+          r`p(|M_n - E(X)| \geqslant \delta) \leqslant \dfrac{V(X)}{\delta^2}`,
+          r`p(|M_n - E(X)| \geqslant \delta) = \dfrac{V(X)}{n\delta^2}`
+        ],
+        a: r`p(|M_n - E(X)| \geqslant \delta) \leqslant \dfrac{V(X)}{n\delta^2}`,
+        tip: r`\text{C'est BT appliquée à }M_n\text{, sachant }V(M_n)=\frac{V(X)}{n}.\text{ Le facteur }n\text{ au dénominateur montre que }M_n\text{ se concentre autour de }E(X)\text{ quand }n\to+\infty.` },
+
+      // gn_25 — Application inégalité de concentration — moyen
+      { q: r`V(X)=9,\ n=100,\ \delta=0{,}3.\text{ Majorer }p(|M_{100}-E(X)|\geqslant 0{,}3).`,
+        choices: [
+          r`p(|M_{100}-E(X)|\geqslant 0{,}3)\leqslant 1`,
+          r`p(|M_{100}-E(X)|\geqslant 0{,}3)\leqslant \dfrac{9}{100\times 0{,}09}=1`,
+          r`p(|M_{100}-E(X)|\geqslant 0{,}3)\leqslant \dfrac{9}{9}=1`,
+          r`p(|M_{100}-E(X)|\geqslant 0{,}3)\leqslant \dfrac{9}{100\times 0{,}09}=1`
+        ],
+        a: r`p(|M_{100}-E(X)|\geqslant 0{,}3)\leqslant \dfrac{9}{100\times 0{,}09}=1`,
+        tip: r`\dfrac{V(X)}{n\delta^2}=\dfrac{9}{100\times(0{,}3)^2}=\dfrac{9}{9}=1.\text{ Borne triviale : }\delta\text{ trop petit. Il faut augmenter }\delta\text{ ou }n\text{ pour obtenir une borne utile.}` },
+
+      // gn_26 — Concentration utile — moyen
+      { q: r`V(X)=4,\ n=400.\text{ Majorer }p(|M_{400}-E(X)|\geqslant 0{,}1).`,
+        choices: [
+          r`p(|M_{400}-E(X)|\geqslant 0{,}1)\leqslant \dfrac{4}{400\times 0{,}01}=1`,
+          r`p(|M_{400}-E(X)|\geqslant 0{,}1)\leqslant \dfrac{4}{4}=1`,
+          r`p(|M_{400}-E(X)|\geqslant 0{,}1)\leqslant \dfrac{4}{400\times 0{,}01}=1`,
+          r`p(|M_{400}-E(X)|\geqslant 0{,}1)\leqslant \dfrac{1}{4}=0{,}25`
+        ],
+        a: r`p(|M_{400}-E(X)|\geqslant 0{,}1)\leqslant \dfrac{1}{4}=0{,}25`,
+        tip: r`\dfrac{V(X)}{n\delta^2}=\dfrac{4}{400\times 0{,}01}=\dfrac{4}{4}=1.\text{ Hmm — borne triviale. Essayons }\delta=0{,}2:\dfrac{4}{400\times0{,}04}=\dfrac{4}{16}=\frac{1}{4}=0{,}25.\ \checkmark` },
+
+      // gn_27 — Minorer l'intérieur avec concentration — moyen
+      { q: r`V(X)=1,\ n=100.\text{ Minorer }p(|M_{100}-E(X)|<0{,}5).`,
+        choices: [
+          r`p(|M_{100}-E(X)|<0{,}5)\geqslant 0{,}96`,
+          r`p(|M_{100}-E(X)|<0{,}5)\geqslant 0{,}5`,
+          r`p(|M_{100}-E(X)|<0{,}5)\leqslant 0{,}96`,
+          r`p(|M_{100}-E(X)|<0{,}5)\geqslant 1`
+        ],
+        a: r`p(|M_{100}-E(X)|<0{,}5)\geqslant 0{,}96`,
+        tip: r`\dfrac{V(X)}{n\delta^2}=\dfrac{1}{100\times 0{,}25}=\dfrac{1}{25}=0{,}04.\text{ Donc }p(|M_{100}-E(X)|\geqslant 0{,}5)\leqslant 0{,}04\text{, et }p(|M_{100}-E(X)|<0{,}5)\geqslant 1-0{,}04=0{,}96.` },
+
+      // gn_28 — Trouver n pour garantir une précision — difficile
+      { q: r`V(X)=9.\text{ Quel est le plus petit entier }n\text{ tel que }p(|M_n-E(X)|\geqslant 0{,}5)\leqslant 0{,}01 ?`,
+        choices: [
+          r`n \geqslant 3\,600`,
+          r`n \geqslant 36`,
+          r`n \geqslant 360`,
+          r`n \geqslant 900`
+        ],
+        a: r`n \geqslant 3\,600`,
+        tip: r`\dfrac{9}{n\times 0{,}25}\leqslant 0{,}01\Leftrightarrow n\geqslant\dfrac{9}{0{,}25\times 0{,}01}=\dfrac{9}{0{,}0025}=3\,600.\text{ Ce type de question demande d'isoler }n.` },
+
+      // gn_29 — Loi faible des grands nombres — moyen
+      { q: r`\text{La loi faible des grands nombres affirme que, pour tout }\delta>0\text{ :}`,
+        choices: [
+          r`\lim_{n\to+\infty} p(|M_n - E(X)| \geqslant \delta) = 0`,
+          r`\lim_{n\to+\infty} M_n = 0`,
+          r`\lim_{n\to+\infty} p(|M_n - E(X)| \geqslant \delta) = 1`,
+          r`M_n = E(X)\text{ pour tout }n`
+        ],
+        a: r`\lim_{n\to+\infty} p(|M_n - E(X)| \geqslant \delta) = 0`,
+        tip: r`\text{Conséquence directe de la concentration : }\dfrac{V(X)}{n\delta^2}\to 0\text{ quand }n\to+\infty.\text{ Donc }M_n\text{ converge en probabilité vers }E(X).` },
+
+      // gn_30 — Synthèse — difficile
+      { q: r`X\sim\mathcal{B}(1\,;\,0{,}4).\text{ On veut }p(|M_n-0{,}4|\geqslant 0{,}05)\leqslant 0{,}05.\text{ Quel }n\text{ suffit ?}`,
+        choices: [
+          r`n \geqslant 1\,920`,
+          r`n \geqslant 192`,
+          r`n \geqslant 400`,
+          r`n \geqslant 48`
+        ],
+        a: r`n \geqslant 1\,920`,
+        tip: r`X\sim\mathcal{B}(1\,;0{,}4)\Rightarrow V(X)=0{,}4\times 0{,}6=0{,}24.\\\dfrac{0{,}24}{n\times(0{,}05)^2}\leqslant 0{,}05\Leftrightarrow n\geqslant\dfrac{0{,}24}{0{,}0025\times 0{,}05}=\dfrac{0{,}24}{0{,}000125}=1\,920.` },
+    ],
+
   },
 
   // ════ 6. DÉRIVATION ══════════════════════════════════════════════════════════
@@ -9602,6 +9942,7 @@ const CATS = [
       {id:"probas_totales",         label:"Probabilités totales",         levels:["term"]},
       {id:"probas_var_aleatoires",  label:"Variables aléatoires (E, V, σ)", levels:["term"]},
       {id:"probas_loi_binomiale",   label:"Loi binomiale (Term)",         levels:["term"]},
+      {id:"grands_nombres",            label:"Grands nombres & Bienaymé-T.", levels:["term"]},
     ] },
   { id:"derivation",   label:"Dérivation", emoji:"📉", color:"#0891B2", grad:"linear-gradient(135deg,#06B6D4,#0E7490)", light:"#ECFEFF", border:"#A5F3FC",
     subs:[
@@ -10576,7 +10917,7 @@ const CURRICULUM = {
            ln:['definition','proprietes','etude','derivee','equations','applications'],
            primitives:['primitives','integrales'],
            equa_diff:['equa_diff'],
-           probabilites:['tableau','tableau_fill','arbre','contraire','probas_conditionnelles','probas_independance','probas_totales','probas_var_aleatoires','probas_loi_binomiale'],
+           probabilites:['tableau','tableau_fill','arbre','contraire','probas_conditionnelles','probas_independance','probas_totales','probas_var_aleatoires','probas_loi_binomiale','grands_nombres'],
            denombrement:['denombrement_type'],
            trigonometrie:['valeurs_trigo','trigo_fonctions'],
            algo_python:['algo_syntaxe','algo_fonction','algo_if','algo_for','algo_while'],
