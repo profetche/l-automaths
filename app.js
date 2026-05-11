@@ -14190,7 +14190,7 @@ const CAT_FILTER_CONFIGS = {
   },
   premiere: {
     label: "1ère",
-    ids: ["polynomes","suites","derivation","expo","trigonometrie","algo_python"],
+    ids: ["polynomes","suites","derivation","expo","trigonometrie","produit_scalaire","algo_python"],
   },
   term: {
     label: "Terminale",
@@ -14198,7 +14198,7 @@ const CAT_FILTER_CONFIGS = {
   },
   all: {
     label: "Tout",
-    ids: ["numerique","pourcentages","litteral","fonctions","statistiques","probabilites","polynomes","expo","suites","derivation","primitives","equa_diff","trigonometrie","limites","denombrement","ln","algo_python"],
+    ids: ["numerique","pourcentages","litteral","fonctions","statistiques","probabilites","polynomes","expo","suites","derivation","primitives","equa_diff","trigonometrie","limites","denombrement","ln","produit_scalaire","algo_python"],
   },
 };
 
