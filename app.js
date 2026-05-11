@@ -6155,31 +6155,73 @@ const DB = {
       { q:r`\text{La planète la plus massive (Terre }5973\times10^{21}\text{ kg, Mars }6{,}4185\times10^{23}\text{ kg...) :}`, choices:[r`\text{Terre}`,r`\text{Mercure}`,r`\text{Vénus}`,r`\text{Mars}`], a:r`\text{Mars}`, tip:r`6{,}4185\times10^{23}\text{ est le plus grand exposant}` },
       { q:r`\text{On additionne }x\text{, son triple et son carré. Le résultat vaut :}`, choices:[r`(x+3x)^2`,r`x+(3x)^2`,r`1+3x^2`,r`4x+x^2`], a:r`4x+x^2`, tip:r`x+3x+x^2=4x+x^2` },
       { q:r`\text{Courbes }C\text{ et }C'\text{ se croisent en }x=-2{,}-1\text{ et }x=1{,}2.\\[4pt]\text{L'ensemble des solutions de }f(x)\leq g(x)\text{ est :}`,
-        svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 180" width="100%" style="background:#fff;font-family:sans-serif">
+        svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="100%" style="background:#fff;font-family:sans-serif">
   <!-- axes -->
-  <line x1="20" y1="90" x2="280" y2="90" stroke="#94A3B8" stroke-width="1.2"/>
-  <line x1="150" y1="10" x2="150" y2="170" stroke="#94A3B8" stroke-width="1.2"/>
-  <!-- x labels -->
-  <text x="72" y="104" font-size="11" fill="#555" text-anchor="middle">-2</text>
-  <text x="105" y="104" font-size="11" fill="#555" text-anchor="middle">-1</text>
-  <text x="192" y="104" font-size="11" fill="#555" text-anchor="middle">1,2</text>
-  <!-- tick marks -->
-  <line x1="72" y1="86" x2="72" y2="94" stroke="#94A3B8" stroke-width="1"/>
-  <line x1="105" y1="86" x2="105" y2="94" stroke="#94A3B8" stroke-width="1"/>
-  <line x1="192" y1="86" x2="192" y2="94" stroke="#94A3B8" stroke-width="1"/>
-  <!-- C: f(x) — courbe bleue, sous C' entre -2/-1 et 1,2/2,5 -->
-  <path d="M20,60 C40,55 60,100 72,90 C85,78 95,60 105,90 C120,125 160,55 192,90 C215,115 250,130 280,120" fill="none" stroke="#2563EB" stroke-width="2"/>
-  <!-- C': g(x) — courbe rouge -->
-  <path d="M20,80 C50,75 62,95 72,90 C85,85 97,105 105,90 C118,70 155,100 192,90 C220,80 255,75 280,70" fill="none" stroke="#DC2626" stroke-width="2"/>
-  <!-- shaded zones where f ≤ g -->
-  <text x="88" y="75" font-size="10" fill="#2563EB">f≤g</text>
-  <text x="210" y="115" font-size="10" fill="#2563EB">f≤g</text>
-  <!-- labels -->
-  <text x="255" y="50" font-size="12" fill="#DC2626" font-weight="bold">C'</text>
-  <text x="265" y="125" font-size="12" fill="#2563EB" font-weight="bold">C</text>
+  <line x1="30" y1="100" x2="305" y2="100" stroke="#94A3B8" stroke-width="1.2"/>
+  <line x1="50" y1="15" x2="50" y2="185" stroke="#94A3B8" stroke-width="1.2"/>
+  <!-- flèche axe x -->
+  <polygon points="305,96 313,100 305,104" fill="#94A3B8"/>
+  <!-- ticks et labels x -->
+  <line x1="86" y1="96" x2="86" y2="104" stroke="#555" stroke-width="1.2"/>
+  <text x="86" y="116" font-size="11" fill="#444" text-anchor="middle">-2</text>
+  <line x1="122" y1="96" x2="122" y2="104" stroke="#555" stroke-width="1.2"/>
+  <text x="122" y="116" font-size="11" fill="#444" text-anchor="middle">-1</text>
+  <line x1="158" y1="96" x2="158" y2="104" stroke="#555" stroke-width="1.2"/>
+  <text x="158" y="116" font-size="11" fill="#444" text-anchor="middle">0</text>
+  <line x1="202" y1="96" x2="202" y2="104" stroke="#555" stroke-width="1.2"/>
+  <text x="202" y="116" font-size="11" fill="#444" text-anchor="middle">1,2</text>
+  <!-- C (courbe de f) — bleue -->
+  <!-- Passe par (-2,100), monte haut entre -2 et -1, repasse (-1,100),
+       descend sous l axe entre -1 et 1.2, repasse (1.2,100), redescend à droite -->
+  <path d="M30,70 C55,65 75,50 86,100 C97,148 110,155 122,100 C135,45 170,42 202,100 C222,135 255,145 305,140"
+        fill="none" stroke="#2563EB" stroke-width="2.2" stroke-linejoin="round"/>
+  <!-- C' (courbe de g) — rouge -->
+  <!-- Passe par les mêmes 3 intersections mais reste ENTRE C sur l axe, allure plus douce -->
+  <path d="M30,55 C55,52 72,68 86,100 C100,130 112,120 122,100 C135,80 168,88 202,100 C222,108 258,105 305,100"
+        fill="none" stroke="#DC2626" stroke-width="2.2" stroke-linejoin="round"/>
+  <!-- Points d intersection bien visibles -->
+  <circle cx="86" cy="100" r="3.5" fill="#6B7280"/>
+  <circle cx="122" cy="100" r="3.5" fill="#6B7280"/>
+  <circle cx="202" cy="100" r="3.5" fill="#6B7280"/>
+  <!-- Labels C et C' loin l un de l autre, sans ambiguïté -->
+  <text x="280" y="135" font-size="13" fill="#2563EB" font-weight="bold">C</text>
+  <text x="280" y="93" font-size="13" fill="#DC2626" font-weight="bold">C'</text>
 </svg>`,
         choices:[r`[-2\,;\,-1]`,r`[1\,;\,2]`,r`[-2\,;\,-1]\cup[1\,;\,2]`,r`[-2\,;\,-1]\cap[1\,;\,2]`], a:r`[-2\,;\,-1]\cup[1\,;\,2]`, tip:r`C\text{ est sous }C'\text{ sur ces deux intervalles}` },
-      { q:r`f\text{ définie sur }[-3\,;\,2]\text{. L'équation }f(x)=0\text{ admet exactement deux solutions, et ces solutions sont négatives. Laquelle est exacte ?}`, choices:[r`\text{Aucune solution}`,r`\text{Une seule solution}`,r`\text{Deux solutions, toutes négatives}`,r`\text{Deux solutions de signes contraires}`], a:r`\text{Deux solutions, toutes négatives}`, tip:r`\text{Les deux zéros sont dans }[-3\,;\,0[` },
+      { q:r`f\text{ est définie sur }[-3\,;\,2]\text{ et représentée ci-dessous.}\\[4pt]\text{Combien l'équation }f(x)=0\text{ admet-elle de solutions ?}`,
+        svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="100%" style="background:#fff;font-family:sans-serif">
+  <!-- axes -->
+  <line x1="30" y1="110" x2="295" y2="110" stroke="#94A3B8" stroke-width="1.2"/>
+  <line x1="190" y1="15" x2="190" y2="185" stroke="#94A3B8" stroke-width="1.2"/>
+  <polygon points="295,106 303,110 295,114" fill="#94A3B8"/>
+  <!-- ticks x -->
+  <line x1="82" y1="106" x2="82" y2="114" stroke="#555" stroke-width="1.2"/>
+  <text x="82" y="126" font-size="11" fill="#444" text-anchor="middle">-3</text>
+  <line x1="118" y1="106" x2="118" y2="114" stroke="#555" stroke-width="1.2"/>
+  <text x="118" y="126" font-size="11" fill="#444" text-anchor="middle">-2</text>
+  <line x1="154" y1="106" x2="154" y2="114" stroke="#555" stroke-width="1.2"/>
+  <text x="154" y="126" font-size="11" fill="#444" text-anchor="middle">-1</text>
+  <line x1="190" y1="106" x2="190" y2="114" stroke="#555" stroke-width="1.2"/>
+  <text x="190" y="126" font-size="11" fill="#444" text-anchor="middle">0</text>
+  <line x1="262" y1="106" x2="262" y2="114" stroke="#555" stroke-width="1.2"/>
+  <text x="262" y="126" font-size="11" fill="#444" text-anchor="middle">2</text>
+  <!-- ticks y -->
+  <line x1="186" y1="74" x2="194" y2="74" stroke="#555" stroke-width="1.2"/>
+  <text x="182" y="78" font-size="10" fill="#444" text-anchor="end">1</text>
+  <line x1="186" y1="146" x2="194" y2="146" stroke="#555" stroke-width="1.2"/>
+  <text x="182" y="150" font-size="10" fill="#444" text-anchor="end">-1</text>
+  <!-- courbe f : part en négatif (x=-3), monte, coupe 0 vers x≈-2.2 (px≈108),
+       atteint un max positif vers x=-1.6, redescend, recoupe 0 vers x≈-0.6 (px≈168),
+       reste négative jusqu à x=2 -->
+  <path d="M82,146 C90,148 100,125 108,110 C116,94 126,68 140,72 C153,76 162,95 168,110 C175,128 190,138 220,142 C240,144 258,148 262,150"
+        fill="none" stroke="#7C3AED" stroke-width="2.2" stroke-linejoin="round"/>
+  <!-- points d intersection avec x -->
+  <circle cx="108" cy="110" r="3.5" fill="#7C3AED"/>
+  <circle cx="168" cy="110" r="3.5" fill="#7C3AED"/>
+  <!-- label f -->
+  <text x="145" y="62" font-size="13" fill="#7C3AED" font-weight="bold" font-style="italic">f</text>
+</svg>`,
+        choices:[r`\text{Aucune solution}`,r`\text{Une seule solution}`,r`\text{Deux solutions, toutes négatives}`,r`\text{Deux solutions de signes contraires}`], a:r`\text{Deux solutions, toutes négatives}`, tip:r`\text{La courbe coupe l'axe }x\text{ en deux points, tous deux dans }]-3\,;\,0[` },
       { q:r`f(x)>0\text{ pour }x<2\text{ et }f(x)<0\text{ pour }x>2\text{.}\\[4pt]\text{Expression possible de }f\text{ :}`, choices:[r`f(x)=-3x+6`,r`f(x)=x+2`,r`f(x)=x-2`,r`f(x)=-4x+2`], a:r`f(x)=-3x+6`, tip:r`-3(2)+6=0\text{ et }f(0)=6>0\checkmark` },
       { q:r`C=(1+t)^2\text{. Isoler }t\text{ :}`, choices:[r`t=\sqrt{C-1}`,r`t=\sqrt{C}-1`,r`t=\sqrt{1-C}`,r`t=1-\sqrt{C}`], a:r`t=\sqrt{C}-1`, tip:r`\sqrt{C}=1+t\Rightarrow t=\sqrt{C}-1` },
       { q:r`\text{D'après le graphique, la production hydraulique était la plus importante en :}`,
@@ -17467,7 +17509,9 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
       // Ré-injection : insérer la question 2 places plus loin dans sessionQueue
       // (max 1 ré-injection par question pour éviter les boucles infinies)
       const alreadyReinjected = sessionQueue.current.slice(idx+1).includes(q);
-      if(!alreadyReinjected) {
+      // En mode examen (annales bac) : pas de ré-injection, un seul essai par question
+      const isExamMode = catId === "bac";
+      if(!alreadyReinjected && !isExamMode) {
         const insertAt = Math.min(idx+3, sessionQueue.current.length);
         sessionQueue.current = [
           ...sessionQueue.current.slice(0, insertAt),
@@ -18972,7 +19016,7 @@ function AutoMaths() {
       setScreen("level_picker"); 
     }
   };
-  const hBacStart = (subId, qs) => { setCatId("bac"); setPrevScreen("bac_subjects"); setPool(qs); setQuestions(shuffle(qs)); setScreen("quiz"); };
+  const hBacStart = (subId, qs) => { setCatId("bac"); setPrevScreen("bac_subjects"); setPool(qs); setQuestions(qs); setScreen("quiz"); }; // examMode : ordre officiel, pas de shuffle
   const hCount    = n  => {
     setQCount(n);
     if (mode === "entrainement" && pendingPool) {
