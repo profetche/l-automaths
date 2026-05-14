@@ -9723,6 +9723,42 @@ const DB = {
         choices: [r`\texttt{"reçu"}`, r`\texttt{"ajourné"}`, r`10`, r`\text{Erreur}`],
         a: r`\texttt{"reçu"}`,
         tip: r`\texttt{10 >= 10}\text{ est vrai → on renvoie \texttt{"reçu"}. La condition est large (}\geq\text{).}` },
+
+      // algo_fn_06 — trace de variables (affectations successives) — facile
+      { q: r`\text{Quel est la valeur de \texttt{t} à la fin du script ?}\\\\\texttt{t = 1}\\\\\texttt{t = 4-t}`,
+        choices: [r`3`, r`-1`, r`4`, r`-4`],
+        a: r`3`,
+        tip: r`\text{D'abord }\texttt{t = 1}\text{. Puis }\texttt{t = 4 - 1 = 3}.` },
+
+      // algo_fn_07 — trace avec multiplication et affectation — facile
+      { q: r`\text{Quelle est la valeur de \texttt{toto} à la fin du script ?}\\\\\texttt{toto = 2}\\\\\texttt{toto = toto * 4}\\\\\texttt{toto = 2 * toto + 2}`,
+        choices: [r`18`, r`-1`, r`-3`, r`-2`],
+        a: r`18`,
+        tip: r`\texttt{toto=2}\\[2pt]\texttt{toto=2\times4=8}\\[2pt]\texttt{toto=2\times8+2=18}` },
+
+      // algo_fn_08 — affectations avec deux variables — facile
+      { q: r`\text{Qu'affiche ce programme ?}\\\\\texttt{a = 4}\\\\\texttt{b = 4}\\\\\texttt{b = a * b}\\\\\texttt{a = a + b}\\\\\texttt{print(a)}`,
+        choices: [r`20`, r`-8`, r`32`, r`-4`],
+        a: r`20`,
+        tip: r`\texttt{b=4\times4=16}\\[2pt]\texttt{a=4+16=20}` },
+
+      // algo_fn_09 — affectations deux variables variante — facile
+      { q: r`\text{Qu'affiche ce programme ?}\\\\\texttt{a = 2}\\\\\texttt{b = 10}\\\\\texttt{b = a * b}\\\\\texttt{a = a + b}\\\\\texttt{print(a)}`,
+        choices: [r`22`, r`-9`, r`20`, r`-40`],
+        a: r`22`,
+        tip: r`\texttt{b=2\times10=20}\\[2pt]\texttt{a=2+20=22}` },
+
+      // algo_fn_10 — appel de fonction polynomiale degré 2 — facile
+      { q: r`\text{Qu'affiche ce programme ?}\\\\\texttt{def f(x):}\\\quad\texttt{y = 2*x**2 + 5*x + 4}\\\quad\texttt{return y}\\\\\texttt{y = f(1)}\\\\\texttt{print(y)}`,
+        choices: [r`11`, r`9`, r`-9`, r`20`],
+        a: r`11`,
+        tip: r`f(1)=2\times1^2+5\times1+4=2+5+4=11` },
+
+      // algo_fn_11 — appel de fonction polynomiale en 4 — facile
+      { q: r`\text{Qu'affiche ce programme ?}\\\\\texttt{def f(x):}\\\quad\texttt{y = 3*x**2 + 8*x - 7}\\\quad\texttt{return y}\\\\\texttt{y = f(4)}\\\\\texttt{print(y)}`,
+        choices: [r`73`, r`-1`, r`81`, r`57`],
+        a: r`73`,
+        tip: r`f(4)=3\times16+8\times4-7=48+32-7=73` },
     ],
 
     // ── Bloc 3 : if / elif / else (10 questions) ──────────────────────────────
@@ -9777,6 +9813,36 @@ const DB = {
         choices: [r`\texttt{"B"}`, r`\texttt{"TB"}`, r`\texttt{"AB"}`, r`\texttt{"P"}`],
         a: r`\texttt{"B"}`,
         tip: r`\texttt{14 >= 16}\text{ : faux. }\texttt{14 >= 14}\text{ : vrai → \texttt{"B"}. On s'arrête, les \texttt{elif} suivants ne sont pas testés.}` },
+
+      // algo_if_11 — compléter return calcul 8+9a — facile
+      { q: r`\text{La fonction doit calculer }8+9a\text{ pour un paramètre }a.\\\text{Par quoi remplacer les \texttt{...} ?}\\\\\texttt{def calcul(a):}\\\quad\texttt{return ...}`,
+        choices: [r`\texttt{8+9*a}`, r`\texttt{'8+9a'}`, r`\texttt{'8+9*a'}`, r`\texttt{'8+9xa'}`],
+        a: r`\texttt{8+9*a}`,
+        tip: r`\text{On veut un calcul numérique, pas une chaîne.}\\\texttt{return 8 + 9*a}` },
+
+      // algo_if_12 — compléter return calcul 2+3a — facile
+      { q: r`\text{La fonction doit calculer }2+3a\text{ pour un paramètre }a.\\\text{Par quoi remplacer les \texttt{...} ?}\\\\\texttt{def calcul(a):}\\\quad\texttt{return ...}`,
+        choices: [r`\texttt{2+3*a}`, r`\texttt{'2+3*a'}`, r`\texttt{'2+3xa'}`, r`\texttt{'2+3a'}`],
+        a: r`\texttt{2+3*a}`,
+        tip: r`\text{Calcul numérique sans guillemets : }\texttt{return 2 + 3*a}` },
+
+      // algo_if_13 — compléter condition strictement inférieur à 8 — moyenne
+      { q: r`\text{La fonction renvoie }a\times3\text{ si }a<8\text{, sinon }a^2.\\\text{Par quoi remplacer les \texttt{...} ?}\\\\\texttt{def test(a):}\\\quad\texttt{if ...:}\\\qquad\texttt{return a*3}\\\quad\texttt{else:}\\\qquad\texttt{return a**2}`,
+        choices: [r`\texttt{a < 8}`, r`\texttt{a > 8}`, r`\texttt{a <= 8}`, r`\texttt{a >= 8}`],
+        a: r`\texttt{a < 8}`,
+        tip: r`\text{« strictement inférieur à 8 » }\Leftrightarrow\texttt{a < 8}.` },
+
+      // algo_if_14 — compléter condition strictement supérieur à 7 — moyenne
+      { q: r`\text{La fonction renvoie }a\times3\text{ si }a>7\text{, sinon }a^2.\\\text{Par quoi remplacer les \texttt{...} ?}\\\\\texttt{def test(a):}\\\quad\texttt{if ...:}\\\qquad\texttt{return a*3}\\\quad\texttt{else:}\\\qquad\texttt{return a**2}`,
+        choices: [r`\texttt{a > 7}`, r`\texttt{a < 7}`, r`\texttt{a >= 7}`, r`\texttt{a <= 7}`],
+        a: r`\texttt{a > 7}`,
+        tip: r`\text{« strictement supérieur à 7 » }\Leftrightarrow\texttt{a > 7}.` },
+
+      // algo_if_15 — compléter condition supérieur à 5 — moyenne
+      { q: r`\text{La fonction renvoie }a\times3\text{ si }a>5\text{, sinon }a^2.\\\text{Par quoi remplacer les \texttt{...} ?}\\\\\texttt{def test(a):}\\\quad\texttt{if ...:}\\\qquad\texttt{return a*3}\\\quad\texttt{else:}\\\qquad\texttt{return a**2}`,
+        choices: [r`\texttt{a > 5}`, r`\texttt{a < 5}`, r`\texttt{a >= 5}`, r`\texttt{a == 5}`],
+        a: r`\texttt{a > 5}`,
+        tip: r`\text{« si }a>5\text{ » }\Leftrightarrow\texttt{a > 5}.` },
     ],
 
     // ── Bloc 4 : Boucle for (10 questions) ────────────────────────────────────
@@ -9831,6 +9897,66 @@ const DB = {
         choices: [r`9`, r`6`, r`12`, r`3`],
         a: r`9`,
         tip: r`\text{Boucle imbriquée : }i\in\{1,2,3\}\text{ et }j\in\{1,2,3\}\text{ → }3\times3=9\text{ itérations au total.}` },
+
+      // algo_for_11 — boucle for avec addition répétée (2 tours) — facile
+      { q: r`\text{Qu'affiche ce programme ?}\\\\\texttt{x = 8}\\\\\texttt{for i in range(0, 2):}\\\quad\texttt{x = x + 8}\\\\\texttt{print(x)}`,
+        choices: [r`24`, r`-512`, r`4096`, r`512`],
+        a: r`24`,
+        tip: r`\texttt{range(0,2)}\text{ : 2 tours.}\\x=8+8=16\text{ puis }x=16+8=24.` },
+
+      // algo_for_12 — boucle for avec multiplication (4 tours) — facile
+      { q: r`\text{Qu'affiche ce programme ?}\\\\\texttt{x = 8}\\\\\texttt{for i in range(0, 4):}\\\quad\texttt{x = x * 7}\\\\\texttt{print(x)}`,
+        choices: [r`19208`, r`-19208`, r`-2744`, r`-134456`],
+        a: r`19208`,
+        tip: r`\text{4 tours : }8\xrightarrow{\times7}56\xrightarrow{\times7}392\xrightarrow{\times7}2744\xrightarrow{\times7}19208` },
+
+      // algo_for_13 — boucle for avec input = 5 — facile
+      { q: r`\text{Qu'affiche le programme si l'utilisateur entre 5 ?}\\\\\texttt{x = 7}\\\\\texttt{y = int(input("Entrez un nombre"))}\\\\\texttt{for i in range(1, 3):}\\\quad\texttt{x = x + y}\\\\\texttt{print(x)}`,
+        choices: [r`17`, r`7`, r`12`, r`22`],
+        a: r`17`,
+        tip: r`y=5.\text{ range(1,3) : 2 tours.}\\x=7+5=12\text{ puis }x=12+5=17.` },
+
+      // algo_for_14 — boucle for avec input = 3 — facile
+      { q: r`\text{Qu'affiche le programme si l'utilisateur entre 3 ?}\\\\\texttt{x = 4}\\\\\texttt{y = int(input("Entrez un nombre"))}\\\\\texttt{for i in range(1, 6):}\\\quad\texttt{x = x + y}\\\\\texttt{print(x)}`,
+        choices: [r`19`, r`16`, r`22`, r`4`],
+        a: r`19`,
+        tip: r`y=3.\text{ range(1,6) : 5 tours.}\\x=4+5\times3=19.` },
+
+      // algo_for_15 — compléter range pour soustraire 7 à 4 reprises — moyenne
+      { q: r`\text{La fonction soustrait 7 à }a\text{ à 4 reprises.\\\text{Par quoi remplacer les \texttt{...} ?}}\\\\\texttt{def boucle(a):}\\\quad\texttt{for num in range(...):}\\\qquad\texttt{a = a - 7}\\\quad\texttt{return a}`,
+        choices: [r`\texttt{4}`, r`\texttt{3}`, r`\texttt{14}`, r`\texttt{5}`],
+        a: r`\texttt{4}`,
+        tip: r`\texttt{range(4)}\text{ produit 4 itérations : 4 soustractions.}` },
+
+      // algo_for_16 — compléter range pour multiplier par 2 à 2 reprises — moyenne
+      { q: r`\text{La fonction multiplie }a\text{ par 2 à 2 reprises.\\\text{Par quoi remplacer les \texttt{...} ?}}\\\\\texttt{def boucle(a):}\\\quad\texttt{for num in range(...):}\\\qquad\texttt{a = a * 2}\\\quad\texttt{return a}`,
+        choices: [r`\texttt{2}`, r`\texttt{'*2'}`, r`\texttt{'a*2'}`, r`\texttt{'2'}`],
+        a: r`\texttt{2}`,
+        tip: r`\texttt{range(2)}\text{ : 2 tours. On multiplie par 2 deux fois.}` },
+
+      // algo_for_17 — compléter range pour diviser par 10 à 8 reprises — moyenne
+      { q: r`\text{La fonction divise }a\text{ par 10 à 8 reprises.\\\text{Par quoi remplacer les \texttt{...} ?}}\\\\\texttt{def boucle(a):}\\\quad\texttt{for num in range(...):}\\\qquad\texttt{a = a / 10}\\\quad\texttt{return a}`,
+        choices: [r`\texttt{8}`, r`\texttt{'10'}`, r`\texttt{'a/10'}`, r`\texttt{'/10'}`],
+        a: r`\texttt{8}`,
+        tip: r`\texttt{range(8)}\text{ : 8 tours. Division par }10^8\text{ au total.}` },
+
+      // algo_for_18 — compléter range pour diviser par 3 à 6 reprises — moyenne
+      { q: r`\text{La fonction divise }a\text{ par 3 à 6 reprises.\\\text{Par quoi remplacer les \texttt{...} ?}}\\\\\texttt{def boucle(a):}\\\quad\texttt{for num in range(...):}\\\qquad\texttt{a = a / 3}\\\quad\texttt{return a}`,
+        choices: [r`\texttt{6}`, r`\texttt{5}`, r`\texttt{7}`, r`\texttt{4}`],
+        a: r`\texttt{6}`,
+        tip: r`\texttt{range(6)}\text{ : 6 tours.}` },
+
+      // algo_for_19 — ajouter 8 à a, 7 reprises — moyenne
+      { q: r`\text{La fonction doit ajouter 8 à }a\text{ à 7 reprises.\\\text{Par quoi remplacer les \texttt{...} ?}}\\\\\texttt{def boucle(a):}\\\quad\texttt{for num in range(7):}\\\qquad\texttt{a = ...}\\\quad\texttt{return a}`,
+        choices: [r`\texttt{a+8}`, r`\texttt{'a+8'}`, r`\texttt{'8'}`, r`\texttt{'+8'}`],
+        a: r`\texttt{a+8}`,
+        tip: r`\text{On ajoute 8 : }\texttt{a = a + 8}.` },
+
+      // algo_for_20 — diviser par 3 à 6 reprises (variante return) — dure
+      { q: r`\text{La fonction divise }a\text{ par 3 à 6 reprises.\\\text{Par quoi remplacer les \texttt{...} ?}}\\\\\texttt{def boucle(a):}\\\quad\texttt{for num in range(...):}\\\qquad\texttt{a = a/3}\\\quad\texttt{return a}`,
+        choices: [r`\texttt{6}`, r`\texttt{5}`, r`\texttt{4}`, r`\texttt{7}`],
+        a: r`\texttt{6}`,
+        tip: r`6\text{ reprises }\Rightarrow\texttt{range(6)}.` },
     ],
 
     // ── Bloc 5 : Boucle while (10 questions) ──────────────────────────────────
@@ -9890,6 +10016,66 @@ const DB = {
         choices: [r`8`, r`7`, r`9`, r`50`],
         a: r`8`,
         tip: r`7^2=49\leq50\text{ : on continue. }8^2=64>50\text{ : arrêt. On affiche }n=8.\\(\text{premier entier tel que }n^2>50\text{.)}` },
+
+      // algo_wh_11 — while décompte avec pas de 5 — facile
+      { q: r`\text{Qu'affiche ce programme ?}\\\\\texttt{a = 25}\\\\\texttt{n = 7}\\\\\texttt{while n <= a:}\\\quad\texttt{n = n + 5}\\\\\texttt{print(n)}`,
+        choices: [r`27`, r`32`, r`12`, r`7`],
+        a: r`27`,
+        tip: r`n=7,12,17,22,27.\\\text{On teste }27\leq25\text{ : faux. Arrêt. Affiche }27.` },
+
+      // algo_wh_12 — while décompte avec pas de 9 — facile
+      { q: r`\text{Qu'affiche ce programme ?}\\\\\texttt{a = 29}\\\\\texttt{n = 9}\\\\\texttt{while n <= a:}\\\quad\texttt{n = n + 9}\\\\\texttt{print(n)}`,
+        choices: [r`36`, r`27`, r`9`, r`45`],
+        a: r`36`,
+        tip: r`n=9,18,27,36.\\\text{On teste }36\leq29\text{ : faux. Affiche }36.` },
+
+      // algo_wh_13 — while avec input=8, addition de 8 — facile
+      { q: r`\text{Qu'affiche le script si l'utilisateur entre 8 ?}\\\\\texttt{a = input("Entrez un entier naturel non nul.")}\\\\\texttt{a = int(a)}\\\\\texttt{n = 1}\\\\\texttt{while n <= a:}\\\quad\texttt{n = 8 + n}\\\\\texttt{print(n)}`,
+        choices: [r`9`, r`17`, r`8`, r`1`],
+        a: r`9`,
+        tip: r`a=8.\ n=1.\\\text{Tour 1 : }1\leq8\text{ vrai, }n=8+1=9.\\\text{Tour 2 : }9\leq8\text{ faux. Affiche }9.` },
+
+      // algo_wh_14 — while avec input=727, doublement — facile
+      { q: r`\text{Qu'affiche le script si l'utilisateur entre 727 ?}\\\\\texttt{a = input("Entrez un entier naturel non nul.")}\\\\\texttt{a = int(a)}\\\\\texttt{n = 1}\\\\\texttt{while n <= a:}\\\quad\texttt{n = 2 * n}\\\\\texttt{print(n)}`,
+        choices: [r`1024`, r`512`, r`256`, r`2048`],
+        a: r`1024`,
+        tip: r`n=1,2,4,8,\ldots,512,1024.\\\text{On teste }1024\leq727\text{ : faux. Affiche }1024.` },
+
+      // algo_wh_15 — compléter while pour tripler jusqu'à 700 — moyenne
+      { q: r`\text{Combien de fois tripler }x\text{ pour dépasser 700 ?}\\\text{Par quoi remplacer les \texttt{...} ?}\\\\\texttt{def boucle(x):}\\\quad\texttt{compt = 0}\\\quad\texttt{while ...:}\\\qquad\texttt{x = x*3}\\\qquad\texttt{compt = compt+1}\\\quad\texttt{return compt}`,
+        choices: [r`\texttt{x < 700}`, r`\texttt{x > 700}`, r`\texttt{x*3}`, r`\texttt{700}`],
+        a: r`\texttt{x < 700}`,
+        tip: r`\text{On continue tant que }x<700.\\\text{Dès que }x\geq700\text{ on sort.}` },
+
+      // algo_wh_16 — compléter while pour tripler jusqu'à 400 — moyenne
+      { q: r`\text{Combien de fois tripler }x\text{ pour dépasser 400 ?}\\\text{Par quoi remplacer les \texttt{...} ?}\\\\\texttt{def boucle(x):}\\\quad\texttt{compt = 0}\\\quad\texttt{while ...:}\\\qquad\texttt{x = x*3}\\\qquad\texttt{compt = compt+1}\\\quad\texttt{return compt}`,
+        choices: [r`\texttt{x < 400}`, r`\texttt{400}`, r`\texttt{x*3}`, r`\texttt{x > 400}`],
+        a: r`\texttt{x < 400}`,
+        tip: r`\text{On continue tant que }x<400.` },
+
+      // algo_wh_17 — compléter x=... pour ajouter 6 jusqu'à 1500 — moyenne
+      { q: r`\text{Combien de fois ajouter 6 à }x\text{ pour dépasser 1500 ?}\\\text{Par quoi remplacer les \texttt{...} ?}\\\\\texttt{def boucle(x):}\\\quad\texttt{compt = 0}\\\quad\texttt{while x < 1500:}\\\qquad\texttt{x = ...}\\\qquad\texttt{compt = compt+1}\\\quad\texttt{return compt}`,
+        choices: [r`\texttt{x+6}`, r`\texttt{x-6}`, r`\texttt{x*6}`, r`\texttt{6}`],
+        a: r`\texttt{x+6}`,
+        tip: r`\text{On additionne 6 : }\texttt{x = x + 6}.` },
+
+      // algo_wh_18 — compléter x=... pour multiplier par 6 jusqu'à 1500 — moyenne
+      { q: r`\text{Combien de fois multiplier }x\text{ par 6 pour dépasser 1500 ?}\\\text{Par quoi remplacer les \texttt{...} ?}\\\\\texttt{def boucle(x):}\\\quad\texttt{compt = 0}\\\quad\texttt{while x < 1500:}\\\qquad\texttt{x = ...}\\\qquad\texttt{compt = compt+1}\\\quad\texttt{return compt}`,
+        choices: [r`\texttt{x*6}`, r`\texttt{x+6}`, r`\texttt{x-6}`, r`\texttt{x/6}`],
+        a: r`\texttt{x*6}`,
+        tip: r`\text{On multiplie par 6 : }\texttt{x = x * 6}.` },
+
+      // algo_wh_19 — compléter x=... pour ajouter 3 jusqu'à 1500 — moyenne
+      { q: r`\text{Combien de fois ajouter 3 à }x\text{ pour dépasser 1500 ?}\\\text{Par quoi remplacer les \texttt{...} ?}\\\\\texttt{def boucle(x):}\\\quad\texttt{compt = 0}\\\quad\texttt{while x < 1500:}\\\qquad\texttt{x = ...}\\\qquad\texttt{compt = compt+1}\\\quad\texttt{return compt}`,
+        choices: [r`\texttt{x+3}`, r`\texttt{x*3}`, r`\texttt{x-3}`, r`\texttt{x/3}`],
+        a: r`\texttt{x+3}`,
+        tip: r`\text{On additionne 3 : }\texttt{x = x + 3}.` },
+
+      // algo_wh_20 — compléter range pour soustraire 7 à 4 reprises (for) — dure
+      { q: r`\text{La fonction soustrait 7 à }a\text{ à 4 reprises.\\\text{Par quoi remplacer les \texttt{...} ?}}\\\\\texttt{def boucle(a):}\\\quad\texttt{for num in range(...):}\\\qquad\texttt{a = a - 7}\\\quad\texttt{return a}`,
+        choices: [r`\texttt{4}`, r`\texttt{3}`, r`\texttt{5}`, r`\texttt{14}`],
+        a: r`\texttt{4}`,
+        tip: r`4\text{ reprises }\Rightarrow\texttt{range(4)}.` },
     ],
 
   },
