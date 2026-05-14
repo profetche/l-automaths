@@ -87,7 +87,7 @@ function parseAlgoTex(tex) {
     var isCode = l.indexOf('\\texttt{') >= 0;
     l = l.replace(/\\texttt\{([^}]*)\}/g, '$1');
     l = l.replace(/\\%/g, '%');
-    l = l.replace(/\\/\\/g, '//');
+    l = l.split('\\/\\/').join('//');
     l = l.replace(/\\neq/g, '!=');
     l = l.replace(/\\leq/g, '<=');
     l = l.replace(/\\geq/g, '>=');
