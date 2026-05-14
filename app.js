@@ -2775,6 +2775,460 @@ const DB = {
     ],
   // ════ 3. CALCUL NUMÉRIQUE ════════════════════════════════════════════════════
   numerique: {
+
+    // ── Ensembles de nombres ─────────────────────────────────────────────────
+    ensembles_nombres: [
+
+      // ── NIVEAU 1 : entiers évidents ──────────────────────────────────────
+
+      // ens_01
+      { q: r`\text{Dans quel(s) ensemble(s) se trouve }5\text{ ?}`,
+        choices: [r`\mathbb{N}\text{ seulement}`, r`\mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R}`, r`\mathbb{Z}\text{ seulement}`, r`\mathbb{Q}\text{ seulement}`],
+        a: r`\mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R}`,
+        tip: r`5\in\mathbb{N}\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}.\\[4pt]\text{Tout entier naturel appartient à tous les ensembles.}` },
+
+      // ens_02
+      { q: r`\text{Dans quel(s) ensemble(s) se trouve }0\text{ ?}`,
+        choices: [r`\mathbb{Z}\text{ seulement (}0\text{ n'est pas dans }\mathbb{N}\text{)}`, r`\mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R}`, r`\mathbb{Q}\text{ et }\mathbb{R}\text{ seulement}`, r`\mathbb{R}\text{ seulement}`],
+        a: r`\mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R}`,
+        tip: r`0\in\mathbb{N}\text{ : zéro est bien un entier naturel.}\\0\in\mathbb{N}\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}.` },
+
+      // ens_03
+      { q: r`-7\in\,?`,
+        choices: [r`\mathbb{N}`, r`\mathbb{Z}\text{ et }\mathbb{R}\text{ seulement}`, r`\mathbb{Z},\mathbb{Q},\mathbb{R}`, r`\mathbb{Q}\text{ seulement}`],
+        a: r`\mathbb{Z},\mathbb{Q},\mathbb{R}`,
+        tip: r`-7\notin\mathbb{N}\text{ (}\mathbb{N}\text{ ne contient pas les négatifs).}\\-7\in\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}.` },
+
+      // ens_04
+      { q: r`100\in\,?`,
+        choices: [r`\mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R}`, r`\mathbb{Z}\text{ seulement}`, r`\mathbb{Q}\text{ et }\mathbb{R}`, r`\mathbb{R}\text{ seulement}`],
+        a: r`\mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R}`,
+        tip: r`100\text{ est un entier naturel : }100\in\mathbb{N}\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}.` },
+
+      // ens_05
+      { q: r`-1\in\mathbb{N}\text{ ?}`,
+        choices: [r`\text{Oui}`, r`\text{Non}`, r`\text{Oui, car }-1\in\mathbb{Z}`, r`\text{Oui, si on considère les négatifs}`],
+        a: r`\text{Non}`,
+        tip: r`\mathbb{N}=\{0,1,2,3,\ldots\}\text{ : les entiers naturels sont positifs ou nuls.}` },
+
+      // ── NIVEAU 2 : décimaux et fractions simples ──────────────────────────
+
+      // ens_06
+      { q: r`0{,}5\in\,?`,
+        choices: [r`\mathbb{N}`, r`\mathbb{Z}`, r`\mathbb{D},\mathbb{Q},\mathbb{R}`, r`\mathbb{Q}\text{ seulement}`],
+        a: r`\mathbb{D},\mathbb{Q},\mathbb{R}`,
+        tip: r`0{,}5=\dfrac{5}{10}=\dfrac{1}{2}\text{ : décimal fini, donc }\in\mathbb{D}.\\[4pt]\mathbb{D}\subset\mathbb{Q}\subset\mathbb{R}.` },
+
+      // ens_07
+      { q: r`\dfrac{1}{3}\in\,?`,
+        choices: [r`\mathbb{D}`, r`\mathbb{Z}`, r`\mathbb{Q}\text{ et }\mathbb{R}`, r`\mathbb{N}`],
+        a: r`\mathbb{Q}\text{ et }\mathbb{R}`,
+        tip: r`\dfrac{1}{3}=0{,}333\ldots\text{ : développement illimité non décimal.}\\\frac{1}{3}\in\mathbb{Q}\setminus\mathbb{D}.` },
+
+      // ens_08
+      { q: r`3{,}14\in\,?`,
+        choices: [r`\mathbb{N}`, r`\mathbb{D},\mathbb{Q},\mathbb{R}`, r`\mathbb{Q}\text{ seulement}`, r`\mathbb{R}\text{ seulement}`],
+        a: r`\mathbb{D},\mathbb{Q},\mathbb{R}`,
+        tip: r`3{,}14\text{ est un décimal fini (2 chiffres après la virgule).}\\\in\mathbb{D}\subset\mathbb{Q}\subset\mathbb{R}.` },
+
+      // ens_09
+      { q: r`\dfrac{2}{7}\in\,?`,
+        choices: [r`\mathbb{D}`, r`\mathbb{N}`, r`\mathbb{Q}\text{ et }\mathbb{R}`, r`\mathbb{Z}`],
+        a: r`\mathbb{Q}\text{ et }\mathbb{R}`,
+        tip: r`\dfrac{2}{7}=0{,}285714\ldots\text{ : développement infini non périodique borné.}\\\in\mathbb{Q}\setminus\mathbb{D}.` },
+
+      // ens_10
+      { q: r`-0{,}25\in\,?`,
+        choices: [r`\mathbb{N}`, r`\mathbb{Z}`, r`\mathbb{D},\mathbb{Q},\mathbb{R}`, r`\mathbb{Q}\text{ seulement}`],
+        a: r`\mathbb{D},\mathbb{Q},\mathbb{R}`,
+        tip: r`-0{,}25=-\dfrac{1}{4}\text{ : décimal fini, négatif.}\\\in\mathbb{D}\subset\mathbb{Q}\subset\mathbb{R},\text{ mais }\notin\mathbb{N},\notin\mathbb{Z}.` },
+
+      // ens_11
+      { q: r`\dfrac{3}{4}\in\mathbb{D}\text{ ?}`,
+        choices: [r`\text{Non, c'est irrationnel}`, r`\text{Oui}`, r`\text{Non, }3/4\notin\mathbb{Q}`, r`\text{Non, }3/4\in\mathbb{Z}`],
+        a: r`\text{Oui}`,
+        tip: r`\dfrac{3}{4}=0{,}75\text{ : décimal fini, donc }\in\mathbb{D}.` },
+
+      // ens_12
+      { q: r`\dfrac{1}{6}\in\mathbb{D}\text{ ?}`,
+        choices: [r`\text{Oui, }1/6=0{,}16\overline{6}`, r`\text{Non}`, r`\text{Oui, }1/6=0{,}166`, r`\text{Oui, tout rationnel est décimal}`],
+        a: r`\text{Non}`,
+        tip: r`\dfrac{1}{6}=0{,}1666\ldots\text{ : développement infini périodique.}\\\in\mathbb{Q}\setminus\mathbb{D}.` },
+
+      // ── NIVEAU 3 : fractions à simplifier ────────────────────────────────
+
+      // ens_13
+      { q: r`\dfrac{6}{3}\in\,?`,
+        choices: [r`\mathbb{Q}\text{ seulement}`, r`\mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R}`, r`\mathbb{D}\text{ seulement}`, r`\mathbb{Z}\text{ et }\mathbb{Q}`],
+        a: r`\mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R}`,
+        tip: r`\dfrac{6}{3}=2\in\mathbb{N}.\\\text{Toujours simplifier avant de conclure !}` },
+
+      // ens_14
+      { q: r`\dfrac{10}{4}\in\mathbb{Z}\text{ ?}`,
+        choices: [r`\text{Oui}`, r`\text{Non}`, r`\text{Oui, car }10\text{ et }4\text{ sont entiers}`, r`\text{Oui, car }10/4=2{,}5\in\mathbb{Z}`],
+        a: r`\text{Non}`,
+        tip: r`\dfrac{10}{4}=\dfrac{5}{2}=2{,}5\notin\mathbb{Z}.\\[4pt]\text{Mais }2{,}5\in\mathbb{D}\subset\mathbb{Q}\subset\mathbb{R}.` },
+
+      // ens_15
+      { q: r`\dfrac{8}{2}\in\,?`,
+        choices: [r`\mathbb{Q}\text{ seulement}`, r`\mathbb{D}\text{ seulement}`, r`\mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R}`, r`\mathbb{Z}\text{ seulement}`],
+        a: r`\mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R}`,
+        tip: r`\dfrac{8}{2}=4\in\mathbb{N}\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}.` },
+
+      // ens_16
+      { q: r`\dfrac{-12}{4}\in\mathbb{N}\text{ ?}`,
+        choices: [r`\text{Oui, car }12\in\mathbb{N}`, r`\text{Non}`, r`\text{Oui, }|-3|=3\in\mathbb{N}`, r`\text{Oui, si on prend la valeur absolue}`],
+        a: r`\text{Non}`,
+        tip: r`\dfrac{-12}{4}=-3\in\mathbb{Z}\setminus\mathbb{N}.\\[4pt]\mathbb{N}\text{ ne contient que les entiers positifs ou nuls.}` },
+
+      // ens_17
+      { q: r`\dfrac{15}{10}\in\,?`,
+        choices: [r`\mathbb{Z}`, r`\mathbb{N}`, r`\mathbb{D},\mathbb{Q},\mathbb{R}`, r`\mathbb{Q}\text{ seulement}`],
+        a: r`\mathbb{D},\mathbb{Q},\mathbb{R}`,
+        tip: r`\dfrac{15}{10}=1{,}5\text{ : décimal fini.}\\\in\mathbb{D}\subset\mathbb{Q}\subset\mathbb{R}.\\[4pt]\text{Attention : }1{,}5\notin\mathbb{Z}.` },
+
+      // ens_18
+      { q: r`\dfrac{9}{3}\in\mathbb{N}\text{ ?}`,
+        choices: [r`\text{Non, c'est une fraction}`, r`\text{Oui}`, r`\text{Non, }9/3\in\mathbb{Q}\text{ seulement}`, r`\text{Non, }9/3\notin\mathbb{Z}`],
+        a: r`\text{Oui}`,
+        tip: r`\dfrac{9}{3}=3\in\mathbb{N}.\\\text{Une fraction peut être un entier naturel si le quotient est entier et positif.}` },
+
+      // ── NIVEAU 4 : racines carrées ────────────────────────────────────────
+
+      // ens_19
+      { q: r`\sqrt{9}\in\,?`,
+        choices: [r`\mathbb{R}\text{ seulement (irrationnel)}`, r`\mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R}`, r`\mathbb{D}\text{ seulement}`, r`\mathbb{Q}\text{ seulement}`],
+        a: r`\mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R}`,
+        tip: r`\sqrt{9}=3\in\mathbb{N}.\\\text{Toujours calculer la racine avant de conclure !}` },
+
+      // ens_20
+      { q: r`\sqrt{2}\in\,?`,
+        choices: [r`\mathbb{Q}`, r`\mathbb{D}`, r`\mathbb{R}\setminus\mathbb{Q}\text{ (irrationnel)}`, r`\mathbb{Z}`],
+        a: r`\mathbb{R}\setminus\mathbb{Q}\text{ (irrationnel)}`,
+        tip: r`\sqrt{2}=1{,}41421\ldots\text{ : irrationnel (démontré).}\\\in\mathbb{R}\text{ mais }\notin\mathbb{Q}.` },
+
+      // ens_21
+      { q: r`\sqrt{4}\in\mathbb{N}\text{ ?}`,
+        choices: [r`\text{Non, une racine n'est pas entière}`, r`\text{Oui}`, r`\text{Non, }\sqrt{4}\in\mathbb{Q}\text{ seulement}`, r`\text{On ne peut pas savoir}`],
+        a: r`\text{Oui}`,
+        tip: r`\sqrt{4}=2\in\mathbb{N}.` },
+
+      // ens_22
+      { q: r`\sqrt{3}\in\mathbb{Q}\text{ ?}`,
+        choices: [r`\text{Oui, }\sqrt{3}=\frac{3}{2}`, r`\text{Non, }\sqrt{3}\text{ est irrationnel}`, r`\text{Oui, }\sqrt{3}\in\mathbb{D}`, r`\text{On ne sait pas}`],
+        a: r`\text{Non, }\sqrt{3}\text{ est irrationnel}`,
+        tip: r`\sqrt{3}=1{,}7320\ldots\text{ : développement infini non périodique.}\\\sqrt{3}\in\mathbb{R}\setminus\mathbb{Q}.` },
+
+      // ens_23
+      { q: r`\sqrt{25}\in\,?`,
+        choices: [r`\mathbb{R}\text{ seulement}`, r`\mathbb{Q}\text{ et }\mathbb{R}`, r`\mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R}`, r`\mathbb{D}\text{ seulement}`],
+        a: r`\mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R}`,
+        tip: r`\sqrt{25}=5\in\mathbb{N}.` },
+
+      // ens_24
+      { q: r`\sqrt{5}\in\,?`,
+        choices: [r`\mathbb{Q}`, r`\mathbb{D}`, r`\mathbb{N}`, r`\mathbb{R}\setminus\mathbb{Q}`],
+        a: r`\mathbb{R}\setminus\mathbb{Q}`,
+        tip: r`\sqrt{5}=2{,}2360\ldots\text{ : irrationnel.}\\\in\mathbb{R}\text{ seulement.}` },
+
+      // ens_25
+      { q: r`\sqrt{16}\in\mathbb{Z}\text{ ?}`,
+        choices: [r`\text{Non, }\sqrt{16}\in\mathbb{Q}`, r`\text{Oui}`, r`\text{Non, irrationnel}`, r`\text{Non, }\sqrt{16}\notin\mathbb{Z}`],
+        a: r`\text{Oui}`,
+        tip: r`\sqrt{16}=4\in\mathbb{Z}\text{ (et même dans }\mathbb{N}\text{).}` },
+
+      // ── PIÈGES ────────────────────────────────────────────────────────────
+
+      // ens_26 — piège √100
+      { q: r`\sqrt{100}\in\,?`,
+        choices: [r`\mathbb{R}\text{ seulement (irrationnel)}`, r`\mathbb{Q}\text{ seulement}`, r`\mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R}`, r`\mathbb{D}\text{ seulement}`],
+        a: r`\mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R}`,
+        tip: r`\sqrt{100}=10\in\mathbb{N}.\\\text{Piège classique : }\sqrt{100}\text{ n'est pas irrationnel !}` },
+
+      // ens_27 — piège 15/10
+      { q: r`\dfrac{15}{10}\in\mathbb{Z}\text{ ?}`,
+        choices: [r`\text{Oui, }15\text{ et }10\text{ sont entiers}`, r`\text{Non}`, r`\text{Oui, }15/10=1\text{ reste }5`, r`\text{Oui, car }15>10`],
+        a: r`\text{Non}`,
+        tip: r`\dfrac{15}{10}=1{,}5\notin\mathbb{Z}.\\\text{Simplifier : }\frac{15}{10}=\frac{3}{2}=1{,}5\in\mathbb{D}\setminus\mathbb{Z}.` },
+
+      // ens_28 — piège √(4/9)
+      { q: r`\sqrt{\dfrac{4}{9}}\in\,?`,
+        choices: [r`\mathbb{R}\text{ seulement}`, r`\mathbb{N}`, r`\mathbb{D},\mathbb{Q},\mathbb{R}`, r`\mathbb{Z}`],
+        a: r`\mathbb{D},\mathbb{Q},\mathbb{R}`,
+        tip: r`\sqrt{\dfrac{4}{9}}=\dfrac{\sqrt{4}}{\sqrt{9}}=\dfrac{2}{3}=0{,}\overline{6}\notin\mathbb{D}.\\[4pt]\text{Attention : }\dfrac{2}{3}\in\mathbb{Q}\setminus\mathbb{D}.` },
+
+      // ens_29 — piège 0,333...
+      { q: r`0{,}333\ldots=\dfrac{1}{3}.\quad\dfrac{1}{3}\in\mathbb{D}\text{ ?}`,
+        choices: [r`\text{Oui, }0{,}333\text{ est décimal}`, r`\text{Non}`, r`\text{Oui, avec suffisamment de décimales}`, r`\text{Oui, }1/3=0{,}3`],
+        a: r`\text{Non}`,
+        tip: r`\mathbb{D}\text{ contient uniquement les décimaux \textbf{finis}.}\\0{,}333\ldots\text{ est infini : }\frac{1}{3}\in\mathbb{Q}\setminus\mathbb{D}.` },
+
+      // ens_30 — piège -0
+      { q: r`-0\in\mathbb{N}\text{ ?}`,
+        choices: [r`\text{Non, }-0\text{ est négatif}`, r`\text{Oui, car }-0=0`, r`\text{Non, }-0\in\mathbb{Z}\setminus\mathbb{N}`, r`\text{Non, }-0\notin\mathbb{R}`],
+        a: r`\text{Oui, car }-0=0`,
+        tip: r`-0=0\in\mathbb{N}.\\\text{En mathématiques, }-0=0\text{ : ce n'est pas un nombre négatif.}` },
+
+      // ens_31 — π
+      { q: r`\pi\in\,?`,
+        choices: [r`\mathbb{Q}`, r`\mathbb{D}`, r`\mathbb{Z}`, r`\mathbb{R}\setminus\mathbb{Q}\text{ (irrationnel)}`],
+        a: r`\mathbb{R}\setminus\mathbb{Q}\text{ (irrationnel)}`,
+        tip: r`\pi=3{,}14159\ldots\text{ : irrationnel (et même transcendant).}\\\pi\in\mathbb{R}\text{ mais }\pi\notin\mathbb{Q}.` },
+
+      // ens_32 — √(36/4)
+      { q: r`\sqrt{\dfrac{36}{4}}\in\,?`,
+        choices: [r`\mathbb{R}\setminus\mathbb{Q}`, r`\mathbb{D}\text{ seulement}`, r`\mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R}`, r`\mathbb{Q}\setminus\mathbb{Z}`],
+        a: r`\mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R}`,
+        tip: r`\sqrt{\dfrac{36}{4}}=\sqrt{9}=3\in\mathbb{N}.` },
+
+      // ens_33 — 0,1 + 0,2 (piège calcul)
+      { q: r`0{,}1+0{,}2\in\mathbb{D}\text{ ?}`,
+        choices: [r`\text{Non, }0{,}1+0{,}2=0{,}333\ldots`, r`\text{Oui}`, r`\text{Non, c'est irrationnel}`, r`\text{On ne peut pas savoir}`],
+        a: r`\text{Oui}`,
+        tip: r`0{,}1+0{,}2=0{,}3\in\mathbb{D}.\\\text{(Le « bug » }0{,}1+0{,}2\neq0{,}3\text{ n'existe qu'en informatique, pas en maths !)}` },
+
+      // ens_34 — 22/7 et π
+      { q: r`\dfrac{22}{7}\in\mathbb{Q}\text{ ?}`,
+        choices: [r`\text{Non, }22/7=\pi`, r`\text{Oui}`, r`\text{Non, c'est irrationnel}`, r`\text{On ne sait pas}`],
+        a: r`\text{Oui}`,
+        tip: r`\dfrac{22}{7}\in\mathbb{Q}\text{ : c'est bien un rationnel.}\\[4pt]\text{Piège : }22/7\approx3{,}1428\ldots\neq\pi.\text{ Ce n'est qu'une approximation de }\pi.` },
+
+      // ens_35 — √0
+      { q: r`\sqrt{0}\in\,?`,
+        choices: [r`\mathbb{R}\setminus\mathbb{Q}`, r`\mathbb{Q}\text{ seulement}`, r`\mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R}`, r`\text{Pas défini}`],
+        a: r`\mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R}`,
+        tip: r`\sqrt{0}=0\in\mathbb{N}.` },
+
+      // ens_36 — −√4
+      { q: r`-\sqrt{4}\in\,?`,
+        choices: [r`\mathbb{N}`, r`\mathbb{Z},\mathbb{Q},\mathbb{R}`, r`\mathbb{R}\setminus\mathbb{Q}`, r`\mathbb{D}\text{ seulement}`],
+        a: r`\mathbb{Z},\mathbb{Q},\mathbb{R}`,
+        tip: r`-\sqrt{4}=-2\in\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}.\\[4pt]-2\notin\mathbb{N}\text{ (négatif).}` },
+
+      // ens_37 — inclusion N ⊂ Z
+      { q: r`\text{Laquelle de ces inclusions est vraie ?}`,
+        choices: [r`\mathbb{Z}\subset\mathbb{N}`, r`\mathbb{Q}\subset\mathbb{D}`, r`\mathbb{N}\subset\mathbb{Z}`, r`\mathbb{R}\subset\mathbb{Q}`],
+        a: r`\mathbb{N}\subset\mathbb{Z}`,
+        tip: r`\mathbb{N}\subset\mathbb{Z}\subset\mathbb{D}\subset\mathbb{Q}\subset\mathbb{R}.\\\text{Chaque ensemble est inclus dans le suivant.}` },
+
+      // ens_38 — inclusion D ⊂ Q
+      { q: r`\text{Tout nombre décimal est-il rationnel ?}`,
+        choices: [r`\text{Non}`, r`\text{Oui}`, r`\text{Seulement s'il est positif}`, r`\text{Seulement s'il est fini}`],
+        a: r`\text{Oui}`,
+        tip: r`\mathbb{D}\subset\mathbb{Q}\text{ : tout décimal s'écrit }\dfrac{p}{10^n}\in\mathbb{Q}.` },
+
+      // ens_39 — rationnel mais pas décimal
+      { q: r`\text{Donne un exemple de rationnel qui n'est \textbf{pas} décimal.}`,
+        choices: [r`\sqrt{2}`, r`\pi`, r`\dfrac{1}{3}`, r`0{,}25`],
+        a: r`\dfrac{1}{3}`,
+        tip: r`\dfrac{1}{3}=0{,}333\ldots\in\mathbb{Q}\setminus\mathbb{D}.\\[4pt]\sqrt{2}\text{ et }\pi\text{ sont irrationnels.}\quad0{,}25\in\mathbb{D}.` },
+
+      // ens_40 — irrationnel
+      { q: r`\text{Lequel de ces nombres est \textbf{irrationnel} ?}`,
+        choices: [r`\dfrac{7}{3}`, r`\sqrt{49}`, r`\sqrt{7}`, r`-5`],
+        a: r`\sqrt{7}`,
+        tip: r`\sqrt{7}=2{,}6457\ldots\in\mathbb{R}\setminus\mathbb{Q}.\\[4pt]\sqrt{49}=7\in\mathbb{N}.\quad\frac{7}{3}\in\mathbb{Q}.\quad-5\in\mathbb{Z}.` },
+
+      // ens_41 — 4/2
+      { q: r`\dfrac{4}{2}\in\mathbb{D}\text{ mais pas dans }\mathbb{N}\text{ ?}`,
+        choices: [r`\text{Vrai}`, r`\text{Faux}`, r`\text{Vrai, }4/2=2{,}0\in\mathbb{D}\setminus\mathbb{N}`, r`\text{On ne peut pas savoir}`],
+        a: r`\text{Faux}`,
+        tip: r`\dfrac{4}{2}=2\in\mathbb{N}.\\\text{Toujours simplifier : }4/2=2\text{, entier naturel.}` },
+
+      // ens_42 — √1
+      { q: r`\sqrt{1}\in\,?`,
+        choices: [r`\mathbb{R}\setminus\mathbb{Q}`, r`\mathbb{Q}\text{ seulement}`, r`\mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R}`, r`\mathbb{D}\text{ seulement}`],
+        a: r`\mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R}`,
+        tip: r`\sqrt{1}=1\in\mathbb{N}.` },
+
+      // ens_43 — −3/6
+      { q: r`\dfrac{-3}{6}\in\,?`,
+        choices: [r`\mathbb{Z}`, r`\mathbb{N}`, r`\mathbb{D},\mathbb{Q},\mathbb{R}`, r`\mathbb{R}\setminus\mathbb{Q}`],
+        a: r`\mathbb{D},\mathbb{Q},\mathbb{R}`,
+        tip: r`\dfrac{-3}{6}=-\dfrac{1}{2}=-0{,}5\in\mathbb{D}\subset\mathbb{Q}\subset\mathbb{R}.` },
+
+      // ens_44 — √(0,16)
+      { q: r`\sqrt{0{,}16}\in\,?`,
+        choices: [r`\mathbb{R}\setminus\mathbb{Q}`, r`\mathbb{Z}`, r`\mathbb{D},\mathbb{Q},\mathbb{R}`, r`\mathbb{N}`],
+        a: r`\mathbb{D},\mathbb{Q},\mathbb{R}`,
+        tip: r`\sqrt{0{,}16}=\sqrt{\dfrac{16}{100}}=\dfrac{4}{10}=0{,}4\in\mathbb{D}.` },
+
+      // ens_45 — 12/4
+      { q: r`\dfrac{12}{4}\in\mathbb{N}\text{ ?}`,
+        choices: [r`\text{Non, }12/4\in\mathbb{Q}\setminus\mathbb{N}`, r`\text{Oui}`, r`\text{Non, }12/4\in\mathbb{D}\setminus\mathbb{Z}`, r`\text{Non, car }12>4`],
+        a: r`\text{Oui}`,
+        tip: r`\dfrac{12}{4}=3\in\mathbb{N}.` },
+
+      // ens_46 — 2,5² (piège : carré d'un décimal)
+      { q: r`(2{,}5)^2\in\,?`,
+        choices: [r`\mathbb{Z}`, r`\mathbb{N}`, r`\mathbb{D},\mathbb{Q},\mathbb{R}`, r`\mathbb{R}\setminus\mathbb{Q}`],
+        a: r`\mathbb{D},\mathbb{Q},\mathbb{R}`,
+        tip: r`(2{,}5)^2=6{,}25\in\mathbb{D}\subset\mathbb{Q}\subset\mathbb{R}.\\[4pt]6{,}25\notin\mathbb{Z}.` },
+
+      // ens_47 — √(1/4)
+      { q: r`\sqrt{\dfrac{1}{4}}\in\,?`,
+        choices: [r`\mathbb{R}\setminus\mathbb{Q}`, r`\mathbb{Z}`, r`\mathbb{D},\mathbb{Q},\mathbb{R}`, r`\mathbb{N}`],
+        a: r`\mathbb{D},\mathbb{Q},\mathbb{R}`,
+        tip: r`\sqrt{\dfrac{1}{4}}=\dfrac{1}{2}=0{,}5\in\mathbb{D}.` },
+
+      // ens_48 — complétude de R
+      { q: r`\text{Lequel de ces nombres n'appartient \textbf{pas} à }\mathbb{R}\text{ ?}`,
+        choices: [r`\pi`, r`\sqrt{2}`, r`\sqrt{-1}`, r`-1000`],
+        a: r`\sqrt{-1}`,
+        tip: r`\sqrt{-1}\notin\mathbb{R}\text{ : la racine carrée d'un négatif n'est pas réelle.}\\(\sqrt{-1}=i\text{, nombre complexe — hors programme de seconde.)}` },
+
+      // ens_49 — 0,9999... = 1
+      { q: r`0{,}999\ldots\in\mathbb{N}\text{ ?}`,
+        choices: [r`\text{Non, }0{,}999\ldots<1`, r`\text{Oui, car }0{,}999\ldots=1`, r`\text{Non, }0{,}999\ldots\in\mathbb{D}`, r`\text{Non, irrationnel}`],
+        a: r`\text{Oui, car }0{,}999\ldots=1`,
+        tip: r`0{,}999\ldots=1\in\mathbb{N}.\\\text{Démonstration : }x=0{,}999\ldots\Rightarrow10x=9{,}999\ldots\Rightarrow9x=9\Rightarrow x=1.` },
+
+      // ens_50 — synthèse finale
+      { q: r`\text{Parmi ces affirmations, laquelle est \textbf{fausse} ?}`,
+        choices: [
+          r`\sqrt{4}\in\mathbb{N}`,
+          r`\dfrac{1}{3}\in\mathbb{Q}`,
+          r`\sqrt{2}\in\mathbb{Q}`,
+          r`0{,}5\in\mathbb{D}`
+        ],
+        a: r`\sqrt{2}\in\mathbb{Q}`,
+        tip: r`\sqrt{2}=1{,}4142\ldots\text{ est irrationnel : }\sqrt{2}\notin\mathbb{Q}.\\[4pt]\sqrt{4}=2\in\mathbb{N}.\quad\frac{1}{3}\in\mathbb{Q}.\quad0{,}5\in\mathbb{D}.\text{ Ces trois affirmations sont vraies.}` },
+
+    ],
+
+    // ── Intervalles ──────────────────────────────────────────────────────────
+    intervalles: [
+
+      // ── NIVEAU 1 : inégalité → intervalle ────────────────────────────────
+
+      // int_01
+      { q: r`x\geq3\\[4pt]\text{Écriture en intervalle ?}`,
+        choices: [r`\left]3\,;+\infty\right[`, r`\left[3\,;+\infty\right[`, r`\left]-\infty\,;3\right]`, r`\left[3\,;+\infty\right]`],
+        a: r`\left[3\,;+\infty\right[`,
+        tip: r`x\geq3\Leftrightarrow x\in[3\,;+\infty[.\\[4pt]\text{Crochet fermé en }3\text{ (inclus), toujours ouvert vers }+\infty.` },
+
+      // int_02
+      { q: r`x<-2\\[4pt]\text{Écriture en intervalle ?}`,
+        choices: [r`\left]-\infty\,;-2\right]`, r`\left]-\infty\,;-2\right[`, r`\left[-2\,;+\infty\right[`, r`\left]-2\,;+\infty\right[`],
+        a: r`\left]-\infty\,;-2\right[`,
+        tip: r`x<-2\Leftrightarrow x\in\left]-\infty\,;-2\right[.\\[4pt]\text{Crochet ouvert en }-2\text{ (non inclus).}` },
+
+      // int_03
+      { q: r`-1\leq x<4\\[4pt]\text{Écriture en intervalle ?}`,
+        choices: [r`\left[-1\,;4\right]`, r`\left]-1\,;4\right[`, r`\left[-1\,;4\right[`, r`\left]-1\,;4\right]`],
+        a: r`\left[-1\,;4\right[`,
+        tip: r`-1\leq x<4\Leftrightarrow x\in[-1\,;4[.\\[4pt]-1\text{ inclus (}\leq\text{) : crochet fermé.}\quad4\text{ exclu (}<\text{) : crochet ouvert.}` },
+
+      // int_04
+      { q: r`-3<x\leq5\\[4pt]\text{Écriture en intervalle ?}`,
+        choices: [r`\left[-3\,;5\right]`, r`\left]-3\,;5\right[`, r`\left[-3\,;5\right[`, r`\left]-3\,;5\right]`],
+        a: r`\left]-3\,;5\right]`,
+        tip: r`-3<x\leq5\Leftrightarrow x\in\left]-3\,;5\right].\\[4pt]-3\text{ exclu : ouvert.}\quad5\text{ inclus : fermé.}` },
+
+      // int_05
+      { q: r`x\leq0\\[4pt]\text{Écriture en intervalle ?}`,
+        choices: [r`\left]0\,;+\infty\right[`, r`\left[0\,;+\infty\right[`, r`\left]-\infty\,;0\right[`, r`\left]-\infty\,;0\right]`],
+        a: r`\left]-\infty\,;0\right]`,
+        tip: r`x\leq0\Leftrightarrow x\in\left]-\infty\,;0\right].\\\text{Crochet fermé en }0\text{ (inclus).}` },
+
+      // ── NIVEAU 2 : intervalle → inégalité ────────────────────────────────
+
+      // int_06
+      { q: r`x\in\left[2\,;7\right]\\[4pt]\text{Écriture en inégalité ?}`,
+        choices: [r`2<x<7`, r`2\leq x<7`, r`2<x\leq7`, r`2\leq x\leq7`],
+        a: r`2\leq x\leq7`,
+        tip: r`\text{Crochets fermés des deux côtés : }\leq\text{ des deux côtés.}\\2\leq x\leq7.` },
+
+      // int_07
+      { q: r`x\in\left]-1\,;6\right[\\[4pt]\text{Écriture en inégalité ?}`,
+        choices: [r`-1\leq x\leq6`, r`-1<x<6`, r`-1\leq x<6`, r`-1<x\leq6`],
+        a: r`-1<x<6`,
+        tip: r`\text{Crochets ouverts des deux côtés : }<\text{ des deux côtés.}\\-1<x<6.` },
+
+      // int_08
+      { q: r`x\in\left[0\,;3\right[\\[4pt]\text{Écriture en inégalité ?}`,
+        choices: [r`0<x<3`, r`0\leq x\leq3`, r`0\leq x<3`, r`0<x\leq3`],
+        a: r`0\leq x<3`,
+        tip: r`\text{Gauche fermé, droite ouvert : }\leq\text{ à gauche, }<\text{ à droite.}\\0\leq x<3.` },
+
+      // int_09
+      { q: r`x\in\left]-\infty\,;5\right[\\[4pt]\text{Écriture en inégalité ?}`,
+        choices: [r`x\geq5`, r`x\leq5`, r`x<5`, r`x>5`],
+        a: r`x<5`,
+        tip: r`\left]-\infty\,;5\right[\Leftrightarrow x<5.\\[4pt]\text{Crochet ouvert en }5\text{ : }5\text{ non inclus, donc }<.` },
+
+      // int_10
+      { q: r`x\in\left[-4\,;+\infty\right[\\[4pt]\text{Écriture en inégalité ?}`,
+        choices: [r`x<-4`, r`x\leq-4`, r`x\geq-4`, r`x>-4`],
+        a: r`x\geq-4`,
+        tip: r`\left[-4\,;+\infty\right[\Leftrightarrow x\geq-4.\\[4pt]\text{Crochet fermé en }-4\text{ : }-4\text{ inclus, donc }\geq.` },
+
+      // ── NIVEAU 3 : intersections ──────────────────────────────────────────
+
+      // int_11
+      { q: r`\left[1\,;5\right]\cap\left[3\,;8\right]=\,?`,
+        choices: [r`\left[1\,;8\right]`, r`\left[3\,;5\right]`, r`\left[1\,;5\right]`, r`\emptyset`],
+        a: r`\left[3\,;5\right]`,
+        tip: r`\text{L'intersection contient les }x\text{ dans les deux intervalles.}\\x\geq3\text{ ET }x\leq5\Rightarrow[3\,;5].` },
+
+      // int_12 — intersection vide
+      { q: r`\left[1\,;3\right]\cap\left[5\,;8\right]=\,?`,
+        choices: [r`\left[1\,;8\right]`, r`\left[3\,;5\right]`, r`\left[1\,;3\right]`, r`\emptyset`],
+        a: r`\emptyset`,
+        tip: r`\text{Ces intervalles ne se chevauchent pas.}\\x\leq3\text{ ET }x\geq5\text{ : impossible. Intersection vide.}` },
+
+      // int_13 — intersection = {a}
+      { q: r`\left[1\,;4\right]\cap\left[4\,;7\right]=\,?`,
+        choices: [r`\left[1\,;7\right]`, r`\emptyset`, r`\left[4\,;4\right]=\{4\}`, r`\left[1\,;4\right]`],
+        a: r`\left[4\,;4\right]=\{4\}`,
+        tip: r`\text{Les deux intervalles se touchent en }4\text{, qui est inclus dans les deux.}\\\left[1\,;4\right]\cap\left[4\,;7\right]=\{4\}.` },
+
+      // int_14 — intersection avec ouvert
+      { q: r`\left[1\,;4\right[\cap\left[4\,;7\right]=\,?`,
+        choices: [r`\{4\}`, r`\emptyset`, r`\left[1\,;7\right]`, r`\left[1\,;4\right]`],
+        a: r`\emptyset`,
+        tip: r`4\notin\left[1\,;4\right[\text{ (crochet ouvert).}\quad4\in\left[4\,;7\right].\\[4pt]\text{Aucun }x\text{ commun : intersection vide.}` },
+
+      // int_15
+      { q: r`\left]-2\,;6\right]\cap\left[0\,;+\infty\right[=\,?`,
+        choices: [r`\left]-2\,;+\infty\right[`, r`\left[0\,;6\right]`, r`\left]-2\,;6\right]`, r`\emptyset`],
+        a: r`\left[0\,;6\right]`,
+        tip: r`x>-2\text{ ET }x\leq6\text{ ET }x\geq0\Rightarrow0\leq x\leq6\Rightarrow[0\,;6].` },
+
+      // ── NIVEAU 4 : réunions ───────────────────────────────────────────────
+
+      // int_16
+      { q: r`\left[1\,;3\right]\cup\left[2\,;5\right]=\,?`,
+        choices: [r`\left[2\,;3\right]`, r`\left[1\,;5\right]`, r`\left[1\,;3\right]`, r`\emptyset`],
+        a: r`\left[1\,;5\right]`,
+        tip: r`\text{La réunion contient les }x\text{ dans au moins un des deux intervalles.}\\x\in[1\,;3]\text{ OU }x\in[2\,;5]\Rightarrow[1\,;5].` },
+
+      // int_17 — réunion disjointe
+      { q: r`\left[0\,;2\right]\cup\left[5\,;7\right]=\,?`,
+        choices: [r`\left[0\,;7\right]`, r`\emptyset`, r`\left[0\,;2\right]\cup\left[5\,;7\right]\text{ (ne se simplifie pas)}`, r`\left[2\,;5\right]`],
+        a: r`\left[0\,;2\right]\cup\left[5\,;7\right]\text{ (ne se simplifie pas)}`,
+        tip: r`\text{Les deux intervalles sont disjoints : on ne peut pas simplifier.}\\[4pt]\text{La réunion n'est pas un intervalle, on la laisse telle quelle.}` },
+
+      // int_18 — réunion = R
+      { q: r`\left]-\infty\,;3\right]\cup\left[3\,;+\infty\right[=\,?`,
+        choices: [r`\{3\}`, r`\emptyset`, r`\mathbb{R}`, r`\left]-\infty\,;+\infty\right[`],
+        a: r`\mathbb{R}`,
+        tip: r`\text{Tout réel est soit }\leq3\text{ soit }\geq3.\\\left]-\infty\,;3\right]\cup\left[3\,;+\infty\right[=\mathbb{R}.` },
+
+      // int_19 — réunion avec ouvert
+      { q: r`\left]-\infty\,;3\right[\cup\left[3\,;+\infty\right[=\,?`,
+        choices: [r`\emptyset`, r`\left]-\infty\,;3\right[`, r`\mathbb{R}`, r`\left]-\infty\,;3\right]\cup\left[3\,;+\infty\right[`],
+        a: r`\mathbb{R}`,
+        tip: r`\text{Tout réel est soit }<3\text{ soit }\geq3.\\[4pt]\text{Même si }3\notin\left]-\infty\,;3\right[\text{, il est dans }\left[3\,;+\infty\right[.\\\text{La réunion couvre bien tout }\mathbb{R}.` },
+
+      // int_20 — piège réunion avec crochets ouverts
+      { q: r`\left]-\infty\,;3\right[\cup\left]3\,;+\infty\right[=\,?`,
+        choices: [r`\mathbb{R}`, r`\mathbb{R}\setminus\{3\}`, r`\{3\}`, r`\emptyset`],
+        a: r`\mathbb{R}\setminus\{3\}`,
+        tip: r`3\notin\left]-\infty\,;3\right[\text{ et }3\notin\left]3\,;+\infty\right[.\\[4pt]\text{Donc }3\text{ n'est dans aucun des deux intervalles.}\\\text{La réunion est }\mathbb{R}\text{ privé de }3.` },
+
+    ],
+
     decimaux_cm: [
       { q:r`3{,}7+1{,}8=?`, choices:[`5{,}5`,`4{,}5`,`5{,}15`,`5{,}55`], a:`5{,}5`, tip:r`3{,}7+1{,}8=5{,}5` },
       { q:r`12{,}4-5{,}7=?`, choices:[`6{,}7`,`7{,}3`,`6{,}3`,`7{,}7`], a:`6{,}7`, tip:r`12{,}4-5{,}7=6{,}7` },
@@ -11854,7 +12308,12 @@ const CATS = [
       {id:"indice",               label:"Indice en base 100",         levels:["stmg"]},
     ] },
   { id:"numerique",    label:"Calcul numérique", emoji:"🔢", color:"#7C3AED", grad:"linear-gradient(135deg,#8B5CF6,#6D28D9)", light:"#F5F3FF", border:"#DDD6FE",
+    groups:[
+      {id:"ensembles", label:"🔵 Ensembles de nombres"},
+    ],
     subs:[
+      {id:"ensembles_nombres", label:"Ensembles ℕ, ℤ, 𝔻, ℚ, ℝ",        group:"ensembles", levels:["sec"]},
+      {id:"intervalles",       label:"Intervalles",                       group:"ensembles", levels:["sec"]},
       {id:"tables",       label:"Tables de multiplication",     levels:["sec","tc","stmg"]},
       {id:"relatifs",     label:"Nombres relatifs",             levels:["sec","tc","stmg","spe","term"], levelPicker:true, levelType:"relatifs"},
       {id:"decimaux_cm",  label:"Décimaux & CM",                levels:["sec","tc","stmg","spe","term"]},
