@@ -65,59 +65,122 @@ function M({ tex }) {
 
 // ── CodeBlock : rendu des questions algo Python ────────────────────────────────
 function parseAlgoTex(tex) {
-  // Au runtime (String.raw), le fichier contient :
-  //   \texttt  = 1 backslash + texttt
-  //   \\       = 2 backslashes = séparateur de ligne LaTeX
-  //   \quad    = 1 backslash + quad (indentation 1 niveau)
-  //   \qquad   = 1 backslash + qquad (indentation 2 niveaux)
-  //   \\[6pt]  = 2 backslashes + [ = marque fin-de-code / début-question
-  // En JS string normale : "\\\\" = 2 backslashes, "\\quad" = \quad
-
   var SEP      = "\\\\";      // 2 backslashes = séparateur de ligne
-  var SEP_END  = "\\\\[";    // 2 backslashes + [ = fin du code
-  var QQUAD    = "\\qquad";  // 1 backslash + qquad
-  var QUAD     = "\\quad";   // 1 backslash + quad
+  var SEP_END  = "\\\\[";    // 2 backslashes + [ = fin du code / début question avec [Npt]
+  var QQUAD    = "\\qquad";
+  var QUAD     = "\\quad";
 
+  // Chercher le marqueur de fin de code \\[Npt]
   var sepIdx = tex.indexOf(SEP_END);
-  var codePart     = sepIdx >= 0 ? tex.slice(0, sepIdx) : tex;
-  var questionRaw  = sepIdx >= 0 ? tex.slice(sepIdx).replace(/^\\\\\[\d+pt\]/, '') : null;
+  var codePart    = sepIdx >= 0 ? tex.slice(0, sepIdx) : tex;
+  var questionRaw = sepIdx >= 0 ? tex.slice(sepIdx).replace(/^\\\\\\[\d+pt\]/, '') : null;
 
   var rawLines = codePart.split(SEP);
 
-  var lines = rawLines.map(function(line) {
+  // Classer chaque ligne : "code" si contient \texttt, "text" sinon
+  var parsedLines = rawLines.map(function(line) {
     var indent = 0;
     var l = line.trim();
+    if (!l) return null;
     while (l.indexOf(QQUAD) === 0) { indent += 4; l = l.slice(QQUAD.length).trim(); }
     while (l.indexOf(QUAD)  === 0) { indent += 2; l = l.slice(QUAD.length).trim();  }
+    var isCode = l.indexOf('\\texttt{') >= 0;
     l = l.replace(/\\texttt\{([^}]*)\}/g, '$1');
     l = l.replace(/\\text\{([^}]*)\}/g,   '$1');
-    return Array(indent + 1).join(' ') + l;
-  }).filter(function(l) { return l.trim() !== ''; });
+    return { text: Array(indent + 1).join(' ') + l, isCode: isCode };
+  }).filter(Boolean);
 
-  return { codeLines: lines, questionTex: questionRaw };
+  return { parsedLines: parsedLines, questionTex: questionRaw };
 }
+
+// Coloration syntaxique légère pour les blocs de code Python
+function highlightPython(line) {
+  var keywords = ['def','return','if','elif','else','for','while','in','range','print','input','int','and','or','not','True','False','None'];
+  var parts = [];
+  var remaining = line;
+  var key = 0;
+  while (remaining.length > 0) {
+    var strMatch = remaining.match(/^("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')/);
+    if (strMatch) {
+      parts.push(React.createElement('span',{key:key++,style:{color:'#F9C74F'}},strMatch[1]));
+      remaining = remaining.slice(strMatch[1].length);
+      continue;
+    }
+    var numMatch = remaining.match(/^\d+(\.\d+)?/);
+    if (numMatch) {
+      parts.push(React.createElement('span',{key:key++,style:{color:'#90E0EF'}},numMatch[0]));
+      remaining = remaining.slice(numMatch[0].length);
+      continue;
+    }
+    var wordMatch = remaining.match(/^[a-zA-Z_]\w*/);
+    if (wordMatch) {
+      var word = wordMatch[0];
+      var color = keywords.includes(word) ? '#FF6B9D' : '#E2E8F0';
+      var fw = keywords.includes(word) ? 'bold' : 'normal';
+      parts.push(React.createElement('span',{key:key++,style:{color:color,fontWeight:fw}},word));
+      remaining = remaining.slice(word.length);
+      continue;
+    }
+    parts.push(React.createElement('span',{key:key++,style:{color:'#A8D8EA'}},remaining[0]));
+    remaining = remaining.slice(1);
+  }
+  return parts;
+}
+
 
 function QuestionRenderer({ tex }) {
   var t = tex.trim();
-  var isAlgo = /^\\texttt\{(def |for |while |if |n[ =]|s[ =]|c[ =]|p[ =]|u[ =]|m[ =]|a[ ,=]|b[ ,=])/.test(t);
+  var isAlgo = /\\texttt\{/.test(t);
   if (!isAlgo) return <M tex={tex}/>;
   var parsed = parseAlgoTex(t);
-  var codeLines = parsed.codeLines;
+  var parsedLines = parsed.parsedLines;
   var questionTex = parsed.questionTex;
+  // Numéroter seulement les lignes de code
+  var codeLineNum = 0;
   return (
     <div style={{width:'100%'}}>
-      <pre style={{
-        background:'rgba(255,255,255,0.13)', border:'1.5px solid rgba(255,255,255,0.3)',
-        borderRadius:10, padding:'10px 14px',
+      <div style={{
+        background:'#0D1117', border:'1.5px solid #30363D',
+        borderRadius:10, padding:'10px 14px 12px',
         fontFamily:"'Courier New', monospace",
-        fontSize:13, lineHeight:1.75, color:'#E9D5FF',
+        fontSize:13, lineHeight:1.9,
         textAlign:'left', margin:'0 0 8px 0',
-        whiteSpace:'pre', overflowX:'auto',
-      }}>{codeLines.join('\n')}</pre>
-      {questionTex && <div style={{textAlign:'center', marginTop:4, color:'#fff'}}><M tex={questionTex}/></div>}
+        overflowX:'auto',
+        boxShadow:'0 4px 16px rgba(0,0,0,0.5)',
+      }}>
+        <div style={{display:'flex', gap:6, marginBottom:8, opacity:0.6}}>
+          <span style={{width:10,height:10,borderRadius:'50%',background:'#FF5F57',display:'inline-block'}}/>
+          <span style={{width:10,height:10,borderRadius:'50%',background:'#FFBD2E',display:'inline-block'}}/>
+          <span style={{width:10,height:10,borderRadius:'50%',background:'#28CA41',display:'inline-block'}}/>
+        </div>
+        {parsedLines.map(function(item, i) {
+          if (item.isCode) {
+            codeLineNum++;
+            var num = codeLineNum;
+            return (
+              <div key={i} style={{display:'flex', alignItems:'baseline', gap:10}}>
+                <span style={{color:'#484F58', fontSize:11, minWidth:16, textAlign:'right', userSelect:'none', flexShrink:0}}>{num}</span>
+                <span style={{whiteSpace:'pre'}}>{highlightPython(item.text)}</span>
+              </div>
+            );
+          } else {
+            // Ligne de texte (question ou remarque) : rendu KaTeX centré, fond légèrement différent
+            return (
+              <div key={i} style={{
+                color:'#94A3B8', fontSize:12, fontFamily:"'DM Sans',sans-serif",
+                fontStyle:'italic', padding:'2px 0 2px 26px',
+                borderLeft:'2px solid #21262D',
+              }}>
+                <M tex={item.text}/>
+              </div>
+            );
+          }
+        })}
+      </div>
+      {questionTex && <div style={{textAlign:'center', marginTop:6, color:'#fff'}}><M tex={questionTex}/></div>}
     </div>
   );
-}// ── Global styles ─────────────────────────────────────────────────────────────
+}
 const GS = ({profile} = {}) => {
   // Thème courant (fallback sur "ocean" si profile absent / sans pref)
   // On duplique la logique locale car getTheme est défini plus bas dans le fichier.
