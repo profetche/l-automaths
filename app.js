@@ -11830,7 +11830,6 @@ const CATS = [
       {id:"lecture",   label:"👁️ Lecture graphique"},
       {id:"calcul",    label:"✏️ Par le calcul"},
       {id:"algebre",   label:"🧮 Signe d'un produit"},
-      {id:"stmg",      label:"💼 Applications STMG"},
     ],
     subs:[
       {id:"lecture_image",          label:"Image et antécédent",            group:"lecture", levels:["sec","tc","stmg","spe","term"]},
@@ -11843,7 +11842,6 @@ const CATS = [
       {id:"point_courbe",           label:"Point sur courbe",               group:"calcul",  levels:["sec","tc","stmg","spe","term"]},
       {id:"coeff_directeur_calcul", label:"Coefficient directeur",          group:"calcul",  levels:["sec","tc","stmg","spe","term"]},
       {id:"signe_produit",          label:"Signe d'un produit",             group:"algebre", levels:["sec","tc","stmg","spe"]},
-      {id:"cout_recette",           label:"Coût, recette, bénéfice",        group:"stmg",    levels:["stmg"]},
     ] },
   { id:"pourcentages", label:"Pourcentages", emoji:"💹", color:"#059669", grad:"linear-gradient(135deg,#10B981,#047857)", light:"#ECFDF5", border:"#A7F3D0",
     subs:[
@@ -11944,6 +11942,9 @@ const CATS = [
       {id:"suites_finances",  label:"Applications financières",     levels:["stmg"]},
     ] },
   { id:"polynomes",    label:"Polynômes du 2nd degré", emoji:"📊", color:"#7C3AED", grad:"linear-gradient(135deg,#A855F7,#6D28D9)", light:"#F5F3FF", border:"#DDD6FE",
+    groups:[
+      {id:"stmg", label:"💼 Applications STMG"},
+    ],
     subs:[
       {id:"poly2_definition",   label:"Définition — forme ax²+bx+c",      levels:["tc","stmg","spe"]},
       {id:"poly2_racines",      label:"Racines — somme et produit",        levels:["tc","spe","term"]},
@@ -11952,6 +11953,7 @@ const CATS = [
       {id:"poly2_variations",   label:"Variations et parabole",            levels:["tc","spe","term"]},
       {id:"poly2_signe",        label:"Tableau de signes",                 levels:["spe","term"]},
       {id:"poly2_inequations",  label:"Inéquations du 2nd degré",          levels:["spe","term"]},
+      {id:"cout_recette",       label:"Coût, recette, bénéfice",           group:"stmg", levels:["stmg"]},
     ] },
   { id:"statistiques", label:"Statistiques", emoji:"📈", color:"#BE185D", grad:"linear-gradient(135deg,#EC4899,#9D174D)", light:"#FDF2F8", border:"#FBCFE8",
     subs:[
