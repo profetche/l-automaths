@@ -1940,6 +1940,171 @@ const DB = {
         tip:r`\text{Racines : }x=-2\text{ et }x=4.\\[4pt]\text{Règle des signes d'un produit}` },
     ],
 
+    // ── Coût, recette, bénéfice (STMG) ─────────────────────────────────────
+    cout_recette: [
+
+      // ══ SITUATION 1 — MégaJeu : C(x) = 2x² − 40x + 300, p = 30 €, x∈[0,34] ══
+
+      // crb_01 — coûts fixes
+      { q: r`\text{La société MégaJeu fabrique des jeux.}\\[4pt]C(x) = 2x^2 - 40x + 300\text{ (en euros)}\\[4pt]\text{Quels sont les coûts fixes de l'entreprise ?}`,
+        choices: [r`300\text{ €}`, r`40\text{ €}`, r`2\text{ €}`, r`0\text{ €}`],
+        a: r`300\text{ €}`,
+        tip: r`\text{Les coûts fixes sont les coûts indépendants de la production.}\\C(0)=2\times0-40\times0+300=300\text{ €.}` },
+
+      // crb_02 — coût pour N unités
+      { q: r`\text{MégaJeu : }C(x) = 2x^2 - 40x + 300\\[4pt]\text{Quel est le coût de fabrication de 10 jeux ?}`,
+        choices: [r`100\text{ €}`, r`200\text{ €}`, r`300\text{ €}`, r`500\text{ €}`],
+        a: r`100\text{ €}`,
+        tip: r`C(10)=2\times100-40\times10+300=200-400+300=100\text{ €.}` },
+
+      // crb_03 — expression de R(x)
+      { q: r`\text{MégaJeu vend chaque jeu }30\text{ €.}\\[4pt]\text{Quelle est l'expression de la recette }R(x)\text{ pour }x\text{ jeux ?}`,
+        choices: [r`R(x)=30`, r`R(x)=30+x`, r`R(x)=30x`, r`R(x)=x^2+30`],
+        a: r`R(x)=30x`,
+        tip: r`\text{Recette = prix unitaire }\times\text{ quantité : }R(x)=30x.` },
+
+      // crb_04 — expression de B(x)
+      { q: r`\text{MégaJeu : }C(x)=2x^2-40x+300\text{, }R(x)=30x\\[4pt]B(x)=R(x)-C(x)\text{ vaut :}`,
+        choices: [r`-2x^2+70x-300`, r`2x^2-70x+300`, r`-2x^2-10x-300`, r`-2x^2+10x-300`],
+        a: r`-2x^2+70x-300`,
+        tip: r`B(x)=30x-(2x^2-40x+300)\\=-2x^2+30x+40x-300=-2x^2+70x-300.` },
+
+      // crb_05 — racines de B(x)
+      { q: r`\text{MégaJeu : }B(x)=-2(x-5)(x-30)\\[4pt]\text{Pour quelles valeurs de }x\text{ le bénéfice est-il nul ?}`,
+        choices: [r`x=5\text{ et }x=30`, r`x=0\text{ et }x=35`, r`x=10\text{ et }x=15`, r`x=5\text{ seulement}`],
+        a: r`x=5\text{ et }x=30`,
+        tip: r`B(x)=0\Leftrightarrow -2(x-5)(x-30)=0\Leftrightarrow x=5\text{ ou }x=30.` },
+
+      // crb_06 — signe du bénéfice
+      { q: r`\text{MégaJeu : }B(x)=-2(x-5)(x-30)\text{, }x\in[0,34]\\[4pt]\text{L'entreprise réalise un bénéfice (}B>0\text{) pour :}`,
+        choices: [r`0<x<5`, r`5<x<30`, r`x>30`, r`x<5\text{ ou }x>30`],
+        a: r`5<x<30`,
+        tip: r`\text{Coefficient de }x^2\text{ négatif : la parabole est tournée vers le bas.}\\B(x)>0\text{ entre les deux racines : }5<x<30.` },
+
+      // crb_07 — bénéfice maximal
+      { q: r`\text{MégaJeu : }B(x)=-2x^2+70x-300\\[4pt]\text{Le bénéfice maximal est atteint pour }x=17{,}5\text{ jeux.}\\[4pt]\text{Quel est ce bénéfice maximal ?}`,
+        choices: [r`300\text{ €}`, r`312{,}5\text{ €}`, r`350\text{ €}`, r`287{,}5\text{ €}`],
+        a: r`312{,}5\text{ €}`,
+        tip: r`B(17{,}5)=-2\times(17{,}5)^2+70\times17{,}5-300\\=-612{,}5+1225-300=312{,}5\text{ €.}` },
+
+      // crb_08 — interprétation production entière
+      { q: r`\text{MégaJeu : bénéfice maximal théorique pour }x=17{,}5\text{ jeux.}\\[4pt]\text{En pratique, combien de jeux doit-on produire ?}`,
+        choices: [r`17\text{ ou }18\text{ jeux}`, r`17\text{ jeux exactement}`, r`18\text{ jeux exactement}`, r`35\text{ jeux}`],
+        a: r`17\text{ ou }18\text{ jeux}`,
+        tip: r`x=17{,}5\text{ n'est pas entier. On compare }B(17)\text{ et }B(18).\\B(17)=B(18)=312\text{ € (parabole symétrique) : les deux conviennent.}` },
+
+      // ══ SITUATION 2 — AlphaPhone : C(x) = x² − 20x + 200, p = 50 €, x∈[0,40] ══
+
+      // crb_09 — coûts fixes
+      { q: r`\text{AlphaPhone produit des coques de téléphone.}\\[4pt]C(x)=x^2-20x+200\text{ (€), prix de vente : }50\text{ €/unité.}\\[4pt]\text{Quels sont les coûts fixes ?}`,
+        choices: [r`200\text{ €}`, r`20\text{ €}`, r`50\text{ €}`, r`180\text{ €}`],
+        a: r`200\text{ €}`,
+        tip: r`C(0)=0-0+200=200\text{ €.}` },
+
+      // crb_10 — recette
+      { q: r`\text{AlphaPhone : prix de vente }50\text{ €/unité.}\\[4pt]\text{Quelle est la recette pour }20\text{ coques vendues ?}`,
+        choices: [r`500\text{ €}`, r`750\text{ €}`, r`1\,000\text{ €}`, r`200\text{ €}`],
+        a: r`1\,000\text{ €}`,
+        tip: r`R(20)=50\times20=1\,000\text{ €.}` },
+
+      // crb_11 — expression B(x)
+      { q: r`\text{AlphaPhone : }C(x)=x^2-20x+200\text{, }R(x)=50x\\[4pt]B(x)=R(x)-C(x)\text{ vaut :}`,
+        choices: [r`-x^2+70x-200`, r`x^2-70x+200`, r`-x^2+30x-200`, r`-x^2+70x+200`],
+        a: r`-x^2+70x-200`,
+        tip: r`B(x)=50x-(x^2-20x+200)=-x^2+70x-200.` },
+
+      // crb_12 — racines
+      { q: r`\text{AlphaPhone : }B(x)=-x^2+70x-200\\[4pt]\text{On sait que }B(x)=-(x-\alpha)(x-\beta)\\[4pt]\text{avec }\alpha\approx 3{,}1\text{ et }\beta\approx 66{,}9.\\[4pt]\text{L'entreprise est bénéficiaire pour :}`,
+        choices: [r`x<3`, r`3<x<67\text{ (environ)}`, r`x>67`, r`\text{Jamais}`],
+        a: r`3<x<67\text{ (environ)}`,
+        tip: r`\text{Coefficient de }x^2\text{ négatif }\Rightarrow B(x)>0\text{ entre les racines.}\\3{,}1<x<66{,}9\text{ soit environ }4\leq x\leq 66\text{ en entiers.}` },
+
+      // ══ SITUATION 3 — BioSnack : C(x) = 3x² − 60x + 500, p = 40 €, x∈[0,25] ══
+
+      // crb_13 — coûts fixes
+      { q: r`\text{BioSnack fabrique des barres énergétiques.}\\[4pt]C(x)=3x^2-60x+500\text{ (€), prix : }40\text{ €/unité.}\\[4pt]\text{Quels sont les coûts fixes de BioSnack ?}`,
+        choices: [r`60\text{ €}`, r`500\text{ €}`, r`3\text{ €}`, r`440\text{ €}`],
+        a: r`500\text{ €}`,
+        tip: r`C(0)=3\times0-60\times0+500=500\text{ €.}` },
+
+      // crb_14 — coût pour N unités
+      { q: r`\text{BioSnack : }C(x)=3x^2-60x+500\\[4pt]\text{Coût de fabrication de }5\text{ barres ?}`,
+        choices: [r`275\text{ €}`, r`350\text{ €}`, r`425\text{ €}`, r`500\text{ €}`],
+        a: r`275\text{ €}`,
+        tip: r`C(5)=3\times25-60\times5+500=75-300+500=275\text{ €.}` },
+
+      // crb_15 — expression B(x)
+      { q: r`\text{BioSnack : }C(x)=3x^2-60x+500\text{, }R(x)=40x\\[4pt]B(x)=R(x)-C(x)\text{ vaut :}`,
+        choices: [r`-3x^2+100x-500`, r`3x^2-100x+500`, r`-3x^2+20x-500`, r`-3x^2+100x+500`],
+        a: r`-3x^2+100x-500`,
+        tip: r`B(x)=40x-(3x^2-60x+500)=-3x^2+100x-500.` },
+
+      // crb_16 — sommet / bénéfice maximal
+      { q: r`\text{BioSnack : }B(x)=-3x^2+100x-500\\[4pt]\text{Le sommet de la parabole est en }x=\dfrac{100}{6}\approx16{,}7.\\[4pt]\text{Quel est le bénéfice maximal (arrondi à l'euro) ?}`,
+        choices: [r`200\text{ €}`, r`333\text{ €}`, r`275\text{ €}`, r`250\text{ €}`],
+        a: r`333\text{ €}`,
+        tip: r`B\!\left(\tfrac{50}{3}\right)=-3\times\tfrac{2500}{9}+100\times\tfrac{50}{3}-500\\=-\tfrac{2500}{3}+\tfrac{5000}{3}-500=\tfrac{2500}{3}-500\approx833-500=333\text{ €.}` },
+
+      // ══ SITUATION 4 — LudoBox : C(x) = x² − 30x + 400, p = 20 €, x∈[0,40] ══
+
+      // crb_17 — coûts fixes
+      { q: r`\text{LudoBox fabrique des boîtes de jeux.}\\[4pt]C(x)=x^2-30x+400\text{ (€), prix : }20\text{ €/boîte.}\\[4pt]\text{Coûts fixes de LudoBox ?}`,
+        choices: [r`30\text{ €}`, r`1\text{ €}`, r`400\text{ €}`, r`370\text{ €}`],
+        a: r`400\text{ €}`,
+        tip: r`C(0)=0-0+400=400\text{ €.}` },
+
+      // crb_18 — recette pour N unités
+      { q: r`\text{LudoBox : prix de vente }20\text{ €/boîte.}\\[4pt]\text{Recette pour }15\text{ boîtes vendues ?}`,
+        choices: [r`200\text{ €}`, r`300\text{ €}`, r`400\text{ €}`, r`150\text{ €}`],
+        a: r`300\text{ €}`,
+        tip: r`R(15)=20\times15=300\text{ €.}` },
+
+      // crb_19 — expression B(x)
+      { q: r`\text{LudoBox : }C(x)=x^2-30x+400\text{, }R(x)=20x\\[4pt]B(x)=R(x)-C(x)\text{ vaut :}`,
+        choices: [r`-x^2+50x-400`, r`x^2-50x+400`, r`-x^2+10x-400`, r`-x^2+50x+400`],
+        a: r`-x^2+50x-400`,
+        tip: r`B(x)=20x-(x^2-30x+400)=-x^2+50x-400.` },
+
+      // crb_20 — racines et signe
+      { q: r`\text{LudoBox : }B(x)=-x^2+50x-400=-(x-10)(x-40)\\[4pt]\text{Pour quelles valeurs l'entreprise est-elle bénéficiaire ?}`,
+        choices: [r`x<10`, r`10<x<40`, r`x>40`, r`0<x<10\text{ ou }x>40`],
+        a: r`10<x<40`,
+        tip: r`-(x-10)(x-40)>0\Leftrightarrow(x-10)(x-40)<0\\[4pt]\text{Parabole ouverte vers le bas : }B>0\text{ entre les racines, soit }10<x<40.` },
+
+      // ══ SITUATION 5 — FreshPrint : C(x) = 4x² − 80x + 600, p = 60 €, x∈[0,30] ══
+
+      // crb_21 — coûts fixes
+      { q: r`\text{FreshPrint fabrique des tee-shirts personnalisés.}\\[4pt]C(x)=4x^2-80x+600\text{ (€), prix : }60\text{ €/unité.}\\[4pt]\text{Coûts fixes de FreshPrint ?}`,
+        choices: [r`80\text{ €}`, r`600\text{ €}`, r`4\text{ €}`, r`520\text{ €}`],
+        a: r`600\text{ €}`,
+        tip: r`C(0)=4\times0-80\times0+600=600\text{ €.}` },
+
+      // crb_22 — coût pour N unités
+      { q: r`\text{FreshPrint : }C(x)=4x^2-80x+600\\[4pt]\text{Coût pour produire }10\text{ tee-shirts ?}`,
+        choices: [r`200\text{ €}`, r`400\text{ €}`, r`600\text{ €}`, r`800\text{ €}`],
+        a: r`200\text{ €}`,
+        tip: r`C(10)=4\times100-80\times10+600=400-800+600=200\text{ €.}` },
+
+      // crb_23 — expression B(x)
+      { q: r`\text{FreshPrint : }C(x)=4x^2-80x+600\text{, }R(x)=60x\\[4pt]B(x)=R(x)-C(x)\text{ vaut :}`,
+        choices: [r`-4x^2+140x-600`, r`4x^2-140x+600`, r`-4x^2+20x-600`, r`-4x^2+140x+600`],
+        a: r`-4x^2+140x-600`,
+        tip: r`B(x)=60x-(4x^2-80x+600)=-4x^2+140x-600.` },
+
+      // crb_24 — racines de B(x)
+      { q: r`\text{FreshPrint : }B(x)=-4x^2+140x-600\\[4pt]\text{On montre que }B(x)=-4(x-5)(x-30).\\[4pt]\text{Pour quelles valeurs de }x\text{ le bénéfice est-il positif ?}`,
+        choices: [r`x<5`, r`5<x<30`, r`x>30`, r`0\leq x\leq 5`],
+        a: r`5<x<30`,
+        tip: r`B(x)>0\Leftrightarrow -4(x-5)(x-30)>0\Leftrightarrow(x-5)(x-30)<0\\[4pt]\text{Vrai pour }5<x<30\text{ (parabole vers le bas).}` },
+
+      // crb_25 — bénéfice maximal
+      { q: r`\text{FreshPrint : }B(x)=-4x^2+140x-600\\[4pt]\text{Le sommet est en }x=17{,}5.\\[4pt]\text{Bénéfice maximal ?}`,
+        choices: [r`425\text{ €}`, r`500\text{ €}`, r`625\text{ €}`, r`612{,}5\text{ €}`],
+        a: r`625\text{ €}`,
+        tip: r`B(17{,}5)=-4\times(17{,}5)^2+140\times17{,}5-600\\=-4\times306{,}25+2450-600=-1225+2450-600=625\text{ €.}` },
+
+    ],
+
     // ── e. Coefficient directeur (lecture graphique) ──
     coeff_directeur_lecture: [
       { q: r`\text{D'après le graphique, }m=?`,
@@ -8403,6 +8568,158 @@ const DB = {
 
     ],
 
+    // ── Applications financières (STMG) ──────────────────────────────────────
+    suites_finances: [
+
+      // ── Situation 1 : Livret épargne — intérêts composés ──────────────────
+
+      // fin_01 — capital initial
+      { q: r`\text{Léa place }800\text{ € sur un livret à }4\,\%\text{ par an (intérêts composés).}\\[4pt]\text{Quel est le capital au bout de }0\text{ an ?}`,
+        choices: [r`832\text{ €}`, r`800\text{ €}`, r`804\text{ €}`, r`0\text{ €}`],
+        a: r`800\text{ €}`,
+        tip: r`u_0 = 800\text{ €}\text{ : le capital initial, avant tout intérêt.}` },
+
+      // fin_02 — raison de la suite
+      { q: r`\text{Léa place }800\text{ € à }4\,\%\text{ par an (intérêts composés).}\\[4pt]\text{La suite }(u_n)\text{ est géométrique de raison :}`,
+        choices: [r`0{,}04`, r`1{,}4`, r`1{,}04`, r`0{,}96`],
+        a: r`1{,}04`,
+        tip: r`\text{Chaque année, le capital est multiplié par }1+\frac{4}{100}=1{,}04.` },
+
+      // fin_03 — terme général
+      { q: r`\text{Léa place }800\text{ € à }4\,\%\text{ par an.}\\[4pt]\text{Le capital après }n\text{ ans est :}`,
+        choices: [r`u_n = 800 + 0{,}04n`, r`u_n = 800 \times 0{,}04^n`, r`u_n = 800 \times 1{,}04^n`, r`u_n = 800 \times 4^n`],
+        a: r`u_n = 800 \times 1{,}04^n`,
+        tip: r`\text{Suite géométrique : }u_n = u_0 \times q^n = 800 \times 1{,}04^n.` },
+
+      // fin_04 — calcul à n=3
+      { q: r`\text{Léa place }800\text{ € à }4\,\%\text{ par an.}\\[4pt]\text{Quel est le capital après }3\text{ ans ?}\\[2pt]{\small(\text{arrondir à l'euro})}`,
+        choices: [r`896\text{ €}`, r`912\text{ €}`, r`900\text{ €}`, r`899\text{ €}`],
+        a: r`900\text{ €}`,
+        tip: r`u_3 = 800 \times 1{,}04^3 = 800 \times 1{,}124864 \approx 899{,}89 \approx 900\text{ €}.` },
+
+      // fin_05 — comparaison intérêts composés vs simples
+      { q: r`\text{Léa place }800\text{ € à }4\,\%\text{ par an (intérêts composés).}\\[4pt]\text{Au bout de }10\text{ ans, le capital est d'environ :}`,
+        choices: [r`1\,120\text{ €}`, r`1\,184\text{ €}`, r`960\text{ €}`, r`1\,086\text{ €}`],
+        a: r`1\,184\text{ €}`,
+        tip: r`u_{10}=800\times1{,}04^{10}\approx800\times1{,}4802\approx1\,184\text{ €.}\\[4pt]\text{Avec intérêts simples : }800+10\times32=1\,120\text{ €}.` },
+
+      // ── Situation 2 : Emprunt bancaire — mensualités constantes ───────────
+
+      // fin_06 — capital restant dû (récurrence)
+      { q: r`\text{Hugo emprunte }5\,000\text{ € à }0{,}5\,\%\text{ par mois.}\\[4pt]\text{Il rembourse }200\text{ € par mois.}\\[4pt]\text{La suite }(u_n)\text{ du capital restant dû vérifie :}`,
+        choices: [
+          r`u_{n+1} = u_n - 200`,
+          r`u_{n+1} = 1{,}005 \times u_n`,
+          r`u_{n+1} = 1{,}005 \times u_n - 200`,
+          r`u_{n+1} = u_n \times 0{,}005 - 200`
+        ],
+        a: r`u_{n+1} = 1{,}005 \times u_n - 200`,
+        tip: r`\text{Chaque mois : les intérêts s'ajoutent (}\times 1{,}005\text{) puis on rembourse }200\text{ €.}` },
+
+      // fin_07 — capital après 1 mois
+      { q: r`\text{Hugo emprunte }5\,000\text{ € à }0{,}5\,\%\text{ par mois, mensualité }200\text{ €.}\\[4pt]\text{Quel est le capital restant après }1\text{ mois ?}`,
+        choices: [r`4\,800\text{ €}`, r`4\,825\text{ €}`, r`4\,975\text{ €}`, r`4\,825{,}50\text{ €}`],
+        a: r`4\,825\text{ €}`,
+        tip: r`u_1 = 1{,}005 \times 5\,000 - 200 = 5\,025 - 200 = 4\,825\text{ €.}` },
+
+      // fin_08 — interprétation
+      { q: r`\text{Hugo emprunte }5\,000\text{ € à }0{,}5\,\%\text{ par mois, mensualité }200\text{ €.}\\[4pt]\text{Que représente }0{,}005 \times u_n\text{ ?}`,
+        choices: [
+          r`\text{Le remboursement mensuel}`,
+          r`\text{Les intérêts du mois}`,
+          r`\text{Le capital remboursé dans le mois}`,
+          r`\text{Le capital restant dû}`
+        ],
+        a: r`\text{Les intérêts du mois}`,
+        tip: r`0{,}005 \times u_n\text{ : c'est }0{,}5\,\%\text{ du capital restant — les intérêts generés ce mois-ci.}` },
+
+      // ── Situation 3 : Plan d'épargne — versements réguliers ──────────────
+
+      // fin_09 — modélisation versements réguliers
+      { q: r`\text{Chaque mois, Marc verse }100\text{ € sur un compte à }0{,}3\,\%\text{ par mois.}\\[4pt]\text{La suite }(u_n)\text{ du capital après }n\text{ mois vérifie :}`,
+        choices: [
+          r`u_{n+1} = u_n + 100`,
+          r`u_{n+1} = 1{,}003 \times u_n`,
+          r`u_{n+1} = 1{,}003 \times u_n + 100`,
+          r`u_{n+1} = 0{,}003 \times u_n + 100`
+        ],
+        a: r`u_{n+1} = 1{,}003 \times u_n + 100`,
+        tip: r`\text{Les intérêts s'appliquent (}\times 1{,}003\text{) puis Marc ajoute }100\text{ €.}` },
+
+      // fin_10 — capital après 2 mois (u_0 = 0)
+      { q: r`\text{Marc verse }100\text{ €/mois à }0{,}3\,\%\text{ par mois.}\\[4pt]u_0=0.\\[4pt]\text{Quel est le capital après }2\text{ mois ?}\\[2pt]{\small(\text{arrondir au centime})}`,
+        choices: [r`200{,}30\text{ €}`, r`200{,}60\text{ €}`, r`200{,}90\text{ €}`, r`201{,}30\text{ €}`],
+        a: r`200{,}30\text{ €}`,
+        tip: r`u_1=1{,}003\times0+100=100\text{ €}\\u_2=1{,}003\times100+100=100{,}30+100=200{,}30\text{ €.}` },
+
+      // ── Situation 4 : Dépréciation d'un bien ─────────────────────────────
+
+      // fin_11 — suite géométrique décroissante
+      { q: r`\text{Une voiture vaut }12\,000\text{ € et perd }15\,\%\text{ de sa valeur chaque année.}\\[4pt]\text{La suite }(u_n)\text{ de sa valeur est géométrique de raison :}`,
+        choices: [r`0{,}15`, r`0{,}85`, r`1{,}15`, r`-0{,}15`],
+        a: r`0{,}85`,
+        tip: r`\text{Perdre }15\,\%\text{ = conserver }85\,\% = \text{multiplier par }0{,}85.` },
+
+      // fin_12 — terme général dépréciation
+      { q: r`\text{Une voiture vaut }12\,000\text{ € et perd }15\,\%\text{ par an.}\\[4pt]\text{Sa valeur après }n\text{ ans est :}`,
+        choices: [
+          r`u_n = 12\,000 - 0{,}15n`,
+          r`u_n = 12\,000 \times 1{,}15^n`,
+          r`u_n = 12\,000 \times 0{,}85^n`,
+          r`u_n = 12\,000 \times 0{,}15^n`
+        ],
+        a: r`u_n = 12\,000 \times 0{,}85^n`,
+        tip: r`\text{Suite géométrique : }u_n = u_0 \times q^n = 12\,000 \times 0{,}85^n.` },
+
+      // fin_13 — calcul à n=2
+      { q: r`\text{Une voiture vaut }12\,000\text{ € et perd }15\,\%\text{ par an.}\\[4pt]\text{Quelle est sa valeur après }2\text{ ans ?}`,
+        choices: [r`8\,640\text{ €}`, r`9\,000\text{ €}`, r`10\,200\text{ €}`, r`8\,820\text{ €}`],
+        a: r`8\,640\text{ €}`,
+        tip: r`u_2=12\,000\times0{,}85^2=12\,000\times0{,}7225=8\,670\text{ €.}\\[2pt]\text{Arrondi courant : }8\,670\text{ €. Calcul exact : }u_2=12\,000\times0{,}7225=8\,670\text{ €.}` },
+
+      // fin_14 — sens de variation
+      { q: r`\text{Une voiture perd }15\,\%\text{ de sa valeur chaque année.}\\[4pt]\text{La suite }(u_n)\text{ de sa valeur est :}`,
+        choices: [
+          r`\text{Arithmétique décroissante}`,
+          r`\text{Géométrique croissante}`,
+          r`\text{Géométrique décroissante}`,
+          r`\text{Ni arithmétique ni géométrique}`
+        ],
+        a: r`\text{Géométrique décroissante}`,
+        tip: r`q=0{,}85\text{ et }0<q<1\Rightarrow\text{suite géométrique strictement décroissante.}` },
+
+      // ── Situation 5 : Comparaison placements ─────────────────────────────
+
+      // fin_15 — arithmétique vs géométrique (intérêts simples vs composés)
+      { q: r`\text{Placement A : }1\,000\text{ € avec intérêts simples à }5\,\%\text{ par an.}\\[4pt]\text{Placement B : }1\,000\text{ € avec intérêts composés à }5\,\%\text{ par an.}\\[4pt]\text{Au bout de }10\text{ ans, lequel est plus avantageux ?}`,
+        choices: [
+          r`\text{Placement A}`,
+          r`\text{Placement B}`,
+          r`\text{Ils sont équivalents}`,
+          r`\text{Dépend de l'inflation}`
+        ],
+        a: r`\text{Placement B}`,
+        tip: r`A:1\,000+10\times50=1\,500\text{ €}\quad B:1\,000\times1{,}05^{10}\approx1\,629\text{ €}\\[4pt]\text{Les intérêts composés génèrent des intérêts sur les intérêts.}` },
+
+      // fin_16 — terme général intérêts simples (suite arithmétique)
+      { q: r`\text{Placement à intérêts simples : }2\,000\text{ € à }3\,\%\text{ par an.}\\[4pt]\text{Le capital après }n\text{ ans est :}`,
+        choices: [
+          r`u_n = 2\,000 \times 1{,}03^n`,
+          r`u_n = 2\,000 + 60n`,
+          r`u_n = 2\,000 + 3n`,
+          r`u_n = 2\,000 \times 0{,}03^n`
+        ],
+        a: r`u_n = 2\,000 + 60n`,
+        tip: r`\text{Intérêts simples : }3\,\%\times2\,000=60\text{ € par an.}\\u_n=2\,000+60n\text{ : suite arithmétique de raison }60.` },
+
+      // fin_17 — seuil (recherche d'un rang)
+      { q: r`\text{Un capital de }500\text{ € est placé à }2\,\%\text{ par an (intérêts composés).}\\[4pt]\text{Au bout de combien d'années dépasse-t-il }600\text{ € ?}\\[2pt]{\small(1{,}02^9\approx1{,}195\;;\;1{,}02^{10}\approx1{,}219)}`,
+        choices: [r`8\text{ ans}`, r`9\text{ ans}`, r`10\text{ ans}`, r`12\text{ ans}`],
+        a: r`10\text{ ans}`,
+        tip: r`u_n=500\times1{,}02^n>600\Leftrightarrow1{,}02^n>1{,}2\\[4pt]1{,}02^9\approx1{,}195<1{,}2\quad1{,}02^{10}\approx1{,}219>1{,}2\\[4pt]\text{Le seuil est atteint à partir de }n=10\text{ ans.}` },
+
+    ],
+
   },
 
   // ════ 9. POLYNÔMES DU 2nd DEGRÉ ══════════════════════════════════════════════
@@ -11513,6 +11830,7 @@ const CATS = [
       {id:"lecture",   label:"👁️ Lecture graphique"},
       {id:"calcul",    label:"✏️ Par le calcul"},
       {id:"algebre",   label:"🧮 Signe d'un produit"},
+      {id:"stmg",      label:"💼 Applications STMG"},
     ],
     subs:[
       {id:"lecture_image",          label:"Image et antécédent",            group:"lecture", levels:["sec","tc","stmg","spe","term"]},
@@ -11525,6 +11843,7 @@ const CATS = [
       {id:"point_courbe",           label:"Point sur courbe",               group:"calcul",  levels:["sec","tc","stmg","spe","term"]},
       {id:"coeff_directeur_calcul", label:"Coefficient directeur",          group:"calcul",  levels:["sec","tc","stmg","spe","term"]},
       {id:"signe_produit",          label:"Signe d'un produit",             group:"algebre", levels:["sec","tc","stmg","spe"]},
+      {id:"cout_recette",           label:"Coût, recette, bénéfice",        group:"stmg",    levels:["stmg"]},
     ] },
   { id:"pourcentages", label:"Pourcentages", emoji:"💹", color:"#059669", grad:"linear-gradient(135deg,#10B981,#047857)", light:"#ECFDF5", border:"#A7F3D0",
     subs:[
@@ -11622,6 +11941,7 @@ const CATS = [
       {id:"suites_termes",    label:"Calculer un terme",   levels:["tc","stmg","spe","term"]},
       {id:"suites_variations",label:"Sens de variation",   levels:["spe","term"]},
       {id:"suites_recurrence",label:"Démonstration par récurrence", levels:["term"]},
+      {id:"suites_finances",  label:"Applications financières",     levels:["stmg"]},
     ] },
   { id:"polynomes",    label:"Polynômes du 2nd degré", emoji:"📊", color:"#7C3AED", grad:"linear-gradient(135deg,#A855F7,#6D28D9)", light:"#F5F3FF", border:"#DDD6FE",
     subs:[
