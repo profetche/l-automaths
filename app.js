@@ -86,6 +86,11 @@ function parseAlgoTex(tex) {
     while (l.indexOf(QUAD)  === 0) { indent += 2; l = l.slice(QUAD.length).trim();  }
     var isCode = l.indexOf('\\texttt{') >= 0;
     l = l.replace(/\\texttt\{([^}]*)\}/g, '$1');
+    l = l.replace(/\\%/g, '%');
+    l = l.replace(/\\/\\/g, '//');
+    l = l.replace(/\\neq/g, '!=');
+    l = l.replace(/\\leq/g, '<=');
+    l = l.replace(/\\geq/g, '>=');
     l = l.replace(/\\text\{([^}]*)\}/g,   '$1');
     return { text: Array(indent + 1).join(' ') + l, isCode: isCode };
   }).filter(Boolean);
@@ -9852,7 +9857,7 @@ const DB = {
       { q: r`\texttt{def parite(n):}\\\quad\texttt{if n \% 2 == 0 :}\\\qquad\texttt{return "pair"}\\\quad\texttt{else :}\\\qquad\texttt{return "impair"}\\[6pt]\text{Que renvoie }\texttt{parite(7)}\text{ ?}`,
         choices: [r`\texttt{"impair"}`, r`\texttt{"pair"}`, r`1`, r`0`],
         a: r`\texttt{"impair"}`,
-        tip: r`\texttt{7 \% 2 = 1}\text{ (reste de la division euclidienne de 7 par 2), donc }\texttt{1 == 0}\text{ est faux → \texttt{"impair"}.}` },
+        tip: r`\textbf{En Python, \texttt{\%} donne le reste de la division entière.}\\[4pt]\texttt{7 \% 2 = 1}\text{ (7 n'est pas divisible par 2) → condition fausse → \texttt{"impair"}.}` },
       // algo_if_06 — valeur de retour numérique avec elif — moyenne
       { q: r`\texttt{def f(x):}\\\quad\texttt{if x < 0 :}\\\qquad\texttt{return -1}\\\quad\texttt{elif x == 0 :}\\\qquad\texttt{return 0}\\\quad\texttt{else :}\\\qquad\texttt{return 1}\\[6pt]\text{Que renvoie }\texttt{f(3)}\text{ ?}`,
         choices: [r`1`, r`-1`, r`0`, r`3`],
@@ -9946,12 +9951,12 @@ const DB = {
       { q: r`\texttt{c = 0}\\\texttt{for i in range(1, 11) :}\\\quad\texttt{if i \% 2 == 0 :}\\\qquad\texttt{c = c + 1}\\\texttt{print(c)}\\[6pt]\text{Qu'affiche ce programme ?}`,
         choices: [r`5`, r`10`, r`4`, r`6`],
         a: r`5`,
-        tip: r`\text{Parmi }\{1,\dots,10\}\text{, les entiers pairs sont }\{2,4,6,8,10\}\text{ : }5\text{ valeurs.}` },
+        tip: r`\textbf{En Python, \texttt{i \% 2 == 0} teste si }i\text{ est pair} \\\text{(\texttt{\%} = reste de la division entière).}\\[4pt]\text{Parmi }\{1,\dots,10\}\text{, les pairs sont }\{2,4,6,8,10\}\text{ : 5 valeurs.}` },
       // algo_for_08 — accumulation multiplicative avec condition — moyenne
       { q: r`\texttt{p = 1}\\\texttt{for i in range(1, 6) :}\\\quad\texttt{if i \% 2 != 0 :}\\\qquad\texttt{p = p * i}\\\texttt{print(p)}\\[6pt]\text{Qu'affiche ce programme ?}`,
         choices: [r`15`, r`120`, r`9`, r`5`],
         a: r`15`,
-        tip: r`\text{On multiplie les impairs de 1 à 5 : }1\times3\times5=15.` },
+        tip: r`\textbf{\texttt{i \% 2 != 0} sélectionne les impairs} \\\text{(\texttt{\%} = reste de la division entière ; impair si reste }\neq 0\text{).}\\[4pt]\text{Impairs de 1 à 5 : }1\times3\times5=15.` },
       // algo_for_09 — maximum d'une liste — dure
       { q: r`\texttt{m = 0}\\\texttt{for x in [3, 7, 2, 9, 4] :}\\\quad\texttt{if x > m :}\\\qquad\texttt{m = x}\\\texttt{print(m)}\\[6pt]\text{Qu'affiche ce programme ?}`,
         choices: [r`9`, r`7`, r`4`, r`3`],
