@@ -73,7 +73,7 @@ function parseAlgoTex(tex) {
   // Chercher le marqueur de fin de code \\[Npt]
   var sepIdx = tex.indexOf(SEP_END);
   var codePart    = sepIdx >= 0 ? tex.slice(0, sepIdx) : tex;
-  var questionRaw = sepIdx >= 0 ? tex.slice(sepIdx).replace(/^\\\\\\[\d+pt\]/, '') : null;
+  var questionRaw = sepIdx >= 0 ? (function(s){ var m = s.indexOf(']'); return m >= 0 ? s.slice(m+1) : s; })(tex.slice(sepIdx)) : null;
 
   var rawLines = codePart.split(SEP);
 
