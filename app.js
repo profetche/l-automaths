@@ -13340,10 +13340,53 @@ function SendToTeacherScreen({profile, onBack}) {
 }
 
 // ── Reminder / Notification system ────────────────────────────────────────────
-const REMINDER_K = 'user:reminder';
+const REMINDER_K      = 'user:reminder';
+const REMINDER_LAST_K = 'user:reminder_last';
 
 async function loadReminder()  { try{const r=await _storage.get(REMINDER_K);return r?.value?JSON.parse(r.value):null;}catch{return null;} }
 async function saveReminder(d) { try{await _storage.set(REMINDER_K,JSON.stringify(d));}catch{} }
+
+// Vérifie au lancement si une notification de rappel doit être déclenchée.
+// Conditions : rappel activé + permission accordée + fenêtre horaire ±30 min + pas déjà notifié aujourd'hui.
+async function checkAndFireReminder() {
+  try {
+    if (typeof Notification === 'undefined' || Notification.permission !== 'granted') return;
+    const reminder = await loadReminder();
+    if (!reminder || !reminder.enabled || reminder.hour == null) return;
+
+    const now   = new Date();
+    const hNow  = now.getHours() * 60 + now.getMinutes(); // minutes depuis minuit
+    const hTarget = reminder.hour * 60;                   // heure cible en minutes
+    const diff  = Math.abs(hNow - hTarget);
+    if (diff > 30) return; // hors de la fenêtre ±30 min
+
+    // Anti-doublon : une seule notif par jour
+    const todayStr = now.toISOString().slice(0, 10); // "YYYY-MM-DD"
+    try {
+      const last = await _storage.get(REMINDER_LAST_K);
+      if (last?.value === todayStr) return; // déjà notifié aujourd'hui
+    } catch {}
+
+    // Enregistre le jour avant d'envoyer (évite la double frappe si l'utilisateur revient vite)
+    await _storage.set(REMINDER_LAST_K, todayStr);
+
+    const messages = [
+      "C'est l'heure de travailler ! 💪 Quelques questions pour progresser.",
+      "Sigma t'attend ! 🤖 Un peu de maths aujourd'hui ?",
+      "Ta série de jours consécutifs t'attend ! 🔥 On y va ?",
+      "5 minutes de maths, ça change tout. Lance-toi ! 📐",
+      "Aujourd'hui encore, un peu de pratique. Sigma compte sur toi ! ⭐",
+    ];
+    const msg = messages[now.getDay() % messages.length];
+
+    new Notification("AutoMaths — Rappel quotidien", {
+      body: msg,
+      icon: '/icons/icon-192.png',
+      badge: '/icons/icon-192.png',
+      tag: 'automaths-daily', // remplace une éventuelle notif précédente du même tag
+    });
+  } catch(e) {}
+}
 
 function ReminderScreen({onBack}) {
   const [notifPerm, setNotifPerm] = React.useState(typeof Notification!=='undefined'?Notification.permission:'denied');
@@ -19425,7 +19468,7 @@ async function saveSprintBestFinal(v) {
 // Format court volontairement : 150 mots max — sinon les élèves ne lisent pas.
 // TODO Thomas : remplir progressivement. Claude a mis 4 exemples pilotes.
 const COURSE_REMINDERS = {
-  calcul_litteral: {
+  litteral: {
     developpement: {
       title: "Développer",
       definition: "Développer, c'est supprimer les parenthèses en distribuant le facteur extérieur à chaque terme intérieur.\n\n$k(a+b) = ka + kb$\n$(a+b)(c+d) = ac + ad + bc + bd$",
@@ -20782,6 +20825,7 @@ function AutoMaths() {
     loadCardsUnlocked().then(arr => setCardsUnlocked(arr)).catch(() => {});
     loadDiagResults().then(d => { if (d) setDiagResults(d); }).catch(() => {});
     recordWeekendActivity().catch(() => {});
+    checkAndFireReminder().catch(() => {});
   }, []);
 
   // Helper centralisé : reconstruit le contexte et vérifie les déblocages.
@@ -21570,7 +21614,7 @@ function AutoMaths() {
           {screen==="level_picker"  && levelType==="cercle_trigo"  && <CercleTrigoScreen onBack={()=>setScreen("subcategory")}/>}
           {screen==="bac_subjects"   && <BacSubjectScreen onStart={hBacStart} onBack={()=>setScreen(profile?"dashboard":"home")}/>}
           {screen==="count"         && <CountScreen     catId={mode==="bac"?null:(mode==="test_aleatoire"&&!catId?null:catId)} allMode={mode==="bac"||(mode==="test_aleatoire"&&!catId)} options={mode==="entrainement"||mode==="test_aleatoire"?[20,50]:[10,20]} onCount={hCount} onBack={()=>setScreen(mode==="entrainement"?"subcategory":mode==="test_aleatoire"?"test_aleatoire":mode==="bac"?"home":"category")}/>}
-          {screen==="quiz"          && <QuizScreen      questions={questions} catId={catId||"fonctions"} subId={trackSub} quizMode={quizMode} onFinish={hFinish} onBack={()=>setScreen(prevScreen)}/>}
+          {screen==="quiz"          && <QuizScreen      questions={questions} catId={trackCat||catId||"fonctions"} subId={trackSub} quizMode={quizMode} onFinish={hFinish} onBack={()=>setScreen(prevScreen)}/>}
           {screen==="result"        && <ResultScreen    score={score} total={questions.length} catId={catId||"fonctions"} onReplay={()=>{setStreakJustCompleted(false);hReplay();}} onHome={()=>{setStreakJustCompleted(false);hHome();}} streakJustCompleted={streakJustCompleted} streakCount={profile?.streak||0} masteryBonus={masteryBonus}/>}
           {screen==="parcours_result"&&<PostPracticeResultScreen score={score} total={questions.length} catId={trackCat} subId={trackSub} mode={quizMode} prevStars={prevStars} newStars={newStars} onRetry={()=>quizMode==="practice"?hStartPractice(trackCat,trackSub):hStartTest(trackCat,trackSub)} onDashboard={hDashboard} onHome={hHome}/>}
 
