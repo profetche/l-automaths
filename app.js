@@ -16173,6 +16173,7 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
   const [shield, setShield] = useState(false);
   const [tab, setTab] = useState('programme'); // 'programme' | 'parcours' | 'recompenses'
   const [menuOpen, setMenuOpen] = useState(false); // menu déroulant ⋯ (actions rares)
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const [weeklyStats, setWeeklyStats] = useState(null);
 
   const dailyChallenge = React.useMemo(() => getDailyChallenge(profile, allProg, diagResults), [profile.level, allProg, diagResults]);
@@ -16235,6 +16236,41 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
   return (
     <div style={{display:"flex",flexDirection:"column",height:"100%",background:"var(--am-bg-light)"}}>
 
+      {showLogoutConfirm && (
+        <div style={{position:"fixed",inset:0,background:"rgba(15,23,42,0.8)",
+          display:"flex",alignItems:"center",justifyContent:"center",zIndex:2000,padding:"20px"}}
+          onClick={()=>setShowLogoutConfirm(false)}>
+          <div onClick={e=>e.stopPropagation()}
+            style={{background:"#fff",borderRadius:20,padding:"22px 20px 18px",
+              maxWidth:320,width:"100%",boxShadow:"0 24px 64px rgba(0,0,0,0.4)"}}>
+            <div style={{fontSize:32,textAlign:"center",marginBottom:8}}>💾</div>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,
+              color:"#1E293B",textAlign:"center",marginBottom:8}}>
+              Avant de partir...
+            </div>
+            <div style={{fontSize:12,color:"#64748B",textAlign:"center",lineHeight:1.6,marginBottom:18}}>
+              Ta progression est sauvegardée <strong>sur cet appareil uniquement</strong>.
+              Si tu changes d'appareil ou vides le cache, tu perds tout.
+              <br/><br/>
+              📥 Pense à générer ton <strong>code de sauvegarde</strong> !
+            </div>
+            <button onClick={()=>{setShowLogoutConfirm(false);onBackup();}}
+              style={{width:"100%",padding:"11px",borderRadius:12,border:"none",
+                background:"linear-gradient(135deg,#1D4ED8,#1E40AF)",
+                color:"#fff",fontWeight:800,fontSize:13,cursor:"pointer",
+                fontFamily:"'Nunito',sans-serif",marginBottom:8}}>
+              💾 Sauvegarder d'abord
+            </button>
+            <button onClick={()=>{setShowLogoutConfirm(false);onLogout();}}
+              style={{width:"100%",padding:"11px",borderRadius:12,
+                border:"1.5px solid #E2E8F0",background:"#F8FAFC",
+                color:"#64748B",fontWeight:700,fontSize:12,cursor:"pointer",
+                fontFamily:"'Nunito',sans-serif"}}>
+              Se déconnecter quand même
+            </button>
+          </div>
+        </div>
+      )}
       {/* ── Header compact ─────────────────────────────────────────────────── */}
       <div style={{background:`linear-gradient(160deg,var(--am-bg-dark-1) 0%,var(--am-bg-dark-2) 100%)`,
         padding:"12px 16px 14px",flexShrink:0,position:"relative"}}>
@@ -16326,7 +16362,7 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
                 </button>
               )}
 
-              <button onClick={()=>{setMenuOpen(false);onLogout();}}
+              <button onClick={()=>{setMenuOpen(false);setShowLogoutConfirm(true);}}
                 style={{display:"flex",alignItems:"center",gap:10,width:"100%",
                   padding:"11px 14px",border:"none",background:"#FEF2F2",cursor:"pointer",
                   fontSize:12,fontWeight:600,color:"#B91C1C",textAlign:"left"}}>
