@@ -13718,6 +13718,231 @@ function BackupScreen({onBack, onImportDone, onSendTeacher, hasProfile}) {
 // ─────────────────────────────────────────────────────────────────────────────
 // PreferencesScreen — Taille de texte + Thème
 // ─────────────────────────────────────────────────────────────────────────────
+// ── EditProfileScreen — Modifier nom, niveau, avatar, thème, taille ─────────
+const AVATAR_EMOJIS = [
+  "🐱","🐶","🦊","🐼","🦁","🐯","🐸","🐧","🦋","🦄",
+  "🌟","⚡","🔥","🌊","🍀","🎯","🚀","🎵","💎","🌙",
+];
+
+function EditProfileScreen({profile, onSave, onBack}) {
+  const currentPrefs = getPrefs(profile);
+  const [name,      setName]      = useState(profile?.name || '');
+  const [level,     setLevel]     = useState(profile?.level || 'seconde');
+  const [avatar,    setAvatar]    = useState(profile?.avatar || '');
+  const [fontScale, setFontScale] = useState(currentPrefs.fontScale);
+  const [theme,     setTheme]     = useState(currentPrefs.theme);
+  const [saved,     setSaved]     = useState(false);
+
+  const LEVELS = [
+    {id:'seconde',        emoji:'🌱', label:'Seconde',           desc:'Je commence le lycée'},
+    {id:'premiere_tronc', emoji:'📘', label:'1ère Tronc commun', desc:'Sans spécialité maths'},
+    {id:'premiere_stmg',  emoji:'📊', label:'1ère STMG',         desc:'Sciences de gestion'},
+    {id:'premiere_spe',   emoji:'🔬', label:'1ère Spé Maths',    desc:'Avec spécialité maths'},
+    {id:'terminale_spe',  emoji:'🏆', label:'Terminale Spé',     desc:'Bac à portée !'},
+  ];
+
+  useEffect(() => { applyFontScale(fontScale); }, [fontScale]);
+
+  const handleSave = () => {
+    if (!name.trim()) return;
+    const updatedProfile = {
+      ...profile,
+      name: name.trim(),
+      level,
+      avatar: avatar || '',
+      prefs: { fontScale, theme },
+    };
+    saveProfA(updatedProfile);
+    setSaved(true);
+    setTimeout(() => onSave(updatedProfile), 700);
+  };
+
+  const thObj = THEMES[theme] || THEMES.ocean;
+  const displayAvatar = avatar || (LEVELS.find(l=>l.id===level)?.emoji || '📘');
+
+  return (
+    <div style={{display:'flex',flexDirection:'column',height:'100%',background:'var(--am-bg-light)'}}>
+      {/* Header */}
+      <div style={{background:'linear-gradient(135deg,var(--am-bg-dark-1),var(--am-bg-dark-2))',
+        padding:'14px 16px',flexShrink:0,display:'flex',alignItems:'center',gap:10}}>
+        <button onClick={onBack} style={{background:'rgba(255,255,255,0.1)',border:'none',
+          borderRadius:9,padding:'6px 11px',color:'#94A3B8',cursor:'pointer',fontSize:12,fontWeight:700}}>
+          ← Retour
+        </button>
+        <div style={{flex:1,color:'#fff',fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,textAlign:'center'}}>
+          Mon profil ✏️
+        </div>
+      </div>
+
+      <div style={{flex:1,overflowY:'auto',padding:'16px',display:'flex',flexDirection:'column',gap:14}}>
+
+        {/* ─── Avatar + Prénom ─── */}
+        <div style={{background:'#fff',borderRadius:16,padding:'16px',boxShadow:'0 2px 8px rgba(0,0,0,.05)'}}>
+          <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:'#1E293B',marginBottom:12}}>
+            👤 Identité
+          </div>
+          {/* Avatar preview + choix */}
+          <div style={{display:'flex',alignItems:'center',gap:14,marginBottom:14}}>
+            <div style={{width:60,height:60,borderRadius:16,
+              background:'linear-gradient(135deg,#667eea,#764ba2)',
+              display:'flex',alignItems:'center',justifyContent:'center',
+              fontSize:32,flexShrink:0,boxShadow:'0 4px 12px rgba(102,126,234,.35)'}}>
+              {displayAvatar}
+            </div>
+            <div style={{flex:1}}>
+              <div style={{fontSize:11,color:'#64748B',marginBottom:6,fontWeight:600}}>Choisis ton avatar</div>
+              <div style={{display:'flex',flexWrap:'wrap',gap:6}}>
+                {AVATAR_EMOJIS.map(em=>(
+                  <button key={em} onClick={()=>setAvatar(em)}
+                    style={{width:34,height:34,borderRadius:9,border:`2px solid ${avatar===em?'#7C3AED':'#E2E8F0'}`,
+                      background:avatar===em?'#F3F0FF':'#F8FAFC',
+                      cursor:'pointer',fontSize:18,display:'flex',alignItems:'center',justifyContent:'center',
+                      boxShadow:avatar===em?'0 2px 6px rgba(124,58,237,.25)':'none',
+                      transition:'all .12s'}}>
+                    {em}
+                  </button>
+                ))}
+                {/* Réinitialiser vers l'emoji du niveau */}
+                {avatar && (
+                  <button onClick={()=>setAvatar('')}
+                    style={{width:34,height:34,borderRadius:9,border:'1.5px dashed #CBD5E1',
+                      background:'#F8FAFC',cursor:'pointer',fontSize:12,color:'#94A3B8',
+                      display:'flex',alignItems:'center',justifyContent:'center'}}>
+                    ✕
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+          {/* Prénom */}
+          <div style={{fontSize:11,color:'#64748B',marginBottom:6,fontWeight:600}}>Prénom</div>
+          <input value={name} onChange={e=>setName(e.target.value)}
+            placeholder="Ton prénom..."
+            style={{width:'100%',padding:'11px 14px',borderRadius:11,
+              border:`2px solid ${name.trim()?'#10B981':'#E2E8F0'}`,
+              background:'#F8FAFC',color:'#1E293B',fontSize:14,
+              fontFamily:"'DM Sans',sans-serif",boxSizing:'border-box',outline:'none',
+              transition:'border-color .15s'}}/>
+        </div>
+
+        {/* ─── Niveau ─── */}
+        <div style={{background:'#fff',borderRadius:16,padding:'16px',boxShadow:'0 2px 8px rgba(0,0,0,.05)'}}>
+          <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:'#1E293B',marginBottom:12}}>
+            📚 Niveau scolaire
+          </div>
+          <div style={{display:'flex',flexDirection:'column',gap:7}}>
+            {LEVELS.map(l=>(
+              <button key={l.id} onClick={()=>setLevel(l.id)}
+                style={{padding:'11px 14px',borderRadius:12,
+                  border:`2px solid ${level===l.id?'#F59E0B':'#E2E8F0'}`,
+                  background:level===l.id?'rgba(245,158,11,0.08)':'#F8FAFC',
+                  color:'#1E293B',cursor:'pointer',display:'flex',alignItems:'center',gap:10,
+                  transition:'all .15s'}}>
+                <span style={{fontSize:20}}>{l.emoji}</span>
+                <div style={{flex:1,textAlign:'left'}}>
+                  <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:12}}>{l.label}</div>
+                  <div style={{color:'#64748B',fontSize:10}}>{l.desc}</div>
+                </div>
+                {level===l.id && <span style={{color:'#F59E0B',fontSize:16}}>✓</span>}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* ─── Taille de texte ─── */}
+        <div style={{background:'#fff',borderRadius:16,padding:'16px',boxShadow:'0 2px 8px rgba(0,0,0,.05)'}}>
+          <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:'#1E293B',marginBottom:4}}>
+            🔤 Taille du texte
+          </div>
+          <div style={{fontSize:11,color:'#64748B',marginBottom:10}}>Pour un meilleur confort de lecture</div>
+          <div style={{display:'flex',flexDirection:'column',gap:7}}>
+            {Object.entries(FONT_SCALES).map(([key, {label, factor}]) => {
+              const active = fontScale === key;
+              return (
+                <button key={key} onClick={() => setFontScale(key)}
+                  style={{background: active?'#EFF6FF':'#F8FAFC',
+                    border: active?'2px solid #1D4ED8':'2px solid transparent',
+                    borderRadius:11,padding:'11px 14px',cursor:'pointer',
+                    display:'flex',alignItems:'center',justifyContent:'space-between',
+                    transition:'all .15s'}}>
+                  <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:700,
+                    fontSize: 14 * factor, color:'#1E293B'}}>{label}</span>
+                  <span style={{fontSize: 11 * factor, color:'#64748B'}}>Exemple de texte</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* ─── Thème ─── */}
+        <div style={{background:'#fff',borderRadius:16,padding:'16px',boxShadow:'0 2px 8px rgba(0,0,0,.05)'}}>
+          <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:'#1E293B',marginBottom:4}}>
+            🎨 Thème de couleurs
+          </div>
+          <div style={{fontSize:11,color:'#64748B',marginBottom:10}}>Ambiance des écrans principaux</div>
+          <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:8}}>
+            {Object.entries(THEMES).map(([key, th]) => {
+              const active = theme === key;
+              return (
+                <button key={key} onClick={() => setTheme(key)}
+                  style={{background:'transparent',border:'none',padding:0,cursor:'pointer'}}>
+                  <div style={{background: th.bgMain, borderRadius:12,padding:'18px 8px',
+                    border: active?'3px solid #F59E0B':'3px solid transparent',
+                    boxShadow: active?'0 4px 14px rgba(245,158,11,.3)':'0 2px 6px rgba(0,0,0,.08)',
+                    textAlign:'center',position:'relative',transition:'all .15s'}}>
+                    <div style={{fontSize:26,marginBottom:3}}>{th.emoji}</div>
+                    <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,
+                      fontSize:11,color: th.dark?'#fff':'#1E293B'}}>{th.label}</div>
+                    {active && <div style={{position:'absolute',top:4,right:7,fontSize:13}}>✓</div>}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* ─── Aperçu ─── */}
+        <div style={{background: thObj.bgMain, borderRadius:16,padding:'18px',
+          boxShadow:'0 2px 8px rgba(0,0,0,.1)',display:'flex',alignItems:'center',gap:12}}>
+          <div style={{width:44,height:44,borderRadius:12,
+            background:'rgba(255,255,255,0.15)',
+            display:'flex',alignItems:'center',justifyContent:'center',fontSize:24}}>
+            {displayAvatar}
+          </div>
+          <div>
+            <div style={{color: thObj.dark?'#fff':'#1E293B',
+              fontFamily:"'Nunito',sans-serif",fontWeight:900,
+              fontSize: 14 * (FONT_SCALES[fontScale]?.factor||1)}}>
+              {name.trim() || 'Ton prénom'}
+            </div>
+            <div style={{color: thObj.dark?'#94A3B8':'#475569',
+              fontSize: 11 * (FONT_SCALES[fontScale]?.factor||1)}}>
+              {LEVELS.find(l=>l.id===level)?.label || ''}
+            </div>
+          </div>
+        </div>
+
+        {/* ─── Enregistrer ─── */}
+        <button onClick={handleSave} disabled={!name.trim() || saved}
+          style={{background: saved
+            ? 'linear-gradient(135deg,#10B981,#059669)'
+            : name.trim()
+              ? 'linear-gradient(135deg,#F59E0B,#B45309)'
+              : '#E2E8F0',
+            border:'none',borderRadius:14,padding:'14px',cursor: name.trim()?'pointer':'default',
+            color: name.trim()?'#fff':'#94A3B8',
+            fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:15,
+            boxShadow: name.trim() && !saved ?'0 6px 16px rgba(245,158,11,.3)':'none',
+            transition:'all .2s'}}>
+          {saved ? '✓ Sauvegardé !' : '✓ Enregistrer les modifications'}
+        </button>
+
+        <div style={{height:8}}/>
+      </div>
+    </div>
+  );
+}
+
 function PreferencesScreen({profile, onSave, onBack}) {
   const currentPrefs = getPrefs(profile);
   const [fontScale, setFontScale] = useState(currentPrefs.fontScale);
@@ -15945,7 +16170,14 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
 
         {/* Ligne 1 : avatar + nom + streak + menu */}
         <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:10}}>
-          <img src={SIGMA_IMG} alt="Sigma" style={{width:36,height:36,objectFit:"contain"}}/>
+          {/* Avatar : emoji perso si défini, sinon emoji du niveau */}
+          <div style={{width:36,height:36,borderRadius:11,
+            background:"rgba(255,255,255,0.12)",
+            display:"flex",alignItems:"center",justifyContent:"center",
+            fontSize:22,flexShrink:0,
+            boxShadow:"0 2px 8px rgba(0,0,0,.2)"}}>
+            {profile.avatar || curr.emoji || "📘"}
+          </div>
           <div style={{flex:1,minWidth:0}}>
             <div style={{color:"#64748B",fontSize:9,fontWeight:600}}>Bonjour 👋</div>
             <div style={{color:"#fff",fontSize:15,fontWeight:900,fontFamily:"'Nunito',sans-serif",lineHeight:1.1}}>{profile.name}</div>
@@ -16015,15 +16247,7 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
                   <span style={{fontSize:16}}>🔔</span><span>Gérer les rappels</span>
                 </button>
               )}
-              {onPreferences && (
-                <button onClick={()=>{setMenuOpen(false);onPreferences();}}
-                  style={{display:"flex",alignItems:"center",gap:10,width:"100%",
-                    padding:"11px 14px",border:"none",background:"#fff",cursor:"pointer",
-                    fontSize:12,fontWeight:600,color:"#334155",textAlign:"left",
-                    borderBottom:"1px solid #F1F5F9"}}>
-                  <span style={{fontSize:16}}>🎨</span><span>Préférences (taille, thème)</span>
-                </button>
-              )}
+
               <button onClick={()=>{setMenuOpen(false);onLogout();}}
                 style={{display:"flex",alignItems:"center",gap:10,width:"100%",
                   padding:"11px 14px",border:"none",background:"#FEF2F2",cursor:"pointer",
@@ -16955,14 +17179,14 @@ const CAT_FILTER_CONFIGS = {
   },
 };
 
-// Convertit le level du profil en clé de filtre
+// Convertit le level du profil (format long) en clé de filtre CategoryScreen
 function profileLevelToFilter(level) {
   if (!level) return "all";
-  if (level === "sec") return "sec";
-  if (level === "tc")   return "tc";
-  if (level === "stmg") return "stmg";
-  if (level === "spe")  return "premiere_spe";
-  if (level === "term") return "term";
+  if (level === "seconde")        return "sec";
+  if (level === "premiere_tronc") return "tc";
+  if (level === "premiere_stmg")  return "stmg";
+  if (level === "premiere_spe")   return "premiere_spe";
+  if (level === "terminale_spe")  return "term";
   return "all";
 }
 
@@ -16976,6 +17200,7 @@ function CategoryScreen({onCat, onBack, subtitle="", profile=null}) {
     if (lv === "premiere_spe")  return "premiere_spe";
     return "premiere_spe";
   })();
+
   const [filter, setFilter] = React.useState(initFilter);
   const [subFilter, setSubFilter] = React.useState(initSubFilter);
 
@@ -17007,8 +17232,8 @@ function CategoryScreen({onCat, onBack, subtitle="", profile=null}) {
       <h2 style={{fontFamily:"'Nunito',sans-serif",fontSize:22,fontWeight:900,color:"#1E293B",marginBottom:4}}>Choisis une catégorie</h2>
       {subtitle && <p style={{color:"#64748B",fontSize:13,marginBottom:8}}>{subtitle}</p>}
 
-      {/* Filtres niveau */}
-      <div style={{display:"flex",gap:6,marginBottom: filter==="premiere" ? 8 : 14,flexShrink:0}}>
+      {/* Filtres niveau — pré-sélectionnés sur le niveau du profil si connecté */}
+      <div style={{display:"flex",gap:6,marginBottom: displayFilter==="premiere" ? 8 : 14,flexShrink:0}}>
         {FILTER_TABS.map(tab=>{
           const active = displayFilter === tab.key;
           return (
@@ -17026,9 +17251,8 @@ function CategoryScreen({onCat, onBack, subtitle="", profile=null}) {
           );
         })}
       </div>
-
       {/* Sous-filtres 1ère */}
-      {filter === "premiere" && (
+      {displayFilter === "premiere" && (
         <div style={{display:"flex",gap:5,marginBottom:14,flexShrink:0}}>
           {PREMIERE_SUBTABS.map(tab=>{
             const active = subFilter === tab.key;
@@ -17249,7 +17473,7 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
       </div>
       <p style={{color:"#64748B",fontSize:12,marginBottom:12}}>{qCount} questions</p>
 
-      {/* Filtres de niveau */}
+      {/* Filtres de niveau — pré-sélectionnés sur le niveau du profil si connecté */}
       {levelsInCat.length>0&&(
         <div style={{display:"flex",gap:6,marginBottom:8,flexWrap:"wrap"}}>
           <button onClick={()=>{setNiveau(null);setSel([]);}}
@@ -21036,7 +21260,22 @@ function AutoMaths() {
     // Tout champ non listé ici est rejeté pour éviter qu'une question avec rendu
     // spécial (graphique, tableau, ...) apparaisse sans son visuel dans le sprint.
     const ALLOWED_FIELDS = new Set(['q', 'choices', 'a', 'tip', 'hint', 'altAnswers', 'partialAnswers']);
-    return getAllQ().filter(q => {
+
+    // Filtrage par niveau : on ne tire que les questions des catégories du curriculum de l'élève.
+    // Si aucun profil, on prend toutes les questions (visiteur sans profil).
+    const curr = profile ? (CURRICULUM[profile.level] || CURRICULUM.seconde) : null;
+    const allowedCatIds = curr
+      ? new Set(Object.values(curr.cats).flat())
+      : null;
+
+    const sourceQ = allowedCatIds
+      ? Object.values(DB)
+          .flatMap(group => Object.entries(group)
+            .filter(([subId]) => allowedCatIds.has(subId))
+            .flatMap(([, arr]) => arr))
+      : getAllQ();
+
+    return sourceQ.filter(q => {
       if (!q.choices) return false;
       for (const k of Object.keys(q)) {
         if (!ALLOWED_FIELDS.has(k)) return false;
@@ -21126,7 +21365,7 @@ function AutoMaths() {
   };
   const hProgramSession = (day) => { hStartPractice(day.catId, day.subId); };
   const hProgramSkip = () => setScreen("dashboard");
-  const hEditProfile     = () => setScreen("setup");
+  const hEditProfile     = () => setScreen("edit_profile");
   const hLogout          = () => { setProfile(null); saveProfA(null); setScreen("splash"); };
 
   // ── Backup handlers ───────────────────────────────────────────────────────
@@ -21224,6 +21463,7 @@ function AutoMaths() {
           {screen==="send_teacher" && profile && <SendToTeacherScreen profile={profile} onBack={()=>setScreen("backup")}/>}
           {screen==="backup"       && <BackupScreen onBack={()=>setScreen(profile?"dashboard":"splash")} onImportDone={hImportDone} onSendTeacher={()=>setScreen("send_teacher")} hasProfile={!!profile}/>}
           {screen==="reminder"     && <ReminderScreen onBack={()=>setScreen("dashboard")}/>}
+          {screen==="edit_profile"  && profile && <EditProfileScreen profile={profile} onSave={(p)=>{setProfile(p);setScreen("dashboard");}} onBack={()=>setScreen("dashboard")}/>}
           {screen==="preferences"  && profile && <PreferencesScreen profile={profile} onSave={(p)=>{setProfile(p);setScreen("dashboard");}} onBack={()=>setScreen("dashboard")}/>}
           {screen==="diagnostic"    && profile && <DiagnosticScreen profile={profile} onComplete={hDiagComplete}/>}
           {screen==="diag_result"   && profile && diagResults && <DiagnosticResultScreen profile={profile} diagResults={diagResults} onStart={hDiagResultNext}/>}
