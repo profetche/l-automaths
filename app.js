@@ -18356,7 +18356,6 @@ function CategoryScreen({onCat, onBack, subtitle="", profile=null}) {
 
   const [filter, setFilter] = React.useState(initFilter);
   const [subFilter, setSubFilter] = React.useState(initSubFilter);
-  const [collapsedGroups, setCollapsedGroups] = React.useState({});
 
   // stmg/tc sont des sous-filtres de "premiere" — afficher onglet 1ère actif
   const displayFilter = (filter === "stmg" || filter === "tc") ? "premiere" : filter;
@@ -18581,6 +18580,7 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
   const [niveau,setNiveau]=useState(defaultNiveau);
   const [sel,setSel]=useState([]);
   const [typeFilter,setTypeFilter]=useState(null); // null | "qcm" | "pad" | "drag" | "tableau"
+  const [collapsedGroups, setCollapsedGroups] = useState({});
 
   const levelsInCat=[...new Set(cat.subs.flatMap(s=>s.levels||[]))];
   const normalSubs = cat.subs.filter(s=>!s.levelPicker && !s.isMission);
