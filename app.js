@@ -130,13 +130,18 @@ function highlightPython(line) {
 
 function QuestionRenderer({ tex }) {
   var t = tex.trim();
-  var isAlgo = /\\texttt\{/.test(t);
+  var isAlgo = t.indexOf('\\texttt{') >= 0;
   if (!isAlgo) return <M tex={tex}/>;
   var parsed = parseAlgoTex(t);
   var parsedLines = parsed.parsedLines;
   var questionTex = parsed.questionTex;
-  // Numéroter seulement les lignes de code
-  var codeLineNum = 0;
+  // Pré-calculer les numéros de ligne de code avant le rendu
+  var lineNums = [];
+  var num = 0;
+  for (var k = 0; k < parsedLines.length; k++) {
+    if (parsedLines[k].isCode) { num++; lineNums.push(num); }
+    else { lineNums.push(null); }
+  }
   return (
     <div style={{width:'100%'}}>
       <div style={{
@@ -155,16 +160,13 @@ function QuestionRenderer({ tex }) {
         </div>
         {parsedLines.map(function(item, i) {
           if (item.isCode) {
-            codeLineNum++;
-            var num = codeLineNum;
             return (
               <div key={i} style={{display:'flex', alignItems:'baseline', gap:10}}>
-                <span style={{color:'#484F58', fontSize:11, minWidth:16, textAlign:'right', userSelect:'none', flexShrink:0}}>{num}</span>
+                <span style={{color:'#484F58', fontSize:11, minWidth:16, textAlign:'right', userSelect:'none', flexShrink:0}}>{lineNums[i]}</span>
                 <span style={{whiteSpace:'pre'}}>{highlightPython(item.text)}</span>
               </div>
             );
           } else {
-            // Ligne de texte (question ou remarque) : rendu KaTeX centré, fond légèrement différent
             return (
               <div key={i} style={{
                 color:'#94A3B8', fontSize:12, fontFamily:"'DM Sans',sans-serif",
