@@ -18488,12 +18488,16 @@ function SplashScreen({onStart, onMySpace, onRestore, profile}) {
           )}
         </div>
       </div>
+      {/* Lien contact discret */}
+      <div style={{textAlign:"center",paddingBottom:8,paddingTop:4}}>
+        <a href="mailto:appli.lautomaths@gmail.com"
+          style={{fontSize:11,color:"rgba(255,255,255,0.3)",textDecoration:"none",fontWeight:500}}>
+          ✉️ Contact
+        </a>
+      </div>
     </div>
   );
 }
-
-
-// ── MENU ─────────────────────────────────────────────────────────────────────
 function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onBackup}) {
   const th = getTheme(profile);
   const [daysSinceShare, setDaysSinceShare] = React.useState(null);
@@ -18783,15 +18787,6 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onB
               <span style={{fontSize:14,color:"#94A3B8"}}>→</span>
             </button>
           )}
-
-          {/* Bouton contact discret */}
-          <div style={{textAlign:"center",marginTop:8,paddingBottom:4}}>
-            <a href="mailto:appli.lautomaths@gmail.com"
-              style={{fontSize:11,color:"#94A3B8",textDecoration:"none",
-                fontWeight:500,letterSpacing:0.2}}>
-              ✉️ Contact
-            </a>
-          </div>
 
         </div>
       </Scroll>
