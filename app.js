@@ -18784,6 +18784,15 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onB
             </button>
           )}
 
+          {/* Bouton contact discret */}
+          <div style={{textAlign:"center",marginTop:8,paddingBottom:4}}>
+            <a href="mailto:appli.lautomaths@gmail.com"
+              style={{fontSize:11,color:"#94A3B8",textDecoration:"none",
+                fontWeight:500,letterSpacing:0.2}}>
+              ✉️ Contact
+            </a>
+          </div>
+
         </div>
       </Scroll>
     </div>
