@@ -19172,6 +19172,9 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
     return init;
   });
 
+  // Guard : catégorie introuvable (ex: catId="bac" en mode mission)
+  if (!cat) return null;
+
   const levelsInCat=[...new Set(cat.subs.flatMap(s=>s.levels||[]))];
   const normalSubs = cat.subs.filter(s=>!s.levelPicker && !s.isMission);
   
@@ -23282,7 +23285,7 @@ function AutoMaths() {
           {screen==="parcours_detail" && profile && <MonParcoursScreen profile={profile} onBack={()=>setScreen("dashboard")} onStartPractice={hStartPractice} onStartTest={hStartTest} onCollection={()=>setScreen("collection")} cardsUnlocked={cardsUnlocked} badges={null}/>}
           {screen==="category"      && <CategoryScreen  profile={profile} onCat={hCat} onBack={()=>setScreen(mode==="express"?"training_modes":mode==="entrainement"?(profile?"dashboard":"training_modes"):mode==="test_aleatoire"?"test_aleatoire":"home")} subtitle={mode==="express"?"Choisis une catégorie":mode==="entrainement"?"Choisis une catégorie":mode==="test_aleatoire"?"Toutes les questions de la catégorie":"Puis choisis des sous-thèmes"}/>}
           {screen==="subcategory"   && <SubcategoryScreen catId={catId} qCount={mode==="express"?10:20} onStart={hSub} onBack={()=>setScreen(mode==="missions"?"home":"category")} onLevelPicker={hLevelPicker} defaultNiveau={profile?LEVEL_MAP[profile.level]||null:null}/>}
-          {screen==="mission_select" && <MissionScreen missionId={missionId} onBack={()=>setScreen("subcategory")} onSelectTheme={(theme)=>{
+          {screen==="mission_select" && <MissionScreen missionId={missionId} onBack={()=>setScreen(mode==="missions"?"home":"category")} onSelectTheme={(theme)=>{
             setMissionTheme(theme);
             if(theme.useBacBlanc) {
               // Bac blanc : tire directement 30 questions dans tout le programme
