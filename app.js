@@ -18518,11 +18518,12 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onB
     })();
   }, [profile]);
 
-  // Modes secondaires (compacts, 3 cartes en grille)
+  // Modes secondaires (compacts, grille 2x2)
   const secondaryModes = [
-    {id:"sprint",   label:"Sprint",       sub:"5 min chrono",    emoji:"⏱️", color:"#10B981", grad:"linear-gradient(135deg,#10B981,#047857)"},
-    {id:"missions", label:"Missions",     sub:"Objectifs Sigma", emoji:"🚀", color:"#1E40AF", grad:"linear-gradient(135deg,#1E40AF,#1E3A8A)"},
-    {id:"bac",      label:"Bac",          sub:"Annales",         emoji:"🏆", color:"#F59E0B", grad:"linear-gradient(135deg,#F59E0B,#B45309)"},
+    {id:"sprint",      label:"Sprint",       sub:"5 min chrono",     emoji:"⏱️", color:"#10B981", grad:"linear-gradient(135deg,#10B981,#047857)"},
+    {id:"missions",    label:"Missions",     sub:"Objectifs Sigma",  emoji:"🚀", color:"#1E40AF", grad:"linear-gradient(135deg,#1E40AF,#1E3A8A)"},
+    {id:"bac",         label:"Bac",          sub:"Annales",          emoji:"🏆", color:"#F59E0B", grad:"linear-gradient(135deg,#F59E0B,#B45309)"},
+    {id:"flashcards",  label:"Flashcards",   sub:"Formules du cours",emoji:"🃏", color:"#059669", grad:"linear-gradient(135deg,#10B981,#047857)"},
   ];
 
   // ─── Calcul du status streak (logique inchangée, juste extraite proprement) ───
@@ -18738,8 +18739,8 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onB
             <div style={{color:"rgba(255,255,255,.7)",fontSize:24,position:"relative",zIndex:1}}>›</div>
           </button>
 
-          {/* ─── MODES SECONDAIRES (grille 3 colonnes) ─── */}
-          <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:8,marginBottom:14}}>
+          {/* ─── MODES SECONDAIRES (grille 2x2) ─── */}
+          <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:8,marginBottom:14}}>
             {secondaryModes.map((m,i)=>(
               <button key={m.id} onClick={()=>onMode(m.id)} className="pop-in"
                 style={{
@@ -19956,7 +19957,6 @@ const MISSIONS = {
     color: "#7C3AED",
     grad: "linear-gradient(135deg,#8B5CF6,#6D28D9)",
     themes: [
-      { id: "flashcards", label: "Flashcards : les formules du cours", emoji: "🃏", useFlashcards: true },
       { id: "identites", label: "Développement", emoji: "🔣", dbPath: "numerique.identites_remarquables", useLevelPicker: true, levelType: "identites" },
       { id: "factorisation", label: "Factorisation", emoji: "✖️", dbPath: "numerique.factorisation", useLevelPicker: true, levelType: "factorisation" },
       { id: "denominateur", label: "Mise au même dénominateur", emoji: "➗", dbPath: "litteral.denominateur", useLevelPicker: true, levelType: "denominateur" },
@@ -19970,7 +19970,6 @@ const MISSIONS = {
     color: "#F59E0B",
     grad: "linear-gradient(135deg,#F59E0B,#B45309)",
     themes: [
-      { id: "flashcards", label: "Flashcards : les formules du cours", emoji: "🃏", useFlashcards: true },
       { id: "bac_blanc_stmg", label: "Bac blanc — 30 questions", emoji: "🎯", useBacBlanc: "stmg" },
     ]
   },
@@ -19982,7 +19981,6 @@ const MISSIONS = {
     color: "#EF4444",
     grad: "linear-gradient(135deg,#EF4444,#B91C1C)",
     themes: [
-      { id: "flashcards", label: "Flashcards : les formules du cours", emoji: "🃏", useFlashcards: true },
       { id: "bac_blanc_term", label: "Bac blanc — 30 questions", emoji: "🎯", useBacBlanc: "term" },
     ]
   }
@@ -20455,7 +20453,142 @@ const FLASHCARDS = [
 ];
 
 
-// ── FlashcardScreen// ── FlashcardScreen ─────────────────────────────────────────────────────────
+// ── FlashcardScreen// ── FlashcardSetupScreen — choix du niveau et de l'ordre ────────────────────
+function FlashcardSetupScreen({ onStart, onBack }) {
+  const LEVELS = [
+    { id:"sec",  label:"2nde",         emoji:"📗" },
+    { id:"tc",   label:"1ère TC",      emoji:"📘" },
+    { id:"stmg", label:"1ère STMG",    emoji:"📙" },
+    { id:"spe",  label:"1ère Spé",     emoji:"📕" },
+    { id:"term", label:"Terminale Spé",emoji:"🏆" },
+  ];
+
+  const [selectedLevel, setSelectedLevel] = React.useState(null);
+  const [order, setOrder] = React.useState("random"); // "random" | "ordered"
+
+  // Compter les cartes disponibles pour le niveau sélectionné
+  const cardCount = React.useMemo(() => {
+    if (!selectedLevel) return 0;
+    let allowed;
+    if (selectedLevel === "stmg") {
+      allowed = ["sec","tc","stmg"];
+    } else {
+      const lo = ["sec","tc","spe","term"];
+      allowed = lo.slice(0, lo.indexOf(selectedLevel) + 1);
+    }
+    return FLASHCARDS.filter(c => allowed.includes(c.level)).length;
+  }, [selectedLevel]);
+
+  const handleStart = () => {
+    if (!selectedLevel) return;
+    let allowed;
+    if (selectedLevel === "stmg") {
+      allowed = ["sec","tc","stmg"];
+    } else {
+      const lo = ["sec","tc","spe","term"];
+      allowed = lo.slice(0, lo.indexOf(selectedLevel) + 1);
+    }
+    let cards = FLASHCARDS.filter(c => allowed.includes(c.level));
+    if (order === "random") {
+      cards = [...cards].sort(() => Math.random() - 0.5);
+    }
+    onStart(cards);
+  };
+
+  return (
+    <div style={{display:"flex",flexDirection:"column",height:"100%",
+      background:"var(--am-bg-light)",padding:"20px 18px"}}>
+
+      {/* Header */}
+      <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:24,flexShrink:0}}>
+        <button onClick={onBack}
+          style={{background:"none",border:"none",cursor:"pointer",color:"#94A3B8",fontSize:18,padding:0}}>✕</button>
+        <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:20,color:"#1E293B"}}>
+          🃏 Flashcards
+        </div>
+      </div>
+
+      {/* Choix du niveau */}
+      <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:13,
+        color:"#64748B",textTransform:"uppercase",letterSpacing:1,marginBottom:10}}>
+        Ton niveau
+      </div>
+      <div style={{display:"flex",flexDirection:"column",gap:8,marginBottom:24}}>
+        {LEVELS.map(lvl => (
+          <button key={lvl.id} onClick={() => setSelectedLevel(lvl.id)}
+            style={{
+              background: selectedLevel === lvl.id
+                ? "linear-gradient(135deg,#10B981,#047857)"
+                : "#fff",
+              border: selectedLevel === lvl.id ? "2px solid #047857" : "2px solid #E2E8F0",
+              borderRadius:14,padding:"12px 16px",cursor:"pointer",
+              display:"flex",alignItems:"center",gap:12,
+              boxShadow: selectedLevel === lvl.id
+                ? "0 4px 12px rgba(16,185,129,0.3)" : "0 1px 4px rgba(0,0,0,.06)",
+              transition:"all .15s",
+            }}>
+            <span style={{fontSize:22}}>{lvl.emoji}</span>
+            <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:15,
+              color: selectedLevel === lvl.id ? "#fff" : "#1E293B"}}>
+              {lvl.label}
+            </span>
+            {selectedLevel === lvl.id && (
+              <span style={{marginLeft:"auto",fontSize:11,color:"rgba(255,255,255,0.8)",fontWeight:600}}>
+                {cardCount} cartes
+              </span>
+            )}
+          </button>
+        ))}
+      </div>
+
+      {/* Choix de l'ordre */}
+      <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:13,
+        color:"#64748B",textTransform:"uppercase",letterSpacing:1,marginBottom:10}}>
+        Ordre des cartes
+      </div>
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:32}}>
+        {[
+          {id:"random",  label:"Aléatoire", emoji:"🔀"},
+          {id:"ordered", label:"Dans l'ordre", emoji:"📋"},
+        ].map(o => (
+          <button key={o.id} onClick={() => setOrder(o.id)}
+            style={{
+              background: order === o.id ? "linear-gradient(135deg,#6366F1,#4F46E5)" : "#fff",
+              border: order === o.id ? "2px solid #4F46E5" : "2px solid #E2E8F0",
+              borderRadius:14,padding:"12px 10px",cursor:"pointer",
+              display:"flex",flexDirection:"column",alignItems:"center",gap:4,
+              boxShadow: order === o.id ? "0 4px 12px rgba(99,102,241,0.25)" : "0 1px 4px rgba(0,0,0,.06)",
+              transition:"all .15s",
+            }}>
+            <span style={{fontSize:22}}>{o.emoji}</span>
+            <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:13,
+              color: order === o.id ? "#fff" : "#1E293B"}}>
+              {o.label}
+            </span>
+          </button>
+        ))}
+      </div>
+
+      {/* Bouton lancer */}
+      <button onClick={handleStart} disabled={!selectedLevel}
+        style={{
+          background: selectedLevel
+            ? "linear-gradient(135deg,#10B981,#047857)"
+            : "#E2E8F0",
+          border:"none",borderRadius:16,padding:"16px",cursor: selectedLevel ? "pointer" : "default",
+          color: selectedLevel ? "#fff" : "#94A3B8",
+          fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,
+          boxShadow: selectedLevel ? "0 6px 20px rgba(16,185,129,0.35)" : "none",
+          transition:"all .2s",
+          marginTop:"auto",
+        }}>
+        {selectedLevel ? `Commencer — ${cardCount} cartes 🃏` : "Choisis ton niveau"}
+      </button>
+    </div>
+  );
+}
+
+// ── FlashcardScreen ─────────────────────────────────────────────────────────
 function FlashcardScreen({ cards, onBack }) {
   const [idx, setIdx] = React.useState(0);
   const [flipped, setFlipped] = React.useState(false);
@@ -23491,6 +23624,7 @@ function AutoMaths() {
     else if (m === "entrainement") setScreen("category");
     else if (m === "test_aleatoire") setScreen("test_aleatoire");
     else if (m === "sprint") setScreen("sprint");
+    else if (m === "flashcards") setScreen("flashcard_setup");
     else setScreen("category");
   };
   // Choix depuis l'écran intermédiaire S'entraîner
@@ -23881,7 +24015,8 @@ function AutoMaths() {
               setScreen("mission_theme");
             }
           }}/>}
-          {screen==="flashcards"    && <FlashcardScreen cards={pool} onBack={()=>setScreen("mission_select")}/>}
+          {screen==="flashcard_setup" && <FlashcardSetupScreen onBack={()=>setScreen("home")} onStart={(cards)=>{ setPool(cards); setScreen("flashcards"); }}/>}
+          {screen==="flashcards"    && <FlashcardScreen cards={pool} onBack={()=>setScreen("flashcard_setup")}/>}
           {screen==="mission_theme" && missionTheme && <MissionThemeScreen theme={missionTheme} missionId={missionId} onBack={()=>setScreen("mission_select")} onStart={(qs, themeId)=>{
             setPrevScreen("mission_theme");
             setQuestions(qs);
