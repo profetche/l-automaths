@@ -23843,10 +23843,20 @@ function AutoMaths() {
               // Flashcards : filtrer par niveau du profil
               const levelMap = { seconde:"sec", tronc_commun:"tc", stmg:"stmg", premiere_spe:"spe", terminale_spe:"term" };
               const userLevel = profile ? (levelMap[profile.level] || "term") : "term";
-              // Inclure ce niveau et tous les niveaux inférieurs
-              const levelOrder = ["sec","tc","stmg","spe","term"];
-              const upTo = levelOrder.indexOf(userLevel);
-              const allowedLevels = levelOrder.slice(0, upTo + 1);
+
+              let allowedLevels;
+              if (userLevel === "stmg") {
+                // Parcours STMG : sec + tc + stmg (pas spe/term)
+                allowedLevels = ["sec","tc","stmg"];
+              } else {
+                // Parcours général (sec, tc, spe, term)
+                const levelOrder = ["sec","tc","spe","term"];
+                const upTo = levelOrder.indexOf(userLevel);
+                allowedLevels = upTo >= 0
+                  ? levelOrder.slice(0, upTo + 1)
+                  : ["sec","tc","spe","term"];
+              }
+
               const filtered = FLASHCARDS.filter(c => allowedLevels.includes(c.level));
               setPool(filtered);
               setScreen("flashcards");
