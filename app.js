@@ -7727,42 +7727,49 @@ const DB = {
       { q:r`\text{Le prix d'une tablette est passé de 250€ à 200€.}\\[4pt]\text{Le coefficient multiplicateur est :}`, choices:[r`1{,}25`,r`0{,}75`,r`0{,}8`,r`-0{,}8`], a:r`0{,}8`, tip:r`\frac{200}{250}=0{,}8` },
       { q:r`\text{La seule égalité vraie est :}`, choices:[r`40\times\frac{1}{40^2}=40^2`,r`(2^{-4})^3=2^{-1}`,r`\frac{10^{-5}}{10^8}=10^{-13}`,r`5^{-6}\times11^{-6}=55^{-12}`], a:r`\frac{10^{-5}}{10^8}=10^{-13}`, tip:r`10^{-5-8}=10^{-13}` },
       { q:r`\text{Épaisseur d'une feuille : }70\times10^{-3}\text{ mm.}\\[4pt]\text{Épaisseur de 2 000 feuilles :}`, choices:[r`140\text{ cm}`,r`14\text{ mm}`,r`14\text{ cm}`,r`72\text{ cm}`], a:r`14\text{ cm}`, tip:r`70\times10^{-3}\times2000=140\text{ mm}=14\text{ cm}` },
-      { q:r`\text{La planète la plus massive (Terre }5973\times10^{21}\text{ kg, Mars }6{,}4185\times10^{23}\text{ kg...) :}`, choices:[r`\text{Terre}`,r`\text{Mercure}`,r`\text{Vénus}`,r`\text{Mars}`], a:r`\text{Mars}`, tip:r`6{,}4185\times10^{23}\text{ est le plus grand exposant}` },
+      { q:r`\text{Classer par masse croissante :}\\[4pt]\text{Mercure }3{,}3\times10^{23}\text{ kg}\\[2pt]\text{Vénus }4{,}87\times10^{24}\text{ kg}\\[2pt]\text{Terre }5{,}97\times10^{24}\text{ kg}\\[2pt]\text{Mars }6{,}42\times10^{23}\text{ kg}`, choices:[r`\text{Mercure, Mars, Vénus, Terre}`,r`\text{Mars, Mercure, Terre, Vénus}`,r`\text{Mercure, Mars, Terre, Vénus}`,r`\text{Mars, Vénus, Mercure, Terre}`], a:r`\text{Mercure, Mars, Vénus, Terre}`, tip:r`3{,}3\times10^{23}<6{,}42\times10^{23}<4{,}87\times10^{24}<5{,}97\times10^{24}` },
       { q:r`\text{On additionne }x\text{, son triple et son carré. Le résultat vaut :}`, choices:[r`(x+3x)^2`,r`x+(3x)^2`,r`1+3x^2`,r`4x+x^2`], a:r`4x+x^2`, tip:r`x+3x+x^2=4x+x^2` },
-      { q:r`\text{Courbes }C\text{ et }C'\text{ se croisent en }x=-2{,}-1\text{ et }x=1{,}2.\\[4pt]\text{L'ensemble des solutions de }f(x)\leq g(x)\text{ est :}`,
-        svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="100%" style="background:#fff;font-family:sans-serif">
+      { q:r`\text{Courbes }C_f\text{ (bleue) et }C_g\text{ (rouge) ci-dessous.}\\[4pt]\text{L'ensemble des solutions de }f(x)\geq g(x)\text{ est :}`,
+        svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 180" width="100%" style="background:#fff;font-family:sans-serif;border-radius:8px">
   <!-- axes -->
-  <line x1="30" y1="100" x2="305" y2="100" stroke="#94A3B8" stroke-width="1.2"/>
-  <line x1="50" y1="15" x2="50" y2="185" stroke="#94A3B8" stroke-width="1.2"/>
-  <!-- flèche axe x -->
-  <polygon points="305,96 313,100 305,104" fill="#94A3B8"/>
-  <!-- ticks et labels x -->
-  <line x1="86" y1="96" x2="86" y2="104" stroke="#555" stroke-width="1.2"/>
-  <text x="86" y="116" font-size="11" fill="#444" text-anchor="middle">-2</text>
-  <line x1="122" y1="96" x2="122" y2="104" stroke="#555" stroke-width="1.2"/>
-  <text x="122" y="116" font-size="11" fill="#444" text-anchor="middle">-1</text>
-  <line x1="158" y1="96" x2="158" y2="104" stroke="#555" stroke-width="1.2"/>
-  <text x="158" y="116" font-size="11" fill="#444" text-anchor="middle">0</text>
-  <line x1="202" y1="96" x2="202" y2="104" stroke="#555" stroke-width="1.2"/>
-  <text x="202" y="116" font-size="11" fill="#444" text-anchor="middle">1,2</text>
-  <!-- C (courbe de f) — bleue -->
-  <!-- Passe par (-2,100), monte haut entre -2 et -1, repasse (-1,100),
-       descend sous l axe entre -1 et 1.2, repasse (1.2,100), redescend à droite -->
-  <path d="M30,70 C55,65 75,50 86,100 C97,148 110,155 122,100 C135,45 170,42 202,100 C222,135 255,145 305,140"
-        fill="none" stroke="#2563EB" stroke-width="2.2" stroke-linejoin="round"/>
-  <!-- C' (courbe de g) — rouge -->
-  <!-- Passe par les mêmes 3 intersections mais reste ENTRE C sur l axe, allure plus douce -->
-  <path d="M30,55 C55,52 72,68 86,100 C100,130 112,120 122,100 C135,80 168,88 202,100 C222,108 258,105 305,100"
-        fill="none" stroke="#DC2626" stroke-width="2.2" stroke-linejoin="round"/>
-  <!-- Points d intersection bien visibles -->
-  <circle cx="86" cy="100" r="3.5" fill="#6B7280"/>
-  <circle cx="122" cy="100" r="3.5" fill="#6B7280"/>
-  <circle cx="202" cy="100" r="3.5" fill="#6B7280"/>
-  <!-- Labels C et C' loin l un de l autre, sans ambiguïté -->
-  <text x="280" y="135" font-size="13" fill="#2563EB" font-weight="bold">C</text>
-  <text x="280" y="93" font-size="13" fill="#DC2626" font-weight="bold">C'</text>
+  <line x1="30" y1="140" x2="285" y2="140" stroke="#94A3B8" stroke-width="1.2"/>
+  <line x1="30" y1="15" x2="30" y2="155" stroke="#94A3B8" stroke-width="1.2"/>
+  <polygon points="285,136 293,140 285,144" fill="#94A3B8"/>
+  <polygon points="26,15 30,7 34,15" fill="#94A3B8"/>
+  <!-- ticks x : -2, -1, 0, 1, 2, 3, 4 -->
+  <line x1="66" y1="136" x2="66" y2="144" stroke="#64748B" stroke-width="1"/>
+  <text x="66" y="156" font-size="10" fill="#475569" text-anchor="middle">-2</text>
+  <line x1="102" y1="136" x2="102" y2="144" stroke="#64748B" stroke-width="1"/>
+  <text x="102" y="156" font-size="10" fill="#475569" text-anchor="middle">-1</text>
+  <line x1="138" y1="136" x2="138" y2="144" stroke="#64748B" stroke-width="1"/>
+  <text x="138" y="156" font-size="10" fill="#475569" text-anchor="middle">0</text>
+  <line x1="174" y1="136" x2="174" y2="144" stroke="#64748B" stroke-width="1"/>
+  <text x="174" y="156" font-size="10" fill="#475569" text-anchor="middle">1</text>
+  <line x1="210" y1="136" x2="210" y2="144" stroke="#64748B" stroke-width="1"/>
+  <text x="210" y="156" font-size="10" fill="#475569" text-anchor="middle">2</text>
+  <line x1="246" y1="136" x2="246" y2="144" stroke="#64748B" stroke-width="1"/>
+  <text x="246" y="156" font-size="10" fill="#475569" text-anchor="middle">3</text>
+  <line x1="282" y1="136" x2="282" y2="144" stroke="#64748B" stroke-width="1"/>
+  <!-- Cf bleue : parabole ouverte vers le haut, min en x=1, croise Cg en x=-2 et x=1 -->
+  <!-- x=-2 -> px=66, y=140 ; sommet x=1 px=174, y=90 ; x=4 px=282, y=140 -->
+  <path d="M66,140 C90,80 150,30 174,90 C198,150 250,130 282,90"
+        fill="none" stroke="#2563EB" stroke-width="2.5"/>
+  <!-- Cg rouge : droite oblique, croise Cf en x=-2 (py=140) et x=1 (py=90), continue -->
+  <path d="M66,140 C110,120 140,105 174,90 C210,75 250,60 282,45"
+        fill="none" stroke="#DC2626" stroke-width="2.5" stroke-dasharray="6,3"/>
+  <!-- intersections -->
+  <circle cx="66" cy="140" r="4" fill="#6B7280"/>
+  <circle cx="174" cy="90" r="4" fill="#6B7280"/>
+  <!-- labels courbes -->
+  <text x="108" y="48" font-size="12" fill="#2563EB" font-weight="bold">Cf</text>
+  <text x="255" y="52" font-size="12" fill="#DC2626" font-weight="bold">Cg</text>
+  <!-- annotations intersections -->
+  <text x="66" y="130" font-size="9" fill="#6B7280" text-anchor="middle">-2</text>
+  <text x="174" y="80" font-size="9" fill="#6B7280" text-anchor="middle">1</text>
 </svg>`,
-        choices:[r`[-2\,;\,-1]`,r`[1\,;\,2]`,r`[-2\,;\,-1]\cup[1\,;\,2]`,r`[-2\,;\,-1]\cap[1\,;\,2]`], a:r`[-2\,;\,-1]\cup[1\,;\,2]`, tip:r`C\text{ est sous }C'\text{ sur ces deux intervalles}` },
+        choices:[r`[-2\,;\,4]`,r`[1\,;\,4]`,r`[-2\,;\,1]`,r`[-2\,;\,1]\cup[1\,;\,4]`],
+        a:r`[1\,;\,4]`,
+        tip:r`f(x)\geq g(x)\Leftrightarrow C_f\text{ au-dessus de }C_g\Leftrightarrow x\in[1\,;\,4]` },
       { q:r`f\text{ est définie sur }[-3\,;\,2]\text{ et représentée ci-dessous.}\\[4pt]\text{Combien l'équation }f(x)=0\text{ admet-elle de solutions ?}`,
         svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="100%" style="background:#fff;font-family:sans-serif">
   <!-- axes -->
@@ -7854,7 +7861,7 @@ const DB = {
       { q:r`\text{Droite }D\text{ : pente positive, coupe l'axe }y\text{ en }3.\\[4pt]\text{Son équation est :}`, choices:[r`y=x+3`,r`y=x-3`,r`y=-x+3`,r`y=-x-3`], a:r`y=x+3`, tip:r`\text{Pente positive, ordonnée à l'origine }=3` },
       { q:r`f(x)=7-\dfrac{1}{2}(x-3)^2.\\[4pt]f(3)=?`, choices:[r`7-\dfrac{1}{2}`,r`7-\dfrac{1}{2}(9+9)`,`7`,`0`], a:`7`, tip:r`f(3)=7-\frac{1}{2}(0)^2=7` },
       { q:r`\text{Développer }(x-3)^2\text{ :}`, choices:[r`x^2+9`,r`x^2-9`,r`x^2+6x+9`,r`x^2-6x+9`], a:r`x^2-6x+9`, tip:r`(a-b)^2=a^2-2ab+b^2` },
-      { q:r`\text{Série A : 1;2;3 — Série B : 0{,}5;2;100}\\[4pt]\text{Proposition vraie :}`, choices:[r`\text{Même moy. et médiane}`,r`\text{Même moy., médiane }\neq`,r`\text{Même médiane, moy. }\neq`,r`\text{Ni même moy. ni médiane}`], a:r`\text{Même médiane, moy. }\neq`, tip:r`\text{Médiane}=2\text{ pour A et B. Moy B}\approx34\neq2` },
+      { q:r`\text{Série A : }1\,;\,2\,;\,3\quad\text{Série B : }0{,}5\,;\,2\,;\,100\\[4pt]\text{Quelle proposition est vraie ?}`, choices:[r`\text{Même moyenne et même médiane}`,r`\text{Même moyenne, mais médiane différente}`,r`\text{Même médiane, mais moyenne différente}`,r`\text{Ni même moyenne ni même médiane}`], a:r`\text{Même médiane, mais moyenne différente}`, tip:r`\text{Médiane A}=2=\text{Médiane B.}\\\text{Moy. A}=2\quad\text{Moy. B}=\tfrac{102{,}5}{3}\approx34\neq2.` },
     ],
     // ── Tronc commun · Annales · Sujet 2 (Voie générale hors spé, 2026) ──────
     tronc_annales_s2_2026: [
@@ -7904,7 +7911,7 @@ const DB = {
     ],
     // ── Spécialité · Annales · Sujet 2 (2026) ────────────────────────────────
     spe_annales_s2_2026: [
-      { q:r`\text{Arbre de probabilité : }P(A)=0{,}4,\;P(B|A)=0{,}3,\;P(B|\bar{A})=0{,}9.\\[4pt]P(B)=?`, choices:[r`0{,}18`,r`0{,}12`,r`0{,}66`,r`0{,}3`], a:r`0{,}66`, tip:r`0{,}4\times0{,}3+0{,}6\times0{,}9=0{,}66` },
+      { q:r`\text{Arbre de probabilité :}\\[4pt]P(A)=0{,}4,\quad P(B\mid A)=0{,}3,\quad P(B\mid\bar{A})=0{,}9\\[4pt]P(B)=\,?`, choices:[r`0{,}18`,r`0{,}12`,r`0{,}66`,r`0{,}3`], a:r`0{,}66`, tip:r`P(B)=P(A)\times P(B\mid A)+P(\bar{A})\times P(B\mid\bar{A})\\=0{,}4\times0{,}3+0{,}6\times0{,}9=0{,}12+0{,}54=0{,}66` },
       { q:r`\text{Une tablette coûte 200€. Son prix diminue de }30\%\text{.}\\[4pt]\text{Nouveau prix :}`, choices:[`140€`,`170€`,`194€`,`197€`], a:`140€`, tip:r`200\times0{,}7=140€` },
       { q:r`\text{Réduction de }50\%\text{ suivie d'une augmentation de }50\%\text{ :}`, choices:[r`\text{Réduction de }50\%`,r`\text{Réduction de }25\%`,r`\text{Augmentation de }25\%`,r`\text{Augmentation de }75\%`], a:r`\text{Réduction de }25\%`, tip:r`0{,}5\times1{,}5=0{,}75\Rightarrow-25\%` },
       { q:r`\text{Un quart des élèves sont internes ; parmi eux, la moitié sont des filles.}\\[4pt]\text{Part des filles internes :}`, choices:[r`4\%`,r`12{,}5\%`,r`25\%`,r`50\%`], a:r`12{,}5\%`, tip:r`\frac{1}{4}\times\frac{1}{2}=\frac{1}{8}=12{,}5\%` },
@@ -19838,6 +19845,26 @@ const BAC_BLANC_POOLS = {
     },
     totalQuestions: 30,
   },
+  term: {
+    label: "Bac blanc Terminale",
+    content: {
+      polynomes:    ['poly2_definition','poly2_racines','poly2_discriminant','poly2_canonique','poly2_variations','poly2_signe','poly2_inequations'],
+      expo:         ['definition','calculs','etude','derivee','equations','expo_comparaisons','applications'],
+      suites:       ['suites_nature','suites_termes','suites_variations','suites_explicite_recurr','suites_recurrence'],
+      limites:      ['lim_reference','lim_operations','lim_FI','lim_asymptotes','lim_comparaison'],
+      derivation:   ['lecture_derivee','calcul_derivee','deriv_vitesse','deriv_tangente','deriv_fonctions_ref','deriv_variations','deriv_produit','deriv_quotient','deriv_rationnelle','deriv_optimisation','deriv_tangente_avancee','derivee_convexite','continuite'],
+      ln:           ['definition','proprietes','etude','derivee','equations','applications'],
+      probabilites: ['probas_conditionnelles','probas_independance','probas_totales','probas_var_aleatoires','probas_loi_binomiale','grands_nombres'],
+      denombrement: ['denombrement_type'],
+      trigonometrie:['valeurs_trigo','trigo_fonctions'],
+      equa_diff:    ['equa_diff'],
+      primitives:   ['primitives','integrales'],
+      geometrie:    ['geom_espace_positions','geom_espace_vecteurs','geom_espace_equations','geom_espace_droites'],
+      produit_scalaire: ['plan','espace'],
+      algo_python:  ['algo_syntaxe','algo_fonction','algo_if','algo_for','algo_while'],
+    },
+    totalQuestions: 30,
+  },
 };
 
 // Construit un pool de N questions tirées au hasard dans le programme défini,
@@ -19942,10 +19969,12 @@ const MISSIONS = {
     id: "mission_bac",
     label: "Objectif Bac en Terminale",
     emoji: "🎓",
-    desc: "À venir...",
+    desc: "Bac blanc : 30 questions tirées au hasard dans tout le programme de Terminale Spé",
     color: "#EF4444",
     grad: "linear-gradient(135deg,#EF4444,#B91C1C)",
-    themes: []
+    themes: [
+      { id: "bac_blanc_term", label: "Bac blanc — 30 questions", emoji: "🎯", useBacBlanc: "term" },
+    ]
   }
 };
 
