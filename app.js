@@ -1814,6 +1814,100 @@ const DB = {
         tsSpec:{ xVals:["-∞","+∞"],
           cells:[{v:"+",hole:true,kind:"sign"}] },
         tip:r`\text{Lis le graphique : }f(x)\text{ est positif quand la courbe est au-dessus de l'axe, négatif dessous}` },
+
+      // ──── TABLEAUX DE SIGNES D'UN QUOTIENT ────
+      // Valeur interdite notée ‖ (double barre) — dénominateur nul interdit
+
+      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=\dfrac{x-1}{x+2}`,
+        tsSpec:{ xVals:["-∞","-2","1","+∞"],
+          rows:[
+            {label:"x-1",    cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+            {label:"x+2",    cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+          ],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`\text{Valeur interdite : }x=-2\text{ (division par 0).}\\\text{Zéro du quotient : }x=1\text{ (numérateur nul).}\\[4pt]\text{Règle des signes d'un quotient : même règle que le produit.}` },
+
+      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=\dfrac{x+3}{x-2}`,
+        tsSpec:{ xVals:["-∞","-3","2","+∞"],
+          rows:[
+            {label:"x+3",    cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+            {label:"x-2",    cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+          ],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`\text{Valeur interdite : }x=2.\quad\text{Zéro : }x=-3.` },
+
+      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=\dfrac{-x+4}{x+1}`,
+        tsSpec:{ xVals:["-∞","-1","4","+∞"],
+          rows:[
+            {label:"-x+4",   cells:[{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"}]},
+            {label:"x+1",    cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+          ],
+          cells:[{v:"-",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
+        tip:r`\text{Valeur interdite : }x=-1.\quad\text{Zéro : }x=4.` },
+
+      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=\dfrac{2x-6}{x+4}`,
+        tsSpec:{ xVals:["-∞","-4","3","+∞"],
+          rows:[
+            {label:"2x-6",   cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+            {label:"x+4",    cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+          ],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`\text{Valeur interdite : }x=-4.\quad\text{Zéro : }x=3.` },
+
+      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=\dfrac{x}{x-5}`,
+        tsSpec:{ xVals:["-∞","0","5","+∞"],
+          rows:[
+            {label:"x",      cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+            {label:"x-5",    cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+          ],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`\text{Valeur interdite : }x=5.\quad\text{Zéro du quotient : }x=0.` },
+
+      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=\dfrac{x+2}{-x+1}`,
+        tsSpec:{ xVals:["-∞","-2","1","+∞"],
+          rows:[
+            {label:"x+2",    cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+            {label:"-x+1",   cells:[{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"}]},
+          ],
+          cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
+        tip:r`\text{Valeur interdite : }x=1\text{ (}-x+1=0\text{).}\quad\text{Zéro : }x=-2.` },
+
+      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=\dfrac{3x-3}{x+3}`,
+        tsSpec:{ xVals:["-∞","-3","1","+∞"],
+          rows:[
+            {label:"3x-3",   cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+            {label:"x+3",    cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+          ],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`\text{Valeur interdite : }x=-3.\quad\text{Zéro : }x=1.` },
+
+      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=\dfrac{-2x-4}{x-3}`,
+        tsSpec:{ xVals:["-∞","-2","3","+∞"],
+          rows:[
+            {label:"-2x-4",  cells:[{v:"+",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"}]},
+            {label:"x-3",    cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+          ],
+          cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
+        tip:r`\text{Valeur interdite : }x=3.\quad\text{Zéro : }x=-2.` },
+
+      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=\dfrac{x-4}{2x+2}`,
+        tsSpec:{ xVals:["-∞","-1","4","+∞"],
+          rows:[
+            {label:"x-4",    cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+            {label:"2x+2",   cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+          ],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`\text{Valeur interdite : }x=-1\text{ (}2x+2=0\text{).}\quad\text{Zéro : }x=4.` },
+
+      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=\dfrac{(x+1)(x-3)}{x-5}`,
+        tsSpec:{ xVals:["-∞","-1","3","5","+∞"],
+          rows:[
+            {label:"x+1",    cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+            {label:"x-3",    cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+            {label:"x-5",    cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+          ],
+          cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`\text{Valeur interdite : }x=5.\quad\text{Zéros : }x=-1\text{ et }x=3.` },
     ],
 
     // ── d-bis. Signe d'un produit (tableaux multi-lignes) ──
@@ -1938,6 +2032,165 @@ const DB = {
           ],
           cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
         tip:r`\text{Racines : }x=-2\text{ et }x=4.\\[4pt]\text{Règle des signes d'un produit}` },
+
+      // ──── PRODUITS À TROIS FACTEURS ────
+
+      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=x(x-2)(x+3)`,
+        tsSpec:{ xVals:["-∞","-3","0","2","+∞"],
+          rows:[
+            {label:"x",     cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+            {label:"x-2",   cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+            {label:"x+3",   cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+          ],
+          cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`\text{Trois racines : }x=-3,\ x=0,\ x=2.\\[4pt]\text{Appliquer la règle des signes colonne par colonne.}` },
+
+      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=(x+1)(x-1)(x-3)`,
+        tsSpec:{ xVals:["-∞","-1","1","3","+∞"],
+          rows:[
+            {label:"x+1",   cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+            {label:"x-1",   cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+            {label:"x-3",   cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+          ],
+          cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`\text{Trois racines : }x=-1,\ x=1,\ x=3.\\[4pt]\text{Signe : }(-)(-)(-)\to-\quad(+)(-)(-)\to+\quad(+)(+)(-)\to-\quad(+)(+)(+)\to+` },
+
+      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=(x+2)(x)(x-4)`,
+        tsSpec:{ xVals:["-∞","-2","0","4","+∞"],
+          rows:[
+            {label:"x+2",   cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+            {label:"x",     cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+            {label:"x-4",   cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+          ],
+          cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`\text{Trois racines : }x=-2,\ x=0,\ x=4.` },
+
+      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=-(x+2)(x-1)(x-3)`,
+        tsSpec:{ xVals:["-∞","-2","1","3","+∞"],
+          rows:[
+            {label:"-(x+2)", cells:[{v:"+",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"}]},
+            {label:"x-1",    cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+            {label:"x-3",    cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+          ],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
+        tip:r`\text{Le }- \text{ devant inverse les signes à chaque étape.}\\\text{Racines : }x=-2,\ x=1,\ x=3.` },
+
+      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=(2x-2)(x+1)(x-3)`,
+        tsSpec:{ xVals:["-∞","-1","1","3","+∞"],
+          rows:[
+            {label:"2x-2",  cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+            {label:"x+1",   cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+            {label:"x-3",   cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+          ],
+          cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`\text{Racines : }x=-1,\ x=1,\ x=3.` },
+
+      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=(x+4)(x+2)(x-2)`,
+        tsSpec:{ xVals:["-∞","-4","-2","2","+∞"],
+          rows:[
+            {label:"x+4",   cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+            {label:"x+2",   cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+            {label:"x-2",   cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
+          ],
+          cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`\text{Racines : }x=-4,\ x=-2,\ x=2.` },
+
+      // ──── NIVEAU DIFFICILE : toutes les cellules à remplir ────
+
+      { q: r`\text{Tableau complet à remplir :}\\[4pt]f(x)=(x+3)(x-2)`,
+        tsSpec:{ xVals:["-∞","-3","2","+∞"],
+          rows:[
+            {label:"x+3", cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+            {label:"x-2", cells:[{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+          ],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`x+3=0\Rightarrow x=-3\quad x-2=0\Rightarrow x=2\\[4pt]\text{Signe ligne par ligne, puis produit colonne par colonne.}` },
+
+      { q: r`\text{Tableau complet à remplir :}\\[4pt]f(x)=(-x+1)(x+4)`,
+        tsSpec:{ xVals:["-∞","-4","1","+∞"],
+          rows:[
+            {label:"-x+1", cells:[{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}]},
+            {label:"x+4",  cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+          ],
+          cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
+        tip:r`-x+1=0\Rightarrow x=1\quad x+4=0\Rightarrow x=-4\\[4pt]\text{Attention : }-x+1\text{ est positif avant }x=1.` },
+
+      { q: r`\text{Tableau complet à remplir :}\\[4pt]f(x)=(2x+4)(x-3)`,
+        tsSpec:{ xVals:["-∞","-2","3","+∞"],
+          rows:[
+            {label:"2x+4", cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+            {label:"x-3",  cells:[{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+          ],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`2x+4=0\Rightarrow x=-2\quad x-3=0\Rightarrow x=3` },
+
+      { q: r`\text{Tableau complet à remplir :}\\[4pt]f(x)=x(x-1)(x+2)`,
+        tsSpec:{ xVals:["-∞","-2","0","1","+∞"],
+          rows:[
+            {label:"x",    cells:[{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+            {label:"x-1",  cells:[{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+            {label:"x+2",  cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+          ],
+          cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`\text{Racines : }x=-2,\ x=0,\ x=1.\\[4pt]\text{3 facteurs : signe = produit des 3 signes de la colonne.}` },
+
+      { q: r`\text{Tableau complet à remplir :}\\[4pt]f(x)=(x+1)(x-2)(x-4)`,
+        tsSpec:{ xVals:["-∞","-1","2","4","+∞"],
+          rows:[
+            {label:"x+1",  cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+            {label:"x-2",  cells:[{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+            {label:"x-4",  cells:[{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+          ],
+          cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`\text{Racines : }x=-1,\ x=2,\ x=4.` },
+
+      // ──── NIVEAU DIFFICILE : quotients, toutes les cellules à remplir ────
+
+      { q: r`\text{Tableau complet à remplir :}\\[4pt]f(x)=\dfrac{x-2}{x+3}`,
+        tsSpec:{ xVals:["-∞","-3","2","+∞"],
+          rows:[
+            {label:"x-2",  cells:[{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+            {label:"x+3",  cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+          ],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`x+3=0\Rightarrow x=-3\text{ (valeur interdite }\|)\\x-2=0\Rightarrow x=2\text{ (zéro du quotient)}` },
+
+      { q: r`\text{Tableau complet à remplir :}\\[4pt]f(x)=\dfrac{-x+3}{x-1}`,
+        tsSpec:{ xVals:["-∞","1","3","+∞"],
+          rows:[
+            {label:"-x+3", cells:[{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}]},
+            {label:"x-1",  cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+          ],
+          cells:[{v:"-",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
+        tip:r`x-1=0\Rightarrow x=1\text{ (valeur interdite)}\\-x+3=0\Rightarrow x=3\text{ (zéro)}\\[4pt]\text{Attention : }-x+3>0\text{ pour }x<3.` },
+
+      { q: r`\text{Tableau complet à remplir :}\\[4pt]f(x)=\dfrac{2x-4}{x+1}`,
+        tsSpec:{ xVals:["-∞","-1","2","+∞"],
+          rows:[
+            {label:"2x-4", cells:[{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+            {label:"x+1",  cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+          ],
+          cells:[{v:"+",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`x+1=0\Rightarrow x=-1\text{ (valeur interdite)}\\2x-4=0\Rightarrow x=2\text{ (zéro)}` },
+
+      { q: r`\text{Tableau complet à remplir :}\\[4pt]f(x)=\dfrac{x+5}{-x+2}`,
+        tsSpec:{ xVals:["-∞","-5","2","+∞"],
+          rows:[
+            {label:"x+5",  cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+            {label:"-x+2", cells:[{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}]},
+          ],
+          cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
+        tip:r`-x+2=0\Rightarrow x=2\text{ (valeur interdite)}\\x+5=0\Rightarrow x=-5\text{ (zéro)}` },
+
+      { q: r`\text{Tableau complet à remplir :}\\[4pt]f(x)=\dfrac{(x-1)(x+3)}{x-4}`,
+        tsSpec:{ xVals:["-∞","-3","1","4","+∞"],
+          rows:[
+            {label:"x-1",  cells:[{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+            {label:"x+3",  cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+            {label:"x-4",  cells:[{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
+          ],
+          cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
+        tip:r`x-4=0\Rightarrow x=4\text{ (valeur interdite)}\\x=1\text{ et }x=-3\text{ : zéros du numérateur.}` },
     ],
 
 
