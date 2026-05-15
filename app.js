@@ -19956,6 +19956,7 @@ const MISSIONS = {
     color: "#7C3AED",
     grad: "linear-gradient(135deg,#8B5CF6,#6D28D9)",
     themes: [
+      { id: "flashcards", label: "Flashcards : les formules du cours", emoji: "🃏", useFlashcards: true },
       { id: "identites", label: "Développement", emoji: "🔣", dbPath: "numerique.identites_remarquables", useLevelPicker: true, levelType: "identites" },
       { id: "factorisation", label: "Factorisation", emoji: "✖️", dbPath: "numerique.factorisation", useLevelPicker: true, levelType: "factorisation" },
       { id: "denominateur", label: "Mise au même dénominateur", emoji: "➗", dbPath: "litteral.denominateur", useLevelPicker: true, levelType: "denominateur" },
@@ -19969,6 +19970,7 @@ const MISSIONS = {
     color: "#F59E0B",
     grad: "linear-gradient(135deg,#F59E0B,#B45309)",
     themes: [
+      { id: "flashcards", label: "Flashcards : les formules du cours", emoji: "🃏", useFlashcards: true },
       { id: "bac_blanc_stmg", label: "Bac blanc — 30 questions", emoji: "🎯", useBacBlanc: "stmg" },
     ]
   },
@@ -20123,7 +20125,31 @@ const DENOM_LEVELS = [
 // ── FLASHCARDS — Formules du cours ────────────────────────────────────────────
 const FLASHCARDS = [
 
-  // ══ SECONDE ══════════════════════════════════════════════════════════════════
+  // ══ SECONDE & PREMIÈRE — Méthodes fondamentales ══════════════════════════════
+  { id:"fc_meth_01", level:"sec", chapitre:"Méthodes",
+    recto:r`\text{Résoudre une inéquation, c'est...}`,
+    verso:r`\text{Dresser un tableau de signes}\\[6pt]\text{puis lire l'ensemble solution sur la ligne }f(x)` },
+  { id:"fc_meth_02", level:"sec", chapitre:"Méthodes",
+    recto:r`\text{Comment noter l'ensemble solution d'une équation ?}`,
+    verso:r`S=\{x_1\,;\,x_2\,;\,\ldots\}\\[6pt]\text{Ex : }S=\{-2\,;\,3\}` },
+  { id:"fc_meth_03", level:"sec", chapitre:"Méthodes",
+    recto:r`\text{Comment noter l'ensemble solution d'une inéquation ?}`,
+    verso:r`S=[\,a\,;\,b\,]\quad\text{ou}\quad S=\,]-\infty\,;\,a\,[\,\cup\,]\,b\,;\,+\infty\,[\\[6pt]\text{(crochets selon que les bornes sont incluses ou non)}` },
+
+  // ══ PREMIÈRE & TERMINALE — Dérivée et variations ══════════════════════════════
+  { id:"fc_meth_04", level:"spe", chapitre:"Méthodes",
+    recto:r`\text{Étudier les variations d'une fonction, c'est...}`,
+    verso:r`\text{Étudier le signe de sa dérivée }f'(x)\\[6pt]f'>0\Rightarrow f\nearrow\qquad f'<0\Rightarrow f\searrow` },
+  { id:"fc_meth_05", level:"tc", chapitre:"Méthodes",
+    recto:r`\text{Étudier les variations d'une suite }(u_n)\text{, c'est...}`,
+    verso:r`\text{Étudier le signe de }u_{n+1}-u_n\\[6pt]u_{n+1}-u_n>0\Rightarrow\text{croissante}\qquad<0\Rightarrow\text{décroissante}` },
+
+  // ══ TERMINALE — Convexité ════════════════════════════════════════════════════
+  { id:"fc_meth_06", level:"term", chapitre:"Méthodes",
+    recto:r`\text{Étudier la convexité d'une fonction, c'est...}`,
+    verso:r`\text{Étudier le signe de la dérivée seconde }f''(x)\\[6pt]f''>0\Rightarrow\text{convexe (}\cup\text{)}\qquad f''<0\Rightarrow\text{concave (}\cap\text{)}` },
+
+  // ══ SECONDE — Ensembles de nombres ══════════════════════════════════════════
   { id:"fc_sec_01", level:"sec", chapitre:"Fonctions",
     recto:r`\text{Comment calculer le coefficient directeur d'une droite}\\(A(x_A,y_A),\,B(x_B,y_B))\text{ ?}`,
     verso:r`m = \dfrac{y_B - y_A}{x_B - x_A}` },
