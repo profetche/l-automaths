@@ -12395,14 +12395,18 @@ const CATS = [
       {id:"signe_produit",          label:"Signe d'un produit",             group:"algebre", levels:["sec","tc","stmg","spe"]},
     ] },
   { id:"pourcentages", label:"Pourcentages", emoji:"💹", color:"#059669", grad:"linear-gradient(135deg,#10B981,#047857)", light:"#ECFDF5", border:"#A7F3D0",
+    groups:[
+      {id:"base",  label:"🔵 Base"},
+      {id:"stmg",  label:"💼 STMG"},
+    ],
     subs:[
-      {id:"proportions",          label:"Proportions",                levels:["sec","tc","stmg","spe","term"]},
-      {id:"taux_cm",              label:"Taux ↔ CM",                  levels:["sec","tc","stmg","spe","term"]},
-      {id:"valeur_finale",        label:"Valeur finale / initiale",   levels:["sec","tc","stmg","spe","term"]},
-      {id:"evolutions_successives",label:"Évolutions successives",    levels:["tc","stmg","spe","term"]},
-      {id:"evolution_reciproque", label:"Évolution réciproque",       levels:["stmg"]},
-      {id:"taux_moyen",           label:"Taux moyen",                 levels:["stmg"]},
-      {id:"indice",               label:"Indice en base 100",         levels:["stmg"]},
+      {id:"proportions",           label:"Proportions",              group:"base",  levels:["sec","tc","stmg","spe","term"]},
+      {id:"taux_cm",               label:"Taux ↔ CM",                group:"base",  levels:["sec","tc","stmg","spe","term"]},
+      {id:"valeur_finale",         label:"Valeur finale / initiale", group:"base",  levels:["sec","tc","stmg","spe","term"]},
+      {id:"evolutions_successives",label:"Évolutions successives",   group:"base",  levels:["tc","stmg","spe","term"]},
+      {id:"evolution_reciproque",  label:"Évolution réciproque",     group:"stmg",  levels:["stmg"]},
+      {id:"taux_moyen",            label:"Taux moyen",               group:"stmg",  levels:["stmg"]},
+      {id:"indice",                label:"Indice en base 100",       group:"stmg",  levels:["stmg"]},
     ] },
   { id:"numerique",    label:"Calcul numérique", emoji:"🔢", color:"#7C3AED", grad:"linear-gradient(135deg,#8B5CF6,#6D28D9)", light:"#F5F3FF", border:"#DDD6FE",
     groups:[
@@ -12440,33 +12444,42 @@ const CATS = [
       {id:"manipulation", label:"Manipulation de formules",     group:"manipulation",    levels:["sec","tc","stmg"]},
     ] },
   { id:"probabilites", label:"Probabilités", emoji:"🎲", color:"#D97706", grad:"linear-gradient(135deg,#F59E0B,#B45309)", light:"#FFFBEB", border:"#FDE68A",
+    groups:[
+      {id:"base",  label:"🔵 Base"},
+      {id:"term",  label:"📗 Terminale"},
+    ],
     subs:[
-      {id:"tableau",      label:"Tableau double entrée",        levels:["sec","tc","stmg","spe","term"]},
-      {id:"tableau_fill", label:"📝 Tableau à compléter",       levels:["sec","tc","stmg","spe","term"]},
-      {id:"arbre",        label:"Arbre",                        levels:["sec","tc","stmg","spe","term"]},
-      {id:"contraire",    label:"Événements contraires",        levels:["sec","tc","stmg","spe","term"]},
-      {id:"probas_conditionnelles", label:"Probabilités conditionnelles", levels:["term"]},
-      {id:"probas_independance",    label:"Événements indépendants",      levels:["term"]},
-      {id:"probas_totales",         label:"Probabilités totales",         levels:["term"]},
-      {id:"probas_var_aleatoires",  label:"Variables aléatoires (E, V, σ)", levels:["term"]},
-      {id:"probas_loi_binomiale",   label:"Loi binomiale (Term)",         levels:["term"]},
-      {id:"grands_nombres",            label:"Concentration — Loi des grands nombres", levels:["term"]},
+      {id:"tableau",      label:"Tableau double entrée",        group:"base",  levels:["sec","tc","stmg","spe","term"]},
+      {id:"tableau_fill", label:"📝 Tableau à compléter",       group:"base",  levels:["sec","tc","stmg","spe","term"]},
+      {id:"arbre",        label:"Arbre",                        group:"base",  levels:["sec","tc","stmg","spe","term"]},
+      {id:"contraire",    label:"Événements contraires",        group:"base",  levels:["sec","tc","stmg","spe","term"]},
+      {id:"probas_conditionnelles", label:"Probabilités conditionnelles", group:"term", levels:["term"]},
+      {id:"probas_independance",    label:"Événements indépendants",      group:"term", levels:["term"]},
+      {id:"probas_totales",         label:"Probabilités totales",         group:"term", levels:["term"]},
+      {id:"probas_var_aleatoires",  label:"Variables aléatoires (E, V, σ)", group:"term", levels:["term"]},
+      {id:"probas_loi_binomiale",   label:"Loi binomiale (Term)",         group:"term", levels:["term"]},
+      {id:"grands_nombres",         label:"Concentration — Loi des grands nombres", group:"term", levels:["term"]},
     ] },
   { id:"derivation",   label:"Dérivation", emoji:"📉", color:"#0891B2", grad:"linear-gradient(135deg,#06B6D4,#0E7490)", light:"#ECFEFF", border:"#A5F3FC",
+    groups:[
+      {id:"base",    label:"🔵 Bases"},
+      {id:"avance",  label:"📗 Calcul avancé"},
+      {id:"term",    label:"🎓 Terminale"},
+    ],
     subs:[
-      {id:"lecture_derivee",label:"Lecture graphique du nombre dérivé", levels:["tc","stmg","spe","term"]},
-      {id:"calcul_derivee", label:"Calcul de dérivées (deg. 2 et 3)",   levels:["tc","stmg","spe","term"]},
-      {id:"deriv_vitesse",label:"Vitesse moyenne / instantanée", levels:["tc","spe","term"]},
-      {id:"deriv_tangente",label:"Tangente — lecture graphique", levels:["tc","stmg","spe","term"]},
-      {id:"deriv_fonctions_ref",label:"Dérivées des fonctions de référence", levels:["spe","term"]},
-      {id:"deriv_variations",label:"Dérivée et variations", levels:["tc","stmg","spe","term"]},
-      {id:"deriv_produit",label:"Dérivée d'un produit", levels:["spe","term"]},
-      {id:"deriv_quotient",label:"Dérivée d'un quotient", levels:["spe","term"]},
-      {id:"deriv_rationnelle",label:"Dérivée de fonction rationnelle", levels:["spe","term"]},
-      {id:"deriv_optimisation",label:"Optimisation (max/min)", levels:["spe","term"]},
-      {id:"deriv_tangente_avancee",label:"Tangente — équation et lectures avancées", levels:["spe","term"]},
-      {id:"derivee_convexite",label:"Convexité et points d'inflexion", levels:["term"]},
-      {id:"continuite",       label:"Continuité",                          levels:["term"]},
+      {id:"lecture_derivee",        label:"Lecture graphique du nombre dérivé",      group:"base",   levels:["tc","stmg","spe","term"]},
+      {id:"calcul_derivee",         label:"Calcul de dérivées (deg. 2 et 3)",        group:"base",   levels:["tc","stmg","spe","term"]},
+      {id:"deriv_vitesse",          label:"Vitesse moyenne / instantanée",           group:"base",   levels:["tc","spe","term"]},
+      {id:"deriv_tangente",         label:"Tangente — lecture graphique",            group:"base",   levels:["tc","stmg","spe","term"]},
+      {id:"deriv_fonctions_ref",    label:"Dérivées des fonctions de référence",     group:"avance", levels:["spe","term"]},
+      {id:"deriv_variations",       label:"Dérivée et variations",                   group:"avance", levels:["tc","stmg","spe","term"]},
+      {id:"deriv_produit",          label:"Dérivée d'un produit",                    group:"avance", levels:["spe","term"]},
+      {id:"deriv_quotient",         label:"Dérivée d'un quotient",                   group:"avance", levels:["spe","term"]},
+      {id:"deriv_rationnelle",      label:"Dérivée de fonction rationnelle",          group:"avance", levels:["spe","term"]},
+      {id:"deriv_optimisation",     label:"Optimisation (max/min)",                  group:"avance", levels:["spe","term"]},
+      {id:"deriv_tangente_avancee", label:"Tangente — équation et lectures avancées",group:"avance", levels:["spe","term"]},
+      {id:"derivee_convexite",      label:"Convexité et points d'inflexion",         group:"term",   levels:["term"]},
+      {id:"continuite",             label:"Continuité",                               group:"term",   levels:["term"]},
     ] },
   { id:"primitives", label:"Primitives & intégrales", emoji:"∫", color:"#059669", grad:"linear-gradient(135deg,#10B981,#047857)", light:"#ECFDF5", border:"#A7F3D0",
     subs:[
@@ -12490,13 +12503,18 @@ const CATS = [
       {id:"denombrement_type", label:"Combinaisons, arrangements, k-uplets", levels:["term"]},
     ] },
   { id:"suites",       label:"Suites numériques", emoji:"🔁", color:"#EA580C", grad:"linear-gradient(135deg,#F97316,#C2410C)", light:"#FFF7ED", border:"#FED7AA",
+    groups:[
+      {id:"base",  label:"🔵 Base"},
+      {id:"stmg",  label:"💼 STMG"},
+      {id:"avance",label:"📗 Avancé"},
+    ],
     subs:[
-      {id:"suites_explicite_recurr",label:"Explicite vs récurrence", levels:["spe"]},
-      {id:"suites_nature",    label:"Nature d'une suite",  levels:["tc","stmg","spe","term"]},
-      {id:"suites_termes",    label:"Calculer un terme",   levels:["tc","stmg","spe","term"]},
-      {id:"suites_variations",label:"Sens de variation",   levels:["spe","term"]},
-      {id:"suites_recurrence",label:"Démonstration par récurrence", levels:["term"]},
-      {id:"suites_finances",  label:"Applications financières",     levels:["stmg"]},
+      {id:"suites_nature",          label:"Nature d'une suite",       group:"base",   levels:["tc","stmg","spe","term"]},
+      {id:"suites_termes",          label:"Calculer un terme",        group:"base",   levels:["tc","stmg","spe","term"]},
+      {id:"suites_finances",        label:"Applications financières", group:"stmg",   levels:["stmg"]},
+      {id:"suites_explicite_recurr",label:"Explicite vs récurrence",  group:"avance", levels:["spe"]},
+      {id:"suites_variations",      label:"Sens de variation",        group:"avance", levels:["spe","term"]},
+      {id:"suites_recurrence",      label:"Démonstration par récurrence", group:"avance", levels:["term"]},
     ] },
   { id:"polynomes",    label:"Polynômes du 2nd degré", emoji:"📊", color:"#7C3AED", grad:"linear-gradient(135deg,#A855F7,#6D28D9)", light:"#F5F3FF", border:"#DDD6FE",
     subs:[
@@ -12510,11 +12528,15 @@ const CATS = [
       {id:"cout_recette",       label:"Coût, recette, bénéfice",           levels:["stmg"]},
     ] },
   { id:"statistiques", label:"Statistiques", emoji:"📈", color:"#BE185D", grad:"linear-gradient(135deg,#EC4899,#9D174D)", light:"#FDF2F8", border:"#FBCFE8",
+    groups:[
+      {id:"base",  label:"🔵 Base"},
+      {id:"avance",label:"📗 Avancé"},
+    ],
     subs:[
-      {id:"stat_centrale",  label:"Moyenne & médiane",      levels:["sec","tc","stmg","spe","term"]},
-      {id:"stat_dispersion",label:"Quartiles & dispersion", levels:["sec","tc","stmg","spe","term"]},
-      {id:"loi_binomiale",  label:"Loi binomiale",          levels:["stmg","spe","term"]},
-      {id:"echantillonnage",label:"Échantillonnage",        levels:["stmg"]},
+      {id:"stat_centrale",  label:"Moyenne & médiane",      group:"base",   levels:["sec","tc","stmg","spe","term"]},
+      {id:"stat_dispersion",label:"Quartiles & dispersion", group:"base",   levels:["sec","tc","stmg","spe","term"]},
+      {id:"loi_binomiale",  label:"Loi binomiale",          group:"avance", levels:["stmg","spe","term"]},
+      {id:"echantillonnage",label:"Échantillonnage",        group:"avance", levels:["stmg"]},
     ] },
   { id:"trigonometrie",label:"Cercle trigonométrique", emoji:"⭕", color:"#0891B2", grad:"linear-gradient(135deg,#06B6D4,#0E7490)", light:"#ECFEFF", border:"#A5F3FC",
     subs:[
@@ -12559,15 +12581,19 @@ const CATS = [
       {id:"espace",  label:"Produit scalaire dans l'espace",   levels:["term"]},
     ] },
   { id:"geometrie", label:"Géométrie & vecteurs", emoji:"📏", color:"#7C3AED", grad:"linear-gradient(135deg,#A78BFA,#6D28D9)", light:"#F5F3FF", border:"#DDD6FE",
+    groups:[
+      {id:"plan",   label:"🔵 Dans le plan"},
+      {id:"espace", label:"📗 Dans l'espace"},
+    ],
     subs:[
-      {id:"vecteurs_bases",           label:"Vecteurs : placement et égalité",      levels:["sec","tc","spe","term"]},
-      {id:"chasles",                  label:"Relation de Chasles",                   levels:["sec","tc","spe","term"]},
-      {id:"geom_analytique",          label:"Géométrie analytique",                  levels:["sec","tc","spe","term"]},
-      {id:"vecteurs_colineaires",     label:"Vecteurs colinéaires",                  levels:["sec","tc","spe","term"]},
-      {id:"geom_espace_positions",    label:"Positions relatives dans l'espace",     levels:["term"]},
-      {id:"geom_espace_vecteurs",     label:"Vecteurs et plans dans l'espace",       levels:["term"]},
-      {id:"geom_espace_equations",    label:"Équations de plan",                     levels:["term"]},
-      {id:"geom_espace_droites",      label:"Droites dans l'espace",                 levels:["term"]},
+      {id:"vecteurs_bases",        label:"Vecteurs : placement et égalité", group:"plan",   levels:["sec","tc","spe","term"]},
+      {id:"chasles",               label:"Relation de Chasles",              group:"plan",   levels:["sec","tc","spe","term"]},
+      {id:"geom_analytique",       label:"Géométrie analytique",             group:"plan",   levels:["sec","tc","spe","term"]},
+      {id:"vecteurs_colineaires",  label:"Vecteurs colinéaires",             group:"plan",   levels:["sec","tc","spe","term"]},
+      {id:"geom_espace_positions", label:"Positions relatives dans l'espace",group:"espace", levels:["term"]},
+      {id:"geom_espace_vecteurs",  label:"Vecteurs et plans dans l'espace",  group:"espace", levels:["term"]},
+      {id:"geom_espace_equations", label:"Équations de plan",                group:"espace", levels:["term"]},
+      {id:"geom_espace_droites",   label:"Droites dans l'espace",            group:"espace", levels:["term"]},
     ] },
   { id:"algo_python", label:"Algorithmique Python", emoji:"🐍", color:"#15803D", grad:"linear-gradient(135deg,#22C55E,#15803D)", light:"#F0FDF4", border:"#BBF7D0",
     subs:[
@@ -18673,7 +18699,15 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
   const [niveau,setNiveau]=useState(defaultNiveau);
   const [sel,setSel]=useState([]);
   const [typeFilter,setTypeFilter]=useState(null); // null | "qcm" | "pad" | "drag" | "tableau"
-  const [collapsedGroups, setCollapsedGroups] = useState({});
+  const [collapsedGroups, setCollapsedGroups] = useState(() => {
+    // Tous les groupes repliés par défaut
+    const init = {};
+    const cat = getCat(catId);
+    if (cat?.groups) {
+      cat.groups.forEach(g => { init[`${catId}_${g.id}`] = true; });
+    }
+    return init;
+  });
 
   const levelsInCat=[...new Set(cat.subs.flatMap(s=>s.levels||[]))];
   const normalSubs = cat.subs.filter(s=>!s.levelPicker && !s.isMission);
