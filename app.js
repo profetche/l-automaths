@@ -20774,6 +20774,7 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
   const reminderAvailable = (quizMode === "practice" || quizMode === "daily") && !!getCourseReminder(catId, subId);
   // Track failed question indices for spaced repetition
   const failedIdx = React.useRef([]);
+  const reinjectedKeys = React.useRef(new Set()); // clés des questions déjà ré-injectées (max 1 fois)
 
   // ── Ré-injection mid-session : file de questions à rejouer 2 places plus loin ──
   // On travaille sur un tableau mutable (ref) initialisé à partir de questions.
@@ -20854,7 +20855,7 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
   const specType= q.tvSpec?"tv":q.tsSpec?"ts":null;
   const isTab   = !!spec;
   const hasVis  = !!(q.gspec || q.tspec || q.trespec || q.svg);
-  const choices = useCallback(()=>q.choices?shuffle(q.choices):[],[q])();
+  const choices = React.useMemo(()=>q.choices?shuffle([...q.choices]):[],[idx]);
 
   // holes & correctness for tableau mode
   // On aplatit spec (rows + cells finaux) en un tableau global indexé linéairement.
@@ -20947,11 +20948,13 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
       const origIdx = questions.indexOf(q);
       if(origIdx>=0) failedIdx.current = [...new Set([...failedIdx.current, origIdx])];
       // Ré-injection : insérer la question 2 places plus loin dans sessionQueue
-      // (max 1 ré-injection par question pour éviter les boucles infinies)
-      const alreadyReinjected = sessionQueue.current.slice(idx+1).includes(q);
+      // Utilise une clé stable (index dans questions) pour éviter les doubles injections
+      const qKey = origIdx >= 0 ? origIdx : null;
+      const alreadyReinjected = qKey !== null && reinjectedKeys.current.has(qKey);
       // En mode examen (annales bac) : pas de ré-injection, un seul essai par question
       const isExamMode = catId === "bac";
       if(!alreadyReinjected && !isExamMode) {
+        if (qKey !== null) reinjectedKeys.current.add(qKey);
         const insertAt = Math.min(idx+3, sessionQueue.current.length);
         sessionQueue.current = [
           ...sessionQueue.current.slice(0, insertAt),
