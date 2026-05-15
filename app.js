@@ -9543,98 +9543,291 @@ const DB = {
   statistiques: {
 
     stat_centrale: [
-      { q: r`\text{Série : }3\ ;\ 5\ ;\ 7\ ;\ 9\ ;\ 11\\[4pt]\text{Médiane}=\,?`,
-        choices: [`7`, `6`, `8`, `5`], a: `7`, tip: r`n=5\text{ : valeur centrale}=7` },
-      { q: r`\text{Série : }10\ ;\ 12\ ;\ 8\ ;\ 14\ ;\ 6\\[4pt]\text{Moyenne}=\,?`,
-        choices: [`10`, `12`, `8`, `11`], a: `10`, tip: r`50/5=10` },
-      { q: r`\text{Notes : }10\ (\times1),\ 14\ (\times3)\\[4pt]\text{Moyenne}=\,?`,
-        choices: [`13`, `12`, `10`, `14`], a: `13`, tip: r`\tfrac{10+42}{4}=13` },
-      { q: r`\text{Série : }4\ ;\ 6\ ;\ 8\ ;\ 10\ ;\ 12\ ;\ 14\\[4pt]\text{Médiane}=\,?`,
-        choices: [`9`, `8`, `10`, `8{,}5`], a: `9`, tip: r`\tfrac{8+10}{2}=9` },
-      { q: r`n=20,\ f=8\text{ fois}\\[4pt]\text{Fréquence}=\,?`,
-        choices: [`40\%`, `8\%`, `20\%`, `4\%`], a: `40\%`, tip: r`\tfrac{8}{20}=40\%` },
+
+      // ── Moyenne (sans calculatrice — calculs nets) ────────────────────────
+
+      // sc_01
+      { q: r`\text{Série : }3\ ;\ 5\ ;\ 7\ ;\ 9\ ;\ 11\\[4pt]\text{Moyenne}=\,?`,
+        choices: [`7`, `6`, `8`, `5`], a: `7`, tip: r`\bar{x}=\dfrac{3+5+7+9+11}{5}=\dfrac{35}{5}=7` },
+      // sc_02
       { q: r`\text{Série : }2\ ;\ 4\ ;\ 6\ ;\ 8\ ;\ 10\\[4pt]\text{Moyenne}=\,?`,
-        choices: [`6`, `5`, `7`, `4`], a: `6`, tip: r`30/5=6` },
+        choices: [`6`, `5`, `7`, `4`], a: `6`, tip: r`\bar{x}=\dfrac{30}{5}=6` },
+      // sc_03
+      { q: r`\text{Notes : }8\ (\times1),\ 12\ (\times3)\\[4pt]\text{Moyenne}=\,?`,
+        choices: [`11`, `10`, `12`, `9`], a: `11`, tip: r`\dfrac{8+36}{4}=\dfrac{44}{4}=11` },
+      // sc_04
+      { q: r`\text{Notes : }10\ (\times1),\ 14\ (\times3)\\[4pt]\text{Moyenne}=\,?`,
+        choices: [`13`, `12`, `10`, `14`], a: `13`, tip: r`\dfrac{10+42}{4}=\dfrac{52}{4}=13` },
+      // sc_05
+      { q: r`\text{Notes : }6\ (\times2),\ 12\ (\times2),\ 18\ (\times2)\\[4pt]\text{Moyenne}=\,?`,
+        choices: [`12`, `10`, `14`, `9`], a: `12`, tip: r`\dfrac{12+24+36}{6}=\dfrac{72}{6}=12` },
+      // sc_06
+      { q: r`\bar{x}=8{,}\quad n=5\\[4pt]\text{Somme des valeurs}=\,?`,
+        choices: [`40`, `8`, `1{,}6`, `13`], a: `40`, tip: r`S=n\times\bar{x}=5\times8=40` },
+      // sc_07
+      { q: r`\bar{x}=12{,}\quad n=5\\[4pt]\text{Somme des valeurs}=\,?`,
+        choices: [`60`, `12`, `2{,}4`, `17`], a: `60`, tip: r`S=5\times12=60` },
+      // sc_08
       { q: r`\text{Série : }2\ ;\ 5\ ;\ 5\ ;\ 8\ ;\ 10\\[4pt]\text{Mode}=\,?`,
-        choices: [`5`, `6`, `8`, `2`], a: `5`, tip: r`5\text{ apparaît 2 fois : c'est le mode}` },
-
-      { q: r`n=40,\ \text{fréquence}=0{,}25\\[4pt]\text{Effectif correspondant}=\,?`,
+        choices: [`5`, `6`, `8`, `2`], a: `5`, tip: r`5\text{ apparaît 2 fois : c'est la valeur la plus fréquente (le mode).}` },
+      // sc_09 — fréquence relative (décimal)
+      { q: r`\text{Dans une classe de }20\text{ élèves,}\\[4pt]\text{8 ont eu la moyenne.}\\[4pt]\text{Fréquence relative}=\,?`,
+        choices: [`0{,}4`, `0{,}8`, `0{,}2`, `0{,}08`], a: `0{,}4`,
+        tip: r`f=\dfrac{8}{20}=0{,}4\quad\text{(soit }40\%\text{ en pourcentage)}` },
+      // sc_10 — fréquence en %
+      { q: r`\text{Dans une classe de }25\text{ élèves,}\\[4pt]\text{10 pratiquent un sport.}\\[4pt]\text{Fréquence en pourcentage}=\,?`,
+        choices: [`40\%`, `10\%`, `25\%`, `50\%`], a: `40\%`,
+        tip: r`f=\dfrac{10}{25}=0{,}4=40\%` },
+      // sc_11 — effectif depuis fréquence
+      { q: r`n=40{,}\quad\text{fréquence relative}=0{,}25\\[4pt]\text{Effectif correspondant}=\,?`,
         choices: [`10`, `25`, `40`, `8`], a: `10`, tip: r`0{,}25\times40=10` },
+      // sc_12 — fréquence relative → effectif
+      { q: r`n=50{,}\quad\text{fréquence relative}=0{,}2\\[4pt]\text{Effectif correspondant}=\,?`,
+        choices: [`10`, `20`, `5`, `50`], a: `10`, tip: r`0{,}2\times50=10` },
 
-      { q: r`\text{Notes : }8\ (\times2),\ 12\ (\times3),\ 16\ (\times1)\\[4pt]\text{Moyenne}=\,?`,
-        choices: [`12`, `11`, `10`, `13`], a: `12`, tip: r`\dfrac{16+36+16}{6}=\dfrac{68}{6}\approx11{,}3\to12` },
+      // ── Médiane ───────────────────────────────────────────────────────────
 
-      { q: r`\text{Série : }1\ ;\ 2\ ;\ 3\ ;\ 4\ ;\ 5\ ;\ 6\ ;\ 7\\[4pt]\text{Médiane}=\,?`,
-        choices: [`4`, `3{,}5`, `5`, `3`], a: `4`, tip: r`n=7\text{ (impair) : valeur centrale}=4` },
+      // sc_13
+      { q: r`\text{Série (triée) : }3\ ;\ 5\ ;\ 7\ ;\ 9\ ;\ 11\\[4pt]\text{Médiane}=\,?`,
+        choices: [`7`, `6`, `8`, `5`], a: `7`, tip: r`n=5\text{ (impair) : valeur centrale }(3^\text{e})=7` },
+      // sc_14
+      { q: r`\text{Série (triée) : }4\ ;\ 6\ ;\ 8\ ;\ 10\ ;\ 12\ ;\ 14\\[4pt]\text{Médiane}=\,?`,
+        choices: [`9`, `8`, `10`, `11`], a: `9`, tip: r`n=6\text{ (pair) : médiane}=\dfrac{8+10}{2}=9` },
+      // sc_15
+      { q: r`\text{Série (triée) : }1\ ;\ 2\ ;\ 3\ ;\ 4\ ;\ 5\ ;\ 6\ ;\ 7\\[4pt]\text{Médiane}=\,?`,
+        choices: [`4`, `3{,}5`, `5`, `3`], a: `4`, tip: r`n=7\text{ (impair) : valeur centrale }(4^\text{e})=4` },
+      // sc_16
+      { q: r`\text{Série (triée) : }5\ ;\ 7\ ;\ 9\ ;\ 11\ ;\ 13\ ;\ 15\\[4pt]\text{Médiane}=\,?`,
+        choices: [`10`, `9`, `11`, `9{,}5`], a: `10`, tip: r`n=6\text{ (pair) : médiane}=\dfrac{9+11}{2}=10` },
+      // sc_17 — piège : série non triée
+      { q: r`\text{Série NON triée : }10\ ;\ 12\ ;\ 8\ ;\ 14\ ;\ 6\\[4pt]\text{Quelle est la médiane ?}`,
+        choices: [`10`, `8`, `12`, `6`], a: `10`,
+        tip: r`\text{On trie d'abord : }6;8;10;12;14.\\n=5\text{ : valeur centrale}=10` },
+      // sc_18
+      { q: r`\text{Série (triée) : }2\ ;\ 4\ ;\ 6\ ;\ 8\\[4pt]\text{Médiane}=\,?`,
+        choices: [`5`, `4`, `6`, `7`], a: `5`, tip: r`n=4\text{ (pair) : médiane}=\dfrac{4+6}{2}=5` },
 
-      { q: r`\text{Notes : }5\ ;\ 7\ ;\ 9\ ;\ 11\ ;\ 13\ ;\ 15\\[4pt]\text{Médiane}=\,?`,
-        choices: [`10`, `9`, `11`, `9{,}5`], a: `10`, tip: r`n=6:\text{ médiane}=\tfrac{9+11}{2}=10` },
+      // ── Interprétation ────────────────────────────────────────────────────
 
-      { q: r`\bar{x}=12{,}\ n=5\\[4pt]\text{Somme des valeurs}=\,?`,
-        choices: [`60`, `12`, `2{,}4`, `17`], a: `60`, tip: r`S=n\times\bar{x}=5\times12=60` },
+      // sc_19
+      { q: r`\text{La médiane partage la série en :}`,
+        choices: [r`\text{2 moitiés d'effectifs égaux}`, r`\text{la valeur centrale du tableau}`, r`\text{la valeur la plus fréquente}`, r`\text{la valeur moyenne}`],
+        a: r`\text{2 moitiés d'effectifs égaux}`,
+        tip: r`\text{50\% des valeurs sont sous la médiane, 50\% au-dessus.}` },
+      // sc_20
+      { q: r`\text{La moyenne est sensible aux valeurs extrêmes.}\\[4pt]\text{La médiane l'est-elle ?}`,
+        choices: [r`\text{Oui, autant}`, r`\text{Non, elle est robuste}`, r`\text{Oui, encore plus}`, r`\text{Ça dépend}`],
+        a: r`\text{Non, elle est robuste}`,
+        tip: r`\text{La médiane n'est pas influencée par les valeurs aberrantes : c'est un indicateur robuste.}` },
+      // sc_21
+      { q: r`\text{Série : }2\ ;\ 3\ ;\ 4\ ;\ 5\ ;\ 100\\[4pt]\text{Quel indicateur représente mieux la série ?}`,
+        choices: [r`\text{La médiane (}=4\text{)}`, r`\text{La moyenne (}=22{,}8\text{)}`, r`\text{Les deux sont équivalents}`, r`\text{Le mode}`],
+        a: r`\text{La médiane (}=4\text{)}`,
+        tip: r`\text{La valeur 100 tire la moyenne vers le haut. La médiane (4) reflète mieux la série.}` },
+      // sc_22
+      { q: r`\text{La fréquence relative est toujours :}`,
+        choices: [r`\text{un nombre entre 0 et 1}`, r`\text{un entier}`, r`\text{un pourcentage}`, r`\text{supérieure à 1}`],
+        a: r`\text{un nombre entre 0 et 1}`,
+        tip: r`f=\dfrac{\text{effectif}}{\text{total}}\in[0\,;1].\\\text{En pourcentage, on multiplie par 100.}` },
+      // sc_23
+      { q: r`\text{La somme de toutes les fréquences relatives vaut :}`,
+        choices: [`1`, `100`, `0`, r`\text{le nombre de valeurs}`],
+        a: `1`,
+        tip: r`\text{La somme des fréquences relatives est toujours égale à 1 (ou 100\%).}` },
+      // sc_24
+      { q: r`\text{Série : }0\ ;\ 0\ ;\ 0\ ;\ 0\ ;\ 20\\[4pt]\text{Moyenne}=\,?`,
+        choices: [`4`, `0`, `20`, `10`], a: `4`,
+        tip: r`\bar{x}=\dfrac{0+0+0+0+20}{5}=\dfrac{20}{5}=4\\\text{Attention : la moyenne ne représente aucune valeur de la série ici.}` },
     ],
 
     stat_dispersion: [
-      { q: r`Q_1=8,\quad Q_3=20\\[4pt]\text{Écart interquartile}=\,?`,
-        choices: [`12`, `28`, `14`, `16`], a: `12`, tip: r`Q_3-Q_1=12` },
-      { q: r`\text{min}=5,\quad \text{max}=25\\[4pt]\text{Étendue}=\,?`,
-        choices: [`20`, `30`, `5`, `15`], a: `20`, tip: r`25-5=20` },
-      { q: r`Q_1=12,\quad Q_3=20\\[4pt]\text{Écart interquartile}=\,?`,
-        choices: [`8`, `32`, `16`, `4`], a: `8`, tip: r`20-12=8` },
-      { q: r`\text{Série : }1\ ;\ 3\ ;\ 5\ ;\ 7\ ;\ 9\ ;\ 11\ ;\ 13\\[4pt]Q_1=\,?`,
-        choices: [`3`, `5`, `4`, `7`], a: `3`, tip: r`n=7\text{ : }Q_1=2^\text{e}\text{ valeur}=3` },
-      { q: r`Q_3-Q_1\text{ s'appelle...}`,
-        choices: [r`\text{écart interquartile}`, r`\text{étendue}`, r`\text{variance}`, r`\text{écart-type}`],
-        a: r`\text{écart interquartile}`, tip: r`EI=Q_3-Q_1` },
-      { q: r`Q_1=15{,}\ Q_3=35\\[4pt]\text{Médiane dans }\left[Q_1\,;Q_3\right]=\,?`,
-        choices: [r`\text{Oui}`, r`\text{Non}`, r`\text{Parfois}`, r`\text{Toujours non}`],
-        a: r`\text{Oui}`, tip: r`\text{La médiane est toujours entre }Q_1\text{ et }Q_3` },
 
-      { q: r`\text{min}=10,\ Q_1=20,\ \text{médiane}=30,\ Q_3=40,\ \text{max}=50\\[4pt]\text{Étendue}=\,?`,
-        choices: [`40`, `20`, `30`, `50`], a: `40`, tip: r`e=50-10=40` },
+      // ── Étendue ───────────────────────────────────────────────────────────
 
-      { q: r`Q_1=10,\ Q_3=30\\[4pt]50\%\text{ des données sont dans :}`,
-        choices: [r`[10\,;30]`, r`[0\,;20]`, r`[20\,;50]`, r`[10\,;20]`],
-        a: r`[10\,;30]`, tip: r`50\%\text{ des données entre }Q_1\text{ et }Q_3` },
-
-      { q: r`\text{Série A : }1\ ;\ 5\ ;\ 9\quad\text{Série B : }4\ ;\ 5\ ;\ 6\\[4pt]\text{Série la plus dispersée :}`,
+      // sd_01
+      { q: r`\text{min}=5{,}\quad\text{max}=25\\[4pt]\text{Étendue}=\,?`,
+        choices: [`20`, `30`, `5`, `15`], a: `20`, tip: r`e=25-5=20` },
+      // sd_02
+      { q: r`\text{min}=10{,}\quad\text{max}=50\\[4pt]\text{Étendue}=\,?`,
+        choices: [`40`, `60`, `10`, `5`], a: `40`, tip: r`e=50-10=40` },
+      // sd_03
+      { q: r`\text{Série : }3\ ;\ 7\ ;\ 12\ ;\ 2\ ;\ 9\\[4pt]\text{Étendue}=\,?`,
+        choices: [`10`, `9`, `12`, `7`], a: `10`, tip: r`e=12-2=10` },
+      // sd_04
+      { q: r`\text{Série A étendue}=8{,}\quad\text{Série B étendue}=2\\[4pt]\text{Série la plus dispersée :}`,
         choices: [r`\text{A}`, r`\text{B}`, r`\text{Égales}`, r`\text{Impossible à dire}`],
-        a: r`\text{A}`, tip: r`\text{Étendue A}=8>\text{Étendue B}=2` },
+        a: r`\text{A}`, tip: r`\text{Plus l'étendue est grande, plus la série est dispersée.}` },
 
+      // ── Quartiles ─────────────────────────────────────────────────────────
+
+      // sd_05
+      { q: r`Q_1=8{,}\quad Q_3=20\\[4pt]\text{Écart interquartile}=\,?`,
+        choices: [`12`, `28`, `14`, `16`], a: `12`, tip: r`EI=Q_3-Q_1=20-8=12` },
+      // sd_06
+      { q: r`Q_1=12{,}\quad Q_3=20\\[4pt]\text{Écart interquartile}=\,?`,
+        choices: [`8`, `32`, `16`, `4`], a: `8`, tip: r`EI=20-12=8` },
+      // sd_07
+      { q: r`Q_3-Q_1\text{ s'appelle :}`,
+        choices: [r`\text{l'écart interquartile}`, r`\text{l'étendue}`, r`\text{la variance}`, r`\text{l'écart-type}`],
+        a: r`\text{l'écart interquartile}`, tip: r`EI=Q_3-Q_1\text{ : il contient 50\% des données.}` },
+      // sd_08
+      { q: r`\text{Série (triée, }n=7\text{) : }1\ ;\ 3\ ;\ 5\ ;\ 7\ ;\ 9\ ;\ 11\ ;\ 13\\[4pt]Q_1=\,?`,
+        choices: [`3`, `5`, `4`, `7`], a: `3`, tip: r`Q_1=2^\text{e}\text{ valeur}=3` },
+      // sd_09
+      { q: r`\text{Série (triée, }n=7\text{) : }1\ ;\ 3\ ;\ 5\ ;\ 7\ ;\ 9\ ;\ 11\ ;\ 13\\[4pt]Q_3=\,?`,
+        choices: [`11`, `9`, `13`, `7`], a: `11`, tip: r`Q_3=6^\text{e}\text{ valeur}=11` },
+      // sd_10
+      { q: r`Q_1=10{,}\quad Q_3=30\\[4pt]\text{50\% des données sont dans :}`,
+        choices: [r`[10\,;30]`, r`[0\,;20]`, r`[20\,;50]`, r`[10\,;20]`],
+        a: r`[10\,;30]`, tip: r`\text{50\% des données sont entre }Q_1\text{ et }Q_3.` },
+      // sd_11
+      { q: r`Q_1=15{,}\quad Q_3=35{,}\quad\text{médiane}=24\\[4pt]\text{La médiane est-elle dans }[Q_1\,;Q_3]\text{ ?}`,
+        choices: [r`\text{Oui, toujours}`, r`\text{Non}`, r`\text{Parfois}`, r`\text{Jamais}`],
+        a: r`\text{Oui, toujours}`,
+        tip: r`\text{La médiane est toujours comprise entre }Q_1\text{ et }Q_3.` },
+      // sd_12
       { q: r`Q_3-Q_1=18\\[4pt]\text{L'écart interquartile vaut :}`,
         choices: [`18`, `9`, `36`, `6`], a: `18`, tip: r`EI=Q_3-Q_1=18` },
+
+      // ── Boîte à moustaches ────────────────────────────────────────────────
+
+      // sd_13
+      { q: r`\text{min}=10{,}\ Q_1=20{,}\ \text{med}=30{,}\ Q_3=40{,}\ \text{max}=50\\[4pt]\text{Étendue}=\,?`,
+        choices: [`40`, `20`, `30`, `50`], a: `40`, tip: r`e=50-10=40` },
+      // sd_14
+      { q: r`\text{Dans une boîte à moustaches, la médiane est représentée par :}`,
+        choices: [r`\text{le trait vertical dans le rectangle}`, r`\text{le bord gauche du rectangle}`, r`\text{le bord droit du rectangle}`, r`\text{les moustaches}`],
+        a: r`\text{le trait vertical dans le rectangle}`,
+        tip: r`\text{Le rectangle va de }Q_1\text{ à }Q_3.\text{ Le trait à l'intérieur indique la médiane.}` },
+      // sd_15
+      { q: r`\text{Les moustaches d'une boîte à moustaches vont de :}`,
+        choices: [r`\text{min à }Q_1\text{ et de }Q_3\text{ à max}`, r`Q_1\text{ à }Q_3`, r`\text{min à max}`, r`Q_1\text{ à médiane}`],
+        a: r`\text{min à }Q_1\text{ et de }Q_3\text{ à max}`,
+        tip: r`\text{La boîte contient 50\% des données, les moustaches les 25\% extrêmes de chaque côté.}` },
+
+      // ── Interprétation / pièges ───────────────────────────────────────────
+
+      // sd_16
+      { q: r`\text{Série A : }1\ ;\ 5\ ;\ 9\quad\text{Série B : }4\ ;\ 5\ ;\ 6\\[4pt]\text{Même moyenne (5), série la plus dispersée :}`,
+        choices: [r`\text{A (étendue 8)}`, r`\text{B (étendue 2)}`, r`\text{Égales}`, r`\text{Impossible à dire}`],
+        a: r`\text{A (étendue 8)}`, tip: r`\text{Même moyenne mais dispersion très différente : A est bien plus étalée.}` },
+      // sd_17
+      { q: r`\text{Un grand écart interquartile signifie que :}`,
+        choices: [r`\text{les données centrales sont très dispersées}`, r`\text{la moyenne est grande}`, r`\text{il y a beaucoup de données}`, r`\text{la série est concentrée}`],
+        a: r`\text{les données centrales sont très dispersées}`,
+        tip: r`EI=Q_3-Q_1\text{ grand }\Rightarrow\text{les 50\% centraux couvrent un intervalle large.}` },
+      // sd_18
+      { q: r`Q_1=20{,}\quad Q_3=20\\[4pt]EI=\,?`,
+        choices: [`0`, `20`, `40`, `10`], a: `0`,
+        tip: r`EI=Q_3-Q_1=20-20=0\\\text{Toutes les données centrales sont égales à 20.}` },
+      // sd_19
+      { q: r`\text{L'étendue est sensible aux valeurs extrêmes.}\\[4pt]\text{L'écart interquartile l'est-il ?}`,
+        choices: [r`\text{Non, c'est son avantage}`, r`\text{Oui, autant}`, r`\text{Oui, encore plus}`, r`\text{Ça dépend}`],
+        a: r`\text{Non, c'est son avantage}`,
+        tip: r`EI\text{ ne dépend que de }Q_1\text{ et }Q_3\text{, pas des valeurs min/max. Il est robuste.}` },
+      // sd_20
+      { q: r`\text{Série (triée) : }2\ ;\ 4\ ;\ 6\ ;\ 8\ ;\ 10\ ;\ 12\\[4pt]Q_1=\,?`,
+        choices: [`4`, `3`, `5`, `6`], a: `4`,
+        tip: r`n=6\text{ : }Q_1\text{ est la médiane de la moitié inférieure }(2;4;6)\text{ : }Q_1=4.` },
     ],
 
     loi_binomiale: [
-      { q: r`X\sim\mathcal{B}(20\ ;\ 0{,}3)\\[4pt]E(X)=\,?`,
-        choices: [`6`, `0{,}3`, `20`, `14`], a: `6`, tip: r`E(X)=np=6` },
-      { q: r`X\sim\mathcal{B}(n\ ;\ p)\\[4pt]E(X)=\,?`,
+
+      // lb_01 — schéma de Bernoulli
+      { q: r`\text{10 lancers d'une pièce, succès = « Pile »}\\[4pt]\text{Est-ce un schéma de Bernoulli ?}`,
+        choices: [r`\text{Oui}`, r`\text{Non}`, r`\text{Seulement si la pièce est équilibrée}`, r`\text{Impossible}`],
+        a: r`\text{Oui}`,
+        tip: r`n=10\text{ épreuves indépendantes, 2 issues (Pile/Face) : schéma de Bernoulli.}` },
+      // lb_02
+      { q: r`X\sim\mathcal{B}(n\,;\,p)\\[4pt]E(X)=\,?`,
         choices: [`np`, `p/n`, `n+p`, `n-p`], a: `np`, tip: r`E(X)=np` },
-      { q: r`X\sim\mathcal{B}(4\ ;\ 0{,}25)\\[4pt]E(X)=\,?`,
-        choices: [`1`, `0{,}25`, `4`, `3`], a: `1`, tip: r`4\times0{,}25=1` },
-      { q: r`X\sim\mathcal{B}(5\ ;\ 0{,}5)\\[4pt]P(X=0)=\,?`,
-        choices: [r`(0{,}5)^5`, `0`, `0{,}5`, `5\times0{,}5`], a: r`(0{,}5)^5`,
-        tip: r`\binom{5}{0}(0{,}5)^5=(0{,}5)^5` },
-      { q: r`\text{10 lancers, succès = « 6 »}\\[4pt]\text{Schéma de Bernoulli ?}`,
-        choices: [r`\text{Oui}`, r`\text{Non}`, r`\text{Seulement si équilibré}`, r`\text{Impossible}`],
-        a: r`\text{Oui}`, tip: r`n=10\text{ épreuves indép., 2 issues}` },
+      // lb_03
+      { q: r`X\sim\mathcal{B}(20\,;\,0{,}3)\\[4pt]E(X)=\,?`,
+        choices: [`6`, `0{,}3`, `20`, `14`], a: `6`, tip: r`E(X)=20\times0{,}3=6` },
+      // lb_04
+      { q: r`X\sim\mathcal{B}(4\,;\,0{,}25)\\[4pt]E(X)=\,?`,
+        choices: [`1`, `0{,}25`, `4`, `3`], a: `1`, tip: r`E(X)=4\times0{,}25=1` },
+      // lb_05
+      { q: r`X\sim\mathcal{B}(5\,;\,0{,}5)\\[4pt]P(X=0)=\,?`,
+        choices: [r`(0{,}5)^5`, `0`, `0{,}5`, `5\times0{,}5`],
+        a: r`(0{,}5)^5`,
+        tip: r`P(X=0)=\binom{5}{0}p^0(1-p)^5=(0{,}5)^5` },
+      // lb_06
+      { q: r`X\sim\mathcal{B}(3\,;\,0{,}5)\\[4pt]E(X)=\,?`,
+        choices: [`1{,}5`, `0{,}5`, `3`, `1`], a: `1{,}5`,
+        tip: r`E(X)=3\times0{,}5=1{,}5` },
+      // lb_07
+      { q: r`\text{Pour }X\sim\mathcal{B}(n\,;\,p)\text{, quelle est la condition sur }p\text{ ?}`,
+        choices: [r`0\leq p\leq1`, r`p>1`, r`p\in\mathbb{N}`, r`p>0{,}5`],
+        a: r`0\leq p\leq1`,
+        tip: r`p\text{ est une probabilité de succès : }p\in[0\,;1].` },
+      // lb_08
+      { q: r`X\sim\mathcal{B}(n\,;\,p)\text{ et }X'=n-X\\[4pt]X'\sim\,?`,
+        choices: [r`\mathcal{B}(n\,;\,1-p)`, r`\mathcal{B}(n\,;\,p)`, r`\mathcal{B}(1-n\,;\,p)`, r`\text{pas une loi binomiale}`],
+        a: r`\mathcal{B}(n\,;\,1-p)`,
+        tip: r`X'\text{ compte les échecs : c'est une loi }\mathcal{B}(n\,;\,1-p).` },
+      // lb_09
+      { q: r`X\sim\mathcal{B}(10\,;\,0{,}5)\\[4pt]E(X)=\,?`,
+        choices: [`5`, `0{,}5`, `10`, `2{,}5`], a: `5`,
+        tip: r`E(X)=10\times0{,}5=5` },
+      // lb_10
+      { q: r`\text{On tire 6 fois un dé. Succès = « obtenir un 6 ».}\\[4pt]p=\,?`,
+        choices: [r`\dfrac{1}{6}`, r`\dfrac{1}{3}`, r`6`, r`\dfrac{5}{6}`],
+        a: r`\dfrac{1}{6}`,
+        tip: r`p=P(\text{succès})=P(\text{obtenir 6})=\dfrac{1}{6}` },
     ],
 
     echantillonnage: [
-      { q: r`\text{Intervalle de fluctuation à 95\% :}`,
-        choices: [r`\left[p\pm\tfrac{1}{\sqrt{n}}\right]`, r`\left[p\pm\tfrac{2}{n}\right]`,
-                  r`\left[p\pm\tfrac{1}{n}\right]`, r`\left[p\pm\tfrac{p}{n}\right]`],
-        a: r`\left[p\pm\tfrac{1}{\sqrt{n}}\right]`, tip: r`p\pm\tfrac{1}{\sqrt{n}}` },
-      { q: r`n=100,\quad p=0{,}4\\[4pt]\text{Borne supérieure}=\,?`,
-        choices: [`0{,}5`, `0{,}6`, `0{,}3`, `0{,}04`], a: `0{,}5`, tip: r`0{,}4+\tfrac{1}{10}=0{,}5` },
-      { q: r`n=400,\quad p=0{,}25\\[4pt]\text{Largeur de l'intervalle}=\,?`,
-        choices: [`0{,}1`, `0{,}05`, `0{,}2`, `0{,}5`], a: `0{,}1`, tip: r`\tfrac{2}{\sqrt{400}}=0{,}1` },
-      { q: r`n=100,\quad p=0{,}5\\[4pt]\text{Intervalle}=\,?`,
-        choices: [`[0{,}4\ ;\ 0{,}6]`, `[0{,}25\ ;\ 0{,}75]`, `[0{,}45\ ;\ 0{,}55]`, `[0{,}49\ ;\ 0{,}51]`],
-        a: `[0{,}4\ ;\ 0{,}6]`, tip: r`0{,}5\pm0{,}1` },
-      { q: r`\text{Fréquence observée DANS l'intervalle}\\[4pt]\text{On conclut :}`,
-        choices: [r`\text{compatible avec }p`, `p\text{ est certain}`, `p\text{ est faux}`, r`\text{erreur}`],
-        a: r`\text{compatible avec }p`, tip: r`\text{Dans l'intervalle }\Rightarrow\text{ compatible}` },
+
+      // ec_01 — formule
+      { q: r`\text{Intervalle de fluctuation à 95\% de fréquence }p\text{ :}`,
+        choices: [r`\left[p-\dfrac{1}{\sqrt{n}}\,;\,p+\dfrac{1}{\sqrt{n}}\right]`,
+                  r`\left[p-\dfrac{2}{n}\,;\,p+\dfrac{2}{n}\right]`,
+                  r`\left[p-\dfrac{1}{n}\,;\,p+\dfrac{1}{n}\right]`,
+                  r`\left[p-\dfrac{p}{n}\,;\,p+\dfrac{p}{n}\right]`],
+        a: r`\left[p-\dfrac{1}{\sqrt{n}}\,;\,p+\dfrac{1}{\sqrt{n}}\right]`,
+        tip: r`I_{0{,}95}=\left[p\pm\dfrac{1}{\sqrt{n}}\right]` },
+      // ec_02
+      { q: r`n=100{,}\quad p=0{,}4\\[4pt]\text{Borne supérieure de l'intervalle de fluctuation}=\,?`,
+        choices: [`0{,}5`, `0{,}6`, `0{,}3`, `0{,}04`], a: `0{,}5`,
+        tip: r`0{,}4+\dfrac{1}{\sqrt{100}}=0{,}4+0{,}1=0{,}5` },
+      // ec_03
+      { q: r`n=100{,}\quad p=0{,}4\\[4pt]\text{Borne inférieure de l'intervalle de fluctuation}=\,?`,
+        choices: [`0{,}3`, `0{,}2`, `0{,}4`, `0{,}5`], a: `0{,}3`,
+        tip: r`0{,}4-\dfrac{1}{\sqrt{100}}=0{,}4-0{,}1=0{,}3` },
+      // ec_04
+      { q: r`n=400{,}\quad p=0{,}25\\[4pt]\text{Largeur de l'intervalle}=\dfrac{2}{\sqrt{n}}=\,?`,
+        choices: [`0{,}1`, `0{,}05`, `0{,}2`, `0{,}5`], a: `0{,}1`,
+        tip: r`\dfrac{2}{\sqrt{400}}=\dfrac{2}{20}=0{,}1` },
+      // ec_05
+      { q: r`n=100{,}\quad p=0{,}5\\[4pt]\text{Intervalle de fluctuation}=\,?`,
+        choices: [`[0{,}4\,;\,0{,}6]`, `[0{,}25\,;\,0{,}75]`, `[0{,}45\,;\,0{,}55]`, `[0{,}49\,;\,0{,}51]`],
+        a: `[0{,}4\,;\,0{,}6]`,
+        tip: r`0{,}5\pm\dfrac{1}{10}=[0{,}4\,;\,0{,}6]` },
+      // ec_06 — interprétation
+      { q: r`\text{La fréquence observée est DANS l'intervalle de fluctuation.}\\[4pt]\text{On conclut :}`,
+        choices: [r`\text{compatible avec }p`, r`p\text{ est certain}`, r`p\text{ est faux}`, r`\text{erreur}`],
+        a: r`\text{compatible avec }p`,
+        tip: r`\text{Dans l'intervalle }\Rightarrow\text{ le résultat est compatible avec l'hypothèse }p.` },
+      // ec_07
+      { q: r`\text{La fréquence observée est HORS de l'intervalle de fluctuation.}\\[4pt]\text{On conclut :}`,
+        choices: [r`\text{incompatible avec }p`, r`\text{compatible avec }p`, r`p=1`, r`\text{erreur de calcul}`],
+        a: r`\text{incompatible avec }p`,
+        tip: r`\text{Hors de l'intervalle }\Rightarrow\text{ le résultat est incompatible avec l'hypothèse }p.` },
+      // ec_08 — effet de n
+      { q: r`\text{Quand }n\text{ augmente, l'intervalle de fluctuation :}`,
+        choices: [r`\text{se rétrécit}`, r`\text{s'élargit}`, r`\text{reste identique}`, r`\text{disparaît}`],
+        a: r`\text{se rétrécit}`,
+        tip: r`\dfrac{1}{\sqrt{n}}\text{ diminue quand }n\text{ augmente.}\\\text{Un grand échantillon donne une estimation plus précise.}` },
+      // ec_09
+      { q: r`n=25{,}\quad p=0{,}6\\[4pt]\dfrac{1}{\sqrt{n}}=\,?`,
+        choices: [`0{,}2`, `0{,}4`, `0{,}04`, `0{,}5`], a: `0{,}2`,
+        tip: r`\dfrac{1}{\sqrt{25}}=\dfrac{1}{5}=0{,}2` },
+      // ec_10
+      { q: r`\text{Un sondage donne une fréquence }f=0{,}48\text{ pour }n=100.\\[4pt]\text{L'intervalle est }[0{,}4\,;\,0{,}6].\ f\in I\,?}`,
+        choices: [r`\text{Oui, 0{,}48}\in[0{,}4\,;\,0{,}6]`, r`\text{Non}`, r`\text{Impossible à dire}`, r`\text{Oui, mais p=0{,}5}`],
+        a: r`\text{Oui, 0{,}48}\in[0{,}4\,;\,0{,}6]`,
+        tip: r`0{,}4\leq0{,}48\leq0{,}6\text{ : résultat compatible avec l'hypothèse.}` },
     ],
   },
 
