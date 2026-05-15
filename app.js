@@ -19980,6 +19980,7 @@ const MISSIONS = {
     color: "#EF4444",
     grad: "linear-gradient(135deg,#EF4444,#B91C1C)",
     themes: [
+      { id: "flashcards", label: "Flashcards : les formules du cours", emoji: "🃏", useFlashcards: true },
       { id: "bac_blanc_term", label: "Bac blanc — 30 questions", emoji: "🎯", useBacBlanc: "term" },
     ]
   }
@@ -20118,6 +20119,421 @@ const DENOM_LEVELS = [
     }
   },
 ];
+
+// ── FLASHCARDS — Formules du cours ────────────────────────────────────────────
+const FLASHCARDS = [
+
+  // ══ SECONDE ══════════════════════════════════════════════════════════════════
+  { id:"fc_sec_01", level:"sec", chapitre:"Fonctions",
+    recto:r`\text{Comment calculer le coefficient directeur d'une droite}\\(A(x_A,y_A),\,B(x_B,y_B))\text{ ?}`,
+    verso:r`m = \dfrac{y_B - y_A}{x_B - x_A}` },
+  { id:"fc_sec_02", level:"sec", chapitre:"Fonctions",
+    recto:r`\text{Forme générale de l'équation d'une droite}`,
+    verso:r`y = mx + p\quad\text{(}m\text{ : pente, }p\text{ : ordonnée à l'origine)}` },
+  { id:"fc_sec_03", level:"sec", chapitre:"Ensembles",
+    recto:r`\text{Inclusion des ensembles de nombres ?}`,
+    verso:r`\mathbb{N}\subset\mathbb{Z}\subset\mathbb{D}\subset\mathbb{Q}\subset\mathbb{R}` },
+  { id:"fc_sec_04", level:"sec", chapitre:"Statistiques",
+    recto:r`\text{Formule de la moyenne pondérée}`,
+    verso:r`\bar{x}=\dfrac{\sum x_i\,n_i}{\sum n_i}=\dfrac{\sum x_i\,f_i}{1}` },
+  { id:"fc_sec_05", level:"sec", chapitre:"Probabilités",
+    recto:r`\text{Formule de la probabilité d'un événement contraire}`,
+    verso:r`P(\bar{A})=1-P(A)` },
+  { id:"fc_sec_06", level:"sec", chapitre:"Probabilités",
+    recto:r`\text{Formule des probabilités totales (2 branches)}`,
+    verso:r`P(B)=P(A)\,P(B\mid A)+P(\bar{A})\,P(B\mid\bar{A})` },
+
+  // ══ TRONC COMMUN ═════════════════════════════════════════════════════════════
+  { id:"fc_tc_01", level:"tc", chapitre:"Pourcentages",
+    recto:r`\text{Taux d'évolution globale (évolutions successives)}`,
+    verso:r`t_{global}=(1+t_1)(1+t_2)\cdots(1+t_n)-1` },
+  { id:"fc_tc_02", level:"tc", chapitre:"Pourcentages",
+    recto:r`\text{Taux d'évolution réciproque}`,
+    verso:r`t'=\dfrac{1}{1+t}-1` },
+  { id:"fc_tc_03", level:"tc", chapitre:"Suites",
+    recto:r`\text{Terme général d'une suite arithmétique}`,
+    verso:r`u_n=u_0+n\,r\quad\text{ou}\quad u_n=u_p+(n-p)\,r` },
+  { id:"fc_tc_04", level:"tc", chapitre:"Suites",
+    recto:r`\text{Terme général d'une suite géométrique}`,
+    verso:r`u_n=u_0\times q^n\quad\text{ou}\quad u_n=u_p\times q^{n-p}` },
+  { id:"fc_tc_05", level:"tc", chapitre:"Dérivation",
+    recto:r`\text{Nombre dérivé de }f\text{ en }a\text{ (définition)}`,
+    verso:r`f'(a)=\lim_{h\to0}\dfrac{f(a+h)-f(a)}{h}` },
+  { id:"fc_tc_06", level:"tc", chapitre:"Dérivation",
+    recto:r`(x^n)'=\,?`,
+    verso:r`nx^{n-1}` },
+  { id:"fc_tc_07", level:"tc", chapitre:"Dérivation",
+    recto:r`(\sqrt{x})'=\,?`,
+    verso:r`\dfrac{1}{2\sqrt{x}}` },
+  { id:"fc_tc_08", level:"tc", chapitre:"Polynômes",
+    recto:r`\text{Discriminant d'un trinôme }ax^2+bx+c`,
+    verso:r`\Delta=b^2-4ac` },
+  { id:"fc_tc_09", level:"tc", chapitre:"Polynômes",
+    recto:r`\text{Racines du trinôme si }\Delta>0`,
+    verso:r`x_1=\dfrac{-b-\sqrt{\Delta}}{2a}\qquad x_2=\dfrac{-b+\sqrt{\Delta}}{2a}` },
+  { id:"fc_tc_10", level:"tc", chapitre:"Polynômes",
+    recto:r`\text{Forme canonique du trinôme }ax^2+bx+c`,
+    verso:r`a\!\left(x+\dfrac{b}{2a}\right)^{\!2}-\dfrac{\Delta}{4a}` },
+
+  // ══ STMG ═════════════════════════════════════════════════════════════════════
+  { id:"fc_stmg_01", level:"stmg", chapitre:"Suites financières",
+    recto:r`\text{Capital après }n\text{ années (intérêts composés, taux }t\text{)}`,
+    verso:r`C_n=C_0\times(1+t)^n` },
+  { id:"fc_stmg_02", level:"stmg", chapitre:"Suites financières",
+    recto:r`\text{Suite arithmétique : raison }r\text{ ?}`,
+    verso:r`r=u_{n+1}-u_n\quad\text{(constante)}` },
+  { id:"fc_stmg_03", level:"stmg", chapitre:"Suites financières",
+    recto:r`\text{Suite géométrique : raison }q\text{ ?}`,
+    verso:r`q=\dfrac{u_{n+1}}{u_n}\quad\text{(constante)}` },
+  { id:"fc_stmg_04", level:"stmg", chapitre:"Statistiques",
+    recto:r`\text{Intervalle de fluctuation à 95\% (échantillonnage)}`,
+    verso:r`\left[p-\dfrac{1}{\sqrt{n}}\,;\,p+\dfrac{1}{\sqrt{n}}\right]` },
+  { id:"fc_stmg_05", level:"stmg", chapitre:"Coût / Recette",
+    recto:r`\text{Bénéfice en fonction de }x`,
+    verso:r`B(x)=R(x)-C(x)\quad\text{(Recette} - \text{Coût)}` },
+  { id:"fc_stmg_06", level:"stmg", chapitre:"Dérivation",
+    recto:r`\text{Dérivée de }ax^2+bx+c`,
+    verso:r`f'(x)=2ax+b` },
+
+  // ══ 1ÈRE SPÉ ═════════════════════════════════════════════════════════════════
+  { id:"fc_spe_01", level:"spe", chapitre:"Dérivation",
+    recto:r`(uv)'=\,?`,
+    verso:r`u'v+uv'` },
+  { id:"fc_spe_02", level:"spe", chapitre:"Dérivation",
+    recto:r`\left(\dfrac{u}{v}\right)'=\,?`,
+    verso:r`\dfrac{u'v-uv'}{v^2}` },
+  { id:"fc_spe_03", level:"spe", chapitre:"Dérivation",
+    recto:r`(e^x)'=\,?`,
+    verso:r`e^x` },
+  { id:"fc_spe_04", level:"spe", chapitre:"Dérivation",
+    recto:r`(e^{u})'=\,?`,
+    verso:r`u'\,e^u` },
+  { id:"fc_spe_05", level:"spe", chapitre:"Dérivation",
+    recto:r`\left(\dfrac{1}{x}\right)'=\,?`,
+    verso:r`-\dfrac{1}{x^2}` },
+  { id:"fc_spe_06", level:"spe", chapitre:"Probabilités",
+    recto:r`\text{Espérance de la loi binomiale }\mathcal{B}(n,p)`,
+    verso:r`E(X)=np` },
+  { id:"fc_spe_07", level:"spe", chapitre:"Probabilités",
+    recto:r`\text{Variance de la loi binomiale }\mathcal{B}(n,p)`,
+    verso:r`V(X)=np(1-p)` },
+  { id:"fc_spe_08", level:"spe", chapitre:"Probabilités",
+    recto:r`P(X=k)\text{ pour }\mathcal{B}(n,p)=\,?`,
+    verso:r`\binom{n}{k}p^k(1-p)^{n-k}` },
+  { id:"fc_spe_09", level:"spe", chapitre:"Suites",
+    recto:r`\text{Somme des termes d'une suite arithmétique}\\(u_0+\cdots+u_n)`,
+    verso:r`S=(n+1)\times\dfrac{u_0+u_n}{2}` },
+  { id:"fc_spe_10", level:"spe", chapitre:"Suites",
+    recto:r`\text{Somme des termes d'une suite géométrique}\\(u_0+\cdots+u_n)`,
+    verso:r`S=u_0\times\dfrac{1-q^{n+1}}{1-q}\quad(q\neq1)` },
+  { id:"fc_spe_11", level:"spe", chapitre:"Exponentielle",
+    recto:r`e^a\times e^b=\,?`,
+    verso:r`e^{a+b}` },
+  { id:"fc_spe_12", level:"spe", chapitre:"Exponentielle",
+    recto:r`\dfrac{e^a}{e^b}=\,?`,
+    verso:r`e^{a-b}` },
+  { id:"fc_spe_13", level:"spe", chapitre:"Exponentielle",
+    recto:r`(e^a)^n=\,?`,
+    verso:r`e^{na}` },
+  { id:"fc_spe_14", level:"spe", chapitre:"Polynômes",
+    recto:r`\text{Somme des racines du trinôme }ax^2+bx+c`,
+    verso:r`x_1+x_2=-\dfrac{b}{a}` },
+  { id:"fc_spe_15", level:"spe", chapitre:"Polynômes",
+    recto:r`\text{Produit des racines du trinôme }ax^2+bx+c`,
+    verso:r`x_1\times x_2=\dfrac{c}{a}` },
+  { id:"fc_spe_16", level:"spe", chapitre:"Géométrie",
+    recto:r`\text{Coordonnées du milieu de }[AB]\text{ ?}`,
+    verso:r`M\!\left(\dfrac{x_A+x_B}{2}\,,\,\dfrac{y_A+y_B}{2}\right)` },
+  { id:"fc_spe_17", level:"spe", chapitre:"Géométrie",
+    recto:r`\text{Vecteurs colinéaires : condition}`,
+    verso:r`\vec{u}(a,b)\text{ et }\vec{v}(c,d)\text{ colinéaires}\Leftrightarrow ad-bc=0` },
+
+  // ══ TERMINALE SPÉ ═══════════════════════════════════════════════════════════
+  { id:"fc_term_01", level:"term", chapitre:"Logarithme",
+    recto:r`\ln(ab)=\,?`,
+    verso:r`\ln a+\ln b\quad(a>0,\,b>0)` },
+  { id:"fc_term_02", level:"term", chapitre:"Logarithme",
+    recto:r`\ln\!\left(\dfrac{a}{b}\right)=\,?`,
+    verso:r`\ln a-\ln b` },
+  { id:"fc_term_03", level:"term", chapitre:"Logarithme",
+    recto:r`\ln(a^n)=\,?`,
+    verso:r`n\ln a` },
+  { id:"fc_term_04", level:"term", chapitre:"Logarithme",
+    recto:r`(\ln x)'=\,?`,
+    verso:r`\dfrac{1}{x}` },
+  { id:"fc_term_05", level:"term", chapitre:"Logarithme",
+    recto:r`(\ln u)'=\,?`,
+    verso:r`\dfrac{u'}{u}` },
+  { id:"fc_term_06", level:"term", chapitre:"Primitives",
+    recto:r`\text{Primitive de }x^n\,(n\neq-1)`,
+    verso:r`\dfrac{x^{n+1}}{n+1}+C` },
+  { id:"fc_term_07", level:"term", chapitre:"Primitives",
+    recto:r`\text{Primitive de }e^x`,
+    verso:r`e^x+C` },
+  { id:"fc_term_08", level:"term", chapitre:"Primitives",
+    recto:r`\text{Primitive de }\dfrac{1}{x}`,
+    verso:r`\ln|x|+C` },
+  { id:"fc_term_09", level:"term", chapitre:"Intégrales",
+    recto:r`\int_a^b f(x)\,dx=\,?`,
+    verso:r`\left[F(x)\right]_a^b=F(b)-F(a)` },
+  { id:"fc_term_10", level:"term", chapitre:"Intégrales",
+    recto:r`\text{Relation de Chasles pour les intégrales}`,
+    verso:r`\int_a^b f+\int_b^c f=\int_a^c f` },
+  { id:"fc_term_11", level:"term", chapitre:"Intégrales",
+    recto:r`\text{Aire entre }f\text{ et }g\text{ sur }[a,b]\,(f\geq g)`,
+    verso:r`\mathcal{A}=\int_a^b\bigl(f(x)-g(x)\bigr)\,dx` },
+  { id:"fc_term_12", level:"term", chapitre:"Limites",
+    recto:r`\lim_{x\to+\infty}\dfrac{e^x}{x^n}=\,?`,
+    verso:r`+\infty\quad\text{(l'exponentielle l'emporte sur tout polynôme)}` },
+  { id:"fc_term_13", level:"term", chapitre:"Limites",
+    recto:r`\lim_{x\to+\infty}\dfrac{\ln x}{x}=\,?`,
+    verso:r`0\quad\text{(le polynôme l'emporte sur le logarithme)}` },
+  { id:"fc_term_14", level:"term", chapitre:"Limites",
+    recto:r`\lim_{x\to0^+}x\ln x=\,?`,
+    verso:r`0` },
+  { id:"fc_term_15", level:"term", chapitre:"Probabilités",
+    recto:r`\text{Formule de Bayes}`,
+    verso:r`P(A\mid B)=\dfrac{P(A)\,P(B\mid A)}{P(B)}` },
+  { id:"fc_term_16", level:"term", chapitre:"Probabilités",
+    recto:r`\text{Écart-type de }X`,
+    verso:r`\sigma(X)=\sqrt{V(X)}` },
+  { id:"fc_term_17", level:"term", chapitre:"Géométrie espace",
+    recto:r`\text{Équation d'un plan passant par }A\text{ de normale }\vec{n}(a,b,c)`,
+    verso:r`a(x-x_A)+b(y-y_A)+c(z-z_A)=0` },
+  { id:"fc_term_18", level:"term", chapitre:"Géométrie espace",
+    recto:r`\text{Produit scalaire }\vec{u}\cdot\vec{v}\text{ en coordonnées}`,
+    verso:r`\vec{u}(x_1,y_1,z_1)\cdot\vec{v}(x_2,y_2,z_2)=x_1x_2+y_1y_2+z_1z_2` },
+  { id:"fc_term_19", level:"term", chapitre:"Géométrie espace",
+    recto:r`\text{Norme de }\vec{u}(x,y,z)`,
+    verso:r`\|\vec{u}\|=\sqrt{x^2+y^2+z^2}` },
+  { id:"fc_term_20", level:"term", chapitre:"Géométrie espace",
+    recto:r`\text{Deux vecteurs perpendiculaires : condition}`,
+    verso:r`\vec{u}\perp\vec{v}\Leftrightarrow\vec{u}\cdot\vec{v}=0` },
+  { id:"fc_term_21", level:"term", chapitre:"Équa. diff.",
+    recto:r`\text{Solution générale de }y'=ay`,
+    verso:r`y=Ce^{ax}\quad(C\in\mathbb{R})` },
+  { id:"fc_term_22", level:"term", chapitre:"Équa. diff.",
+    recto:r`\text{Solution de }y'=ay\text{ avec }y(0)=y_0`,
+    verso:r`y=y_0\,e^{ax}` },
+  { id:"fc_term_23", level:"term", chapitre:"Dénombrement",
+    recto:r`\text{Nombre de combinaisons de }k\text{ parmi }n`,
+    verso:r`\binom{n}{k}=\dfrac{n!}{k!(n-k)!}` },
+  { id:"fc_term_24", level:"term", chapitre:"Dénombrement",
+    recto:r`\binom{n}{0}=\,?\quad\binom{n}{n}=\,?`,
+    verso:r`\binom{n}{0}=1\qquad\binom{n}{n}=1` },
+  { id:"fc_term_25", level:"term", chapitre:"Dénombrement",
+    recto:r`\text{Nombre d'arrangements de }k\text{ parmi }n`,
+    verso:r`A_n^k=\dfrac{n!}{(n-k)!}` },
+  { id:"fc_term_26", level:"term", chapitre:"Convexité",
+    recto:r`f\text{ convexe sur }I\Leftrightarrow\,?`,
+    verso:r`f''\geq0\text{ sur }I\\\text{(la courbe est au-dessus de ses tangentes)}` },
+  { id:"fc_term_27", level:"term", chapitre:"Convexité",
+    recto:r`\text{Point d'inflexion : définition}`,
+    verso:r`\text{Point où }f''\text{ change de signe}\\(\text{la courbe traverse sa tangente})` },
+  { id:"fc_term_28", level:"term", chapitre:"Trigonométrie",
+    recto:r`\cos^2\theta+\sin^2\theta=\,?`,
+    verso:r`1` },
+  { id:"fc_term_29", level:"term", chapitre:"Trigonométrie",
+    recto:r`\cos(2\theta)=\,?`,
+    verso:r`\cos^2\theta-\sin^2\theta=1-2\sin^2\theta=2\cos^2\theta-1` },
+  { id:"fc_term_30", level:"term", chapitre:"Trigonométrie",
+    recto:r`\sin(2\theta)=\,?`,
+    verso:r`2\sin\theta\cos\theta` },
+];
+
+// ── FlashcardScreen ─────────────────────────────────────────────────────────
+function FlashcardScreen({ cards, onBack }) {
+  const [idx, setIdx] = React.useState(0);
+  const [flipped, setFlipped] = React.useState(false);
+  const [known, setKnown] = React.useState([]);   // indices des cartes "je savais"
+  const [review, setReview] = React.useState([]); // indices "à revoir"
+  const [done, setDone] = React.useState(false);
+  const [reviewMode, setReviewMode] = React.useState(false);
+  const [reviewCards, setReviewCards] = React.useState([]);
+  const [reviewIdx, setReviewIdx] = React.useState(0);
+  const [reviewFlipped, setReviewFlipped] = React.useState(false);
+
+  const activeCards = reviewMode ? reviewCards : cards;
+  const activeIdx   = reviewMode ? reviewIdx   : idx;
+  const activeFlip  = reviewMode ? reviewFlipped : flipped;
+
+  const card = activeCards[activeIdx];
+  const total = activeCards.length;
+
+  const flip = () => {
+    if (reviewMode) setReviewFlipped(f => !f);
+    else setFlipped(f => !f);
+  };
+
+  const answer = (wasKnown) => {
+    if (!reviewMode) {
+      if (wasKnown) setKnown(k => [...k, idx]);
+      else setReview(r => [...r, idx]);
+      if (idx + 1 >= cards.length) setDone(true);
+      else { setIdx(i => i + 1); setFlipped(false); }
+    } else {
+      if (reviewIdx + 1 >= reviewCards.length) setDone(true);
+      else { setReviewIdx(i => i + 1); setReviewFlipped(false); }
+    }
+  };
+
+  const startReview = () => {
+    const toReview = review.map(i => cards[i]);
+    setReviewCards(toReview);
+    setReviewIdx(0);
+    setReviewFlipped(false);
+    setReviewMode(true);
+    setDone(false);
+  };
+
+  const restart = () => {
+    setIdx(0); setFlipped(false); setKnown([]); setReview([]);
+    setDone(false); setReviewMode(false); setReviewCards([]); setReviewIdx(0);
+  };
+
+  // ── Écran de fin ────────────────────────────────────────────────────────
+  if (done) {
+    const knownCount = reviewMode ? reviewCards.length : known.length;
+    const reviewCount = reviewMode ? 0 : review.length;
+    return (
+      <div style={{display:"flex",flexDirection:"column",height:"100%",
+        padding:"28px 20px",background:"var(--am-bg-light)",alignItems:"center",justifyContent:"center",gap:20}}>
+        <div style={{fontSize:56}}>{reviewCount === 0 ? "🌟" : "💪"}</div>
+        <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:22,
+          color:"#1E293B",textAlign:"center"}}>
+          {reviewMode ? "Bravo, paquet terminé !" : "Paquet terminé !"}
+        </div>
+        <div style={{display:"flex",gap:12}}>
+          <div style={{background:"#ECFDF5",borderRadius:12,padding:"12px 18px",textAlign:"center"}}>
+            <div style={{fontSize:24,fontWeight:900,color:"#059669"}}>{knownCount}</div>
+            <div style={{fontSize:11,color:"#064E3B"}}>Je savais ✅</div>
+          </div>
+          {!reviewMode && reviewCount > 0 && (
+            <div style={{background:"#FEF2F2",borderRadius:12,padding:"12px 18px",textAlign:"center"}}>
+              <div style={{fontSize:24,fontWeight:900,color:"#DC2626"}}>{reviewCount}</div>
+              <div style={{fontSize:11,color:"#7F1D1D"}}>À revoir 🔁</div>
+            </div>
+          )}
+        </div>
+        <div style={{display:"flex",flexDirection:"column",gap:10,width:"100%",maxWidth:300}}>
+          {!reviewMode && reviewCount > 0 && (
+            <button onClick={startReview}
+              style={{background:"linear-gradient(135deg,#EF4444,#B91C1C)",border:"none",
+                borderRadius:14,padding:"14px",color:"#fff",fontFamily:"'Nunito',sans-serif",
+                fontWeight:900,fontSize:15,cursor:"pointer"}}>
+              🔁 Retravailler les {reviewCount} à revoir
+            </button>
+          )}
+          <button onClick={restart}
+            style={{background:"linear-gradient(135deg,#6366F1,#4F46E5)",border:"none",
+              borderRadius:14,padding:"14px",color:"#fff",fontFamily:"'Nunito',sans-serif",
+              fontWeight:900,fontSize:15,cursor:"pointer"}}>
+            🔄 Recommencer depuis le début
+          </button>
+          <button onClick={onBack}
+            style={{background:"#F1F5F9",border:"none",borderRadius:14,padding:"12px",
+              color:"#64748B",fontFamily:"'Nunito',sans-serif",fontWeight:700,
+              fontSize:14,cursor:"pointer"}}>
+            ← Retour
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (!card) return null;
+
+  const progress = ((activeIdx) / total) * 100;
+
+  return (
+    <div style={{display:"flex",flexDirection:"column",height:"100%",
+      padding:"16px 18px 20px",background:"var(--am-bg-light)"}}>
+
+      {/* Header */}
+      <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:12,flexShrink:0}}>
+        <button onClick={onBack}
+          style={{background:"none",border:"none",cursor:"pointer",
+            color:"#94A3B8",fontSize:18,padding:0,flexShrink:0}}>✕</button>
+        <div style={{flex:1,background:"#E2E8F0",borderRadius:99,height:8,overflow:"hidden"}}>
+          <div style={{height:"100%",width:`${progress}%`,
+            background:"linear-gradient(90deg,#6366F1,#8B5CF6)",
+            borderRadius:99,transition:"width .4s ease"}}/>
+        </div>
+        <div style={{fontSize:11,fontWeight:700,color:"#64748B",flexShrink:0}}>
+          {activeIdx+1}/{total}
+        </div>
+      </div>
+
+      {/* Chapitre */}
+      <div style={{textAlign:"center",marginBottom:8,flexShrink:0}}>
+        <span style={{fontSize:10,fontWeight:800,color:"#6366F1",
+          textTransform:"uppercase",letterSpacing:1,background:"#EEF2FF",
+          borderRadius:99,padding:"3px 10px"}}>
+          {card.chapitre}
+        </span>
+      </div>
+
+      {/* Carte */}
+      <div onClick={flip} style={{flex:1,display:"flex",alignItems:"center",
+        justifyContent:"center",cursor:"pointer",marginBottom:16}}>
+        <div style={{background:"#fff",borderRadius:24,
+          boxShadow:"0 8px 32px rgba(99,102,241,0.12)",
+          border:`2px solid ${activeFlip ? "#6366F1" : "#E2E8F0"}`,
+          padding:"28px 24px",width:"100%",minHeight:220,
+          display:"flex",flexDirection:"column",alignItems:"center",
+          justifyContent:"center",gap:16,transition:"border-color .2s"}}>
+
+          {!activeFlip ? (
+            <>
+              <div style={{fontSize:11,fontWeight:700,color:"#94A3B8",
+                textTransform:"uppercase",letterSpacing:1}}>❓ Question</div>
+              <div style={{textAlign:"center",fontSize:15,color:"#1E293B",lineHeight:1.6}}>
+                <M tex={card.recto}/>
+              </div>
+              <div style={{fontSize:10,color:"#CBD5E1",marginTop:8}}>
+                Appuie pour voir la réponse →
+              </div>
+            </>
+          ) : (
+            <>
+              <div style={{fontSize:11,fontWeight:700,color:"#6366F1",
+                textTransform:"uppercase",letterSpacing:1}}>✅ Réponse</div>
+              <div style={{textAlign:"center",fontSize:16,color:"#1E293B",lineHeight:1.8}}>
+                <M tex={card.verso}/>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+
+      {/* Boutons réponse */}
+      {activeFlip && (
+        <div style={{display:"flex",gap:12,flexShrink:0}}>
+          <button onClick={()=>answer(false)}
+            style={{flex:1,background:"#FEF2F2",border:"2px solid #FCA5A5",
+              borderRadius:16,padding:"14px 0",cursor:"pointer",
+              color:"#DC2626",fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:14}}>
+            🔁 À revoir
+          </button>
+          <button onClick={()=>answer(true)}
+            style={{flex:1,background:"#ECFDF5",border:"2px solid #6EE7B7",
+              borderRadius:16,padding:"14px 0",cursor:"pointer",
+              color:"#059669",fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:14}}>
+            ✅ Je savais
+          </button>
+        </div>
+      )}
+      {!activeFlip && (
+        <button onClick={flip}
+          style={{background:"linear-gradient(135deg,#6366F1,#4F46E5)",border:"none",
+            borderRadius:16,padding:"14px",color:"#fff",fontFamily:"'Nunito',sans-serif",
+            fontWeight:900,fontSize:15,cursor:"pointer",flexShrink:0}}>
+          Voir la réponse →
+        </button>
+      )}
+    </div>
+  );
+}
 
 // ── MissionScreen — Liste des missions disponibles ────────────────────────────
 function MissionScreen({missionId, onBack, onSelectTheme}) {
@@ -23291,7 +23707,18 @@ function AutoMaths() {
           {screen==="subcategory"   && <SubcategoryScreen catId={catId} qCount={mode==="express"?10:20} onStart={hSub} onBack={()=>setScreen(mode==="missions"?"home":"category")} onLevelPicker={hLevelPicker} defaultNiveau={profile?LEVEL_MAP[profile.level]||null:null}/>}
           {screen==="mission_select" && <MissionScreen missionId={missionId} onBack={()=>setScreen(mode==="missions"?"home":"category")} onSelectTheme={(theme)=>{
             setMissionTheme(theme);
-            if(theme.useBacBlanc) {
+            if(theme.useFlashcards) {
+              // Flashcards : filtrer par niveau du profil
+              const levelMap = { seconde:"sec", tronc_commun:"tc", stmg:"stmg", premiere_spe:"spe", terminale_spe:"term" };
+              const userLevel = profile ? (levelMap[profile.level] || "term") : "term";
+              // Inclure ce niveau et tous les niveaux inférieurs
+              const levelOrder = ["sec","tc","stmg","spe","term"];
+              const upTo = levelOrder.indexOf(userLevel);
+              const allowedLevels = levelOrder.slice(0, upTo + 1);
+              const filtered = FLASHCARDS.filter(c => allowedLevels.includes(c.level));
+              setPool(filtered);
+              setScreen("flashcards");
+            } else if(theme.useBacBlanc) {
               // Bac blanc : tire directement 30 questions dans tout le programme
               const qs = buildBacBlancPool(theme.useBacBlanc, 30);
               if (qs.length === 0) {
@@ -23312,6 +23739,7 @@ function AutoMaths() {
               setScreen("mission_theme");
             }
           }}/>}
+          {screen==="flashcards"    && <FlashcardScreen cards={pool} onBack={()=>setScreen("mission_select")}/>}
           {screen==="mission_theme" && missionTheme && <MissionThemeScreen theme={missionTheme} missionId={missionId} onBack={()=>setScreen("mission_select")} onStart={(qs, themeId)=>{
             setPrevScreen("mission_theme");
             setQuestions(qs);
