@@ -18490,10 +18490,15 @@ function SplashScreen({onStart, onMySpace, onRestore, profile}) {
         </div>
       </div>
       {/* Lien contact discret */}
-      <div style={{textAlign:"center",paddingBottom:8,paddingTop:4}}>
+      <div style={{textAlign:"center",paddingBottom:8,paddingTop:4,display:"flex",justifyContent:"center",gap:20}}>
         <a href="mailto:appli.lautomaths@gmail.com"
           style={{fontSize:11,color:"rgba(255,255,255,0.3)",textDecoration:"none",fontWeight:500}}>
           ✉️ Contact
+        </a>
+        <a href="https://ko-fi.com/automaths" target="_blank" rel="noopener noreferrer"
+          style={{fontSize:11,color:"rgba(255,255,255,0.3)",textDecoration:"none",fontWeight:500,display:"flex",alignItems:"center",gap:4}}>
+          <img src="https://storage.ko-fi.com/cdn/cup-border.png" alt="Ko-fi" style={{width:14,height:14,opacity:0.5}}/>
+          Ko-fi
         </a>
       </div>
     </div>
