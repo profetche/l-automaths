@@ -224,8 +224,6 @@ const GS = ({profile} = {}) => {
     @keyframes slideInLeft{from{transform:translateX(-100%);opacity:0}to{transform:translateX(0);opacity:1}}
     @keyframes shake  {0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
     @keyframes fadeIn {from{opacity:0}to{opacity:1}}
-    @keyframes screenFadeIn {from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-    .screen-enter{animation:screenFadeIn .18s ease both;}
     @keyframes sigmaFloat {
       0%,100%{transform:translateY(0px);}
       50%{transform:translateY(-14px);}
@@ -15878,7 +15876,6 @@ function MonParcoursScreen({profile, onBack, onStartPractice, onStartTest, onCol
   const lvl = getXpLevel(0);
   const [xp, setXp] = useState(0);
   const [badgesLocal, setBadgesLocal] = useState([]);
-  const [dailyLog, setDailyLog] = useState([]);
 
   useEffect(() => {
     const entries = [];
@@ -15887,18 +15884,15 @@ function MonParcoursScreen({profile, onBack, onStartPractice, onStartTest, onCol
       ...entries.map(([c,s])=>_storage.get(PK(c,s)).catch(()=>null)),
       loadXP(),
       loadBadges(),
-      loadDailyLog(),
     ]).then(res => {
       const progRes = res.slice(0, entries.length);
       const xpVal = res[entries.length];
       const bdg = res[entries.length+1];
-      const log = res[entries.length+2];
       const p = {};
       progRes.forEach((r,i) => { const [c,s]=entries[i]; p[`${c}:${s}`]=r?.value?JSON.parse(r.value):EMPTY_P(); });
       setAllProg(p);
       setXp(xpVal||0);
       setBadgesLocal(bdg||[]);
-      setDailyLog(log||[]);
     }).catch(()=>{}).finally(()=>setLoading(false));
   }, [profile.level]);
 
@@ -15958,84 +15952,6 @@ function MonParcoursScreen({profile, onBack, onStartPractice, onStartTest, onCol
         {/* ══ TAB PARCOURS ══ */}
         {!loading && tab==="parcours" && (
           <div>
-
-            {/* ── Graphique 14 jours ── */}
-            {(() => {
-              // Construire les 14 derniers jours (même si pas de données)
-              const days = [];
-              for (let i = 13; i >= 0; i--) {
-                const d = new Date(); d.setDate(d.getDate() - i);
-                const key = d.toISOString().slice(0,10);
-                const entry = dailyLog.find(e => e.date === key);
-                days.push({ key, label: d.toLocaleDateString('fr-FR',{weekday:'short'}).slice(0,2), entry });
-              }
-              const maxVal = Math.max(...days.map(d => (d.entry?.correct||0)+(d.entry?.wrong||0)), 1);
-              const hasAnyData = days.some(d => d.entry);
-              return (
-                <div style={{background:"#fff",borderRadius:14,padding:"12px 12px 8px",
-                  marginBottom:14,boxShadow:"0 1px 6px rgba(0,0,0,.06)"}}>
-                  <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:12,
-                    color:"#475569",marginBottom:10,display:"flex",alignItems:"center",gap:6}}>
-                    📅 Activité — 14 derniers jours
-                    {hasAnyData && (
-                      <span style={{marginLeft:"auto",fontSize:10,color:"#94A3B8",fontWeight:600}}>
-                        {days.reduce((a,d)=>a+(d.entry?.correct||0),0)} bonnes réponses
-                      </span>
-                    )}
-                  </div>
-                  {!hasAnyData ? (
-                    <div style={{textAlign:"center",padding:"16px 0",color:"#94A3B8",fontSize:12}}>
-                      Fais un quiz pour voir ton activité ici 💪
-                    </div>
-                  ) : (
-                    <div style={{display:"flex",alignItems:"flex-end",gap:3,height:64}}>
-                      {days.map((d,i) => {
-                        const total = (d.entry?.correct||0)+(d.entry?.wrong||0);
-                        const correct = d.entry?.correct||0;
-                        const pct = total ? correct/total : 0;
-                        const barH = total ? Math.max(4, Math.round((total/maxVal)*54)) : 0;
-                        const isToday = i === 13;
-                        const barColor = total === 0 ? "transparent"
-                          : pct >= 0.8 ? "#10B981"
-                          : pct >= 0.5 ? "#F59E0B"
-                          : "#EF4444";
-                        return (
-                          <div key={d.key} style={{flex:1,display:"flex",flexDirection:"column",
-                            alignItems:"center",gap:3}}>
-                            <div style={{width:"100%",height:54,display:"flex",
-                              alignItems:"flex-end",justifyContent:"center"}}>
-                              <div style={{
-                                width:"100%",height:barH||2,
-                                background: total===0 ? "#F1F5F9" : barColor,
-                                borderRadius:4,
-                                opacity: total===0 ? 0.5 : 1,
-                                border: isToday ? "1.5px solid #6366F1" : "none",
-                                transition:"height .4s ease",
-                              }}/>
-                            </div>
-                            <div style={{fontSize:8,color:isToday?"#6366F1":"#94A3B8",
-                              fontWeight:isToday?800:600,fontFamily:"'Nunito',sans-serif"}}>
-                              {d.label}
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
-                  {hasAnyData && (
-                    <div style={{display:"flex",gap:10,marginTop:8,justifyContent:"center"}}>
-                      {[["#10B981","≥ 80%"],["#F59E0B","50–79%"],["#EF4444","< 50%"]].map(([c,l])=>(
-                        <div key={l} style={{display:"flex",alignItems:"center",gap:3}}>
-                          <div style={{width:8,height:8,borderRadius:2,background:c}}/>
-                          <span style={{fontSize:9,color:"#94A3B8",fontFamily:"'Nunito',sans-serif"}}>{l}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            })()}
-
             {Object.entries(curr.cats).map(([catId,subs])=>{
               const cat=getCatInfo(catId);
               const catProgs=subs.map(s=>gp(catId,s));
@@ -17000,24 +16916,6 @@ async function loadBadges()   { try{const r=await _storage.get(BADGE_K);return r
 async function saveBadges(b)  { try{await _storage.set(BADGE_K,JSON.stringify(b));}catch{} }
 async function loadDaily()    { try{const r=await _storage.get(DAILY_K);return r?.value?JSON.parse(r.value):null;}catch{return null;} }
 async function saveDaily(d)   { try{await _storage.set(DAILY_K,JSON.stringify(d));}catch{} }
-
-// ── Historique journalier des sessions (14 jours) ─────────────────────────
-const DAILY_LOG_K = 'user:daily_log'; // [{date:'2025-01-15', correct:N, wrong:N}]
-async function loadDailyLog() {
-  try { const r = await _storage.get(DAILY_LOG_K); return r?.value ? JSON.parse(r.value) : []; } catch { return []; }
-}
-async function appendDailyLog(correct, wrong) {
-  try {
-    const today = new Date().toISOString().slice(0,10); // 'YYYY-MM-DD'
-    let log = await loadDailyLog();
-    const idx = log.findIndex(e => e.date === today);
-    if (idx >= 0) { log[idx].correct += correct; log[idx].wrong += wrong; }
-    else { log.push({ date: today, correct, wrong }); }
-    // Garder 14 jours max
-    log = log.sort((a,b) => a.date.localeCompare(b.date)).slice(-14);
-    await _storage.set(DAILY_LOG_K, JSON.stringify(log));
-  } catch {}
-}
 async function loadDiagResults() { try{const r=await _storage.get(DIAG_RESULTS_K);return r?.value?JSON.parse(r.value):null;}catch{return null;} }
 async function saveDiagResults(d){ try{await _storage.set(DIAG_RESULTS_K,JSON.stringify(d));}catch{} }
 async function loadShield()   { try{const r=await _storage.get(SHIELD_K);return r?.value==='1';}catch{return false;} }
@@ -18606,7 +18504,7 @@ function SplashScreen({onStart, onMySpace, onRestore, profile}) {
     </div>
   );
 }
-function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onBackup}) {
+function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onBackup, allProg, onVigilance}) {
   const th = getTheme(profile);
   const [daysSinceShare, setDaysSinceShare] = React.useState(null);
 
@@ -18634,7 +18532,21 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onB
     {id:"flashcards",  label:"Flashcards",   sub:"Formules du cours",emoji:"🃏", color:"#059669", grad:"linear-gradient(135deg,#10B981,#047857)"},
   ];
 
-  // ─── Calcul du status streak (logique inchangée, juste extraite proprement) ───
+  // ─── Remédiation : thèmes faibles ───────────────────────────────────────────
+  const weakCount = React.useMemo(() => {
+    if (!profile || !allProg) return 0;
+    const curr = CURRICULUM[profile.level] || CURRICULUM.seconde;
+    const weak = [];
+    Object.entries(curr.cats).forEach(([catId, subs]) => {
+      subs.forEach(subId => {
+        const p = allProg[`${catId}:${subId}`] || {pc:0,pt:0};
+        if (p.pt >= 3 && Math.round(p.pc/p.pt*100) < 60) weak.push(1);
+      });
+    });
+    return weak.length;
+  }, [allProg, profile]);
+
+  // ─── Calcul du status streak ─────────────────────────────────────────────────
   let streakBlock = null;
   if (profile) {
     const streak = profile.streak || 0;
@@ -18874,6 +18786,30 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onB
               </button>
             ))}
           </div>
+
+          {/* ─── REMÉDIATION (bandeau discret, visible seulement si thèmes faibles) ─── */}
+          {profile && onVigilance && weakCount > 0 && (
+            <button onClick={onVigilance}
+              style={{
+                width:"100%", padding:"11px 16px", borderRadius:12,
+                border:"1.5px solid #FED7AA",
+                background:"#FFF7ED",
+                cursor:"pointer",
+                display:"flex", alignItems:"center", gap:10, marginBottom:12,
+              }}>
+              <span style={{fontSize:18, flexShrink:0}}>⚡</span>
+              <div style={{textAlign:"left", flex:1}}>
+                <div style={{fontFamily:"'Nunito',sans-serif", fontWeight:800,
+                  fontSize:13, color:"#C2410C", lineHeight:1.1}}>
+                  Remédiation
+                </div>
+                <div style={{fontSize:10, color:"#9A3412", fontWeight:600, marginTop:1}}>
+                  {weakCount} thème{weakCount > 1 ? "s" : ""} à consolider
+                </div>
+              </div>
+              <span style={{fontSize:14, color:"#F97316"}}>→</span>
+            </button>
+          )}
 
           {/* ─── ACCÈS DASHBOARD (lien sobre, en bas) ─── */}
           {profile && onDashboard && (
@@ -23671,96 +23607,11 @@ function CercleTrigoScreen({onBack}) {
   );
 }
 
-// ── OnboardingModal — s'affiche une seule fois au premier lancement ──────────
-function OnboardingModal({ onDone }) {
-  const [step, setStep] = useState(0);
-  const steps = [
-    {
-      emoji: "👋",
-      title: "Bienvenue sur AutoMaths !",
-      desc: "L'appli qui t'aide à progresser en maths, à ton rythme, n'importe où.",
-      color: "#6366F1",
-    },
-    {
-      emoji: "🎯",
-      title: "3 modes d'entraînement",
-      desc: "📝 S'entraîner — pour progresser sans pression\n✅ Se tester — pour évaluer tes acquis\n⚡ Sprint — pour des défis chronométrés",
-      color: "#10B981",
-    },
-    {
-      emoji: "⭐",
-      title: "Suis ta progression",
-      desc: "Gagne des étoiles, débloque des cartes Sigma, et consulte ton évolution dans « Mon parcours ».",
-      color: "#F59E0B",
-    },
-  ];
-  const s = steps[step];
-  const isLast = step === steps.length - 1;
-
-  const handleDone = async () => {
-    try { await _storage.set('user:onboarding_done', '1'); } catch {}
-    onDone();
-  };
-
-  return (
-    <div style={{
-      position:"absolute",inset:0,zIndex:200,
-      background:"rgba(0,0,0,0.6)",
-      display:"flex",alignItems:"center",justifyContent:"center",
-      padding:20,
-    }}>
-      <div className="screen-enter" style={{
-        background:"#fff",borderRadius:24,padding:"28px 22px 22px",
-        width:"100%",maxWidth:320,textAlign:"center",
-        boxShadow:"0 20px 60px rgba(0,0,0,.3)",
-      }}>
-        {/* Dots */}
-        <div style={{display:"flex",justifyContent:"center",gap:6,marginBottom:20}}>
-          {steps.map((_,i) => (
-            <div key={i} style={{
-              width: i===step ? 20 : 6, height:6,
-              borderRadius:99,
-              background: i===step ? s.color : "#E2E8F0",
-              transition:"all .3s ease",
-            }}/>
-          ))}
-        </div>
-
-        <div style={{fontSize:52,marginBottom:12}}>{s.emoji}</div>
-        <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:18,
-          color:"#1E293B",marginBottom:10}}>{s.title}</div>
-        <div style={{fontFamily:"'Nunito',sans-serif",fontSize:13,color:"#64748B",
-          lineHeight:1.6,whiteSpace:"pre-line",marginBottom:24}}>{s.desc}</div>
-
-        <button onClick={isLast ? handleDone : ()=>setStep(step+1)}
-          style={{
-            width:"100%",padding:"14px",border:"none",borderRadius:14,
-            background:`linear-gradient(135deg,${s.color},${s.color}dd)`,
-            color:"#fff",fontFamily:"'Nunito',sans-serif",fontWeight:900,
-            fontSize:15,cursor:"pointer",
-            boxShadow:`0 6px 20px ${s.color}55`,
-          }}>
-          {isLast ? "C'est parti ! 🚀" : "Suivant →"}
-        </button>
-
-        {!isLast && (
-          <button onClick={handleDone}
-            style={{marginTop:10,background:"none",border:"none",
-              color:"#94A3B8",fontSize:12,cursor:"pointer",fontFamily:"'Nunito',sans-serif"}}>
-            Passer
-          </button>
-        )}
-      </div>
-    </div>
-  );
-}
-
 function AutoMaths() {
   const katexReady = useKaTeX();
 
   // ── Core quiz state ───────────────────────────────────────────────────────
   const [screen,    setScreen]    = useState("splash");
-  const [showOnboarding, setShowOnboarding] = useState(false);
   const [mode,      setMode]      = useState(null);
   const [catId,     setCatId]     = useState(null);
   const [qCount,    setQCount]    = useState(10);
@@ -23804,16 +23655,12 @@ function AutoMaths() {
 
   // Load profile on mount
   useEffect(() => {
-    loadProfA().then(async p => {
+    loadProfA().then(p => {
       setProfile(p);
       setProfReady(true);
+      // Applique immédiatement la taille de police préférée (si profil existe)
       const prefs = getPrefs(p);
       applyFontScale(prefs.fontScale);
-      // Onboarding : afficher seulement au tout premier lancement
-      try {
-        const seen = await _storage.get('user:onboarding_done');
-        if (!seen?.value) setShowOnboarding(true);
-      } catch {}
     }).catch(() => setProfReady(true));
   }, []);
 
@@ -23964,9 +23811,6 @@ function AutoMaths() {
         return { catId: cId, subId: sId, correct: !failSet.has(i) };
       });
       await updateWeeklyStats(weeklyData);
-      // Historique journalier pour le graphique 14 jours
-      const correctCount = weeklyData.filter(q => q.correct).length;
-      await appendDailyLog(correctCount, weeklyData.length - correctCount);
     } catch {}
 
     // ── XP + Badges (safe, won't block quiz) ────────────────────────────────
@@ -24535,7 +24379,7 @@ function AutoMaths() {
         <div style={{position:"absolute",top:0,left:"50%",transform:"translateX(-50%)",
           width:120,height:26,background:"#1E293B",borderRadius:"0 0 18px 18px",zIndex:10}}/>
         
-        <div key={screen} className="screen-enter" style={{height:"100%",overflowY:"auto",paddingTop:26,
+        <div style={{height:"100%",overflowY:"auto",paddingTop:26,
           // Zoom via la propriété CSS `zoom` (supportée Chrome/Safari/Firefox).
           // Avantage vs transform:scale : ne casse pas les positionnements
           // absolus, les modales, les dropdowns. Simple et fiable.
@@ -24553,7 +24397,7 @@ function AutoMaths() {
           {screen==="diag_result"   && profile && diagResults && <DiagnosticResultScreen profile={profile} diagResults={diagResults} onStart={hDiagResultNext}/>}
           {screen==="weekly_program"&& profile && weekProgram  && <WeeklyProgramScreen profile={profile} program={weekProgram} allProg={allProgCache} onStartSession={hProgramSession} onSkip={hProgramSkip}/>}
           {screen==="dashboard"     && profile && <DashboardScreen profile={profile} diagResults={diagResults} cardsUnlocked={cardsUnlocked} qState={qState} onStartPractice={hStartPractice} onStartTest={hStartTest} onGoHome={()=>setScreen("home")} onMode={hMode} onParcours={()=>setScreen("parcours_detail")} onEditProfile={hEditProfile} onLogout={hLogout} onBackup={hBackup} onReminder={()=>setScreen("reminder")} onPreferences={()=>setScreen("preferences")} onVigilance={hVigilance} onCollection={()=>setScreen("collection")} onShowProgram={async()=>{const wp=await generateWeeklyProgram(profile,allProgCache,diagResults);setWeekProgram(wp);setScreen("weekly_program");}}/>}
-          {screen==="home"          && <HomeScreen onMode={hMode} profile={profile} onDashboard={profile?hDashboard:null} onSplash={()=>setScreen("splash")} streakProgress={streakProgress} onBackup={profile?hBackup:null}/>}
+          {screen==="home"          && <HomeScreen onMode={hMode} profile={profile} onDashboard={profile?hDashboard:null} onSplash={()=>setScreen("splash")} streakProgress={streakProgress} onBackup={profile?hBackup:null} allProg={allProgCache} onVigilance={profile?hVigilance:null}/>}
           {screen==="test_aleatoire" && <TestAleatoireScreen onGlobal={hTestGlobal} onCategory={hTestCategory} onBack={()=>setScreen(mode==="test_aleatoire"?"training_modes":"home")}/>}
           {screen==="training_modes" && <TrainingModesScreen onMode={hTrainingMode} onBack={()=>setScreen(profile?"dashboard":"home")}/>}
           {screen==="sprint"        && <SprintScreen    pool={getSprintPool()} onFinish={hSprintFinish} onBack={()=>{setSprintResult(null);setScreen(profile?"dashboard":"home");}}/>}
@@ -24655,9 +24499,6 @@ function AutoMaths() {
           width:120,height:5,background:"#CBD5E1",borderRadius:99}}/>
       </div>
       {/* Modal compte progressif — overlay visible sur tous les écrans quand déclenché */}
-      {showOnboarding && (
-        <OnboardingModal onDone={() => setShowOnboarding(false)} />
-      )}
       {showAccountPrompt && !profile && (
         <AccountPromptModal
           lifetime={lifetimeCorrect}
