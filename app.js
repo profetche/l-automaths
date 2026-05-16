@@ -20633,7 +20633,7 @@ const FLASHCARDS = [
 ];
 
 
-// ── FlashcardScreen// ── FlashcardSetupScreen — choix du niveau et de l'ordre ────────────────────
+// ── FlashcardScreen// ── FlashcardSetupScreen — choix du niveau, chapitres, ordre ──────────────
 function FlashcardSetupScreen({ onStart, onBack }) {
   const LEVELS = [
     { id:"sec",  label:"2nde",         emoji:"📗" },
@@ -20643,15 +20643,16 @@ function FlashcardSetupScreen({ onStart, onBack }) {
     { id:"term", label:"Terminale Spé",emoji:"🏆" },
   ];
 
-  const [selectedLevel, setSelectedLevel] = React.useState(null);
-  const [order, setOrder] = React.useState("random"); // "random" | "ordered"
-
-  // Chapitres hors programme STMG (présents en sec/tc mais non vus en STMG)
   const STMG_EXCLUDE_CHAPITRES = ["Vecteurs","Racines carrées","Géométrie","Géométrie espace","Produit scalaire"];
 
-  // Compter les cartes disponibles pour le niveau sélectionné
-  const cardCount = React.useMemo(() => {
-    if (!selectedLevel) return 0;
+  const [step, setStep]               = React.useState(1); // 1=niveau 2=chapitres+ordre
+  const [selectedLevel, setSelectedLevel] = React.useState(null);
+  const [selectedChaps, setSelectedChaps] = React.useState(null); // null = tous
+  const [order, setOrder]             = React.useState("random");
+
+  // Cartes disponibles pour le niveau choisi
+  const levelCards = React.useMemo(() => {
+    if (!selectedLevel) return [];
     let allowed;
     if (selectedLevel === "stmg") {
       allowed = ["sec","tc","stmg"];
@@ -20661,31 +20662,55 @@ function FlashcardSetupScreen({ onStart, onBack }) {
     }
     let cards = FLASHCARDS.filter(c => allowed.includes(c.level));
     if (selectedLevel === "stmg") cards = cards.filter(c => !STMG_EXCLUDE_CHAPITRES.includes(c.chapitre));
-    return cards.length;
+    return cards;
   }, [selectedLevel]);
 
-  const handleStart = () => {
-    if (!selectedLevel) return;
-    let allowed;
-    if (selectedLevel === "stmg") {
-      allowed = ["sec","tc","stmg"];
+  // Chapitres disponibles (dans l'ordre d'apparition)
+  const chapitres = React.useMemo(() => {
+    const seen = new Set();
+    const out = [];
+    levelCards.forEach(c => { if (!seen.has(c.chapitre)) { seen.add(c.chapitre); out.push(c.chapitre); } });
+    return out;
+  }, [levelCards]);
+
+  // Initialiser selectedChaps quand on arrive à l'étape 2
+  React.useEffect(() => {
+    if (step === 2) setSelectedChaps(new Set(chapitres));
+  }, [step, chapitres.join(",")]);
+
+  const toggleChap = (ch) => {
+    setSelectedChaps(prev => {
+      const next = new Set(prev);
+      if (next.has(ch)) { if (next.size > 1) next.delete(ch); } // au moins 1
+      else next.add(ch);
+      return next;
+    });
+  };
+
+  const toggleAll = () => {
+    if (selectedChaps && selectedChaps.size === chapitres.length) {
+      setSelectedChaps(new Set([chapitres[0]])); // au moins 1
     } else {
-      const lo = ["sec","tc","spe","term"];
-      allowed = lo.slice(0, lo.indexOf(selectedLevel) + 1);
+      setSelectedChaps(new Set(chapitres));
     }
-    let cards = FLASHCARDS.filter(c => allowed.includes(c.level));
-    if (selectedLevel === "stmg") cards = cards.filter(c => !STMG_EXCLUDE_CHAPITRES.includes(c.chapitre));
-    if (order === "random") {
-      cards = [...cards].sort(() => Math.random() - 0.5);
-    }
+  };
+
+  const finalCards = React.useMemo(() => {
+    if (!selectedChaps) return levelCards;
+    return levelCards.filter(c => selectedChaps.has(c.chapitre));
+  }, [levelCards, selectedChaps]);
+
+  const handleStart = () => {
+    let cards = [...finalCards];
+    if (order === "random") cards = cards.sort(() => Math.random() - 0.5);
     onStart(cards);
   };
 
-  return (
+  // ── ÉTAPE 1 : choix du niveau ─────────────────────────────────────────────
+  if (step === 1) return (
     <div style={{display:"flex",flexDirection:"column",height:"100%",
       background:"var(--am-bg-light)",padding:"20px 18px"}}>
 
-      {/* Header */}
       <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:24,flexShrink:0}}>
         <button onClick={onBack}
           style={{background:"none",border:"none",cursor:"pointer",color:"#94A3B8",fontSize:18,padding:0}}>✕</button>
@@ -20694,85 +20719,160 @@ function FlashcardSetupScreen({ onStart, onBack }) {
         </div>
       </div>
 
-      {/* Choix du niveau */}
       <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:13,
         color:"#64748B",textTransform:"uppercase",letterSpacing:1,marginBottom:10}}>
         Ton niveau
       </div>
-      <div style={{display:"flex",flexDirection:"column",gap:8,marginBottom:24}}>
-        {LEVELS.map(lvl => (
-          <button key={lvl.id} onClick={() => setSelectedLevel(lvl.id)}
-            style={{
-              background: selectedLevel === lvl.id
-                ? "linear-gradient(135deg,#10B981,#047857)"
-                : "#fff",
-              border: selectedLevel === lvl.id ? "2px solid #047857" : "2px solid #E2E8F0",
-              borderRadius:14,padding:"12px 16px",cursor:"pointer",
-              display:"flex",alignItems:"center",gap:12,
-              boxShadow: selectedLevel === lvl.id
-                ? "0 4px 12px rgba(16,185,129,0.3)" : "0 1px 4px rgba(0,0,0,.06)",
-              transition:"all .15s",
-            }}>
-            <span style={{fontSize:22}}>{lvl.emoji}</span>
-            <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:15,
-              color: selectedLevel === lvl.id ? "#fff" : "#1E293B"}}>
-              {lvl.label}
-            </span>
-            {selectedLevel === lvl.id && (
-              <span style={{marginLeft:"auto",fontSize:11,color:"rgba(255,255,255,0.8)",fontWeight:600}}>
-                {cardCount} cartes
+      <div style={{display:"flex",flexDirection:"column",gap:8,flex:1,overflowY:"auto"}}>
+        {LEVELS.map(lvl => {
+          const count = (() => {
+            let allowed;
+            if (lvl.id === "stmg") { allowed = ["sec","tc","stmg"]; }
+            else { const lo = ["sec","tc","spe","term"]; allowed = lo.slice(0, lo.indexOf(lvl.id) + 1); }
+            let c = FLASHCARDS.filter(x => allowed.includes(x.level));
+            if (lvl.id === "stmg") c = c.filter(x => !STMG_EXCLUDE_CHAPITRES.includes(x.chapitre));
+            return c.length;
+          })();
+          const active = selectedLevel === lvl.id;
+          return (
+            <button key={lvl.id} onClick={() => setSelectedLevel(lvl.id)}
+              style={{
+                background: active ? "linear-gradient(135deg,#10B981,#047857)" : "#fff",
+                border: active ? "2px solid #047857" : "2px solid #E2E8F0",
+                borderRadius:14,padding:"12px 16px",cursor:"pointer",
+                display:"flex",alignItems:"center",gap:12,
+                boxShadow: active ? "0 4px 12px rgba(16,185,129,0.3)" : "0 1px 4px rgba(0,0,0,.06)",
+                transition:"all .15s",flexShrink:0,
+              }}>
+              <span style={{fontSize:22}}>{lvl.emoji}</span>
+              <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:15,
+                color: active ? "#fff" : "#1E293B"}}>{lvl.label}</span>
+              <span style={{marginLeft:"auto",fontSize:11,
+                color: active ? "rgba(255,255,255,0.8)" : "#94A3B8",fontWeight:600}}>
+                {count} cartes
               </span>
-            )}
-          </button>
-        ))}
+            </button>
+          );
+        })}
       </div>
 
-      {/* Choix de l'ordre */}
-      <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:13,
-        color:"#64748B",textTransform:"uppercase",letterSpacing:1,marginBottom:10}}>
-        Ordre des cartes
+      <button onClick={() => setStep(2)} disabled={!selectedLevel}
+        style={{
+          marginTop:16,
+          background: selectedLevel ? "linear-gradient(135deg,#10B981,#047857)" : "#E2E8F0",
+          border:"none",borderRadius:16,padding:"16px",cursor: selectedLevel ? "pointer" : "default",
+          color: selectedLevel ? "#fff" : "#94A3B8",
+          fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,
+          boxShadow: selectedLevel ? "0 6px 20px rgba(16,185,129,0.35)" : "none",
+          transition:"all .2s",flexShrink:0,
+        }}>
+        {selectedLevel ? "Choisir les chapitres →" : "Choisis ton niveau"}
+      </button>
+    </div>
+  );
+
+  // ── ÉTAPE 2 : chapitres + ordre ───────────────────────────────────────────
+  const allSelected = selectedChaps && selectedChaps.size === chapitres.length;
+
+  return (
+    <div style={{display:"flex",flexDirection:"column",height:"100%",
+      background:"var(--am-bg-light)",padding:"20px 18px"}}>
+
+      {/* Header */}
+      <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:20,flexShrink:0}}>
+        <button onClick={() => setStep(1)}
+          style={{background:"none",border:"none",cursor:"pointer",color:"#94A3B8",fontSize:18,padding:0}}>←</button>
+        <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:18,color:"#1E293B"}}>
+          🃏 Chapitres
+        </div>
+        <span style={{marginLeft:"auto",fontFamily:"'Nunito',sans-serif",fontSize:12,
+          color:"#6366F1",fontWeight:700,background:"#EEF2FF",
+          borderRadius:99,padding:"3px 10px"}}>
+          {finalCards.length} carte{finalCards.length > 1 ? "s" : ""}
+        </span>
       </div>
-      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:32}}>
-        {[
-          {id:"random",  label:"Aléatoire", emoji:"🔀"},
-          {id:"ordered", label:"Dans l'ordre", emoji:"📋"},
-        ].map(o => (
+
+      {/* Tout sélectionner */}
+      <button onClick={toggleAll}
+        style={{
+          background: allSelected ? "#EEF2FF" : "#F1F5F9",
+          border: allSelected ? "2px solid #6366F1" : "2px solid #E2E8F0",
+          borderRadius:12,padding:"9px 14px",cursor:"pointer",marginBottom:10,
+          display:"flex",alignItems:"center",gap:8,flexShrink:0,
+        }}>
+        <span style={{fontSize:16}}>{allSelected ? "☑️" : "⬜"}</span>
+        <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:13,
+          color: allSelected ? "#4F46E5" : "#475569"}}>
+          {allSelected ? "Tout désélectionner" : "Tout sélectionner"}
+        </span>
+      </button>
+
+      {/* Liste des chapitres */}
+      <div style={{flex:1,overflowY:"auto",display:"flex",flexDirection:"column",gap:6,marginBottom:12}}>
+        {chapitres.map(ch => {
+          const count = levelCards.filter(c => c.chapitre === ch).length;
+          const checked = selectedChaps && selectedChaps.has(ch);
+          return (
+            <button key={ch} onClick={() => toggleChap(ch)}
+              style={{
+                background: checked ? "linear-gradient(135deg,#6366F1,#4F46E5)" : "#fff",
+                border: checked ? "2px solid #4F46E5" : "2px solid #E2E8F0",
+                borderRadius:12,padding:"10px 14px",cursor:"pointer",
+                display:"flex",alignItems:"center",gap:10,
+                boxShadow: checked ? "0 2px 8px rgba(99,102,241,0.25)" : "0 1px 3px rgba(0,0,0,.05)",
+                transition:"all .15s",
+              }}>
+              <span style={{fontSize:15}}>{checked ? "✅" : "⬜"}</span>
+              <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:700,fontSize:14,
+                color: checked ? "#fff" : "#1E293B",flex:1,textAlign:"left"}}>{ch}</span>
+              <span style={{fontSize:11,fontWeight:600,
+                color: checked ? "rgba(255,255,255,0.75)" : "#94A3B8"}}>
+                {count}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Ordre */}
+      <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:12,
+        color:"#64748B",textTransform:"uppercase",letterSpacing:1,marginBottom:8,flexShrink:0}}>
+        Ordre
+      </div>
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:14,flexShrink:0}}>
+        {[{id:"random",label:"Aléatoire",emoji:"🔀"},{id:"ordered",label:"Dans l'ordre",emoji:"📋"}].map(o => (
           <button key={o.id} onClick={() => setOrder(o.id)}
             style={{
               background: order === o.id ? "linear-gradient(135deg,#6366F1,#4F46E5)" : "#fff",
               border: order === o.id ? "2px solid #4F46E5" : "2px solid #E2E8F0",
-              borderRadius:14,padding:"12px 10px",cursor:"pointer",
-              display:"flex",flexDirection:"column",alignItems:"center",gap:4,
-              boxShadow: order === o.id ? "0 4px 12px rgba(99,102,241,0.25)" : "0 1px 4px rgba(0,0,0,.06)",
-              transition:"all .15s",
+              borderRadius:12,padding:"10px 8px",cursor:"pointer",
+              display:"flex",flexDirection:"column",alignItems:"center",gap:3,
+              boxShadow: order === o.id ? "0 3px 10px rgba(99,102,241,0.25)" : "0 1px 3px rgba(0,0,0,.05)",
             }}>
-            <span style={{fontSize:22}}>{o.emoji}</span>
-            <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:13,
-              color: order === o.id ? "#fff" : "#1E293B"}}>
-              {o.label}
-            </span>
+            <span style={{fontSize:18}}>{o.emoji}</span>
+            <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:12,
+              color: order === o.id ? "#fff" : "#1E293B"}}>{o.label}</span>
           </button>
         ))}
       </div>
 
       {/* Bouton lancer */}
-      <button onClick={handleStart} disabled={!selectedLevel}
+      <button onClick={handleStart} disabled={finalCards.length === 0}
         style={{
-          background: selectedLevel
-            ? "linear-gradient(135deg,#10B981,#047857)"
-            : "#E2E8F0",
-          border:"none",borderRadius:16,padding:"16px",cursor: selectedLevel ? "pointer" : "default",
-          color: selectedLevel ? "#fff" : "#94A3B8",
+          background: finalCards.length > 0 ? "linear-gradient(135deg,#10B981,#047857)" : "#E2E8F0",
+          border:"none",borderRadius:16,padding:"15px",
+          cursor: finalCards.length > 0 ? "pointer" : "default",
+          color: finalCards.length > 0 ? "#fff" : "#94A3B8",
           fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,
-          boxShadow: selectedLevel ? "0 6px 20px rgba(16,185,129,0.35)" : "none",
-          transition:"all .2s",
-          marginTop:"auto",
+          boxShadow: finalCards.length > 0 ? "0 6px 20px rgba(16,185,129,0.35)" : "none",
+          transition:"all .2s",flexShrink:0,
         }}>
-        {selectedLevel ? `Commencer — ${cardCount} cartes 🃏` : "Choisis ton niveau"}
+        {finalCards.length > 0 ? `Commencer — ${finalCards.length} carte${finalCards.length>1?"s":""} 🃏` : "Sélectionne au moins un chapitre"}
       </button>
     </div>
   );
 }
+
 
 // ── FlashcardScreen ─────────────────────────────────────────────────────────
 function FlashcardScreen({ cards, onBack }) {
