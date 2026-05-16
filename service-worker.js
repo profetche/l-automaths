@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v59';
+const CACHE_VERSION = 'v60';
 const CACHE_NAME = `automaths-${CACHE_VERSION}`;
 const STATIC_ASSETS = ['/', '/index.html', '/app.js', '/manifest.json'];
 self.addEventListener('install', event => {
