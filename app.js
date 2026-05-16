@@ -20133,6 +20133,9 @@ const FLASHCARDS = [
   { id:"fc_meth_01", level:"sec", chapitre:"Méthodes",
     recto:r`\text{Résoudre une inéquation, c'est...}`,
     verso:r`\text{Dresser un tableau de signes,}\\[4pt]\text{puis lire l'ensemble solution sur la ligne }f(x)` },
+  { id:"fc_meth_egal", level:"sec", chapitre:"Méthodes",
+    recto:r`\text{Montrer que }A=B\text{ : quelles stratégies ?}`,
+    verso:r`\text{1. Partir de }A\text{ et arriver à }B\\[4pt]\text{2. Partir de }B\text{ et arriver à }A\\[4pt]\text{3. Partir de }A\text{ et de }B\text{ vers un même }C\\[4pt]\text{4. Calculer }A-B\text{ et montrer que }A-B=0` },
   { id:"fc_meth_02", level:"sec", chapitre:"Méthodes",
     recto:r`\text{Comment noter l'ensemble solution d'une équation ?}`,
     verso:r`S=\{x_1\,;\,x_2\,;\,\ldots\}\\[6pt]\text{Ex : }S=\{-2\,;\,3\}` },
@@ -20148,6 +20151,21 @@ const FLASHCARDS = [
   { id:"fc_sec_03", level:"sec", chapitre:"Ensembles",
     recto:r`\text{Inclusion des ensembles de nombres ?}`,
     verso:r`\mathbb{N}\subset\mathbb{Z}\subset\mathbb{D}\subset\mathbb{Q}\subset\mathbb{R}` },
+  { id:"fc_ens_N", level:"sec", chapitre:"Ensembles",
+    recto:r`\mathbb{N}\text{ : quel ensemble est-ce ? Exemples ?}`,
+    verso:r`\text{Les entiers \textbf{naturels} (positifs)}\\[6pt]\mathbb{N}=\{0,1,2,3,4,\ldots\}` },
+  { id:"fc_ens_Z", level:"sec", chapitre:"Ensembles",
+    recto:r`\mathbb{Z}\text{ : quel ensemble est-ce ? Exemples ?}`,
+    verso:r`\text{Les entiers \textbf{relatifs} (positifs et négatifs)}\\[6pt]\mathbb{Z}=\{\ldots,-2,-1,0,1,2,\ldots\}` },
+  { id:"fc_ens_D", level:"sec", chapitre:"Ensembles",
+    recto:r`\mathbb{D}\text{ : quel ensemble est-ce ? Exemples ?}`,
+    verso:r`\text{Les \textbf{décimaux} (fractions de puissances de 10)}\\[6pt]0{,}3\ ;\ -1{,}25\ ;\ 0{,}001\in\mathbb{D}` },
+  { id:"fc_ens_Q", level:"sec", chapitre:"Ensembles",
+    recto:r`\mathbb{Q}\text{ : quel ensemble est-ce ? Exemples ?}`,
+    verso:r`\text{Les \textbf{rationnels} (fractions d'entiers)}\\[6pt]\dfrac{1}{3}\ ;\ -\dfrac{5}{7}\ ;\ 0{,}25\in\mathbb{Q}\\[6pt]\text{(tout nombre à écriture décimale finie ou périodique)}` },
+  { id:"fc_ens_R", level:"sec", chapitre:"Ensembles",
+    recto:r`\mathbb{R}\text{ : quel ensemble est-ce ? Exemples ?}`,
+    verso:r`\text{Les \textbf{réels} — tous les nombres de la droite}\\[6pt]\pi\ ;\ \sqrt{2}\ ;\ -\dfrac{5}{3}\ ;\ 1{,}414\ldots\in\mathbb{R}\\[4pt]\sqrt{2}\in\mathbb{R}\text{ mais }\sqrt{2}\notin\mathbb{Q}` },
   { id:"fc_sec_04", level:"sec", chapitre:"Statistiques",
     recto:r`\text{Formule de la moyenne d'une série}`,
     verso:r`\bar{x}=\dfrac{x_1+x_2+\cdots+x_n}{n}\\[6pt]\text{pondérée : }\bar{x}=\dfrac{x_1 n_1+x_2 n_2+\cdots}{n_1+n_2+\cdots}` },
@@ -20187,9 +20205,31 @@ const FLASHCARDS = [
   { id:"fc_coord_03", level:"spe", chapitre:"Géométrie",
     recto:r`\text{Distance }AB\text{ ?}`,
     verso:r`AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2}` },
-  { id:"fc_droite_01", level:"sec", chapitre:"Fonctions",
-    recto:r`y=mx+p\\[6pt]\text{Comment s'appellent }m\text{ et }p\text{ ?}`,
-    verso:r`m\text{ : coefficient directeur (pente)}\\[6pt]p\text{ : ordonnée à l'origine}` },
+  { id:"fc_image_antec", level:"sec", chapitre:"Fonctions",
+    recto:r`f(a)=b\text{ : que signifient }a\text{ et }b\text{ ?}`,
+    svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 110" width="100%" style="background:#fff;border-radius:8px;margin:8px 0">
+  <line x1="30" y1="90" x2="250" y2="90" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#ax)"/>
+  <line x1="50" y1="100" x2="50" y2="10" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#ay)"/>
+  <path d="M50,80 Q100,20 200,50" stroke="#3B82F6" stroke-width="2" fill="none"/>
+  <defs>
+    <marker id="ax" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#94A3B8"/></marker>
+    <marker id="ay" markerWidth="6" markerHeight="6" refX="3" refY="5" orient="auto"><path d="M0,0 L6,0 L3,6 z" fill="#94A3B8"/></marker>
+    <marker id="da" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#10B981"/></marker>
+    <marker id="db" markerWidth="6" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M6,0 L6,6 L0,3 z" fill="#EF4444"/></marker>
+  </defs>
+  <!-- a sur axe x -->
+  <line x1="140" y1="90" x2="140" y2="60" stroke="#10B981" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <circle cx="140" cy="90" r="4" fill="#10B981"/>
+  <text x="137" y="103" font-size="11" fill="#10B981" font-family="serif" font-style="italic">a</text>
+  <!-- b sur axe y -->
+  <line x1="50" y1="60" x2="140" y2="60" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <circle cx="50" cy="60" r="4" fill="#EF4444"/>
+  <text x="34" y="63" font-size="11" fill="#EF4444" font-family="serif" font-style="italic">b</text>
+  <!-- point sur courbe -->
+  <circle cx="140" cy="60" r="4" fill="#1E293B"/>
+  <text x="143" y="56" font-size="10" fill="#1E293B" font-family="serif">f(a)=b</text>
+</svg>`,
+    verso:r`b=f(a)\text{ : }b\text{ est l'\textbf{image} de }a\text{ par }f\\[8pt]a\text{ est \textbf{un antécédent} de }b\text{ par }f\\[6pt]\text{(il peut y en avoir plusieurs)}` },
 
   // ══ TRONC COMMUN ═════════════════════════════════════════════════════════════
   { id:"fc_sec_06", level:"tc", chapitre:"Probabilités",
@@ -20634,7 +20674,7 @@ const FLASHCARDS = [
 
 
 // ── FlashcardScreen// ── FlashcardSetupScreen — choix du niveau, chapitres, ordre ──────────────
-function FlashcardSetupScreen({ onStart, onBack }) {
+function FlashcardSetupScreen({ onStart, onBack, initialStep=1, initialLevel=null }) {
   const LEVELS = [
     { id:"sec",  label:"2nde",         emoji:"📗" },
     { id:"tc",   label:"1ère TC",      emoji:"📘" },
@@ -20645,8 +20685,8 @@ function FlashcardSetupScreen({ onStart, onBack }) {
 
   const STMG_EXCLUDE_CHAPITRES = ["Vecteurs","Racines carrées","Géométrie","Géométrie espace","Produit scalaire"];
 
-  const [step, setStep]               = React.useState(1); // 1=niveau 2=chapitres+ordre
-  const [selectedLevel, setSelectedLevel] = React.useState(null);
+  const [step, setStep]               = React.useState(initialStep); // 1=niveau 2=chapitres+ordre
+  const [selectedLevel, setSelectedLevel] = React.useState(initialLevel);
   const [selectedChaps, setSelectedChaps] = React.useState(null); // null = tous
   const [order, setOrder]             = React.useState("random");
 
@@ -20703,7 +20743,7 @@ function FlashcardSetupScreen({ onStart, onBack }) {
   const handleStart = () => {
     let cards = [...finalCards];
     if (order === "random") cards = cards.sort(() => Math.random() - 0.5);
-    onStart(cards);
+    onStart(cards, selectedLevel);
   };
 
   // ── ÉTAPE 1 : choix du niveau ─────────────────────────────────────────────
@@ -20875,7 +20915,7 @@ function FlashcardSetupScreen({ onStart, onBack }) {
 
 
 // ── FlashcardScreen ─────────────────────────────────────────────────────────
-function FlashcardScreen({ cards, onBack }) {
+function FlashcardScreen({ cards, onBack, onHome }) {
   const [idx, setIdx] = React.useState(0);
   const [flipped, setFlipped] = React.useState(false);
   const [known, setKnown] = React.useState([]);   // indices des cartes "je savais"
@@ -20964,10 +21004,16 @@ function FlashcardScreen({ cards, onBack }) {
             🔄 Recommencer depuis le début
           </button>
           <button onClick={onBack}
+            style={{background:"#EEF2FF",border:"none",borderRadius:14,padding:"12px",
+              color:"#4F46E5",fontFamily:"'Nunito',sans-serif",fontWeight:800,
+              fontSize:14,cursor:"pointer"}}>
+            📚 Changer de chapitres
+          </button>
+          <button onClick={onHome}
             style={{background:"#F1F5F9",border:"none",borderRadius:14,padding:"12px",
               color:"#64748B",fontFamily:"'Nunito',sans-serif",fontWeight:700,
               fontSize:14,cursor:"pointer"}}>
-            ← Retour
+            ← Changer de niveau
           </button>
         </div>
       </div>
@@ -23487,6 +23533,8 @@ function AutoMaths() {
   const [pool,      setPool]      = useState([]);
   const [questions, setQuestions] = useState([]);
   const [score,     setScore]     = useState(0);
+  const [fcSetupStep, setFcSetupStep] = useState(1); // 1=niveau 2=chapitres
+  const [fcLevel, setFcLevel] = useState(null); // niveau mémorisé pour retour chapitres
 
   // ── Mission state ─────────────────────────────────────────────────────────
   const [missionId,    setMissionId]    = useState(null);
@@ -24338,8 +24386,8 @@ function AutoMaths() {
               setScreen("mission_theme");
             }
           }}/>}
-          {screen==="flashcard_setup" && <FlashcardSetupScreen onBack={()=>setScreen("home")} onStart={(cards)=>{ setPool(cards); setScreen("flashcards"); }}/>}
-          {screen==="flashcards"    && <FlashcardScreen cards={pool} onBack={()=>setScreen("flashcard_setup")}/>}
+          {screen==="flashcard_setup" && <FlashcardSetupScreen onBack={()=>setScreen("home")} initialStep={fcSetupStep} initialLevel={fcLevel} onStart={(cards, level)=>{ setFcSetupStep(1); setFcLevel(level); setPool(cards); setScreen("flashcards"); }}/>}
+          {screen==="flashcards"    && <FlashcardScreen cards={pool} onBack={()=>{ setFcSetupStep(2); setScreen("flashcard_setup"); }} onHome={()=>{ setFcSetupStep(1); setFcLevel(null); setScreen("flashcard_setup"); }}/>}
           {screen==="mission_theme" && missionTheme && <MissionThemeScreen theme={missionTheme} missionId={missionId} onBack={()=>setScreen("mission_select")} onStart={(qs, themeId)=>{
             setPrevScreen("mission_theme");
             setQuestions(qs);
