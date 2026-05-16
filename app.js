@@ -14029,33 +14029,6 @@ function applyFontScale(scale) {
   } catch(e) {}
 }
 
-// Efface toutes les données de progression (nouveau départ complet)
-async function clearAllProgress() {
-  const keysToDelete = [
-    RECENT_Q_K, DIAG_K, XP_K, BADGE_K, DAILY_K, DIAG_RESULTS_K,
-    STREAK_PROGRESS_K, QSTATE_K, WEEKLY_STATS_K, LIFETIME_CORRECT_K,
-    CARDS_UNLOCKED_K, CARDS_SEEN_K, SPRINT_COUNT_K, REMEDIATION_DONE_K,
-    MISSION_THEMES_DONE_K, REMEDIATION_COUNT_K, SPRINT_BEST_K,
-    SPRINT_BEST_FINAL_K, LAST_SHARE_K, REMINDER_K, MORNING_DONE_K,
-    EVENING_DONE_K, 'user:daily_log', 'user:onboarding_done',
-    'user:improved', 'user:combo_max', 'user:bac_completed',
-  ];
-  // Supprimer toutes les clés user: et prg:
-  try {
-    const allKeys = await _storage.list('');
-    const progKeys = (allKeys?.keys || []).filter(k =>
-      k.startsWith('prg:') || k.startsWith('user:')
-    );
-    await Promise.all([
-      ...keysToDelete.map(k => _storage.delete(k).catch(() => {})),
-      ...progKeys.map(k => _storage.delete(k).catch(() => {})),
-    ]);
-  } catch {
-    // Fallback : supprimer juste les clés connues
-    await Promise.all(keysToDelete.map(k => _storage.delete(k).catch(() => {})));
-  }
-}
-
 async function loadProfA() {
   try { const r=await _storage.get(PROF_K); return r?.value?JSON.parse(r.value):null; }
   catch{return null;}
@@ -15790,8 +15763,6 @@ function ProfileSetupScreen({onComplete, onBack, onRestore}) {
   const [name, setName] = useState('');
   const [level, setLevel] = useState('');
   const [step, setStep] = useState(0);
-  const [showResetModal, setShowResetModal] = useState(false);
-  const [pendingProf, setPendingProf] = useState(null);
   const LEVELS = [
     {id:'seconde',       emoji:'🌱', label:'Seconde',             desc:'Je commence le lycée'},
     {id:'premiere_tronc',emoji:'📘', label:'1ère Tronc commun',   desc:'Sans spécialité maths'},
@@ -15809,59 +15780,12 @@ function ProfileSetupScreen({onComplete, onBack, onRestore}) {
         prof.streak = 1; // premier jour validé
       }
     } catch {}
-    // Détecter si des données de progression existent déjà
-    try {
-      const xpRaw = await _storage.get(XP_K);
-      const hasData = xpRaw?.value && JSON.parse(xpRaw.value) > 0;
-      if (hasData) { setPendingProf(prof); setShowResetModal(true); return; }
-    } catch {}
     saveProfA(prof); onComplete(prof);
-  };
-
-  const handleResetChoice = async (reset) => {
-    setShowResetModal(false);
-    if (reset) await clearAllProgress();
-    saveProfA(pendingProf);
-    onComplete(pendingProf);
   };
   return (
     <div style={{height:"100%",display:"flex",flexDirection:"column",alignItems:"center",
       justifyContent:"center",padding:"24px",background:"linear-gradient(170deg,var(--am-bg-dark-1),var(--am-bg-dark-2))",
       position:"relative"}}>
-
-      {/* ── Modal : remettre à zéro ? ── */}
-      {showResetModal && (
-        <div style={{position:"absolute",inset:0,zIndex:100,
-          background:"rgba(0,0,0,0.7)",display:"flex",alignItems:"center",
-          justifyContent:"center",padding:20}}>
-          <div style={{background:"#fff",borderRadius:20,padding:"24px 20px",
-            width:"100%",maxWidth:300,textAlign:"center"}}>
-            <div style={{fontSize:36,marginBottom:10}}>🔄</div>
-            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,
-              fontSize:16,color:"#1E293B",marginBottom:8}}>
-              Des données existent déjà
-            </div>
-            <div style={{fontSize:12,color:"#64748B",lineHeight:1.5,marginBottom:20}}>
-              Un autre élève a déjà utilisé cette appli sur cet appareil. Veux-tu repartir de zéro ou garder ses données ?
-            </div>
-            <button onClick={()=>handleResetChoice(true)}
-              style={{width:"100%",padding:"13px",borderRadius:12,border:"none",
-                background:"linear-gradient(135deg,#EF4444,#DC2626)",
-                color:"#fff",fontFamily:"'Nunito',sans-serif",fontWeight:800,
-                fontSize:14,cursor:"pointer",marginBottom:8}}>
-              🗑️ Repartir de zéro
-            </button>
-            <button onClick={()=>handleResetChoice(false)}
-              style={{width:"100%",padding:"13px",borderRadius:12,
-                border:"1.5px solid #E2E8F0",background:"#F8FAFC",
-                color:"#475569",fontFamily:"'Nunito',sans-serif",fontWeight:700,
-                fontSize:13,cursor:"pointer"}}>
-              Garder les données existantes
-            </button>
-          </div>
-        </div>
-      )}
-
       {/* Bouton retour */}
       <button onClick={step===1?()=>setStep(0):onBack}
         style={{position:"absolute",top:16,left:16,background:"rgba(255,255,255,0.08)",
@@ -20778,7 +20702,19 @@ function FlashcardSetupScreen({ onStart, onBack, initialStep=1, initialLevel=nul
   const [selectedLevel, setSelectedLevel] = React.useState(initialLevel);
   const [selectedChaps, setSelectedChaps] = React.useState(null); // null = tous
   const [order, setOrder]             = React.useState("random");
+  const [showIntro, setShowIntro]     = React.useState(false);
 
+  // Afficher l'intro uniquement au premier lancement
+  React.useEffect(() => {
+    _storage.get('user:fc_intro_seen').then(r => {
+      if (!r?.value) setShowIntro(true);
+    }).catch(() => {});
+  }, []);
+
+  const dismissIntro = async () => {
+    try { await _storage.set('user:fc_intro_seen', '1'); } catch {}
+    setShowIntro(false);
+  };
   // Cartes disponibles pour le niveau choisi
   const levelCards = React.useMemo(() => {
     if (!selectedLevel) return [];
@@ -20839,7 +20775,45 @@ function FlashcardSetupScreen({ onStart, onBack, initialStep=1, initialLevel=nul
   // ── ÉTAPE 1 : choix du niveau ─────────────────────────────────────────────
   if (step === 1) return (
     <div style={{display:"flex",flexDirection:"column",height:"100%",
-      background:"var(--am-bg-light)",padding:"20px 18px"}}>
+      background:"var(--am-bg-light)",padding:"20px 18px",position:"relative"}}>
+
+      {/* ── Intro modale (premier lancement) ── */}
+      {showIntro && (
+        <div style={{position:"absolute",inset:0,zIndex:100,
+          background:"rgba(0,0,0,0.65)",display:"flex",alignItems:"center",
+          justifyContent:"center",padding:20}}>
+          <div style={{background:"#fff",borderRadius:22,padding:"26px 22px",
+            width:"100%",maxWidth:310,textAlign:"center"}}>
+            <div style={{fontSize:46,marginBottom:10}}>🃏</div>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,
+              fontSize:17,color:"#1E293B",marginBottom:10}}>
+              Les Flashcards
+            </div>
+            <div style={{fontSize:13,color:"#475569",lineHeight:1.65,marginBottom:8}}>
+              Une carte = une notion clé du cours.
+            </div>
+            <div style={{background:"#EEF2FF",borderRadius:12,padding:"12px 14px",
+              marginBottom:16,textAlign:"left"}}>
+              <div style={{fontSize:12,color:"#4F46E5",fontWeight:700,marginBottom:6}}>
+                Comment ça marche ?
+              </div>
+              <div style={{fontSize:12,color:"#475569",lineHeight:1.6}}>
+                <div style={{marginBottom:4}}>❓ La <b>question</b> s'affiche — essaie de répondre <b>dans ta tête</b> avant de retourner la carte.</div>
+                <div style={{marginBottom:4}}>✅ Retourne la carte et compare avec la <b>vraie réponse</b>.</div>
+                <div>🔁 Dis honnêtement si tu savais ou non — c'est le secret de l'auto-interrogation !</div>
+              </div>
+            </div>
+            <button onClick={dismissIntro}
+              style={{width:"100%",padding:"14px",borderRadius:14,border:"none",
+                background:"linear-gradient(135deg,#6366F1,#4F46E5)",
+                color:"#fff",fontFamily:"'Nunito',sans-serif",fontWeight:900,
+                fontSize:15,cursor:"pointer",
+                boxShadow:"0 6px 20px rgba(99,102,241,0.35)"}}>
+              C'est compris, on y va ! →
+            </button>
+          </div>
+        </div>
+      )}
 
       <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:24,flexShrink:0}}>
         <button onClick={onBack}
@@ -21073,6 +21047,20 @@ function FlashcardScreen({ cards, onBack, onHome }) {
     }
   };
 
+  const goBack = () => {
+    if (!reviewMode && idx > 0) {
+      // Annuler le vote de la carte précédente
+      const prevIdx = idx - 1;
+      setKnown(k => k.filter(i => i !== prevIdx));
+      setReview(r => r.filter(i => i !== prevIdx));
+      setIdx(prevIdx);
+      setFlipped(false);
+    } else if (reviewMode && reviewIdx > 0) {
+      setReviewIdx(i => i - 1);
+      setReviewFlipped(false);
+    }
+  };
+
   const startReview = () => {
     const toReview = review.map(i => cards[i]);
     setReviewCards(toReview);
@@ -21164,6 +21152,17 @@ function FlashcardScreen({ cards, onBack, onHome }) {
         <div style={{fontSize:11,fontWeight:700,color:"#64748B",flexShrink:0}}>
           {activeIdx+1}/{total}
         </div>
+        {/* Bouton carte précédente */}
+        <button onClick={goBack}
+          disabled={activeIdx === 0}
+          title="Carte précédente"
+          style={{
+            background:"none",border:"none",cursor:activeIdx===0?"default":"pointer",
+            color:activeIdx===0?"#E2E8F0":"#94A3B8",fontSize:18,padding:0,
+            flexShrink:0,transition:"color .2s",
+          }}>
+          ←
+        </button>
       </div>
 
       {/* Chapitre */}
