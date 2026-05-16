@@ -20205,31 +20205,57 @@ const FLASHCARDS = [
   { id:"fc_coord_03", level:"spe", chapitre:"Géométrie",
     recto:r`\text{Distance }AB\text{ ?}`,
     verso:r`AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2}` },
-  { id:"fc_image_antec", level:"sec", chapitre:"Fonctions",
-    recto:r`f(a)=b\text{ : que signifient }a\text{ et }b\text{ ?}`,
-    svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 110" width="100%" style="background:#fff;border-radius:8px;margin:8px 0">
-  <line x1="30" y1="90" x2="250" y2="90" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#ax)"/>
-  <line x1="50" y1="100" x2="50" y2="10" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#ay)"/>
-  <path d="M50,80 Q100,20 200,50" stroke="#3B82F6" stroke-width="2" fill="none"/>
+  { id:"fc_image_cherche", level:"sec", chapitre:"Fonctions",
+    recto:r`\text{Comment chercher l'\textbf{image} de }a\text{ par }f\text{ ?}`,
+    svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 115" width="100%" style="background:#F0FDF4;border-radius:8px;margin:8px 0;border:1.5px solid #BBF7D0">
   <defs>
-    <marker id="ax" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#94A3B8"/></marker>
-    <marker id="ay" markerWidth="6" markerHeight="6" refX="3" refY="5" orient="auto"><path d="M0,0 L6,0 L3,6 z" fill="#94A3B8"/></marker>
-    <marker id="da" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#10B981"/></marker>
-    <marker id="db" markerWidth="6" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M6,0 L6,6 L0,3 z" fill="#EF4444"/></marker>
+    <marker id="axI" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#94A3B8"/></marker>
+    <marker id="ayI" markerWidth="6" markerHeight="6" refX="3" refY="5" orient="auto"><path d="M0,0 L6,0 L3,6 z" fill="#94A3B8"/></marker>
   </defs>
-  <!-- a sur axe x -->
-  <line x1="140" y1="90" x2="140" y2="60" stroke="#10B981" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <circle cx="140" cy="90" r="4" fill="#10B981"/>
-  <text x="137" y="103" font-size="11" fill="#10B981" font-family="serif" font-style="italic">a</text>
-  <!-- b sur axe y -->
-  <line x1="50" y1="60" x2="140" y2="60" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <circle cx="50" cy="60" r="4" fill="#EF4444"/>
-  <text x="34" y="63" font-size="11" fill="#EF4444" font-family="serif" font-style="italic">b</text>
-  <!-- point sur courbe -->
-  <circle cx="140" cy="60" r="4" fill="#1E293B"/>
-  <text x="143" y="56" font-size="10" fill="#1E293B" font-family="serif">f(a)=b</text>
+  <line x1="30" y1="90" x2="255" y2="90" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#axI)"/>
+  <line x1="50" y1="105" x2="50" y2="8" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#ayI)"/>
+  <path d="M55,82 Q100,18 205,48" stroke="#3B82F6" stroke-width="2" fill="none"/>
+  <text x="208" y="48" font-size="10" fill="#3B82F6" font-family="serif" font-style="italic">f</text>
+  <!-- étape 1 : monter de a -->
+  <line x1="140" y1="90" x2="140" y2="58" stroke="#10B981" stroke-width="2" stroke-dasharray="5,3"/>
+  <circle cx="140" cy="90" r="4.5" fill="#10B981"/>
+  <text x="136" y="104" font-size="11" fill="#10B981" font-family="serif" font-style="italic">a</text>
+  <!-- étape 2 : lire b sur axe y -->
+  <line x1="50" y1="58" x2="140" y2="58" stroke="#EF4444" stroke-width="2" stroke-dasharray="5,3"/>
+  <circle cx="50" cy="58" r="4.5" fill="#EF4444"/>
+  <text x="30" y="62" font-size="11" fill="#EF4444" font-family="serif" font-style="italic">b</text>
+  <circle cx="140" cy="58" r="4" fill="#1E293B"/>
+  <!-- flèches numérotées -->
+  <text x="145" y="76" font-size="10" fill="#10B981" font-weight="bold">①</text>
+  <text x="86" y="52" font-size="10" fill="#EF4444" font-weight="bold">②</text>
 </svg>`,
-    verso:r`b=f(a)\text{ : }b\text{ est l'\textbf{image} de }a\text{ par }f\\[8pt]a\text{ est \textbf{un antécédent} de }b\text{ par }f\\[6pt]\text{(il peut y en avoir plusieurs)}` },
+    verso:r`\text{① Partir de }a\text{ sur l'axe des x}\\[4pt]\text{② Monter jusqu'à la courbe}\\[4pt]\text{③ Lire }b=f(a)\text{ sur l'axe des y}\\[8pt]\Rightarrow b\text{ est l'\textbf{image} de }a\text{ par }f` },
+  { id:"fc_antec_cherche", level:"sec", chapitre:"Fonctions",
+    recto:r`\text{Comment chercher un \textbf{antécédent} de }b\text{ par }f\text{ ?}`,
+    svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 115" width="100%" style="background:#FFF7ED;border-radius:8px;margin:8px 0;border:1.5px solid #FED7AA">
+  <defs>
+    <marker id="axA" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#94A3B8"/></marker>
+    <marker id="ayA" markerWidth="6" markerHeight="6" refX="3" refY="5" orient="auto"><path d="M0,0 L6,0 L3,6 z" fill="#94A3B8"/></marker>
+  </defs>
+  <line x1="30" y1="90" x2="255" y2="90" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#axA)"/>
+  <line x1="50" y1="105" x2="50" y2="8" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#ayA)"/>
+  <path d="M55,82 Q100,18 205,48" stroke="#3B82F6" stroke-width="2" fill="none"/>
+  <text x="208" y="48" font-size="10" fill="#3B82F6" font-family="serif" font-style="italic">f</text>
+  <!-- b sur axe y -->
+  <circle cx="50" cy="58" r="4.5" fill="#EF4444"/>
+  <text x="30" y="62" font-size="11" fill="#EF4444" font-family="serif" font-style="italic">b</text>
+  <!-- ligne horizontale jusqu'à la courbe -->
+  <line x1="50" y1="58" x2="140" y2="58" stroke="#EF4444" stroke-width="2" stroke-dasharray="5,3"/>
+  <circle cx="140" cy="58" r="4" fill="#1E293B"/>
+  <!-- descendre à a sur axe x -->
+  <line x1="140" y1="58" x2="140" y2="90" stroke="#10B981" stroke-width="2" stroke-dasharray="5,3"/>
+  <circle cx="140" cy="90" r="4.5" fill="#10B981"/>
+  <text x="136" y="104" font-size="11" fill="#10B981" font-family="serif" font-style="italic">a</text>
+  <!-- flèches numérotées -->
+  <text x="86" y="52" font-size="10" fill="#EF4444" font-weight="bold">①</text>
+  <text x="145" y="76" font-size="10" fill="#10B981" font-weight="bold">②</text>
+</svg>`,
+    verso:r`\text{① Partir de }b\text{ sur l'axe des y}\\[4pt]\text{② Aller horizontalement jusqu'à la courbe}\\[4pt]\text{③ Descendre lire }a\text{ sur l'axe des x}\\[8pt]\Rightarrow a\text{ est \textbf{un antécédent} de }b\text{ par }f\\[4pt]\text{(il peut y en avoir plusieurs !)}` },
 
   // ══ TRONC COMMUN ═════════════════════════════════════════════════════════════
   { id:"fc_sec_06", level:"tc", chapitre:"Probabilités",
@@ -20684,6 +20710,7 @@ function FlashcardSetupScreen({ onStart, onBack, initialStep=1, initialLevel=nul
   ];
 
   const STMG_EXCLUDE_CHAPITRES = ["Vecteurs","Racines carrées","Géométrie","Géométrie espace","Produit scalaire"];
+  const TC_EXCLUDE_CHAPITRES   = ["Vecteurs","Racines carrées"];
 
   const [step, setStep]               = React.useState(initialStep); // 1=niveau 2=chapitres+ordre
   const [selectedLevel, setSelectedLevel] = React.useState(initialLevel);
@@ -20702,6 +20729,7 @@ function FlashcardSetupScreen({ onStart, onBack, initialStep=1, initialLevel=nul
     }
     let cards = FLASHCARDS.filter(c => allowed.includes(c.level));
     if (selectedLevel === "stmg") cards = cards.filter(c => !STMG_EXCLUDE_CHAPITRES.includes(c.chapitre));
+    if (selectedLevel === "tc")   cards = cards.filter(c => !TC_EXCLUDE_CHAPITRES.includes(c.chapitre));
     return cards;
   }, [selectedLevel]);
 
@@ -20721,7 +20749,7 @@ function FlashcardSetupScreen({ onStart, onBack, initialStep=1, initialLevel=nul
   const toggleChap = (ch) => {
     setSelectedChaps(prev => {
       const next = new Set(prev);
-      if (next.has(ch)) { if (next.size > 1) next.delete(ch); } // au moins 1
+      if (next.has(ch)) next.delete(ch);
       else next.add(ch);
       return next;
     });
@@ -20729,7 +20757,7 @@ function FlashcardSetupScreen({ onStart, onBack, initialStep=1, initialLevel=nul
 
   const toggleAll = () => {
     if (selectedChaps && selectedChaps.size === chapitres.length) {
-      setSelectedChaps(new Set([chapitres[0]])); // au moins 1
+      setSelectedChaps(new Set()); // tout désélectionner
     } else {
       setSelectedChaps(new Set(chapitres));
     }
@@ -20771,6 +20799,7 @@ function FlashcardSetupScreen({ onStart, onBack, initialStep=1, initialLevel=nul
             else { const lo = ["sec","tc","spe","term"]; allowed = lo.slice(0, lo.indexOf(lvl.id) + 1); }
             let c = FLASHCARDS.filter(x => allowed.includes(x.level));
             if (lvl.id === "stmg") c = c.filter(x => !STMG_EXCLUDE_CHAPITRES.includes(x.chapitre));
+            if (lvl.id === "tc")   c = c.filter(x => !TC_EXCLUDE_CHAPITRES.includes(x.chapitre));
             return c.length;
           })();
           const active = selectedLevel === lvl.id;
@@ -24361,8 +24390,10 @@ function AutoMaths() {
               }
 
               const STMG_EXCL = ["Vecteurs","Racines carrées","Géométrie","Géométrie espace","Produit scalaire"];
+              const TC_EXCL   = ["Vecteurs","Racines carrées"];
               let filtered = FLASHCARDS.filter(c => allowedLevels.includes(c.level));
               if (userLevel === "stmg") filtered = filtered.filter(c => !STMG_EXCL.includes(c.chapitre));
+              if (userLevel === "tc")   filtered = filtered.filter(c => !TC_EXCL.includes(c.chapitre));
               setPool(filtered);
               setScreen("flashcards");
             } else if(theme.useBacBlanc) {
