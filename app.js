@@ -20163,7 +20163,7 @@ const FLASHCARDS = [
   { id:"fc_stat_04", level:"sec", chapitre:"Statistiques",
     recto:r`\text{Écart interquartile : définition et formule}`,
     verso:r`EI=Q_3-Q_1\\[6pt]\text{Mesure la dispersion des 50\% centraux de la série}` },
-  { id:"fc_proba_indep", level:"tc", chapitre:"Probabilités",
+  { id:"fc_proba_indep", level:"spe", chapitre:"Probabilités",
     recto:r`A\text{ et }B\text{ sont indépendants si et seulement si...}`,
     verso:r`P(A\cap B)=P(A)\times P(B)` },
   { id:"fc_sec_05", level:"sec", chapitre:"Probabilités",
@@ -20528,6 +20528,91 @@ const FLASHCARDS = [
   { id:"fc_term_ed_03", level:"term", chapitre:"Équa. diff.",
     recto:r`\text{Solutions de }y'=ay+f(x)\quad(a\neq0)\\[4pt]\text{(}g\text{ solution particulière de (E))}`,
     verso:r`x\mapsto ke^{ax}+g(x)\quad(k\in\mathbb{R})\\[6pt]\text{(homogène + particulière)}` },
+  // ── Vecteurs (sec) ────────────────────────────────────────────────────────────
+  { id:"fc_vec_01", level:"sec", chapitre:"Vecteurs",
+    recto:r`\text{Coordonnées du vecteur }\overrightarrow{AB}\\[4pt]A(x_A\,;\,y_A)\text{, }B(x_B\,;\,y_B)`,
+    verso:r`\overrightarrow{AB}\begin{pmatrix}x_B-x_A\\[4pt]y_B-y_A\end{pmatrix}` },
+  { id:"fc_vec_02a", level:"sec", chapitre:"Vecteurs",
+    recto:r`\text{Distance }AB\text{ ?}\\[4pt]A(x_A\,;\,y_A)\text{, }B(x_B\,;\,y_B)`,
+    verso:r`AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2}` },
+  { id:"fc_vec_02b", level:"sec", chapitre:"Vecteurs",
+    recto:r`\text{Coordonnées du milieu }I\text{ de }[AB]`,
+    verso:r`I\!\left(\dfrac{x_A+x_B}{2}\,;\,\dfrac{y_A+y_B}{2}\right)` },
+  { id:"fc_vec_03", level:"sec", chapitre:"Vecteurs",
+    recto:r`\vec{u}(a,b)\text{ et }\vec{v}(c,d)\text{ colinéaires}\\[4pt]\text{Condition avec le déterminant ?}`,
+    verso:r`ad-bc=0\\[6pt]\text{(le déterminant est nul)}` },
+  { id:"fc_vec_04", level:"sec", chapitre:"Vecteurs",
+    recto:r`\text{Relation de Chasles}`,
+    verso:r`\overrightarrow{AC}=\overrightarrow{AB}+\overrightarrow{BC}\\[6pt]\text{(on peut "enchaîner" les vecteurs)}` },
+  { id:"fc_vec_05", level:"sec", chapitre:"Vecteurs",
+    recto:r`\overrightarrow{AA'}=\overrightarrow{BB'}\text{ : que peut-on dire du quadrilatère ?}`,
+    svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 160" width="100%" style="background:#fff;border-radius:8px;margin:8px 0">
+  <!-- B en bas gauche, B' bas droite, A haut gauche, A' haut droite -->
+  <line x1="40" y1="120" x2="120" y2="120" stroke="#3B82F6" stroke-width="2.5" marker-end="url(#arr_b)"/>
+  <line x1="100" y1="40" x2="180" y2="40" stroke="#EF4444" stroke-width="2.5" marker-end="url(#arr_a)"/>
+  <!-- côtés du parallélogramme en pointillés -->
+  <line x1="40" y1="120" x2="100" y2="40" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="120" y1="120" x2="180" y2="40" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <!-- marqueurs de flèches -->
+  <defs>
+    <marker id="arr_b" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#3B82F6"/>
+    </marker>
+    <marker id="arr_a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#EF4444"/>
+    </marker>
+  </defs>
+  <!-- points -->
+  <circle cx="40" cy="120" r="3.5" fill="#1E293B"/>
+  <circle cx="120" cy="120" r="3.5" fill="#1E293B"/>
+  <circle cx="100" cy="40" r="3.5" fill="#1E293B"/>
+  <circle cx="180" cy="40" r="3.5" fill="#1E293B"/>
+  <!-- labels -->
+  <text x="28" y="136" font-size="13" fill="#1E293B" font-family="serif" font-style="italic">B</text>
+  <text x="124" y="136" font-size="13" fill="#1E293B" font-family="serif" font-style="italic">B'</text>
+  <text x="88" y="32" font-size="13" fill="#1E293B" font-family="serif" font-style="italic">A</text>
+  <text x="184" y="32" font-size="13" fill="#1E293B" font-family="serif" font-style="italic">A'</text>
+  <!-- labels vecteurs -->
+  <text x="72" y="115" font-size="11" fill="#3B82F6" font-family="serif" font-style="italic">BB'</text>
+  <text x="130" y="34" font-size="11" fill="#EF4444" font-family="serif" font-style="italic">AA'</text>
+</svg>`,
+    verso:r`AA'B'B\text{ est un parallélogramme}\\[6pt]\text{(deux côtés opposés égaux et parallèles)}` },
+
+  // ── Stats : variance et écart-type ─────────────────────────────────────────
+  { id:"fc_stat_var", level:"sec", chapitre:"Statistiques",
+    recto:r`\text{Formule de la variance }V\text{ ?}`,
+    verso:r`V=\dfrac{\sum x_i^2}{n}-\bar{x}^2\\[6pt]\text{(moyenne des carrés moins le carré de la moyenne)}` },
+  { id:"fc_stat_sigma", level:"sec", chapitre:"Statistiques",
+    recto:r`\text{Formule de l'écart-type }\sigma\text{ ?}`,
+    verso:r`\sigma=\sqrt{V}=\sqrt{\dfrac{\sum x_i^2}{n}-\bar{x}^2}` },
+
+  // ── Puissances (sec, tc, term) ──────────────────────────────────────────────
+  { id:"fc_puis_01", level:"sec", chapitre:"Puissances",
+    recto:r`a^0=\,?\qquad a^1=\,?\qquad a^{-m}=\,?`,
+    verso:r`a^0=1\qquad a^1=a\qquad a^{-m}=\dfrac{1}{a^m}` },
+  { id:"fc_puis_02", level:"sec", chapitre:"Puissances",
+    recto:r`a^n\times a^m=\,?\\[6pt]\dfrac{a^n}{a^m}=\,?`,
+    verso:r`a^{n+m}\\[8pt]a^{n-m}` },
+  { id:"fc_puis_03", level:"sec", chapitre:"Puissances",
+    recto:r`(a^n)^m=\,?\\[6pt](a\times b)^n=\,?`,
+    verso:r`a^{n\times m}\\[8pt]a^n\times b^n` },
+
+  // ── Racines carrées (sec, spe) ──────────────────────────────────────────────
+  { id:"fc_rac_01", level:"sec", chapitre:"Racines carrées",
+    recto:r`\sqrt{a}\times\sqrt{b}=\,?\\[6pt]\dfrac{\sqrt{a}}{\sqrt{b}}=\,?`,
+    verso:r`\sqrt{a\times b}\\[8pt]\sqrt{\dfrac{a}{b}}` },
+  { id:"fc_rac_02", level:"sec", chapitre:"Racines carrées",
+    recto:r`(\sqrt{a})^2=\,?\\[6pt]\sqrt{a^2}=\,?`,
+    verso:r`a\quad(a\geq0)\\[8pt]|a|\quad\text{(Ex : }\sqrt{(-3)^2}=3\text{)}` },
+  { id:"fc_rac_03", level:"sec", chapitre:"Racines carrées",
+    recto:r`\sqrt{a}+\sqrt{b}=\sqrt{a+b}\text{ ?}`,
+    verso:r`\text{\textbf{Faux !}}\\[6pt]\sqrt{a}+\sqrt{b}\neq\sqrt{a+b}\\[4pt]\sqrt{a}-\sqrt{b}\neq\sqrt{a-b}\\[6pt]\text{Ex : }\sqrt{4}+\sqrt{9}=2+3=5\neq\sqrt{13}` },
+  { id:"fc_rac_04", level:"spe", chapitre:"Racines carrées",
+    recto:r`\text{Simplifier }\dfrac{k}{\sqrt{a}}\text{ (rationaliser)}`,
+    verso:r`\dfrac{k}{\sqrt{a}}=\dfrac{k\sqrt{a}}{a}\\[6pt]\text{Ex : }\dfrac{1}{\sqrt{2}}=\dfrac{\sqrt{2}}{2}` },
+  { id:"fc_val_abs", level:"spe", chapitre:"Calcul numérique",
+    recto:r`|a|=\,?\quad\text{Définition et propriétés}`,
+    verso:r`|a|=\begin{cases}a&\text{si }a\geq0\\-a&\text{si }a<0\end{cases}\\[8pt]|a|\geq0\qquad|-a|=|a|\\[6pt]|a\times b|=|a|\times|b|\\[4pt]|a+b|\leq|a|+|b|\text{ (inégalité triangulaire)}` },
 ];
 
 
