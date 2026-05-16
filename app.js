@@ -20270,6 +20270,26 @@ const FLASHCARDS = [
     recto:r`\text{Dérivée de }f(x)=ax^2+bx+c`,
     verso:r`f'(x)=2ax+b` },
 
+  // ── STMG — ajouts ────────────────────────────────────────────────────────────
+  { id:"fc_stmg_12", level:"stmg", chapitre:"Fonctions",
+    recto:r`\text{Fonction affine : forme générale et sens de variation}`,
+    verso:r`f(x)=ax+b\\[6pt]a>0\Rightarrow f\nearrow\quad a<0\Rightarrow f\searrow\\[4pt]a=0\Rightarrow f\text{ constante}` },
+  { id:"fc_stmg_13", level:"stmg", chapitre:"Fonctions",
+    recto:r`f(x)=ax^2+bx+c\text{, }a>0\\[4pt]\text{Minimum et sommet de la parabole ?}`,
+    verso:r`x_S=-\dfrac{b}{2a}\quad f(x_S)=\text{minimum}\\[6pt]\text{Parabole tournée vers le haut, min en }x_S` },
+  { id:"fc_stmg_17", level:"stmg", chapitre:"Suites financières",
+    recto:r`\text{Valeur acquise par des versements réguliers }a\\[4pt]\text{(annuités de fin de période, taux }t\text{)}`,
+    verso:r`V_n=a\times\dfrac{(1+t)^n-1}{t}` },
+  { id:"fc_stmg_18", level:"stmg", chapitre:"Suites financières",
+    recto:r`\text{Valeur actuelle d'un capital }C_n\text{ dans }n\text{ ans (taux }t\text{)}`,
+    verso:r`C_0=\dfrac{C_n}{(1+t)^n}=C_n\times(1+t)^{-n}` },
+  { id:"fc_stmg_19", level:"stmg", chapitre:"Probabilités",
+    recto:r`\text{Loi binomiale }X\sim\mathcal{B}(n,p)\\[4pt]E(X)=\,?`,
+    verso:r`E(X)=np` },
+  { id:"fc_stmg_21", level:"stmg", chapitre:"Pourcentages",
+    recto:r`\text{Taux d'évolution global de deux évolutions successives}\\[4pt]t_1\text{ puis }t_2`,
+    verso:r`\text{CM global}=(1+t_1)(1+t_2)\\[6pt]t_{\text{global}}=\text{CM global}-1\\[4pt]\text{(en décimal)}` },
+
   // ══ 1ÈRE SPÉ ═════════════════════════════════════════════════════════════════
   { id:"fc_meth_04", level:"tc", chapitre:"Méthodes",
     recto:r`\text{Étudier les variations d'une fonction, c'est...}`,
@@ -22827,7 +22847,25 @@ function SigmaLegendaire({size=110}) {
   );
 }
 
-function ResultScreen({score,total,catId,onReplay,onHome,streakJustCompleted=false,streakCount=0,masteryBonus={amount:0,subs:[]}}) {
+// Mapping catId → chapitres FLASHCARDS associés
+const CAT_TO_FC_CHAPITRES = {
+  fonctions:      ["Fonctions"],
+  pourcentages:   ["Pourcentages"],
+  numerique:      ["Puissances","Racines carrées","Calcul numérique","Ensembles"],
+  litteral:       ["Calcul littéral"],
+  probabilites:   ["Probabilités","Dénombrement"],
+  derivation:     ["Dérivation"],
+  primitives:     ["Primitives","Intégrales"],
+  equa_diff:      ["Équa. diff."],
+  limites:        ["Limites","Croissance comparée","Continuité"],
+  suites:         ["Suites","Suites financières"],
+  polynomes:      ["Polynômes"],
+  statistiques:   ["Statistiques"],
+  trigonometrie:  ["Trigonométrie"],
+  denombrement:   ["Dénombrement"],
+};
+
+function ResultScreen({score,total,catId,onReplay,onHome,onFlashcards=null,streakJustCompleted=false,streakCount=0,masteryBonus={amount:0,subs:[]}}) {
   const s=starsFor(score,total);
   const pct=Math.round((score/total)*100);
   const cat=getCat(catId)||{label:"",emoji:"🎯",color:"#3B82F6",grad:"linear-gradient(135deg,#3B82F6,#1D4ED8)",light:"#EFF6FF",border:"#BFDBFE"};
@@ -22948,6 +22986,23 @@ function ResultScreen({score,total,catId,onReplay,onHome,streakJustCompleted=fal
           </div>
         </div>
       )}
+
+      {/* Bouton flashcards si score faible et cartes disponibles */}
+      {pct < 60 && onFlashcards && (() => {
+        const chapitres = CAT_TO_FC_CHAPITRES[catId] || [];
+        const cards = chapitres.length > 0 ? FLASHCARDS.filter(c => chapitres.includes(c.chapitre)) : [];
+        if (cards.length === 0) return null;
+        return (
+          <button onClick={() => onFlashcards(cards)}
+            style={{width:"100%",background:"linear-gradient(135deg,#10B981,#047857)",color:"#fff",
+              border:"none",borderRadius:13,padding:"14px",
+              fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:800,
+              cursor:"pointer",boxShadow:"0 5px 16px rgba(16,185,129,0.35)",
+              display:"flex",alignItems:"center",justifyContent:"center",gap:8}}>
+            🃏 Réviser les formules ({cards.length} cartes)
+          </button>
+        );
+      })()}
 
       {/* Buttons */}
       <div style={{display:"flex",flexDirection:"column",gap:9,width:"100%"}}>
@@ -24196,7 +24251,7 @@ function AutoMaths() {
           {screen==="bac_subjects"   && <BacSubjectScreen onStart={hBacStart} onBack={()=>setScreen(profile?"dashboard":"home")}/>}
           {screen==="count"         && <CountScreen     catId={mode==="bac"?null:(mode==="test_aleatoire"&&!catId?null:catId)} allMode={mode==="bac"||(mode==="test_aleatoire"&&!catId)} options={mode==="entrainement"||mode==="test_aleatoire"?[20,50]:[10,20]} onCount={hCount} onBack={()=>setScreen(mode==="entrainement"?"subcategory":mode==="test_aleatoire"?"test_aleatoire":mode==="bac"?"home":"category")}/>}
           {screen==="quiz"          && <QuizScreen      questions={questions} catId={trackCat||catId||"fonctions"} subId={trackSub} quizMode={quizMode} onFinish={hFinish} onBack={()=>setScreen(prevScreen)}/>}
-          {screen==="result"        && <ResultScreen    score={score} total={questions.length} catId={catId||"fonctions"} onReplay={()=>{setStreakJustCompleted(false);hReplay();}} onHome={()=>{setStreakJustCompleted(false);hHome();}} streakJustCompleted={streakJustCompleted} streakCount={profile?.streak||0} masteryBonus={masteryBonus}/>}
+          {screen==="result"        && <ResultScreen    score={score} total={questions.length} catId={catId||"fonctions"} onReplay={()=>{setStreakJustCompleted(false);hReplay();}} onHome={()=>{setStreakJustCompleted(false);hHome();}} onFlashcards={(cards)=>{ setPool(cards); setScreen("flashcards"); }} streakJustCompleted={streakJustCompleted} streakCount={profile?.streak||0} masteryBonus={masteryBonus}/>}
           {screen==="parcours_result"&&<PostPracticeResultScreen score={score} total={questions.length} catId={trackCat} subId={trackSub} mode={quizMode} prevStars={prevStars} newStars={newStars} onRetry={()=>quizMode==="practice"?hStartPractice(trackCat,trackSub):hStartTest(trackCat,trackSub)} onDashboard={hDashboard} onHome={hHome}/>}
 
         </div>
