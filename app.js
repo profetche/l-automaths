@@ -20277,9 +20277,6 @@ const FLASHCARDS = [
   { id:"fc_stmg_13", level:"stmg", chapitre:"Fonctions",
     recto:r`f(x)=ax^2+bx+c\text{, }a>0\\[4pt]\text{Minimum et sommet de la parabole ?}`,
     verso:r`x_S=-\dfrac{b}{2a}\quad f(x_S)=\text{minimum}\\[6pt]\text{Parabole tournée vers le haut, min en }x_S` },
-  { id:"fc_stmg_17", level:"stmg", chapitre:"Suites financières",
-    recto:r`\text{Valeur acquise par des versements réguliers }a\\[4pt]\text{(annuités de fin de période, taux }t\text{)}`,
-    verso:r`V_n=a\times\dfrac{(1+t)^n-1}{t}` },
   { id:"fc_stmg_18", level:"stmg", chapitre:"Suites financières",
     recto:r`\text{Valeur actuelle d'un capital }C_n\text{ dans }n\text{ ans (taux }t\text{)}`,
     verso:r`C_0=\dfrac{C_n}{(1+t)^n}=C_n\times(1+t)^{-n}` },
@@ -20288,7 +20285,7 @@ const FLASHCARDS = [
     verso:r`E(X)=np` },
   { id:"fc_stmg_21", level:"stmg", chapitre:"Pourcentages",
     recto:r`\text{Taux d'évolution global de deux évolutions successives}\\[4pt]t_1\text{ puis }t_2`,
-    verso:r`\text{CM global}=(1+t_1)(1+t_2)\\[6pt]t_{\text{global}}=\text{CM global}-1\\[4pt]\text{(en décimal)}` },
+    verso:r`\text{CM global}=(1+t_1)(1+t_2)\\[6pt]t_{\text{global}}=\text{CM global}\times100-100\\[4pt]\text{Ex : CM}=1{,}15\Rightarrow t=15\%` },
 
   // ══ 1ÈRE SPÉ ═════════════════════════════════════════════════════════════════
   { id:"fc_meth_04", level:"tc", chapitre:"Méthodes",
@@ -20649,6 +20646,9 @@ function FlashcardSetupScreen({ onStart, onBack }) {
   const [selectedLevel, setSelectedLevel] = React.useState(null);
   const [order, setOrder] = React.useState("random"); // "random" | "ordered"
 
+  // Chapitres hors programme STMG (présents en sec/tc mais non vus en STMG)
+  const STMG_EXCLUDE_CHAPITRES = ["Vecteurs","Racines carrées","Géométrie","Géométrie espace","Produit scalaire"];
+
   // Compter les cartes disponibles pour le niveau sélectionné
   const cardCount = React.useMemo(() => {
     if (!selectedLevel) return 0;
@@ -20659,7 +20659,9 @@ function FlashcardSetupScreen({ onStart, onBack }) {
       const lo = ["sec","tc","spe","term"];
       allowed = lo.slice(0, lo.indexOf(selectedLevel) + 1);
     }
-    return FLASHCARDS.filter(c => allowed.includes(c.level)).length;
+    let cards = FLASHCARDS.filter(c => allowed.includes(c.level));
+    if (selectedLevel === "stmg") cards = cards.filter(c => !STMG_EXCLUDE_CHAPITRES.includes(c.chapitre));
+    return cards.length;
   }, [selectedLevel]);
 
   const handleStart = () => {
@@ -20672,6 +20674,7 @@ function FlashcardSetupScreen({ onStart, onBack }) {
       allowed = lo.slice(0, lo.indexOf(selectedLevel) + 1);
     }
     let cards = FLASHCARDS.filter(c => allowed.includes(c.level));
+    if (selectedLevel === "stmg") cards = cards.filter(c => !STMG_EXCLUDE_CHAPITRES.includes(c.chapitre));
     if (order === "random") {
       cards = [...cards].sort(() => Math.random() - 0.5);
     }
@@ -24209,7 +24212,9 @@ function AutoMaths() {
                   : ["sec","tc","spe","term"];
               }
 
-              const filtered = FLASHCARDS.filter(c => allowedLevels.includes(c.level));
+              const STMG_EXCL = ["Vecteurs","Racines carrées","Géométrie","Géométrie espace","Produit scalaire"];
+              let filtered = FLASHCARDS.filter(c => allowedLevels.includes(c.level));
+              if (userLevel === "stmg") filtered = filtered.filter(c => !STMG_EXCL.includes(c.chapitre));
               setPool(filtered);
               setScreen("flashcards");
             } else if(theme.useBacBlanc) {
