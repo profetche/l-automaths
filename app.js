@@ -14029,6 +14029,33 @@ function applyFontScale(scale) {
   } catch(e) {}
 }
 
+// Efface toutes les données de progression (nouveau départ complet)
+async function clearAllProgress() {
+  const keysToDelete = [
+    RECENT_Q_K, DIAG_K, XP_K, BADGE_K, DAILY_K, DIAG_RESULTS_K,
+    STREAK_PROGRESS_K, QSTATE_K, WEEKLY_STATS_K, LIFETIME_CORRECT_K,
+    CARDS_UNLOCKED_K, CARDS_SEEN_K, SPRINT_COUNT_K, REMEDIATION_DONE_K,
+    MISSION_THEMES_DONE_K, REMEDIATION_COUNT_K, SPRINT_BEST_K,
+    SPRINT_BEST_FINAL_K, LAST_SHARE_K, REMINDER_K, MORNING_DONE_K,
+    EVENING_DONE_K, 'user:daily_log', 'user:onboarding_done',
+    'user:improved', 'user:combo_max', 'user:bac_completed',
+  ];
+  // Supprimer toutes les clés user: et prg:
+  try {
+    const allKeys = await _storage.list('');
+    const progKeys = (allKeys?.keys || []).filter(k =>
+      k.startsWith('prg:') || k.startsWith('user:')
+    );
+    await Promise.all([
+      ...keysToDelete.map(k => _storage.delete(k).catch(() => {})),
+      ...progKeys.map(k => _storage.delete(k).catch(() => {})),
+    ]);
+  } catch {
+    // Fallback : supprimer juste les clés connues
+    await Promise.all(keysToDelete.map(k => _storage.delete(k).catch(() => {})));
+  }
+}
+
 async function loadProfA() {
   try { const r=await _storage.get(PROF_K); return r?.value?JSON.parse(r.value):null; }
   catch{return null;}
@@ -15763,6 +15790,8 @@ function ProfileSetupScreen({onComplete, onBack, onRestore}) {
   const [name, setName] = useState('');
   const [level, setLevel] = useState('');
   const [step, setStep] = useState(0);
+  const [showResetModal, setShowResetModal] = useState(false);
+  const [pendingProf, setPendingProf] = useState(null);
   const LEVELS = [
     {id:'seconde',       emoji:'🌱', label:'Seconde',             desc:'Je commence le lycée'},
     {id:'premiere_tronc',emoji:'📘', label:'1ère Tronc commun',   desc:'Sans spécialité maths'},
@@ -15780,12 +15809,59 @@ function ProfileSetupScreen({onComplete, onBack, onRestore}) {
         prof.streak = 1; // premier jour validé
       }
     } catch {}
+    // Détecter si des données de progression existent déjà
+    try {
+      const xpRaw = await _storage.get(XP_K);
+      const hasData = xpRaw?.value && JSON.parse(xpRaw.value) > 0;
+      if (hasData) { setPendingProf(prof); setShowResetModal(true); return; }
+    } catch {}
     saveProfA(prof); onComplete(prof);
+  };
+
+  const handleResetChoice = async (reset) => {
+    setShowResetModal(false);
+    if (reset) await clearAllProgress();
+    saveProfA(pendingProf);
+    onComplete(pendingProf);
   };
   return (
     <div style={{height:"100%",display:"flex",flexDirection:"column",alignItems:"center",
       justifyContent:"center",padding:"24px",background:"linear-gradient(170deg,var(--am-bg-dark-1),var(--am-bg-dark-2))",
       position:"relative"}}>
+
+      {/* ── Modal : remettre à zéro ? ── */}
+      {showResetModal && (
+        <div style={{position:"absolute",inset:0,zIndex:100,
+          background:"rgba(0,0,0,0.7)",display:"flex",alignItems:"center",
+          justifyContent:"center",padding:20}}>
+          <div style={{background:"#fff",borderRadius:20,padding:"24px 20px",
+            width:"100%",maxWidth:300,textAlign:"center"}}>
+            <div style={{fontSize:36,marginBottom:10}}>🔄</div>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,
+              fontSize:16,color:"#1E293B",marginBottom:8}}>
+              Des données existent déjà
+            </div>
+            <div style={{fontSize:12,color:"#64748B",lineHeight:1.5,marginBottom:20}}>
+              Un autre élève a déjà utilisé cette appli sur cet appareil. Veux-tu repartir de zéro ou garder ses données ?
+            </div>
+            <button onClick={()=>handleResetChoice(true)}
+              style={{width:"100%",padding:"13px",borderRadius:12,border:"none",
+                background:"linear-gradient(135deg,#EF4444,#DC2626)",
+                color:"#fff",fontFamily:"'Nunito',sans-serif",fontWeight:800,
+                fontSize:14,cursor:"pointer",marginBottom:8}}>
+              🗑️ Repartir de zéro
+            </button>
+            <button onClick={()=>handleResetChoice(false)}
+              style={{width:"100%",padding:"13px",borderRadius:12,
+                border:"1.5px solid #E2E8F0",background:"#F8FAFC",
+                color:"#475569",fontFamily:"'Nunito',sans-serif",fontWeight:700,
+                fontSize:13,cursor:"pointer"}}>
+              Garder les données existantes
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Bouton retour */}
       <button onClick={step===1?()=>setStep(0):onBack}
         style={{position:"absolute",top:16,left:16,background:"rgba(255,255,255,0.08)",
@@ -18504,7 +18580,7 @@ function SplashScreen({onStart, onMySpace, onRestore, profile}) {
     </div>
   );
 }
-function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onBackup, allProg, onVigilance}) {
+function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onBackup}) {
   const th = getTheme(profile);
   const [daysSinceShare, setDaysSinceShare] = React.useState(null);
 
@@ -18532,21 +18608,7 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onB
     {id:"flashcards",  label:"Flashcards",   sub:"Formules du cours",emoji:"🃏", color:"#059669", grad:"linear-gradient(135deg,#10B981,#047857)"},
   ];
 
-  // ─── Remédiation : thèmes faibles ───────────────────────────────────────────
-  const weakCount = React.useMemo(() => {
-    if (!profile || !allProg) return 0;
-    const curr = CURRICULUM[profile.level] || CURRICULUM.seconde;
-    const weak = [];
-    Object.entries(curr.cats).forEach(([catId, subs]) => {
-      subs.forEach(subId => {
-        const p = allProg[`${catId}:${subId}`] || {pc:0,pt:0};
-        if (p.pt >= 3 && Math.round(p.pc/p.pt*100) < 60) weak.push(1);
-      });
-    });
-    return weak.length;
-  }, [allProg, profile]);
-
-  // ─── Calcul du status streak ─────────────────────────────────────────────────
+  // ─── Calcul du status streak (logique inchangée, juste extraite proprement) ───
   let streakBlock = null;
   if (profile) {
     const streak = profile.streak || 0;
@@ -18786,30 +18848,6 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onB
               </button>
             ))}
           </div>
-
-          {/* ─── REMÉDIATION (bandeau discret, visible seulement si thèmes faibles) ─── */}
-          {profile && onVigilance && weakCount > 0 && (
-            <button onClick={onVigilance}
-              style={{
-                width:"100%", padding:"11px 16px", borderRadius:12,
-                border:"1.5px solid #FED7AA",
-                background:"#FFF7ED",
-                cursor:"pointer",
-                display:"flex", alignItems:"center", gap:10, marginBottom:12,
-              }}>
-              <span style={{fontSize:18, flexShrink:0}}>⚡</span>
-              <div style={{textAlign:"left", flex:1}}>
-                <div style={{fontFamily:"'Nunito',sans-serif", fontWeight:800,
-                  fontSize:13, color:"#C2410C", lineHeight:1.1}}>
-                  Remédiation
-                </div>
-                <div style={{fontSize:10, color:"#9A3412", fontWeight:600, marginTop:1}}>
-                  {weakCount} thème{weakCount > 1 ? "s" : ""} à consolider
-                </div>
-              </div>
-              <span style={{fontSize:14, color:"#F97316"}}>→</span>
-            </button>
-          )}
 
           {/* ─── ACCÈS DASHBOARD (lien sobre, en bas) ─── */}
           {profile && onDashboard && (
@@ -24397,7 +24435,7 @@ function AutoMaths() {
           {screen==="diag_result"   && profile && diagResults && <DiagnosticResultScreen profile={profile} diagResults={diagResults} onStart={hDiagResultNext}/>}
           {screen==="weekly_program"&& profile && weekProgram  && <WeeklyProgramScreen profile={profile} program={weekProgram} allProg={allProgCache} onStartSession={hProgramSession} onSkip={hProgramSkip}/>}
           {screen==="dashboard"     && profile && <DashboardScreen profile={profile} diagResults={diagResults} cardsUnlocked={cardsUnlocked} qState={qState} onStartPractice={hStartPractice} onStartTest={hStartTest} onGoHome={()=>setScreen("home")} onMode={hMode} onParcours={()=>setScreen("parcours_detail")} onEditProfile={hEditProfile} onLogout={hLogout} onBackup={hBackup} onReminder={()=>setScreen("reminder")} onPreferences={()=>setScreen("preferences")} onVigilance={hVigilance} onCollection={()=>setScreen("collection")} onShowProgram={async()=>{const wp=await generateWeeklyProgram(profile,allProgCache,diagResults);setWeekProgram(wp);setScreen("weekly_program");}}/>}
-          {screen==="home"          && <HomeScreen onMode={hMode} profile={profile} onDashboard={profile?hDashboard:null} onSplash={()=>setScreen("splash")} streakProgress={streakProgress} onBackup={profile?hBackup:null} allProg={allProgCache} onVigilance={profile?hVigilance:null}/>}
+          {screen==="home"          && <HomeScreen onMode={hMode} profile={profile} onDashboard={profile?hDashboard:null} onSplash={()=>setScreen("splash")} streakProgress={streakProgress} onBackup={profile?hBackup:null}/>}
           {screen==="test_aleatoire" && <TestAleatoireScreen onGlobal={hTestGlobal} onCategory={hTestCategory} onBack={()=>setScreen(mode==="test_aleatoire"?"training_modes":"home")}/>}
           {screen==="training_modes" && <TrainingModesScreen onMode={hTrainingMode} onBack={()=>setScreen(profile?"dashboard":"home")}/>}
           {screen==="sprint"        && <SprintScreen    pool={getSprintPool()} onFinish={hSprintFinish} onBack={()=>{setSprintResult(null);setScreen(profile?"dashboard":"home");}}/>}
