@@ -20330,6 +20330,9 @@ const FLASHCARDS = [
   { id:"fc_rac_03", level:"sec", chapitre:"Racines carrées",
     recto:r`\sqrt{a}+\sqrt{b}=\sqrt{a+b}\text{ ?}`,
     verso:r`\text{\textbf{Faux !}}\\[6pt]\sqrt{a}+\sqrt{b}\neq\sqrt{a+b}\\[4pt]\sqrt{a}-\sqrt{b}\neq\sqrt{a-b}\\[6pt]\text{Ex : }\sqrt{4}+\sqrt{9}=2+3=5\neq\sqrt{13}` },
+  { id:"fc_rac_04_eq", level:"sec", chapitre:"Racines carrées",
+    recto:r`\text{Solutions de }x^2=a\text{ ?}`,
+    verso:r`\bullet\ a>0\ :\ \text{deux solutions }x=-\sqrt{a}\text{ et }x=\sqrt{a}\\[8pt]\bullet\ a=0\ :\ \text{une solution }x=0\\[8pt]\bullet\ a<0\ :\ \text{aucune solution}` },
   { id:"fc_meth_05", level:"tc", chapitre:"Méthodes",
     recto:r`\text{Étudier les variations d'une suite }(u_n)\text{, c'est...}`,
     verso:r`\text{Étudier le signe de }u_{n+1}-u_n\\[6pt]u_{n+1}-u_n>0\Rightarrow\text{croissante}\\[4pt]u_{n+1}-u_n<0\Rightarrow\text{décroissante}` },
@@ -21746,92 +21749,74 @@ const BAC_GROUPS = [
 ];
 
 function BacSubjectScreen({onStart, onBack}) {
-  const [activeGroup, setActiveGroup] = React.useState("stmg");
-  const group = BAC_GROUPS.find(g => g.id === activeGroup) || BAC_GROUPS[0];
-
   return (
     <div style={{display:"flex",flexDirection:"column",height:"100%",background:"var(--am-bg-light)"}}>
       {/* Header */}
       <div style={{background:"linear-gradient(135deg,#F59E0B,#B45309)",
-        padding:"18px 16px 0px",flexShrink:0}}>
+        padding:"18px 16px 20px",flexShrink:0}}>
         <button onClick={onBack} style={{background:"rgba(255,255,255,0.2)",border:"none",
           borderRadius:9,padding:"5px 11px",color:"#fff",cursor:"pointer",
           fontSize:12,fontWeight:700,marginBottom:12}}>← Retour</button>
-        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:14}}>
+        <div style={{display:"flex",alignItems:"center",gap:10}}>
           <span style={{fontSize:28}}>🏆</span>
           <div>
             <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:18,color:"#fff"}}>En route pour le Bac</div>
             <div style={{color:"rgba(255,255,255,0.7)",fontSize:11}}>Automatismes QCM — Partie 1 des sujets 0</div>
           </div>
         </div>
-
-        {/* Onglets filtres */}
-        <div style={{display:"flex",gap:0,background:"rgba(0,0,0,0.15)",
-          borderRadius:"12px 12px 0 0",padding:"4px 4px 0",overflow:"hidden"}}>
-          {BAC_GROUPS.map(g => (
-            <button key={g.id} onClick={() => setActiveGroup(g.id)}
-              style={{
-                flex:1, padding:"9px 4px", border:"none", cursor:"pointer",
-                borderRadius:"10px 10px 0 0",
-                background: activeGroup === g.id ? "var(--am-bg-light)" : "transparent",
-                color: activeGroup === g.id ? "#1E293B" : "rgba(255,255,255,0.75)",
-                fontFamily:"'Nunito',sans-serif", fontWeight:800,
-                fontSize:10, transition:"all .2s",
-                display:"flex", flexDirection:"column", alignItems:"center", gap:2,
-              }}>
-              <span style={{fontSize:14}}>{g.emoji}</span>
-              <span style={{lineHeight:1.2, textAlign:"center"}}>
-                {g.id === "stmg" ? "Voie Techno" : g.id === "tronc" ? "Tronc com." : "Spécialité"}
-              </span>
-            </button>
-          ))}
-        </div>
       </div>
 
-      {/* Body — seulement le groupe actif */}
-      <div style={{flex:1,overflowY:"auto",padding:"14px 14px 20px",display:"flex",flexDirection:"column",gap:10}}>
-        <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:4}}>
-          <span style={{fontSize:16}}>{group.emoji}</span>
-          <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:13,color:"#1E293B"}}>{group.label}</div>
-          <div style={{flex:1,height:1,background:"#E2E8F0",marginLeft:4}}/>
-        </div>
-        <div style={{display:"flex",flexDirection:"column",gap:7}}>
-          {group.subs.map(sub => {
-            const qs = DB.bac?.[sub.id] || [];
-            const isEmpty = qs.length === 0;
-            return (
-              <button key={sub.id}
-                onClick={()=>!isEmpty && onStart(sub.id, qs)}
-                disabled={isEmpty}
-                style={{padding:"13px 16px",borderRadius:14,border:"none",
-                  background:isEmpty?"#F1F5F9":"#fff",
-                  boxShadow:isEmpty?"none":"0 2px 10px rgba(0,0,0,.07)",
-                  cursor:isEmpty?"not-allowed":"pointer",
-                  display:"flex",alignItems:"center",gap:12,textAlign:"left",
-                  opacity:isEmpty?0.55:1}}>
-                <div style={{width:8,height:8,borderRadius:"50%",flexShrink:0,
-                  background:isEmpty?"#CBD5E1":group.color}}/>
-                <div style={{flex:1}}>
-                  <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,
-                    fontSize:13,color:isEmpty?"#94A3B8":"#1E293B"}}>{sub.label}</div>
-                  {sub.year&&<div style={{fontSize:10,color:"#94A3B8",marginTop:1}}>
-                    {qs.length} question{qs.length>1?"s":""} · Automatismes Partie 1
-                  </div>}
-                  {isEmpty&&<div style={{fontSize:10,color:"#CBD5E1",marginTop:1}}>
-                    🔧 Bientôt disponible
-                  </div>}
-                </div>
-                {!isEmpty&&<span style={{fontSize:11,color:group.color,fontWeight:800,
-                  background:`${group.color}18`,borderRadius:99,padding:"3px 9px",flexShrink:0}}>
-                  {qs.length} QCM →
-                </span>}
-              </button>
-            );
-          })}
-        </div>
+      {/* Body */}
+      <div style={{flex:1,overflowY:"auto",padding:"14px 14px 20px",display:"flex",flexDirection:"column",gap:14}}>
+        {BAC_GROUPS.map(group=>(
+          <div key={group.id}>
+            {/* Group header */}
+            <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:8}}>
+              <span style={{fontSize:16}}>{group.emoji}</span>
+              <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:13,color:"#1E293B"}}>{group.label}</div>
+              <div style={{flex:1,height:1,background:"#E2E8F0",marginLeft:4}}/>
+            </div>
+            {/* Subjects */}
+            <div style={{display:"flex",flexDirection:"column",gap:7}}>
+              {group.subs.map(sub=>{
+                const qs = DB.bac?.[sub.id] || [];
+                const isEmpty = qs.length === 0;
+                return (
+                  <button key={sub.id}
+                    onClick={()=>!isEmpty && onStart(sub.id, qs)}
+                    disabled={isEmpty}
+                    style={{padding:"13px 16px",borderRadius:14,border:"none",
+                      background:isEmpty?"#F1F5F9":"#fff",
+                      boxShadow:isEmpty?"none":"0 2px 10px rgba(0,0,0,.07)",
+                      cursor:isEmpty?"not-allowed":"pointer",
+                      display:"flex",alignItems:"center",gap:12,textAlign:"left",
+                      opacity:isEmpty?0.55:1}}>
+                    {/* Color dot */}
+                    <div style={{width:8,height:8,borderRadius:"50%",flexShrink:0,
+                      background:isEmpty?"#CBD5E1":group.color}}/>
+                    <div style={{flex:1}}>
+                      <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,
+                        fontSize:13,color:isEmpty?"#94A3B8":"#1E293B"}}>{sub.label}</div>
+                      {sub.year&&<div style={{fontSize:10,color:"#94A3B8",marginTop:1}}>
+                        {qs.length} question{qs.length>1?"s":""} · Automatismes Partie 1
+                      </div>}
+                      {isEmpty&&<div style={{fontSize:10,color:"#CBD5E1",marginTop:1}}>
+                        🔧 Bientôt disponible
+                      </div>}
+                    </div>
+                    {!isEmpty&&<span style={{fontSize:11,color:group.color,fontWeight:800,
+                      background:`${group.color}18`,borderRadius:99,padding:"3px 9px",flexShrink:0}}>
+                      {qs.length} QCM →
+                    </span>}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        ))}
 
         <div style={{background:"#FEF9C3",borderRadius:12,padding:"10px 14px",
-          fontSize:11,color:"#92400E",fontWeight:600,lineHeight:1.5,marginTop:4}}>
+          fontSize:11,color:"#92400E",fontWeight:600,lineHeight:1.5}}>
           💡 Les questions des annales sont extraites de la <strong>Partie 1 — Automatismes</strong> des sujets officiels 2026.
           De nouvelles annales seront ajoutées chaque année.
         </div>
