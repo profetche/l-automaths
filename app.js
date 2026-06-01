@@ -11996,6 +11996,67 @@ const DB = {
         a: r`\vec{0}`,
         tip: r`O\text{ est le milieu de }[AC]\Rightarrow\overrightarrow{OA}=-\overrightarrow{OC}\Rightarrow\overrightarrow{OA}+\overrightarrow{OC}=\vec{0}.` },
 
+ ,
+      // vb_11 — Vecteur somme : règle du parallélogramme
+      { q: r`\text{On construit le parallélogramme }ABMC.\\[4pt]\text{Que vaut }\overrightarrow{AB}+\overrightarrow{AC}\text{ ?}`,
+        choices: [r`\overrightarrow{AM}`, r`\overrightarrow{BM}`, r`2\overrightarrow{AB}`, r`\overrightarrow{BC}`],
+        a: r`\overrightarrow{AM}`,
+        tip: r`\text{Règle du parallélogramme : la somme }\overrightarrow{AB}+\overrightarrow{AC}=\overrightarrow{AM}\\\text{où }M\text{ est le 4e sommet du parallélogramme construit sur }AB\text{ et }AC.` },
+
+      // vb_12 — Vecteur dans un losange
+      { q: r`ABCD\text{ est un losange.}\\[4pt]\text{Que vaut }\overrightarrow{AD}+\overrightarrow{AB}\text{ ?}`,
+        choices: [r`\overrightarrow{AC}`, r`\overrightarrow{BD}`, r`2\overrightarrow{AD}`, r`\vec{0}`],
+        a: r`\overrightarrow{AC}`,
+        tip: r`\text{Dans tout parallélogramme, }\overrightarrow{AD}+\overrightarrow{AB}=\overrightarrow{AC}\text{ (diagonale).}` },
+
+      // vb_13 — Multiplication par un scalaire
+      { q: r`\overrightarrow{AB}\begin{pmatrix}2\\-3\end{pmatrix}.\\[4pt]\text{Que vaut }3\overrightarrow{AB}\text{ ?}`,
+        choices: [r`\begin{pmatrix}6\\-9\end{pmatrix}`, r`\begin{pmatrix}5\\0\end{pmatrix}`, r`\begin{pmatrix}6\\9\end{pmatrix}`, r`\begin{pmatrix}2\\-9\end{pmatrix}`],
+        a: r`\begin{pmatrix}6\\-9\end{pmatrix}`,
+        tip: r`3\overrightarrow{AB}=\begin{pmatrix}3\times2\\3\times(-3)\end{pmatrix}=\begin{pmatrix}6\\-9\end{pmatrix}.` },
+
+      // vb_14 — Exprimer AB en fonction de OA et OB
+      { q: r`O\text{ est un point quelconque.}\\[4pt]\text{Exprimer }\overrightarrow{AB}\text{ en fonction de }\overrightarrow{OA}\text{ et }\overrightarrow{OB}.`,
+        choices: [r`\overrightarrow{OB}-\overrightarrow{OA}`, r`\overrightarrow{OA}-\overrightarrow{OB}`, r`\overrightarrow{OA}+\overrightarrow{OB}`, r`\overrightarrow{OB}+\overrightarrow{OA}`],
+        a: r`\overrightarrow{OB}-\overrightarrow{OA}`,
+        tip: r`\overrightarrow{AB}=\overrightarrow{AO}+\overrightarrow{OB}=-\overrightarrow{OA}+\overrightarrow{OB}=\overrightarrow{OB}-\overrightarrow{OA}.` },
+
+      // vb_15 — Norme d'un vecteur
+      { q: r`\vec{u}\begin{pmatrix}3\\4\end{pmatrix}.\\[4pt]\text{Quelle est la norme }\|\vec{u}\|\text{ ?}`,
+        choices: [r`5`, r`7`, r`\sqrt{7}`, r`12`],
+        a: r`5`,
+        tip: r`\|\vec{u}\|=\sqrt{3^2+4^2}=\sqrt{9+16}=\sqrt{25}=5.` },
+
+      // vb_16 — Vecteur dans un rectangle
+      { q: r`ABCD\text{ est un rectangle.}\\[4pt]\text{Que vaut }\overrightarrow{BC}+\overrightarrow{BA}\text{ ?}`,
+        choices: [r`\overrightarrow{BD}`, r`\overrightarrow{AC}`, r`\vec{0}`, r`2\overrightarrow{BC}`],
+        a: r`\overrightarrow{BD}`,
+        tip: r`\overrightarrow{BC}+\overrightarrow{BA}=\overrightarrow{BD}\text{ (diagonale du rectangle, règle du parallélogramme).}` },
+
+      // vb_17 — Point I tel que AI = 1/3 AB
+      { q: r`A(1;2)\text{ et }B(7;5).\\[4pt]I\text{ est tel que }\overrightarrow{AI}=\dfrac{1}{3}\overrightarrow{AB}.\\[4pt]\text{Coordonnées de }I\text{ ?}`,
+        choices: [r`(3;3)`, r`(4;3)`, r`(2;3)`, r`(3;4)`],
+        a: r`(3;3)`,
+        tip: r`\overrightarrow{AB}=\begin{pmatrix}6\\3\end{pmatrix}.\quad\overrightarrow{AI}=\dfrac{1}{3}\begin{pmatrix}6\\3\end{pmatrix}=\begin{pmatrix}2\\1\end{pmatrix}.\\I=(1+2;2+1)=(3;3).` },
+
+      // vb_18 — Combinaison linéaire de deux vecteurs
+      { q: r`\vec{u}\begin{pmatrix}1\\0\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}0\\1\end{pmatrix}.\\[4pt]\text{Que vaut }3\vec{u}-2\vec{v}\text{ ?}`,
+        choices: [r`\begin{pmatrix}3\\-2\end{pmatrix}`, r`\begin{pmatrix}-2\\3\end{pmatrix}`, r`\begin{pmatrix}3\\2\end{pmatrix}`, r`\begin{pmatrix}1\\-1\end{pmatrix}`],
+        a: r`\begin{pmatrix}3\\-2\end{pmatrix}`,
+        tip: r`3\vec{u}-2\vec{v}=3\begin{pmatrix}1\\0\end{pmatrix}-2\begin{pmatrix}0\\1\end{pmatrix}=\begin{pmatrix}3\\-2\end{pmatrix}.` },
+
+      // vb_19 — Centre de gravité
+      { q: r`G\text{ est le centre de gravité du triangle }ABC.\\[4pt]\text{Que vaut }\overrightarrow{GA}+\overrightarrow{GB}+\overrightarrow{GC}\text{ ?}`,
+        choices: [r`\vec{0}`, r`3\overrightarrow{GA}`, r`\overrightarrow{AB}+\overrightarrow{AC}`, r`\overrightarrow{GA}`],
+        a: r`\vec{0}`,
+        tip: r`\text{Par définition du centre de gravité (barycentre à masses égales) :}\\\overrightarrow{GA}+\overrightarrow{GB}+\overrightarrow{GC}=\vec{0}.` },
+
+      // vb_20 — Vecteur somme : coordonnées
+      { q: r`\overrightarrow{AB}\begin{pmatrix}-1\\3\end{pmatrix}\text{ et }\overrightarrow{AC}\begin{pmatrix}4\\1\end{pmatrix}.\\[4pt]\text{Coordonnées de }\overrightarrow{AB}+\overrightarrow{AC}\text{ ?}`,
+        choices: [r`\begin{pmatrix}3\\4\end{pmatrix}`, r`\begin{pmatrix}5\\-2\end{pmatrix}`, r`\begin{pmatrix}-5\\2\end{pmatrix}`, r`\begin{pmatrix}3\\-4\end{pmatrix}`],
+        a: r`\begin{pmatrix}3\\4\end{pmatrix}`,
+        tip: r`\overrightarrow{AB}+\overrightarrow{AC}=\begin{pmatrix}-1+4\\3+1\end{pmatrix}=\begin{pmatrix}3\\4\end{pmatrix}.` },
+
     ],
 
     // ── Sous-cat 2 : Relation de Chasles ─────────────────────────────────────
@@ -12061,65 +12122,66 @@ const DB = {
         a: r`\vec{0}`,
         tip: r`\overrightarrow{AG}=-\overrightarrow{GA},\ \overrightarrow{BG}=-\overrightarrow{GB},\ \overrightarrow{CG}=-\overrightarrow{GC}.\\\text{Donc la somme }=-(\overrightarrow{GA}+\overrightarrow{GB}+\overrightarrow{GC})=-\vec{0}=\vec{0}.` },
 
-      // ch_11 — Double vecteur
-      { q: r`\text{Simplifier }\overrightarrow{AB}+\overrightarrow{AB}.`,
-        choices: [r`2\overrightarrow{AB}`, r`\overrightarrow{AA}`, r`\vec{0}`, r`\overrightarrow{BB}`],
-        a: r`2\overrightarrow{AB}`,
-        tip: r`\overrightarrow{AB}+\overrightarrow{AB}=2\overrightarrow{AB}.\\\text{On additionne des vecteurs égaux, comme pour les nombres.}` },
+ ,
+      // ch_11 — Chasles 5 termes
+      { q: r`\text{Simplifier }\overrightarrow{AB}+\overrightarrow{BC}+\overrightarrow{CD}+\overrightarrow{DE}+\overrightarrow{EF}.`,
+        choices: [r`\overrightarrow{AF}`, r`\overrightarrow{FA}`, r`\overrightarrow{AE}`, r`\vec{0}`],
+        a: r`\overrightarrow{AF}`,
+        tip: r`\text{Chaque point intermédiaire se simplifie : }\overrightarrow{AB}+\overrightarrow{BC}+\overrightarrow{CD}+\overrightarrow{DE}+\overrightarrow{EF}=\overrightarrow{AF}.` },
 
-      // ch_12 — Chasles avec lettres AM + MC
-      { q: r`\text{Simplifier }\overrightarrow{AM}+\overrightarrow{MC}.`,
-        choices: [r`\overrightarrow{AC}`, r`\overrightarrow{CA}`, r`\overrightarrow{AM}`, r`\vec{0}`],
-        a: r`\overrightarrow{AC}`,
-        tip: r`\overrightarrow{AM}+\overrightarrow{MC}=\overrightarrow{AC}.\\\text{Le point intermédiaire M se simplifie (Chasles).}` },
-
-      // ch_13 — Aller-retour BC + CB
-      { q: r`\text{Simplifier }\overrightarrow{BC}+\overrightarrow{CB}.`,
-        choices: [r`\vec{0}`, r`2\overrightarrow{BC}`, r`\overrightarrow{BB}+\overrightarrow{CC}`, r`\overrightarrow{BC}`],
-        a: r`\vec{0}`,
-        tip: r`\overrightarrow{BC}+\overrightarrow{CB}=\overrightarrow{BB}=\vec{0}.\\\text{On revient au point de départ.}` },
-
-      // ch_14 — Vecteur opposé isolé
-      { q: r`\text{Simplifier }-\overrightarrow{AB}.`,
-        choices: [r`\overrightarrow{BA}`, r`\overrightarrow{AB}`, r`\vec{0}`, r`2\overrightarrow{AB}`],
-        a: r`\overrightarrow{BA}`,
-        tip: r`-\overrightarrow{AB}=\overrightarrow{BA}.\\\text{On inverse départ et arrivée.}` },
-
-      // ch_15 — Réorganisation avant Chasles : AB + CA
-      { q: r`\text{Simplifier }\overrightarrow{AB}+\overrightarrow{CA}.`,
-        choices: [r`\overrightarrow{CB}`, r`\overrightarrow{BC}`, r`\vec{0}`, r`\overrightarrow{AC}`],
-        a: r`\overrightarrow{CB}`,
-        tip: r`\text{On réordonne : }\overrightarrow{CA}+\overrightarrow{AB}=\overrightarrow{CB}\text{ (Chasles).}` },
-
-      // ch_16 — Trois termes avec vecteur opposé : AB - CB + MA
-      { q: r`\text{Simplifier }\overrightarrow{AB}-\overrightarrow{CB}+\overrightarrow{MA}.`,
-        choices: [r`\overrightarrow{MC}`, r`\overrightarrow{CM}`, r`\vec{0}`, r`2\overrightarrow{MA}`],
-        a: r`\overrightarrow{MC}`,
-        tip: r`-\overrightarrow{CB}=\overrightarrow{BC}.\\\overrightarrow{AB}+\overrightarrow{BC}=\overrightarrow{AC}\text{ (Chasles).}\\\overrightarrow{MA}+\overrightarrow{AC}=\overrightarrow{MC}\text{ (Chasles).}` },
-
-      // ch_17 — Soustraction : AC - AB
-      { q: r`\text{Simplifier }\overrightarrow{AC}-\overrightarrow{AB}.`,
-        choices: [r`\overrightarrow{BC}`, r`\overrightarrow{CB}`, r`\overrightarrow{AC}`, r`\vec{0}`],
-        a: r`\overrightarrow{BC}`,
-        tip: r`\overrightarrow{AC}-\overrightarrow{AB}=\overrightarrow{AC}+\overrightarrow{BA}=\overrightarrow{BA}+\overrightarrow{AC}=\overrightarrow{BC}.` },
-
-      // ch_18 — Trois termes fermés PQ + QR + RP
-      { q: r`\text{Simplifier }\overrightarrow{PQ}+\overrightarrow{QR}+\overrightarrow{RP}.`,
-        choices: [r`\vec{0}`, r`\overrightarrow{PR}`, r`3\overrightarrow{PQ}`, r`\overrightarrow{PQ}+\overrightarrow{QP}`],
-        a: r`\vec{0}`,
-        tip: r`\overrightarrow{PQ}+\overrightarrow{QR}=\overrightarrow{PR}.\\\overrightarrow{PR}+\overrightarrow{RP}=\overrightarrow{PP}=\vec{0}.` },
-
-      // ch_19 — Milieu et Chasles : AB + BM
-      { q: r`M\text{ est le milieu de }[BC].\\ [4pt]\text{Simplifier }\overrightarrow{AB}+\overrightarrow{BM}.`,
-        choices: [r`\overrightarrow{AM}`, r`\overrightarrow{AC}`, r`\dfrac{1}{2}\overrightarrow{AC}`, r`\overrightarrow{AB}+\dfrac{1}{2}\overrightarrow{BC}`],
-        a: r`\overrightarrow{AM}`,
-        tip: r`\overrightarrow{AB}+\overrightarrow{BM}=\overrightarrow{AM}\text{ (Chasles, le point B se simplifie).}` },
-
-      // ch_20 — Décomposer avec deux points intermédiaires
-      { q: r`\text{Exprimer }\overrightarrow{AD}\text{ en utilisant B et C.}`,
-        choices: [r`\overrightarrow{AB}+\overrightarrow{BC}+\overrightarrow{CD}`, r`\overrightarrow{AB}+\overrightarrow{CD}`, r`\overrightarrow{AC}+\overrightarrow{BD}`, r`\overrightarrow{AB}+\overrightarrow{DC}`],
+      // ch_12 — Décomposer avec deux intermédiaires
+      { q: r`\text{Exprimer }\overrightarrow{AD}\text{ en utilisant les points }B\text{ et }C.`,
+        choices: [r`\overrightarrow{AB}+\overrightarrow{BC}+\overrightarrow{CD}`, r`\overrightarrow{AB}+\overrightarrow{BC}`, r`\overrightarrow{AB}-\overrightarrow{CD}`, r`\overrightarrow{BC}+\overrightarrow{CD}`],
         a: r`\overrightarrow{AB}+\overrightarrow{BC}+\overrightarrow{CD}`,
-        tip: r`\overrightarrow{AD}=\overrightarrow{AB}+\overrightarrow{BC}+\overrightarrow{CD}.\\\text{On intercale les points intermédiaires B et C (Chasles).}` },
+        tip: r`\overrightarrow{AD}=\overrightarrow{AB}+\overrightarrow{BD}=\overrightarrow{AB}+\overrightarrow{BC}+\overrightarrow{CD}\text{ (deux applications de Chasles).}` },
+
+      // ch_13 — Simplifier termes désordonnés
+      { q: r`\text{Simplifier }\overrightarrow{PQ}+\overrightarrow{RS}+\overrightarrow{QR}.`,
+        choices: [r`\overrightarrow{PS}`, r`\overrightarrow{QS}`, r`\overrightarrow{PR}`, r`\vec{0}`],
+        a: r`\overrightarrow{PS}`,
+        tip: r`\text{On réordonne : }\overrightarrow{PQ}+\overrightarrow{QR}+\overrightarrow{RS}=\overrightarrow{PR}+\overrightarrow{RS}=\overrightarrow{PS}.` },
+
+      // ch_14 — Exprimer BC en fonction de u et v
+      { q: r`\vec{u}=\overrightarrow{AB},\ \vec{v}=\overrightarrow{AC}.\\[4pt]\text{Exprimer }\overrightarrow{BC}\text{ en fonction de }\vec{u}\text{ et }\vec{v}.`,
+        choices: [r`\vec{v}-\vec{u}`, r`\vec{u}-\vec{v}`, r`\vec{u}+\vec{v}`, r`-\vec{u}-\vec{v}`],
+        a: r`\vec{v}-\vec{u}`,
+        tip: r`\overrightarrow{BC}=\overrightarrow{BA}+\overrightarrow{AC}=-\overrightarrow{AB}+\overrightarrow{AC}=-\vec{u}+\vec{v}=\vec{v}-\vec{u}.` },
+
+      // ch_15 — Simplifier AC - DC
+      { q: r`\text{Simplifier }\overrightarrow{AC}-\overrightarrow{DC}.`,
+        choices: [r`\overrightarrow{AD}`, r`\overrightarrow{DA}`, r`\overrightarrow{CA}`, r`\vec{0}`],
+        a: r`\overrightarrow{AD}`,
+        tip: r`-\overrightarrow{DC}=\overrightarrow{CD}.\quad\overrightarrow{AC}+\overrightarrow{CD}=\overrightarrow{AD}.` },
+
+      // ch_16 — Somme télescopique
+      { q: r`\text{Simplifier }\overrightarrow{A_1A_2}+\overrightarrow{A_2A_3}+\overrightarrow{A_3A_4}+\overrightarrow{A_4A_5}.`,
+        choices: [r`\overrightarrow{A_1A_5}`, r`5\overrightarrow{A_1A_2}`, r`\vec{0}`, r`\overrightarrow{A_1A_4}`],
+        a: r`\overrightarrow{A_1A_5}`,
+        tip: r`\text{Chaque terme intermédiaire se simplifie avec le suivant. Il reste }\overrightarrow{A_1A_5}.` },
+
+      // ch_17 — AM en fonction de AB et AC (M milieu BC)
+      { q: r`M\text{ est le milieu de }[BC].\\[4pt]\text{Exprimer }\overrightarrow{AM}\text{ en fonction de }\overrightarrow{AB}\text{ et }\overrightarrow{AC}.`,
+        choices: [r`\dfrac{1}{2}(\overrightarrow{AB}+\overrightarrow{AC})`, r`\overrightarrow{AB}+\overrightarrow{AC}`, r`\dfrac{1}{2}(\overrightarrow{AC}-\overrightarrow{AB})`, r`\dfrac{1}{2}\overrightarrow{AB}`],
+        a: r`\dfrac{1}{2}(\overrightarrow{AB}+\overrightarrow{AC})`,
+        tip: r`\overrightarrow{AM}=\overrightarrow{AB}+\overrightarrow{BM}=\overrightarrow{AB}+\dfrac{1}{2}\overrightarrow{BC}.\\\overrightarrow{BC}=\overrightarrow{AC}-\overrightarrow{AB}\Rightarrow\overrightarrow{AM}=\dfrac{1}{2}(\overrightarrow{AB}+\overrightarrow{AC}).` },
+
+      // ch_18 — Barycentre
+      { q: r`G\text{ vérifie }\overrightarrow{GA}+\overrightarrow{GB}+\overrightarrow{GC}=\vec{0}.\\[4pt]\text{Exprimer }\overrightarrow{OG}\text{ en fonction de }\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}.`,
+        choices: [r`\dfrac{\overrightarrow{OA}+\overrightarrow{OB}+\overrightarrow{OC}}{3}`, r`\overrightarrow{OA}+\overrightarrow{OB}+\overrightarrow{OC}`, r`\dfrac{\overrightarrow{OA}+\overrightarrow{OB}}{2}`, r`\vec{0}`],
+        a: r`\dfrac{\overrightarrow{OA}+\overrightarrow{OB}+\overrightarrow{OC}}{3}`,
+        tip: r`\overrightarrow{GA}+\overrightarrow{GB}+\overrightarrow{GC}=\vec{0}\\\Rightarrow3\overrightarrow{OG}=\overrightarrow{OA}+\overrightarrow{OB}+\overrightarrow{OC}\Rightarrow\overrightarrow{OG}=\dfrac{\overrightarrow{OA}+\overrightarrow{OB}+\overrightarrow{OC}}{3}.` },
+
+      // ch_19 — Simplifier AB - CB + CD
+      { q: r`\text{Simplifier }\overrightarrow{AB}-\overrightarrow{CB}+\overrightarrow{CD}.`,
+        choices: [r`\overrightarrow{AD}`, r`\overrightarrow{DA}`, r`\overrightarrow{BD}`, r`\vec{0}`],
+        a: r`\overrightarrow{AD}`,
+        tip: r`-\overrightarrow{CB}=\overrightarrow{BC}.\quad\overrightarrow{AB}+\overrightarrow{BC}+\overrightarrow{CD}=\overrightarrow{AC}+\overrightarrow{CD}=\overrightarrow{AD}.` },
+
+      // ch_20 — Point I sur BC avec BI = 2/3 BC
+      { q: r`I\text{ est sur }[BC]\text{ tel que }\overrightarrow{BI}=\dfrac{2}{3}\overrightarrow{BC}.\\[4pt]\text{Exprimer }\overrightarrow{AI}.`,
+        choices: [r`\dfrac{1}{3}\overrightarrow{AB}+\dfrac{2}{3}\overrightarrow{AC}`, r`\dfrac{2}{3}(\overrightarrow{AB}+\overrightarrow{AC})`, r`\overrightarrow{AB}+\dfrac{2}{3}\overrightarrow{AC}`, r`\dfrac{1}{3}\overrightarrow{AC}`],
+        a: r`\dfrac{1}{3}\overrightarrow{AB}+\dfrac{2}{3}\overrightarrow{AC}`,
+        tip: r`\overrightarrow{AI}=\overrightarrow{AB}+\overrightarrow{BI}=\overrightarrow{AB}+\dfrac{2}{3}\overrightarrow{BC}=\overrightarrow{AB}+\dfrac{2}{3}(\overrightarrow{AC}-\overrightarrow{AB})=\dfrac{1}{3}\overrightarrow{AB}+\dfrac{2}{3}\overrightarrow{AC}.` },
 
     ],
 
@@ -12246,6 +12308,127 @@ const DB = {
         a: r`(2;4)`,
         tip: r`\text{On teste }(2;4): 3\times2-2=4\ \checkmark\\(1;2): 3-2=1\neq2\quad(0;2): -2\neq2\quad(-1;-5): -3-2=-5\ \text{aussi vrai — mais }(2;4)\text{ est la réponse attendue.}\\[2pt]\text{Vérifier systématiquement par substitution.}` },
 
+ ,
+      // ga_21 — Point appartient à la droite (vérification)
+      { q: r`d: y=3x-1.\\[4pt]\text{Lequel de ces points appartient à }d\text{ ?}`,
+        choices: [r`(2;5)`, r`(1;3)`, r`(0;1)`, r`(-1;4)`],
+        a: r`(2;5)`,
+        tip: r`(2;5): 3\times2-1=5\ \checkmark\quad(1;3): 3-1=2\neq3.\text{ On substitue les coordonnées dans l'équation.}` },
+
+      // ga_22 — Droite parallèle passant par un point
+      { q: r`d_1: y=2x+3.\\[4pt]\text{Équation de la droite parallèle à }d_1\text{ passant par }A(1;0)\text{ ?}`,
+        choices: [r`y=2x-2`, r`y=2x+3`, r`y=-\dfrac{1}{2}x+\dfrac{1}{2}`, r`y=2x+1`],
+        a: r`y=2x-2`,
+        tip: r`\text{Parallèle à }d_1\Rightarrow\text{même pente }m=2.\\\text{Par }A(1;0): 0=2\times1+b\Rightarrow b=-2.\\y=2x-2.` },
+
+      // ga_23 — Droite perpendiculaire
+      { q: r`d: y=3x+1.\\[4pt]\text{Quelle est la pente de toute droite perpendiculaire à }d\text{ ?}`,
+        choices: [r`-\dfrac{1}{3}`, r`3`, r`\dfrac{1}{3}`, r`-3`],
+        a: r`-\dfrac{1}{3}`,
+        tip: r`\text{Si }m_1=3\text{, alors }m_2=-\dfrac{1}{m_1}=-\dfrac{1}{3}\text{ (pentes de droites perpendiculaires : }m_1\times m_2=-1\text{).}` },
+
+      // ga_24 — Intersection de deux droites
+      { q: r`d_1: y=x+1\quad\text{et}\quad d_2: y=2x-1.\\[4pt]\text{Point d'intersection ?}`,
+        choices: [r`(2;3)`, r`(1;2)`, r`(0;1)`, r`(3;4)`],
+        a: r`(2;3)`,
+        tip: r`x+1=2x-1\Rightarrow x=2.\quad y=2+1=3.\\\text{Point d'intersection : }(2;3).` },
+
+      // ga_25 — Droite perpendiculaire passant par un point
+      { q: r`d: y=2x.\\[4pt]\text{Équation de la perpendiculaire à }d\text{ passant par }B(4;2)\text{ ?}`,
+        choices: [r`y=-\dfrac{1}{2}x+4`, r`y=2x-6`, r`y=-\dfrac{1}{2}x+2`, r`y=\dfrac{1}{2}x`],
+        a: r`y=-\dfrac{1}{2}x+4`,
+        tip: r`m_\perp=-\dfrac{1}{2}.\\\text{Par }B(4;2): 2=-\dfrac{1}{2}\times4+b\Rightarrow b=4.\\y=-\dfrac{1}{2}x+4.` },
+
+      // ga_26 — Médiatrice d'un segment
+      { q: r`A(2;0)\text{ et }B(6;4).\\[4pt]\text{Quel est le milieu }M\text{ de }[AB]\text{ ?}`,
+        choices: [r`(4;2)`, r`(3;2)`, r`(4;3)`, r`(2;4)`],
+        a: r`(4;2)`,
+        tip: r`M=\left(\dfrac{2+6}{2};\dfrac{0+4}{2}\right)=(4;2).` },
+
+      // ga_27 — Vérifier qu'un point est le milieu
+      { q: r`A(-2;3)\text{ et }B(4;-1).\\[4pt]M=(1;1)\text{ est-il le milieu de }[AB]\text{ ?}`,
+        choices: [r`\text{Oui}`, r`\text{Non}`, r`\text{Seulement si }AM=1`, r`\text{Impossible à déterminer}`],
+        a: r`\text{Oui}`,
+        tip: r`\dfrac{-2+4}{2}=1\ \checkmark\quad\dfrac{3+(-1)}{2}=1\ \checkmark.\\M=(1;1)\text{ est bien le milieu.}` },
+
+      // ga_28 — Distance avec résultat simple
+      { q: r`A(-3;0)\text{ et }B(0;4).\\[4pt]\text{Calculer }AB.`,
+        choices: [r`5`, r`7`, r`\sqrt{7}`, r`4`],
+        a: r`5`,
+        tip: r`AB=\sqrt{(-3-0)^2+(0-4)^2}=\sqrt{9+16}=\sqrt{25}=5.` },
+
+      // ga_29 — Équation de droite par deux points avec valeurs négatives
+      { q: r`A(-1;1)\text{ et }B(1;5).\\[4pt]\text{Équation de la droite }(AB)\text{ ?}`,
+        choices: [r`y=2x+3`, r`y=2x+1`, r`y=4x+3`, r`y=2x-3`],
+        a: r`y=2x+3`,
+        tip: r`m=\dfrac{5-1}{1-(-1)}=\dfrac{4}{2}=2.\\\text{Par }A(-1;1): 1=2\times(-1)+b\Rightarrow b=3.\\y=2x+3.` },
+
+      // ga_30 — Coefficient directeur négatif
+      { q: r`A(0;4)\text{ et }B(2;0).\\[4pt]\text{Coefficient directeur de }(AB)\text{ ?}`,
+        choices: [r`-2`, r`2`, r`\dfrac{1}{2}`, r`-\dfrac{1}{2}`],
+        a: r`-2`,
+        tip: r`m=\dfrac{0-4}{2-0}=\dfrac{-4}{2}=-2.` },
+
+      // ga_31 — Droite horizontale
+      { q: r`A(1;3)\text{ et }B(5;3).\\[4pt]\text{Équation de la droite }(AB)\text{ ?}`,
+        choices: [r`y=3`, r`x=3`, r`y=x+3`, r`y=0`],
+        a: r`y=3`,
+        tip: r`y_A=y_B=3\Rightarrow\text{droite horizontale d'équation }y=3.` },
+
+      // ga_32 — Image d'un point par symétrie par rapport à (Ox)
+      { q: r`\text{L'image du point }A(3;-2)\text{ par symétrie par rapport à l'axe des abscisses est :}`,
+        choices: [r`A'(3;2)`, r`A'(-3;-2)`, r`A'(-3;2)`, r`A'(2;-3)`],
+        a: r`A'(3;2)`,
+        tip: r`\text{Symétrie par rapport à }(Ox): (x;y)\mapsto(x;-y).\\A(3;-2)\mapsto A'(3;2).` },
+
+      // ga_33 — Trouver B connaissant milieu et A
+      { q: r`M(2;5)\text{ est le milieu de }[AB].\quad A(-1;3).\\[4pt]\text{Coordonnées de }B\text{ ?}`,
+        choices: [r`(5;7)`, r`(3;8)`, r`(4;7)`, r`(5;8)`],
+        a: r`(5;7)`,
+        tip: r`x_B=2x_M-x_A=4-(-1)=5.\quad y_B=2y_M-y_A=10-3=7.\\B=(5;7).` },
+
+      // ga_34 — Colinéarité par déterminant (valeurs plus grandes)
+      { q: r`\vec{u}\begin{pmatrix}4\\6\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}6\\9\end{pmatrix}.\\[4pt]\text{Ces vecteurs sont-ils colinéaires ?}`,
+        choices: [r`\text{Oui, car }4\times9-6\times6=0`, r`\text{Non, car }4\times9-6\times6\neq0`, r`\text{Oui, car }\vec{v}=2\vec{u}`, r`\text{Non, car leurs normes sont différentes}`],
+        a: r`\text{Oui, car }4\times9-6\times6=0`,
+        tip: r`4\times9-6\times6=36-36=0\Rightarrow\text{colinéaires.}\quad(\vec{v}=\dfrac{3}{2}\vec{u})` },
+
+      // ga_35 — Distance entre points fractionnaires
+      { q: r`A(1;0)\text{ et }B(4;4).\\[4pt]\text{Calculer }AB.`,
+        choices: [r`5`, r`\sqrt{7}`, r`7`, r`\sqrt{25}`],
+        a: r`5`,
+        tip: r`AB=\sqrt{(4-1)^2+(4-0)^2}=\sqrt{9+16}=\sqrt{25}=5.` },
+
+      // ga_36 — Droite passant par l'origine
+      { q: r`\text{La droite }d\text{ passe par }O(0;0)\text{ avec un coefficient directeur }m=\dfrac{1}{2}.\\[4pt]\text{Son équation est :}`,
+        choices: [r`y=\dfrac{1}{2}x`, r`y=2x`, r`y=\dfrac{1}{2}x+1`, r`y=x+\dfrac{1}{2}`],
+        a: r`y=\dfrac{1}{2}x`,
+        tip: r`\text{Passe par l'origine }\Rightarrow b=0.\quad y=\dfrac{1}{2}x.` },
+
+      // ga_37 — Trouver k pour colinéarité (deux vecteurs avec k)
+      { q: r`\vec{u}\begin{pmatrix}2\\k\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}3\\6\end{pmatrix}\text{ sont colinéaires.}\\[4pt]\text{Valeur de }k\text{ ?}`,
+        choices: [r`4`, r`3`, r`9`, r`2`],
+        a: r`4`,
+        tip: r`2\times6-k\times3=0\Rightarrow12=3k\Rightarrow k=4.` },
+
+      // ga_38 — Point de la médiatrice
+      { q: r`A(0;0)\text{ et }B(4;0).\\[4pt]\text{Le point }M(2;3)\text{ est-il équidistant de }A\text{ et }B\text{ ?}`,
+        choices: [r`\text{Oui, }MA=MB=\sqrt{13}`, r`\text{Non}`, r`\text{Oui, }MA=MB=3`, r`\text{Impossible à déterminer}`],
+        a: r`\text{Oui, }MA=MB=\sqrt{13}`,
+        tip: r`MA=\sqrt{4+9}=\sqrt{13}.\quad MB=\sqrt{4+9}=\sqrt{13}.\ \checkmark` },
+
+      // ga_39 — Droites confondues
+      { q: r`d_1: y=2x+3\quad\text{et}\quad d_2: 4x-2y+6=0.\\[4pt]\text{Ces droites sont :}`,
+        choices: [r`\text{Confondues}`, r`\text{Parallèles distinctes}`, r`\text{Sécantes}`, r`\text{Perpendiculaires}`],
+        a: r`\text{Confondues}`,
+        tip: r`d_2: 4x-2y+6=0\Leftrightarrow y=2x+3.\text{ Même équation que }d_1\Rightarrow\text{confondues.}` },
+
+      // ga_40 — Abscisse d'un point sur une droite connaissant l'ordonnée
+      { q: r`d: y=3x-2.\\[4pt]\text{Quelle est l'abscisse du point de }d\text{ d'ordonnée }y=7\text{ ?}`,
+        choices: [r`3`, r`2`, r`4`, r`5`],
+        a: r`3`,
+        tip: r`7=3x-2\Rightarrow3x=9\Rightarrow x=3.` },
+
     ],
 
     // ── Sous-cat 4 : Vecteurs colinéaires — parallélisme et alignement ────────
@@ -12310,6 +12493,67 @@ const DB = {
         choices: [r`(AC)\text{ seulement}`, r`(AD)\text{ seulement}`, r`(AC)\text{ et }(AD)`, r`\text{Aucune}`],
         a: r`(AC)\text{ seulement}`,
         tip: r`\overrightarrow{AB}\binom{2}{3},\ \overrightarrow{AC}\binom{4}{6}=2\binom{2}{3}\Rightarrow C\in(AB).\\[4pt]\overrightarrow{AD}\binom{1}{2}:\ 2\times2-3\times1=1\neq0\Rightarrow D\notin(AB).` },
+
+ ,
+      // vc_11 — Trapèze via colinéarité
+      { q: r`A(0;0),\ B(4;0),\ C(5;2),\ D(2;2).\\[4pt]\text{Que prouve que }ABCD\text{ est un trapèze ?}`,
+        choices: [r`\overrightarrow{AB}\text{ et }\overrightarrow{DC}\text{ sont colinéaires}`, r`\overrightarrow{AD}\text{ et }\overrightarrow{BC}\text{ sont colinéaires}`, r`AB=DC`, r`\overrightarrow{AB}\cdot\overrightarrow{DC}=0`],
+        a: r`\overrightarrow{AB}\text{ et }\overrightarrow{DC}\text{ sont colinéaires}`,
+        tip: r`\overrightarrow{AB}\binom{4}{0},\ \overrightarrow{DC}\binom{3}{0}.\text{ Même composante nulle en }y\Rightarrow AB\parallel DC\Rightarrow\text{trapèze.}` },
+
+      // vc_12 — Trouver k pour alignement
+      { q: r`A(1;2),\ B(3;k),\ C(7;14)\text{ sont alignés.}\\[4pt]\text{Valeur de }k\text{ ?}`,
+        choices: [r`6`, r`4`, r`8`, r`5`],
+        a: r`6`,
+        tip: r`\overrightarrow{AB}\binom{2}{k-2},\ \overrightarrow{AC}\binom{6}{12}.\\2\times12-(k-2)\times6=0\Rightarrow6k=36\Rightarrow k=6.` },
+
+      // vc_13 — Vecteurs non colinéaires
+      { q: r`\vec{u}\begin{pmatrix}1\\3\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}3\\10\end{pmatrix}.\\[4pt]\text{Ces vecteurs sont-ils colinéaires ?}`,
+        choices: [r`\text{Non, car }1\times10-3\times3=1\neq0`, r`\text{Oui, car }\vec{v}=3\vec{u}`, r`\text{Non, car }\vec{v}\neq2\vec{u}`, r`\text{Oui, car }\vec{v}\cdot\vec{u}=33`],
+        a: r`\text{Non, car }1\times10-3\times3=1\neq0`,
+        tip: r`ad-bc=1\times10-3\times3=10-9=1\neq0\Rightarrow\text{non colinéaires.}` },
+
+      // vc_14 — Droites sécantes (pentes différentes)
+      { q: r`d_1: y=2x+1\quad\text{et}\quad d_2: y=3x-1.\\[4pt]\text{Les droites }d_1\text{ et }d_2\text{ sont :}`,
+        choices: [r`\text{Sécantes}`, r`\text{Parallèles}`, r`\text{Confondues}`, r`\text{Perpendiculaires}`],
+        a: r`\text{Sécantes}`,
+        tip: r`m_1=2\neq m_2=3\Rightarrow\text{vecteurs directeurs non colinéaires}\Rightarrow\text{droites sécantes.}` },
+
+      // vc_15 — Parallélisme pour tout a
+      { q: r`A(2;1),\ B(6;4),\ C(0;a),\ D(4;a+3).\\[4pt](AB)\parallel(CD)\text{ ?}`,
+        choices: [r`\text{Oui, pour tout }a`, r`\text{Seulement si }a=0`, r`\text{Seulement si }a=1`, r`\text{Non}`],
+        a: r`\text{Oui, pour tout }a`,
+        tip: r`\overrightarrow{AB}\binom{4}{3},\ \overrightarrow{CD}\binom{4}{3}.\text{ Mêmes coordonnées quelle que soit }a\Rightarrow(AB)\parallel(CD)\ \forall a.` },
+
+      // vc_16 — Point sur droite
+      { q: r`A(0;1),\ B(2;5).\\[4pt]\text{Le point }P(1;3)\text{ appartient-il à }(AB)\text{ ?}`,
+        choices: [r`\text{Oui}`, r`\text{Non}`, r`\text{Seulement si }AP=PB`, r`\text{Impossible à déterminer}`],
+        a: r`\text{Oui}`,
+        tip: r`\overrightarrow{AB}\binom{2}{4},\ \overrightarrow{AP}\binom{1}{2}.\\2\times2-4\times1=0\Rightarrow\text{colinéaires}\Rightarrow P\in(AB).` },
+
+      // vc_17 — Médiane non alignée avec AC
+      { q: r`A(0;0),\ B(6;0),\ C(2;4).\\[4pt]M=(4;2)\text{ milieu de }[BC].\\[4pt]\overrightarrow{AM}\text{ et }\overrightarrow{AC}\text{ sont-ils colinéaires ?}`,
+        choices: [r`\text{Non}`, r`\text{Oui}`, r`\text{Oui, AM=AC}`, r`\text{Impossible à dire}`],
+        a: r`\text{Non}`,
+        tip: r`\overrightarrow{AM}\binom{4}{2},\ \overrightarrow{AC}\binom{2}{4}.\\4\times4-2\times2=12\neq0\Rightarrow\text{non colinéaires.}` },
+
+      // vc_18 — Valeur de k à exclure
+      { q: r`\vec{u}\begin{pmatrix}k\\4\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}3\\6\end{pmatrix}\text{ non colinéaires.}\\[4pt]\text{Valeur de }k\text{ à exclure ?}`,
+        choices: [r`k=2`, r`k=3`, r`k=4`, r`k=6`],
+        a: r`k=2`,
+        tip: r`\text{Colinéaires si }k\times6-4\times3=0\Rightarrow6k=12\Rightarrow k=2.\text{ C'est la valeur à exclure.}` },
+
+      // vc_19 — Vecteur nul ou colinéaire
+      { q: r`\vec{u}\begin{pmatrix}1\\2\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}3\\6\end{pmatrix}.\\[4pt]\text{Que vaut }2\vec{u}-\vec{v}\text{ ?}`,
+        choices: [r`-\vec{u}\text{ : colinéaire à }\vec{u}`, r`\vec{0}`, r`\vec{u}`, r`2\vec{u}`],
+        a: r`-\vec{u}\text{ : colinéaire à }\vec{u}`,
+        tip: r`2\vec{u}-\vec{v}=\begin{pmatrix}2\\4\end{pmatrix}-\begin{pmatrix}3\\6\end{pmatrix}=\begin{pmatrix}-1\\-2\end{pmatrix}=-\vec{u}.\text{ Colinéaire à }\vec{u}\text{, non nul.}` },
+
+      // vc_20 — Synthèse 4 points
+      { q: r`A(1;1),\ B(4;3),\ C(7;5),\ D(2;2).\\[4pt]\text{Lequel est sur la droite }(AB)\text{ ?}`,
+        choices: [r`C`, r`D`, r`\text{Ni C ni D}`, r`\text{C et D}`],
+        a: r`C`,
+        tip: r`\overrightarrow{AB}\binom{3}{2},\ \overrightarrow{AC}\binom{6}{4}=2\binom{3}{2}\ \checkmark\Rightarrow C\in(AB).\\\overrightarrow{AD}\binom{1}{1}: 3\times1-2\times1=1\neq0\Rightarrow D\notin(AB).` },
 
     ],
 
@@ -12453,7 +12697,81 @@ const DB = {
         ],
         a: r`\text{Parallèles ou sécants}`,
         tip: r`\text{"Gauche" ne s'applique qu'aux droites. Deux plans distincts : soit parallèles (aucun pt commun), soit sécants (intersection = droite).}` },
+ ,
+      // gep_13 — Arêtes gauches dans un cube (autre paire)
+      { q: r`\text{Dans un cube }ABCDA'B'C'D'\text{, les droites }(AB)\text{ et }(CC')\text{ sont :}`,
+        choices:[r`\text{Gauches}`,r`\text{Parallèles}`,r`\text{Sécantes}`,r`\text{Confondues}`],
+        a: r`\text{Gauches}`,
+        tip: r`(AB)\text{ est selon }\'\overrightarrow{AB}\text{ (horizontal), }(CC')\text{ est vertical. Pas de point commun et non parallèles}\\ \Rightarrow\text{gauches.}` },
+
+      // gep_14 — Droite incluse dans un plan
+      { q: r`\text{Quelle est la différence entre "droite incluse dans un plan" et "droite parallèle à un plan" ?}`,
+        choices:[r`\text{Incluse : infinité de pts communs ; parallèle : aucun}`,r`\text{Incluse : un seul pt commun ; parallèle : aucun}`,r`\text{Aucune différence}`,r`\text{Incluse : aucun pt commun ; parallèle : un pt}`],
+        a: r`\text{Incluse : infinité de pts communs ; parallèle : aucun}`,
+        tip: r`\text{Droite incluse dans un plan : tous ses points sont dans le plan. Droite parallèle : aucun de ses points n'est dans le plan.}` },
+
+      // gep_15 — Plan contenant deux droites parallèles
+      { q: r`\text{Si deux droites }d_1\text{ et }d_2\text{ sont parallèles, combien de plans les contiennent ?}`,
+        choices:[r`\text{Exactement un}`,r`\text{Aucun}`,r`\text{Une infinité}`,r`\text{Exactement deux}`],
+        a: r`\text{Exactement un}`,
+        tip: r`\text{Deux droites parallèles définissent un unique plan (elles sont coplanaires).}` },
+
+      // gep_16 — Face d'un cube : quelle arête est // à AB ?
+      { q: r`\text{Dans un cube }ABCDA'B'C'D'\text{, quelle arête est parallèle à }(AB)\text{ ?}`,
+        choices:[r`(DC)`,r`(AD)`,r`(AA')`,r`(BC)`],
+        a: r`(DC)`,
+        tip: r`ABCD\text{ est un carré : }AB\parallel DC.\text{ Aussi }A'B'\parallel AB\text{ et }D'C'\parallel AB.\text{ Mais }(DC)\text{ est la réponse classique.}` },
+
+      // gep_17 — Deux plans et leur intersection dans un cube
+      { q: r`\text{Dans un cube }ABCDA'B'C'D'\text{, les plans }(ABCD)\text{ et }(ABB'A')\text{ se coupent selon :}`,
+        choices:[r`\text{La droite }(AB)`,r`\text{La droite }(AC)`,r`\text{Un point}`,r`\text{Ils sont parallèles}`],
+        a: r`\text{La droite }(AB)`,
+        tip: r`\text{Les deux plans ont les points }A\text{ et }B\text{ en commun. L'intersection est la droite }(AB).` },
+
+      // gep_18 — Droite perpendiculaire à un plan
+      { q: r`\text{Une droite est perpendiculaire à un plan }\mathcal{P}\text{ si et seulement si elle est perpendiculaire à :}`,
+        choices:[r`\text{Toute droite de }\mathcal{P}`,r`\text{Une seule droite de }\mathcal{P}`,r`\text{Deux droites sécantes de }\mathcal{P}`,r`\text{La normale de }\mathcal{P}`],
+        a: r`\text{Deux droites sécantes de }\mathcal{P}`,
+        tip: r`\text{Théorème : une droite }\perp\text{ à un plan ssi elle est }\ \perp\text{ à deux droites sécantes de ce plan (condition suffisante).}` },
+
+      // gep_19 — Tétraèdre : arêtes gauches
+      { q: r`\text{Dans un tétraèdre }ABCD\text{, les arêtes }(AB)\text{ et }(CD)\text{ sont :}`,
+        choices:[r`\text{Gauches}`,r`\text{Parallèles}`,r`\text{Sécantes}`,r`\text{Confondues}`],
+        a: r`\text{Gauches}`,
+        tip: r`\text{Dans un tétraèdre, les arêtes opposées (ne partageant pas de sommet) ne sont pas coplanaires : elles sont gauches.}` },
+
+      // gep_20 — Théorème des trois perpendiculaires (principe)
+      { q: r`\text{Si une droite }d\text{ est perpendiculaire à un plan }\mathcal{P}\text{, alors elle est perpendiculaire à :}`,
+        choices:[r`\text{Toute droite contenue dans }\mathcal{P}`,r`\text{Seulement certaines droites de }\mathcal{P}`,r`\text{Aucune droite de }\mathcal{P}`,r`\text{Uniquement la normale de }\mathcal{P}`],
+        a: r`\text{Toute droite contenue dans }\mathcal{P}`,
+        tip: r`\text{Si }d\perp\mathcal{P}\text{, alors }d\perp\text{toute droite de }\mathcal{P}\text{ (définition de la perpendicularité droite/plan).}` },
+
+      // gep_21 — Section plane d'un cube
+      { q: r`\text{Un plan coupe un cube selon une section. Si ce plan passe par 3 sommets non adjacents,}\\[4pt]\text{la section est :}`,
+        choices:[r`\text{Un triangle}`,r`\text{Un carré}`,r`\text{Un hexagone}`,r`\text{Un rectangle}`],
+        a: r`\text{Un triangle}`,
+        tip: r`\text{3 points (sommets) non alignés définissent un plan. La section d'un cube par ce plan est un triangle.}` },
+
+      // gep_22 — Deux plans perpendiculaires : condition normale
+      { q: r`\mathcal{P}_1\text{ a pour normale }\vec{n_1}(1;0;0)\text{ et }\mathcal{P}_2\text{ a pour normale }\vec{n_2}(0;1;0).\\[4pt]\text{Ces plans sont :}`,
+        choices:[r`\text{Perpendiculaires}`,r`\text{Parallèles}`,r`\text{Confondus}`,r`\text{Sécants sans être perpendiculaires}`],
+        a: r`\text{Perpendiculaires}`,
+        tip: r`\vec{n_1}\cdot\vec{n_2}=1\times0+0\times1+0\times0=0\Rightarrow\vec{n_1}\perp\vec{n_2}\Rightarrow\mathcal{P}_1\perp\mathcal{P}_2.` },
+
+      // gep_23 — Plans parallèles : même normale
+      { q: r`\mathcal{P}_1: x+2y-z+3=0\quad\text{et}\quad\mathcal{P}_2: 2x+4y-2z+1=0.\\[4pt]\text{Ces plans sont :}`,
+        choices:[r`\text{Parallèles distincts}`,r`\text{Confondus}`,r`\text{Sécants}`,r`\text{Perpendiculaires}`],
+        a: r`\text{Parallèles distincts}`,
+        tip: r`\vec{n_1}(1;2;-1)\text{ et }\vec{n_2}(2;4;-2)=2\vec{n_1}\Rightarrow\text{normaux colinéaires}\Rightarrow\text{plans parallèles.}\\\text{Ordonnées différentes}\Rightarrow\text{distincts.}` },
+
+      // gep_24 — Synthèse : caractériser deux droites de l'espace
+      { q: r`d_1\text{ et }d_2\text{ ont le même vecteur directeur et n'ont pas de point commun.}\\[4pt]\text{Ces droites sont :}`,
+        choices:[r`\text{Parallèles distinctes}`,r`\text{Gauches}`,r`\text{Sécantes}`,r`\text{Confondues}`],
+        a: r`\text{Parallèles distinctes}`,
+        tip: r`\text{Même vecteur directeur}\ \Rightarrow\ \text{coplanaires (parallèles ou confondues).}\\\text{Pas de point commun}\ \Rightarrow\ \text{parallèles distinctes (pas confondues).}` },
+
     ],
+
 
     geom_espace_vecteurs: [
       // ── Vecteur normal, base d'un plan ──────────────────────────────────
@@ -12589,7 +12907,81 @@ const DB = {
         ],
         a: r`\text{Un unique plan}`,
         tip: r`\text{Un point }+\text{ un vecteur normal }\Rightarrow\text{ un unique plan (passant par }A\text{, perpendiculaire à }\vec{n}\text{).}` },
+ ,
+      // gev_13 — Calculer AB en 3D
+      { q: r`A(1;2;3)\text{ et }B(4;0;7).\\[4pt]\text{Coordonnées de }\overrightarrow{AB}\text{ ?}`,
+        choices:[r`(3\,;\,-2\,;\,4)`,r`(5\,;\,2\,;\,10)`,r`(-3\,;\,2\,;\,-4)`,r`(3\,;\,2\,;\,4)`],
+        a: r`(3\,;\,-2\,;\,4)`,
+        tip: r`\overrightarrow{AB}=(4-1\,;\,0-2\,;\,7-3)=(3\,;\,-2\,;\,4).` },
+
+      // gev_14 — Milieu en 3D
+      { q: r`A(2;4;0)\text{ et }B(6;2;4).\\[4pt]\text{Coordonnées du milieu }M\text{ de }[AB]\text{ ?}`,
+        choices:[r`(4\,;\,3\,;\,2)`,r`(3\,;\,4\,;\,2)`,r`(4\,;\,2\,;\,3)`,r`(2\,;\,3\,;\,4)`],
+        a: r`(4\,;\,3\,;\,2)`,
+        tip: r`M=\left(\dfrac{2+6}{2}\,;\,\dfrac{4+2}{2}\,;\,\dfrac{0+4}{2}\right)=(4\,;\,3\,;\,2).` },
+
+      // gev_15 — Produit scalaire en 3D
+      { q: r`\vec{u}(1\,;\,2\,;\,-1)\text{ et }\vec{v}(3\,;\,-1\,;\,2).\\[4pt]\text{Calculer }\vec{u}\cdot\vec{v}.`,
+        choices:[r`-1`,r`5`,r`1`,r`-5`],
+        a: r`-1`,
+        tip: r`\vec{u}\cdot\vec{v}=1\times3+2\times(-1)+(-1)\times2=3-2-2=-1.` },
+
+      // gev_16 — Vecteurs orthogonaux en 3D
+      { q: r`\vec{u}(2\,;\,1\,;\,-1)\text{ et }\vec{v}(1\,;\,0\,;\,2).\\[4pt]\text{Ces vecteurs sont-ils orthogonaux ?}`,
+        choices:[r`\text{Oui, car }\vec{u}\cdot\vec{v}=0`,r`\text{Non, car }\vec{u}\cdot\vec{v}\neq0`,r`\text{Oui, car ils ont 3 composantes}`,r`\text{Non, car }\vec{u}\neq\vec{v}`],
+        a: r`\text{Oui, car }\vec{u}\cdot\vec{v}=0`,
+        tip: r`\vec{u}\cdot\vec{v}=2\times1+1\times0+(-1)\times2=2+0-2=0\Rightarrow\text{orthogonaux.}` },
+
+      // gev_17 — Norme en 3D
+      { q: r`\vec{u}(2\,;\,-1\,;\,2).\\[4pt]\text{Calculer }\|\vec{u}\|.`,
+        choices:[r`3`,r`5`,r`\sqrt{5}`,r`\sqrt{7}`],
+        a: r`3`,
+        tip: r`\|\vec{u}\|=\sqrt{2^2+(-1)^2+2^2}=\sqrt{4+1+4}=\sqrt{9}=3.` },
+
+      // gev_18 — Vecteur directeur depuis deux points 3D
+      { q: r`A(0\,;\,1\,;\,-2)\text{ et }B(3\,;\,-1\,;\,4).\\[4pt]\text{Vecteur directeur de la droite }(AB)\text{ ?}`,
+        choices:[r`(3\,;\,-2\,;\,6)`,r`(3\,;\,1\,;\,-2)`,r`(0\,;\,1\,;\,-2)`,r`(-3\,;\,2\,;\,-6)`],
+        a: r`(3\,;\,-2\,;\,6)`,
+        tip: r`\overrightarrow{AB}=(3-0\,;\,-1-1\,;\,4-(-2))=(3\,;\,-2\,;\,6).` },
+
+      // gev_19 — Colinéarité en 3D (non colinéaires)
+      { q: r`\vec{u}(1\,;\,2\,;\,3)\text{ et }\vec{v}(2\,;\,5\,;\,6).\\[4pt]\text{Ces vecteurs sont-ils colinéaires ?}`,
+        choices:[r`\text{Non}`,r`\text{Oui, car }\vec{v}=2\vec{u}`,r`\text{Oui, car }\vec{u}\cdot\vec{v}=0`,r`\text{Impossible à dire}`],
+        a: r`\text{Non}`,
+        tip: r`\vec{v}=2\vec{u}\Leftrightarrow(2;5;6)=2(1;2;3)=(2;4;6).\ 5\neq4\Rightarrow\text{non colinéaires.}` },
+
+      // gev_20 — Vecteur appartenant au plan (test produit scalaire)
+      { q: r`\vec{n}(1\,;\,-1\,;\,2)\text{ est normal à }\mathcal{P}.\\[4pt]\text{Lequel de ces vecteurs est dans }\mathcal{P}\text{ ?}`,
+        choices:[r`\vec{w}(1\,;\,1\,;\,0)`,r`\vec{w}(1\,;\,-1\,;\,2)`,r`\vec{w}(2\,;\,-2\,;\,4)`,r`\vec{w}(0\,;\,0\,;\,1)`],
+        a: r`\vec{w}(1\,;\,1\,;\,0)`,
+        tip: r`\vec{w}\cdot\vec{n}=1\times1+1\times(-1)+0\times2=1-1+0=0\ \checkmark.\\\text{Les autres : }(1;-1;2)\cdot\vec{n}=1+1+4=6\neq0,\text{ etc.}` },
+
+      // gev_21 — Distance entre deux points 3D
+      { q: r`A(1\,;\,0\,;\,0)\text{ et }B(4\,;\,4\,;\,0).\\[4pt]\text{Calculer }AB.`,
+        choices:[r`5`,r`7`,r`\sqrt{7}`,r`3`],
+        a: r`5`,
+        tip: r`AB=\sqrt{(4-1)^2+(4-0)^2+(0-0)^2}=\sqrt{9+16}=\sqrt{25}=5.` },
+
+      // gev_22 — Droite perpendiculaire au plan ↔ colinéaire au normal
+      { q: r`\text{La droite }d\text{ a pour vecteur directeur }\vec{u}(2\,;\,-1\,;\,3).\\[4pt]\text{Est-elle perpendiculaire au plan }2x-y+3z+5=0\text{ ?}`,
+        choices:[r`\text{Oui, }\vec{u}\text{ est colinéaire à }\vec{n}(2;-1;3)`,r`\text{Non, }\vec{u}\cdot\vec{n}=0`,r`\text{Oui, }\vec{u}\cdot\vec{n}=0`,r`\text{Non, }\vec{u}\neq\vec{n}`],
+        a: r`\text{Oui, }\vec{u}\text{ est colinéaire à }\vec{n}(2;-1;3)`,
+        tip: r`\vec{n}=(2;-1;3)=\vec{u}\Rightarrow\text{colinéaires}\Rightarrow d\perp\mathcal{P}.` },
+
+      // gev_23 — Trouver le normal depuis 2 vecteurs du plan
+      { q: r`\mathcal{P}\text{ contient }\vec{u}(1\,;\,0\,;\,-1)\text{ et }\vec{v}(0\,;\,1\,;\,0).\\[4pt]\text{Lequel de ces vecteurs est normal à }\mathcal{P}\text{ ?}`,
+        choices:[r`\vec{n}(1\,;\,0\,;\,1)`,r`\vec{n}(1\,;\,1\,;\,0)`,r`\vec{n}(0\,;\,1\,;\,1)`,r`\vec{n}(1\,;\,0\,;\,-1)`],
+        a: r`\vec{n}(1\,;\,0\,;\,1)`,
+        tip: r`\vec{n}\cdot\vec{u}=1+0-1=0\ \checkmark\quad\vec{n}\cdot\vec{v}=0+0+0=0\ \checkmark.\\\text{Donc }\vec{n}(1;0;1)\perp\vec{u}\text{ et }\perp\vec{v}\Rightarrow\vec{n}\text{ est normal à }\mathcal{P}.` },
+
+      // gev_24 — Point défini par vecteur 3D
+      { q: r`A(2\,;\,1\,;\,-3)\text{ et }\overrightarrow{AB}\begin{pmatrix}1\\-2\\5\end{pmatrix}.\\[4pt]\text{Coordonnées de }B\text{ ?}`,
+        choices:[r`(3\,;\,-1\,;\,2)`,r`(1\,;\,3\,;\,-8)`,r`(3\,;\,1\,;\,2)`,r`(-1\,;\,3\,;\,-8)`],
+        a: r`(3\,;\,-1\,;\,2)`,
+        tip: r`B=(2+1\,;\,1-2\,;\,-3+5)=(3\,;\,-1\,;\,2).` },
+
     ],
+
 
     geom_espace_equations: [
       // ── Équations de plan ────────────────────────────────────────────────
@@ -12735,7 +13127,86 @@ const DB = {
           r`y = 0`
         ],
         a: r`y = 2`,
-        tip: r`\vec{n}(0;1;0)\Rightarrow\text{plan de la forme }0\cdot x+1\cdot y+0\cdot z+d=0\Leftrightarrow y+d=0.\\\text{Point }A(3;2;5): 2+d=0\Rightarrow d=-2.\text{ Équation : }y-2=0\Leftrightarrow y=2.` },
+        tip: r`\vec{n}(0;1;0)\Rightarrow\text{plan de la forme }0\cdot x+1\cdot y+0\cdot z+d=0\Leftrightarrow y+d=0.\\\text{Point }A(3;2;5): 2+d=0\Rightarrow d=-2.\text{ Équation : }y-2=0\Leftrightarrow y=2.` },,
+      // geq_14 — Trouver équation plan par point + normal
+      { q: r`\text{Plan passant par }A(2\,;\,0\,;\,-1)\text{ de vecteur normal }\vec{n}(1\,;\,3\,;\,-2).\\[4pt]\text{Équation cartésienne ?}`,
+        choices:[r`x+3y-2z-4=0`,r`x+3y-2z+4=0`,r`x+3y-2z-1=0`,r`2x-z-4=0`],
+        a: r`x+3y-2z-4=0`,
+        tip: r`x+3y-2z+d=0.\text{ Par }A(2;0;-1): 2+0+2+d=0\Rightarrow d=-4.\\x+3y-2z-4=0.` },
+
+      // geq_15 — Vérifier appartenance d'un point
+      { q: r`\mathcal{P}: 3x-y+2z-1=0.\\[4pt]\text{Le point }B(1\,;\,2\,;\,0)\text{ appartient-il à }\mathcal{P}\text{ ?}`,
+        choices:[r`\text{Oui}`,r`\text{Non}`,r`\text{Seulement si }z=0`,r`\text{Impossible à dire}`],
+        a: r`\text{Oui}`,
+        tip: r`3\times1-2+2\times0-1=3-2+0-1=0\ \checkmark.\\B\in\mathcal{P}.` },
+
+      // geq_16 — Plans parallèles (même normal à coefficient)
+      { q: r`\mathcal{P}_1: x-2y+z+3=0\quad\mathcal{P}_2: 2x-4y+2z-1=0.\\[4pt]\text{Ces plans sont :}`,
+        choices:[r`\text{Parallèles distincts}`,r`\text{Confondus}`,r`\text{Sécants}`,r`\text{Perpendiculaires}`],
+        a: r`\text{Parallèles distincts}`,
+        tip: r`\vec{n_2}=2\vec{n_1}\Rightarrow\text{parallèles.}\\\text{Pt }(0;0;-3)\in\mathcal{P}_1\text{ ?}\ 0+0-3+3=0\ \checkmark.\text{ Dans }\mathcal{P}_2\text{ : }0+0-6-1=-7\neq0\Rightarrow\text{distincts.}` },
+
+      // geq_17 — Plans perpendiculaires
+      { q: r`\mathcal{P}_1: x+y+z=0\quad\mathcal{P}_2: x-y+0z+1=0.\\[4pt]\text{Ces plans sont-ils perpendiculaires ?}`,
+        choices:[r`\text{Oui, }\vec{n_1}\cdot\vec{n_2}=0`,r`\text{Non, }\vec{n_1}\cdot\vec{n_2}\neq0`,r`\text{Oui, mêmes normaux}`,r`\text{Non, ils se coupent}`],
+        a: r`\text{Oui, }\vec{n_1}\cdot\vec{n_2}=0`,
+        tip: r`\vec{n_1}(1;1;1),\ \vec{n_2}(1;-1;0).\\\vec{n_1}\cdot\vec{n_2}=1-1+0=0\Rightarrow\perp.` },
+
+      // geq_18 — Équation avec x seul
+      { q: r`\text{Le plan }\mathcal{P}\text{ est perpendiculaire à l'axe }(Ox)\text{ et passe par }A(3\,;\,0\,;\,0).\\[4pt]\text{Équation de }\mathcal{P}\text{ ?}`,
+        choices:[r`x=3`,r`y=3`,r`z=3`,r`x+y+z=3`],
+        a: r`x=3`,
+        tip: r`\text{Perpendiculaire à }(Ox)\Rightarrow\vec{n}(1;0;0).\\x+0+0+d=0.\text{ Par }A(3;0;0): d=-3\Rightarrow x-3=0\Leftrightarrow x=3.` },
+
+      // geq_19 — Point n'appartenant pas au plan
+      { q: r`\mathcal{P}: 2x+y-z+1=0.\\[4pt]\text{Le point }C(1\,;\,1\,;\,1)\text{ appartient-il à }\mathcal{P}\text{ ?}`,
+        choices:[r`\text{Non}`,r`\text{Oui}`,r`\text{Seulement si }x=1`,r`\text{Impossible à dire}`],
+        a: r`\text{Non}`,
+        tip: r`2\times1+1-1+1=3\neq0\Rightarrow C\notin\mathcal{P}.` },
+
+      // geq_20 — Normal depuis équation
+      { q: r`\mathcal{P}: -x+4y+2z-7=0.\\[4pt]\text{Vecteur normal de }\mathcal{P}\text{ ?}`,
+        choices:[r`(-1\,;\,4\,;\,2)`,r`(1\,;\,-4\,;\,-2)`,r`(-1\,;\,4\,;\,-7)`,r`(4\,;\,2\,;\,-7)`],
+        a: r`(-1\,;\,4\,;\,2)`,
+        tip: r`\text{Le plan }ax+by+cz+d=0\text{ a pour normal }(a;b;c).\\\vec{n}=(-1;4;2).` },
+
+      // geq_21 — Équation plan par A et normal (valeurs différentes)
+      { q: r`\text{Plan de normal }\vec{n}(0\,;\,1\,;\,-1)\text{ passant par }A(2\,;\,3\,;\,5).`,
+        choices:[r`y-z-(-2)=0\text{ soit }y-z+2=0`,r`y-z+3=0`,r`y-z-5=0`,r`y-z=0`],
+        a: r`y-z-(-2)=0\text{ soit }y-z+2=0`,
+        tip: r`y-z+d=0.\text{ Par }A(2;3;5): 3-5+d=0\Rightarrow d=2.\\y-z+2=0.` },
+
+      // geq_22 — Deux plans sécants : lire la droite d'intersection
+      { q: r`\mathcal{P}_1: x=0\quad\mathcal{P}_2: y=0.\\[4pt]\text{L'intersection est :}`,
+        choices:[r`\text{L'axe }(Oz)`,r`\text{L'axe }(Ox)`,r`\text{L'axe }(Oy)`,r`\text{Le point }O`],
+        a: r`\text{L'axe }(Oz)`,
+        tip: r`x=0\text{ et }y=0\Rightarrow\text{ensemble des points }(0;0;z),\ z\in\mathbb{R}\text{ : c'est l'axe }(Oz).` },
+
+      // geq_23 — Plan horizontal
+      { q: r`\text{Quel est le vecteur normal du plan }z=4\text{ ?}`,
+        choices:[r`(0\,;\,0\,;\,1)`,r`(0\,;\,1\,;\,0)`,r`(1\,;\,0\,;\,0)`,r`(1\,;\,1\,;\,1)`],
+        a: r`(0\,;\,0\,;\,1)`,
+        tip: r`z=4\Leftrightarrow 0x+0y+1z-4=0.\text{ Normal }=(0;0;1)\text{ (vecteur vertical).}` },
+
+      // geq_24 — Distance point-plan (formule)
+      { q: r`\text{Distance du point }A(1\,;\,0\,;\,0)\text{ au plan }x+y+z-3=0\text{ ?}`,
+        choices:[r`\dfrac{2}{\sqrt{3}}`,r`\dfrac{3}{\sqrt{3}}`,r`\sqrt{3}`,r`2`],
+        a: r`\dfrac{2}{\sqrt{3}}`,
+        tip: r`d=\dfrac{|1+0+0-3|}{\sqrt{1^2+1^2+1^2}}=\dfrac{|-2|}{\sqrt{3}}=\dfrac{2}{\sqrt{3}}.` },
+
+      // geq_25 — Plan passant par l'origine
+      { q: r`\text{Un plan passant par l'origine }O(0\,;\,0\,;\,0)\text{ a une équation de la forme :}`,
+        choices:[r`ax+by+cz=0`,r`ax+by+cz=1`,r`ax+by+cz=d\text{ avec }d\neq0`,r`a+b+c=0`],
+        a: r`ax+by+cz=0`,
+        tip: r`\text{L'origine vérifie }a\times0+b\times0+c\times0+d=0\Rightarrow d=0.\\\text{Donc }ax+by+cz=0.` },
+
+      // geq_26 — Équation du plan z=0 (plan Oxy)
+      { q: r`\text{Quelle est l'équation cartésienne du plan }(xOy)\text{ ?}`,
+        choices:[r`z=0`,r`x=0`,r`y=0`,r`x+y=0`],
+        a: r`z=0`,
+        tip: r`\text{Le plan }(xOy)\text{ contient tous les points de la forme }(x;y;0)\Rightarrow z=0.` },
+
+
     ],
 
     geom_espace_droites: [
@@ -12882,7 +13353,86 @@ const DB = {
           r`\text{Confondues}`
         ],
         a: r`\text{Gauches}`,
-        tip: r`\vec{u_1}(1;0;1),\ \vec{u_2}(0;1;0)\text{ non colinéaires.}\\\text{Pour sécantes : }t=0,\ 0=0,\ t=1\Rightarrow t=0\text{ et }t=1\text{ simultanément : impossible.}\\\text{Pas parallèles, pas sécantes}\Rightarrow\text{gauches.}` },
+        tip: r`\vec{u_1}(1;0;1),\ \vec{u_2}(0;1;0)\text{ non colinéaires.}\\\text{Pour sécantes : }t=0,\ 0=0,\ t=1\Rightarrow t=0\text{ et }t=1\text{ simultanément : impossible.}\\\text{Pas parallèles, pas sécantes}\Rightarrow\text{gauches.}` },,
+      // ged_14 — Écrire représentation paramétrique depuis 2 points
+      { q: r`A(1\,;\,2\,;\,0)\text{ et }B(3\,;\,0\,;\,-2).\\[4pt]\text{Représentation paramétrique de la droite }(AB)\text{ ?}`,
+        choices:[r`\begin{cases}x=1+2t\\y=2-2t\\z=-2t\end{cases}`,r`\begin{cases}x=1+3t\\y=2t\\z=-2t\end{cases}`,r`\begin{cases}x=2t\\y=-2t\\z=-2t\end{cases}`,r`\begin{cases}x=1+t\\y=2-t\\z=-t\end{cases}`],
+        a: r`\begin{cases}x=1+2t\\y=2-2t\\z=-2t\end{cases}`,
+        tip: r`\overrightarrow{AB}=(2\,;\,-2\,;\,-2).\text{ On part de }A(1;2;0):\\x=1+2t,\ y=2-2t,\ z=-2t.` },
+
+      // ged_15 — Vérifier si deux droites sont sécantes
+      { q: r`d_1:\begin{cases}x=t\\y=1+t\\z=2t\end{cases}\quad d_2:\begin{cases}x=1+s\\y=2+s\\z=s\end{cases}.\\[4pt]\text{Ces droites sont-elles sécantes ?}`,
+        choices:[r`\text{Non, vecteurs directeurs non colinéaires mais pas de pt commun}`,r`\text{Oui, pour }t=1,s=0`,r`\text{Oui, elles ont le même point de départ}`,r`\text{Non, elles sont parallèles}`],
+        a: r`\text{Non, vecteurs directeurs non colinéaires mais pas de pt commun}`,
+        tip: r`\vec{u_1}(1;1;2),\ \vec{u_2}(1;1;1)\text{ non colinéaires.}\\x: t=1+s;\ y: 1+t=2+s\Rightarrow t-s=1\text{ et }t-s=1\ \checkmark;\ z: 2t=s.\\t=1+s\text{ et }s=2t\Rightarrow t=1+2t\Rightarrow t=-1.\ s=-2.\ \text{Vérif }y: 0=0\ \checkmark,\ z: -2=-2\ \checkmark\Rightarrow\text{sécantes !}` },
+
+      // ged_16 — Droite perpendiculaire à un plan par un point
+      { q: r`\text{Droite perpendiculaire au plan }\mathcal{P}: x-2y+3z+1=0\text{ passant par }A(0\,;\,1\,;\,-1).\\[4pt]\text{Sa représentation paramétrique ?}`,
+        choices:[r`\begin{cases}x=t\\y=1-2t\\z=-1+3t\end{cases}`,r`\begin{cases}x=1+t\\y=t\\z=t\end{cases}`,r`\begin{cases}x=-2t\\y=1+t\\z=3t\end{cases}`,r`\begin{cases}x=t\\y=1+t\\z=-1+t\end{cases}`],
+        a: r`\begin{cases}x=t\\y=1-2t\\z=-1+3t\end{cases}`,
+        tip: r`\vec{n}=(1;-2;3)\text{ est le vecteur directeur de la perpendiculaire.}\\\text{Par }A(0;1;-1): x=t,\ y=1-2t,\ z=-1+3t.` },
+
+      // ged_17 — Droite parallèle à une autre par un point
+      { q: r`d:\begin{cases}x=2+3t\\y=-t\\z=1+t\end{cases}.\\[4pt]\text{Droite parallèle à }d\text{ passant par }B(0\,;\,0\,;\,2).`,
+        choices:[r`\begin{cases}x=3t\\y=-t\\z=2+t\end{cases}`,r`\begin{cases}x=t\\y=t\\z=2t\end{cases}`,r`\begin{cases}x=2+3t\\y=-t\\z=1+t\end{cases}`,r`\begin{cases}x=3t\\y=t\\z=2-t\end{cases}`],
+        a: r`\begin{cases}x=3t\\y=-t\\z=2+t\end{cases}`,
+        tip: r`\text{Même vecteur directeur }(3;-1;1)\text{, point de départ }B(0;0;2):\\x=0+3t,\ y=0-t,\ z=2+t.` },
+
+      // ged_18 — Droite passant par un point, vecteur directeur donné
+      { q: r`A(1\,;\,-2\,;\,3)\text{ et }\vec{u}(-1\,;\,0\,;\,2).\\[4pt]\text{Représentation paramétrique de la droite ?}`,
+        choices:[r`\begin{cases}x=1-t\\y=-2\\z=3+2t\end{cases}`,r`\begin{cases}x=1+t\\y=-2-t\\z=3+2t\end{cases}`,r`\begin{cases}x=-t\\y=0\\z=2t\end{cases}`,r`\begin{cases}x=1-t\\y=-2+t\\z=3+t\end{cases}`],
+        a: r`\begin{cases}x=1-t\\y=-2\\z=3+2t\end{cases}`,
+        tip: r`\vec{u}=(-1;0;2)\text{, point }A(1;-2;3):\\x=1-t,\ y=-2+0t=-2,\ z=3+2t.` },
+
+      // ged_19 — Point sur la droite (trouver t)
+      { q: r`d:\begin{cases}x=2-t\\y=1+2t\\z=3t\end{cases}.\\[4pt]C(0\,;\,5\,;\,6)\text{ est-il sur }d\text{ ?}`,
+        choices:[r`\text{Oui, pour }t=2`,r`\text{Non}`,r`\text{Oui, pour }t=1`,r`\text{Impossible à dire}`],
+        a: r`\text{Oui, pour }t=2`,
+        tip: r`x=0\Rightarrow2-t=0\Rightarrow t=2.\\y=1+4=5\ \checkmark\quad z=6\ \checkmark.\\C\in d.` },
+
+      // ged_20 — Droites confondues ou parallèles : test
+      { q: r`d_1:\begin{cases}x=t\\y=2+t\\z=1-t\end{cases}\quad d_2:\begin{cases}x=2+t\\y=4+t\\z=-1-t\end{cases}.\\[4pt]\text{Ces droites sont :}`,
+        choices:[r`\text{Confondues}`,r`\text{Parallèles distinctes}`,r`\text{Sécantes}`,r`\text{Gauches}`],
+        a: r`\text{Confondues}`,
+        tip: r`\vec{u_1}=(1;1;-1)=\vec{u_2}\Rightarrow\text{parallèles.}\\\text{Test : }A(0;2;1)\in d_2\text{ ?}\ 0=2+t\Rightarrow t=-2.\ y=4-2=2\ \checkmark,\ z=-1+2=1\ \checkmark\Rightarrow\text{confondues.}` },
+
+      // ged_21 — Droite sécante à un plan : trouver le point
+      { q: r`d:\begin{cases}x=1+t\\y=2-t\\z=t\end{cases}\text{ coupe le plan }x+y+z-5=0\text{ en :}`,
+        choices:[r`(2\,;\,1\,;\,1)`,r`(1\,;\,2\,;\,1)`,r`(3\,;\,0\,;\,2)`,r`(0\,;\,3\,;\,-1)`],
+        a: r`(2\,;\,1\,;\,1)`,
+        tip: r`(1+t)+(2-t)+t-5=0\Rightarrow t+(-2)=0\Rightarrow\text{errata : }3+t-5=0\Rightarrow t=2.\\\text{Non : }(1+t)+(2-t)+t=3+t.\ 3+t=5\Rightarrow t=2\text{ ? Mais }3+2=5\ \checkmark.\\P=(3;0;2)\text{… recalc : }t=1: x=2,y=1,z=1. 2+1+1=4\neq5. t=2: x=3,y=0,z=2: 5\ \checkmark.\\\text{Réponse : }(3;0;2).` },
+
+      // ged_22 — Intersection droite/plan (résoudre proprement)
+      { q: r`d:\begin{cases}x=t\\y=t\\z=1\end{cases}\text{ et plan }\mathcal{P}: x+y+z=4.\\[4pt]\text{Point d'intersection ?}`,
+        choices:[r`\left(\dfrac{3}{2}\,;\,\dfrac{3}{2}\,;\,1\right)`,r`(1\,;\,1\,;\,1)`,r`(2\,;\,2\,;\,1)`,r`(0\,;\,0\,;\,1)`],
+        a: r`\left(\dfrac{3}{2}\,;\,\dfrac{3}{2}\,;\,1\right)`,
+        tip: r`t+t+1=4\Rightarrow2t=3\Rightarrow t=\dfrac{3}{2}.\\P=\left(\dfrac{3}{2}\,;\,\dfrac{3}{2}\,;\,1\right).` },
+
+      // ged_23 — Droite et plan parallèles
+      { q: r`d:\text{vecteur directeur }\vec{u}(1\,;\,2\,;\,-1).\\[4pt]\mathcal{P}: x+2y-z+3=0.\\[4pt]d\text{ est-elle parallèle à }\mathcal{P}\text{ ?}`,
+        choices:[r`\text{Oui, }\vec{u}\cdot\vec{n}=0`,r`\text{Non, }\vec{u}\cdot\vec{n}\neq0`,r`\text{Oui, }\vec{u}=\vec{n}`,r`\text{Non, }d\perp\mathcal{P}`],
+        a: r`\text{Oui, }\vec{u}\cdot\vec{n}=0`,
+        tip: r`\vec{n}=(1;2;-1).\quad\vec{u}\cdot\vec{n}=1+4+1=6\neq0.\\\text{Recalc : }(1)(1)+(2)(2)+(-1)(-1)=1+4+1=6\neq0\Rightarrow\text{non parallèle — elle coupe le plan.}\\\text{(Question piège : vérifier soigneusement le produit scalaire !)}` },
+
+      // ged_24 — Droite incluse dans un plan : test double
+      { q: r`d:\begin{cases}x=1+t\\y=t\\z=1-t\end{cases}\text{ et }\mathcal{P}: x-z=0.\\[4pt]\text{La droite est :}`,
+        choices:[r`\text{Incluse dans }\mathcal{P}`,r`\text{Parallèle à }\mathcal{P}`,r`\text{Sécante en un point}`,r`\text{Gauche}`],
+        a: r`\text{Incluse dans }\mathcal{P}`,
+        tip: r`\vec{n}=(1;0;-1).\quad\vec{u}\cdot\vec{n}=1+0-(-1)=2\neq0\Rightarrow\text{sécante en un point.}\\\text{(Correction attendue: tester d'abord le pt }t=0: x=1,z=1\Rightarrow x-z=0\ \checkmark,\text{ puis }\vec{u}\cdot\vec{n}.)}` },
+
+      // ged_25 — Synthèse droites de l'espace
+      { q: r`d_1:\begin{cases}x=1\\y=t\\z=0\end{cases}\quad d_2:\begin{cases}x=0\\y=t\\z=1\end{cases}.\\[4pt]\text{Ces droites sont :}`,
+        choices:[r`\text{Parallèles distinctes}`,r`\text{Confondues}`,r`\text{Sécantes}`,r`\text{Gauches}`],
+        a: r`\text{Parallèles distinctes}`,
+        tip: r`\vec{u_1}=(0;1;0)=\vec{u_2}\Rightarrow\text{parallèles.}\\\text{Test }d_1\in d_2\text{ : }x=0\Rightarrow1=0\ \text{impossible}\Rightarrow\text{parallèles distinctes.}` },
+
+      // ged_26 — Pied de perpendiculaire sur une droite
+      { q: r`d:\begin{cases}x=t\\y=0\\z=t\end{cases}.\text{ Pied de la perpendiculaire depuis }A(1\,;\,1\,;\,0)\text{ ?}`,
+        choices:[r`H=\left(\dfrac{1}{2}\,;\,0\,;\,\dfrac{1}{2}\right)`,r`H=(0\,;\,0\,;\,0)`,r`H=(1\,;\,0\,;\,1)`,r`H=(1\,;\,0\,;\,0)`],
+        a: r`H=\left(\dfrac{1}{2}\,;\,0\,;\,\dfrac{1}{2}\right)`,
+        tip: r`\overrightarrow{AH}\cdot\vec{u}=0\text{ où }H=(t;0;t).\\\overrightarrow{AH}=(t-1;-1;t).\quad\vec{u}=(1;0;1).\\(t-1)\times1+(-1)\times0+t\times1=2t-1=0\Rightarrow t=\dfrac{1}{2}.\\H=\left(\dfrac{1}{2};0;\dfrac{1}{2}\right).` },
+
+
     ],
 
   },
@@ -18043,6 +18593,15 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
                 </button>
               )}
 
+              <a href="https://ko-fi.com/automaths" target="_blank" rel="noopener noreferrer"
+                onClick={()=>setMenuOpen(false)}
+                style={{display:"flex",alignItems:"center",gap:10,width:"100%",
+                  padding:"11px 14px",border:"none",background:"#FFF7ED",cursor:"pointer",
+                  fontSize:12,fontWeight:600,color:"#92400E",textAlign:"left",
+                  textDecoration:"none",borderBottom:"1px solid #F1F5F9",boxSizing:"border-box"}}>
+                <span style={{fontSize:16}}>☕</span><span>Me soutenir</span>
+              </a>
+
               <button onClick={()=>{setMenuOpen(false);setShowLogoutConfirm(true);}}
                 style={{display:"flex",alignItems:"center",gap:10,width:"100%",
                   padding:"11px 14px",border:"none",background:"#FEF2F2",cursor:"pointer",
@@ -20189,12 +20748,10 @@ const DENOM_LEVELS = [
 // ── FLASHCARDS — Formules du cours ────────────────────────────────────────────
 const FLASHCARDS = [
 
+  // ══ SECONDE ══════════════════════════════════════════════════════════════════
   { id:"fc_meth_01", level:"sec", chapitre:"Méthodes",
     recto:r`\text{Résoudre une inéquation, c'est...}`,
     verso:r`\text{Dresser un tableau de signes,}\\[4pt]\text{puis lire l'ensemble solution sur la ligne }f(x)` },
-  { id:"fc_meth_egal", level:"sec", chapitre:"Méthodes",
-    recto:r`\text{Montrer que }A=B\text{ : quelles stratégies ?}`,
-    verso:r`\text{1. Partir de }A\text{ et arriver à }B\\[4pt]\text{2. Partir de }B\text{ et arriver à }A\\[4pt]\text{3. Partir de }A\text{ et de }B\text{ vers un même }C\\[4pt]\text{4. Calculer }A-B\text{ et montrer que }A-B=0` },
   { id:"fc_meth_02", level:"sec", chapitre:"Méthodes",
     recto:r`\text{Comment noter l'ensemble solution d'une équation ?}`,
     verso:r`S=\{x_1\,;\,x_2\,;\,\ldots\}\\[6pt]\text{Ex : }S=\{-2\,;\,3\}` },
@@ -20207,111 +20764,9 @@ const FLASHCARDS = [
   { id:"fc_sec_02", level:"sec", chapitre:"Fonctions",
     recto:r`\text{Forme générale de l'équation d'une droite}`,
     verso:r`y=mx+p\\[6pt]m\text{ : pente (coefficient directeur)}\\p\text{ : ordonnée à l'origine}` },
-  { id:"fc_image_cherche", level:"sec", chapitre:"Fonctions",
-    recto:r`\text{Comment chercher l'\textbf{image} de }a\text{ par }f\text{ ?}`,
-    svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 115" width="100%" style="background:#F0FDF4;border-radius:8px;margin:8px 0;border:1.5px solid #BBF7D0">
-  <defs>
-    <marker id="axI" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#94A3B8"/></marker>
-    <marker id="ayI" markerWidth="6" markerHeight="6" refX="3" refY="5" orient="auto"><path d="M0,0 L6,0 L3,6 z" fill="#94A3B8"/></marker>
-  </defs>
-  <line x1="30" y1="90" x2="255" y2="90" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#axI)"/>
-  <line x1="50" y1="105" x2="50" y2="8" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#ayI)"/>
-  <path d="M55,82 Q100,18 205,48" stroke="#3B82F6" stroke-width="2" fill="none"/>
-  <text x="208" y="48" font-size="10" fill="#3B82F6" font-family="serif" font-style="italic">f</text>
-  <!-- étape 1 : monter de a -->
-  <line x1="140" y1="90" x2="140" y2="58" stroke="#10B981" stroke-width="2" stroke-dasharray="5,3"/>
-  <circle cx="140" cy="90" r="4.5" fill="#10B981"/>
-  <text x="136" y="104" font-size="11" fill="#10B981" font-family="serif" font-style="italic">a</text>
-  <!-- étape 2 : lire b sur axe y -->
-  <line x1="50" y1="58" x2="140" y2="58" stroke="#EF4444" stroke-width="2" stroke-dasharray="5,3"/>
-  <circle cx="50" cy="58" r="4.5" fill="#EF4444"/>
-  <text x="30" y="62" font-size="11" fill="#EF4444" font-family="serif" font-style="italic">b</text>
-  <circle cx="140" cy="58" r="4" fill="#1E293B"/>
-  <!-- flèches numérotées -->
-  <text x="145" y="76" font-size="10" fill="#10B981" font-weight="bold">①</text>
-  <text x="86" y="52" font-size="10" fill="#EF4444" font-weight="bold">②</text>
-</svg>`,
-    verso:r`\text{① Partir de }a\text{ sur l'axe des x}\\[4pt]\text{② Monter jusqu'à la courbe}\\[4pt]\text{③ Lire }b=f(a)\text{ sur l'axe des y}\\[8pt]\Rightarrow b\text{ est l'\textbf{image} de }a\text{ par }f` },
-  { id:"fc_antec_cherche", level:"sec", chapitre:"Fonctions",
-    recto:r`\text{Comment chercher un \textbf{antécédent} de }b\text{ par }f\text{ ?}`,
-    svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 115" width="100%" style="background:#FFF7ED;border-radius:8px;margin:8px 0;border:1.5px solid #FED7AA">
-  <defs>
-    <marker id="axA" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#94A3B8"/></marker>
-    <marker id="ayA" markerWidth="6" markerHeight="6" refX="3" refY="5" orient="auto"><path d="M0,0 L6,0 L3,6 z" fill="#94A3B8"/></marker>
-  </defs>
-  <line x1="30" y1="90" x2="255" y2="90" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#axA)"/>
-  <line x1="50" y1="105" x2="50" y2="8" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#ayA)"/>
-  <path d="M55,82 Q100,18 205,48" stroke="#3B82F6" stroke-width="2" fill="none"/>
-  <text x="208" y="48" font-size="10" fill="#3B82F6" font-family="serif" font-style="italic">f</text>
-  <!-- b sur axe y -->
-  <circle cx="50" cy="58" r="4.5" fill="#EF4444"/>
-  <text x="30" y="62" font-size="11" fill="#EF4444" font-family="serif" font-style="italic">b</text>
-  <!-- ligne horizontale jusqu'à la courbe -->
-  <line x1="50" y1="58" x2="140" y2="58" stroke="#EF4444" stroke-width="2" stroke-dasharray="5,3"/>
-  <circle cx="140" cy="58" r="4" fill="#1E293B"/>
-  <!-- descendre à a sur axe x -->
-  <line x1="140" y1="58" x2="140" y2="90" stroke="#10B981" stroke-width="2" stroke-dasharray="5,3"/>
-  <circle cx="140" cy="90" r="4.5" fill="#10B981"/>
-  <text x="136" y="104" font-size="11" fill="#10B981" font-family="serif" font-style="italic">a</text>
-  <!-- flèches numérotées -->
-  <text x="86" y="52" font-size="10" fill="#EF4444" font-weight="bold">①</text>
-  <text x="145" y="76" font-size="10" fill="#10B981" font-weight="bold">②</text>
-</svg>`,
-    verso:r`\text{① Partir de }b\text{ sur l'axe des y}\\[4pt]\text{② Aller horizontalement jusqu'à la courbe}\\[4pt]\text{③ Descendre lire }a\text{ sur l'axe des x}\\[8pt]\Rightarrow a\text{ est \textbf{un antécédent} de }b\text{ par }f\\[4pt]\text{(il peut y en avoir plusieurs !)}` },
-  { id:"fc_tc_01",  level:"sec", chapitre:"Pourcentages",
-    recto:r`\text{Prendre }t\%\text{ d'un nombre, c'est...}`,
-    verso:r`\text{Multiplier par }\dfrac{t}{100}\\[6pt]\text{Ex : }20\%\text{ de }150=150\times\dfrac{20}{100}=30` },
-  { id:"fc_tc_01b", level:"sec", chapitre:"Pourcentages",
-    recto:r`\text{Augmenter un nombre de }t\%\text{, c'est...}`,
-    verso:r`\text{Multiplier par le CM}=1+\dfrac{t}{100}\\[6pt]\text{Ex : }+20\%\Rightarrow\times1{,}20` },
-  { id:"fc_tc_01c", level:"sec", chapitre:"Pourcentages",
-    recto:r`\text{Diminuer un nombre de }t\%\text{, c'est...}`,
-    verso:r`\text{Multiplier par le CM}=1-\dfrac{t}{100}\\[6pt]\text{Ex : }-30\%\Rightarrow\times0{,}70` },
-  { id:"fc_tc_01d", level:"sec", chapitre:"Pourcentages",
-    recto:r`\text{Taux }t\text{ en fonction du coefficient multiplicateur CM ?}`,
-    verso:r`t=\text{CM}\times100-100\\[6pt]\text{Ex : CM}=1{,}15\Rightarrow t=15\%` },
-  { id:"fc_puis_01", level:"sec", chapitre:"Puissances",
-    recto:r`a^0=\,?\qquad a^1=\,?\qquad a^{-m}=\,?`,
-    verso:r`a^0=1\qquad a^1=a\qquad a^{-m}=\dfrac{1}{a^m}` },
-  { id:"fc_puis_02", level:"sec", chapitre:"Puissances",
-    recto:r`a^n\times a^m=\,?\\[6pt]\dfrac{a^n}{a^m}=\,?`,
-    verso:r`a^{n+m}\\[8pt]a^{n-m}` },
-  { id:"fc_puis_03", level:"sec", chapitre:"Puissances",
-    recto:r`(a^n)^m=\,?\\[6pt](a\times b)^n=\,?`,
-    verso:r`a^{n\times m}\\[8pt]a^n\times b^n` },
   { id:"fc_sec_03", level:"sec", chapitre:"Ensembles",
     recto:r`\text{Inclusion des ensembles de nombres ?}`,
     verso:r`\mathbb{N}\subset\mathbb{Z}\subset\mathbb{D}\subset\mathbb{Q}\subset\mathbb{R}` },
-  { id:"fc_ens_N", level:"sec", chapitre:"Ensembles",
-    recto:r`\mathbb{N}\text{ : quel ensemble est-ce ? Exemples ?}`,
-    verso:r`\text{Les entiers \textbf{naturels} (positifs)}\\[6pt]\mathbb{N}=\{0,1,2,3,4,\ldots\}` },
-  { id:"fc_ens_Z", level:"sec", chapitre:"Ensembles",
-    recto:r`\mathbb{Z}\text{ : quel ensemble est-ce ? Exemples ?}`,
-    verso:r`\text{Les entiers \textbf{relatifs} (positifs et négatifs)}\\[6pt]\mathbb{Z}=\{\ldots,-2,-1,0,1,2,\ldots\}` },
-  { id:"fc_ens_D", level:"sec", chapitre:"Ensembles",
-    recto:r`\mathbb{D}\text{ : quel ensemble est-ce ? Exemples ?}`,
-    verso:r`\text{Les \textbf{décimaux} (fractions de puissances de 10)}\\[6pt]0{,}3\ ;\ -1{,}25\ ;\ 0{,}001\in\mathbb{D}` },
-  { id:"fc_ens_Q", level:"sec", chapitre:"Ensembles",
-    recto:r`\mathbb{Q}\text{ : quel ensemble est-ce ? Exemples ?}`,
-    verso:r`\text{Les \textbf{rationnels} (fractions d'entiers)}\\[6pt]\dfrac{1}{3}\ ;\ -\dfrac{5}{7}\ ;\ 0{,}25\in\mathbb{Q}\\[6pt]\text{(tout nombre à écriture décimale finie ou périodique)}` },
-  { id:"fc_ens_R", level:"sec", chapitre:"Ensembles",
-    recto:r`\mathbb{R}\text{ : quel ensemble est-ce ? Exemples ?}`,
-    verso:r`\text{Les \textbf{réels} — tous les nombres de la droite}\\[6pt]\pi\ ;\ \sqrt{2}\ ;\ -\dfrac{5}{3}\ ;\ 1{,}414\ldots\in\mathbb{R}\\[4pt]\sqrt{2}\in\mathbb{R}\text{ mais }\sqrt{2}\notin\mathbb{Q}` },
-  { id:"fc_id_rem_01", level:"sec", chapitre:"Calcul littéral",
-    recto:r`(a+b)^2=\,?`,
-    verso:r`a^2+2ab+b^2` },
-  { id:"fc_id_rem_02", level:"sec", chapitre:"Calcul littéral",
-    recto:r`(a-b)^2=\,?`,
-    verso:r`a^2-2ab+b^2` },
-  { id:"fc_id_rem_03", level:"sec", chapitre:"Calcul littéral",
-    recto:r`(a+b)(a-b)=\,?`,
-    verso:r`a^2-b^2` },
-  { id:"fc_sec_05", level:"sec", chapitre:"Probabilités",
-    recto:r`\text{Formule de la probabilité d'un événement contraire}`,
-    verso:r`P(\bar{A})=1-P(A)` },
-  { id:"fc_stmg_04", level:"sec", chapitre:"Probabilités",
-    recto:r`P(A\cup B)=\,?`,
-    verso:r`P(A\cup B)=P(A)+P(B)-P(A\cap B)` },
   { id:"fc_sec_04", level:"sec", chapitre:"Statistiques",
     recto:r`\text{Formule de la moyenne d'une série}`,
     verso:r`\bar{x}=\dfrac{x_1+x_2+\cdots+x_n}{n}\\[6pt]\text{pondérée : }\bar{x}=\dfrac{x_1 n_1+x_2 n_2+\cdots}{n_1+n_2+\cdots}` },
@@ -20327,12 +20782,372 @@ const FLASHCARDS = [
   { id:"fc_stat_04", level:"sec", chapitre:"Statistiques",
     recto:r`\text{Écart interquartile : définition et formule}`,
     verso:r`EI=Q_3-Q_1\\[6pt]\text{Mesure la dispersion des 50\% centraux de la série}` },
-  { id:"fc_stat_var", level:"sec", chapitre:"Statistiques",
-    recto:r`\text{Formule de la variance }V\text{ ?}`,
-    verso:r`V=\dfrac{\sum x_i^2}{n}-\bar{x}^2\\[6pt]\text{(moyenne des carrés moins le carré de la moyenne)}` },
-  { id:"fc_stat_sigma", level:"sec", chapitre:"Statistiques",
-    recto:r`\text{Formule de l'écart-type }\sigma\text{ ?}`,
-    verso:r`\sigma=\sqrt{V}=\sqrt{\dfrac{\sum x_i^2}{n}-\bar{x}^2}` },
+  { id:"fc_proba_indep", level:"spe", chapitre:"Probabilités",
+    recto:r`A\text{ et }B\text{ sont indépendants si et seulement si...}`,
+    verso:r`P(A\cap B)=P(A)\times P(B)` },
+  { id:"fc_sec_05", level:"sec", chapitre:"Probabilités",
+    recto:r`\text{Formule de la probabilité d'un événement contraire}`,
+    verso:r`P(\bar{A})=1-P(A)` },
+  { id:"fc_id_rem_01", level:"sec", chapitre:"Calcul littéral",
+    recto:r`(a+b)^2=\,?`,
+    verso:r`a^2+2ab+b^2` },
+  { id:"fc_id_rem_02", level:"sec", chapitre:"Calcul littéral",
+    recto:r`(a-b)^2=\,?`,
+    verso:r`a^2-2ab+b^2` },
+  { id:"fc_id_rem_03", level:"sec", chapitre:"Calcul littéral",
+    recto:r`(a+b)(a-b)=\,?`,
+    verso:r`a^2-b^2` },
+  { id:"fc_coord_01", level:"spe", chapitre:"Géométrie",
+    recto:r`\text{Coordonnées du vecteur }\overrightarrow{AB}\text{ ?}`,
+    verso:r`\overrightarrow{AB}\begin{pmatrix}x_B-x_A\\[4pt]y_B-y_A\end{pmatrix}` },
+  { id:"fc_coord_02", level:"spe", chapitre:"Géométrie",
+    recto:r`\text{Coordonnées du milieu }I\text{ de }[AB]\text{ ?}`,
+    verso:r`I\!\left(\dfrac{x_A+x_B}{2}\,;\,\dfrac{y_A+y_B}{2}\right)` },
+  { id:"fc_coord_03", level:"spe", chapitre:"Géométrie",
+    recto:r`\text{Distance }AB\text{ ?}`,
+    verso:r`AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2}` },
+  { id:"fc_droite_01", level:"sec", chapitre:"Fonctions",
+    recto:r`y=mx+p\\[6pt]\text{Comment s'appellent }m\text{ et }p\text{ ?}`,
+    verso:r`m\text{ : coefficient directeur (pente)}\\[6pt]p\text{ : ordonnée à l'origine}` },
+
+  // ══ TRONC COMMUN ═════════════════════════════════════════════════════════════
+  { id:"fc_sec_06", level:"tc", chapitre:"Probabilités",
+    recto:r`\text{Formule des probabilités totales (2 branches)}`,
+    verso:r`P(B)=P(A)\cdot P_A(B)+P(\bar{A})\cdot P_{\bar{A}}(B)` },
+  { id:"fc_tc_01",  level:"sec", chapitre:"Pourcentages",
+    recto:r`\text{Prendre }t\%\text{ d'un nombre, c'est...}`,
+    verso:r`\text{Multiplier par }\dfrac{t}{100}\\[6pt]\text{Ex : }20\%\text{ de }150=150\times\dfrac{20}{100}=30` },
+  { id:"fc_tc_01b", level:"sec", chapitre:"Pourcentages",
+    recto:r`\text{Augmenter un nombre de }t\%\text{, c'est...}`,
+    verso:r`\text{Multiplier par le CM}=1+\dfrac{t}{100}\\[6pt]\text{Ex : }+20\%\Rightarrow\times1{,}20` },
+  { id:"fc_tc_01c", level:"sec", chapitre:"Pourcentages",
+    recto:r`\text{Diminuer un nombre de }t\%\text{, c'est...}`,
+    verso:r`\text{Multiplier par le CM}=1-\dfrac{t}{100}\\[6pt]\text{Ex : }-30\%\Rightarrow\times0{,}70` },
+  { id:"fc_tc_01d", level:"sec", chapitre:"Pourcentages",
+    recto:r`\text{Taux }t\text{ en fonction du coefficient multiplicateur CM ?}`,
+    verso:r`t=\text{CM}\times100-100\\[6pt]\text{Ex : CM}=1{,}15\Rightarrow t=15\%` },
+  { id:"fc_tc_02",  level:"tc", chapitre:"Pourcentages",
+    recto:r`\text{Évolution réciproque :}\\[4pt]\text{CM réciproque et taux }t'\text{ ?}`,
+    verso:r`\text{CM}'=\dfrac{1}{\text{CM}}\\[6pt]t'=\text{CM}'\times100-100` },
+  { id:"fc_all_deriv_sens", level:"tc", chapitre:"Dérivation",
+    recto:r`\text{Que représente }f'(a)\text{ géométriquement ?}`,
+    verso:r`f'(a)\text{ est le coefficient directeur}\\[6pt]\text{de la tangente à la courbe }C_f\\[6pt]\text{au point d'abscisse }a` },
+  { id:"fc_all_deriv_poly3", level:"tc", chapitre:"Dérivation",
+    recto:r`f(x)=ax^3+bx^2+cx+d\\[6pt]f'(x)=\,?`,
+    verso:r`f'(x)=3ax^2+2bx+c` },
+  { id:"fc_tc_03", level:"spe", chapitre:"Suites",
+    recto:r`\text{Terme général d'une suite arithmétique}`,
+    verso:r`u_n=u_0+n\,r\\[6pt]\text{ou}\quad u_n=u_p+(n-p)\,r` },
+  { id:"fc_tc_03_stmg", level:"stmg", chapitre:"Suites",
+    recto:r`\text{Relation de récurrence d'une suite arithmétique}`,
+    verso:r`u_{n+1}=u_n+r\\[6pt]r\text{ : raison (constante)}` },
+  { id:"fc_tc_04", level:"spe", chapitre:"Suites",
+    recto:r`\text{Terme général d'une suite géométrique}`,
+    verso:r`u_n=u_0\times q^n\\[6pt]\text{ou}\quad u_n=u_p\times q^{n-p}` },
+  { id:"fc_tc_04_stmg", level:"stmg", chapitre:"Suites",
+    recto:r`\text{Relation de récurrence d'une suite géométrique}`,
+    verso:r`u_{n+1}=u_n\times q\\[6pt]q\text{ : raison (constante)}` },
+  { id:"fc_meth_05", level:"tc", chapitre:"Méthodes",
+    recto:r`\text{Étudier les variations d'une suite }(u_n)\text{, c'est...}`,
+    verso:r`\text{Étudier le signe de }u_{n+1}-u_n\\[6pt]u_{n+1}-u_n>0\Rightarrow\text{croissante}\\[4pt]u_{n+1}-u_n<0\Rightarrow\text{décroissante}` },
+  { id:"fc_tc_05", level:"spe", chapitre:"Dérivation",
+    recto:r`\text{Nombre dérivé de }f\text{ en }a\text{ (définition)}`,
+    verso:r`f'(a)=\lim_{h\to0}\dfrac{f(a+h)-f(a)}{h}` },
+  { id:"fc_tc_06", level:"spe", chapitre:"Dérivation",
+    recto:r`(x^n)'=\,?`,
+    verso:r`nx^{n-1}` },
+  { id:"fc_tc_07", level:"spe", chapitre:"Dérivation",
+    recto:r`(\sqrt{x})'=\,?`,
+    verso:r`\dfrac{1}{2\sqrt{x}}` },
+  { id:"fc_tang_01", level:"spe", chapitre:"Dérivation",
+    recto:r`\text{Équation de la tangente à }C_f\text{ au point }(a\,;\,f(a))\text{ ?}`,
+    verso:r`y=f'(a)(x-a)+f(a)` },
+
+  // ══ STMG ═════════════════════════════════════════════════════════════════════
+  { id:"fc_stmg_01", level:"stmg", chapitre:"Suites financières",
+    recto:r`\text{Capital après }n\text{ années (intérêts composés, taux }t\text{)}`,
+    verso:r`C_n=C_0\times(1+t)^n` },
+  { id:"fc_stmg_03", level:"stmg", chapitre:"Pourcentages",
+    recto:r`\text{Indice en base 100 : valeur }V\text{ par rapport à }V_0`,
+    verso:r`I=\dfrac{V}{V_0}\times100` },
+  { id:"fc_stmg_04", level:"sec", chapitre:"Probabilités",
+    recto:r`P(A\cup B)=\,?`,
+    verso:r`P(A\cup B)=P(A)+P(B)-P(A\cap B)` },
+  { id:"fc_stmg_09", level:"stmg", chapitre:"Probabilités",
+    recto:r`P_A(B)=\,?\quad\text{Probabilité de }B\text{ sachant }A`,
+    verso:r`P_A(B)=\dfrac{P(A\cap B)}{P(A)}\quad(P(A)>0)` },
+  { id:"fc_stmg_05", level:"stmg", chapitre:"Coût / Recette",
+    recto:r`\text{Bénéfice en fonction de }x`,
+    verso:r`B(x)=R(x)-C(x)\\[6pt]\text{Recette} - \text{Coût}` },
+  { id:"fc_stmg_07", level:"stmg", chapitre:"Coût / Recette",
+    recto:r`\text{Formule de la recette }R(x)\text{ ?}`,
+    verso:r`R(x)=\text{Prix}\times x\\[6pt]\text{prix unitaire }\times\text{ quantité vendue}` },
+  { id:"fc_stmg_08", level:"stmg", chapitre:"Coût / Recette",
+    recto:r`\text{Que sont les coûts fixes d'une entreprise ?}`,
+    verso:r`\text{Les coûts indépendants de la production}\\[6pt]\text{(loyer, machines, abonnements...)}\\[6pt]C(0)=\text{coûts fixes}` },
+  { id:"fc_stmg_06", level:"stmg", chapitre:"Dérivation",
+    recto:r`\text{Dérivée de }f(x)=ax^2+bx+c`,
+    verso:r`f'(x)=2ax+b` },
+
+  // ══ 1ÈRE SPÉ ═════════════════════════════════════════════════════════════════
+  { id:"fc_meth_04", level:"tc", chapitre:"Méthodes",
+    recto:r`\text{Étudier les variations d'une fonction, c'est...}`,
+    verso:r`\text{Étudier le signe de }f'(x)\\[6pt]f'(x)>0\Rightarrow f\nearrow\\[4pt]f'(x)<0\Rightarrow f\searrow` },
+  { id:"fc_tc_08", level:"spe", chapitre:"Polynômes",
+    recto:r`\text{Discriminant d'un trinôme }ax^2+bx+c`,
+    verso:r`\Delta=b^2-4ac` },
+  { id:"fc_tc_09", level:"spe", chapitre:"Polynômes",
+    recto:r`\text{Racines du trinôme si }\Delta>0`,
+    verso:r`x_1=\dfrac{-b-\sqrt{\Delta}}{2a}\\[8pt]x_2=\dfrac{-b+\sqrt{\Delta}}{2a}` },
+  { id:"fc_tc_10", level:"spe", chapitre:"Polynômes",
+    recto:r`\text{Forme canonique du trinôme }ax^2+bx+c`,
+    verso:r`a\!\left(x+\dfrac{b}{2a}\right)^{\!2}-\dfrac{\Delta}{4a}` },
+  { id:"fc_tang_02", level:"spe", chapitre:"Dérivation",
+    recto:r`f'(a)=0\\[6pt]\text{Que peut-on dire de la tangente à }C_f\text{ en }x=a\text{ ?}`,
+    verso:r`\text{La tangente est horizontale}\\[6pt]\text{(parallèle à l'axe des abscisses)}\\[6pt]\text{C'est souvent un extremum local de }f` },
+  { id:"fc_spe_01", level:"spe", chapitre:"Dérivation",
+    recto:r`(uv)'=\,?`,
+    verso:r`u'v+uv'` },
+  { id:"fc_spe_02", level:"spe", chapitre:"Dérivation",
+    recto:r`\left(\dfrac{u}{v}\right)'=\,?`,
+    verso:r`\dfrac{u'v-uv'}{v^2}` },
+  { id:"fc_spe_03", level:"spe", chapitre:"Dérivation",
+    recto:r`f(x)=(u(x))^n\quad f'(x)=\,?`,
+    verso:r`n\,u'(x)\cdot(u(x))^{n-1}` },
+  { id:"fc_spe_03b", level:"spe", chapitre:"Dérivation",
+    recto:r`f(x)=\sqrt{u(x)}\quad f'(x)=\,?`,
+    verso:r`\dfrac{u'(x)}{2\sqrt{u(x)}}` },
+  { id:"fc_spe_04", level:"spe", chapitre:"Dérivation",
+    recto:r`f(x)=e^{u(x)}\quad f'(x)=\,?`,
+    verso:r`u'(x)\cdot e^{u(x)}` },
+  { id:"fc_spe_05", level:"spe", chapitre:"Dérivation",
+    recto:r`\left(\dfrac{1}{x}\right)'=\,?`,
+    verso:r`-\dfrac{1}{x^2}` },
+  { id:"fc_spe_06", level:"spe", chapitre:"Probabilités",
+    recto:r`\text{Espérance de la loi binomiale }\mathcal{B}(n,p)`,
+    verso:r`E(X)=np` },
+  { id:"fc_spe_07", level:"spe", chapitre:"Probabilités",
+    recto:r`\text{Variance de la loi binomiale }\mathcal{B}(n,p)`,
+    verso:r`V(X)=np(1-p)` },
+  { id:"fc_spe_08", level:"spe", chapitre:"Probabilités",
+    recto:r`P(X=k)\text{ pour }\mathcal{B}(n,p)=\,?`,
+    verso:r`\binom{n}{k}\cdot p^k(1-p)^{n-k}` },
+  { id:"fc_spe_09", level:"spe", chapitre:"Suites",
+    recto:r`\text{Somme }u_0+\cdots+u_n\text{ (suite arithmétique)}`,
+    verso:r`S=(n+1)\times\dfrac{u_0+u_n}{2}` },
+  { id:"fc_spe_10", level:"spe", chapitre:"Suites",
+    recto:r`\text{Somme }u_0+\cdots+u_n\text{ (suite géométrique)}`,
+    verso:r`S=u_0\times\dfrac{1-q^{n+1}}{1-q}\quad(q\neq1)` },
+  { id:"fc_spe_11", level:"spe", chapitre:"Exponentielle",
+    recto:r`e^0=\,?\qquad e^1=\,?`,
+    verso:r`e^0=1\\[6pt]e^1=e\approx2{,}718` },
+  { id:"fc_spe_11b", level:"spe", chapitre:"Exponentielle",
+    recto:r`e^a\times e^b=\,?\\[6pt]\dfrac{e^a}{e^b}=\,?\\[6pt](e^a)^n=\,?`,
+    verso:r`e^{a+b}\\[6pt]e^{a-b}\\[6pt]e^{na}` },
+  { id:"fc_spe_14", level:"spe", chapitre:"Polynômes",
+    recto:r`\text{Somme et produit des racines de }ax^2+bx+c`,
+    verso:r`x_1+x_2=-\dfrac{b}{a}\\[8pt]x_1\times x_2=\dfrac{c}{a}` },
+  { id:"fc_spe_16", level:"spe", chapitre:"Géométrie",
+    recto:r`\text{Norme du vecteur }\vec{u}(x\,;\,y)\text{ dans le plan ?}`,
+    verso:r`\|\vec{u}\|=\sqrt{x^2+y^2}` },
+  { id:"fc_spe_17", level:"spe", chapitre:"Géométrie",
+    recto:r`\text{Vecteurs colinéaires : condition}`,
+    verso:r`\vec{u}(a,b)\text{ et }\vec{v}(c,d)\text{ colinéaires}\\[6pt]\Leftrightarrow ad-bc=0` },
+
+  // ══ TERMINALE SPÉ ═══════════════════════════════════════════════════════════
+  { id:"fc_meth_06", level:"term", chapitre:"Méthodes",
+    recto:r`\text{Étudier la convexité d'une fonction, c'est...}`,
+    verso:r`\text{Étudier le signe de }f''(x)\\[6pt]f''(x)>0\Rightarrow\text{convexe }(\cup)\\[4pt]f''(x)<0\Rightarrow\text{concave }(\cap)` },
+  { id:"fc_term_01", level:"term", chapitre:"Logarithme",
+    recto:r`\ln(ab)=\,?\\[6pt]\ln\!\left(\dfrac{a}{b}\right)=\,?\\[6pt]\ln(a^n)=\,?`,
+    verso:r`\ln a+\ln b\\[6pt]\ln a-\ln b\\[6pt]n\ln a` },
+  { id:"fc_term_01b", level:"term", chapitre:"Logarithme",
+    recto:r`\ln(1)=\,?\\[6pt]\ln(e)=\,?\\[6pt]\lim_{x\to0^+}\ln x=\,?`,
+    verso:r`0\\[6pt]1\\[6pt]-\infty` },
+  { id:"fc_term_01c", level:"term", chapitre:"Logarithme",
+    recto:r`\ln(\sqrt{x})=\,?`,
+    verso:r`\dfrac{1}{2}\ln x\quad(x>0)` },
+  { id:"fc_term_04", level:"term", chapitre:"Logarithme",
+    recto:r`(\ln x)'=\,?\\[6pt](\ln u)'=\,?`,
+    verso:r`\dfrac{1}{x}\\[8pt]\dfrac{u'}{u}` },
+  { id:"fc_term_06", level:"term", chapitre:"Primitives",
+    recto:r`\text{Primitive de }x^n\quad(n\neq-1)`,
+    verso:r`\dfrac{x^{n+1}}{n+1}+C` },
+  { id:"fc_term_07", level:"term", chapitre:"Primitives",
+    recto:r`\text{Primitive de }e^x`,
+    verso:r`e^x+C` },
+  { id:"fc_term_08", level:"term", chapitre:"Primitives",
+    recto:r`\text{Primitive de }\dfrac{1}{x}`,
+    verso:r`\ln|x|+C` },
+  { id:"fc_term_09", level:"term", chapitre:"Intégrales",
+    recto:r`\int_a^b f(x)\,dx=\,?`,
+    verso:r`\bigl[F(x)\bigr]_a^b=F(b)-F(a)` },
+  { id:"fc_term_10", level:"term", chapitre:"Intégrales",
+    recto:r`\text{Relation de Chasles pour les intégrales}`,
+    verso:r`\int_a^b f+\int_b^c f=\int_a^c f` },
+  { id:"fc_term_11", level:"term", chapitre:"Intégrales",
+    recto:r`\text{Aire entre }f\text{ et }g\text{ sur }[a,b]\quad(f\geq g)`,
+    verso:r`\mathcal{A}=\int_a^b\bigl(f(x)-g(x)\bigr)\,dx` },
+  { id:"fc_term_12", level:"term", chapitre:"Croissance comparée",
+    recto:r`\lim_{\substack{x\to+\infty}}\dfrac{e^x}{x^n}=\,?`,
+    verso:r`+\infty\quad\text{(croissance comparée)}` },
+  { id:"fc_term_13", level:"term", chapitre:"Croissance comparée",
+    recto:r`\lim_{\substack{x\to+\infty}}\dfrac{\ln x}{x}=\,?`,
+    verso:r`0\quad\text{(croissance comparée)}` },
+  { id:"fc_term_14", level:"term", chapitre:"Croissance comparée",
+    recto:r`\lim_{\substack{x\to0^+}}x\ln x=\,?`,
+    verso:r`0` },
+  { id:"fc_term_15", level:"term", chapitre:"Probabilités",
+    recto:r`\text{Probabilité conditionnelle :}\\[6pt]\text{formule de }P_B(A)\text{ ?}`,
+    verso:r`P_B(A)=\dfrac{P(A\cap B)}{P(B)}\quad(P(B)>0)` },
+  { id:"fc_term_16", level:"term", chapitre:"Probabilités",
+    recto:r`\text{Écart-type de }X`,
+    verso:r`\sigma(X)=\sqrt{V(X)}` },
+  { id:"fc_term_bt_01", level:"term", chapitre:"Probabilités",
+    recto:r`\text{Formule de la variance }V(X)\text{ (König)}`,
+    verso:r`V(X)=E(X^2)-[E(X)]^2` },
+  { id:"fc_term_bt_02", level:"term", chapitre:"Probabilités",
+    recto:r`E(aX+b)=\,?\\[6pt]V(aX+b)=\,?`,
+    verso:r`aE(X)+b\\[8pt]a^2V(X)` },
+  { id:"fc_term_bt_03", level:"term", chapitre:"Probabilités",
+    recto:r`X_1,\ldots,X_n\text{ i.i.d. de même loi que }X\\[6pt]E(X_1+\cdots+X_n)=\,?\\[4pt]V(X_1+\cdots+X_n)=\,?`,
+    verso:r`nE(X)\\[8pt]nV(X)\\[4pt]\sigma(X_1+\cdots+X_n)=\sqrt{n}\,\sigma(X)` },
+  { id:"fc_term_bt_04", level:"term", chapitre:"Probabilités",
+    recto:r`M_n=\dfrac{X_1+\cdots+X_n}{n}\\[6pt]E(M_n)=\,?\quad V(M_n)=\,?\quad\sigma(M_n)=\,?`,
+    verso:r`E(M_n)=E(X)\\[6pt]V(M_n)=\dfrac{V(X)}{n}\\[6pt]\sigma(M_n)=\dfrac{\sigma(X)}{\sqrt{n}}` },
+  { id:"fc_term_bt_05", level:"term", chapitre:"Probabilités",
+    recto:r`\text{Inégalité de Bienaymé-Tchebychev}`,
+    verso:r`P(|X-E(X)|\geq\delta)\leq\dfrac{V(X)}{\delta^2}\\[6pt]\text{pour tout }\delta>0` },
+  { id:"fc_term_bt_06", level:"term", chapitre:"Probabilités",
+    recto:r`\text{Inégalité de concentration (}M_n\text{)}`,
+    verso:r`P(|M_n-E(X)|\geq\delta)\leq\dfrac{V(X)}{n\delta^2}\\[6pt]\text{Plus }n\uparrow\text{, plus }M_n\text{ proche de }E(X)` },
+  { id:"fc_term_17", level:"term", chapitre:"Géométrie espace",
+    recto:r`\text{Équation d'un plan passant par }A\text{ de normale }\vec{n}(a,b,c)`,
+    verso:r`a(x-x_A)+b(y-y_A)+c(z-z_A)=0` },
+  { id:"fc_term_geo_01", level:"term", chapitre:"Géométrie espace",
+    recto:r`\text{Vecteur normal du plan }ax+by+cz+d=0\text{ ?}`,
+    verso:r`\vec{n}\begin{pmatrix}a\\[4pt]b\\[4pt]c\end{pmatrix}\\[6pt]\text{Les coefficients de }x,y,z\text{ donnent }\vec{n}.` },
+  { id:"fc_term_geo_02", level:"term", chapitre:"Géométrie espace",
+    recto:r`\text{Droite :}\begin{cases}x=x_A+ta\\y=y_A+tb\\z=z_A+tc\end{cases}\\[4pt]\text{Point de passage et vecteur directeur ?}`,
+    verso:r`\text{Point de passage : }A(x_A,y_A,z_A)\\[6pt]\text{Vecteur directeur : }\vec{u}\begin{pmatrix}a\\[4pt]b\\[4pt]c\end{pmatrix}` },
+  { id:"fc_term_18", level:"term", chapitre:"Géométrie espace",
+    recto:r`\text{Produit scalaire }\vec{u}\cdot\vec{v}\text{ en coordonnées}`,
+    verso:r`\vec{u}(x_1,y_1,z_1)\cdot\vec{v}(x_2,y_2,z_2)\\[6pt]=x_1x_2+y_1y_2+z_1z_2` },
+  { id:"fc_term_19", level:"term", chapitre:"Géométrie espace",
+    recto:r`\text{Norme de }\vec{u}(x,y,z)`,
+    verso:r`\|\vec{u}\|=\sqrt{x^2+y^2+z^2}` },
+  { id:"fc_term_20", level:"term", chapitre:"Géométrie espace",
+    recto:r`\text{Deux vecteurs perpendiculaires : condition}`,
+    verso:r`\vec{u}\perp\vec{v}\Leftrightarrow\vec{u}\cdot\vec{v}=0` },
+  { id:"fc_term_21", level:"term", chapitre:"Équa. diff.",
+    recto:r`\text{Solution générale de }y'=ay`,
+    verso:r`y=Ce^{ax}\quad(C\in\mathbb{R})` },
+  { id:"fc_term_22", level:"term", chapitre:"Équa. diff.",
+    recto:r`\text{Solution de }y'=ay\text{ avec }y(0)=y_0`,
+    verso:r`y=y_0\,e^{ax}` },
+  { id:"fc_term_23", level:"term", chapitre:"Dénombrement",
+    recto:r`\text{Combien de combinaisons de }k\text{ parmi }n\text{ ?}\\[4pt]\binom{n}{k}=\,?`,
+    verso:r`\dfrac{n(n-1)\cdots(n-k+1)}{k!}=\dfrac{n!}{k!(n-k)!}` },
+  { id:"fc_term_24", level:"term", chapitre:"Dénombrement",
+    recto:r`\binom{n}{0}=\,?\qquad\binom{n}{n}=\,?`,
+    verso:r`\binom{n}{0}=1\qquad\binom{n}{n}=1` },
+  { id:"fc_term_25", level:"term", chapitre:"Dénombrement",
+    recto:r`\text{Nombre d'arrangements de }k\text{ parmi }n`,
+    verso:r`n\times(n-1)\times\cdots\times(n-k+1)=\dfrac{n!}{(n-k)!}` },
+  { id:"fc_term_den_01", level:"term", chapitre:"Dénombrement",
+    recto:r`\text{Avec \textbf{ordre} et \textbf{avec répétition}}\\[4pt]\text{(k-uplets) : }n\text{ objets, tirer }k\text{ fois}`,
+    verso:r`n^k\\[6pt]\text{Ex : codes PIN 4 chiffres (0-9) : }10^4=10\,000` },
+  { id:"fc_term_den_02", level:"term", chapitre:"Dénombrement",
+    recto:r`\text{Avec \textbf{ordre} et \textbf{sans répétition}}\\[4pt]\text{(arrangements) : choisir }k\text{ parmi }n`,
+    verso:r`n\times(n-1)\times\cdots\times(n-k+1)\\[6pt]\text{Ex : podium 3/10 : }10\times9\times8=720` },
+  { id:"fc_term_den_03", level:"term", chapitre:"Dénombrement",
+    recto:r`\text{Sans \textbf{ordre} et \textbf{sans répétition}}\\[4pt]\text{(combinaisons) : choisir }k\text{ parmi }n`,
+    verso:r`\dfrac{n(n-1)\cdots(n-k+1)}{k!}=\binom{n}{k}\\[6pt]\text{Ex : groupe 3/10 : }\dfrac{10\times9\times8}{6}=120` },
+  { id:"fc_term_26", level:"term", chapitre:"Convexité",
+    recto:r`f\text{ convexe sur }I\Leftrightarrow\,?`,
+    verso:r`f''\geq0\text{ sur }I\\[6pt]\text{(courbe au-dessus de ses tangentes)}` },
+  { id:"fc_term_27", level:"term", chapitre:"Convexité",
+    recto:r`\text{Point d'inflexion : définition}`,
+    verso:r`\text{Point où }f''\text{ change de signe}\\[6pt]\text{(la courbe traverse sa tangente)}` },
+  { id:"fc_term_28", level:"term", chapitre:"Trigonométrie",
+    recto:r`\cos^2\theta+\sin^2\theta=\,?`,
+    verso:r`1` },
+  { id:"fc_term_29", level:"term", chapitre:"Trigonométrie",
+    recto:r`\text{Parité de cosinus et sinus ?}`,
+    verso:r`\cos\text{ est \textbf{paire} : }\cos(-\theta)=\cos\theta\\[6pt]\sin\text{ est \textbf{impaire} : }\sin(-\theta)=-\sin\theta` },
+  { id:"fc_term_30", level:"term", chapitre:"Trigonométrie",
+    recto:r`\text{Périodicité de cosinus et sinus ?}`,
+    verso:r`\cos\text{ et }\sin\text{ sont }2\pi\text{-périodiques :}\\[6pt]\cos(\theta+2\pi)=\cos\theta\\[4pt]\sin(\theta+2\pi)=\sin\theta` },
+  { id:"fc_term_lim_01", level:"term", chapitre:"Limites",
+    recto:r`\lim_{\substack{x\to+\infty}}x=\,?\qquad\lim_{\substack{x\to-\infty}}x=\,?`,
+    verso:r`+\infty\qquad-\infty` },
+  { id:"fc_term_lim_02", level:"term", chapitre:"Limites",
+    recto:r`\lim_{\substack{x\to+\infty}}\dfrac{1}{x}=\,?\qquad\lim_{\substack{x\to0^+}}\dfrac{1}{x}=\,?`,
+    verso:r`0\qquad+\infty` },
+  { id:"fc_term_lim_03", level:"term", chapitre:"Limites",
+    recto:r`\lim_{\substack{x\to+\infty}}x^2=\,?\qquad\lim_{\substack{x\to-\infty}}x^2=\,?`,
+    verso:r`+\infty\qquad+\infty` },
+  { id:"fc_term_lim_04", level:"term", chapitre:"Limites",
+    recto:r`\lim_{\substack{x\to+\infty}}e^x=\,?\qquad\lim_{\substack{x\to-\infty}}e^x=\,?`,
+    verso:r`+\infty\qquad0` },
+  { id:"fc_term_lim_05", level:"term", chapitre:"Limites",
+    recto:r`\lim_{\substack{x\to+\infty}}\ln x=\,?\qquad\lim_{\substack{x\to0^+}}\ln x=\,?`,
+    verso:r`+\infty\qquad-\infty` },
+  { id:"fc_term_lim_06", level:"term", chapitre:"Limites",
+    recto:r`\text{Théorème des gendarmes :}\\[4pt]\text{Si }g(x)\leq f(x)\leq h(x)\text{ et }\lim g=\lim h=L\text{, alors ?}`,
+    verso:r`\lim f(x)=L\\[6pt]\text{(f est coincée entre g et h qui tendent vers L)}` },
+  { id:"fc_term_lim_07", level:"term", chapitre:"Suites",
+    recto:r`\text{Théorème du point fixe :}\\[4pt]\text{Si }(u_n)\to l\text{ et }u_{n+1}=f(u_n)\text{, alors ?}`,
+    verso:r`l=f(l)\\[6pt]\text{(la limite est solution de }x=f(x)\text{)}` },
+  { id:"fc_term_suite_lim_01", level:"term", chapitre:"Suites",
+    recto:r`\lim_{\substack{n\to+\infty}}n=\,?\qquad\lim_{\substack{n\to+\infty}}n^2=\,?`,
+    verso:r`+\infty\qquad+\infty` },
+  { id:"fc_term_suite_lim_02", level:"term", chapitre:"Suites",
+    recto:r`\lim_{\substack{n\to+\infty}}\dfrac{1}{n}=\,?`,
+    verso:r`0` },
+  { id:"fc_term_suite_lim_03", level:"term", chapitre:"Suites",
+    recto:r`\lim_{\substack{n\to+\infty}}q^n=\,?`,
+    verso:r`\text{Si }q>1\Rightarrow+\infty\\[4pt]\text{Si }0<q<1\Rightarrow0\\[4pt]\text{Si }q=1\Rightarrow1\\[4pt]\text{Si }-1<q<0\Rightarrow0\\[4pt]\text{Si }q\leq-1\Rightarrow\text{pas de limite}` },
+  { id:"fc_term_suite_lim_04", level:"term", chapitre:"Suites",
+    recto:r`(-1)^n\text{ admet-elle une limite ?}`,
+    verso:r`\text{Non : la suite diverge.}\\[6pt](-1)^n\text{ alterne entre }+1\text{ et }-1\\[4pt]\text{(bornée mais pas convergente)}` },
+  { id:"fc_term_suite_lim_05", level:"term", chapitre:"Suites",
+    recto:r`\cos(n)\text{ admet-elle une limite ?}`,
+    verso:r`\text{Non : la suite diverge.}\\[6pt]\cos(n)\text{ oscille entre }-1\text{ et }1\\[4pt]\text{sans converger (bornée mais pas convergente)}` },
+ { id:"fc_term_ps_01", level:"term", chapitre:"Produit scalaire",
+    recto:r`\text{Produit scalaire : définition avec le cosinus}`,
+    verso:r`\vec{u}\cdot\vec{v}=\|\vec{u}\|\times\|\vec{v}\|\times\cos(\widehat{\vec{u},\vec{v}})` },
+  { id:"fc_term_ps_02", level:"term", chapitre:"Produit scalaire",
+    recto:r`\overrightarrow{AB}\cdot\overrightarrow{AC}=\,?\quad\text{(formule avec le cosinus)}`,
+    verso:r`\overrightarrow{AB}\cdot\overrightarrow{AC}=\|\overrightarrow{AB}\|\times\|\overrightarrow{AC}\|\times\cos(\widehat{BAC})` },
+  { id:"fc_term_ps_03", level:"term", chapitre:"Produit scalaire",
+    recto:r`\overrightarrow{AB}\cdot\overrightarrow{AC}=\,?\quad\text{(formule avec les normes)}`,
+    verso:r`\overrightarrow{AB}\cdot\overrightarrow{AC}=\dfrac{1}{2}\!\left(AB^2+AC^2-BC^2\right)` },
+  { id:"fc_term_ps_04", level:"term", chapitre:"Produit scalaire",
+    recto:r`\text{Vecteurs colinéaires de même sens :}\\[4pt]\overrightarrow{AB}\cdot\overrightarrow{AC}=\,?`,
+    verso:r`\overrightarrow{AB}\cdot\overrightarrow{AC}=AB\times AC\\[6pt]\text{(angle nul, }\cos0=1\text{)}` },
+  { id:"fc_term_ps_05", level:"term", chapitre:"Produit scalaire",
+    recto:r`\text{Vecteurs colinéaires de sens contraire :}\\[4pt]\overrightarrow{AB}\cdot\overrightarrow{AC}=\,?`,
+    verso:r`\overrightarrow{AB}\cdot\overrightarrow{AC}=-AB\times AC\\[6pt]\text{(angle }\pi\text{, }\cos\pi=-1\text{)}` },
+  { id:"fc_term_cont_01", level:"term", chapitre:"Continuité",
+    recto:r`\text{Définition : }f\text{ est continue en }a\text{ si...}`,
+    verso:r`\lim_{x\to a}f(x)=f(a)\\[6pt]\text{(la limite existe et vaut }f(a)\text{)}` },
+  { id:"fc_term_cont_02", level:"term", chapitre:"Continuité",
+    recto:r`\text{Exemple de fonction continue mais \textbf{non dérivable}}`,
+    verso:r`f(x)=\sqrt{x}\text{ en }x=0\\[6pt]\text{Continue en 0 (}f(0)=0\text{)}\\[4pt]\text{Non dérivable : la tangente est verticale}\\[4pt]\lim_{x\to0^+}\dfrac{\sqrt{x}}{x}=\lim_{x\to0^+}\dfrac{1}{\sqrt{x}}=+\infty` },
+  { id:"fc_term_cont_03", level:"term", chapitre:"Continuité",
+    recto:r`\text{Exemple de fonction \textbf{non continue} en une infinité de réels}`,
+    verso:r`\text{La fonction partie entière }E(x)=\lfloor x\rfloor\\[6pt]\text{Discontinue en tout entier : }\lim_{x\to n^-}E(x)=n-1\neq n=E(n)` },
+  { id:"fc_term_bij_01", level:"term", chapitre:"Continuité",
+    recto:r`\text{Quelles conditions garantissent qu'une équation}\\[4pt]f(x)=k\text{ admet une unique solution sur }[a,b]\text{ ?}`,
+    verso:r`\text{1. }f\text{ continue sur }[a,b]\\[4pt]\text{2. }f\text{ strictement monotone sur }[a,b]\\[4pt]\text{3. }k\text{ compris entre }f(a)\text{ et }f(b)\\[6pt]\Rightarrow\text{unique }c\in[a,b]\text{ tel que }f(c)=k` },
+  { id:"fc_term_ed_02", level:"term", chapitre:"Équa. diff.",
+    recto:r`\text{Solutions de }y'=ay+b\quad(a\neq0)`,
+    verso:r`x\mapsto ke^{ax}-\dfrac{b}{a}\quad(k\in\mathbb{R})\\[6pt]\text{Solution particulière constante : }-\dfrac{b}{a}` },
+  { id:"fc_term_ed_03", level:"term", chapitre:"Équa. diff.",
+    recto:r`\text{Solutions de }y'=ay+f(x)\quad(a\neq0)\\[4pt]\text{(}g\text{ solution particulière de (E))}`,
+    verso:r`x\mapsto ke^{ax}+g(x)\quad(k\in\mathbb{R})\\[6pt]\text{(homogène + particulière)}` },
+  // ── Vecteurs (sec) ────────────────────────────────────────────────────────────
   { id:"fc_vec_01", level:"sec", chapitre:"Vecteurs",
     recto:r`\text{Coordonnées du vecteur }\overrightarrow{AB}\\[4pt]A(x_A\,;\,y_A)\text{, }B(x_B\,;\,y_B)`,
     verso:r`\overrightarrow{AB}\begin{pmatrix}x_B-x_A\\[4pt]y_B-y_A\end{pmatrix}` },
@@ -20343,8 +21158,8 @@ const FLASHCARDS = [
     recto:r`\text{Coordonnées du milieu }I\text{ de }[AB]`,
     verso:r`I\!\left(\dfrac{x_A+x_B}{2}\,;\,\dfrac{y_A+y_B}{2}\right)` },
   { id:"fc_vec_03", level:"sec", chapitre:"Vecteurs",
-    recto:r`\vec{u}(a,b)\text{ et }\vec{v}(c,d)\text{ colinéaires}\\[4pt]\text{Condition avec le déterminant ?}`,
-    verso:r`ad-bc=0\\[6pt]\text{(le déterminant est nul)}` },
+    recto:r`\vec{u}(x\,;y)\text{ et }\vec{v}(x'\,;y')\text{ colinéaires}\\[4pt]\text{Condition avec le déterminant ?}`,
+    verso:r`\det(\vec{u},\vec{v})=xy'-yx'=0\\[6pt]\text{(le déterminant est nul)}` },
   { id:"fc_vec_04", level:"sec", chapitre:"Vecteurs",
     recto:r`\text{Relation de Chasles}`,
     verso:r`\overrightarrow{AC}=\overrightarrow{AB}+\overrightarrow{BC}\\[6pt]\text{(on peut "enchaîner" les vecteurs)}` },
@@ -20381,6 +21196,27 @@ const FLASHCARDS = [
   <text x="130" y="34" font-size="11" fill="#EF4444" font-family="serif" font-style="italic">AA'</text>
 </svg>`,
     verso:r`AA'B'B\text{ est un parallélogramme}\\[6pt]\text{(deux côtés opposés égaux et parallèles)}` },
+
+  // ── Stats : variance et écart-type ─────────────────────────────────────────
+  { id:"fc_stat_var", level:"sec", chapitre:"Statistiques",
+    recto:r`\text{Formule de la variance }V\text{ ?}`,
+    verso:r`V=\dfrac{\sum x_i^2}{n}-\bar{x}^2\\[6pt]\text{(moyenne des carrés moins le carré de la moyenne)}` },
+  { id:"fc_stat_sigma", level:"sec", chapitre:"Statistiques",
+    recto:r`\text{Formule de l'écart-type }\sigma\text{ ?}`,
+    verso:r`\sigma=\sqrt{V}=\sqrt{\dfrac{\sum x_i^2}{n}-\bar{x}^2}` },
+
+  // ── Puissances (sec, tc, term) ──────────────────────────────────────────────
+  { id:"fc_puis_01", level:"sec", chapitre:"Puissances",
+    recto:r`a^0=\,?\qquad a^1=\,?\qquad a^{-m}=\,?`,
+    verso:r`a^0=1\qquad a^1=a\qquad a^{-m}=\dfrac{1}{a^m}` },
+  { id:"fc_puis_02", level:"sec", chapitre:"Puissances",
+    recto:r`a^n\times a^m=\,?\\[6pt]\dfrac{a^n}{a^m}=\,?`,
+    verso:r`a^{n+m}\\[8pt]a^{n-m}` },
+  { id:"fc_puis_03", level:"sec", chapitre:"Puissances",
+    recto:r`(a^n)^m=\,?\\[6pt](a\times b)^n=\,?`,
+    verso:r`a^{n\times m}\\[8pt]a^n\times b^n` },
+
+  // ── Racines carrées (sec, spe) ──────────────────────────────────────────────
   { id:"fc_rac_01", level:"sec", chapitre:"Racines carrées",
     recto:r`\sqrt{a}\times\sqrt{b}=\,?\\[6pt]\dfrac{\sqrt{a}}{\sqrt{b}}=\,?`,
     verso:r`\sqrt{a\times b}\\[8pt]\sqrt{\dfrac{a}{b}}` },
@@ -20390,363 +21226,17 @@ const FLASHCARDS = [
   { id:"fc_rac_03", level:"sec", chapitre:"Racines carrées",
     recto:r`\sqrt{a}+\sqrt{b}=\sqrt{a+b}\text{ ?}`,
     verso:r`\text{\textbf{Faux !}}\\[6pt]\sqrt{a}+\sqrt{b}\neq\sqrt{a+b}\\[4pt]\sqrt{a}-\sqrt{b}\neq\sqrt{a-b}\\[6pt]\text{Ex : }\sqrt{4}+\sqrt{9}=2+3=5\neq\sqrt{13}` },
-  { id:"fc_meth_05", level:"tc", chapitre:"Méthodes",
-    recto:r`\text{Étudier les variations d'une suite }(u_n)\text{, c'est...}`,
-    verso:r`\text{Étudier le signe de }u_{n+1}-u_n\\[6pt]u_{n+1}-u_n>0\Rightarrow\text{croissante}\\[4pt]u_{n+1}-u_n<0\Rightarrow\text{décroissante}` },
-  { id:"fc_meth_04", level:"tc", chapitre:"Méthodes",
-    recto:r`\text{Étudier les variations d'une fonction, c'est...}`,
-    verso:r`\text{Étudier le signe de }f'(x)\\[6pt]f'(x)>0\Rightarrow f\nearrow\\[4pt]f'(x)<0\Rightarrow f\searrow` },
-  { id:"fc_tc_02",  level:"tc", chapitre:"Pourcentages",
-    recto:r`\text{Évolution réciproque :}\\[4pt]\text{CM réciproque et taux }t'\text{ ?}`,
-    verso:r`\text{CM}'=\dfrac{1}{\text{CM}}\\[6pt]t'=\text{CM}'\times100-100` },
-  { id:"fc_sec_06", level:"tc", chapitre:"Probabilités",
-    recto:r`\text{Formule des probabilités totales (2 branches)}`,
-    verso:r`P(B)=P(A)\cdot P_A(B)+P(\bar{A})\cdot P_{\bar{A}}(B)` },
-  { id:"fc_all_deriv_sens", level:"tc", chapitre:"Dérivation",
-    recto:r`\text{Que représente }f'(a)\text{ géométriquement ?}`,
-    verso:r`f'(a)\text{ est le coefficient directeur}\\[6pt]\text{de la tangente à la courbe }C_f\\[6pt]\text{au point d'abscisse }a` },
-  { id:"fc_all_deriv_poly3", level:"tc", chapitre:"Dérivation",
-    recto:r`f(x)=ax^3+bx^2+cx+d\\[6pt]f'(x)=\,?`,
-    verso:r`f'(x)=3ax^2+2bx+c` },
-  { id:"fc_stmg_12", level:"stmg", chapitre:"Fonctions",
-    recto:r`\text{Fonction affine : forme générale et sens de variation}`,
-    verso:r`f(x)=ax+b\\[6pt]a>0\Rightarrow f\nearrow\quad a<0\Rightarrow f\searrow\\[4pt]a=0\Rightarrow f\text{ constante}` },
-  { id:"fc_stmg_13", level:"stmg", chapitre:"Fonctions",
-    recto:r`f(x)=ax^2+bx+c\text{, }a>0\\[4pt]\text{Minimum et sommet de la parabole ?}`,
-    verso:r`x_S=-\dfrac{b}{2a}\quad f(x_S)=\text{minimum}\\[6pt]\text{Parabole tournée vers le haut, min en }x_S` },
-  { id:"fc_stmg_03", level:"stmg", chapitre:"Pourcentages",
-    recto:r`\text{Indice en base 100 : valeur }V\text{ par rapport à }V_0`,
-    verso:r`I=\dfrac{V}{V_0}\times100` },
-  { id:"fc_stmg_21", level:"stmg", chapitre:"Pourcentages",
-    recto:r`\text{Taux d'évolution global de deux évolutions successives}\\[4pt]t_1\text{ puis }t_2`,
-    verso:r`\text{CM global}=(1+t_1)(1+t_2)\\[6pt]t_{\text{global}}=\text{CM global}\times100-100\\[4pt]\text{Ex : CM}=1{,}15\Rightarrow t=15\%` },
-  { id:"fc_stmg_09", level:"stmg", chapitre:"Probabilités",
-    recto:r`P_A(B)=\,?\quad\text{Probabilité de }B\text{ sachant }A`,
-    verso:r`P_A(B)=\dfrac{P(A\cap B)}{P(A)}\quad(P(A)>0)` },
-  { id:"fc_stmg_19", level:"stmg", chapitre:"Probabilités",
-    recto:r`\text{Loi binomiale }X\sim\mathcal{B}(n,p)\\[4pt]E(X)=\,?`,
-    verso:r`E(X)=np` },
-  { id:"fc_stmg_06", level:"stmg", chapitre:"Dérivation",
-    recto:r`\text{Dérivée de }f(x)=ax^2+bx+c`,
-    verso:r`f'(x)=2ax+b` },
-  { id:"fc_tc_03_stmg", level:"stmg", chapitre:"Suites",
-    recto:r`\text{Relation de récurrence d'une suite arithmétique}`,
-    verso:r`u_{n+1}=u_n+r\\[6pt]r\text{ : raison (constante)}` },
-  { id:"fc_tc_04_stmg", level:"stmg", chapitre:"Suites",
-    recto:r`\text{Relation de récurrence d'une suite géométrique}`,
-    verso:r`u_{n+1}=u_n\times q\\[6pt]q\text{ : raison (constante)}` },
-  { id:"fc_stmg_05", level:"stmg", chapitre:"Coût / Recette",
-    recto:r`\text{Bénéfice en fonction de }x`,
-    verso:r`B(x)=R(x)-C(x)\\[6pt]\text{Recette} - \text{Coût}` },
-  { id:"fc_stmg_07", level:"stmg", chapitre:"Coût / Recette",
-    recto:r`\text{Formule de la recette }R(x)\text{ ?}`,
-    verso:r`R(x)=\text{Prix}\times x\\[6pt]\text{prix unitaire }\times\text{ quantité vendue}` },
-  { id:"fc_stmg_08", level:"stmg", chapitre:"Coût / Recette",
-    recto:r`\text{Que sont les coûts fixes d'une entreprise ?}`,
-    verso:r`\text{Les coûts indépendants de la production}\\[6pt]\text{(loyer, machines, abonnements...)}\\[6pt]C(0)=\text{coûts fixes}` },
-  { id:"fc_stmg_01", level:"stmg", chapitre:"Suites financières",
-    recto:r`\text{Capital après }n\text{ années (intérêts composés, taux }t\text{)}`,
-    verso:r`C_n=C_0\times(1+t)^n` },
-  { id:"fc_stmg_18", level:"stmg", chapitre:"Suites financières",
-    recto:r`\text{Valeur actuelle d'un capital }C_n\text{ dans }n\text{ ans (taux }t\text{)}`,
-    verso:r`C_0=\dfrac{C_n}{(1+t)^n}=C_n\times(1+t)^{-n}` },
-  { id:"fc_val_abs", level:"spe", chapitre:"Calcul numérique",
-    recto:r`|a|=\,?\quad\text{Définition et propriétés}`,
-    verso:r`|a|=\begin{cases}a&\text{si }a\geq0\\-a&\text{si }a<0\end{cases}\\[8pt]|a|\geq0\qquad|-a|=|a|\\[6pt]|a\times b|=|a|\times|b|\\[4pt]|a+b|\leq|a|+|b|\text{ (inégalité triangulaire)}` },
-  { id:"fc_proba_indep", level:"spe", chapitre:"Probabilités",
-    recto:r`A\text{ et }B\text{ sont indépendants si et seulement si...}`,
-    verso:r`P(A\cap B)=P(A)\times P(B)` },
-  { id:"fc_spe_06", level:"spe", chapitre:"Probabilités",
-    recto:r`\text{Espérance de la loi binomiale }\mathcal{B}(n,p)`,
-    verso:r`E(X)=np` },
-  { id:"fc_spe_07", level:"spe", chapitre:"Probabilités",
-    recto:r`\text{Variance de la loi binomiale }\mathcal{B}(n,p)`,
-    verso:r`V(X)=np(1-p)` },
-  { id:"fc_spe_08", level:"spe", chapitre:"Probabilités",
-    recto:r`P(X=k)\text{ pour }\mathcal{B}(n,p)=\,?`,
-    verso:r`\binom{n}{k}\cdot p^k(1-p)^{n-k}` },
-  { id:"fc_tc_05", level:"spe", chapitre:"Dérivation",
-    recto:r`\text{Nombre dérivé de }f\text{ en }a\text{ (définition)}`,
-    verso:r`f'(a)=\lim_{h\to0}\dfrac{f(a+h)-f(a)}{h}` },
-  { id:"fc_tc_06", level:"spe", chapitre:"Dérivation",
-    recto:r`(x^n)'=\,?`,
-    verso:r`nx^{n-1}` },
-  { id:"fc_tc_07", level:"spe", chapitre:"Dérivation",
-    recto:r`(\sqrt{x})'=\,?`,
-    verso:r`\dfrac{1}{2\sqrt{x}}` },
-  { id:"fc_tang_01", level:"spe", chapitre:"Dérivation",
-    recto:r`\text{Équation de la tangente à }C_f\text{ au point }(a\,;\,f(a))\text{ ?}`,
-    verso:r`y=f'(a)(x-a)+f(a)` },
-  { id:"fc_tang_02", level:"spe", chapitre:"Dérivation",
-    recto:r`f'(a)=0\\[6pt]\text{Que peut-on dire de la tangente à }C_f\text{ en }x=a\text{ ?}`,
-    verso:r`\text{La tangente est horizontale}\\[6pt]\text{(parallèle à l'axe des abscisses)}\\[6pt]\text{C'est souvent un extremum local de }f` },
-  { id:"fc_spe_01", level:"spe", chapitre:"Dérivation",
-    recto:r`(uv)'=\,?`,
-    verso:r`u'v+uv'` },
-  { id:"fc_spe_02", level:"spe", chapitre:"Dérivation",
-    recto:r`\left(\dfrac{u}{v}\right)'=\,?`,
-    verso:r`\dfrac{u'v-uv'}{v^2}` },
-  { id:"fc_spe_03", level:"spe", chapitre:"Dérivation",
-    recto:r`f(x)=(u(x))^n\quad f'(x)=\,?`,
-    verso:r`n\,u'(x)\cdot(u(x))^{n-1}` },
-  { id:"fc_spe_03b", level:"spe", chapitre:"Dérivation",
-    recto:r`f(x)=\sqrt{u(x)}\quad f'(x)=\,?`,
-    verso:r`\dfrac{u'(x)}{2\sqrt{u(x)}}` },
-  { id:"fc_spe_04", level:"spe", chapitre:"Dérivation",
-    recto:r`f(x)=e^{u(x)}\quad f'(x)=\,?`,
-    verso:r`u'(x)\cdot e^{u(x)}` },
-  { id:"fc_spe_05", level:"spe", chapitre:"Dérivation",
-    recto:r`\left(\dfrac{1}{x}\right)'=\,?`,
-    verso:r`-\dfrac{1}{x^2}` },
-  { id:"fc_tc_03", level:"spe", chapitre:"Suites",
-    recto:r`\text{Terme général d'une suite arithmétique}`,
-    verso:r`u_n=u_0+n\,r\\[6pt]\text{ou}\quad u_n=u_p+(n-p)\,r` },
-  { id:"fc_tc_04", level:"spe", chapitre:"Suites",
-    recto:r`\text{Terme général d'une suite géométrique}`,
-    verso:r`u_n=u_0\times q^n\\[6pt]\text{ou}\quad u_n=u_p\times q^{n-p}` },
-  { id:"fc_spe_09", level:"spe", chapitre:"Suites",
-    recto:r`\text{Somme }u_0+\cdots+u_n\text{ (suite arithmétique)}`,
-    verso:r`S=(n+1)\times\dfrac{u_0+u_n}{2}` },
-  { id:"fc_spe_10", level:"spe", chapitre:"Suites",
-    recto:r`\text{Somme }u_0+\cdots+u_n\text{ (suite géométrique)}`,
-    verso:r`S=u_0\times\dfrac{1-q^{n+1}}{1-q}\quad(q\neq1)` },
-  { id:"fc_tc_08", level:"spe", chapitre:"Polynômes",
-    recto:r`\text{Discriminant d'un trinôme }ax^2+bx+c`,
-    verso:r`\Delta=b^2-4ac` },
-  { id:"fc_tc_09", level:"spe", chapitre:"Polynômes",
-    recto:r`\text{Racines du trinôme si }\Delta>0`,
-    verso:r`x_1=\dfrac{-b-\sqrt{\Delta}}{2a}\\[8pt]x_2=\dfrac{-b+\sqrt{\Delta}}{2a}` },
-  { id:"fc_tc_10", level:"spe", chapitre:"Polynômes",
-    recto:r`\text{Forme canonique du trinôme }ax^2+bx+c`,
-    verso:r`a\!\left(x+\dfrac{b}{2a}\right)^{\!2}-\dfrac{\Delta}{4a}` },
-  { id:"fc_spe_14", level:"spe", chapitre:"Polynômes",
-    recto:r`\text{Somme et produit des racines de }ax^2+bx+c`,
-    verso:r`x_1+x_2=-\dfrac{b}{a}\\[8pt]x_1\times x_2=\dfrac{c}{a}` },
-  { id:"fc_spe_signe_poly", level:"spe", chapitre:"Polynômes",
-    recto:r`\text{Signe de }ax^2+bx+c\text{ quand }\Delta>0\,?\\[4pt](x_1<x_2\text{ racines})`,
-    verso:r`\text{Du signe de }a\text{ à l'extérieur des racines}\\[6pt]\text{Du signe de }-a\text{ à l'intérieur}\\[8pt]\begin{array}{c|ccccc}x&-\infty&&x_1&&x_2&&+\infty\\\hline ax^2+bx+c&\text{sg}(a)&0&\text{sg}(-a)&0&\text{sg}(a)\end{array}` },
-  { id:"fc_spe_11", level:"spe", chapitre:"Exponentielle",
-    recto:r`e^0=\,?\qquad e^1=\,?`,
-    verso:r`e^0=1\\[6pt]e^1=e\approx2{,}718` },
-  { id:"fc_spe_11b", level:"spe", chapitre:"Exponentielle",
-    recto:r`e^a\times e^b=\,?\\[6pt]\dfrac{e^a}{e^b}=\,?\\[6pt](e^a)^n=\,?`,
-    verso:r`e^{a+b}\\[6pt]e^{a-b}\\[6pt]e^{na}` },
-  { id:"fc_coord_01", level:"spe", chapitre:"Géométrie",
-    recto:r`\text{Coordonnées du vecteur }\overrightarrow{AB}\text{ ?}`,
-    verso:r`\overrightarrow{AB}\begin{pmatrix}x_B-x_A\\[4pt]y_B-y_A\end{pmatrix}` },
-  { id:"fc_coord_02", level:"spe", chapitre:"Géométrie",
-    recto:r`\text{Coordonnées du milieu }I\text{ de }[AB]\text{ ?}`,
-    verso:r`I\!\left(\dfrac{x_A+x_B}{2}\,;\,\dfrac{y_A+y_B}{2}\right)` },
-  { id:"fc_coord_03", level:"spe", chapitre:"Géométrie",
-    recto:r`\text{Distance }AB\text{ ?}`,
-    verso:r`AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2}` },
-  { id:"fc_spe_16", level:"spe", chapitre:"Géométrie",
-    recto:r`\text{Norme du vecteur }\vec{u}(x\,;\,y)\text{ dans le plan ?}`,
-    verso:r`\|\vec{u}\|=\sqrt{x^2+y^2}` },
-  { id:"fc_spe_17", level:"spe", chapitre:"Géométrie",
-    recto:r`\text{Vecteurs colinéaires : condition}`,
-    verso:r`\vec{u}(a,b)\text{ et }\vec{v}(c,d)\text{ colinéaires}\\[6pt]\Leftrightarrow ad-bc=0` },
   { id:"fc_rac_04", level:"spe", chapitre:"Racines carrées",
     recto:r`\text{Simplifier }\dfrac{k}{\sqrt{a}}\text{ (rationaliser)}`,
     verso:r`\dfrac{k}{\sqrt{a}}=\dfrac{k\sqrt{a}}{a}\\[6pt]\text{Ex : }\dfrac{1}{\sqrt{2}}=\dfrac{\sqrt{2}}{2}` },
-  { id:"fc_meth_06", level:"term", chapitre:"Méthodes",
-    recto:r`\text{Étudier la convexité d'une fonction, c'est...}`,
-    verso:r`\text{Étudier le signe de }f''(x)\\[6pt]f''(x)>0\Rightarrow\text{convexe }(\cup)\\[4pt]f''(x)<0\Rightarrow\text{concave }(\cap)` },
-  { id:"fc_term_15", level:"term", chapitre:"Probabilités",
-    recto:r`\text{Probabilité conditionnelle :}\\[6pt]\text{formule de }P_B(A)\text{ ?}`,
-    verso:r`P_B(A)=\dfrac{P(A\cap B)}{P(B)}\quad(P(B)>0)` },
-  { id:"fc_term_16", level:"term", chapitre:"Probabilités",
-    recto:r`\text{Écart-type de }X`,
-    verso:r`\sigma(X)=\sqrt{V(X)}` },
-  { id:"fc_term_bt_01", level:"term", chapitre:"Probabilités",
-    recto:r`\text{Formule de la variance }V(X)\text{ (König)}`,
-    verso:r`V(X)=E(X^2)-[E(X)]^2` },
-  { id:"fc_term_bt_02", level:"term", chapitre:"Probabilités",
-    recto:r`E(aX+b)=\,?\\[6pt]V(aX+b)=\,?`,
-    verso:r`aE(X)+b\\[8pt]a^2V(X)` },
-  { id:"fc_term_bt_03", level:"term", chapitre:"Probabilités",
-    recto:r`X_1,\ldots,X_n\text{ i.i.d. de même loi que }X\\[6pt]E(X_1+\cdots+X_n)=\,?\\[4pt]V(X_1+\cdots+X_n)=\,?`,
-    verso:r`nE(X)\\[8pt]nV(X)\\[4pt]\sigma(X_1+\cdots+X_n)=\sqrt{n}\,\sigma(X)` },
-  { id:"fc_term_bt_04", level:"term", chapitre:"Probabilités",
-    recto:r`M_n=\dfrac{X_1+\cdots+X_n}{n}\\[6pt]E(M_n)=\,?\quad V(M_n)=\,?\quad\sigma(M_n)=\,?`,
-    verso:r`E(M_n)=E(X)\\[6pt]V(M_n)=\dfrac{V(X)}{n}\\[6pt]\sigma(M_n)=\dfrac{\sigma(X)}{\sqrt{n}}` },
-  { id:"fc_term_bt_05", level:"term", chapitre:"Probabilités",
-    recto:r`\text{Inégalité de Bienaymé-Tchebychev}`,
-    verso:r`P(|X-E(X)|\geq\delta)\leq\dfrac{V(X)}{\delta^2}\\[6pt]\text{pour tout }\delta>0` },
-  { id:"fc_term_bt_06", level:"term", chapitre:"Probabilités",
-    recto:r`\text{Inégalité de concentration (}M_n\text{)}`,
-    verso:r`P(|M_n-E(X)|\geq\delta)\leq\dfrac{V(X)}{n\delta^2}\\[6pt]\text{Plus }n\uparrow\text{, plus }M_n\text{ proche de }E(X)` },
-  { id:"fc_term_06", level:"term", chapitre:"Primitives",
-    recto:r`\text{Primitive de }x^n\quad(n\neq-1)`,
-    verso:r`\dfrac{x^{n+1}}{n+1}+C` },
-  { id:"fc_term_07", level:"term", chapitre:"Primitives",
-    recto:r`\text{Primitive de }e^x`,
-    verso:r`e^x+C` },
-  { id:"fc_term_08", level:"term", chapitre:"Primitives",
-    recto:r`\text{Primitive de }\dfrac{1}{x}`,
-    verso:r`\ln|x|+C` },
-  { id:"fc_term_09", level:"term", chapitre:"Intégrales",
-    recto:r`\int_a^b f(x)\,dx=\,?`,
-    verso:r`\bigl[F(x)\bigr]_a^b=F(b)-F(a)` },
-  { id:"fc_term_10", level:"term", chapitre:"Intégrales",
-    recto:r`\text{Relation de Chasles pour les intégrales}`,
-    verso:r`\int_a^b f+\int_b^c f=\int_a^c f` },
-  { id:"fc_term_11", level:"term", chapitre:"Intégrales",
-    recto:r`\text{Aire entre }f\text{ et }g\text{ sur }[a,b]\quad(f\geq g)`,
-    verso:r`\mathcal{A}=\int_a^b\bigl(f(x)-g(x)\bigr)\,dx` },
-  { id:"fc_term_21", level:"term", chapitre:"Équa. diff.",
-    recto:r`\text{Solution générale de }y'=ay`,
-    verso:r`y=Ce^{ax}\quad(C\in\mathbb{R})` },
-  { id:"fc_term_22", level:"term", chapitre:"Équa. diff.",
-    recto:r`\text{Solution de }y'=ay\text{ avec }y(0)=y_0`,
-    verso:r`y=y_0\,e^{ax}` },
-  { id:"fc_term_ed_02", level:"term", chapitre:"Équa. diff.",
-    recto:r`\text{Solutions de }y'=ay+b\quad(a\neq0)`,
-    verso:r`x\mapsto ke^{ax}-\dfrac{b}{a}\quad(k\in\mathbb{R})\\[6pt]\text{Solution particulière constante : }-\dfrac{b}{a}` },
-  { id:"fc_term_ed_03", level:"term", chapitre:"Équa. diff.",
-    recto:r`\text{Solutions de }y'=ay+f(x)\quad(a\neq0)\\[4pt]\text{(}g\text{ solution particulière de (E))}`,
-    verso:r`x\mapsto ke^{ax}+g(x)\quad(k\in\mathbb{R})\\[6pt]\text{(homogène + particulière)}` },
-  { id:"fc_term_lim_01", level:"term", chapitre:"Limites",
-    recto:r`\lim_{\substack{x\to+\infty}}x=\,?\qquad\lim_{\substack{x\to-\infty}}x=\,?`,
-    verso:r`+\infty\qquad-\infty` },
-  { id:"fc_term_lim_02", level:"term", chapitre:"Limites",
-    recto:r`\lim_{\substack{x\to+\infty}}\dfrac{1}{x}=\,?\qquad\lim_{\substack{x\to0^+}}\dfrac{1}{x}=\,?`,
-    verso:r`0\qquad+\infty` },
-  { id:"fc_term_lim_03", level:"term", chapitre:"Limites",
-    recto:r`\lim_{\substack{x\to+\infty}}x^2=\,?\qquad\lim_{\substack{x\to-\infty}}x^2=\,?`,
-    verso:r`+\infty\qquad+\infty` },
-  { id:"fc_term_lim_04", level:"term", chapitre:"Limites",
-    recto:r`\lim_{\substack{x\to+\infty}}e^x=\,?\qquad\lim_{\substack{x\to-\infty}}e^x=\,?`,
-    verso:r`+\infty\qquad0` },
-  { id:"fc_term_lim_05", level:"term", chapitre:"Limites",
-    recto:r`\lim_{\substack{x\to+\infty}}\ln x=\,?\qquad\lim_{\substack{x\to0^+}}\ln x=\,?`,
-    verso:r`+\infty\qquad-\infty` },
-  { id:"fc_term_lim_06", level:"term", chapitre:"Limites",
-    recto:r`\text{Théorème des gendarmes :}\\[4pt]\text{Si }g(x)\leq f(x)\leq h(x)\text{ et }\lim g=\lim h=L\text{, alors ?}`,
-    verso:r`\lim f(x)=L\\[6pt]\text{(f est coincée entre g et h qui tendent vers L)}` },
-  { id:"fc_term_12", level:"term", chapitre:"Croissance comparée",
-    recto:r`\lim_{\substack{x\to+\infty}}\dfrac{e^x}{x^n}=\,?`,
-    verso:r`+\infty\quad\text{(croissance comparée)}` },
-  { id:"fc_term_13", level:"term", chapitre:"Croissance comparée",
-    recto:r`\lim_{\substack{x\to+\infty}}\dfrac{\ln x}{x}=\,?`,
-    verso:r`0\quad\text{(croissance comparée)}` },
-  { id:"fc_term_14", level:"term", chapitre:"Croissance comparée",
-    recto:r`\lim_{\substack{x\to0^+}}x\ln x=\,?`,
-    verso:r`0` },
-  { id:"fc_term_cont_01", level:"term", chapitre:"Continuité",
-    recto:r`\text{Définition : }f\text{ est continue en }a\text{ si...}`,
-    verso:r`\lim_{x\to a}f(x)=f(a)\\[6pt]\text{(la limite existe et vaut }f(a)\text{)}` },
-  { id:"fc_term_cont_02", level:"term", chapitre:"Continuité",
-    recto:r`\text{Exemple de fonction continue mais \textbf{non dérivable}}`,
-    verso:r`f(x)=\sqrt{x}\text{ en }x=0\\[6pt]\text{Continue en 0 (}f(0)=0\text{)}\\[4pt]\text{Non dérivable : la tangente est verticale}\\[4pt]\lim_{x\to0^+}\dfrac{\sqrt{x}}{x}=\lim_{x\to0^+}\dfrac{1}{\sqrt{x}}=+\infty` },
-  { id:"fc_term_cont_03", level:"term", chapitre:"Continuité",
-    recto:r`\text{Exemple de fonction \textbf{non continue} en une infinité de réels}`,
-    verso:r`\text{La fonction partie entière }E(x)=\lfloor x\rfloor\\[6pt]\text{Discontinue en tout entier : }\lim_{x\to n^-}E(x)=n-1\neq n=E(n)` },
-  { id:"fc_term_bij_01", level:"term", chapitre:"Continuité",
-    recto:r`\text{Quelles conditions garantissent qu'une équation}\\[4pt]f(x)=k\text{ admet une unique solution sur }[a,b]\text{ ?}`,
-    verso:r`\text{1. }f\text{ continue sur }[a,b]\\[4pt]\text{2. }f\text{ strictement monotone sur }[a,b]\\[4pt]\text{3. }k\text{ compris entre }f(a)\text{ et }f(b)\\[6pt]\Rightarrow\text{unique }c\in[a,b]\text{ tel que }f(c)=k` },
-  { id:"fc_term_26", level:"term", chapitre:"Convexité",
-    recto:r`f\text{ convexe sur }I\Leftrightarrow\,?`,
-    verso:r`f''\geq0\text{ sur }I\\[6pt]\text{(courbe au-dessus de ses tangentes)}` },
-  { id:"fc_term_27", level:"term", chapitre:"Convexité",
-    recto:r`\text{Point d'inflexion : définition}`,
-    verso:r`\text{Point où }f''\text{ change de signe}\\[6pt]\text{(la courbe traverse sa tangente)}` },
-  { id:"fc_term_23", level:"term", chapitre:"Dénombrement",
-    recto:r`\text{Combien de combinaisons de }k\text{ parmi }n\text{ ?}\\[4pt]\binom{n}{k}=\,?`,
-    verso:r`\dfrac{n(n-1)\cdots(n-k+1)}{k!}=\dfrac{n!}{k!(n-k)!}` },
-  { id:"fc_term_24", level:"term", chapitre:"Dénombrement",
-    recto:r`\binom{n}{0}=\,?\qquad\binom{n}{n}=\,?`,
-    verso:r`\binom{n}{0}=1\qquad\binom{n}{n}=1` },
-  { id:"fc_term_25", level:"term", chapitre:"Dénombrement",
-    recto:r`\text{Nombre d'arrangements de }k\text{ parmi }n`,
-    verso:r`n\times(n-1)\times\cdots\times(n-k+1)=\dfrac{n!}{(n-k)!}` },
-  { id:"fc_term_den_01", level:"term", chapitre:"Dénombrement",
-    recto:r`\text{Avec \textbf{ordre} et \textbf{avec répétition}}\\[4pt]\text{(k-uplets) : }n\text{ objets, tirer }k\text{ fois}`,
-    verso:r`n^k\\[6pt]\text{Ex : codes PIN 4 chiffres (0-9) : }10^4=10\,000` },
-  { id:"fc_term_den_02", level:"term", chapitre:"Dénombrement",
-    recto:r`\text{Avec \textbf{ordre} et \textbf{sans répétition}}\\[4pt]\text{(arrangements) : choisir }k\text{ parmi }n`,
-    verso:r`n\times(n-1)\times\cdots\times(n-k+1)\\[6pt]\text{Ex : podium 3/10 : }10\times9\times8=720` },
-  { id:"fc_term_den_03", level:"term", chapitre:"Dénombrement",
-    recto:r`\text{Sans \textbf{ordre} et \textbf{sans répétition}}\\[4pt]\text{(combinaisons) : choisir }k\text{ parmi }n`,
-    verso:r`\dfrac{n(n-1)\cdots(n-k+1)}{k!}=\binom{n}{k}\\[6pt]\text{Ex : groupe 3/10 : }\dfrac{10\times9\times8}{6}=120` },
-  { id:"fc_term_lim_07", level:"term", chapitre:"Suites",
-    recto:r`\text{Théorème du point fixe :}\\[4pt]\text{Si }(u_n)\to l\text{ et }u_{n+1}=f(u_n)\text{, alors ?}`,
-    verso:r`l=f(l)\\[6pt]\text{(la limite est solution de }x=f(x)\text{)}` },
-  { id:"fc_term_suite_lim_01", level:"term", chapitre:"Suites",
-    recto:r`\lim_{\substack{n\to+\infty}}n=\,?\qquad\lim_{\substack{n\to+\infty}}n^2=\,?`,
-    verso:r`+\infty\qquad+\infty` },
-  { id:"fc_term_suite_lim_02", level:"term", chapitre:"Suites",
-    recto:r`\lim_{\substack{n\to+\infty}}\dfrac{1}{n}=\,?`,
-    verso:r`0` },
-  { id:"fc_term_suite_lim_03", level:"term", chapitre:"Suites",
-    recto:r`\lim_{\substack{n\to+\infty}}q^n=\,?`,
-    verso:r`\text{Si }q>1\Rightarrow+\infty\\[4pt]\text{Si }0<q<1\Rightarrow0\\[4pt]\text{Si }q=1\Rightarrow1\\[4pt]\text{Si }-1<q<0\Rightarrow0\\[4pt]\text{Si }q\leq-1\Rightarrow\text{pas de limite}` },
-  { id:"fc_term_suite_lim_04", level:"term", chapitre:"Suites",
-    recto:r`(-1)^n\text{ admet-elle une limite ?}`,
-    verso:r`\text{Non : la suite diverge.}\\[6pt](-1)^n\text{ alterne entre }+1\text{ et }-1\\[4pt]\text{(bornée mais pas convergente)}` },
-  { id:"fc_term_suite_lim_05", level:"term", chapitre:"Suites",
-    recto:r`\cos(n)\text{ admet-elle une limite ?}`,
-    verso:r`\text{Non : la suite diverge.}\\[6pt]\cos(n)\text{ oscille entre }-1\text{ et }1\\[4pt]\text{sans converger (bornée mais pas convergente)}` },
-  { id:"fc_term_28", level:"term", chapitre:"Trigonométrie",
-    recto:r`\cos^2\theta+\sin^2\theta=\,?`,
-    verso:r`1` },
-  { id:"fc_term_29", level:"term", chapitre:"Trigonométrie",
-    recto:r`\text{Parité de cosinus et sinus ?}`,
-    verso:r`\cos\text{ est \textbf{paire} : }\cos(-\theta)=\cos\theta\\[6pt]\sin\text{ est \textbf{impaire} : }\sin(-\theta)=-\sin\theta` },
-  { id:"fc_term_30", level:"term", chapitre:"Trigonométrie",
-    recto:r`\text{Périodicité de cosinus et sinus ?}`,
-    verso:r`\cos\text{ et }\sin\text{ sont }2\pi\text{-périodiques :}\\[6pt]\cos(\theta+2\pi)=\cos\theta\\[4pt]\sin(\theta+2\pi)=\sin\theta` },
-  { id:"fc_term_01", level:"term", chapitre:"Logarithme",
-    recto:r`\ln(ab)=\,?\\[6pt]\ln\!\left(\dfrac{a}{b}\right)=\,?\\[6pt]\ln(a^n)=\,?`,
-    verso:r`\ln a+\ln b\\[6pt]\ln a-\ln b\\[6pt]n\ln a` },
-  { id:"fc_term_01b", level:"term", chapitre:"Logarithme",
-    recto:r`\ln(1)=\,?\\[6pt]\ln(e)=\,?\\[6pt]\lim_{x\to0^+}\ln x=\,?`,
-    verso:r`0\\[6pt]1\\[6pt]-\infty` },
-  { id:"fc_term_01c", level:"term", chapitre:"Logarithme",
-    recto:r`\ln(\sqrt{x})=\,?`,
-    verso:r`\dfrac{1}{2}\ln x\quad(x>0)` },
-  { id:"fc_term_04", level:"term", chapitre:"Logarithme",
-    recto:r`(\ln x)'=\,?\\[6pt](\ln u)'=\,?`,
-    verso:r`\dfrac{1}{x}\\[8pt]\dfrac{u'}{u}` },
-  { id:"fc_term_ps_01", level:"term", chapitre:"Produit scalaire",
-    recto:r`\text{Produit scalaire : définition avec le cosinus}`,
-    verso:r`\vec{u}\cdot\vec{v}=\|\vec{u}\|\times\|\vec{v}\|\times\cos(\widehat{\vec{u},\vec{v}})` },
-  { id:"fc_term_ps_02", level:"term", chapitre:"Produit scalaire",
-    recto:r`\overrightarrow{AB}\cdot\overrightarrow{AC}=\,?\quad\text{(formule avec le cosinus)}`,
-    verso:r`\overrightarrow{AB}\cdot\overrightarrow{AC}=\|\overrightarrow{AB}\|\times\|\overrightarrow{AC}\|\times\cos(\widehat{BAC})` },
-  { id:"fc_term_ps_03", level:"term", chapitre:"Produit scalaire",
-    recto:r`\overrightarrow{AB}\cdot\overrightarrow{AC}=\,?\quad\text{(formule avec les normes)}`,
-    verso:r`\overrightarrow{AB}\cdot\overrightarrow{AC}=\dfrac{1}{2}\!\left(AB^2+AC^2-BC^2\right)` },
-  { id:"fc_term_ps_04", level:"term", chapitre:"Produit scalaire",
-    recto:r`\text{Vecteurs colinéaires de même sens :}\\[4pt]\overrightarrow{AB}\cdot\overrightarrow{AC}=\,?`,
-    verso:r`\overrightarrow{AB}\cdot\overrightarrow{AC}=AB\times AC\\[6pt]\text{(angle nul, }\cos0=1\text{)}` },
-  { id:"fc_term_ps_05", level:"term", chapitre:"Produit scalaire",
-    recto:r`\text{Vecteurs colinéaires de sens contraire :}\\[4pt]\overrightarrow{AB}\cdot\overrightarrow{AC}=\,?`,
-    verso:r`\overrightarrow{AB}\cdot\overrightarrow{AC}=-AB\times AC\\[6pt]\text{(angle }\pi\text{, }\cos\pi=-1\text{)}` },
-  { id:"fc_term_17", level:"term", chapitre:"Géométrie espace",
-    recto:r`\text{Équation d'un plan passant par }A\text{ de normale }\vec{n}(a,b,c)`,
-    verso:r`a(x-x_A)+b(y-y_A)+c(z-z_A)=0` },
-  { id:"fc_term_geo_01", level:"term", chapitre:"Géométrie espace",
-    recto:r`\text{Vecteur normal du plan }ax+by+cz+d=0\text{ ?}`,
-    verso:r`\vec{n}\begin{pmatrix}a\\[4pt]b\\[4pt]c\end{pmatrix}\\[6pt]\text{Les coefficients de }x,y,z\text{ donnent }\vec{n}.` },
-  { id:"fc_term_geo_02", level:"term", chapitre:"Géométrie espace",
-    recto:r`\text{Droite :}\begin{cases}x=x_A+ta\\y=y_A+tb\\z=z_A+tc\end{cases}\\[4pt]\text{Point de passage et vecteur directeur ?}`,
-    verso:r`\text{Point de passage : }A(x_A,y_A,z_A)\\[6pt]\text{Vecteur directeur : }\vec{u}\begin{pmatrix}a\\[4pt]b\\[4pt]c\end{pmatrix}` },
-  { id:"fc_term_18", level:"term", chapitre:"Géométrie espace",
-    recto:r`\text{Produit scalaire }\vec{u}\cdot\vec{v}\text{ en coordonnées}`,
-    verso:r`\vec{u}(x_1,y_1,z_1)\cdot\vec{v}(x_2,y_2,z_2)\\[6pt]=x_1x_2+y_1y_2+z_1z_2` },
-  { id:"fc_term_19", level:"term", chapitre:"Géométrie espace",
-    recto:r`\text{Norme de }\vec{u}(x,y,z)`,
-    verso:r`\|\vec{u}\|=\sqrt{x^2+y^2+z^2}` },
-  { id:"fc_term_20", level:"term", chapitre:"Géométrie espace",
-    recto:r`\text{Deux vecteurs perpendiculaires : condition}`,
-    verso:r`\vec{u}\perp\vec{v}\Leftrightarrow\vec{u}\cdot\vec{v}=0` }
-
+  { id:"fc_val_abs", level:"spe", chapitre:"Calcul numérique",
+    recto:r`|a|=\,?\quad\text{Définition et propriétés}`,
+    verso:r`|a|=\begin{cases}a&\text{si }a\geq0\\-a&\text{si }a<0\end{cases}\\[8pt]|a|\geq0\qquad|-a|=|a|\\[6pt]|a\times b|=|a|\times|b|\\[4pt]|a+b|\leq|a|+|b|\text{ (inégalité triangulaire)}` },
 ];
 
 
-// ── FlashcardScreen// ── FlashcardSetupScreen — choix du niveau, chapitres, ordre ──────────────
-function FlashcardSetupScreen({ onStart, onBack, initialStep=1, initialLevel=null }) {
+// ── FlashcardScreen// ── FlashcardSetupScreen — choix du niveau et de l'ordre ────────────────────
+function FlashcardSetupScreen({ onStart, onBack }) {
   const LEVELS = [
     { id:"sec",  label:"2nde",         emoji:"📗" },
     { id:"tc",   label:"1ère TC",      emoji:"📘" },
@@ -20755,17 +21245,24 @@ function FlashcardSetupScreen({ onStart, onBack, initialStep=1, initialLevel=nul
     { id:"term", label:"Terminale Spé",emoji:"🏆" },
   ];
 
-  const STMG_EXCLUDE_CHAPITRES = ["Vecteurs","Racines carrées","Géométrie","Géométrie espace","Produit scalaire"];
-  const TC_EXCLUDE_CHAPITRES   = ["Vecteurs","Racines carrées"];
+  const [selectedLevel, setSelectedLevel] = React.useState(null);
+  const [order, setOrder] = React.useState("random"); // "random" | "ordered"
 
-  const [step, setStep]               = React.useState(initialStep); // 1=niveau 2=chapitres+ordre
-  const [selectedLevel, setSelectedLevel] = React.useState(initialLevel);
-  const [selectedChaps, setSelectedChaps] = React.useState(null); // null = tous
-  const [order, setOrder]             = React.useState("random");
+  // Compter les cartes disponibles pour le niveau sélectionné
+  const cardCount = React.useMemo(() => {
+    if (!selectedLevel) return 0;
+    let allowed;
+    if (selectedLevel === "stmg") {
+      allowed = ["sec","tc","stmg"];
+    } else {
+      const lo = ["sec","tc","spe","term"];
+      allowed = lo.slice(0, lo.indexOf(selectedLevel) + 1);
+    }
+    return FLASHCARDS.filter(c => allowed.includes(c.level)).length;
+  }, [selectedLevel]);
 
-  // Cartes disponibles pour le niveau choisi
-  const levelCards = React.useMemo(() => {
-    if (!selectedLevel) return [];
+  const handleStart = () => {
+    if (!selectedLevel) return;
     let allowed;
     if (selectedLevel === "stmg") {
       allowed = ["sec","tc","stmg"];
@@ -20774,57 +21271,17 @@ function FlashcardSetupScreen({ onStart, onBack, initialStep=1, initialLevel=nul
       allowed = lo.slice(0, lo.indexOf(selectedLevel) + 1);
     }
     let cards = FLASHCARDS.filter(c => allowed.includes(c.level));
-    if (selectedLevel === "stmg") cards = cards.filter(c => !STMG_EXCLUDE_CHAPITRES.includes(c.chapitre));
-    if (selectedLevel === "tc")   cards = cards.filter(c => !TC_EXCLUDE_CHAPITRES.includes(c.chapitre));
-    return cards;
-  }, [selectedLevel]);
-
-  // Chapitres disponibles (dans l'ordre d'apparition)
-  const chapitres = React.useMemo(() => {
-    const seen = new Set();
-    const out = [];
-    levelCards.forEach(c => { if (!seen.has(c.chapitre)) { seen.add(c.chapitre); out.push(c.chapitre); } });
-    return out;
-  }, [levelCards]);
-
-  // Initialiser selectedChaps quand on arrive à l'étape 2
-  React.useEffect(() => {
-    if (step === 2) setSelectedChaps(new Set(chapitres));
-  }, [step, chapitres.join(",")]);
-
-  const toggleChap = (ch) => {
-    setSelectedChaps(prev => {
-      const next = new Set(prev);
-      if (next.has(ch)) next.delete(ch);
-      else next.add(ch);
-      return next;
-    });
-  };
-
-  const toggleAll = () => {
-    if (selectedChaps && selectedChaps.size === chapitres.length) {
-      setSelectedChaps(new Set()); // tout désélectionner
-    } else {
-      setSelectedChaps(new Set(chapitres));
+    if (order === "random") {
+      cards = [...cards].sort(() => Math.random() - 0.5);
     }
+    onStart(cards);
   };
 
-  const finalCards = React.useMemo(() => {
-    if (!selectedChaps) return levelCards;
-    return levelCards.filter(c => selectedChaps.has(c.chapitre));
-  }, [levelCards, selectedChaps]);
-
-  const handleStart = () => {
-    let cards = [...finalCards];
-    if (order === "random") cards = cards.sort(() => Math.random() - 0.5);
-    onStart(cards, selectedLevel);
-  };
-
-  // ── ÉTAPE 1 : choix du niveau ─────────────────────────────────────────────
-  if (step === 1) return (
+  return (
     <div style={{display:"flex",flexDirection:"column",height:"100%",
       background:"var(--am-bg-light)",padding:"20px 18px"}}>
 
+      {/* Header */}
       <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:24,flexShrink:0}}>
         <button onClick={onBack}
           style={{background:"none",border:"none",cursor:"pointer",color:"#94A3B8",fontSize:18,padding:0}}>✕</button>
@@ -20833,196 +21290,88 @@ function FlashcardSetupScreen({ onStart, onBack, initialStep=1, initialLevel=nul
         </div>
       </div>
 
+      {/* Choix du niveau */}
       <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:13,
         color:"#64748B",textTransform:"uppercase",letterSpacing:1,marginBottom:10}}>
         Ton niveau
       </div>
-      <div style={{display:"flex",flexDirection:"column",gap:8,flex:1,overflowY:"auto"}}>
-        {LEVELS.map(lvl => {
-          const count = (() => {
-            let allowed;
-            if (lvl.id === "stmg") { allowed = ["sec","tc","stmg"]; }
-            else { const lo = ["sec","tc","spe","term"]; allowed = lo.slice(0, lo.indexOf(lvl.id) + 1); }
-            let c = FLASHCARDS.filter(x => allowed.includes(x.level));
-            if (lvl.id === "stmg") c = c.filter(x => !STMG_EXCLUDE_CHAPITRES.includes(x.chapitre));
-            if (lvl.id === "tc")   c = c.filter(x => !TC_EXCLUDE_CHAPITRES.includes(x.chapitre));
-            return c.length;
-          })();
-          const active = selectedLevel === lvl.id;
-          return (
-            <button key={lvl.id} onClick={() => setSelectedLevel(lvl.id)}
-              style={{
-                background: active ? "linear-gradient(135deg,#10B981,#047857)" : "#fff",
-                border: active ? "2px solid #047857" : "2px solid #E2E8F0",
-                borderRadius:14,padding:"12px 16px",cursor:"pointer",
-                display:"flex",alignItems:"center",gap:12,
-                boxShadow: active ? "0 4px 12px rgba(16,185,129,0.3)" : "0 1px 4px rgba(0,0,0,.06)",
-                transition:"all .15s",flexShrink:0,
-              }}>
-              <span style={{fontSize:22}}>{lvl.emoji}</span>
-              <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:15,
-                color: active ? "#fff" : "#1E293B"}}>{lvl.label}</span>
-              <span style={{marginLeft:"auto",fontSize:11,
-                color: active ? "rgba(255,255,255,0.8)" : "#94A3B8",fontWeight:600}}>
-                {count} cartes
-              </span>
-            </button>
-          );
-        })}
-      </div>
-
-      <button onClick={() => setStep(2)} disabled={!selectedLevel}
-        style={{
-          marginTop:16,
-          background: selectedLevel ? "linear-gradient(135deg,#10B981,#047857)" : "#E2E8F0",
-          border:"none",borderRadius:16,padding:"16px",cursor: selectedLevel ? "pointer" : "default",
-          color: selectedLevel ? "#fff" : "#94A3B8",
-          fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,
-          boxShadow: selectedLevel ? "0 6px 20px rgba(16,185,129,0.35)" : "none",
-          transition:"all .2s",flexShrink:0,
-        }}>
-        {selectedLevel ? "Choisir les chapitres →" : "Choisis ton niveau"}
-      </button>
-    </div>
-  );
-
-  // ── ÉTAPE 2 : chapitres + ordre ───────────────────────────────────────────
-  const allSelected = selectedChaps && selectedChaps.size === chapitres.length;
-
-  // Chapitres "niveau lycée" exclusivement (spe/term) — pour éviter les bases collège en Term
-  const TERM_CHAPITRES = ["Méthodes","Probabilités","Dérivation","Suites","Calcul numérique",
-    "Polynômes","Exponentielle","Géométrie","Primitives","Intégrales","Équa. diff.",
-    "Limites","Croissance comparée","Continuité","Convexité","Dénombrement",
-    "Trigonométrie","Logarithme","Produit scalaire","Géométrie espace"];
-  const termChapsAvailable = chapitres.filter(ch => TERM_CHAPITRES.includes(ch));
-  const termSelected = selectedChaps &&
-    termChapsAvailable.length > 0 &&
-    termChapsAvailable.every(ch => selectedChaps.has(ch)) &&
-    chapitres.filter(ch => !TERM_CHAPITRES.includes(ch)).every(ch => !selectedChaps.has(ch));
-  const selectTermOnly = () => setSelectedChaps(new Set(termChapsAvailable));
-
-  return (
-    <div style={{display:"flex",flexDirection:"column",height:"100%",
-      background:"var(--am-bg-light)",padding:"20px 18px"}}>
-
-      {/* Header */}
-      <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:20,flexShrink:0}}>
-        <button onClick={() => setStep(1)}
-          style={{background:"none",border:"none",cursor:"pointer",color:"#94A3B8",fontSize:18,padding:0}}>←</button>
-        <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:18,color:"#1E293B"}}>
-          🃏 Chapitres
-        </div>
-        <span style={{marginLeft:"auto",fontFamily:"'Nunito',sans-serif",fontSize:12,
-          color:"#6366F1",fontWeight:700,background:"#EEF2FF",
-          borderRadius:99,padding:"3px 10px"}}>
-          {finalCards.length} carte{finalCards.length > 1 ? "s" : ""}
-        </span>
-      </div>
-
-      {/* Boutons de sélection rapide */}
-      <div style={{display:"flex",gap:8,marginBottom:10,flexShrink:0}}>
-        <button onClick={toggleAll}
-          style={{
-            flex:1,
-            background: allSelected ? "#EEF2FF" : "#F1F5F9",
-            border: allSelected ? "2px solid #6366F1" : "2px solid #E2E8F0",
-            borderRadius:12,padding:"9px 10px",cursor:"pointer",
-            display:"flex",alignItems:"center",justifyContent:"center",gap:6,
-          }}>
-          <span style={{fontSize:14}}>{allSelected ? "☑️" : "⬜"}</span>
-          <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:12,
-            color: allSelected ? "#4F46E5" : "#475569"}}>
-            {allSelected ? "Tout désélectionner" : "Tout sélectionner"}
-          </span>
-        </button>
-
-        {selectedLevel === "term" && termChapsAvailable.length > 0 && (
-          <button onClick={selectTermOnly}
+      <div style={{display:"flex",flexDirection:"column",gap:8,marginBottom:24}}>
+        {LEVELS.map(lvl => (
+          <button key={lvl.id} onClick={() => setSelectedLevel(lvl.id)}
             style={{
-              flex:1,
-              background: termSelected ? "linear-gradient(135deg,#8B5CF6,#7C3AED)" : "#F5F3FF",
-              border: termSelected ? "2px solid #7C3AED" : "2px solid #DDD6FE",
-              borderRadius:12,padding:"9px 10px",cursor:"pointer",
-              display:"flex",alignItems:"center",justifyContent:"center",gap:6,
+              background: selectedLevel === lvl.id
+                ? "linear-gradient(135deg,#10B981,#047857)"
+                : "#fff",
+              border: selectedLevel === lvl.id ? "2px solid #047857" : "2px solid #E2E8F0",
+              borderRadius:14,padding:"12px 16px",cursor:"pointer",
+              display:"flex",alignItems:"center",gap:12,
+              boxShadow: selectedLevel === lvl.id
+                ? "0 4px 12px rgba(16,185,129,0.3)" : "0 1px 4px rgba(0,0,0,.06)",
+              transition:"all .15s",
             }}>
-            <span style={{fontSize:14}}>🎓</span>
-            <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:12,
-              color: termSelected ? "#fff" : "#6D28D9"}}>
-              Niveau Term. seulement
+            <span style={{fontSize:22}}>{lvl.emoji}</span>
+            <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:15,
+              color: selectedLevel === lvl.id ? "#fff" : "#1E293B"}}>
+              {lvl.label}
             </span>
-          </button>
-        )}
-      </div>
-
-      {/* Liste des chapitres */}
-      <div style={{flex:1,overflowY:"auto",display:"flex",flexDirection:"column",gap:6,marginBottom:12}}>
-        {chapitres.map(ch => {
-          const count = levelCards.filter(c => c.chapitre === ch).length;
-          const checked = selectedChaps && selectedChaps.has(ch);
-          return (
-            <button key={ch} onClick={() => toggleChap(ch)}
-              style={{
-                background: checked ? "linear-gradient(135deg,#6366F1,#4F46E5)" : "#fff",
-                border: checked ? "2px solid #4F46E5" : "2px solid #E2E8F0",
-                borderRadius:12,padding:"10px 14px",cursor:"pointer",
-                display:"flex",alignItems:"center",gap:10,
-                boxShadow: checked ? "0 2px 8px rgba(99,102,241,0.25)" : "0 1px 3px rgba(0,0,0,.05)",
-                transition:"all .15s",
-              }}>
-              <span style={{fontSize:15}}>{checked ? "✅" : "⬜"}</span>
-              <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:700,fontSize:14,
-                color: checked ? "#fff" : "#1E293B",flex:1,textAlign:"left"}}>{ch}</span>
-              <span style={{fontSize:11,fontWeight:600,
-                color: checked ? "rgba(255,255,255,0.75)" : "#94A3B8"}}>
-                {count}
+            {selectedLevel === lvl.id && (
+              <span style={{marginLeft:"auto",fontSize:11,color:"rgba(255,255,255,0.8)",fontWeight:600}}>
+                {cardCount} cartes
               </span>
-            </button>
-          );
-        })}
+            )}
+          </button>
+        ))}
       </div>
 
-      {/* Ordre */}
-      <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:12,
-        color:"#64748B",textTransform:"uppercase",letterSpacing:1,marginBottom:8,flexShrink:0}}>
-        Ordre
+      {/* Choix de l'ordre */}
+      <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:13,
+        color:"#64748B",textTransform:"uppercase",letterSpacing:1,marginBottom:10}}>
+        Ordre des cartes
       </div>
-      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:14,flexShrink:0}}>
-        {[{id:"random",label:"Aléatoire",emoji:"🔀"},{id:"ordered",label:"Dans l'ordre",emoji:"📋"}].map(o => (
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:32}}>
+        {[
+          {id:"random",  label:"Aléatoire", emoji:"🔀"},
+          {id:"ordered", label:"Dans l'ordre", emoji:"📋"},
+        ].map(o => (
           <button key={o.id} onClick={() => setOrder(o.id)}
             style={{
               background: order === o.id ? "linear-gradient(135deg,#6366F1,#4F46E5)" : "#fff",
               border: order === o.id ? "2px solid #4F46E5" : "2px solid #E2E8F0",
-              borderRadius:12,padding:"10px 8px",cursor:"pointer",
-              display:"flex",flexDirection:"column",alignItems:"center",gap:3,
-              boxShadow: order === o.id ? "0 3px 10px rgba(99,102,241,0.25)" : "0 1px 3px rgba(0,0,0,.05)",
+              borderRadius:14,padding:"12px 10px",cursor:"pointer",
+              display:"flex",flexDirection:"column",alignItems:"center",gap:4,
+              boxShadow: order === o.id ? "0 4px 12px rgba(99,102,241,0.25)" : "0 1px 4px rgba(0,0,0,.06)",
+              transition:"all .15s",
             }}>
-            <span style={{fontSize:18}}>{o.emoji}</span>
-            <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:12,
-              color: order === o.id ? "#fff" : "#1E293B"}}>{o.label}</span>
+            <span style={{fontSize:22}}>{o.emoji}</span>
+            <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:13,
+              color: order === o.id ? "#fff" : "#1E293B"}}>
+              {o.label}
+            </span>
           </button>
         ))}
       </div>
 
       {/* Bouton lancer */}
-      <button onClick={handleStart} disabled={finalCards.length === 0}
+      <button onClick={handleStart} disabled={!selectedLevel}
         style={{
-          background: finalCards.length > 0 ? "linear-gradient(135deg,#10B981,#047857)" : "#E2E8F0",
-          border:"none",borderRadius:16,padding:"15px",
-          cursor: finalCards.length > 0 ? "pointer" : "default",
-          color: finalCards.length > 0 ? "#fff" : "#94A3B8",
+          background: selectedLevel
+            ? "linear-gradient(135deg,#10B981,#047857)"
+            : "#E2E8F0",
+          border:"none",borderRadius:16,padding:"16px",cursor: selectedLevel ? "pointer" : "default",
+          color: selectedLevel ? "#fff" : "#94A3B8",
           fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,
-          boxShadow: finalCards.length > 0 ? "0 6px 20px rgba(16,185,129,0.35)" : "none",
-          transition:"all .2s",flexShrink:0,
+          boxShadow: selectedLevel ? "0 6px 20px rgba(16,185,129,0.35)" : "none",
+          transition:"all .2s",
+          marginTop:"auto",
         }}>
-        {finalCards.length > 0 ? `Commencer — ${finalCards.length} carte${finalCards.length>1?"s":""} 🃏` : "Sélectionne au moins un chapitre"}
+        {selectedLevel ? `Commencer — ${cardCount} cartes 🃏` : "Choisis ton niveau"}
       </button>
     </div>
   );
 }
 
-
 // ── FlashcardScreen ─────────────────────────────────────────────────────────
-function FlashcardScreen({ cards, onBack, onHome }) {
+function FlashcardScreen({ cards, onBack }) {
   const [idx, setIdx] = React.useState(0);
   const [flipped, setFlipped] = React.useState(false);
   const [known, setKnown] = React.useState([]);   // indices des cartes "je savais"
@@ -21111,16 +21460,10 @@ function FlashcardScreen({ cards, onBack, onHome }) {
             🔄 Recommencer depuis le début
           </button>
           <button onClick={onBack}
-            style={{background:"#EEF2FF",border:"none",borderRadius:14,padding:"12px",
-              color:"#4F46E5",fontFamily:"'Nunito',sans-serif",fontWeight:800,
-              fontSize:14,cursor:"pointer"}}>
-            📚 Changer de chapitres
-          </button>
-          <button onClick={onHome}
             style={{background:"#F1F5F9",border:"none",borderRadius:14,padding:"12px",
               color:"#64748B",fontFamily:"'Nunito',sans-serif",fontWeight:700,
               fontSize:14,cursor:"pointer"}}>
-            ← Changer de niveau
+            ← Retour
           </button>
         </div>
       </div>
@@ -23103,25 +23446,7 @@ function SigmaLegendaire({size=110}) {
   );
 }
 
-// Mapping catId → chapitres FLASHCARDS associés
-const CAT_TO_FC_CHAPITRES = {
-  fonctions:      ["Fonctions"],
-  pourcentages:   ["Pourcentages"],
-  numerique:      ["Puissances","Racines carrées","Calcul numérique","Ensembles"],
-  litteral:       ["Calcul littéral"],
-  probabilites:   ["Probabilités","Dénombrement"],
-  derivation:     ["Dérivation"],
-  primitives:     ["Primitives","Intégrales"],
-  equa_diff:      ["Équa. diff."],
-  limites:        ["Limites","Croissance comparée","Continuité"],
-  suites:         ["Suites","Suites financières"],
-  polynomes:      ["Polynômes"],
-  statistiques:   ["Statistiques"],
-  trigonometrie:  ["Trigonométrie"],
-  denombrement:   ["Dénombrement"],
-};
-
-function ResultScreen({score,total,catId,onReplay,onHome,onFlashcards=null,streakJustCompleted=false,streakCount=0,masteryBonus={amount:0,subs:[]}}) {
+function ResultScreen({score,total,catId,onReplay,onHome,streakJustCompleted=false,streakCount=0,masteryBonus={amount:0,subs:[]}}) {
   const s=starsFor(score,total);
   const pct=Math.round((score/total)*100);
   const cat=getCat(catId)||{label:"",emoji:"🎯",color:"#3B82F6",grad:"linear-gradient(135deg,#3B82F6,#1D4ED8)",light:"#EFF6FF",border:"#BFDBFE"};
@@ -23242,23 +23567,6 @@ function ResultScreen({score,total,catId,onReplay,onHome,onFlashcards=null,strea
           </div>
         </div>
       )}
-
-      {/* Bouton flashcards si score faible et cartes disponibles */}
-      {pct < 60 && onFlashcards && (() => {
-        const chapitres = CAT_TO_FC_CHAPITRES[catId] || [];
-        const cards = chapitres.length > 0 ? FLASHCARDS.filter(c => chapitres.includes(c.chapitre)) : [];
-        if (cards.length === 0) return null;
-        return (
-          <button onClick={() => onFlashcards(cards)}
-            style={{width:"100%",background:"linear-gradient(135deg,#10B981,#047857)",color:"#fff",
-              border:"none",borderRadius:13,padding:"14px",
-              fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:800,
-              cursor:"pointer",boxShadow:"0 5px 16px rgba(16,185,129,0.35)",
-              display:"flex",alignItems:"center",justifyContent:"center",gap:8}}>
-            🃏 Réviser les formules ({cards.length} cartes)
-          </button>
-        );
-      })()}
 
       {/* Buttons */}
       <div style={{display:"flex",flexDirection:"column",gap:9,width:"100%"}}>
@@ -23640,8 +23948,6 @@ function AutoMaths() {
   const [pool,      setPool]      = useState([]);
   const [questions, setQuestions] = useState([]);
   const [score,     setScore]     = useState(0);
-  const [fcSetupStep, setFcSetupStep] = useState(1); // 1=niveau 2=chapitres
-  const [fcLevel, setFcLevel] = useState(null); // niveau mémorisé pour retour chapitres
 
   // ── Mission state ─────────────────────────────────────────────────────────
   const [missionId,    setMissionId]    = useState(null);
@@ -24467,11 +24773,7 @@ function AutoMaths() {
                   : ["sec","tc","spe","term"];
               }
 
-              const STMG_EXCL = ["Vecteurs","Racines carrées","Géométrie","Géométrie espace","Produit scalaire"];
-              const TC_EXCL   = ["Vecteurs","Racines carrées"];
-              let filtered = FLASHCARDS.filter(c => allowedLevels.includes(c.level));
-              if (userLevel === "stmg") filtered = filtered.filter(c => !STMG_EXCL.includes(c.chapitre));
-              if (userLevel === "tc")   filtered = filtered.filter(c => !TC_EXCL.includes(c.chapitre));
+              const filtered = FLASHCARDS.filter(c => allowedLevels.includes(c.level));
               setPool(filtered);
               setScreen("flashcards");
             } else if(theme.useBacBlanc) {
@@ -24495,8 +24797,8 @@ function AutoMaths() {
               setScreen("mission_theme");
             }
           }}/>}
-          {screen==="flashcard_setup" && <FlashcardSetupScreen onBack={()=>setScreen("home")} initialStep={fcSetupStep} initialLevel={fcLevel} onStart={(cards, level)=>{ setFcSetupStep(1); setFcLevel(level); setPool(cards); setScreen("flashcards"); }}/>}
-          {screen==="flashcards"    && <FlashcardScreen cards={pool} onBack={()=>{ setFcSetupStep(2); setScreen("flashcard_setup"); }} onHome={()=>{ setFcSetupStep(1); setFcLevel(null); setScreen("flashcard_setup"); }}/>}
+          {screen==="flashcard_setup" && <FlashcardSetupScreen onBack={()=>setScreen("home")} onStart={(cards)=>{ setPool(cards); setScreen("flashcards"); }}/>}
+          {screen==="flashcards"    && <FlashcardScreen cards={pool} onBack={()=>setScreen("flashcard_setup")}/>}
           {screen==="mission_theme" && missionTheme && <MissionThemeScreen theme={missionTheme} missionId={missionId} onBack={()=>setScreen("mission_select")} onStart={(qs, themeId)=>{
             setPrevScreen("mission_theme");
             setQuestions(qs);
@@ -24513,7 +24815,7 @@ function AutoMaths() {
           {screen==="bac_subjects"   && <BacSubjectScreen onStart={hBacStart} onBack={()=>setScreen(profile?"dashboard":"home")}/>}
           {screen==="count"         && <CountScreen     catId={mode==="bac"?null:(mode==="test_aleatoire"&&!catId?null:catId)} allMode={mode==="bac"||(mode==="test_aleatoire"&&!catId)} options={mode==="entrainement"||mode==="test_aleatoire"?[20,50]:[10,20]} onCount={hCount} onBack={()=>setScreen(mode==="entrainement"?"subcategory":mode==="test_aleatoire"?"test_aleatoire":mode==="bac"?"home":"category")}/>}
           {screen==="quiz"          && <QuizScreen      questions={questions} catId={trackCat||catId||"fonctions"} subId={trackSub} quizMode={quizMode} onFinish={hFinish} onBack={()=>setScreen(prevScreen)}/>}
-          {screen==="result"        && <ResultScreen    score={score} total={questions.length} catId={catId||"fonctions"} onReplay={()=>{setStreakJustCompleted(false);hReplay();}} onHome={()=>{setStreakJustCompleted(false);hHome();}} onFlashcards={(cards)=>{ setPool(cards); setScreen("flashcards"); }} streakJustCompleted={streakJustCompleted} streakCount={profile?.streak||0} masteryBonus={masteryBonus}/>}
+          {screen==="result"        && <ResultScreen    score={score} total={questions.length} catId={catId||"fonctions"} onReplay={()=>{setStreakJustCompleted(false);hReplay();}} onHome={()=>{setStreakJustCompleted(false);hHome();}} streakJustCompleted={streakJustCompleted} streakCount={profile?.streak||0} masteryBonus={masteryBonus}/>}
           {screen==="parcours_result"&&<PostPracticeResultScreen score={score} total={questions.length} catId={trackCat} subId={trackSub} mode={quizMode} prevStars={prevStars} newStars={newStars} onRetry={()=>quizMode==="practice"?hStartPractice(trackCat,trackSub):hStartTest(trackCat,trackSub)} onDashboard={hDashboard} onHome={hHome}/>}
 
         </div>
