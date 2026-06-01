@@ -12061,6 +12061,66 @@ const DB = {
         a: r`\vec{0}`,
         tip: r`\overrightarrow{AG}=-\overrightarrow{GA},\ \overrightarrow{BG}=-\overrightarrow{GB},\ \overrightarrow{CG}=-\overrightarrow{GC}.\\\text{Donc la somme }=-(\overrightarrow{GA}+\overrightarrow{GB}+\overrightarrow{GC})=-\vec{0}=\vec{0}.` },
 
+      // ch_11 — Double vecteur
+      { q: r`\text{Simplifier }\overrightarrow{AB}+\overrightarrow{AB}.`,
+        choices: [r`2\overrightarrow{AB}`, r`\overrightarrow{AA}`, r`\vec{0}`, r`\overrightarrow{BB}`],
+        a: r`2\overrightarrow{AB}`,
+        tip: r`\overrightarrow{AB}+\overrightarrow{AB}=2\overrightarrow{AB}.\\\text{On additionne des vecteurs égaux, comme pour les nombres.}` },
+
+      // ch_12 — Chasles avec lettres AM + MC
+      { q: r`\text{Simplifier }\overrightarrow{AM}+\overrightarrow{MC}.`,
+        choices: [r`\overrightarrow{AC}`, r`\overrightarrow{CA}`, r`\overrightarrow{AM}`, r`\vec{0}`],
+        a: r`\overrightarrow{AC}`,
+        tip: r`\overrightarrow{AM}+\overrightarrow{MC}=\overrightarrow{AC}.\\\text{Le point intermédiaire M se simplifie (Chasles).}` },
+
+      // ch_13 — Aller-retour BC + CB
+      { q: r`\text{Simplifier }\overrightarrow{BC}+\overrightarrow{CB}.`,
+        choices: [r`\vec{0}`, r`2\overrightarrow{BC}`, r`\overrightarrow{BB}+\overrightarrow{CC}`, r`\overrightarrow{BC}`],
+        a: r`\vec{0}`,
+        tip: r`\overrightarrow{BC}+\overrightarrow{CB}=\overrightarrow{BB}=\vec{0}.\\\text{On revient au point de départ.}` },
+
+      // ch_14 — Vecteur opposé isolé
+      { q: r`\text{Simplifier }-\overrightarrow{AB}.`,
+        choices: [r`\overrightarrow{BA}`, r`\overrightarrow{AB}`, r`\vec{0}`, r`2\overrightarrow{AB}`],
+        a: r`\overrightarrow{BA}`,
+        tip: r`-\overrightarrow{AB}=\overrightarrow{BA}.\\\text{On inverse départ et arrivée.}` },
+
+      // ch_15 — Réorganisation avant Chasles : AB + CA
+      { q: r`\text{Simplifier }\overrightarrow{AB}+\overrightarrow{CA}.`,
+        choices: [r`\overrightarrow{CB}`, r`\overrightarrow{BC}`, r`\vec{0}`, r`\overrightarrow{AC}`],
+        a: r`\overrightarrow{CB}`,
+        tip: r`\text{On réordonne : }\overrightarrow{CA}+\overrightarrow{AB}=\overrightarrow{CB}\text{ (Chasles).}` },
+
+      // ch_16 — Trois termes avec vecteur opposé : AB - CB + MA
+      { q: r`\text{Simplifier }\overrightarrow{AB}-\overrightarrow{CB}+\overrightarrow{MA}.`,
+        choices: [r`\overrightarrow{MC}`, r`\overrightarrow{CM}`, r`\vec{0}`, r`2\overrightarrow{MA}`],
+        a: r`\overrightarrow{MC}`,
+        tip: r`-\overrightarrow{CB}=\overrightarrow{BC}.\\\overrightarrow{AB}+\overrightarrow{BC}=\overrightarrow{AC}\text{ (Chasles).}\\\overrightarrow{MA}+\overrightarrow{AC}=\overrightarrow{MC}\text{ (Chasles).}` },
+
+      // ch_17 — Soustraction : AC - AB
+      { q: r`\text{Simplifier }\overrightarrow{AC}-\overrightarrow{AB}.`,
+        choices: [r`\overrightarrow{BC}`, r`\overrightarrow{CB}`, r`\overrightarrow{AC}`, r`\vec{0}`],
+        a: r`\overrightarrow{BC}`,
+        tip: r`\overrightarrow{AC}-\overrightarrow{AB}=\overrightarrow{AC}+\overrightarrow{BA}=\overrightarrow{BA}+\overrightarrow{AC}=\overrightarrow{BC}.` },
+
+      // ch_18 — Trois termes fermés PQ + QR + RP
+      { q: r`\text{Simplifier }\overrightarrow{PQ}+\overrightarrow{QR}+\overrightarrow{RP}.`,
+        choices: [r`\vec{0}`, r`\overrightarrow{PR}`, r`3\overrightarrow{PQ}`, r`\overrightarrow{PQ}+\overrightarrow{QP}`],
+        a: r`\vec{0}`,
+        tip: r`\overrightarrow{PQ}+\overrightarrow{QR}=\overrightarrow{PR}.\\\overrightarrow{PR}+\overrightarrow{RP}=\overrightarrow{PP}=\vec{0}.` },
+
+      // ch_19 — Milieu et Chasles : AB + BM
+      { q: r`M\text{ est le milieu de }[BC].\\ [4pt]\text{Simplifier }\overrightarrow{AB}+\overrightarrow{BM}.`,
+        choices: [r`\overrightarrow{AM}`, r`\overrightarrow{AC}`, r`\dfrac{1}{2}\overrightarrow{AC}`, r`\overrightarrow{AB}+\dfrac{1}{2}\overrightarrow{BC}`],
+        a: r`\overrightarrow{AM}`,
+        tip: r`\overrightarrow{AB}+\overrightarrow{BM}=\overrightarrow{AM}\text{ (Chasles, le point B se simplifie).}` },
+
+      // ch_20 — Décomposer avec deux points intermédiaires
+      { q: r`\text{Exprimer }\overrightarrow{AD}\text{ en utilisant B et C.}`,
+        choices: [r`\overrightarrow{AB}+\overrightarrow{BC}+\overrightarrow{CD}`, r`\overrightarrow{AB}+\overrightarrow{CD}`, r`\overrightarrow{AC}+\overrightarrow{BD}`, r`\overrightarrow{AB}+\overrightarrow{DC}`],
+        a: r`\overrightarrow{AB}+\overrightarrow{BC}+\overrightarrow{CD}`,
+        tip: r`\overrightarrow{AD}=\overrightarrow{AB}+\overrightarrow{BC}+\overrightarrow{CD}.\\\text{On intercale les points intermédiaires B et C (Chasles).}` },
+
     ],
 
     // ── Sous-cat 3 : Géométrie analytique ────────────────────────────────────
@@ -20330,9 +20390,6 @@ const FLASHCARDS = [
   { id:"fc_rac_03", level:"sec", chapitre:"Racines carrées",
     recto:r`\sqrt{a}+\sqrt{b}=\sqrt{a+b}\text{ ?}`,
     verso:r`\text{\textbf{Faux !}}\\[6pt]\sqrt{a}+\sqrt{b}\neq\sqrt{a+b}\\[4pt]\sqrt{a}-\sqrt{b}\neq\sqrt{a-b}\\[6pt]\text{Ex : }\sqrt{4}+\sqrt{9}=2+3=5\neq\sqrt{13}` },
-  { id:"fc_rac_04_eq", level:"sec", chapitre:"Racines carrées",
-    recto:r`\text{Solutions de }x^2=a\text{ ?}`,
-    verso:r`\bullet\ a>0\ :\ \text{deux solutions }x=-\sqrt{a}\text{ et }x=\sqrt{a}\\[8pt]\bullet\ a=0\ :\ \text{une solution }x=0\\[8pt]\bullet\ a<0\ :\ \text{aucune solution}` },
   { id:"fc_meth_05", level:"tc", chapitre:"Méthodes",
     recto:r`\text{Étudier les variations d'une suite }(u_n)\text{, c'est...}`,
     verso:r`\text{Étudier le signe de }u_{n+1}-u_n\\[6pt]u_{n+1}-u_n>0\Rightarrow\text{croissante}\\[4pt]u_{n+1}-u_n<0\Rightarrow\text{décroissante}` },
