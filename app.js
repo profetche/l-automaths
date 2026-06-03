@@ -7982,7 +7982,37 @@ const DB = {
       { q:r`\text{Le prix d'un article est multiplié par }0{,}845.\\[4pt]\text{Cela signifie que le prix de l'article a :}`, choices:[r`\text{augmenté de }84{,}5\%`,r`\text{baissé de }1{,}55\%`,r`\text{augmenté de }15{,}5\%`,r`\text{baissé de }15{,}5\%`], a:r`\text{baissé de }15{,}5\%`, tip:r`1-0{,}845=0{,}155\Rightarrow\text{baisse de }15{,}5\%` },
       { q:r`\text{Soit }A(x)=(x+5)(x+8).\\[4pt]\text{Le tableau de signes de }A(x)\text{ sur }\mathbb{R}\text{ est :}`, choices:[r`\begin{array}{c|ccccccc} x & -\infty & & -8 & & -5 & & +\infty \\ \hline A(x) & & - & 0 & + & 0 & - & \end{array}`,r`\begin{array}{c|ccccc} x & -\infty & & -5 & & +\infty \\ \hline A(x) & & - & 0 & + & \end{array}`,r`\begin{array}{c|ccccccc} x & -\infty & & -8 & & -5 & & +\infty \\ \hline A(x) & & + & 0 & - & 0 & + & \end{array}`,r`\begin{array}{c|ccccccc} x & -\infty & & 5 & & & & +\infty \\ \hline A(x) & & + & 0 & - & 0 & + & \end{array}`], a:r`\begin{array}{c|ccccccc} x & -\infty & & -8 & & -5 & & +\infty \\ \hline A(x) & & + & 0 & - & 0 & + & \end{array}`, tip:r`\text{Racines }-8\text{ et }-5\text{ ; parabole tournée vers le haut : }A(x)>0\text{ à lextérieur des racines, }A(x)<0	ext{ entre elles}` },
       { q:r`\text{Un singe choisit une lettre au hasard parmi les 26 de l'alphabet.}\\[4pt]V\text{ : « choisir une voyelle » (A, E, I, O, U, Y).}\\[2pt]M\text{ : « choisir une lettre du mot SINGE ».}\\[4pt]P_M(V)\text{ vaut :}`, choices:[r`\dfrac{6}{26}`,r`\dfrac{2}{5}`,r`\dfrac{2}{6}`,r`\dfrac{5}{6}`], a:r`\dfrac{2}{5}`, tip:r`\text{SINGE : 5 lettres dont 2 voyelles (I, E)}\Rightarrow P_M(V)=\frac{2}{5}` },
-      { q:r`\text{Soit }f\text{ une fonction affine représentée ci-contre.}\\[4pt]\text{Une expression algébrique de }f\text{ est :}`, gspec:{ fn:x=>-10*x+30, xr:[-1,4], yr:[-5,40], label:'', color:'#0E7490', extras:c=><>{gPt(0,30,c,'#0E7490')}{gPt(3,0,c,'#0E7490')}</> }, choices:[`f(x)=-x+30`,`f(x)=30x+3`,`f(x)=-10x+30`,r`f(x)=-\dfrac{1}{10}x+30`], a:`f(x)=-10x+30`, tip:r`\text{Ordonnée à l'origine }30\text{, passe par }(3\,;\,0)\Rightarrow\text{pente }\frac{0-30}{3-0}=-10` },
+      { q:r`\text{Soit }f\text{ une fonction affine représentée ci-contre.}\\[4pt]\text{Une expression algébrique de }f\text{ est :}`, svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 192" width="100%" style="background:#fff;font-family:sans-serif;border-radius:8px">
+  <g stroke="#E5EAF1" stroke-width="1">
+    <line x1="4" y1="14" x2="4" y2="172"/><line x1="40" y1="14" x2="40" y2="172"/>
+    <line x1="76" y1="14" x2="76" y2="172"/><line x1="112" y1="14" x2="112" y2="172"/>
+    <line x1="148" y1="14" x2="148" y2="172"/><line x1="184" y1="14" x2="184" y2="172"/>
+    <line x1="4" y1="131" x2="184" y2="131"/><line x1="4" y1="97" x2="184" y2="97"/>
+    <line x1="4" y1="63" x2="184" y2="63"/><line x1="4" y1="29" x2="184" y2="29"/>
+  </g>
+  <line x1="40" y1="172" x2="40" y2="12" stroke="#475569" stroke-width="1.4"/>
+  <line x1="4" y1="165" x2="192" y2="165" stroke="#475569" stroke-width="1.4"/>
+  <polygon points="40,12 36,20 44,20" fill="#475569"/>
+  <polygon points="192,165 184,161 184,169" fill="#475569"/>
+  <g font-size="9" fill="#475569" font-family="DM Sans">
+    <line x1="37" y1="131" x2="43" y2="131" stroke="#475569" stroke-width="1"/><text x="34" y="134" text-anchor="end">10</text>
+    <line x1="37" y1="97" x2="43" y2="97" stroke="#475569" stroke-width="1"/><text x="34" y="100" text-anchor="end">20</text>
+    <line x1="37" y1="63" x2="43" y2="63" stroke="#475569" stroke-width="1"/><text x="34" y="66" text-anchor="end">30</text>
+    <line x1="37" y1="29" x2="43" y2="29" stroke="#475569" stroke-width="1"/><text x="34" y="32" text-anchor="end">40</text>
+  </g>
+  <g font-size="9" fill="#475569" font-family="DM Sans" text-anchor="middle">
+    <text x="4" y="178">-1</text><text x="76" y="178">1</text><text x="112" y="178">2</text>
+    <text x="148" y="178">3</text><text x="184" y="178">4</text>
+    <text x="47" y="178" text-anchor="start">O</text>
+  </g>
+  <line x1="4" y1="29" x2="171" y2="186" stroke="#0E7490" stroke-width="2.4" stroke-linecap="round"/>
+  <g stroke="#1E293B" stroke-width="2.2" stroke-linecap="round">
+    <line x1="35" y1="58" x2="45" y2="68"/><line x1="45" y1="58" x2="35" y2="68"/>
+    <line x1="143" y1="160" x2="153" y2="170"/><line x1="153" y1="160" x2="143" y2="170"/>
+  </g>
+  <text x="45" y="22" font-size="9" fill="#94A3B8" font-style="italic">y</text>
+  <text x="188" y="161" font-size="9" fill="#94A3B8" font-style="italic">x</text>
+</svg>`, choices:[`f(x)=-x+30`,`f(x)=30x+3`,`f(x)=-10x+30`,r`f(x)=-\dfrac{1}{10}x+30`], a:`f(x)=-10x+30`, tip:r`\text{Ordonnée à l'origine }30\text{, passe par }(3\,;\,0)\Rightarrow\text{pente }\frac{0-30}{3-0}=-10` },
       { q:r`\text{La forme développée et réduite de }(x+2)^2-(1-x)^2\text{ vaut :}`, choices:[r`2x^2+3`,`6x+3`,`2x+5`,r`2x^2+2x+3`], a:`6x+3`, tip:r`(x^2+4x+4)-(1-2x+x^2)=6x+3` },
       { q:r`\text{L'équation }2(x-4)-(2x+1)=0\text{ admet :}`, choices:[r`\text{Deux solutions : }4\text{ et }\tfrac{1}{2}`,r`\text{Deux solutions : }4\text{ et }-\tfrac{1}{2}`,r`\text{Aucune solution}`,r`\text{Une infinité de solutions}`], a:r`\text{Aucune solution}`, tip:r`2x-8-2x-1=-9\neq0\ \text{(toujours)}\Rightarrow\text{aucune solution}` },
       { q:r`\text{On considère }E=\dfrac{2\times3^2}{27\times2^3}.\\[4pt]E\text{ est égal à :}`, choices:[r`\dfrac{1}{9}`,r`\dfrac{1}{12}`,`12`,r`\dfrac{1}{6}`], a:r`\dfrac{1}{12}`, tip:r`\frac{2\times9}{27\times8}=\frac{18}{216}=\frac{1}{12}` },
@@ -22198,7 +22228,7 @@ const BAC_GROUPS = [
       {id:"tronc_annales_s1_2026", label:"Annales 2026 — Sujet 1", year:2026, n:12},
       {id:"tronc_annales_s2_2026", label:"Annales 2026 — Sujet 2", year:2026, n:12},
       {id:"tronc_annales_s3_2026", label:"Annales 2026 — Sujet 3", year:2026, n:12},
-      {id:"tronc_annales_s4_2026", label:"Amérique du Nord 2026", year:2026, n:12},
+      {id:"tronc_annales_s4_2026", label:"Amérique du Nord 2026", year:2026, n:12, isNew:true},
       {id:"tronc_original",        label:"Créations originales",    year:null, n:0, disabled:true},
     ],
   },
@@ -22207,7 +22237,7 @@ const BAC_GROUPS = [
     subs:[
       {id:"spe_annales_s1_2026", label:"Annales 2026 — Sujet 1", year:2026, n:12},
       {id:"spe_annales_s2_2026", label:"Annales 2026 — Sujet 2", year:2026, n:12},
-      {id:"spe_annales_s3_2026", label:"Amérique du Nord 2026", year:2026, n:9},
+      {id:"spe_annales_s3_2026", label:"Amérique du Nord 2026", year:2026, n:9, isNew:true},
       {id:"spe_original",        label:"Créations originales",    year:null, n:0, disabled:true},
     ],
   },
@@ -22260,8 +22290,14 @@ function BacSubjectScreen({onStart, onBack}) {
                     <div style={{width:8,height:8,borderRadius:"50%",flexShrink:0,
                       background:isEmpty?"#CBD5E1":group.color}}/>
                     <div style={{flex:1}}>
-                      <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,
-                        fontSize:13,color:isEmpty?"#94A3B8":"#1E293B"}}>{sub.label}</div>
+                      <div style={{display:"flex",alignItems:"center",gap:6}}>
+                        <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,
+                          fontSize:13,color:isEmpty?"#94A3B8":"#1E293B"}}>{sub.label}</div>
+                        {sub.isNew&&<span style={{fontSize:8.5,fontWeight:900,color:"#fff",
+                          background:"linear-gradient(135deg,#EF4444,#DC2626)",borderRadius:99,
+                          padding:"1.5px 6px",letterSpacing:0.5,
+                          boxShadow:"0 1px 4px rgba(239,68,68,.45)"}}>NEW</span>}
+                      </div>
                       {sub.year&&<div style={{fontSize:10,color:"#94A3B8",marginTop:1}}>
                         {qs.length} question{qs.length>1?"s":""} · Automatismes Partie 1
                       </div>}
