@@ -19302,7 +19302,7 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onB
     })();
   }, [profile]);
 
-  // Modes secondaires (compacts, grille 2x2)
+  // Modes secondaires — plus utilisés directement, gardés pour compatibilité éventuelle
   const secondaryModes = [
     {id:"sprint",      label:"Sprint",       sub:"5 min chrono",     emoji:"⏱️", color:"#0EA5E9", grad:"linear-gradient(135deg,#0EA5E9,#0284C7)"},
     {id:"missions",    label:"Missions",     sub:"Objectifs Sigma",  emoji:"🚀", color:"#1E40AF", grad:"linear-gradient(135deg,#1E40AF,#1E3A8A)"},
@@ -19484,72 +19484,111 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onB
       <Scroll>
         <div style={{padding:"0 18px"}}>
 
-          {/* Petit label de section */}
-          <div style={{
-            fontSize:10, fontWeight:800, color:"#94A3B8",
-            letterSpacing:".15em", textTransform:"uppercase",
-            marginBottom:10, paddingLeft:4
-          }}>
-            Que veux-tu faire ?
-          </div>
+          {/* ══ APPRENDRE ══════════════════════════════════════════════════ */}
+          <div style={{fontSize:8.5,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
+            letterSpacing:1.2,marginBottom:7}}>📖 Apprendre</div>
 
-          {/* ─── MODE HÉROS : S'entraîner (le plus utilisé) ─── */}
-          <button onClick={()=>onMode("train")} className="pop-in"
-            style={{
-              background:"linear-gradient(135deg,#8B5CF6,#6D28D9)",
-              border:"none",borderRadius:18,padding:"22px 22px",
-              cursor:"pointer",display:"flex",alignItems:"center",gap:16,
-              boxShadow:"0 8px 24px rgba(139,92,246,.3)",
-              width:"100%",marginBottom:14,
-              animationDelay:"0s",position:"relative",overflow:"hidden",
-            }}>
-            {/* Halo décoratif */}
-            <div style={{position:"absolute",top:-30,right:-30,width:140,height:140,
-              borderRadius:"50%",background:"rgba(255,255,255,0.08)",pointerEvents:"none"}}/>
-            <div style={{fontSize:38,width:64,height:64,
-              background:"rgba(255,255,255,.2)",borderRadius:18,
-              display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,
-              position:"relative",zIndex:1}}>
-              💪
+          <button onClick={()=>onMode("flashcards")} className="pop-in"
+            style={{width:"100%",background:"linear-gradient(135deg,#10B981,#047857)",
+              borderRadius:16,padding:"15px 18px",marginBottom:14,border:"none",cursor:"pointer",
+              display:"flex",alignItems:"center",gap:14,
+              boxShadow:"0 5px 16px rgba(16,185,129,.28)",textAlign:"left",animationDelay:"0s"}}>
+            <span style={{fontSize:30,flexShrink:0}}>🃏</span>
+            <div style={{flex:1}}>
+              <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,color:"#fff",lineHeight:1.1}}>
+                Flashcards
+              </div>
+              <div style={{color:"rgba(255,255,255,0.75)",fontSize:10,marginTop:3}}>
+                Retiens les formules · cours essentiel
+              </div>
             </div>
-            <div style={{textAlign:"left",flex:1,position:"relative",zIndex:1}}>
-              <div style={{fontFamily:"'Nunito',sans-serif",fontSize:20,fontWeight:900,color:"#fff",lineHeight:1.1}}>
+            <span style={{color:"rgba(255,255,255,0.55)",fontSize:18}}>›</span>
+          </button>
+
+          {/* ══ S'ENTRAÎNER ════════════════════════════════════════════════ */}
+          <div style={{fontSize:8.5,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
+            letterSpacing:1.2,marginBottom:7}}>💪 S'entraîner</div>
+
+          <button onClick={()=>onMode("train")} className="pop-in"
+            style={{width:"100%",background:"linear-gradient(135deg,#8B5CF6,#6D28D9)",
+              border:"none",borderRadius:16,padding:"16px 18px",marginBottom:8,
+              cursor:"pointer",display:"flex",alignItems:"center",gap:14,
+              boxShadow:"0 6px 20px rgba(139,92,246,.30)",textAlign:"left",
+              animationDelay:"0s",position:"relative",overflow:"hidden"}}>
+            <div style={{position:"absolute",top:-30,right:-30,width:120,height:120,
+              borderRadius:"50%",background:"rgba(255,255,255,0.07)",pointerEvents:"none"}}/>
+            <span style={{fontSize:32,flexShrink:0,position:"relative",zIndex:1}}>💪</span>
+            <div style={{flex:1,position:"relative",zIndex:1}}>
+              <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:17,color:"#fff",lineHeight:1.1}}>
                 S'entraîner
               </div>
-              <div style={{fontSize:12,color:"rgba(255,255,255,.85)",marginTop:4,fontWeight:600}}>
+              <div style={{color:"rgba(255,255,255,0.78)",fontSize:10,marginTop:3}}>
                 Choisis ton chapitre · ton format · à ton rythme
               </div>
             </div>
-            <div style={{color:"rgba(255,255,255,.7)",fontSize:24,position:"relative",zIndex:1}}>›</div>
+            <span style={{color:"rgba(255,255,255,0.55)",fontSize:18,position:"relative",zIndex:1}}>›</span>
           </button>
 
-          {/* ─── MODES SECONDAIRES (grille 2x2) ─── */}
-          <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:8,marginBottom:14}}>
-            {secondaryModes.map((m,i)=>(
-              <button key={m.id} onClick={()=>onMode(m.id)} className="pop-in"
-                style={{
-                  background:m.grad,border:"none",borderRadius:14,padding:"14px 8px",
-                  cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",gap:6,
-                  boxShadow:`0 4px 12px ${m.color}40`,
-                  animationDelay:`${(i+1)*.06}s`,
-                  minHeight:96,
-                }}>
-                <div style={{fontSize:24,width:42,height:42,
-                  background:"rgba(255,255,255,.2)",borderRadius:11,
-                  display:"flex",alignItems:"center",justifyContent:"center"}}>
-                  {m.emoji}
-                </div>
-                <div style={{textAlign:"center"}}>
-                  <div style={{fontFamily:"'Nunito',sans-serif",fontSize:13,fontWeight:900,color:"#fff",lineHeight:1.1}}>
-                    {m.label}
-                  </div>
-                  <div style={{fontSize:9,color:"rgba(255,255,255,.8)",marginTop:2,fontWeight:600}}>
-                    {m.sub}
-                  </div>
-                </div>
-              </button>
-            ))}
-          </div>
+          <button onClick={()=>onMode("missions")} className="pop-in"
+            style={{width:"100%",background:"linear-gradient(135deg,#3B82F6,#1D4ED8)",
+              borderRadius:14,padding:"13px 16px",marginBottom:14,border:"none",cursor:"pointer",
+              display:"flex",alignItems:"center",gap:12,
+              boxShadow:"0 4px 14px rgba(59,130,246,.28)",textAlign:"left",animationDelay:".05s"}}>
+            <span style={{fontSize:24,flexShrink:0}}>🚀</span>
+            <div style={{flex:1}}>
+              <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:"#fff",lineHeight:1.1}}>
+                Missions
+              </div>
+              <div style={{color:"rgba(255,255,255,0.75)",fontSize:10,marginTop:2}}>Objectifs Sigma</div>
+            </div>
+            <span style={{color:"rgba(255,255,255,0.55)",fontSize:16}}>›</span>
+          </button>
+
+          {/* ══ S'ÉVALUER POUR LE BAC ═══════════════════════════════════════ */}
+          <div style={{fontSize:8.5,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
+            letterSpacing:1.2,marginBottom:7}}>🎯 S'évaluer pour le Bac</div>
+
+          <button onClick={()=>onMode("bac")} className="pop-in"
+            style={{position:"relative",width:"100%",
+              background:"linear-gradient(135deg,#F59E0B,#B45309)",
+              borderRadius:16,padding:"15px 18px",marginBottom:14,border:"none",cursor:"pointer",
+              display:"flex",alignItems:"center",gap:14,
+              boxShadow:"0 5px 16px rgba(245,158,11,.32)",textAlign:"left",animationDelay:".1s"}}>
+            {Date.now()<1781827200000&&<span style={{position:"absolute",top:8,right:12,
+              fontSize:8.5,fontWeight:900,color:"#fff",
+              background:"linear-gradient(135deg,#EF4444,#DC2626)",borderRadius:99,
+              padding:"1.5px 6px",letterSpacing:0.5,
+              boxShadow:"0 1px 4px rgba(0,0,0,.25)"}}>NEW</span>}
+            <span style={{fontSize:30,flexShrink:0}}>🏆</span>
+            <div style={{flex:1}}>
+              <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,color:"#fff",lineHeight:1.1}}>
+                Bac
+              </div>
+              <div style={{color:"rgba(255,255,255,0.75)",fontSize:10,marginTop:3}}>
+                Annales officielles · Automatismes QCM
+              </div>
+            </div>
+            <span style={{color:"rgba(255,255,255,0.55)",fontSize:18}}>›</span>
+          </button>
+
+          {/* ══ DÉFI CHRONO ════════════════════════════════════════════════ */}
+          <div style={{fontSize:8.5,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
+            letterSpacing:1.2,marginBottom:7}}>⚡ Défi chrono</div>
+
+          <button onClick={()=>onMode("sprint")} className="pop-in"
+            style={{width:"100%",background:"linear-gradient(135deg,#0EA5E9,#0284C7)",
+              borderRadius:14,padding:"13px 16px",marginBottom:14,border:"none",cursor:"pointer",
+              display:"flex",alignItems:"center",gap:12,
+              boxShadow:"0 4px 14px rgba(14,165,233,.26)",textAlign:"left",animationDelay:".15s"}}>
+            <span style={{fontSize:24,flexShrink:0}}>⏱️</span>
+            <div style={{flex:1}}>
+              <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:"#fff",lineHeight:1.1}}>
+                Sprint
+              </div>
+              <div style={{color:"rgba(255,255,255,0.75)",fontSize:10,marginTop:2}}>5 min chrono</div>
+            </div>
+            <span style={{color:"rgba(255,255,255,0.55)",fontSize:16}}>›</span>
+          </button>
 
           {/* ─── ACCÈS DASHBOARD (lien sobre, en bas) ─── */}
           {profile && onDashboard && (
@@ -24104,6 +24143,42 @@ function CercleTrigoScreen({onBack}) {
   );
 }
 
+
+function BottomNav({screen, onTab}) {
+  const BAC_NEW = 1781827200000;
+  const tabs = [
+    {id:"home",      emoji:"🏠", label:"Accueil",     active:screen==="dashboard"||screen==="home"},
+    {id:"apprendre", emoji:"📖", label:"Apprendre",   active:screen==="flashcard_setup"||screen==="flashcards"},
+    {id:"train",     emoji:"💪", label:"S'entraîner", active:screen==="training_modes"},
+    {id:"bac",       emoji:"🎯", label:"Bac",         badge:Date.now()<BAC_NEW, active:screen==="bac_subjects"},
+    {id:"parcours",  emoji:"📊", label:"Parcours",    active:screen==="parcours_detail"||screen==="collection"||screen==="vigilance"},
+  ];
+  return (
+    <div style={{position:"absolute",bottom:0,left:0,right:0,height:58,
+      background:"#fff",borderTop:"1px solid #E8ECF3",display:"flex",
+      zIndex:50,boxShadow:"0 -2px 10px rgba(0,0,0,.06)"}}>
+      {tabs.map(tab=>{
+        const c=tab.active?"#7C3AED":"#94A3B8";
+        return (
+          <button key={tab.id} onClick={()=>onTab(tab.id)}
+            style={{flex:1,border:"none",background:"none",cursor:"pointer",
+              display:"flex",flexDirection:"column",alignItems:"center",
+              justifyContent:"center",gap:2,padding:"2px 0",position:"relative"}}>
+            {tab.badge&&<span style={{position:"absolute",top:5,right:"calc(50% - 18px)",
+              width:7,height:7,borderRadius:"50%",background:"#EF4444",border:"1.5px solid #fff"}}/>}
+            <span style={{fontSize:19,lineHeight:1,filter:tab.active?"none":"opacity(0.55)"}}>{tab.emoji}</span>
+            <span style={{fontSize:9.5,fontWeight:tab.active?800:600,color:c,
+              fontFamily:"'Nunito',sans-serif",lineHeight:1}}>{tab.label}</span>
+            {tab.active&&<div style={{position:"absolute",bottom:0,left:"50%",
+              transform:"translateX(-50%)",width:18,height:2.5,
+              background:"#7C3AED",borderRadius:99}}/>}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 function AutoMaths() {
   const katexReady = useKaTeX();
 
@@ -24859,6 +24934,17 @@ function AutoMaths() {
     </div>
   );
 
+  const NAV_SCREENS = new Set(["dashboard","home","flashcard_setup","training_modes",
+    "bac_subjects","parcours_detail","collection","vigilance"]);
+  const showBottomNav = NAV_SCREENS.has(screen);
+  const hNavTab = (tabId) => {
+    if      (tabId==="home")      setScreen(profile?"dashboard":"home");
+    else if (tabId==="apprendre") setScreen("flashcard_setup");
+    else if (tabId==="train")     setScreen("training_modes");
+    else if (tabId==="bac")       setScreen("bac_subjects");
+    else if (tabId==="parcours")  { if(profile) setScreen("parcours_detail"); }
+  };
+
   const th_main = getTheme(profile);
   const currentScale = getPrefs(profile).fontScale;
   const scaleFactor = FONT_SCALES[currentScale]?.factor || 1.0;
@@ -24874,7 +24960,7 @@ function AutoMaths() {
         <div style={{position:"absolute",top:0,left:"50%",transform:"translateX(-50%)",
           width:120,height:26,background:"#1E293B",borderRadius:"0 0 18px 18px",zIndex:10}}/>
         
-        <div style={{height:"100%",overflowY:"auto",paddingTop:26,
+        <div style={{height:showBottomNav?"calc(100% - 58px)":"100%",overflowY:"auto",paddingTop:26,
           // Zoom via la propriété CSS `zoom` (supportée Chrome/Safari/Firefox).
           // Avantage vs transform:scale : ne casse pas les positionnements
           // absolus, les modales, les dropdowns. Simple et fiable.
@@ -24964,7 +25050,7 @@ function AutoMaths() {
               setScreen("mission_theme");
             }
           }}/>}
-          {screen==="flashcard_setup" && <FlashcardSetupScreen onBack={()=>setScreen("home")} onStart={(cards)=>{ setPool(cards); setScreen("flashcards"); }}/>}
+          {screen==="flashcard_setup" && <FlashcardSetupScreen onBack={()=>setScreen(profile?"dashboard":"home")} onStart={(cards)=>{ setPool(cards); setScreen("flashcards"); }}/>}
           {screen==="flashcards"    && <FlashcardScreen cards={pool} onBack={()=>setScreen("flashcard_setup")}/>}
           {screen==="mission_theme" && missionTheme && <MissionThemeScreen theme={missionTheme} missionId={missionId} onBack={()=>setScreen("mission_select")} onStart={(qs, themeId)=>{
             setPrevScreen("mission_theme");
@@ -24986,8 +25072,9 @@ function AutoMaths() {
           {screen==="parcours_result"&&<PostPracticeResultScreen score={score} total={questions.length} catId={trackCat} subId={trackSub} mode={quizMode} prevStars={prevStars} newStars={newStars} onRetry={()=>quizMode==="practice"?hStartPractice(trackCat,trackSub):hStartTest(trackCat,trackSub)} onDashboard={hDashboard} onHome={hHome}/>}
 
         </div>
-        <div style={{position:"absolute",bottom:8,left:"50%",transform:"translateX(-50%)",
-          width:120,height:5,background:"#CBD5E1",borderRadius:99}}/>
+        {!showBottomNav&&<div style={{position:"absolute",bottom:8,left:"50%",transform:"translateX(-50%)",
+          width:120,height:5,background:"#CBD5E1",borderRadius:99}}/>}
+        {showBottomNav&&<BottomNav screen={screen} onTab={hNavTab}/>}
       </div>
       {/* Modal compte progressif — overlay visible sur tous les écrans quand déclenché */}
       {showAccountPrompt && !profile && (
