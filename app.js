@@ -7893,6 +7893,57 @@ const DB = {
       { q:r`V=\pi r^2 h\text{. Isoler }h\text{ :}`, choices:[r`h=\sqrt{\dfrac{V}{\pi r^2}}`,r`h=\dfrac{\pi r^2}{V}`,r`h=\dfrac{V}{\pi r^2}`,r`h=\dfrac{r^2}{\pi V}`], a:r`h=\dfrac{V}{\pi r^2}`, tip:r`h=\frac{V}{\pi r^2}` },
       { q:r`f\text{ définie sur }[-4\,;\,4]. \text{Zéros de }f\text{ :}`, gspec:{ fn:x=>(x+3)*(x+1)*(x-1)*(x-2)/4, xr:[-4,4], yr:[-4,4], label:'f', color:'#7C3AED', extras:c=><>{gDH(0,c,'#94A3B8')}{gPt(-3,0,c)}{gPt(-1,0,c)}{gPt(1,0,c)}{gPt(2,0,c)}</> }, choices:[r`S=\{0\}`,r`S=[-3\,;\,2]`,r`S=\{-3\,;\,-1\,;\,1\,;\,2\}`,r`S=\{1{,}5\}`], a:r`S=\{-3\,;\,-1\,;\,1\,;\,2\}`, tip:r`\text{4 zéros d'après la courbe}` },
     ],
+    // ── Tronc commun · Annales · Sujet 4 (Amérique du Nord, 1ᵉʳ juin 2026, hors Spé) ──
+    tronc_annales_s4_2026: [
+      { q:r`\text{On compare deux réels }A\text{ et }B.\\[4pt]\text{On sait que }A-B\text{ est strictement positif. Alors :}`, choices:[`A<B`,`A>B`,`A=B`,r`\text{On ne peut pas savoir}`], a:`A>B`, tip:r`A-B>0\Leftrightarrow A>B` },
+      { q:r`\text{On considère le nombre }C=\dfrac{1}{2}+3\times\dfrac{5}{6}.\\[4pt]\text{On a :}`, choices:[`C=2`,r`C=\dfrac{35}{12}`,r`C=\dfrac{35}{2}`,`C=3`], a:`C=3`, tip:r`\frac{1}{2}+\frac{15}{6}=\frac{1}{2}+\frac{5}{2}=\frac{6}{2}=3` },
+      { q:r`\text{Le nombre }3\times2^5\times2^3\text{ est égal à :}`, choices:[r`3\times2^8`,r`6^8`,r`3\times2^{15}`,r`7^8`], a:r`3\times2^8`, tip:r`2^5\times2^3=2^{5+3}=2^8` },
+      { q:r`\text{On considère le nombre }E=999\times1001.\\[4pt]\text{Un ordre de grandeur de }E\text{ est :}`, choices:[r`1\,000`,r`10\,000`,r`100\,000`,r`1\,000\,000`], a:r`1\,000\,000`, tip:r`999\times1001\approx1000\times1000=10^6` },
+      { q:r`\text{En développant }(x+2)^2\text{, on obtient :}`, choices:[r`x^2+4x+4`,r`2x+4`,r`x^2+4`,r`x^2-4`], a:r`x^2+4x+4`, tip:r`(a+b)^2=a^2+2ab+b^2` },
+      { q:r`\text{L'équation }3x-5=x+3\text{ a pour solution :}`, choices:[`x=-4`,`x=8`,`x=6`,`x=4`], a:`x=4`, tip:r`3x-5=x+3\Rightarrow2x=8\Rightarrow x=4` },
+      { q:r`\text{Dans une boîte de 60 chocolats, }40\%\text{ sont des chocolats au lait.}\\[4pt]\text{Combien y a-t-il de chocolats au lait ?}`, choices:[`20`,`24`,`25`,`40`], a:`24`, tip:r`0{,}40\times60=24` },
+      { q:r`\text{Le taux d'évolution équivalent à une baisse de }10\%\text{ suivie d'une baisse de }20\%\text{ est :}`, choices:[`-38\%`,`-30\%`,`-28\%`,`-18\%`], a:`-28\%`, tip:r`0{,}9\times0{,}8=0{,}72\Rightarrow-28\%` },
+      { q:r`\text{Une droite est représentée ci-contre.}\\[4pt]\text{Son équation réduite est :}`, gspec:{ fn:x=>-2*x+3, xr:[-1,3], yr:[-3,5], label:'', color:'#2563EB', extras:c=><>{gPt(0,3,c,'#2563EB')}{gPt(1.5,0,c,'#2563EB')}</> }, choices:[`y=-2x+3`,`y=3x+1{,}5`,`y=-0{,}5x+3`,`y=-2x+1{,}5`], a:`y=-2x+3`, tip:r`\text{Ordonnée à l'origine }=3\text{ et pente }=\frac{0-3}{1{,}5-0}=-2` },
+      { q:r`\text{L'énergie cinétique est }E=\dfrac{1}{2}mv^2\text{ (}m\text{ : masse, }v\text{ : vitesse).}\\[4pt]\text{Une expression de }v\text{ en fonction de }E\text{ et }m\text{ est :}`, choices:[r`v=\sqrt{\dfrac{2E}{m}}`,r`v=\dfrac{2E}{m}`,r`v=\sqrt{E-\dfrac{1}{2}m}`,r`v=\sqrt{2mE}`], a:r`v=\sqrt{\dfrac{2E}{m}}`, tip:r`E=\frac{1}{2}mv^2\Rightarrow v^2=\frac{2E}{m}\Rightarrow v=\sqrt{\frac{2E}{m}}` },
+      { q:r`\text{La fonction }h\text{ définie sur }[-3\,;\,4]\text{ est représentée ci-contre.}\\[4pt]\text{L'équation }h(x)=2\text{ a pour ensemble solution :}`,
+        svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 220" width="100%" style="background:#fff;font-family:sans-serif;border-radius:8px">
+  <!-- grille -->
+  <g stroke="#E2E8F0" stroke-width="1">
+    <line x1="40" y1="14" x2="40" y2="206"/><line x1="72" y1="14" x2="72" y2="206"/>
+    <line x1="104" y1="14" x2="104" y2="206"/><line x1="136" y1="14" x2="136" y2="206"/>
+    <line x1="168" y1="14" x2="168" y2="206"/><line x1="200" y1="14" x2="200" y2="206"/>
+    <line x1="232" y1="14" x2="232" y2="206"/><line x1="264" y1="14" x2="264" y2="206"/>
+    <line x1="40" y1="14" x2="264" y2="14"/><line x1="40" y1="38" x2="264" y2="38"/>
+    <line x1="40" y1="62" x2="264" y2="62"/><line x1="40" y1="86" x2="264" y2="86"/>
+    <line x1="40" y1="110" x2="264" y2="110"/><line x1="40" y1="134" x2="264" y2="134"/>
+    <line x1="40" y1="158" x2="264" y2="158"/><line x1="40" y1="182" x2="264" y2="182"/>
+    <line x1="40" y1="206" x2="264" y2="206"/>
+  </g>
+  <!-- axes -->
+  <line x1="40" y1="110" x2="270" y2="110" stroke="#475569" stroke-width="1.4"/>
+  <line x1="136" y1="10" x2="136" y2="210" stroke="#475569" stroke-width="1.4"/>
+  <polygon points="270,106 277,110 270,114" fill="#475569"/>
+  <polygon points="132,10 136,4 140,10" fill="#475569"/>
+  <!-- repères x -->
+  <text x="72" y="122" font-size="9" fill="#475569" text-anchor="middle">-2</text>
+  <text x="200" y="122" font-size="9" fill="#475569" text-anchor="middle">2</text>
+  <text x="232" y="122" font-size="9" fill="#475569" text-anchor="middle">3</text>
+  <!-- repère y=2 -->
+  <text x="130" y="66" font-size="9" fill="#475569" text-anchor="end">2</text>
+  <!-- droite y=2 -->
+  <line x1="40" y1="62" x2="264" y2="62" stroke="#F59E0B" stroke-width="1.4" stroke-dasharray="5,3"/>
+  <!-- courbe h -->
+  <path d="M40,38 C56,48 64,55 72,62 C92,82 122,165 136,182 C152,200 182,116 200,62 C208,40 216,34 222,38 C226,46 229,55 232,62 C244,90 256,116 264,134"
+        fill="none" stroke="#DC2626" stroke-width="2.4" stroke-linejoin="round"/>
+  <!-- intersections avec y=2 -->
+  <circle cx="72" cy="62" r="3.5" fill="#DC2626" stroke="#fff" stroke-width="1"/>
+  <circle cx="200" cy="62" r="3.5" fill="#DC2626" stroke="#fff" stroke-width="1"/>
+  <circle cx="232" cy="62" r="3.5" fill="#DC2626" stroke="#fff" stroke-width="1"/>
+  <text x="155" y="28" font-size="12" fill="#DC2626" font-weight="bold" font-style="italic">h</text>
+</svg>`,
+        choices:[r`S=\{2\}`,r`S=\{-2\,;\,2\,;\,3\}`,r`S=[-2\,;\,3]`,r`S=\{-0{,}5\,;\,0{,}5\}`], a:r`S=\{-2\,;\,2\,;\,3\}`, tip:r`\text{La courbe coupe la droite }y=2\text{ en trois points : }x=-2,\ x=2\ \text{et}\ x=3` },
+      { q:r`\text{Série 1 : }9\,;\,11\,;\,13.\text{ On ajoute les notes }10\text{ et }17.\\[4pt]\text{Série 2 : }9\,;\,10\,;\,11\,;\,13\,;\,17.\text{ La proposition vraie est :}`, choices:[r`\text{Mêmes moyennes et mêmes médianes}`,r`\text{Mêmes moyennes, médianes différentes}`,r`\text{Moyennes différentes, mêmes médianes}`,r`\text{Moyennes différentes et médianes différentes}`], a:r`\text{Moyennes différentes, mêmes médianes}`, tip:r`\text{Moy}_1=11\neq\text{Moy}_2=12\,;\quad\text{Méd}_1=11=\text{Méd}_2=11` },
+    ],
     tronc_original: [],
     // ── Spécialité · Annales · Sujet 1 (2026) ────────────────────────────────
     spe_annales_s1_2026: [
@@ -7923,6 +7974,18 @@ const DB = {
       { q:r`f(x)=(3x-15)(x+2).\\[4pt]f\text{ est positif pour :}`, choices:[r`x<-2\text{ et }x>5`,r`-2<x<5`,r`x<-5\text{ et }x>2`,r`-5<x<2`], a:r`x<-2\text{ et }x>5`, tip:r`\text{Racines}=-2\text{ et }5,\text{ parabole vers le haut}` },
       { q:r`(2x+0{,}5)^2=?`, choices:[r`4x^2+x+0{,}25`,r`4x^2+4x+2`,r`4x^2+2x+0{,}25`,r`4x^2+2x+1`], a:r`4x^2+2x+0{,}25`, tip:r`4x^2+2\times2x\times0{,}5+0{,}25` },
       { q:r`a=\dfrac{v^2}{R}\text{. Isoler }v\text{ :}`, choices:[r`v=aR^2`,r`v=\sqrt{aR}`,r`v=\sqrt{\dfrac{a}{R}}`,r`v=\dfrac{a^2}{R}`], a:r`v=\sqrt{aR}`, tip:r`v^2=aR\Rightarrow v=\sqrt{aR}` },
+    ],
+    // ── Spécialité · Annales · Sujet 3 (Amérique du Nord, 1ᵉʳ juin 2026) ──────
+    spe_annales_s3_2026: [
+      { q:r`\text{Le nombre }\dfrac{1}{2}+\dfrac{3}{2}\times4\text{ est égal à :}`, choices:[`8`,r`\dfrac{13}{2}`,`4`,r`\dfrac{16}{8}`], a:r`\dfrac{13}{2}`, tip:r`\frac{1}{2}+\frac{3}{2}\times4=\frac{1}{2}+6=\frac{13}{2}` },
+      { q:r`\text{La partie visible d'un iceberg vaut environ }10\%\text{ de son volume total.}\\[4pt]\text{Si cette partie visible est de }150\text{ km}^3\text{, le volume total est :}`, choices:[r`1350\text{ km}^3`,r`1500\text{ km}^3`,r`15\text{ km}^3`,r`135\text{ km}^3`], a:r`1500\text{ km}^3`, tip:r`\frac{150}{0{,}10}=1500\text{ km}^3` },
+      { q:r`\text{Le prix d'un article est multiplié par }0{,}845.\\[4pt]\text{Cela signifie que le prix de l'article a :}`, choices:[r`\text{augmenté de }84{,}5\%`,r`\text{baissé de }1{,}55\%`,r`\text{augmenté de }15{,}5\%`,r`\text{baissé de }15{,}5\%`], a:r`\text{baissé de }15{,}5\%`, tip:r`1-0{,}845=0{,}155\Rightarrow\text{baisse de }15{,}5\%` },
+      { q:r`\text{Soit }A(x)=(x+5)(x+8).\\[4pt]\text{Le tableau de signes de }A(x)\text{ sur }\mathbb{R}\text{ est :}`, choices:[r`\begin{array}{c|ccccccc} x & -\infty & & -8 & & -5 & & +\infty \\ \hline A(x) & & - & 0 & + & 0 & - & \end{array}`,r`\begin{array}{c|ccccc} x & -\infty & & -5 & & +\infty \\ \hline A(x) & & - & 0 & + & \end{array}`,r`\begin{array}{c|ccccccc} x & -\infty & & -8 & & -5 & & +\infty \\ \hline A(x) & & + & 0 & - & 0 & + & \end{array}`,r`\begin{array}{c|ccccccc} x & -\infty & & 5 & & & & +\infty \\ \hline A(x) & & + & 0 & - & 0 & + & \end{array}`], a:r`\begin{array}{c|ccccccc} x & -\infty & & -8 & & -5 & & +\infty \\ \hline A(x) & & + & 0 & - & 0 & + & \end{array}`, tip:r`\text{Racines }-8\text{ et }-5\text{ ; parabole tournée vers le haut : }A(x)>0\text{ à lextérieur des racines, }A(x)<0	ext{ entre elles}` },
+      { q:r`\text{Un singe choisit une lettre au hasard parmi les 26 de l'alphabet.}\\[4pt]V\text{ : « choisir une voyelle » (A, E, I, O, U, Y).}\\[2pt]M\text{ : « choisir une lettre du mot SINGE ».}\\[4pt]P_M(V)\text{ vaut :}`, choices:[r`\dfrac{6}{26}`,r`\dfrac{2}{5}`,r`\dfrac{2}{6}`,r`\dfrac{5}{6}`], a:r`\dfrac{2}{5}`, tip:r`\text{SINGE : 5 lettres dont 2 voyelles (I, E)}\Rightarrow P_M(V)=\frac{2}{5}` },
+      { q:r`\text{Soit }f\text{ une fonction affine représentée ci-contre.}\\[4pt]\text{Une expression algébrique de }f\text{ est :}`, gspec:{ fn:x=>-10*x+30, xr:[-1,4], yr:[-5,40], label:'', color:'#0E7490', extras:c=><>{gPt(0,30,c,'#0E7490')}{gPt(3,0,c,'#0E7490')}</> }, choices:[`f(x)=-x+30`,`f(x)=30x+3`,`f(x)=-10x+30`,r`f(x)=-\dfrac{1}{10}x+30`], a:`f(x)=-10x+30`, tip:r`\text{Ordonnée à l'origine }30\text{, passe par }(3\,;\,0)\Rightarrow\text{pente }\frac{0-30}{3-0}=-10` },
+      { q:r`\text{La forme développée et réduite de }(x+2)^2-(1-x)^2\text{ vaut :}`, choices:[r`2x^2+3`,`6x+3`,`2x+5`,r`2x^2+2x+3`], a:`6x+3`, tip:r`(x^2+4x+4)-(1-2x+x^2)=6x+3` },
+      { q:r`\text{L'équation }2(x-4)-(2x+1)=0\text{ admet :}`, choices:[r`\text{Deux solutions : }4\text{ et }\tfrac{1}{2}`,r`\text{Deux solutions : }4\text{ et }-\tfrac{1}{2}`,r`\text{Aucune solution}`,r`\text{Une infinité de solutions}`], a:r`\text{Aucune solution}`, tip:r`2x-8-2x-1=-9\neq0\ \text{(toujours)}\Rightarrow\text{aucune solution}` },
+      { q:r`\text{On considère }E=\dfrac{2\times3^2}{27\times2^3}.\\[4pt]E\text{ est égal à :}`, choices:[r`\dfrac{1}{9}`,r`\dfrac{1}{12}`,`12`,r`\dfrac{1}{6}`], a:r`\dfrac{1}{12}`, tip:r`\frac{2\times9}{27\times8}=\frac{18}{216}=\frac{1}{12}` },
     ],
     spe_original: [],
   },
@@ -22135,6 +22198,7 @@ const BAC_GROUPS = [
       {id:"tronc_annales_s1_2026", label:"Annales 2026 — Sujet 1", year:2026, n:12},
       {id:"tronc_annales_s2_2026", label:"Annales 2026 — Sujet 2", year:2026, n:12},
       {id:"tronc_annales_s3_2026", label:"Annales 2026 — Sujet 3", year:2026, n:12},
+      {id:"tronc_annales_s4_2026", label:"Amérique du Nord 2026", year:2026, n:12},
       {id:"tronc_original",        label:"Créations originales",    year:null, n:0, disabled:true},
     ],
   },
@@ -22143,6 +22207,7 @@ const BAC_GROUPS = [
     subs:[
       {id:"spe_annales_s1_2026", label:"Annales 2026 — Sujet 1", year:2026, n:12},
       {id:"spe_annales_s2_2026", label:"Annales 2026 — Sujet 2", year:2026, n:12},
+      {id:"spe_annales_s3_2026", label:"Amérique du Nord 2026", year:2026, n:9},
       {id:"spe_original",        label:"Créations originales",    year:null, n:0, disabled:true},
     ],
   },
