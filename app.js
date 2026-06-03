@@ -25248,17 +25248,18 @@ function AutoMaths() {
 
 // ── Service Worker : enregistrement + détection de mise à jour ──────────────
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js').then(reg => {
-    reg.addEventListener('updatefound', () => {
-      const newSW = reg.installing;
-      newSW.addEventListener('statechange', () => {
-        if (newSW.state === 'activated' && navigator.serviceWorker.controller) {
-          location.reload();
-        }
-      });
+  // updateViaCache:'none' => le navigateur bypass le cache HTTP pour service-worker.js.
+  // Sans ca, les PWA installees sur mobile peuvent rester bloquees sur une ancienne
+  // version pendant 24h+. Avec 'none', toute ouverture de l'app verifie la mise a jour.
+  navigator.serviceWorker.register('/service-worker.js', { updateViaCache: 'none' })
+    .then(reg => {
+      // Force une verification immediate a chaque lancement (PWA et navigateur)
+      reg.update();
+      // Re-verification toutes les 60s pour les sessions longues
+      setInterval(() => reg.update(), 60000);
     });
-  });
 
+  // Quand le nouveau SW prend le controle => rechargement automatique de la page
   let refreshing = false;
   navigator.serviceWorker.addEventListener('controllerchange', () => {
     if (!refreshing) {
