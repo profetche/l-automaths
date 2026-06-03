@@ -5999,7 +5999,7 @@ const DB = {
         a: r`\text{Au point d'abscisse }x = 3`,
         tip: r`\text{Deux droites sont parallèles si et seulement si elles ont le même coefficient directeur. La droite }y = 2x + 7\text{ a pour coefficient directeur }2\text{. On cherche donc }x\text{ tel que }f'(x) = 2\text{, soit }2x - 4 = 2\text{, donc }x = 3\text{.}` },
 
-      // ── Questions tangente applicatives — polynômes — STMG / TC ──
+      // ── Questions tangente applicatives — polynômes — Techno / TC ──
 
       // tc_tan_09 — equation_deg2_a=2 — n2
       { q: r`\text{Soit }f(x) = x^2 - 3x + 1\text{.}\\[4pt]\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 2\text{ ?}`,
@@ -7720,7 +7720,7 @@ const DB = {
   },
   // ════ 7. EN ROUTE POUR LE BAC ══════════════════════════════════════════════════
   bac: {
-    // ── STMG · Annales · Sujet 1 (Voie Technologique, 2026) ─────────────────
+    // ── Techno · Annales · Sujet 1 (Voie Technologique, 2026) ─────────────────
     stmg_annales_s1_2026: [
       { q:r`\text{Jean consacre }25\%\text{ de son dimanche aux devoirs.}\\[4pt]80\%\text{ de ce temps est consacré à l'exposé. La part de l'exposé est :}`, choices:[r`80\%-25\%`,r`\frac{1}{4}\times80\%`,r`0{,}08\times25\%`,r`\text{Cela dépend}`], a:r`\frac{1}{4}\times80\%`, tip:r`0{,}25\times0{,}8=20\%` },
       { q:r`\text{Un prix diminue de }50\%\text{.}\\[4pt]\text{Pour retrouver le prix initial, il faut une augmentation de :}`, choices:[r`50\%`,r`100\%`,r`150\%`,r`200\%`], a:r`100\%`, tip:r`\frac{1}{0{,}5}=2\Rightarrow+100\%` },
@@ -7832,7 +7832,7 @@ const DB = {
 </svg>`,
         choices:[`1995`,`2001`,`2011`,`2016`], a:`2011`, tip:r`\text{La barre hydraulique est la plus haute en 2011}` },
     ],
-    // ── STMG · Annales · Sujet 2 (Voie Technologique, 2026) ─────────────────
+    // ── Techno · Annales · Sujet 2 (Voie Technologique, 2026) ─────────────────
     stmg_annales_s2_2026: [
       { q:r`\text{Un article coûte 400€. Le prix augmente de }20\%\text{.}\\[4pt]\text{Le nouveau prix est :}`, choices:[`420€`,`480€`,`500€`,`320€`], a:`480€`, tip:r`400\times1{,}2=480€` },
       { q:r`\text{Un sac coûte 130€. Le prix baisse de }10\%\text{.}\\[4pt]\text{Le nouveau prix est :}`, choices:[r`130\times0{,}1`,r`130\times\left(-\frac{10}{100}\right)`,r`130\times\left(1+\frac{10}{100}\right)`,r`130\times0{,}9`], a:r`130\times0{,}9`, tip:r`1-0{,}1=0{,}9` },
@@ -9220,7 +9220,7 @@ const DB = {
 
     ],
 
-    // ── Applications financières (STMG) ──────────────────────────────────────
+    // ── Applications financières (Techno) ──────────────────────────────────────
     suites_finances: [
 
       // ── Situation 1 : Livret épargne — intérêts composés ──────────────────
@@ -9441,7 +9441,7 @@ const DB = {
         choices: [`18`, `-18`, `6`, `-6`], a: `18`, tip: r`f(2)=-3\times3\times(-2)=18` },
     ],
 
-    // ── Coût, recette, bénéfice (STMG) ──────────────────────────────────────
+    // ── Coût, recette, bénéfice (Techno) ──────────────────────────────────────
     cout_recette: [
 
       // ══ SITUATION 1 — MégaJeu : C(x) = 2x² − 40x + 300, p = 30 €, x∈[0,34] ══
@@ -13538,7 +13538,7 @@ const CATS = [
     subs:[
       {id:"mission_bases",      label:"Travailler mes bases",        levels:["sec","tc","spe"], isMission:true},
       {id:"mission_spe",        label:"Objectif : Prendre la spé en première", levels:["sec","tc","spe"], isMission:true},
-      {id:"mission_stmg",       label:"Objectif Bac STMG",           levels:["stmg"], isMission:true},
+      {id:"mission_stmg",       label:"Objectif Bac Techno",           levels:["stmg"], isMission:true},
       {id:"mission_bac",        label:"Objectif Bac en Terminale",   levels:["term"], isMission:true},
     ] },
   { id:"fonctions",    label:"Généralités sur les fonctions", emoji:"📈", color:"#2563EB", grad:"linear-gradient(135deg,#3B82F6,#1D4ED8)", light:"#EFF6FF", border:"#BFDBFE",
@@ -13563,7 +13563,7 @@ const CATS = [
   { id:"pourcentages", label:"Pourcentages", emoji:"💹", color:"#059669", grad:"linear-gradient(135deg,#10B981,#047857)", light:"#ECFDF5", border:"#A7F3D0",
     groups:[
       {id:"base",  label:"🔵 Base"},
-      {id:"stmg",  label:"💼 STMG"},
+      {id:"stmg",  label:"💼 Techno"},
     ],
     subs:[
       {id:"proportions",           label:"Proportions",              group:"base",  levels:["sec","tc","stmg","spe","term"]},
@@ -13671,7 +13671,7 @@ const CATS = [
   { id:"suites",       label:"Suites numériques", emoji:"🔁", color:"#EA580C", grad:"linear-gradient(135deg,#F97316,#C2410C)", light:"#FFF7ED", border:"#FED7AA",
     groups:[
       {id:"base",  label:"🔵 Base"},
-      {id:"stmg",  label:"💼 STMG"},
+      {id:"stmg",  label:"💼 Techno"},
       {id:"avance",label:"📗 Avancé"},
     ],
     subs:[
@@ -13966,7 +13966,7 @@ const MenuHamburger = ({onHome, onCategories, onProfile, currentScreen}) => {
             {/* Footer */}
             <div style={{paddingTop:16, borderTop:"1px solid #E2E8F0"}}>
               <div style={{fontSize:10, color:"#94A3B8", textAlign:"center"}}>
-                Version 1.0 · Niveau STMG
+                Version 1.0 · Niveau Techno
               </div>
             </div>
           </div>
@@ -14578,9 +14578,9 @@ const CURRICULUM = {
            probabilites:['tableau','tableau_fill','arbre','contraire'],
            statistiques:['stat_centrale','stat_dispersion'],
            geometrie:['vecteurs_bases','chasles','geom_analytique','vecteurs_colineaires','geom_espace_positions','geom_espace_vecteurs','geom_espace_equations','geom_espace_droites'] }},
-  premiere_stmg: { label:"1ère STMG", emoji:"📊", color:"#F59E0B",
+  premiere_stmg: { label:"1ère Techno", emoji:"📊", color:"#F59E0B",
     cats:{
-      // ── Thèmes cœur 1ère STMG ──
+      // ── Thèmes cœur 1ère Techno ──
       pourcentages:['evolutions_successives','evolution_reciproque','taux_moyen','indice','proportions','taux_cm','valeur_finale'],
       suites:['suites_nature','suites_termes'],
       statistiques:['loi_binomiale','echantillonnage','stat_centrale','stat_dispersion'],
@@ -16122,7 +16122,7 @@ function EditProfileScreen({profile, onSave, onBack}) {
   const LEVELS = [
     {id:'seconde',        emoji:'🌱', label:'Seconde',           desc:'Je commence le lycée'},
     {id:'premiere_tronc', emoji:'📘', label:'1ère Tronc commun', desc:'Sans spécialité maths'},
-    {id:'premiere_stmg',  emoji:'📊', label:'1ère STMG',         desc:'Sciences de gestion'},
+    {id:'premiere_stmg',  emoji:'📊', label:'1ère Techno',         desc:'Série technologique'},
     {id:'premiere_spe',   emoji:'🔬', label:'1ère Spé Maths',    desc:'Avec spécialité maths'},
     {id:'terminale_spe',  emoji:'🏆', label:'Terminale Spé',     desc:'Bac à portée !'},
   ];
@@ -16469,7 +16469,7 @@ function ProfileSetupScreen({onComplete, onBack, onRestore}) {
   const LEVELS = [
     {id:'seconde',       emoji:'🌱', label:'Seconde',             desc:'Je commence le lycée'},
     {id:'premiere_tronc',emoji:'📘', label:'1ère Tronc commun',   desc:'Sans spécialité maths'},
-    {id:'premiere_stmg', emoji:'📊', label:'1ère STMG',           desc:'Sciences de gestion'},
+    {id:'premiere_stmg', emoji:'📊', label:'1ère Techno',           desc:'Série technologique'},
     {id:'premiere_spe',  emoji:'🔬', label:'1ère Spé Maths',      desc:'Avec spécialité maths'},
     {id:'terminale_spe', emoji:'🏆', label:'Terminale Spé',        desc:'Bac à portée !'},
   ];
@@ -19736,7 +19736,7 @@ const CAT_FILTER_CONFIGS = {
     ids: ["numerique","pourcentages","litteral","fonctions","statistiques","probabilites","polynomes","suites","expo","derivation"],
   },
   stmg: {
-    label: "1ère STMG",
+    label: "1ère Techno",
     ids: ["numerique","pourcentages","litteral","fonctions","statistiques","probabilites","polynomes","suites","derivation"],
   },
   // ── Terminale ──
@@ -19794,7 +19794,7 @@ function CategoryScreen({onCat, onBack, subtitle="", profile=null}) {
   const PREMIERE_SUBTABS = [
     { key:"premiere_spe", label:"Spé" },
     { key:"tc",           label:"Tronc commun" },
-    { key:"stmg",         label:"STMG" },
+    { key:"stmg",         label:"Techno" },
   ];
 
   return (
@@ -19973,7 +19973,7 @@ function RacinesLevelScreen({catId, qCount, onStart, onBack}) {
 const NIVEAU_LABELS = {
   "sec":  "2nde",
   "tc":   "1ère — Tronc commun",
-  "stmg": "1ère STMG",
+  "stmg": "1ère Techno",
   "spe":  "1ère Spé",
   "term": "Terminale Spé",
 };
@@ -20667,10 +20667,10 @@ function FactorisationLevelScreen({catId, qCount, onStart, onBack}) {
 // en conditions "programme complet").
 const BAC_BLANC_POOLS = {
   stmg: {
-    label: "Bac blanc STMG",
-    // Format : { catId: [subId, ...] } — tout le programme STMG sauf exclusions
+    label: "Bac blanc Techno",
+    // Format : { catId: [subId, ...] } — tout le programme Techno sauf exclusions
     // Exclusions : racines carrées, trigo, mise au même dénominateur,
-    //              polynômes formes niveau 1-2-3-4 (pas en STMG de toute façon)
+    //              polynômes formes niveau 1-2-3-4 (pas en Techno de toute façon)
     content: {
       fonctions: ['lecture_image','calcul_image','point_courbe','coeff_directeur_calcul','coeff_directeur_lecture','equation_droite_lecture','resolution_graphique','tableau_variations','tableau_signes'],
       pourcentages: ['proportions','taux_cm','valeur_finale','evolutions_successives','evolution_reciproque','taux_moyen','indice'],
@@ -20795,7 +20795,7 @@ const MISSIONS = {
   },
   mission_stmg: {
     id: "mission_stmg",
-    label: "Objectif Bac STMG",
+    label: "Objectif Bac Techno",
     emoji: "📊",
     desc: "Bac blanc : 30 questions tirées au hasard dans tout le programme",
     color: "#F59E0B",
@@ -21069,7 +21069,7 @@ const FLASHCARDS = [
     recto:r`\text{Équation de la tangente à }C_f\text{ au point }(a\,;\,f(a))\text{ ?}`,
     verso:r`y=f'(a)(x-a)+f(a)` },
 
-  // ══ STMG ═════════════════════════════════════════════════════════════════════
+  // ══ Techno ═════════════════════════════════════════════════════════════════════
   { id:"fc_stmg_01", level:"stmg", chapitre:"Suites financières",
     recto:r`\text{Capital après }n\text{ années (intérêts composés, taux }t\text{)}`,
     verso:r`C_n=C_0\times(1+t)^n` },
@@ -21446,7 +21446,7 @@ function FlashcardSetupScreen({ onStart, onBack }) {
   const LEVELS = [
     { id:"sec",  label:"2nde",         emoji:"📗" },
     { id:"tc",   label:"1ère TC",      emoji:"📘" },
-    { id:"stmg", label:"1ère STMG",    emoji:"📙" },
+    { id:"stmg", label:"1ère Techno",    emoji:"📙" },
     { id:"spe",  label:"1ère Spé",     emoji:"📕" },
     { id:"term", label:"Terminale Spé",emoji:"🏆" },
   ];
@@ -22384,7 +22384,7 @@ function ExempleScreen({exemple, onStart, onBack}) {
 
 const BAC_GROUPS = [
   {
-    id:"stmg", label:"Voie Technologique", emoji:"🏫", color:"#F59E0B", grad:"linear-gradient(135deg,#F59E0B,#B45309)",
+    id:"stmg", label:"Techno", emoji:"🏫", color:"#F59E0B", grad:"linear-gradient(135deg,#F59E0B,#B45309)",
     subs:[
       {id:"stmg_annales_s1_2026", label:"Annales 2026 — Sujet 1", year:2026, n:12},
       {id:"stmg_annales_s2_2026", label:"Annales 2026 — Sujet 2", year:2026, n:12},
@@ -25161,7 +25161,7 @@ function AutoMaths() {
 
               let allowedLevels;
               if (userLevel === "stmg") {
-                // Parcours STMG : sec + tc + stmg (pas spe/term)
+                // Parcours Techno : sec + tc + stmg (pas spe/term)
                 allowedLevels = ["sec","tc","stmg"];
               } else {
                 // Parcours général (sec, tc, spe, term)
