@@ -18779,13 +18779,18 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
           {[
             {label:"Sprint",     sub:"5 min chrono",     emoji:"⏱️", color:"#0EA5E9", action:()=>onMode("sprint")},
             {label:"Missions",   sub:"Objectifs Sigma",  emoji:"🚀", color:"#3B82F6", action:()=>onMode("missions")},
-            {label:"Bac",        sub:"Annales",           emoji:"🏆", color:"#F59E0B", action:()=>onMode("bac")},
+            {label:"Bac",        sub:"Annales",           emoji:"🏆", color:"#F59E0B", action:()=>onMode("bac"), badgeUntil:1781827200000},
             {label:"Flashcards", sub:"Formules du cours", emoji:"🃏", color:"#10B981", action:()=>onMode("flashcards")},
           ].map(tile=>(
             <button key={tile.label} onClick={tile.action}
-              style={{background:tile.color,borderRadius:14,padding:"14px 6px",
+              style={{position:"relative",background:tile.color,borderRadius:14,padding:"14px 6px",
                 border:"none",cursor:"pointer",textAlign:"center",
                 boxShadow:`0 4px 14px ${tile.color}55`}}>
+              {tile.badgeUntil&&Date.now()<tile.badgeUntil&&<span style={{position:"absolute",top:6,right:6,
+                fontSize:8.5,fontWeight:900,color:"#fff",
+                background:"linear-gradient(135deg,#EF4444,#DC2626)",borderRadius:99,
+                padding:"1.5px 6px",letterSpacing:0.5,
+                boxShadow:"0 1px 4px rgba(0,0,0,.25)"}}>{tile.badge}</span>}
               <div style={{fontSize:26,marginBottom:4}}>{tile.emoji}</div>
               <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:12,color:"#fff",lineHeight:1.1}}>{tile.label}</div>
               <div style={{color:"rgba(255,255,255,0.75)",fontSize:9,marginTop:2}}>{tile.sub}</div>
@@ -22228,7 +22233,7 @@ const BAC_GROUPS = [
       {id:"tronc_annales_s1_2026", label:"Annales 2026 — Sujet 1", year:2026, n:12},
       {id:"tronc_annales_s2_2026", label:"Annales 2026 — Sujet 2", year:2026, n:12},
       {id:"tronc_annales_s3_2026", label:"Annales 2026 — Sujet 3", year:2026, n:12},
-      {id:"tronc_annales_s4_2026", label:"Amérique du Nord 2026", year:2026, n:12, isNew:true},
+      {id:"tronc_annales_s4_2026", label:"Amérique du Nord 2026", year:2026, n:12, newUntil:1781827200000},
       {id:"tronc_original",        label:"Créations originales",    year:null, n:0, disabled:true},
     ],
   },
@@ -22237,7 +22242,7 @@ const BAC_GROUPS = [
     subs:[
       {id:"spe_annales_s1_2026", label:"Annales 2026 — Sujet 1", year:2026, n:12},
       {id:"spe_annales_s2_2026", label:"Annales 2026 — Sujet 2", year:2026, n:12},
-      {id:"spe_annales_s3_2026", label:"Amérique du Nord 2026", year:2026, n:9, isNew:true},
+      {id:"spe_annales_s3_2026", label:"Amérique du Nord 2026", year:2026, n:9, newUntil:1781827200000},
       {id:"spe_original",        label:"Créations originales",    year:null, n:0, disabled:true},
     ],
   },
@@ -22293,7 +22298,7 @@ function BacSubjectScreen({onStart, onBack}) {
                       <div style={{display:"flex",alignItems:"center",gap:6}}>
                         <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,
                           fontSize:13,color:isEmpty?"#94A3B8":"#1E293B"}}>{sub.label}</div>
-                        {sub.isNew&&<span style={{fontSize:8.5,fontWeight:900,color:"#fff",
+                        {sub.newUntil&&Date.now()<sub.newUntil&&<span style={{fontSize:8.5,fontWeight:900,color:"#fff",
                           background:"linear-gradient(135deg,#EF4444,#DC2626)",borderRadius:99,
                           padding:"1.5px 6px",letterSpacing:0.5,
                           boxShadow:"0 1px 4px rgba(239,68,68,.45)"}}>NEW</span>}
