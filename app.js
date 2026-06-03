@@ -18752,51 +18752,64 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
           );
         })()}
 
-        {/* ── QUE VEUX-TU FAIRE ? ─────────────────────────────────────────── */}
-        <div style={{fontSize:9,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
-          letterSpacing:1.2,marginBottom:8}}>Que veux-tu faire ?</div>
+        {/* ══ APPRENDRE ═══════════════════════════════════════════════════════ */}
+        <div style={{fontSize:8.5,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
+          letterSpacing:1.2,marginBottom:7}}>📖 Apprendre</div>
 
-        {/* Grande carte S'entraîner */}
+        <button onClick={()=>onMode("flashcards")}
+          style={{width:"100%",background:"linear-gradient(135deg,#10B981,#047857)",
+            borderRadius:16,padding:"15px 18px",marginBottom:14,border:"none",cursor:"pointer",
+            display:"flex",alignItems:"center",gap:14,
+            boxShadow:"0 5px 16px rgba(16,185,129,.30)",textAlign:"left"}}>
+          <span style={{fontSize:30,flexShrink:0}}>🃏</span>
+          <div style={{flex:1}}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,color:"#fff",lineHeight:1.1}}>
+              Flashcards
+            </div>
+            <div style={{color:"rgba(255,255,255,0.75)",fontSize:10,marginTop:3}}>
+              Retiens les formules · cours essentiel
+            </div>
+          </div>
+          <span style={{color:"rgba(255,255,255,0.55)",fontSize:18}}>›</span>
+        </button>
+
+        {/* ══ S'ENTRAÎNER ══════════════════════════════════════════════════════ */}
+        <div style={{fontSize:8.5,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
+          letterSpacing:1.2,marginBottom:7}}>💪 S'entraîner</div>
+
         <button onClick={()=>onMode("entrainement")}
           style={{width:"100%",background:`linear-gradient(135deg,${lvl.color},${getNextLevel(xp)?.color||lvl.color})`,
-            borderRadius:18,padding:"18px 18px",marginBottom:10,border:"none",cursor:"pointer",
+            borderRadius:16,padding:"16px 18px",marginBottom:8,border:"none",cursor:"pointer",
             display:"flex",alignItems:"center",gap:14,
-            boxShadow:`0 6px 20px ${lvl.color}44`,textAlign:"left"}}>
-          <span style={{fontSize:36,flexShrink:0}}>💪</span>
+            boxShadow:`0 5px 18px ${lvl.color}44`,textAlign:"left"}}>
+          <span style={{fontSize:32,flexShrink:0}}>💪</span>
           <div style={{flex:1}}>
-            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:18,color:"#fff",lineHeight:1.1}}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:17,color:"#fff",lineHeight:1.1}}>
               S'entraîner
             </div>
-            <div style={{color:"rgba(255,255,255,0.75)",fontSize:11,marginTop:3}}>
+            <div style={{color:"rgba(255,255,255,0.75)",fontSize:10,marginTop:3}}>
               Choisis ton chapitre · ton format · à ton rythme
             </div>
           </div>
-          <span style={{color:"rgba(255,255,255,0.6)",fontSize:20}}>›</span>
+          <span style={{color:"rgba(255,255,255,0.55)",fontSize:18}}>›</span>
         </button>
 
-        {/* Ligne tuiles : grille 2x2 avec Flashcards */}
-        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:10}}>
-          {[
-            {label:"Sprint",     sub:"5 min chrono",     emoji:"⏱️", color:"#0EA5E9", action:()=>onMode("sprint")},
-            {label:"Missions",   sub:"Objectifs Sigma",  emoji:"🚀", color:"#3B82F6", action:()=>onMode("missions")},
-            {label:"Bac",        sub:"Annales",           emoji:"🏆", color:"#F59E0B", action:()=>onMode("bac"), badgeUntil:1781827200000},
-            {label:"Flashcards", sub:"Formules du cours", emoji:"🃏", color:"#10B981", action:()=>onMode("flashcards")},
-          ].map(tile=>(
-            <button key={tile.label} onClick={tile.action}
-              style={{position:"relative",background:tile.color,borderRadius:14,padding:"14px 6px",
-                border:"none",cursor:"pointer",textAlign:"center",
-                boxShadow:`0 4px 14px ${tile.color}55`}}>
-              {tile.badgeUntil&&Date.now()<tile.badgeUntil&&<span style={{position:"absolute",top:6,right:6,
-                fontSize:8.5,fontWeight:900,color:"#fff",
-                background:"linear-gradient(135deg,#EF4444,#DC2626)",borderRadius:99,
-                padding:"1.5px 6px",letterSpacing:0.5,
-                boxShadow:"0 1px 4px rgba(0,0,0,.25)"}}>{tile.badge}</span>}
-              <div style={{fontSize:26,marginBottom:4}}>{tile.emoji}</div>
-              <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:12,color:"#fff",lineHeight:1.1}}>{tile.label}</div>
-              <div style={{color:"rgba(255,255,255,0.75)",fontSize:9,marginTop:2}}>{tile.sub}</div>
-            </button>
-          ))}
-        </div>
+        <button onClick={()=>onMode("missions")}
+          style={{width:"100%",background:"linear-gradient(135deg,#3B82F6,#1D4ED8)",
+            borderRadius:14,padding:"13px 16px",marginBottom:14,border:"none",cursor:"pointer",
+            display:"flex",alignItems:"center",gap:12,
+            boxShadow:"0 4px 14px rgba(59,130,246,.30)",textAlign:"left"}}>
+          <span style={{fontSize:24,flexShrink:0}}>🚀</span>
+          <div style={{flex:1}}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:"#fff",lineHeight:1.1}}>
+              Missions
+            </div>
+            <div style={{color:"rgba(255,255,255,0.75)",fontSize:10,marginTop:2}}>
+              Objectifs Sigma
+            </div>
+          </div>
+          <span style={{color:"rgba(255,255,255,0.55)",fontSize:16}}>›</span>
+        </button>
 
         {/* Points de vigilance — si thèmes problématiques */}
         {onVigilance && (() => {
@@ -18829,6 +18842,54 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
             </button>
           );
         })()}
+
+        {/* ══ S'ÉVALUER POUR LE BAC ════════════════════════════════════════════ */}
+        <div style={{fontSize:8.5,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
+          letterSpacing:1.2,marginBottom:7}}>🎯 S'évaluer pour le Bac</div>
+
+        <button onClick={()=>onMode("bac")}
+          style={{position:"relative",width:"100%",
+            background:"linear-gradient(135deg,#F59E0B,#B45309)",
+            borderRadius:16,padding:"15px 18px",marginBottom:14,border:"none",cursor:"pointer",
+            display:"flex",alignItems:"center",gap:14,
+            boxShadow:"0 5px 16px rgba(245,158,11,.35)",textAlign:"left"}}>
+          {Date.now()<1781827200000&&<span style={{position:"absolute",top:8,right:12,
+            fontSize:8.5,fontWeight:900,color:"#fff",
+            background:"linear-gradient(135deg,#EF4444,#DC2626)",borderRadius:99,
+            padding:"1.5px 6px",letterSpacing:0.5,
+            boxShadow:"0 1px 4px rgba(0,0,0,.25)"}}>NEW</span>}
+          <span style={{fontSize:30,flexShrink:0}}>🏆</span>
+          <div style={{flex:1}}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,color:"#fff",lineHeight:1.1}}>
+              Bac
+            </div>
+            <div style={{color:"rgba(255,255,255,0.75)",fontSize:10,marginTop:3}}>
+              Annales officielles · Automatismes QCM
+            </div>
+          </div>
+          <span style={{color:"rgba(255,255,255,0.55)",fontSize:18}}>›</span>
+        </button>
+
+        {/* ══ DÉFI CHRONO ══════════════════════════════════════════════════════ */}
+        <div style={{fontSize:8.5,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
+          letterSpacing:1.2,marginBottom:7}}>⚡ Défi chrono</div>
+
+        <button onClick={()=>onMode("sprint")}
+          style={{width:"100%",background:"linear-gradient(135deg,#0EA5E9,#0284C7)",
+            borderRadius:14,padding:"13px 16px",marginBottom:14,border:"none",cursor:"pointer",
+            display:"flex",alignItems:"center",gap:12,
+            boxShadow:"0 4px 14px rgba(14,165,233,.28)",textAlign:"left"}}>
+          <span style={{fontSize:24,flexShrink:0}}>⏱️</span>
+          <div style={{flex:1}}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:"#fff",lineHeight:1.1}}>
+              Sprint
+            </div>
+            <div style={{color:"rgba(255,255,255,0.75)",fontSize:10,marginTop:2}}>
+              5 min chrono
+            </div>
+          </div>
+          <span style={{color:"rgba(255,255,255,0.55)",fontSize:16}}>›</span>
+        </button>
 
         {/* Mon parcours — Mes récompenses */}
         <button onClick={onParcours}
