@@ -18486,6 +18486,159 @@ function VigilanceScreen({profile, qState, onBack, onRemediation, onWorkTheme, s
   );
 }
 
+
+// ── NotionDuJour — une formule à apprendre chaque jour ──────────────────────
+function NotionDuJour() {
+  const today = new Date().toISOString().slice(0,10);
+  const dayN  = Math.floor((Date.now() - new Date(new Date().getFullYear(),0,0)) / 86400000);
+  const card  = FLASHCARDS[dayN % FLASHCARDS.length];
+
+  const doneKey = `ndj_${today}`;
+  const [flipped, setFlipped] = React.useState(false);
+  const [result,  setResult]  = React.useState(() => localStorage.getItem(doneKey));
+
+  const markResult = (wasKnown) => {
+    const val = wasKnown ? 'known' : 'review';
+    localStorage.setItem(doneKey, val);
+    setResult(val);
+  };
+
+  // Streak : nombre de jours consécutifs avec une réponse (en partant d'hier si today not done)
+  const streak = React.useMemo(() => {
+    let s = 0;
+    const d = new Date();
+    // Si aujourd'hui est fait, on compte à partir d'aujourd'hui
+    // Sinon on remonte à hier
+    if (!localStorage.getItem(`ndj_${d.toISOString().slice(0,10)}`)) d.setDate(d.getDate()-1);
+    while (s < 365) {
+      if (localStorage.getItem(`ndj_${d.toISOString().slice(0,10)}`)) {
+        s++; d.setDate(d.getDate()-1);
+      } else break;
+    }
+    return s;
+  }, [result]);
+
+  // Grille 7 jours (lundi → aujourd'hui)
+  const week7 = React.useMemo(() => {
+    const DAYS = ['D','L','M','M','J','V','S'];
+    return Array.from({length:7}, (_,i) => {
+      const d = new Date();
+      d.setDate(d.getDate() - (6-i));
+      const key = `ndj_${d.toISOString().slice(0,10)}`;
+      const res = localStorage.getItem(key);
+      return { label: DAYS[d.getDay()], res, isToday: i===6 };
+    });
+  }, [result]);
+
+  if (!card) return null;
+  const isDone = !!result;
+
+  return (
+    <div style={{background:"#fff",borderRadius:18,marginBottom:12,overflow:"hidden",
+      border:`2px solid ${isDone?"#C7D2FE":"#E0E7FF"}`,
+      boxShadow:"0 4px 16px rgba(99,102,241,.09)"}}>
+
+      {/* Header bande */}
+      <div style={{background:"linear-gradient(135deg,#6366F1,#4F46E5)",
+        padding:"9px 14px",display:"flex",alignItems:"center",
+        justifyContent:"space-between"}}>
+        <div style={{display:"flex",alignItems:"center",gap:7}}>
+          <span style={{fontSize:15}}>💡</span>
+          <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,
+            fontSize:12,color:"#fff"}}>Notion du Jour</span>
+          {streak > 0 && (
+            <span style={{fontSize:10,fontWeight:800,color:"#FDE68A",
+              background:"rgba(0,0,0,.2)",borderRadius:99,padding:"1px 7px"}}>
+              🔥 {streak}
+            </span>
+          )}
+        </div>
+        <span style={{fontSize:9,fontWeight:800,color:"rgba(255,255,255,.75)",
+          background:"rgba(255,255,255,.15)",borderRadius:99,padding:"2px 8px",
+          textTransform:"uppercase",letterSpacing:.6}}>
+          {card.chapitre}
+        </span>
+      </div>
+
+      {/* Grille 7 jours */}
+      <div style={{display:"flex",justifyContent:"space-around",
+        padding:"8px 14px 4px",background:"#F5F3FF"}}>
+        {week7.map((d,i) => (
+          <div key={i} style={{display:"flex",flexDirection:"column",alignItems:"center",gap:3}}>
+            <div style={{fontSize:8,fontWeight:700,color:"#7C3AED",
+              textTransform:"uppercase"}}>{d.label}</div>
+            <div style={{width:18,height:18,borderRadius:"50%",
+              border: d.isToday ? "2px solid #6366F1" : "none",
+              background: d.res==='known'  ? "#10B981"
+                        : d.res==='review' ? "#F59E0B"
+                        : d.isToday        ? "rgba(99,102,241,.12)"
+                        :                    "#E2E8F0",
+              display:"flex",alignItems:"center",justifyContent:"center"}}>
+              {d.res==='known'  && <span style={{fontSize:9}}>✓</span>}
+              {d.res==='review' && <span style={{fontSize:9}}>↺</span>}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Corps carte */}
+      <div style={{padding:"12px 14px 0"}}>
+        <div onClick={()=>!isDone&&setFlipped(f=>!f)}
+          style={{background:flipped?"#EEF2FF":"#F8FAFC",borderRadius:14,
+            padding:"14px",minHeight:85,display:"flex",flexDirection:"column",
+            alignItems:"center",justifyContent:"center",textAlign:"center",
+            cursor:isDone?"default":"pointer",transition:"background .25s",
+            opacity:isDone&&!flipped?.8:1}}>
+          {!flipped ? (
+            <>
+              <div style={{fontSize:13.5,color:"#1E293B",lineHeight:1.65}}>
+                <M tex={card.recto}/>
+              </div>
+              {!isDone && <div style={{fontSize:10,color:"#94A3B8",marginTop:6}}>
+                Appuie pour voir la réponse ↓
+              </div>}
+              {isDone && <div style={{fontSize:10,fontWeight:700,marginTop:6,
+                color:result==='known'?"#059669":"#D97706"}}>
+                {result==='known'?"✅ Tu le savais !":"🔁 À retravailler"}
+              </div>}
+            </>
+          ) : (
+            <div style={{fontSize:13.5,color:"#4338CA",lineHeight:1.65}}>
+              <M tex={card.verso}/>
+            </div>
+          )}
+        </div>
+
+        {/* Auto-éval */}
+        {flipped && !isDone && (
+          <div style={{display:"flex",gap:8,marginTop:10}}>
+            <button onClick={()=>markResult(false)}
+              style={{flex:1,background:"#FEF2F2",border:"1.5px solid #FCA5A5",
+                borderRadius:12,padding:"11px 0",cursor:"pointer",
+                color:"#DC2626",fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:12}}>
+              🔁 À revoir
+            </button>
+            <button onClick={()=>markResult(true)}
+              style={{flex:1,background:"#ECFDF5",border:"1.5px solid #6EE7B7",
+                borderRadius:12,padding:"11px 0",cursor:"pointer",
+                color:"#059669",fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:12}}>
+              ✅ Je savais
+            </button>
+          </div>
+        )}
+        {isDone && (
+          <div style={{textAlign:"center",padding:"9px 0 4px",
+            fontSize:10,color:"#6366F1",fontWeight:600}}>
+            🌟 Reviens demain pour la prochaine notion !
+          </div>
+        )}
+        {!isDone && !flipped && <div style={{height:4}}/>}
+        {!isDone && flipped && <div style={{height:8}}/>}
+      </div>
+    </div>
+  );
+}
+
 function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMode, onEditProfile, onLogout, onShowProgram, onBackup, onReminder, onPreferences, onVigilance, onCollection, onParcours, diagResults, cardsUnlocked, qState}) {
   const curr = CURRICULUM[profile.level] || CURRICULUM.seconde;
   const [allProg, setAllProg] = useState({});
@@ -18765,6 +18918,8 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
         {/* ══ APPRENDRE ═══════════════════════════════════════════════════════ */}
         <div style={{fontSize:8.5,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
           letterSpacing:1.2,marginBottom:7}}>📖 Apprendre</div>
+
+        <NotionDuJour/>
 
         <button onClick={()=>onMode("flashcards")}
           style={{width:"100%",background:"linear-gradient(135deg,#10B981,#047857)",
@@ -19497,6 +19652,8 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onB
           {/* ══ APPRENDRE ══════════════════════════════════════════════════ */}
           <div style={{fontSize:8.5,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
             letterSpacing:1.2,marginBottom:7}}>📖 Apprendre</div>
+
+          <NotionDuJour/>
 
           <button onClick={()=>onMode("flashcards")} className="pop-in"
             style={{width:"100%",background:"linear-gradient(135deg,#10B981,#047857)",
@@ -21666,6 +21823,24 @@ function FlashcardScreen({ cards, onBack }) {
     else setFlipped(f => !f);
   };
 
+  // Revenir à la carte précédente
+  const prevCard = () => {
+    if (reviewMode) {
+      if (reviewIdx === 0) return;
+      setReviewIdx(i => i-1);
+      setReviewFlipped(false);
+    } else {
+      if (idx === 0) return;
+      const prevIdx = idx - 1;
+      setKnown(k => k.filter(i => i !== prevIdx));
+      setReview(r => r.filter(i => i !== prevIdx));
+      setIdx(prevIdx);
+      setFlipped(false);
+    }
+  };
+
+  const canGoPrev = reviewMode ? reviewIdx > 0 : idx > 0;
+
   const answer = (wasKnown) => {
     if (!reviewMode) {
       if (wasKnown) setKnown(k => [...k, idx]);
@@ -21830,6 +22005,16 @@ function FlashcardScreen({ cards, onBack }) {
             borderRadius:16,padding:"14px",color:"#fff",fontFamily:"'Nunito',sans-serif",
             fontWeight:900,fontSize:15,cursor:"pointer",flexShrink:0}}>
           Voir la réponse →
+        </button>
+      )}
+
+      {/* Bouton précédente */}
+      {canGoPrev && (
+        <button onClick={prevCard}
+          style={{background:"none",border:"none",cursor:"pointer",marginTop:6,
+            color:"#94A3B8",fontFamily:"'Nunito',sans-serif",fontWeight:700,
+            fontSize:12,padding:"4px 0",alignSelf:"center",flexShrink:0}}>
+          ← Carte précédente
         </button>
       )}
     </div>
