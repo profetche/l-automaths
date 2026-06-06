@@ -18923,7 +18923,7 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
 
         <button onClick={()=>onMode("flashcards")}
           style={{width:"100%",background:"linear-gradient(135deg,#10B981,#047857)",
-            borderRadius:16,padding:"15px 18px",marginBottom:14,border:"none",cursor:"pointer",
+            borderRadius:16,padding:"15px 18px",marginBottom:8,border:"none",cursor:"pointer",
             display:"flex",alignItems:"center",gap:14,
             boxShadow:"0 5px 16px rgba(16,185,129,.30)",textAlign:"left"}}>
           <span style={{fontSize:30,flexShrink:0}}>🃏</span>
@@ -18933,6 +18933,25 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
             </div>
             <div style={{color:"rgba(255,255,255,0.75)",fontSize:10,marginTop:3}}>
               Retiens les formules · cours essentiel
+            </div>
+          </div>
+          <span style={{color:"rgba(255,255,255,0.55)",fontSize:18}}>›</span>
+        </button>
+
+        <button onClick={()=>onMode("cours")}
+          style={{width:"100%",background:"linear-gradient(135deg,#6366F1,#4338CA)",
+            borderRadius:16,padding:"14px 18px",marginBottom:14,border:"none",cursor:"pointer",
+            display:"flex",alignItems:"center",gap:14,
+            boxShadow:"0 4px 14px rgba(99,102,241,.28)",textAlign:"left"}}>
+          <span style={{fontSize:26,flexShrink:0}}>📚</span>
+          <div style={{flex:1}}>
+            <div style={{display:"flex",alignItems:"center",gap:7}}>
+              <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:15,color:"#fff",lineHeight:1.1}}>Cours interactifs</div>
+              <span style={{fontSize:8.5,fontWeight:900,color:"#FDE68A",
+                background:"rgba(0,0,0,.25)",borderRadius:99,padding:"1.5px 7px",letterSpacing:.3}}>🚧 BÊTA</span>
+            </div>
+            <div style={{color:"rgba(255,255,255,0.7)",fontSize:10,marginTop:3}}>
+              Révise les notions · formules interactives
             </div>
           </div>
           <span style={{color:"rgba(255,255,255,0.55)",fontSize:18}}>›</span>
@@ -19657,7 +19676,7 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onB
 
           <button onClick={()=>onMode("flashcards")} className="pop-in"
             style={{width:"100%",background:"linear-gradient(135deg,#10B981,#047857)",
-              borderRadius:16,padding:"15px 18px",marginBottom:14,border:"none",cursor:"pointer",
+              borderRadius:16,padding:"15px 18px",marginBottom:8,border:"none",cursor:"pointer",
               display:"flex",alignItems:"center",gap:14,
               boxShadow:"0 5px 16px rgba(16,185,129,.28)",textAlign:"left",animationDelay:"0s"}}>
             <span style={{fontSize:30,flexShrink:0}}>🃏</span>
@@ -19670,6 +19689,23 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onB
               </div>
             </div>
             <span style={{color:"rgba(255,255,255,0.55)",fontSize:18}}>›</span>
+          </button>
+
+          <button onClick={()=>onMode("cours")} className="pop-in"
+            style={{width:"100%",background:"linear-gradient(135deg,#6366F1,#4338CA)",
+              borderRadius:16,padding:"14px 18px",marginBottom:14,border:"none",cursor:"pointer",
+              display:"flex",alignItems:"center",gap:14,
+              boxShadow:"0 4px 14px rgba(99,102,241,.28)",textAlign:"left",animationDelay:".03s"}}>
+            <span style={{fontSize:24,flexShrink:0}}>📚</span>
+            <div style={{flex:1}}>
+              <div style={{display:"flex",alignItems:"center",gap:7}}>
+                <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:15,color:"#fff"}}>Cours interactifs</div>
+                <span style={{fontSize:8.5,fontWeight:900,color:"#FDE68A",
+                  background:"rgba(0,0,0,.25)",borderRadius:99,padding:"1.5px 7px"}}>🚧 BÊTA</span>
+              </div>
+              <div style={{color:"rgba(255,255,255,0.7)",fontSize:10,marginTop:3}}>Révise les notions · formules interactives</div>
+            </div>
+            <span style={{color:"rgba(255,255,255,0.55)",fontSize:16}}>›</span>
           </button>
 
           {/* ══ S'ENTRAÎNER ════════════════════════════════════════════════ */}
@@ -24481,6 +24517,253 @@ function PromoScreen({onDismiss}) {
 }
 
 
+// ══ COURS INTERACTIFS ════════════════════════════════════════════════════════
+const COURS_CATALOG = [
+  { id:"pourcentages", emoji:"📊",
+    title:"Pourcentages & Évolutions",
+    niveaux:["2nde","1ère TC","1ère Techno"],
+    chapitres:4, color:"#DB2777",
+    desc:"Proportions · CM · Évolutions successives · Taux réciproque",
+  },
+];
+
+function CoursListScreen({onBack,onSelectCours}) {
+  return (
+    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"var(--am-bg-light)"}}>
+      <div style={{padding:"16px 18px 12px",display:"flex",alignItems:"center",gap:12,flexShrink:0}}>
+        <button onClick={onBack} style={{background:"none",border:"none",cursor:"pointer",color:"#94A3B8",fontSize:18,padding:0}}>✕</button>
+        <div>
+          <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:20,color:"#1E293B"}}>📚 Mes Cours</div>
+          <div style={{fontSize:11,color:"#94A3B8",marginTop:1}}>Révise les notions de ton programme</div>
+        </div>
+      </div>
+      <div style={{margin:"0 16px 12px",background:"#FEFCE8",borderRadius:12,padding:"10px 14px",
+        borderLeft:"3px solid #EAB308",display:"flex",gap:10,alignItems:"center",flexShrink:0}}>
+        <span style={{fontSize:20}}>🚧</span>
+        <div>
+          <div style={{fontSize:12,fontWeight:800,color:"#713F12"}}>En cours de déploiement</div>
+          <div style={{fontSize:11,color:"#92400E",marginTop:1}}>Premier cours disponible — d'autres arrivent bientôt !</div>
+        </div>
+      </div>
+      <div style={{flex:1,overflowY:"auto",padding:"0 16px 24px"}}>
+        {COURS_CATALOG.map(c=>(
+          <button key={c.id} onClick={()=>onSelectCours(c.id)}
+            style={{width:"100%",background:"#fff",border:`2px solid ${c.color}20`,
+              borderRadius:18,padding:"16px",marginBottom:12,cursor:"pointer",
+              textAlign:"left",boxShadow:"0 3px 14px rgba(0,0,0,.07)"}}>
+            <div style={{display:"flex",alignItems:"flex-start",gap:12,marginBottom:10}}>
+              <span style={{fontSize:32,flexShrink:0,lineHeight:1}}>{c.emoji}</span>
+              <div style={{flex:1}}>
+                <div style={{display:"flex",alignItems:"center",gap:7,marginBottom:4}}>
+                  <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,color:"#1E293B"}}>{c.title}</span>
+                  <span style={{fontSize:8.5,fontWeight:900,color:"#fff",
+                    background:"linear-gradient(135deg,#EF4444,#DC2626)",
+                    borderRadius:99,padding:"1.5px 7px",letterSpacing:.4}}>NEW</span>
+                </div>
+                <div style={{fontSize:12,color:"#64748B",lineHeight:1.4}}>{c.desc}</div>
+              </div>
+            </div>
+            <div style={{display:"flex",gap:6,flexWrap:"wrap",marginBottom:10}}>
+              {c.niveaux.map(n=>(
+                <span key={n} style={{fontSize:10,fontWeight:700,color:c.color,
+                  background:`${c.color}15`,borderRadius:99,padding:"3px 9px"}}>{n}</span>
+              ))}
+            </div>
+            <div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+              <span style={{fontSize:11,color:"#94A3B8"}}>📖 {c.chapitres} chapitres</span>
+              <span style={{background:`linear-gradient(135deg,${c.color},${c.color}CC)`,
+                color:"#fff",borderRadius:99,padding:"7px 16px",fontSize:12,fontWeight:800}}>
+                Commencer →
+              </span>
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function CoursMathScreen({onBack}) {
+  const [secIdx, setSecIdx] = React.useState(0);
+  const [openMap, setOpenMap] = React.useState({});
+  const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
+  const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
+
+  const SECS = [
+    { emoji:"📊", label:"Proportions", color:"#DB2777", light:"#FDF2F8", rules:[
+      { id:"p1",num:"1",title:"Calculer la proportion p",
+        fml:r`p = \dfrac{n}{N}`,
+        blt:["E : ensemble total (N éléments)","A ⊂ E : sous-ensemble (n éléments)","p : proportion de A dans E"],
+        tip:"⚠️ La proportion est toujours entre 0 et 1",
+        ex:{q:"12 filles dans une classe de 30 élèves",a:r`p=\dfrac{12}{30}=\dfrac{2}{5}=0{,}4=40\%`}},
+      { id:"p2",num:"2",title:"Calculer l'effectif partiel n",
+        fml:r`n = p \times N`,blt:["Connaître p et N","Trouver n"],
+        ex:{q:"Gâteau 1 200 g : 50% de lait",a:r`n=0{,}5\times1200=600\text{ g}`}},
+      { id:"p3",num:"3",title:"Calculer l'effectif total N",
+        fml:r`N = \dfrac{n}{p}`,blt:["Connaître p et n","Trouver N"],
+        ex:{q:"133 femmes = 35% des adhérents",a:r`N=\dfrac{133}{0{,}35}=380\text{ adhérents}`}},
+      { id:"p4",num:"4",title:"Proportion de proportion",
+        fml:r`p_{\text{global}} = p \times p'`,
+        blt:["p : proportion de B dans E","p' : proportion de A dans B","p × p' : proportion de A dans E"],
+        tip:"⚠️ Attention aux règles de calcul des fractions !",
+        ex:{q:"30% de 20% de 500",a:r`0{,}3\times0{,}2\times500=30`}},
+    ]},
+    { emoji:"📈", label:"Évolutions", color:"#0891B2", light:"#ECFEFF", rules:[
+      { id:"e1a",num:"1a",title:"Augmenter de a%",
+        fml:r`V_i \times \left(1+\dfrac{a}{100}\right)=V_f`,
+        tip:"Ex : +20% → ×1,20  ·  +3% → ×1,03",
+        ex:{q:"Salaire 1 500 € augmente de 3%",a:r`1500\times1{,}03=1\,545\text{ €}`}},
+      { id:"e1b",num:"1b",title:"Diminuer de a%",
+        fml:r`V_i \times \left(1-\dfrac{a}{100}\right)=V_f`,
+        tip:"Ex : −20% → ×0,80  ·  −1,7% → ×0,983",
+        ex:{q:"Retraite 2 400 € baisse de 1,7%",a:r`2400\times0{,}983=2\,359{,}20\text{ €}`}},
+      { id:"e2",num:"2",title:"Coefficient Multiplicateur (CM)",
+        fml:r`CM = \dfrac{V_{\text{finale}}}{V_{\text{initiale}}}`,
+        blt:["CM > 1 → hausse","CM < 1 → baisse","CM = 1 → pas de changement"],
+        ex:{q:"Prix : 46,60 € → 78,9 €",a:r`CM=\dfrac{78{,}9}{46{,}6}\approx1{,}693`}},
+      { id:"e2b",num:"2b",title:"Avancer / Remonter dans le temps",
+        fml:null,isTimeline:true,
+        blt:["⏩ Avancer dans le temps → on multiplie par le CM","⏪ Remonter dans le temps → on divise par le CM"],
+        tip:"⚠️ Erreur classique : on ne soustrait pas le taux — on divise par le CM !",
+        ex:{q:"Appartement vaut 144 000 € après +20%. Prix initial ?",a:r`CM=1{,}2\ \Rightarrow\ V_i=\dfrac{144\,000}{1{,}2}=120\,000\text{ €}`}},
+      { id:"e3a",num:"3a",title:"Taux d'évolution depuis le CM",
+        fml:r`\text{taux\%} = CM \times 100 - 100`,
+        ex:{q:"CM = 1,693",a:r`1{,}693\times100-100=+69{,}3\%`}},
+      { id:"e3b",num:"3b",title:"CM depuis le taux",
+        fml:r`CM = 1 + \dfrac{\text{taux}}{100}`,
+        ex:{q:"Taux = −37,2%",a:r`CM=1-\dfrac{37{,}2}{100}=0{,}628`}},
+    ]},
+    { emoji:"🔗", label:"Successives", color:"#7C3AED", light:"#F5F3FF", rules:[
+      { id:"s1",num:"4a",title:"CM global",
+        fml:r`CM_{\text{global}} = CM_1 \times CM_2 \times \cdots \times CM_n`,
+        blt:["Les % NE s'additionnent PAS !","On multiplie les CM."],
+        tip:"⚠️ +30% puis +40% ≠ +70% → multiplier les CM !",
+        ex:{q:"+30% puis +40%",a:r`1{,}3\times1{,}4=1{,}82\Rightarrow+82\%`}},
+      { id:"s2",num:"4b",title:"Taux global",
+        fml:r`\text{taux}_{\text{global}} = CM_{\text{global}} \times 100 - 100`,
+        ex:{q:"−25% puis +40%",a:r`0{,}75\times1{,}4=1{,}05\Rightarrow+5\%`}},
+      { id:"s3",num:"4c",title:"Intérêts composés",
+        fml:r`CM_{\text{global}} = CM^n`,
+        tip:"Placements, croissance démographique…",
+        ex:{q:"+3%/an pendant 8 ans",a:r`1{,}03^8\approx1{,}267\Rightarrow+26{,}7\%`}},
+    ]},
+    { emoji:"🔄", label:"Réciproque", color:"#059669", light:"#F0FDF4", rules:[
+      { id:"r1",num:"5a",title:"CM réciproque",
+        fml:r`CM' = \dfrac{1}{CM}`,
+        blt:["Pour annuler une évolution","On prend l'inverse du CM"],
+        ex:{q:"Action baisse de 20%",a:r`CM=0{,}8\Rightarrow CM'=\dfrac{1}{0{,}8}=1{,}25\Rightarrow+25\%`}},
+      { id:"r2",num:"5b",title:"Méthode en 3 étapes",
+        fml:null,
+        blt:["① Trouver le CM de l'évolution donnée","② Calculer CM' = 1/CM","③ Convertir CM' en taux%"],
+        ex:{q:"Compenser une hausse de 10%",a:r`CM'=\dfrac{1}{1{,}1}\approx0{,}909\Rightarrow-9{,}1\%`}},
+      { id:"r3",num:"5c",title:"Cas classiques à retenir",
+        fml:null,
+        blt:["+20% ↔ −16,7%  (×1,2 → 1/1,2)","+25% ↔ −20%    (×1,25 → 0,8)",
+             "+50% ↔ −33,3%  (×1,5 → 0,667)","−20% ↔ +25%   (×0,8 → 1,25)","−50% ↔ +100% (×0,5 → 2)"]},
+    ]},
+  ];
+
+  const sec = SECS[secIdx];
+  const col = sec.color;
+
+  return (
+    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"var(--am-bg-light)"}}>
+      <div style={{background:`linear-gradient(135deg,${col},${col}CC)`,padding:"14px 18px 0",flexShrink:0}}>
+        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:10}}>
+          <button onClick={onBack} style={{background:"rgba(255,255,255,.2)",border:"none",
+            cursor:"pointer",color:"#fff",fontSize:14,borderRadius:99,
+            width:30,height:30,display:"flex",alignItems:"center",justifyContent:"center"}}>✕</button>
+          <div>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,color:"#fff"}}>Pourcentages &amp; Évolutions</div>
+            <div style={{fontSize:10,color:"rgba(255,255,255,.7)"}}>📚 Cours interactif</div>
+          </div>
+        </div>
+        <div style={{display:"flex",gap:6,overflowX:"auto",paddingBottom:12,scrollbarWidth:"none"}}>
+          {SECS.map((s,i)=>(
+            <button key={i} onClick={()=>{setSecIdx(i);setOpenMap({});}}
+              style={{border:"none",borderRadius:99,padding:"6px 13px",cursor:"pointer",
+                whiteSpace:"nowrap",flexShrink:0,fontFamily:"'Nunito',sans-serif",
+                fontWeight:700,fontSize:11.5,transition:"all .15s",
+                background:secIdx===i?"#fff":"rgba(255,255,255,.2)",
+                color:secIdx===i?col:"rgba(255,255,255,.85)"}}>
+              {s.emoji} {s.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div style={{flex:1,overflowY:"auto",padding:"12px 14px 24px"}}>
+        {sec.rules.map((rl,i)=>{
+          const k=`${secIdx}_${i}`;
+          const expanded=isOpen(k,i===0);
+          return (
+            <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
+              overflow:"hidden",boxShadow:"0 2px 14px rgba(0,0,0,.07)",
+              borderLeft:`4px solid ${col}`}}>
+              <div onClick={()=>tog(k)} style={{display:"flex",alignItems:"center",gap:10,
+                padding:"13px 15px",cursor:"pointer",userSelect:"none"}}>
+                <div style={{width:30,height:30,borderRadius:"50%",background:col,
+                  color:"#fff",display:"flex",alignItems:"center",justifyContent:"center",
+                  fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
+                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}</div>
+                <span style={{color:"#94A3B8",fontSize:11,display:"block",
+                  transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
+              </div>
+              {expanded&&(
+                <div style={{padding:"0 15px 15px"}}>
+                  {rl.isTimeline&&(
+                    <div style={{background:sec.light,borderRadius:13,padding:"12px",margin:"8px 0",display:"flex",flexDirection:"column",gap:8}}>
+                      <div style={{display:"flex",alignItems:"center",gap:10,background:"rgba(8,145,178,.1)",borderRadius:10,padding:"10px 12px"}}>
+                        <span style={{fontSize:18,flexShrink:0}}>⏩</span>
+                        <div>
+                          <div style={{fontSize:10,fontWeight:800,color:col,textTransform:"uppercase",letterSpacing:.6,marginBottom:3}}>Avancer dans le temps</div>
+                          <M tex={r`V_i \times CM = V_f`}/>
+                        </div>
+                      </div>
+                      <div style={{display:"flex",alignItems:"center",gap:10,background:"rgba(124,58,237,.1)",borderRadius:10,padding:"10px 12px"}}>
+                        <span style={{fontSize:18,flexShrink:0}}>⏪</span>
+                        <div>
+                          <div style={{fontSize:10,fontWeight:800,color:"#7C3AED",textTransform:"uppercase",letterSpacing:.6,marginBottom:3}}>Remonter dans le temps</div>
+                          <M tex={r`V_f \div CM = V_i`}/>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  {rl.fml&&(
+                    <div style={{background:sec.light,borderRadius:13,padding:"14px 12px",
+                      margin:"8px 0",textAlign:"center",overflowX:"auto"}}>
+                      <M tex={rl.fml}/>
+                    </div>
+                  )}
+                  {(rl.blt||[]).map((b,j)=>(
+                    <div key={j} style={{display:"flex",gap:7,padding:"3px 0",fontSize:12.5,color:"#475569",lineHeight:1.4}}>
+                      <span style={{color:col,fontWeight:700,flexShrink:0}}>•</span><span>{b}</span>
+                    </div>
+                  ))}
+                  {rl.tip&&(
+                    <div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
+                      fontSize:12,fontWeight:600,color:"#713F12",
+                      borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>{rl.tip}</div>
+                  )}
+                  {rl.ex&&(
+                    <div style={{background:"#F8FAFC",borderRadius:12,padding:"12px 13px",
+                      marginTop:10,borderLeft:`3px solid ${col}`}}>
+                      <div style={{fontSize:10,fontWeight:800,color:col,textTransform:"uppercase",
+                        letterSpacing:".7px",marginBottom:5}}>Exemple</div>
+                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>{rl.ex.q}</div>
+                      <div style={{textAlign:"center",overflowX:"auto"}}><M tex={rl.ex.a}/></div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+
 function BottomNav({screen, onTab}) {
   const BAC_NEW = 1781827200000;
   const tabs = [
@@ -24987,6 +25270,7 @@ function AutoMaths() {
     else if (m === "test_aleatoire") setScreen("test_aleatoire");
     else if (m === "sprint") setScreen("sprint");
     else if (m === "flashcards") setScreen("flashcard_setup");
+    else if (m === "cours") setScreen("cours");
     else setScreen("category");
   };
   // Choix depuis l'écran intermédiaire S'entraîner
@@ -25273,7 +25557,7 @@ function AutoMaths() {
   );
 
   const NAV_SCREENS = new Set(["dashboard","home","flashcard_setup","training_modes",
-    "bac_subjects","parcours_detail","collection","vigilance"]);
+    "bac_subjects","parcours_detail","collection","vigilance","cours","cours_pourcentages"]);
   const showBottomNav = NAV_SCREENS.has(screen);
   const hNavTab = (tabId) => {
     if      (tabId==="home")      setScreen(profile?"dashboard":"home");
@@ -25388,6 +25672,8 @@ function AutoMaths() {
               setScreen("mission_theme");
             }
           }}/>}
+          {screen==="cours"             && <CoursListScreen onBack={()=>setScreen(profile?"dashboard":"home")} onSelectCours={id=>setScreen("cours_"+id)}/>}
+          {screen==="cours_pourcentages" && <CoursMathScreen onBack={()=>setScreen("cours")}/>}
           {screen==="flashcard_setup" && <FlashcardSetupScreen onBack={()=>setScreen(profile?"dashboard":"home")} onStart={(cards)=>{ setPool(cards); setScreen("flashcards"); }}/>}
           {screen==="flashcards"    && <FlashcardScreen cards={pool} onBack={()=>setScreen("flashcard_setup")}/>}
           {screen==="mission_theme" && missionTheme && <MissionThemeScreen theme={missionTheme} missionId={missionId} onBack={()=>setScreen("mission_select")} onStart={(qs, themeId)=>{
