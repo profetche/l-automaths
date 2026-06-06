@@ -24629,8 +24629,9 @@ function CoursListScreen({onBack,onSelectCours}) {
   );
 }
 
-function CoursMathScreen({onBack}) {
+function CoursMathScreen({onBack, onOpen}) {
   const [secIdx, setSecIdx] = React.useState(0);
+  React.useEffect(()=>{ if(onOpen) onOpen(); }, []);
   const [openMap, setOpenMap] = React.useState({});
   const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
   const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
@@ -24850,6 +24851,13 @@ function BottomNav({screen, onTab}) {
     </div>
   );
 }
+
+
+// ── Plausible custom events (safe wrapper) ───────────────────────────────────
+const plsbl = (name, props) => {
+  try { if(typeof plausible === 'function') plausible(name, props ? {props} : undefined); }
+  catch(e) {}
+};
 
 function AutoMaths() {
   const katexReady = useKaTeX();
@@ -25305,6 +25313,7 @@ function AutoMaths() {
     // ── Vérifier les déblocages de cartes (fire-and-show) ──────────────────
     await runUnlockCheck();
 
+    plsbl("Quiz terminé", {mode: mode||"express", cat: catId||"", score: score+"/"+questions.length});
     setScreen(quizMode ? "parcours_result" : "result");
   };
 
@@ -25366,7 +25375,7 @@ function AutoMaths() {
       setScreen("level_picker"); 
     }
   };
-  const hBacStart = (subId, qs) => { setCatId("bac"); setPrevScreen("bac_subjects"); setPool(qs); setQuestions(qs); setScreen("quiz"); }; // examMode : ordre officiel, pas de shuffle
+  const hBacStart = (subId, qs) => { plsbl("Bac QCM lancé", {sujet: subId}); setCatId("bac"); setPrevScreen("bac_subjects"); setPool(qs); setQuestions(qs); setScreen("quiz"); }; // examMode : ordre officiel, pas de shuffle
   const hCount    = n  => {
     setQCount(n);
     if (mode === "entrainement" && pendingPool) {
@@ -25456,6 +25465,7 @@ function AutoMaths() {
     });
   };
   const hSprintFinish = async (result) => {
+    plsbl("Sprint terminé", {score: result?.score+"/"+result?.total});
     // Calcul du score final cohérent avec SprintResultScreen
     const {score, answered, bestCombo = 0} = result;
     const pct = answered > 0 ? Math.round(score / answered * 100) : 0;
@@ -25726,8 +25736,8 @@ function AutoMaths() {
           }}/>}
           {screen==="apprendre"         && <ApprendreHubScreen onMode={hMode}/>}
           {screen==="cours"             && <CoursListScreen onBack={()=>setScreen("apprendre")} onSelectCours={id=>setScreen("cours_"+id)}/>}
-          {screen==="cours_pourcentages" && <CoursMathScreen onBack={()=>setScreen("cours")}/>}
-          {screen==="flashcard_setup" && <FlashcardSetupScreen onBack={()=>setScreen(profile?"dashboard":"home")} onStart={(cards)=>{ setPool(cards); setScreen("flashcards"); }}/>}
+          {screen==="cours_pourcentages" && <CoursMathScreen onBack={()=>setScreen("cours")} onOpen={()=>plsbl("Cours ouvert", {cours:"pourcentages"})}/>}
+          {screen==="flashcard_setup" && <FlashcardSetupScreen onBack={()=>setScreen(profile?"dashboard":"home")} onStart={(cards)=>{ setPool(cards); plsbl("Flashcards lancées", {cartes: cards.length}); setScreen("flashcards"); }}/>}
           {screen==="flashcards"    && <FlashcardScreen cards={pool} onBack={()=>setScreen("flashcard_setup")}/>}
           {screen==="mission_theme" && missionTheme && <MissionThemeScreen theme={missionTheme} missionId={missionId} onBack={()=>setScreen("mission_select")} onStart={(qs, themeId)=>{
             setPrevScreen("mission_theme");
