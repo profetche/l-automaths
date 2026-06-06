@@ -18695,6 +18695,16 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
                 <span style={{fontSize:16}}>☕</span><span>Me soutenir</span>
               </a>
 
+
+              <a href="mailto:appli.lautomaths%40gmail.com?subject=Signalement%20erreur%20%E2%80%94%20l%27AutoMaths&body=Bonjour%2C%0A%0AJe%20souhaite%20signaler%20le%20probl%C3%A8me%20suivant%20%3A%0A%0A%5BD%C3%A9cris%20ici%20l%27erreur%20ou%20le%20bug%5D%0A%0A%F0%9F%93%B8%20Pense%20%C3%A0%20joindre%20une%20capture%20d%27%C3%A9cran%20pour%20aider%20%C3%A0%20reproduire%20le%20probl%C3%A8me%20!%0A%0AMerci%20beaucoup%20pour%20ce%20signalement%2C%20%C3%A7a%20nous%20aide%20vraiment%20%C3%A0%20am%C3%A9liorer%20l%27AutoMaths%20!%20%F0%9F%99%8F%0A%0A---%0AEnvoy%C3%A9%20depuis%20l%27AutoMaths"
+                onClick={()=>setMenuOpen(false)}
+                style={{display:"flex",alignItems:"center",gap:10,width:"100%",
+                  padding:"11px 14px",border:"none",background:"#fff",cursor:"pointer",
+                  fontSize:12,fontWeight:600,color:"#1E293B",textAlign:"left",
+                  textDecoration:"none",borderBottom:"1px solid #F1F5F9",boxSizing:"border-box"}}>
+                <span style={{fontSize:16}}>🐛</span><span>Signaler une erreur ou un bug</span>
+              </a>
+
               <button onClick={()=>{setMenuOpen(false);setShowLogoutConfirm(true);}}
                 style={{display:"flex",alignItems:"center",gap:10,width:"100%",
                   padding:"11px 14px",border:"none",background:"#FEF2F2",cursor:"pointer",
@@ -19627,7 +19637,7 @@ function TrainingModesScreen({onMode, onBack}) {
       sub:"10 questions dans un thème",
       desc:"Parfait pour une pause rapide : tu choisis un thème, Sigma te donne 10 questions.",
       emoji:"⚡",
-      grad:"linear-gradient(135deg,#3B82F6,#1D4ED8)",
+      grad:"linear-gradient(135deg,#0EA5E9,#0284C7)",
     },
     {
       id:"entrainement",
@@ -19643,7 +19653,7 @@ function TrainingModesScreen({onMode, onBack}) {
       sub:"Objectifs Sigma",
       desc:"Accomplis des missions pour gagner des récompenses et progresser par paliers.",
       emoji:"🚀",
-      grad:"linear-gradient(135deg,#3B82F6,#1D4ED8)",
+      grad:"linear-gradient(135deg,#1E40AF,#1E3A8A)",
     },
     {
       id:"test_aleatoire",
@@ -22388,7 +22398,6 @@ const BAC_GROUPS = [
     subs:[
       {id:"stmg_annales_s1_2026", label:"Annales 2026 — Sujet 1", year:2026, n:12},
       {id:"stmg_annales_s2_2026", label:"Annales 2026 — Sujet 2", year:2026, n:12},
-      {id:"stmg_original",        label:"Créations originales",    year:null, n:0, disabled:true},
     ],
   },
   {
@@ -22398,7 +22407,6 @@ const BAC_GROUPS = [
       {id:"tronc_annales_s2_2026", label:"Annales 2026 — Sujet 2", year:2026, n:12},
       {id:"tronc_annales_s3_2026", label:"Annales 2026 — Sujet 3", year:2026, n:12},
       {id:"tronc_annales_s4_2026", label:"Amérique du Nord 2026", year:2026, n:12, newUntil:1781827200000},
-      {id:"tronc_original",        label:"Créations originales",    year:null, n:0, disabled:true},
     ],
   },
   {
@@ -22407,7 +22415,6 @@ const BAC_GROUPS = [
       {id:"spe_annales_s1_2026", label:"Annales 2026 — Sujet 1", year:2026, n:12},
       {id:"spe_annales_s2_2026", label:"Annales 2026 — Sujet 2", year:2026, n:12},
       {id:"spe_annales_s3_2026", label:"Amérique du Nord 2026", year:2026, n:9, newUntil:1781827200000},
-      {id:"spe_original",        label:"Créations originales",    year:null, n:0, disabled:true},
     ],
   },
 ];
