@@ -18488,6 +18488,52 @@ function VigilanceScreen({profile, qState, onBack, onRemediation, onWorkTheme, s
 
 
 // ── NotionDuJour — une formule à apprendre chaque jour ──────────────────────
+// ── ApprendreHubScreen ───────────────────────────────────────────────────────
+function ApprendreHubScreen({onMode}) {
+  return (
+    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"var(--am-bg-light)"}}>
+      <div style={{padding:"20px 18px 14px",flexShrink:0}}>
+        <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:24,color:"#1E293B",lineHeight:1.1}}>
+          📖 Apprendre
+        </div>
+        <div style={{fontSize:12,color:"#94A3B8",marginTop:3}}>Formules, cours et notion du jour</div>
+      </div>
+      <div style={{flex:1,overflowY:"auto",padding:"0 14px 28px"}}>
+        <NotionDuJour/>
+        <button onClick={()=>onMode("flashcards")}
+          style={{width:"100%",background:"linear-gradient(135deg,#10B981,#047857)",
+            borderRadius:16,padding:"15px 18px",marginBottom:8,border:"none",cursor:"pointer",
+            display:"flex",alignItems:"center",gap:14,
+            boxShadow:"0 5px 16px rgba(16,185,129,.30)",textAlign:"left"}}>
+          <span style={{fontSize:30,flexShrink:0}}>🃏</span>
+          <div style={{flex:1}}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,color:"#fff",lineHeight:1.1}}>Flashcards</div>
+            <div style={{color:"rgba(255,255,255,0.75)",fontSize:10,marginTop:3}}>Retiens les formules · cours essentiel</div>
+          </div>
+          <span style={{color:"rgba(255,255,255,0.55)",fontSize:18}}>›</span>
+        </button>
+        <button onClick={()=>onMode("cours")}
+          style={{width:"100%",background:"linear-gradient(135deg,#6366F1,#4338CA)",
+            borderRadius:16,padding:"14px 18px",marginBottom:0,border:"none",cursor:"pointer",
+            display:"flex",alignItems:"center",gap:14,
+            boxShadow:"0 4px 14px rgba(99,102,241,.28)",textAlign:"left"}}>
+          <span style={{fontSize:26,flexShrink:0}}>📚</span>
+          <div style={{flex:1}}>
+            <div style={{display:"flex",alignItems:"center",gap:7}}>
+              <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:15,color:"#fff"}}>Cours interactifs</div>
+              <span style={{fontSize:8.5,fontWeight:900,color:"#FDE68A",
+                background:"rgba(0,0,0,.25)",borderRadius:99,padding:"1.5px 7px"}}>🚧 BÊTA</span>
+            </div>
+            <div style={{color:"rgba(255,255,255,0.7)",fontSize:10,marginTop:3}}>Révise les notions · formules interactives</div>
+          </div>
+          <span style={{color:"rgba(255,255,255,0.55)",fontSize:18}}>›</span>
+        </button>
+      </div>
+    </div>
+  );
+}
+
+
 function NotionDuJour() {
   const today = new Date().toISOString().slice(0,10);
   const dayN  = Math.floor((Date.now() - new Date(new Date().getFullYear(),0,0)) / 86400000);
@@ -24588,6 +24634,12 @@ function CoursMathScreen({onBack}) {
   const [openMap, setOpenMap] = React.useState({});
   const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
   const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
+  const tabsRef = React.useRef();
+  React.useEffect(()=>{
+    if(!tabsRef.current) return;
+    const btn = tabsRef.current.children[secIdx];
+    if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  },[secIdx]);
 
   const SECS = [
     { emoji:"📊", label:"Proportions", color:"#DB2777", light:"#FDF2F8", rules:[
@@ -24678,7 +24730,7 @@ function CoursMathScreen({onBack}) {
             <div style={{fontSize:10,color:"rgba(255,255,255,.7)"}}>📚 Cours interactif</div>
           </div>
         </div>
-        <div style={{display:"flex",gap:6,overflowX:"auto",paddingBottom:12,scrollbarWidth:"none"}}>
+        <div ref={tabsRef} style={{display:"flex",gap:6,overflowX:"auto",paddingBottom:12,scrollbarWidth:"none"}}>
           {SECS.map((s,i)=>(
             <button key={i} onClick={()=>{setSecIdx(i);setOpenMap({});}}
               style={{border:"none",borderRadius:99,padding:"6px 13px",cursor:"pointer",
@@ -24768,7 +24820,7 @@ function BottomNav({screen, onTab}) {
   const BAC_NEW = 1781827200000;
   const tabs = [
     {id:"home",      emoji:"🏠", label:"Accueil",     active:screen==="dashboard"||screen==="home"},
-    {id:"apprendre", emoji:"📖", label:"Apprendre",   active:screen==="flashcard_setup"||screen==="flashcards"},
+    {id:"apprendre", emoji:"📖", label:"Apprendre",   active:screen==="flashcard_setup"||screen==="flashcards"||screen==="apprendre"||screen==="cours"||screen==="cours_pourcentages"},
     {id:"train",     emoji:"💪", label:"S'entraîner", active:screen==="training_modes"},
     {id:"bac",       emoji:"🎯", label:"Bac",         badge:Date.now()<BAC_NEW, active:screen==="bac_subjects"},
     {id:"parcours",  emoji:"📊", label:"Parcours",    active:screen==="parcours_detail"||screen==="collection"||screen==="vigilance"},
@@ -25557,11 +25609,11 @@ function AutoMaths() {
   );
 
   const NAV_SCREENS = new Set(["dashboard","home","flashcard_setup","training_modes",
-    "bac_subjects","parcours_detail","collection","vigilance","cours","cours_pourcentages"]);
+    "bac_subjects","parcours_detail","collection","vigilance","cours","cours_pourcentages","apprendre"]);
   const showBottomNav = NAV_SCREENS.has(screen);
   const hNavTab = (tabId) => {
     if      (tabId==="home")      setScreen(profile?"dashboard":"home");
-    else if (tabId==="apprendre") setScreen("flashcard_setup");
+    else if (tabId==="apprendre") setScreen("apprendre");
     else if (tabId==="train")     setScreen("training_modes");
     else if (tabId==="bac")       setScreen("bac_subjects");
     else if (tabId==="parcours")  { if(profile) setScreen("parcours_detail"); }
@@ -25672,7 +25724,8 @@ function AutoMaths() {
               setScreen("mission_theme");
             }
           }}/>}
-          {screen==="cours"             && <CoursListScreen onBack={()=>setScreen(profile?"dashboard":"home")} onSelectCours={id=>setScreen("cours_"+id)}/>}
+          {screen==="apprendre"         && <ApprendreHubScreen onMode={hMode}/>}
+          {screen==="cours"             && <CoursListScreen onBack={()=>setScreen("apprendre")} onSelectCours={id=>setScreen("cours_"+id)}/>}
           {screen==="cours_pourcentages" && <CoursMathScreen onBack={()=>setScreen("cours")}/>}
           {screen==="flashcard_setup" && <FlashcardSetupScreen onBack={()=>setScreen(profile?"dashboard":"home")} onStart={(cards)=>{ setPool(cards); setScreen("flashcards"); }}/>}
           {screen==="flashcards"    && <FlashcardScreen cards={pool} onBack={()=>setScreen("flashcard_setup")}/>}
