@@ -24873,7 +24873,9 @@ function CoursMathScreen({onBack, onOpen, onStartPractice}) {
                       marginTop:10,borderLeft:`3px solid ${col}`}}>
                       <div style={{fontSize:10,fontWeight:800,color:col,textTransform:"uppercase",
                         letterSpacing:".7px",marginBottom:5}}>Exemple</div>
-                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>{rl.ex.q}</div>
+                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>
+                        {rl.ex.qTex?<M tex={rl.ex.qTex}/>:<span>{rl.ex.q}</span>}
+                      </div>
                       <div style={{textAlign:"center",overflowX:"auto"}}><M tex={rl.ex.a}/></div>
                     </div>
                   )}
@@ -24921,11 +24923,11 @@ function CoursMathCalcul({onBack, onStartPractice}) {
       { id:"d1",num:"4",title:"Critères de divisibilité",
         fml:null,
         bltTex:[r`\textbf{Par 2}\text{ : chiffre des unités pair}`,r`\textbf{Par 3}\text{ : somme des chiffres divisible par 3}`,r`\textbf{Par 4}\text{ : 2 derniers chiffres divisibles par 4}`,r`\textbf{Par 5}\text{ : unités = 0 ou 5}`,r`\textbf{Par 9}\text{ : somme des chiffres divisible par 9}`,r`\textbf{Par 10}\text{ : unités = 0}`],
-        ex:{q:"76 : divisible par 2 ? 3 ? 4 ?",a:r`\text{Unités}=6\ (\text{pair})\Rightarrow\div2\ ✓\quad 7+6=13\ \not\div3\ ✗\quad 76=4\times19\Rightarrow\div4\ ✓`}},
+        ex:{qTex:r`76\text{ : divisible par }2\ ?\ 3\ ?\ 4\ ?`,a:r`\text{Unités}=6\ (\text{pair})\Rightarrow\div2\ ✓\quad 7+6=13\ \not\div3\ ✗\quad 76=4\times19\Rightarrow\div4\ ✓`}},
       { id:"d2",num:"4b",title:"Nombre premier",
         fml:null,
         bltTex:[r`\text{Un nombre premier admet exactement 2 diviseurs : 1 et lui-même}`,r`1\text{ n'est }\textbf{PAS}\text{ un nombre premier}`,r`\text{Premiers} < 20\text{ : } 2, 3, 5, 7, 11, 13, 17, 19`],
-        tip:"Pour tester si n est premier : diviser par tous les premiers jusqu'à √n",
+        tipTex:r`\text{Pour tester si }n\text{ est premier : diviser par tous les premiers jusqu\'à }\sqrt{n}`,
         ex:{q:"Décomposer 330 en facteurs premiers",a:r`330=2\times3\times5\times11`}},
     ]},
     { emoji:"⚡", label:"Puissances", color:"#7C3AED", light:"#F5F3FF", rules:[
@@ -25042,15 +25044,19 @@ function CoursMathCalcul({onBack, onStartPractice}) {
                       <span style={{overflowX:"auto",fontSize:13}}><M tex={b}/></span>
                     </div>
                   ))}
-                  {rl.tip&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
+                  {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
                     fontSize:12,fontWeight:600,color:"#713F12",
-                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>{rl.tip}</div>}
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>
+                    {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
+                  </div>}
                   {rl.ex&&(
                     <div style={{background:"#F8FAFC",borderRadius:12,padding:"12px 13px",
                       marginTop:10,borderLeft:`3px solid ${col}`}}>
                       <div style={{fontSize:10,fontWeight:800,color:col,textTransform:"uppercase",
                         letterSpacing:".7px",marginBottom:5}}>Exemple</div>
-                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>{rl.ex.q}</div>
+                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>
+                        {rl.ex.qTex?<M tex={rl.ex.qTex}/>:<span>{rl.ex.q}</span>}
+                      </div>
                       <div style={{textAlign:"center",overflowX:"auto"}}><M tex={rl.ex.a}/></div>
                     </div>
                   )}
@@ -25093,7 +25099,7 @@ function CoursMathReels({onBack, onStartPractice}) {
         bltTex:[r`\text{Rationnel : s'écrit }\dfrac{a}{b}\ (b\neq0)\text{, dev. décimal périodique}`,r`\text{Irrationnel : pas de fraction }a/b\text{, dev. infini non périodique}`,
           "Exemples irrationnels : √2, √3, π",
         ],
-        tip:"Propriété : 1/3 n'est pas un nombre décimal (son développement est 0,333… infini non terminant → il est rationnel mais pas décimal)",
+        tipTex:r`\dfrac{1}{3}=0{,}333\ldots\text{ (infini non terminant) → rationnel mais }\textbf{pas décimal}`,
         ex:{q:"√2 est-il rationnel ?",
             a:r`\text{Non : }\sqrt{2}\approx1{,}41421356\ldots\ \text{(infini non périodique)}\Rightarrow\sqrt{2}\in\mathbb{R}\setminus\mathbb{Q}`}},
     ]},
@@ -25104,7 +25110,7 @@ function CoursMathReels({onBack, onStartPractice}) {
           "[a ; +∞[ : x ≥ a  (toujours ouvert côté infini)",
         ],
         tip:"ℝ lui-même est l'intervalle ]−∞ ; +∞[",
-        ex:{q:"Écrire {x ∈ ℝ | −2 ≤ x ≤ 7} en notation intervalle",
+        ex:{qTex:r`\text{Écrire }\{x\in\mathbb{R}\,|\,-2\leq x\leq7\}\text{ en notation intervalle}`,
             a:r`[-2\ ;\ 7]`}},
       { id:"i2",num:"4",title:"Intersection et réunion",
         fml:r`A\cap B\ \text{(et)} \qquad A\cup B\ \text{(ou)}`,
@@ -25118,13 +25124,13 @@ function CoursMathReels({onBack, onStartPractice}) {
       { id:"d1",num:"5",title:"Distance entre deux réels",
         fml:r`d(a,b)=|b-a|=|a-b|`,
         bltTex:[r`\text{La distance est toujours positive ou nulle}`,r`|b-a|=b-a\text{ si }b\geq a\quad\text{ou}\quad a-b\text{ si }a\geq b`],
-        ex:{q:"Distance entre −1,5 et 4",
+        ex:{qTex:r`\text{Distance entre }-1{,}5\text{ et }4`,
             a:r`|4-(-1{,}5)|=|5{,}5|=5{,}5`}},
       { id:"d2",num:"6",title:"Valeur absolue et intervalles",
         fml:r`|x-a|\leq r \Leftrightarrow x\in[a-r\ ;\ a+r]`,
         bltTex:[r`|x|\text{ est la distance entre }x\text{ et }0`,r`|x-a|\leq r\text{ : }x\text{ est à distance au plus }r\text{ de }a`],
         tip:"Interprétation géométrique : x est dans l'intervalle centré en a de rayon r",
-        ex:{q:"Résoudre |x − 5| ≤ 2",
+        ex:{qTex:r`\text{Résoudre }|x-5|\leq2`,
             a:r`|x-5|\leq2\Leftrightarrow x\in[5-2\,;\,5+2]=[3\,;\,7]`}},
     ]},
     { emoji:"🏋️", label:"S\'entraîner", color:"#0F172A", light:"#F1F5F9", isPractice:true,
@@ -25213,15 +25219,19 @@ function CoursMathReels({onBack, onStartPractice}) {
                       <span style={{overflowX:"auto",fontSize:13}}><M tex={b}/></span>
                     </div>
                   ))}
-                  {rl.tip&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
+                  {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
                     fontSize:12,fontWeight:600,color:"#713F12",
-                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>{rl.tip}</div>}
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>
+                    {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
+                  </div>}
                   {rl.ex&&(
                     <div style={{background:"#F8FAFC",borderRadius:12,padding:"12px 13px",
                       marginTop:10,borderLeft:`3px solid ${col}`}}>
                       <div style={{fontSize:10,fontWeight:800,color:col,textTransform:"uppercase",
                         letterSpacing:".7px",marginBottom:5}}>Exemple</div>
-                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>{rl.ex.q}</div>
+                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>
+                        {rl.ex.qTex?<M tex={rl.ex.qTex}/>:<span>{rl.ex.q}</span>}
+                      </div>
                       <div style={{textAlign:"center",overflowX:"auto"}}><M tex={rl.ex.a}/></div>
                     </div>
                   )}
@@ -25334,15 +25344,15 @@ function CoursMathFonctions({onBack, onStartPractice}) {
           r`\text{Toute opération sur un membre → même opération sur l'autre}`,r`\text{① Regrouper les termes en }x\text{ d'un côté}`,r`\text{② Les constantes de l'autre côté}`,r`\text{③ Diviser par le coefficient de }x\text{ (si }\neq0\text{)}`,
         ],
         tip:"Vérifier la solution en la substituant dans l'équation de départ",
-        ex:{q:"Résoudre −3x − 2 = x − 14",
+        ex:{qTex:r`\text{Résoudre }-3x-2=x-14`,
             a:r`-3x-x=-14+2\Rightarrow-4x=-12\Rightarrow x=3`}},
       { id:"eq2",num:"3",title:"Produit nul : A × B = 0",
         fml:r`A \times B = 0 \Leftrightarrow A = 0 \text{ ou } B = 0`,
         bltTex:[
           r`A\times B=0\Leftrightarrow A=0\text{ ou }B=0`,r`\text{Résoudre chaque facteur = 0 séparément}`,
         ],
-        tip:"Attention : A × B = 2 ne donne PAS A = 2 ou B = 2 — cette règle ne vaut que pour 0 !",
-        ex:{q:"Résoudre (5x − 2)(x − 3) = 0",
+        tipTex:r`A\times B=2\text{ }\textbf{ne donne PAS}\text{ }A=2\text{ ou }B=2\text{ — règle valable uniquement pour }0`,
+        ex:{qTex:r`\text{Résoudre }(5x-2)(x-3)=0`,
             a:r`5x-2=0\Rightarrow x=\dfrac{2}{5}\quad\text{ou}\quad x-3=0\Rightarrow x=3`}},
     ]},
     { emoji:"↔️", label:"Inéquations", color:"#7C3AED", light:"#F5F3FF", rules:[
@@ -25351,8 +25361,8 @@ function CoursMathFonctions({onBack, onStartPractice}) {
         bltTex:[
           r`\text{Même méthode que pour les équations}`,r`\text{Ajouter / soustraire → sens de l'inégalité }\textbf{inchangé}`,r`\text{Multiplier / diviser par un réel }\textbf{positif}\text{ → sens }\textbf{inchangé}`,r`\text{Multiplier / diviser par un réel }\textbf{négatif}\text{ → sens }\textbf{inversé}`,
         ],
-        tip:"⚠️ Diviser par −2 : 3x < −6 → x > 3 (le < devient >)",
-        ex:{q:"Résoudre 3x − 4 < 5x − 1",
+        tipTex:r`\text{⚠️ Diviser par un }\textbf{négatif}\text{ : }3x<-6\Rightarrow x>\dfrac{-6}{-2}=3`,
+        ex:{qTex:r`\text{Résoudre }3x-4<5x-1`,
             a:r`3x-5x<-1+4\Rightarrow-2x<3\Rightarrow x>-\dfrac{3}{2}`}},
       { id:"ineq2",num:"4b",title:"Lire la solution : ensemble et intervalle",
         fml:null,
@@ -25451,15 +25461,19 @@ function CoursMathFonctions({onBack, onStartPractice}) {
                       <span style={{overflowX:"auto",fontSize:13}}><M tex={b}/></span>
                     </div>
                   ))}
-                  {rl.tip&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
+                  {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
                     fontSize:12,fontWeight:600,color:"#713F12",
-                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>{rl.tip}</div>}
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>
+                    {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
+                  </div>}
                   {rl.ex&&(
                     <div style={{background:"#F8FAFC",borderRadius:12,padding:"12px 13px",
                       marginTop:10,borderLeft:`3px solid ${col}`}}>
                       <div style={{fontSize:10,fontWeight:800,color:col,textTransform:"uppercase",
                         letterSpacing:".7px",marginBottom:5}}>Exemple</div>
-                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>{rl.ex.q}</div>
+                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>
+                        {rl.ex.qTex?<M tex={rl.ex.qTex}/>:<span>{rl.ex.q}</span>}
+                      </div>
                       <div style={{textAlign:"center",overflowX:"auto"}}><M tex={rl.ex.a}/></div>
                     </div>
                   )}
@@ -25487,7 +25501,8 @@ function CoursMathFonctionsGen({onBack, onStartPractice}) {
     if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
   },[secIdx]);
 
-  const SVG_ANT_REF=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 160" style="width:100%;display:block;border-radius:14px"><rect width="280" height="160" rx="14" fill="#EEF2FF" stroke="#C7D2FE" stroke-width="2"/><rect x="28" y="10" width="224" height="133" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/><g stroke="#F1F5F9" stroke-width="0.8"><line x1="28" y1="50" x2="252" y2="50"/><line x1="28" y1="90" x2="252" y2="90"/><line x1="28" y1="130" x2="252" y2="130"/><line x1="80" y1="10" x2="80" y2="143"/><line x1="130" y1="10" x2="130" y2="143"/><line x1="180" y1="10" x2="180" y2="143"/><line x1="230" y1="10" x2="230" y2="143"/></g><line x1="32" y1="90" x2="248" y2="90" stroke="#94A3B8" stroke-width="1.4"/><polygon points="247,86 254,90 247,94" fill="#94A3B8"/><line x1="80" y1="14" x2="80" y2="143" stroke="#94A3B8" stroke-width="1.4"/><polygon points="76,15 80,8 84,15" fill="#94A3B8"/><text x="70" y="100" font-size="8" fill="#94A3B8" font-family="sans-serif">O</text><text x="254" y="94" font-size="9" fill="#64748B" font-family="sans-serif">x</text><text x="83" y="12" font-size="9" fill="#64748B" font-family="sans-serif">y</text><path d="M 35,125 C 50,80 65,130 80,90 C 95,50 115,15 130,30 C 145,45 155,95 170,75 C 185,55 200,105 215,85 C 225,70 240,110 250,90" fill="none" stroke="#6366F1" stroke-width="2.5" stroke-linecap="round"/><line x1="35" y1="55" x2="252" y2="55" stroke="#DC2626" stroke-width="1.8" stroke-dasharray="6,3"/><text x="235" y="50" font-size="9" font-weight="bold" fill="#DC2626" font-family="sans-serif">y=b</text><circle cx="80" cy="55" r="4.5" fill="#DC2626" stroke="white" stroke-width="1.5"/><circle cx="130" cy="55" r="4.5" fill="#DC2626" stroke="white" stroke-width="1.5"/><circle cx="215" cy="55" r="4.5" fill="#DC2626" stroke="white" stroke-width="1.5"/><line x1="80" y1="57" x2="80" y2="88" stroke="#DC2626" stroke-width="1.2" stroke-dasharray="3,2"/><line x1="130" y1="57" x2="130" y2="88" stroke="#DC2626" stroke-width="1.2" stroke-dasharray="3,2"/><line x1="215" y1="57" x2="215" y2="88" stroke="#DC2626" stroke-width="1.2" stroke-dasharray="3,2"/><text x="80" y="100" font-size="9" font-weight="bold" fill="#DC2626" font-family="sans-serif" text-anchor="middle">x₁</text><text x="130" y="100" font-size="9" font-weight="bold" fill="#DC2626" font-family="sans-serif" text-anchor="middle">x₂</text><text x="215" y="100" font-size="9" font-weight="bold" fill="#DC2626" font-family="sans-serif" text-anchor="middle">x₃</text><text x="144" y="130" font-size="8.5" fill="#6366F1" font-family="sans-serif" text-anchor="middle">b a 3 antécédents : x₁, x₂, x₃</text></svg>`;
+  const SVG_SIGN_REF=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 215" style="width:100%;display:block;border-radius:14px"><rect width="290" height="215" rx="14" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2.5"/><rect x="28" y="12" width="234" height="185" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/><g stroke="#EDE9FE" stroke-width="0.9"><line x1="30" y1="12" x2="30" y2="197"/><line x1="58" y1="12" x2="58" y2="197"/><line x1="88" y1="12" x2="88" y2="197"/><line x1="118" y1="12" x2="118" y2="197"/><line x1="152" y1="12" x2="152" y2="197"/><line x1="180" y1="12" x2="180" y2="197"/><line x1="210" y1="12" x2="210" y2="197"/><line x1="240" y1="12" x2="240" y2="197"/><line x1="28" y1="23" x2="262" y2="23"/><line x1="28" y1="43" x2="262" y2="43"/><line x1="28" y1="63" x2="262" y2="63"/><line x1="28" y1="83" x2="262" y2="83"/><line x1="28" y1="103" x2="262" y2="103"/><line x1="28" y1="123" x2="262" y2="123"/><line x1="28" y1="143" x2="262" y2="143"/><line x1="28" y1="163" x2="262" y2="163"/><line x1="28" y1="183" x2="262" y2="183"/></g><path d="M 45,103 Q 55,103 58,95 Q 75,40 88,103 Q 102,170 119,103 Q 128,60 152,23 Q 175,103 196,103 Q 218,63 256,63" fill="none" stroke="#6366F1" stroke-width="2" stroke-dasharray="5,3" stroke-linecap="round" opacity="0.3"/><rect x="47" y="103" width="41" height="80" fill="#FCA5A5" fill-opacity="0.3"/><line x1="32" y1="103" x2="258" y2="103" stroke="#64748B" stroke-width="1.5"/><polygon points="257,99 264,103 257,107" fill="#64748B"/><line x1="152" y1="16" x2="152" y2="194" stroke="#64748B" stroke-width="1.5"/><polygon points="148,17 152,10 156,17" fill="#64748B"/><text x="265" y="107" font-size="9" fill="#475569" font-family="sans-serif">x</text><text x="155" y="13" font-size="9" fill="#475569" font-family="sans-serif">y</text><path d="M 30,63 C 42,85 65,183 88,183 C 111,183 128,23 152,23 C 168,23 175,103 196,103 C 207,103 242,63 256,63" fill="none" stroke="#6366F1" stroke-width="2.8" stroke-linecap="round"/><text x="250" y="54" font-size="11" font-style="italic" font-weight="bold" fill="#6366F1" font-family="sans-serif">f</text><circle cx="47" cy="103" r="5" fill="#059669" stroke="white" stroke-width="2"/><circle cx="120" cy="103" r="5" fill="#059669" stroke="white" stroke-width="2"/><circle cx="196" cy="103" r="5" fill="#059669" stroke="white" stroke-width="2"/><circle cx="152" cy="23" r="5" fill="#059669" stroke="white" stroke-width="2"/><circle cx="88" cy="183" r="5" fill="#EA580C" stroke="white" stroke-width="2"/><text x="35" y="116" font-size="9" font-weight="bold" fill="#059669" font-family="sans-serif">x₁</text><text x="108" y="116" font-size="9" font-weight="bold" fill="#059669" font-family="sans-serif">x₂</text><text x="185" y="116" font-size="9" font-weight="bold" fill="#059669" font-family="sans-serif">x₃</text><text x="55" y="148" font-size="12" font-weight="bold" fill="#DC2626" font-family="sans-serif" text-anchor="middle">−</text><text x="35" y="85" font-size="12" font-weight="bold" fill="#059669" font-family="sans-serif">+</text><text x="135" y="75" font-size="12" font-weight="bold" fill="#059669" font-family="sans-serif">+</text><text x="220" y="85" font-size="12" font-weight="bold" fill="#059669" font-family="sans-serif">+</text></svg>`;
+    const SVG_ANT_REF=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 160" style="width:100%;display:block;border-radius:14px"><rect width="280" height="160" rx="14" fill="#EEF2FF" stroke="#C7D2FE" stroke-width="2"/><rect x="28" y="10" width="224" height="133" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/><g stroke="#F1F5F9" stroke-width="0.8"><line x1="28" y1="50" x2="252" y2="50"/><line x1="28" y1="90" x2="252" y2="90"/><line x1="28" y1="130" x2="252" y2="130"/><line x1="80" y1="10" x2="80" y2="143"/><line x1="130" y1="10" x2="130" y2="143"/><line x1="180" y1="10" x2="180" y2="143"/><line x1="230" y1="10" x2="230" y2="143"/></g><line x1="32" y1="90" x2="248" y2="90" stroke="#94A3B8" stroke-width="1.4"/><polygon points="247,86 254,90 247,94" fill="#94A3B8"/><line x1="80" y1="14" x2="80" y2="143" stroke="#94A3B8" stroke-width="1.4"/><polygon points="76,15 80,8 84,15" fill="#94A3B8"/><text x="70" y="100" font-size="8" fill="#94A3B8" font-family="sans-serif">O</text><text x="254" y="94" font-size="9" fill="#64748B" font-family="sans-serif">x</text><text x="83" y="12" font-size="9" fill="#64748B" font-family="sans-serif">y</text><path d="M 35,125 C 50,80 65,130 80,90 C 95,50 115,15 130,30 C 145,45 155,95 170,75 C 185,55 200,105 215,85 C 225,70 240,110 250,90" fill="none" stroke="#6366F1" stroke-width="2.5" stroke-linecap="round"/><line x1="35" y1="55" x2="252" y2="55" stroke="#DC2626" stroke-width="1.8" stroke-dasharray="6,3"/><text x="235" y="50" font-size="9" font-weight="bold" fill="#DC2626" font-family="sans-serif">y=b</text><circle cx="80" cy="55" r="4.5" fill="#DC2626" stroke="white" stroke-width="1.5"/><circle cx="130" cy="55" r="4.5" fill="#DC2626" stroke="white" stroke-width="1.5"/><circle cx="215" cy="55" r="4.5" fill="#DC2626" stroke="white" stroke-width="1.5"/><line x1="80" y1="57" x2="80" y2="88" stroke="#DC2626" stroke-width="1.2" stroke-dasharray="3,2"/><line x1="130" y1="57" x2="130" y2="88" stroke="#DC2626" stroke-width="1.2" stroke-dasharray="3,2"/><line x1="215" y1="57" x2="215" y2="88" stroke="#DC2626" stroke-width="1.2" stroke-dasharray="3,2"/><text x="80" y="100" font-size="9" font-weight="bold" fill="#DC2626" font-family="sans-serif" text-anchor="middle">x₁</text><text x="130" y="100" font-size="9" font-weight="bold" fill="#DC2626" font-family="sans-serif" text-anchor="middle">x₂</text><text x="215" y="100" font-size="9" font-weight="bold" fill="#DC2626" font-family="sans-serif" text-anchor="middle">x₃</text><text x="144" y="130" font-size="8.5" fill="#6366F1" font-family="sans-serif" text-anchor="middle">b a 3 antécédents : x₁, x₂, x₃</text></svg>`;
   const SVG_CURVE_REF=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 215" style="width:100%;display:block;border-radius:14px"><rect width="290" height="215" rx="14" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2.5"/><rect x="28" y="12" width="234" height="185" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/><g stroke="#EDE9FE" stroke-width="0.9"><line x1="30" y1="3" x2="30" y2="197"/><line x1="58" y1="3" x2="58" y2="197"/><line x1="88" y1="3" x2="88" y2="197"/><line x1="118" y1="3" x2="118" y2="197"/><line x1="152" y1="3" x2="152" y2="197"/><line x1="180" y1="3" x2="180" y2="197"/><line x1="210" y1="3" x2="210" y2="197"/><line x1="240" y1="3" x2="240" y2="197"/><line x1="28" y1="23" x2="262" y2="23"/><line x1="28" y1="43" x2="262" y2="43"/><line x1="28" y1="63" x2="262" y2="63"/><line x1="28" y1="83" x2="262" y2="83"/><line x1="28" y1="103" x2="262" y2="103"/><line x1="28" y1="123" x2="262" y2="123"/><line x1="28" y1="143" x2="262" y2="143"/><line x1="28" y1="163" x2="262" y2="163"/><line x1="28" y1="183" x2="262" y2="183"/></g><line x1="32" y1="103" x2="258" y2="103" stroke="#64748B" stroke-width="1.5"/><polygon points="257,99 264,103 257,107" fill="#64748B"/><line x1="152" y1="16" x2="152" y2="194" stroke="#64748B" stroke-width="1.5"/><polygon points="148,17 152,10 156,17" fill="#64748B"/><text x="265" y="107" font-size="9" fill="#475569" font-family="sans-serif">x</text><text x="155" y="13" font-size="9" fill="#475569" font-family="sans-serif">y</text><text x="140" y="113" font-size="8" fill="#94A3B8" font-family="sans-serif">O</text><g font-size="8" fill="#94A3B8" font-family="sans-serif" text-anchor="middle"><text x="30" y="113">-8</text><text x="58" y="113">-6</text><text x="88" y="113">-4</text><text x="118" y="113">-2</text><text x="180" y="113">2</text><text x="210" y="113">4</text><text x="240" y="113">6</text><text x="140" y="83">1</text><text x="140" y="63">2</text><text x="140" y="43">3</text><text x="140" y="123">-1</text><text x="140" y="143">-2</text><text x="140" y="163">-3</text><text x="140" y="183">-4</text></g><path d="M 30,63 C 42,85 65,183 88,183 C 111,183 128,23 152,23 C 168,23 175,103 196,103 C 207,103 242,63 256,63" fill="none" stroke="#6366F1" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/><text x="250" y="54" font-size="11" font-style="italic" font-weight="bold" fill="#6366F1" font-family="sans-serif">f</text><circle cx="152" cy="23" r="5.5" fill="#059669" stroke="white" stroke-width="2"/><text x="158" y="16" font-size="9" font-weight="bold" fill="#059669" font-family="sans-serif">(0,3)</text><circle cx="88" cy="183" r="5.5" fill="#EA580C" stroke="white" stroke-width="2"/><text x="94" y="196" font-size="9" font-weight="bold" fill="#EA580C" font-family="sans-serif">(-4,-4)</text><circle cx="196" cy="103" r="5.5" fill="#EA580C" stroke="white" stroke-width="2"/><text x="202" y="97" font-size="9" font-weight="bold" fill="#EA580C" font-family="sans-serif">(3,0)</text><circle cx="30" cy="63" r="4" fill="#6366F1" stroke="white" stroke-width="1.5"/><circle cx="256" cy="63" r="4" fill="#6366F1" stroke="white" stroke-width="1.5"/></svg>`;
     const SVG_IMG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 180" style="width:100%;display:block;border-radius:14px"><rect width="280" height="180" rx="14" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="2"/><rect x="38" y="10" width="206" height="154" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/><g stroke="#F1F5F9" stroke-width="0.8">
     <line x1="60" y1="10" x2="60" y2="164"/><line x1="90" y1="10" x2="90" y2="164"/>
@@ -25644,7 +25659,7 @@ function CoursMathFonctionsGen({onBack, onStartPractice}) {
           r`\text{③ Lire les abscisses des points d'intersection : }x_1, x_2, x_3\ldots`,
           r`\text{Un nombre peut avoir 0, 1 ou }\textbf{plusieurs}\text{ antécédents}`,
         ],
-        tip:"Remarque : il ne peut y avoir qu'une seule IMAGE, mais PLUSIEURS ANTÉCÉDENTS",
+        tipTex:r`\text{Une abscisse a au plus }\textbf{une image}\text{ — un nombre peut avoir }\textbf{plusieurs antécédents}`,
         ex:{q:"Sur la courbe ci-dessus : antécédents de 2",
             a:r`\text{La droite }y=2\text{ coupe la courbe en }x_1\text{ et }x_2`}},
     ]},
@@ -25667,7 +25682,7 @@ function CoursMathFonctionsGen({onBack, onStartPractice}) {
           r`\text{③ Lire les abscisses }x_1, x_2,\ldots\text{ : ce sont les solutions}`,
           r`\text{Si pas d'intersection : }f(x)=k\text{ sans solution, }\mathcal{S}=\varnothing`,
         ],
-        ex:{q:"Solutions de f(x) = k sur le graphe",
+        ex:{qTex:r`\text{Solutions de }f(x)=k\text{ sur le graphe}`,
             a:r`S=\{x_1\,;\,x_2\}`}},
       { id:"r2",num:"5",title:"Résoudre f(x) < k (ou > k)",
         fml:null,
@@ -25675,8 +25690,8 @@ function CoursMathFonctionsGen({onBack, onStartPractice}) {
         bltTex:[
           r`f(x)<k\text{ : abscisses des points de }\mathcal{C}_f\textbf{ sous }\text{la droite }y=k`,r`f(x)>k\text{ : abscisses des points de }\mathcal{C}_f\textbf{ au-dessus }\text{de }y=k`,r`\text{La solution est un (ou plusieurs) intervalle(s)}`,
         ],
-        tip:"⚠️ Bien lire les inégalités strictes ou larges pour les crochets",
-        ex:{q:"f(x) < k sur le graphe ci-dessus",
+        tipTex:r`\text{⚠️ Inégalité stricte }(< \text{ ou } >) \text{ → crochet ouvert }]\text{ ou }[\quad\text{large }(\leq,\geq)\text{ → crochet fermé}`,
+        ex:{qTex:r`f(x)<k\text{ sur le graphe ci-dessus}`,
             a:r`S=\ ]x_1\,;\,x_2[`}},
     ]},
     { emoji:"📉", label:"Variations", color:"#059669", light:"#F0FDF4", rules:[
@@ -25693,14 +25708,16 @@ function CoursMathFonctionsGen({onBack, onStartPractice}) {
         ex:{q:"Lire le tableau : f décroît puis croît",
             a:r`f\text{ décroît sur }[-8;-4]\text{ puis croît sur }[-4;0]\text{ etc.}`}},
       { id:"v2",num:"7",title:"Tableau de signes",
-        fml:r`\begin{array}{|c|ccccc|}\hline x & -\infty & x_1 & & x_2 & +\infty \\\hline \text{signe de }f(x) & + & 0 & - & 0 & + \\\hline\end{array}`,
+        fml:r`\begin{array}{|c|ccccccccc|}\hline x & -8 & x_1 & & x_2 & & x_3 & & 7\\\hline \text{signe de }f(x) & + & 0 & - & 0 & + & 0 & + & \\\hline\end{array}`,
+        svgDiag:SVG_SIGN_REF,
         bltTex:[
-          r`f(x)>0\text{ : courbe au-dessus de l'axe des }x`,
-          r`f(x)<0\text{ : courbe en dessous de l'axe des }x`,
-          r`f(x)=0\text{ : courbe coupe l'axe des }x\text{ (racines } x_1, x_2\ldots)`,
+          r`f(x)>0\text{ : courbe }\textbf{au-dessus}\text{ de l'axe des }x`,
+          r`f(x)<0\text{ : courbe }\textbf{en dessous}\text{ de l'axe des }x`,
+          r`f(x)=0\text{ : courbe }\textbf{coupe}\text{ l'axe des }x\text{ en }x_1, x_2, x_3\ldots`,
         ],
+        qTex:r`\text{Lire le signe de }f\text{ entre }x_1\text{ et }x_2`,
         ex:{q:"Lire le signe de f entre x₁ et x₂",
-            a:r`x_1<x<x_2\Rightarrow f(x)<0\quad\text{(courbe sous l'axe)}`}},
+            a:r`x_1<x<x_2\Rightarrow f(x)<0\quad\text{(zone rouge, courbe sous l'axe)}`}},
     ]},
     { emoji:"🏋️", label:"S\'entraîner", color:"#0F172A", light:"#F1F5F9", isPractice:true,
       practices:[
@@ -25791,15 +25808,19 @@ function CoursMathFonctionsGen({onBack, onStartPractice}) {
                       <span style={{overflowX:"auto",fontSize:13}}><M tex={b}/></span>
                     </div>
                   ))}
-                  {rl.tip&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
+                  {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
                     fontSize:12,fontWeight:600,color:"#713F12",
-                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>{rl.tip}</div>}
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>
+                    {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
+                  </div>}
                   {rl.ex&&(
                     <div style={{background:"#F8FAFC",borderRadius:12,padding:"12px 13px",
                       marginTop:10,borderLeft:`3px solid ${col}`}}>
                       <div style={{fontSize:10,fontWeight:800,color:col,textTransform:"uppercase",
                         letterSpacing:".7px",marginBottom:5}}>Exemple</div>
-                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>{rl.ex.q}</div>
+                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>
+                        {rl.ex.qTex?<M tex={rl.ex.qTex}/>:<span>{rl.ex.q}</span>}
+                      </div>
                       <div style={{textAlign:"center",overflowX:"auto"}}><M tex={rl.ex.a}/></div>
                     </div>
                   )}
@@ -25834,8 +25855,8 @@ function CoursMathLitteral({onBack, onStartPractice}) {
         bltTex:[
           r`\text{On multiplie }k\text{ par }\textbf{CHAQUE}\text{ terme de la parenthèse}`,r`k(a-b)=ka-kb\text{ (attention aux signes !)}`,r`k\text{ peut être un nombre, une variable ou une expression}`,
         ],
-        tip:"⚠️ −(a + b) = −a − b  et  −(a − b) = −a + b",
-        ex:{q:"Développer −4(x − 5)",
+        tipTex:r`-(a+b)=-a-b\quad\text{et}\quad-(a-b)=-a+b`,
+        ex:{qTex:r`\text{Développer }-4(x-5)`,
             a:r`-4(x-5)=-4\times x-(-4)\times5=-4x+20`}},
       { id:"d2",num:"2",title:"Double distributivité",
         fml:r`(a+b)(c+d) = ac + ad + bc + bd`,
@@ -25843,7 +25864,7 @@ function CoursMathLitteral({onBack, onStartPractice}) {
           r`\text{Chaque terme du 1er facteur multiplie chaque terme du 2e}`,r`\text{4 produits au total — méthode FOIL ou en croix}`,r`\text{Réduire en regroupant les termes de même degré en }x`,
         ],
         tip:"⚠️ Attention aux signes quand on distribue avec des termes négatifs",
-        ex:{q:"Développer (2x + 1)(3x − 5)",
+        ex:{qTex:r`\text{Développer }(2x+1)(3x-5)`,
             a:r`6x^2-10x+3x-5=6x^2-7x-5`}},
     ]},
     { emoji:"🔲", label:"Identités remarquables", color:"#7C3AED", light:"#F5F3FF", rules:[
@@ -25852,8 +25873,8 @@ function CoursMathLitteral({onBack, onStartPractice}) {
         bltTex:[
           r`(a+b)^2\text{ : carré d'une somme}`,r`(a-b)^2\text{ : carré d'une différence}`,r`(a+b)(a-b)\text{ : produit de la somme par la différence = différence des carrés}`,
         ],
-        tip:"⚠️ (a+b)² ≠ a² + b²  — ne pas oublier le terme 2ab au milieu !",
-        ex:{q:"Développer (2x − 1)²",
+        tipTex:r`(a+b)^2\neq a^2+b^2\text{ — ne pas oublier le terme }2ab\text{ !}`,
+        ex:{qTex:r`\text{Développer }(2x-1)^2`,
             a:r`(2x)^2-2\times2x\times1+1^2=4x^2-4x+1`}},
       { id:"ir2",num:"4",title:"Réduire une expression",
         fml:null,
@@ -25869,22 +25890,22 @@ function CoursMathLitteral({onBack, onStartPractice}) {
         bltTex:[
           r`\text{Identifier le facteur commun à tous les termes}`,r`\text{Le facteur commun peut être un nombre, une variable ou une expression}`,r`\text{Vérifier en redéveloppant}`,
         ],
-        ex:{q:"Factoriser 2x² − 4x",
+        ex:{qTex:r`\text{Factoriser }2x^2-4x`,
             a:r`2x^2-4x=2x(x-2)`}},
       { id:"f2",num:"6",title:"Différence de deux carrés",
         fml:r`A^2 - B^2 = (A+B)(A-B)`,
         bltTex:[
           r`\text{Reconnaître la forme }a^2-b^2\text{ (différence de deux carrés parfaits)}`,r`A\text{ et }B\text{ peuvent être des expressions}`,r`(A+B)(A-B)=(A-B)(A+B)\text{ — l'ordre n'importe pas}`,
         ],
-        tip:"⚠️ Fonctionne UNIQUEMENT avec une soustraction — a² + b² ne se factorise pas !",
-        ex:{q:"Factoriser 16 − (x−3)²",
+        tipTex:r`a^2-b^2=(A+B)(A-B)\text{ uniquement avec soustraction — }a^2+b^2\text{ ne se factorise pas !}`,
+        ex:{qTex:r`\text{Factoriser }16-(x-3)^2`,
             a:r`(4)^2-(x-3)^2=(4+x-3)(4-x+3)=(x+1)(7-x)`}},
       { id:"f3",num:"7",title:"Identités remarquables à l'envers",
         fml:r`\begin{gathered}a^2+2ab+b^2=(a+b)^2 \\ a^2-2ab+b^2=(a-b)^2\end{gathered}`,
         bltTex:[
           r`\text{Terme du milieu }=2\times\sqrt{\text{1er terme}}\times\sqrt{\text{dernier terme}}`,r`\text{Vérifier que le 1er et le dernier termes sont des carrés parfaits}`,
         ],
-        ex:{q:"Factoriser 4x² − 12x + 9",
+        ex:{qTex:r`\text{Factoriser }4x^2-12x+9`,
             a:r`(2x)^2-2\times2x\times3+3^2=(2x-3)^2`}},
     ]},
     { emoji:"➗", label:"Fractions littérales", color:"#059669", light:"#F0FDF4", rules:[
@@ -25893,8 +25914,8 @@ function CoursMathLitteral({onBack, onStartPractice}) {
         bltTex:[
           r`\text{Trouver un dénominateur commun (produit des dén. ou PPCM)}`,r`\text{Multiplier num. et dén. de chaque fraction par le bon facteur}`,r`\text{Additionner les numérateurs (dénominateur commun)}`,r`\text{Simplifier le résultat si possible}`,
         ],
-        tip:"⚠️ Ne jamais additionner les dénominateurs ! Seuls les numérateurs s'additionnent",
-        ex:{q:"Réduire A = 7x/(x−2) − 5/(3−x)",
+        tipTex:r`\dfrac{a}{b}+\dfrac{c}{d}\neq\dfrac{a+c}{b+d}\text{ — ne jamais additionner les dénominateurs !}`,
+        ex:{qTex:r`\text{Réduire }A=\dfrac{7x}{x-2}-\dfrac{5}{3-x}`,
             a:r`\dfrac{7x(3-x)-5(x-2)}{(x-2)(3-x)}=\dfrac{21x-7x^2-5x+10}{(x-2)(3-x)}=\dfrac{-7x^2+16x+10}{(x-2)(3-x)}`}},
     ]},
     { emoji:"🏋️", label:"S\'entraîner", color:"#0F172A", light:"#F1F5F9", isPractice:true,
@@ -25986,15 +26007,19 @@ function CoursMathLitteral({onBack, onStartPractice}) {
                       <span style={{overflowX:"auto",fontSize:13}}><M tex={b}/></span>
                     </div>
                   ))}
-                  {rl.tip&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
+                  {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
                     fontSize:12,fontWeight:600,color:"#713F12",
-                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>{rl.tip}</div>}
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>
+                    {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
+                  </div>}
                   {rl.ex&&(
                     <div style={{background:"#F8FAFC",borderRadius:12,padding:"12px 13px",
                       marginTop:10,borderLeft:`3px solid ${col}`}}>
                       <div style={{fontSize:10,fontWeight:800,color:col,textTransform:"uppercase",
                         letterSpacing:".7px",marginBottom:5}}>Exemple</div>
-                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>{rl.ex.q}</div>
+                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>
+                        {rl.ex.qTex?<M tex={rl.ex.qTex}/>:<span>{rl.ex.q}</span>}
+                      </div>
                       <div style={{textAlign:"center",overflowX:"auto"}}><M tex={rl.ex.a}/></div>
                     </div>
                   )}
@@ -26077,7 +26102,7 @@ function CoursMathVecteurs({onBack, onStartPractice}) {
           r`-\vec{v}\ \text{: même direction et norme que }\vec{v}\text{, sens contraire}`,
           r`\overrightarrow{BA}=-\overrightarrow{AB}`,
         ],
-        ex:{q:"Exprimer AB⃗ − AC⃗ avec la relation de Chasles",
+        ex:{qTex:r`\text{Exprimer }\overrightarrow{AB}-\overrightarrow{AC}\text{ via Chasles}`,
             a:r`\overrightarrow{AB}-\overrightarrow{AC}=\overrightarrow{AB}+\overrightarrow{CA}=\overrightarrow{CA}+\overrightarrow{AB}=\overrightarrow{CB}`}},
       { id:"o3",num:"6",title:"Multiplication par un réel k",
         fml:r`k\,\vec{u}`,
@@ -26086,7 +26111,7 @@ function CoursMathVecteurs({onBack, onStartPractice}) {
           r`k<0\ \text{: sens contraire à }\vec{u}\text{, norme }=|k|\|\vec{u}\|`,
           r`k=0\ \Rightarrow\ k\vec{u}=\vec{0}`,
         ],
-        ex:{q:"Décrire 3u⃗ et −2u⃗",
+        ex:{qTex:r`\text{Décrire }3\vec{u}\text{ et }-2\vec{u}`,
             a:r`3\vec{u}\ \text{: même sens, norme ×3}\qquad -2\vec{u}\ \text{: sens contraire, norme ×2}`}},
     ]},
     { emoji:"📍", label:"Coordonnées", color:"#059669", light:"#F0FDF4", rules:[
@@ -26125,7 +26150,7 @@ function CoursMathVecteurs({onBack, onStartPractice}) {
           r`\vec{u}\begin{pmatrix}x\\y\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}x'\\y'\end{pmatrix}\ \text{colinéaires}\Leftrightarrow xy'-yx'=0`,
           r`\text{Colinéaires = même direction (l'un est multiple de l'autre)}`,
         ],
-        ex:{q:"u⃗(3;4) et v⃗(−6;−8) colinéaires ?",
+        ex:{qTex:r`\vec{u}(3;4)\text{ et }\vec{v}(-6;-8)\text{ colinéaires ?}`,
             a:r`\det=3\times(-8)-4\times(-6)=-24+24=0\ \checkmark\ \text{colinéaires}`}},
       { id:"col2",num:"11",title:"Alignement de trois points",
         fml:r`A,B,C\ \text{alignés}\Leftrightarrow\det(\overrightarrow{AB},\overrightarrow{AC})=0`,
@@ -26135,7 +26160,7 @@ function CoursMathVecteurs({onBack, onStartPractice}) {
           r`\text{② Calculer }\det(\overrightarrow{AB},\overrightarrow{AC})=x_{AB}\cdot y_{AC}-y_{AB}\cdot x_{AC}`,
           r`\det=0\Rightarrow\text{alignés}\qquad\det\neq0\Rightarrow\text{non alignés}`,
         ],
-        ex:{q:"A(−2;3) B(2;1) C(4;0) : alignés ?",
+        ex:{qTex:r`A(-2;3)\ B(2;1)\ C(4;0)\text{ : alignés ?}`,
             a:r`\overrightarrow{AB}\binom{4}{-2}\ \overrightarrow{AC}\binom{6}{-3}\quad\det=4(-3)-(-2)(6)=0\ \checkmark`}},
       { id:"col3",num:"12",title:"Parallélisme de deux droites",
         fml:r`(AB)\parallel(CD)\Leftrightarrow\det(\overrightarrow{AB},\overrightarrow{CD})=0`,
@@ -26144,7 +26169,7 @@ function CoursMathVecteurs({onBack, onStartPractice}) {
           r`\text{① Calculer }\overrightarrow{AB}\text{ et }\overrightarrow{CD}`,
           r`\text{② Si }\det=0\text{ : parallèles (ou confondues si un point est commun)}`,
         ],
-        ex:{q:"A(1;2) B(3;6) C(0;1) D(1;3)",
+        ex:{qTex:r`A(1;2)\ B(3;6)\ C(0;1)\ D(1;3)`,
             a:r`\overrightarrow{AB}\binom{2}{4}\ \overrightarrow{CD}\binom{1}{2}\quad\det=2(2)-4(1)=0\ \Rightarrow\ (AB)\parallel(CD)`}},
     ]},
     { emoji:"🏋️", label:"S\'entraîner", color:"#0F172A", light:"#F1F5F9", isPractice:true,
@@ -26234,15 +26259,19 @@ function CoursMathVecteurs({onBack, onStartPractice}) {
                       <span style={{overflowX:"auto"}}><M tex={b}/></span>
                     </div>
                   ))}
-                  {rl.tip&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
+                  {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
                     fontSize:12,fontWeight:600,color:"#713F12",
-                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>{rl.tip}</div>}
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>
+                    {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
+                  </div>}
                   {rl.ex&&(
                     <div style={{background:"#F8FAFC",borderRadius:12,padding:"12px 13px",
                       marginTop:10,borderLeft:`3px solid ${col}`}}>
                       <div style={{fontSize:10,fontWeight:800,color:col,textTransform:"uppercase",
                         letterSpacing:".7px",marginBottom:5}}>Exemple</div>
-                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>{rl.ex.q}</div>
+                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>
+                        {rl.ex.qTex?<M tex={rl.ex.qTex}/>:<span>{rl.ex.q}</span>}
+                      </div>
                       <div style={{textAlign:"center",overflowX:"auto"}}><M tex={rl.ex.a}/></div>
                     </div>
                   )}
