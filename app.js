@@ -24595,6 +24595,12 @@ const COURS_CATALOG = [
     chapitres:5, color:"#6366F1",
     desc:"Image · Antécédent · Résoudre graphiquement · Tableau de variations · Tableau de signes",
   },
+  { id:"litteral", emoji:"📐",
+    title:"Calcul littéral",
+    niveaux:["2nde","1ère TC","1ère Techno","1ère Spé"],
+    chapitres:4, color:"#DC2626",
+    desc:"Distribution · Identités remarquables · Factoriser · Fractions littérales",
+  },
 ];
 
 function CoursListScreen({onBack,onSelectCours}) {
@@ -24607,12 +24613,12 @@ function CoursListScreen({onBack,onSelectCours}) {
           <div style={{fontSize:11,color:"#94A3B8",marginTop:1}}>Révise les notions de ton programme</div>
         </div>
       </div>
-      <div style={{margin:"0 16px 12px",background:"#FEFCE8",borderRadius:12,padding:"10px 14px",
-        borderLeft:"3px solid #EAB308",display:"flex",gap:10,alignItems:"center",flexShrink:0}}>
-        <span style={{fontSize:20}}>🚧</span>
+      <div style={{margin:"0 16px 12px",background:"#ECFDF5",borderRadius:12,padding:"10px 14px",
+        borderLeft:"3px solid #10B981",display:"flex",gap:10,alignItems:"center",flexShrink:0}}>
+        <span style={{fontSize:20}}>✅</span>
         <div>
-          <div style={{fontSize:12,fontWeight:800,color:"#713F12"}}>En cours de déploiement</div>
-          <div style={{fontSize:11,color:"#92400E",marginTop:1}}>Premier cours disponible — d'autres arrivent bientôt !</div>
+          <div style={{fontSize:12,fontWeight:800,color:"#065F46"}}>Premiers cours disponibles !</div>
+          <div style={{fontSize:11,color:"#047857",marginTop:1}}>D'autres arrivent bientôt — restez connectés 👀</div>
         </div>
       </div>
       <div style={{flex:1,overflowY:"auto",padding:"0 16px 24px"}}>
@@ -25814,11 +25820,216 @@ function CoursMathFonctionsGen({onBack, onStartPractice}) {
 }
 
 
+// ── CoursMathLitteral — Chapitre 6 : Calcul littéral ─────────────────────────
+function CoursMathLitteral({onBack, onStartPractice}) {
+  const [secIdx, setSecIdx] = React.useState(0);
+  const [openMap, setOpenMap] = React.useState({});
+  const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
+  const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
+  const tabsRef = React.useRef();
+  React.useEffect(()=>{
+    if(!tabsRef.current) return;
+    const btn=tabsRef.current.children[secIdx];
+    if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  },[secIdx]);
+
+  const SECS=[
+    { emoji:"✖️", label:"Distribution", color:"#DC2626", light:"#FEF2F2", rules:[
+      { id:"d1",num:"1",title:"Simple distributivité",
+        fml:r`k(a+b) = ka + kb`,
+        blt:[
+          "On multiplie le facteur k par CHAQUE terme de la parenthèse",
+          "Attention au signe : k(a − b) = ka − kb",
+          "k peut être un nombre, une variable ou une expression",
+        ],
+        tip:"⚠️ −(a + b) = −a − b  et  −(a − b) = −a + b",
+        ex:{q:"Développer −4(x − 5)",
+            a:r`-4(x-5)=-4\times x-(-4)\times5=-4x+20`}},
+      { id:"d2",num:"2",title:"Double distributivité",
+        fml:r`(a+b)(c+d) = ac + ad + bc + bd`,
+        blt:[
+          "Chaque terme du 1er facteur multiplie chaque terme du 2e",
+          "4 produits au total (méthode FOIL ou en croix)",
+          "Réduire en regroupant les termes de même degré",
+        ],
+        tip:"⚠️ Attention aux signes quand on distribue avec des termes négatifs",
+        ex:{q:"Développer (2x + 1)(3x − 5)",
+            a:r`6x^2-10x+3x-5=6x^2-7x-5`}},
+    ]},
+    { emoji:"🔲", label:"Identités remarquables", color:"#7C3AED", light:"#F5F3FF", rules:[
+      { id:"ir1",num:"3",title:"Les 3 identités remarquables",
+        fml:r`\begin{aligned}(a+b)^2 &= a^2+2ab+b^2\\(a-b)^2 &= a^2-2ab+b^2\\(a+b)(a-b) &= a^2-b^2\end{aligned}`,
+        blt:[
+          "(a+b)² : carré d'une somme",
+          "(a−b)² : carré d'une différence",
+          "(a+b)(a−b) : produit de la somme par la différence = différence des carrés",
+        ],
+        tip:"⚠️ (a+b)² ≠ a² + b²  — ne pas oublier le terme 2ab au milieu !",
+        ex:{q:"Développer (2x − 1)²",
+            a:r`(2x)^2-2\times2x\times1+1^2=4x^2-4x+1`}},
+      { id:"ir2",num:"4",title:"Réduire une expression",
+        fml:null,
+        blt:[
+          "Développer toutes les parenthèses",
+          "Regrouper les termes de même degré (en x², en x, constantes)",
+          "Additionner les coefficients de chaque degré",
+        ],
+        ex:{q:"Réduire f(x) = (x−3)² + 2(x+3)(x−1)",
+            a:r`x^2-6x+9+2(x^2+2x-3)=x^2-6x+9+2x^2+4x-6=3x^2-2x+3`}},
+    ]},
+    { emoji:"🔧", label:"Factoriser", color:"#0891B2", light:"#ECFEFF", rules:[
+      { id:"f1",num:"5",title:"Facteur commun",
+        fml:r`ax^2 + bx = x(ax + b)`,
+        blt:[
+          "Identifier le facteur commun à tous les termes",
+          "Le facteur commun peut être un nombre, une variable ou une expression",
+          "Vérifier en redéveloppant",
+        ],
+        ex:{q:"Factoriser 2x² − 4x",
+            a:r`2x^2-4x=2x(x-2)`}},
+      { id:"f2",num:"6",title:"Différence de deux carrés",
+        fml:r`A^2 - B^2 = (A+B)(A-B)`,
+        blt:[
+          "Reconnaître la forme a² − b² (différence de deux carrés parfaits)",
+          "A et B peuvent être des expressions",
+          "(A+B)(A−B) = (A−B)(A+B) — l'ordre n'importe pas",
+        ],
+        tip:"⚠️ Fonctionne UNIQUEMENT avec une soustraction — a² + b² ne se factorise pas !",
+        ex:{q:"Factoriser 16 − (x−3)²",
+            a:r`(4)^2-(x-3)^2=(4+x-3)(4-x+3)=(x+1)(7-x)`}},
+      { id:"f3",num:"7",title:"Identités remarquables à l'envers",
+        fml:r`a^2+2ab+b^2=(a+b)^2 \qquad a^2-2ab+b^2=(a-b)^2`,
+        blt:[
+          "Reconnaître le carré parfait : terme du milieu = 2×√(1er terme)×√(dernier terme)",
+          "Vérifier que le 1er et le dernier termes sont des carrés parfaits",
+        ],
+        ex:{q:"Factoriser 4x² − 12x + 9",
+            a:r`(2x)^2-2\times2x\times3+3^2=(2x-3)^2`}},
+    ]},
+    { emoji:"➗", label:"Fractions littérales", color:"#059669", light:"#F0FDF4", rules:[
+      { id:"fl1",num:"8",title:"Mise au même dénominateur",
+        fml:r`\dfrac{a}{b}+\dfrac{c}{d}=\dfrac{a\times d}{b\times d}+\dfrac{c\times b}{d\times b}=\dfrac{ad+cb}{bd}`,
+        blt:[
+          "Trouver un dénominateur commun (produit des dénominateurs ou PPCM)",
+          "Multiplier numérateur et dénominateur de chaque fraction par le bon facteur",
+          "Additionner les numérateurs en gardant le dénominateur commun",
+          "Simplifier le résultat si possible",
+        ],
+        tip:"⚠️ Ne jamais additionner les dénominateurs ! Seuls les numérateurs s'additionnent",
+        ex:{q:"Réduire A = 7x/(x−2) − 5/(3−x)",
+            a:r`\dfrac{7x(3-x)-5(x-2)}{(x-2)(3-x)}=\dfrac{21x-7x^2-5x+10}{(x-2)(3-x)}=\dfrac{-7x^2+16x+10}{(x-2)(3-x)}`}},
+    ]},
+    { emoji:"🏋️", label:"S\'entraîner", color:"#0F172A", light:"#F1F5F9", isPractice:true,
+      practices:[
+        {sub:"developpement",  label:"Développement (distributivité)",   emoji:"✖️", cat:"litteral"},
+        {sub:"id_remarquables",label:"Identités remarquables",           emoji:"🔲", cat:"litteral"},
+        {sub:"facto_commun",   label:"Factoriser — facteur commun",      emoji:"🔧", cat:"litteral"},
+        {sub:"facto_id",       label:"Factoriser — identités rem.",      emoji:"🔲", cat:"litteral"},
+        {sub:"manipulation",   label:"Manipulation de formules",         emoji:"➗", cat:"litteral"},
+      ]},
+  ];
+
+  const sec=SECS[secIdx]; const col=sec.color;
+  return (
+    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"var(--am-bg-light)"}}>
+      <div style={{background:`linear-gradient(135deg,${col},${col}CC)`,padding:"14px 18px 0",flexShrink:0}}>
+        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:10}}>
+          <button onClick={onBack} style={{background:"rgba(255,255,255,.2)",border:"none",
+            cursor:"pointer",color:"#fff",fontSize:14,borderRadius:99,
+            width:30,height:30,display:"flex",alignItems:"center",justifyContent:"center"}}>✕</button>
+          <div>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,color:"#fff"}}>Calcul littéral</div>
+            <div style={{fontSize:10,color:"rgba(255,255,255,.7)"}}>📚 Cours interactif · Chapitre 6</div>
+          </div>
+        </div>
+        <div ref={tabsRef} style={{display:"flex",gap:6,overflowX:"auto",paddingBottom:12,scrollbarWidth:"none"}}>
+          {SECS.map((s,i)=>(
+            <button key={i} onClick={()=>{setSecIdx(i);setOpenMap({});}}
+              style={{border:"none",borderRadius:99,padding:"6px 13px",cursor:"pointer",
+                whiteSpace:"nowrap",flexShrink:0,fontFamily:"'Nunito',sans-serif",
+                fontWeight:700,fontSize:11.5,transition:"all .15s",
+                background:secIdx===i?"#fff":"rgba(255,255,255,.2)",
+                color:secIdx===i?col:"rgba(255,255,255,.85)"}}>
+              {s.emoji} {s.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div style={{flex:1,overflowY:"auto",padding:"12px 14px 24px"}}>
+        {sec.isPractice ? (
+          <div>
+            <div style={{background:"#F8FAFC",borderRadius:14,padding:"14px 15px",marginBottom:14,
+              fontSize:12.5,color:"#475569",lineHeight:1.6,border:"1px solid #E2E8F0"}}>
+              Lance un thème pour t\'entraîner directement sur les questions de l\'app !
+            </div>
+            {sec.practices.map(p=>(
+              <button key={p.sub} onClick={()=>onStartPractice&&onStartPractice(p.cat,p.sub)}
+                style={{width:"100%",background:"#fff",border:"2px solid #E2E8F0",
+                  borderRadius:16,padding:"14px 16px",marginBottom:10,
+                  cursor:onStartPractice?"pointer":"default",
+                  display:"flex",alignItems:"center",gap:14,textAlign:"left",
+                  boxShadow:"0 2px 10px rgba(0,0,0,.06)"}}>
+                <span style={{fontSize:26,flexShrink:0}}>{p.emoji}</span>
+                <div style={{flex:1}}>
+                  <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:"#1E293B"}}>{p.label}</div>
+                  <div style={{fontSize:11,color:"#94A3B8",marginTop:2}}>Questions · S\'entraîner</div>
+                </div>
+                {onStartPractice&&<span style={{color:"#6366F1",fontWeight:800,fontSize:13}}>Lancer →</span>}
+              </button>
+            ))}
+          </div>
+        ) : sec.rules.map((rl,i)=>{
+          const k=`${secIdx}_${i}`; const expanded=isOpen(k,i===0);
+          return (
+            <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
+              overflow:"hidden",boxShadow:"0 2px 14px rgba(0,0,0,.07)",borderLeft:`4px solid ${col}`}}>
+              <div onClick={()=>tog(k)} style={{display:"flex",alignItems:"center",gap:10,
+                padding:"13px 15px",cursor:"pointer",userSelect:"none"}}>
+                <div style={{width:30,height:30,borderRadius:"50%",background:col,color:"#fff",
+                  display:"flex",alignItems:"center",justifyContent:"center",
+                  fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
+                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}</div>
+                <span style={{color:"#94A3B8",fontSize:11,display:"block",
+                  transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
+              </div>
+              {expanded&&(
+                <div style={{padding:"0 15px 15px"}}>
+                  {rl.fml&&<div style={{background:sec.light,borderRadius:13,padding:"14px 12px",
+                    margin:"8px 0",textAlign:"center",overflowX:"auto"}}><M tex={rl.fml}/></div>}
+                  {rl.svgDiag&&<div style={{margin:"8px 0",borderRadius:12,overflow:"hidden"}} dangerouslySetInnerHTML={{__html:rl.svgDiag}}/>}
+                  {(rl.blt||[]).map((b,j)=>(
+                    <div key={j} style={{display:"flex",gap:7,padding:"3px 0",fontSize:12.5,color:"#475569",lineHeight:1.4}}>
+                      <span style={{color:col,fontWeight:700,flexShrink:0}}>•</span><span>{b}</span>
+                    </div>
+                  ))}
+                  {rl.tip&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
+                    fontSize:12,fontWeight:600,color:"#713F12",
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>{rl.tip}</div>}
+                  {rl.ex&&(
+                    <div style={{background:"#F8FAFC",borderRadius:12,padding:"12px 13px",
+                      marginTop:10,borderLeft:`3px solid ${col}`}}>
+                      <div style={{fontSize:10,fontWeight:800,color:col,textTransform:"uppercase",
+                        letterSpacing:".7px",marginBottom:5}}>Exemple</div>
+                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>{rl.ex.q}</div>
+                      <div style={{textAlign:"center",overflowX:"auto"}}><M tex={rl.ex.a}/></div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+
 function BottomNav({screen, onTab}) {
   const BAC_NEW = 1781827200000;
   const tabs = [
     {id:"home",      emoji:"🏠", label:"Accueil",     active:screen==="dashboard"||screen==="home"},
-    {id:"apprendre", emoji:"📖", label:"Apprendre",   active:screen==="flashcard_setup"||screen==="flashcards"||screen==="apprendre"||screen==="cours"||screen==="cours_pourcentages"||screen==="cours_calcul"||screen==="cours_reels"||screen==="cours_fonctions_affines"||screen==="cours_fonctions_gen"},
+    {id:"apprendre", emoji:"📖", label:"Apprendre",   active:screen==="flashcard_setup"||screen==="flashcards"||screen==="apprendre"||screen==="cours"||screen==="cours_pourcentages"||screen==="cours_calcul"||screen==="cours_reels"||screen==="cours_fonctions_affines"||screen==="cours_fonctions_gen"||screen==="cours_litteral"},
     {id:"train",     emoji:"💪", label:"S'entraîner", active:screen==="training_modes"},
     {id:"bac",       emoji:"🎯", label:"Bac",         badge:Date.now()<BAC_NEW, active:screen==="bac_subjects"},
     {id:"parcours",  emoji:"📊", label:"Parcours",    active:screen==="parcours_detail"||screen==="collection"||screen==="vigilance"},
@@ -26738,6 +26949,7 @@ function AutoMaths() {
           {screen==="cours_reels"             && <CoursMathReels      onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_fonctions_affines" && <CoursMathFonctions    onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_fonctions_gen"    && <CoursMathFonctionsGen onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
+          {screen==="cours_litteral"         && <CoursMathLitteral     onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="flashcard_setup" && <FlashcardSetupScreen onBack={()=>setScreen(profile?"dashboard":"home")} onStart={(cards)=>{ setPool(cards); plsbl("Flashcards lancées", {cartes: cards.length}); setScreen("flashcards"); }}/>}
           {screen==="flashcards"    && <FlashcardScreen cards={pool} onBack={()=>setScreen("flashcard_setup")}/>}
           {screen==="mission_theme" && missionTheme && <MissionThemeScreen theme={missionTheme} missionId={missionId} onBack={()=>setScreen("mission_select")} onStart={(qs, themeId)=>{
