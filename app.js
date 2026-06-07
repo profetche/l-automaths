@@ -24858,6 +24858,12 @@ function CoursMathScreen({onBack, onOpen, onStartPractice}) {
                       <span style={{color:col,fontWeight:700,flexShrink:0}}>•</span><span>{b}</span>
                     </div>
                   ))}
+                  {(rl.bltTex||[]).map((b,j)=>(
+                    <div key={j} style={{display:"flex",gap:7,padding:"4px 0",alignItems:"flex-start"}}>
+                      <span style={{color:col,fontWeight:700,flexShrink:0,marginTop:2}}>•</span>
+                      <span style={{overflowX:"auto",fontSize:13}}><M tex={b}/></span>
+                    </div>
+                  ))}
                   {rl.tip&&(
                     <div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
                       fontSize:12,fontWeight:600,color:"#713F12",
@@ -25032,6 +25038,12 @@ function CoursMathCalcul({onBack, onStartPractice}) {
                   {(rl.blt||[]).map((b,j)=>(
                     <div key={j} style={{display:"flex",gap:7,padding:"3px 0",fontSize:12.5,color:"#475569",lineHeight:1.4}}>
                       <span style={{color:col,fontWeight:700,flexShrink:0}}>•</span><span>{b}</span>
+                    </div>
+                  ))}
+                  {(rl.bltTex||[]).map((b,j)=>(
+                    <div key={j} style={{display:"flex",gap:7,padding:"4px 0",alignItems:"flex-start"}}>
+                      <span style={{color:col,fontWeight:700,flexShrink:0,marginTop:2}}>•</span>
+                      <span style={{overflowX:"auto",fontSize:13}}><M tex={b}/></span>
                     </div>
                   ))}
                   {rl.tip&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
@@ -25213,6 +25225,12 @@ function CoursMathReels({onBack, onStartPractice}) {
                   {(rl.blt||[]).map((b,j)=>(
                     <div key={j} style={{display:"flex",gap:7,padding:"3px 0",fontSize:12.5,color:"#475569",lineHeight:1.4}}>
                       <span style={{color:col,fontWeight:700,flexShrink:0}}>•</span><span>{b}</span>
+                    </div>
+                  ))}
+                  {(rl.bltTex||[]).map((b,j)=>(
+                    <div key={j} style={{display:"flex",gap:7,padding:"4px 0",alignItems:"flex-start"}}>
+                      <span style={{color:col,fontWeight:700,flexShrink:0,marginTop:2}}>•</span>
+                      <span style={{overflowX:"auto",fontSize:13}}><M tex={b}/></span>
                     </div>
                   ))}
                   {rl.tip&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
@@ -25468,6 +25486,12 @@ function CoursMathFonctions({onBack, onStartPractice}) {
                       <span style={{color:col,fontWeight:700,flexShrink:0}}>•</span><span>{b}</span>
                     </div>
                   ))}
+                  {(rl.bltTex||[]).map((b,j)=>(
+                    <div key={j} style={{display:"flex",gap:7,padding:"4px 0",alignItems:"flex-start"}}>
+                      <span style={{color:col,fontWeight:700,flexShrink:0,marginTop:2}}>•</span>
+                      <span style={{overflowX:"auto",fontSize:13}}><M tex={b}/></span>
+                    </div>
+                  ))}
                   {rl.tip&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
                     fontSize:12,fontWeight:600,color:"#713F12",
                     borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>{rl.tip}</div>}
@@ -25642,21 +25666,21 @@ function CoursMathFonctionsGen({onBack, onStartPractice}) {
       { id:"g1",num:"1",title:"Lire l'image de a par f",
         fml:r`f(a) = \text{ordonnée du point de }\mathcal{C}_f\text{ d'abscisse }a`,
         svgDiag:SVG_IMG,
-        blt:[
-          "① Repérer a sur l'axe des abscisses",
-          "② Tracer la verticale jusqu'à la courbe",
-          "③ Lire l'ordonnée du point → c'est f(a)",
-          "L'image de a est UNIQUE (une seule valeur par abscisse)",
+        bltTex:[
+          r`\text{① Repérer }a\text{ sur l'axe des abscisses}`,
+          r`\text{② Tracer la verticale jusqu'à la courbe }\mathcal{C}_f`,
+          r`\text{③ Lire l'ordonnée : c'est }f(a)`,
+          r`\textbf{L'image de }a\textbf{ est UNIQUE}`,
         ],
         ex:{q:"Sur la courbe : lire f(1)",
             a:r`\text{On lit }f(1)=2\text{ (ordonnée du point d'abscisse 1)}`}},
       { id:"g2",num:"2",title:"Lire les antécédents de b par f",
         fml:null,
-        blt:[
-          "① Repérer b sur l'axe des ordonnées",
-          "② Tracer la droite horizontale y = b",
-          "③ Lire les abscisses de tous les points d'intersection",
-          "Un nombre peut avoir 0, 1 ou plusieurs antécédents !",
+        bltTex:[
+          r`\text{① Repérer }b\text{ sur l'axe des ordonnées}`,
+          r`\text{② Tracer la droite horizontale }y=b`,
+          r`\text{③ Lire les abscisses de tous les points d'intersection}`,
+          r`\textbf{Un nombre peut avoir 0, 1 ou plusieurs antécédents !}`,
         ],
         tip:"Remarque : il ne peut y avoir qu'une seule IMAGE, mais PLUSIEURS ANTÉCÉDENTS",
         ex:{q:"Sur la courbe ci-dessus : antécédents de 2",
@@ -25676,11 +25700,11 @@ function CoursMathFonctionsGen({onBack, onStartPractice}) {
       { id:"r1",num:"4",title:"Résoudre f(x) = k graphiquement",
         fml:r`f(x)=k \Leftrightarrow \text{antécédents de }k\text{ par }f`,
         svgDiag:SVG_EQ,
-        blt:[
-          "① Tracer la droite horizontale y = k",
-          "② Repérer les intersections avec la courbe",
-          "③ Lire les abscisses x₁, x₂, … : ce sont les solutions",
-          "Si pas d'intersection → équation sans solution (S = ∅)",
+        bltTex:[
+          r`\text{① Tracer la droite horizontale }y=k`,
+          r`\text{② Repérer les intersections avec }\mathcal{C}_f`,
+          r`\text{③ Lire les abscisses }x_1, x_2,\ldots\text{ : ce sont les solutions}`,
+          r`\text{Si pas d'intersection : }f(x)=k\text{ sans solution, }\mathcal{S}=\varnothing`,
         ],
         ex:{q:"Solutions de f(x) = k sur le graphe",
             a:r`S=\{x_1\,;\,x_2\}`}},
@@ -25698,27 +25722,25 @@ function CoursMathFonctionsGen({onBack, onStartPractice}) {
     ]},
     { emoji:"📉", label:"Variations", color:"#059669", light:"#F0FDF4", rules:[
       { id:"v1",num:"6",title:"Tableau de variations",
-        fml:null,
+        fml:r`\begin{array}{|c|ccccc|}\hline x & -\infty & & x_1 & & +\infty \\\hline f(x) & & \searrow & f(x_1) & \nearrow & \\\hline\end{array}`,
         svgDiag:SVG_VAR,
-        blt:[
-          "Résume le sens de variation d'une fonction",
-          "Ligne 1 : valeurs de x remarquables (limites + changements)",
-          "Ligne 2 : flèches montantes (↗ croissante) ou descendantes (↘ décroissante)",
-          "Maximum : valeur la plus haute atteinte sur l'intervalle",
-          "Minimum : valeur la plus basse atteinte sur l'intervalle",
+        bltTex:[
+          r`\text{Ligne 1 : valeurs de }x\text{ remarquables (limites + changements)}`,
+          r`\searrow\ \text{(flèche descendante) : }f\text{ décroissante}`,
+          r`\nearrow\ \text{(flèche montante) : }f\text{ croissante}`,
+          r`\text{Maximum : valeur la plus haute · Minimum : valeur la plus basse}`,
         ],
-        ex:{q:"Lire le maximum et minimum sur le graphe",
-            a:r`\text{max en }x_1\text{ (point vert) · min en }x_2\text{ (point orange)}`}},
+        ex:{q:"Lire le max et le min sur le graphe ci-dessus",
+            a:r`\text{Maximum en }x_1\quad\text{Minimum en }x_2`}},
       { id:"v2",num:"7",title:"Tableau de signes",
-        fml:null,
-        blt:[
-          "Résume le signe de f(x) sur chaque intervalle",
-          "f(x) > 0 : courbe AU-DESSUS de l'axe des x",
-          "f(x) < 0 : courbe EN DESSOUS de l'axe des x",
-          "f(x) = 0 : courbe COUPE l'axe des x (racines)",
+        fml:r`\begin{array}{|c|ccccc|}\hline x & -\infty & x_1 & & x_2 & +\infty \\\hline \text{signe de }f(x) & + & 0 & - & 0 & + \\\hline\end{array}`,
+        bltTex:[
+          r`f(x)>0\text{ : courbe au-dessus de l'axe des }x`,
+          r`f(x)<0\text{ : courbe en dessous de l'axe des }x`,
+          r`f(x)=0\text{ : courbe coupe l'axe des }x\text{ (racines } x_1, x_2\ldots)`,
         ],
-        ex:{q:"f(x) : signe entre les racines x₁ et x₂",
-            a:r`\text{Lire si la courbe est au-dessus (+ ) ou en dessous (−) de l'axe des }x`}},
+        ex:{q:"Lire le signe de f entre x₁ et x₂",
+            a:r`x_1<x<x_2\Rightarrow f(x)<0\quad\text{(courbe sous l'axe)}`}},
     ]},
     { emoji:"🏋️", label:"S\'entraîner", color:"#0F172A", light:"#F1F5F9", isPractice:true,
       practices:[
@@ -25803,6 +25825,12 @@ function CoursMathFonctionsGen({onBack, onStartPractice}) {
                       <span style={{color:col,fontWeight:700,flexShrink:0}}>•</span><span>{b}</span>
                     </div>
                   ))}
+                  {(rl.bltTex||[]).map((b,j)=>(
+                    <div key={j} style={{display:"flex",gap:7,padding:"4px 0",alignItems:"flex-start"}}>
+                      <span style={{color:col,fontWeight:700,flexShrink:0,marginTop:2}}>•</span>
+                      <span style={{overflowX:"auto",fontSize:13}}><M tex={b}/></span>
+                    </div>
+                  ))}
                   {rl.tip&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
                     fontSize:12,fontWeight:600,color:"#713F12",
                     borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>{rl.tip}</div>}
@@ -25864,7 +25892,7 @@ function CoursMathLitteral({onBack, onStartPractice}) {
     ]},
     { emoji:"🔲", label:"Identités remarquables", color:"#7C3AED", light:"#F5F3FF", rules:[
       { id:"ir1",num:"3",title:"Les 3 identités remarquables",
-        fml:r`\displaylines{(a+b)^2 = a^2+2ab+b^2 \\ (a-b)^2 = a^2-2ab+b^2 \\ (a+b)(a-b) = a^2-b^2}`,
+        fml:r`\begin{gathered}(a+b)^2 = a^2+2ab+b^2 \\ (a-b)^2 = a^2-2ab+b^2 \\ (a+b)(a-b) = a^2-b^2\end{gathered}`,
         blt:[
           "(a+b)² : carré d'une somme",
           "(a−b)² : carré d'une différence",
@@ -25904,7 +25932,7 @@ function CoursMathLitteral({onBack, onStartPractice}) {
         ex:{q:"Factoriser 16 − (x−3)²",
             a:r`(4)^2-(x-3)^2=(4+x-3)(4-x+3)=(x+1)(7-x)`}},
       { id:"f3",num:"7",title:"Identités remarquables à l'envers",
-        fml:r`\displaylines{a^2+2ab+b^2=(a+b)^2 \\ a^2-2ab+b^2=(a-b)^2}`,
+        fml:r`\begin{gathered}a^2+2ab+b^2=(a+b)^2 \\ a^2-2ab+b^2=(a-b)^2\end{gathered}`,
         blt:[
           "Reconnaître le carré parfait : terme du milieu = 2×√(1er terme)×√(dernier terme)",
           "Vérifier que le 1er et le dernier termes sont des carrés parfaits",
@@ -26006,6 +26034,12 @@ function CoursMathLitteral({onBack, onStartPractice}) {
                   {(rl.blt||[]).map((b,j)=>(
                     <div key={j} style={{display:"flex",gap:7,padding:"3px 0",fontSize:12.5,color:"#475569",lineHeight:1.4}}>
                       <span style={{color:col,fontWeight:700,flexShrink:0}}>•</span><span>{b}</span>
+                    </div>
+                  ))}
+                  {(rl.bltTex||[]).map((b,j)=>(
+                    <div key={j} style={{display:"flex",gap:7,padding:"4px 0",alignItems:"flex-start"}}>
+                      <span style={{color:col,fontWeight:700,flexShrink:0,marginTop:2}}>•</span>
+                      <span style={{overflowX:"auto",fontSize:13}}><M tex={b}/></span>
                     </div>
                   ))}
                   {rl.tip&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
