@@ -24682,18 +24682,18 @@ function CoursMathScreen({onBack, onOpen, onStartPractice}) {
     { emoji:"📊", label:"Proportions", color:"#DB2777", light:"#FDF2F8", rules:[
       { id:"p1",num:"1",title:"Calculer la proportion p",
         fml:r`p = \dfrac{n}{N}`,
-        blt:["E : ensemble total (N éléments)","A ⊂ E : sous-ensemble (n éléments)","p : proportion de A dans E"],
+        bltTex:[r`E\text{ : ensemble total (}N\text{ éléments)}`,r`A\subset E\text{ : sous-ensemble (}n\text{ éléments)}`,r`p\text{ : proportion de }A\text{ dans }E`],
         tip:"⚠️ La proportion est toujours entre 0 et 1",
         ex:{q:"12 filles dans une classe de 30 élèves",a:r`p=\dfrac{12}{30}=\dfrac{2}{5}=0{,}4=40\%`}},
       { id:"p2",num:"2",title:"Calculer l'effectif partiel n",
-        fml:r`n = p \times N`,blt:["Connaître p et N","Trouver n"],
+        fml:r`n = p \times N`,bltTex:[r`\text{Connaître }p\text{ et }N`,r`\text{Trouver }n`],
         ex:{q:"Gâteau 1 200 g : 50% de lait",a:r`n=0{,}5\times1200=600\text{ g}`}},
       { id:"p3",num:"3",title:"Calculer l'effectif total N",
-        fml:r`N = \dfrac{n}{p}`,blt:["Connaître p et n","Trouver N"],
+        fml:r`N = \dfrac{n}{p}`,bltTex:[r`\text{Connaître }p\text{ et }n`,r`\text{Trouver }N`],
         ex:{q:"133 femmes = 35% des adhérents",a:r`N=\dfrac{133}{0{,}35}=380\text{ adhérents}`}},
       { id:"p4",num:"4",title:"Proportion de proportion",
         fml:r`p_{\text{global}} = p \times p'`,
-        blt:["p : proportion de B dans E","p' : proportion de A dans B","p × p' : proportion de A dans E"],
+        bltTex:[r`p\text{ : proportion de }B\text{ dans }E`,r`p'\text{ : proportion de }A\text{ dans }B`,r`p\times p'\text{ : proportion de }A\text{ dans }E`],
         tip:"⚠️ Attention aux règles de calcul des fractions !",
         ex:{q:"30% de 20% de 500",a:r`0{,}3\times0{,}2\times500=30`}},
     ]},
@@ -24708,11 +24708,11 @@ function CoursMathScreen({onBack, onOpen, onStartPractice}) {
         ex:{q:"Retraite 2 400 € baisse de 1,7%",a:r`2400\times0{,}983=2\,359{,}20\text{ €}`}},
       { id:"e2",num:"2",title:"Coefficient Multiplicateur (CM)",
         fml:r`CM = \dfrac{V_{\text{finale}}}{V_{\text{initiale}}}`,
-        blt:["CM > 1 → hausse","CM < 1 → baisse","CM = 1 → pas de changement"],
+        bltTex:[r`CM>1\text{ → hausse}`,r`CM<1\text{ → baisse}`,r`CM=1\text{ → pas de changement}`],
         ex:{q:"Prix : 46,60 € → 78,9 €",a:r`CM=\dfrac{78{,}9}{46{,}6}\approx1{,}693`}},
       { id:"e2b",num:"2b",title:"Avancer / Remonter dans le temps",
         fml:null,isTimeline:true,
-        blt:["⏩ Avancer dans le temps → on multiplie par le CM","⏪ Remonter dans le temps → on divise par le CM"],
+        bltTex:[r`\text{⏩ Avancer dans le temps → multiplier par }CM`,r`\text{⏪ Remonter dans le temps → diviser par }CM`],
         tip:"⚠️ Erreur classique : on ne soustrait pas le taux — on divise par le CM !",
         ex:{q:"Appartement vaut 144 000 € après +20%. Prix initial ?",a:r`CM=1{,}2\ \Rightarrow\ V_i=\dfrac{144\,000}{1{,}2}=120\,000\text{ €}`}},
       { id:"e3a",num:"3a",title:"Taux d'évolution depuis le CM",
@@ -24725,7 +24725,7 @@ function CoursMathScreen({onBack, onOpen, onStartPractice}) {
     { emoji:"🔗", label:"Successives", color:"#7C3AED", light:"#F5F3FF", rules:[
       { id:"s1",num:"4a",title:"CM global",
         fml:r`CM_{\text{global}} = CM_1 \times CM_2 \times \cdots \times CM_n`,
-        blt:["Les % NE s'additionnent PAS !","On multiplie les CM."],
+        bltTex:[r`\textbf{Les \% NE s'additionnent PAS !}`,r`\text{On multiplie les }CM.`],
         tip:"⚠️ +30% puis +40% ≠ +70% → multiplier les CM !",
         ex:{q:"+30% puis +40%",a:r`1{,}3\times1{,}4=1{,}82\Rightarrow+82\%`}},
       { id:"s2",num:"4b",title:"Taux global",
@@ -24739,16 +24739,15 @@ function CoursMathScreen({onBack, onOpen, onStartPractice}) {
     { emoji:"🔄", label:"Réciproque", color:"#059669", light:"#F0FDF4", rules:[
       { id:"r1",num:"5a",title:"CM réciproque",
         fml:r`CM' = \dfrac{1}{CM}`,
-        blt:["Pour annuler une évolution","On prend l'inverse du CM"],
+        bltTex:[r`\text{Pour annuler une évolution}`,r`\text{On prend l'inverse du }CM`],
         ex:{q:"Action baisse de 20%",a:r`CM=0{,}8\Rightarrow CM'=\dfrac{1}{0{,}8}=1{,}25\Rightarrow+25\%`}},
       { id:"r2",num:"5b",title:"Méthode en 3 étapes",
         fml:null,
-        blt:["① Trouver le CM de l'évolution donnée","② Calculer CM' = 1/CM","③ Convertir CM' en taux%"],
+        bltTex:[r`\text{① Trouver le }CM\text{ de l'évolution donnée}`,r`\text{② Calculer }CM'=\dfrac{1}{CM}`,r`\text{③ Convertir }CM'\text{ en taux\%}`],
         ex:{q:"Compenser une hausse de 10%",a:r`CM'=\dfrac{1}{1{,}1}\approx0{,}909\Rightarrow-9{,}1\%`}},
       { id:"r3",num:"5c",title:"Cas classiques à retenir",
         fml:null,
-        blt:["+20% ↔ −16,7%  (×1,2 → 1/1,2)","+25% ↔ −20%    (×1,25 → 0,8)",
-             "+50% ↔ −33,3%  (×1,5 → 0,667)","−20% ↔ +25%   (×0,8 → 1,25)","−50% ↔ +100% (×0,5 → 2)"]},
+        bltTex:[r`+20\%\leftrightarrow-16{,}7\%\ (\times1{,}2)`,r`+25\%\leftrightarrow-20\%\ (\times1{,}25)`,r`+50\%\leftrightarrow-33{,}3\%\ (\times1{,}5)`,r`-20\%\leftrightarrow+25\%\ (\times0{,}8)`,r`-50\%\leftrightarrow+100\%\ (\times0{,}5)`]},
     ]},
     { emoji:"🏋️", label:"S'entraîner", color:"#0F172A", light:"#F1F5F9", isPractice:true,
       practices:[
@@ -24906,7 +24905,7 @@ function CoursMathCalcul({onBack, onStartPractice}) {
     { emoji:"🔢", label:"Fractions", color:"#DB2777", light:"#FDF2F8", rules:[
       { id:"f1",num:"1",title:"Simplifier / Comparer",
         fml:r`\dfrac{a}{b}=\dfrac{a\times k}{b\times k} \qquad \dfrac{a}{b}=\dfrac{c}{d}\Leftrightarrow a\times d=b\times c`,
-        blt:["Pour simplifier : diviser numérateur et dénominateur par leur PGCD","Produit en croix pour vérifier l'égalité de deux fractions"],
+        bltTex:[r`\text{Simplifier : diviser numérateur et dénominateur par leur PGCD}`,r`\text{Produit en croix : }\dfrac{a}{b}=\dfrac{c}{d}\Leftrightarrow ad=bc`],
         tip:"Ne pas confondre simplification et réduction au même dénominateur",
         ex:{q:"Simplifier 18/45",a:r`\text{PGCD}(18,45)=9\Rightarrow\dfrac{18}{45}=\dfrac{2}{5}`}},
       { id:"f2",num:"2",title:"Additionner / Soustraire",
@@ -24921,32 +24920,29 @@ function CoursMathCalcul({onBack, onStartPractice}) {
     { emoji:"🔍", label:"Divisibilité", color:"#0891B2", light:"#ECFEFF", rules:[
       { id:"d1",num:"4",title:"Critères de divisibilité",
         fml:null,
-        blt:["Par 2 : chiffre des unités pair (0,2,4,6,8)","Par 3 : somme des chiffres divisible par 3",
-             "Par 4 : 2 derniers chiffres divisibles par 4","Par 5 : unités = 0 ou 5",
-             "Par 9 : somme des chiffres divisible par 9","Par 10 : chiffre des unités = 0"],
+        bltTex:[r`\textbf{Par 2}\text{ : chiffre des unités pair}`,r`\textbf{Par 3}\text{ : somme des chiffres divisible par 3}`,r`\textbf{Par 4}\text{ : 2 derniers chiffres divisibles par 4}`,r`\textbf{Par 5}\text{ : unités = 0 ou 5}`,r`\textbf{Par 9}\text{ : somme des chiffres divisible par 9}`,r`\textbf{Par 10}\text{ : unités = 0}`],
         ex:{q:"76 : divisible par 2 ? 3 ? 4 ?",a:r`\text{Unités}=6\ (\text{pair})\Rightarrow\div2\ ✓\quad 7+6=13\ \not\div3\ ✗\quad 76=4\times19\Rightarrow\div4\ ✓`}},
       { id:"d2",num:"4b",title:"Nombre premier",
         fml:null,
-        blt:["Un nombre premier admet exactement 2 diviseurs : 1 et lui-même",
-             "1 n'est PAS un nombre premier","Premiers < 20 : 2, 3, 5, 7, 11, 13, 17, 19"],
+        bltTex:[r`\text{Un nombre premier admet exactement 2 diviseurs : 1 et lui-même}`,r`1\text{ n'est }\textbf{PAS}\text{ un nombre premier}`,r`\text{Premiers} < 20\text{ : } 2, 3, 5, 7, 11, 13, 17, 19`],
         tip:"Pour tester si n est premier : diviser par tous les premiers jusqu'à √n",
         ex:{q:"Décomposer 330 en facteurs premiers",a:r`330=2\times3\times5\times11`}},
     ]},
     { emoji:"⚡", label:"Puissances", color:"#7C3AED", light:"#F5F3FF", rules:[
       { id:"p1",num:"5",title:"Propriétés des puissances",
         fml:r`a^n\times a^m=a^{n+m}\quad a^n\div a^m=a^{n-m}\quad(a^n)^m=a^{n\times m}`,
-        blt:["(a×b)ⁿ = aⁿ × bⁿ","a⁻ⁿ = 1/aⁿ  ·  a⁰ = 1"],
+        bltTex:[r`(a\times b)^n=a^n\times b^n`,r`a^{-n}=\dfrac{1}{a^n}\quad a^0=1`],
         tip:"⚠️ a⁻ⁿ ≠ −aⁿ   et   (a+b)ⁿ ≠ aⁿ + bⁿ",
         ex:{q:"Simplifier (3¹ × 3²) / 3¹",a:r`3^{1+2-1}=3^2=9`}},
       { id:"p2",num:"6",title:"Notation scientifique",
         fml:r`a\times10^n \quad\text{avec }1\leq a<10,\ n\in\mathbb{Z}`,
-        blt:["n > 0 → grand nombre  ·  n < 0 → petit nombre"],
+        bltTex:[r`n>0\text{ → grand nombre}\qquad n<0\text{ → petit nombre}`],
         ex:{q:"Écrire 0,00094 en notation scientifique",a:r`9{,}4\times10^{-4}`}},
     ]},
     { emoji:"√", label:"Racines", color:"#059669", light:"#F0FDF4", rules:[
       { id:"r1",num:"7",title:"Définition et carrés parfaits",
         fml:r`(\sqrt{a})^2=a\quad\text{définie pour }a\geq0`,
-        blt:["√4=2 · √9=3 · √16=4 · √25=5 · √36=6","√49=7 · √64=8 · √81=9 · √100=10 · √121=11 · √144=12 · √169=13"],
+        bltTex:[r`\sqrt{4}=2\quad\sqrt{9}=3\quad\sqrt{16}=4\quad\sqrt{25}=5\quad\sqrt{36}=6`,r`\sqrt{49}=7\quad\sqrt{64}=8\quad\sqrt{81}=9\quad\sqrt{100}=10\quad\sqrt{121}=11\quad\sqrt{144}=12\quad\sqrt{169}=13`],
         ex:{q:"Calculer √169",a:r`13^2=169\Rightarrow\sqrt{169}=13`}},
       { id:"r2",num:"8",title:"Racine et valeur absolue",
         fml:r`\sqrt{a^2}=|a|\quad\begin{cases}=a&\text{si }a\geq0\\=-a&\text{si }a<0\end{cases}`,
@@ -25086,10 +25082,7 @@ function CoursMathReels({onBack, onStartPractice}) {
     { emoji:"🔢", label:"Ensembles", color:"#0891B2", light:"#ECFEFF", rules:[
       { id:"e1",num:"1",title:"Les ensembles de nombres",
         fml:r`\mathbb{N}\subset\mathbb{Z}\subset\mathbb{D}\subset\mathbb{Q}\subset\mathbb{R}`,
-        blt:[
-          "ℕ : entiers naturels {0; 1; 2; 3; …}",
-          "ℤ : entiers relatifs {…; −2; −1; 0; 1; 2; …}",
-          "𝔻 : décimaux (fraction a/10ⁿ, a entier, n entier naturel)",
+        bltTex:[r`\mathbb{N}\text{ : entiers naturels }\{0, 1, 2, 3,\ldots\}`,r`\mathbb{Z}\text{ : entiers relatifs }\{\ldots,-2,-1,0,1,2,\ldots\}`,r`\mathbb{D}\text{ : décimaux (fraction }a/10^n\text{)}`,
           "ℚ : rationnels (fraction a/b, a et b entiers, b ≠ 0)",
           "ℝ : réels = abscisses d'une droite graduée",
         ],
@@ -25097,9 +25090,7 @@ function CoursMathReels({onBack, onStartPractice}) {
             a:r`0{,}56\in\mathbb{D}\quad 3\in\mathbb{N}\quad \tfrac{3}{4}\in\mathbb{Q}\quad -2\in\mathbb{Z}\quad \sqrt{2}\in\mathbb{R}\setminus\mathbb{Q}`}},
       { id:"e2",num:"2",title:"Nombres rationnels et irrationnels",
         fml:null,
-        blt:[
-          "Rationnel : s'écrit sous la forme a/b (b ≠ 0), développement décimal périodique",
-          "Irrationnel : pas de fraction a/b, développement décimal infini non périodique",
+        bltTex:[r`\text{Rationnel : s'écrit }\dfrac{a}{b}\ (b\neq0)\text{, dev. décimal périodique}`,r`\text{Irrationnel : pas de fraction }a/b\text{, dev. infini non périodique}`,
           "Exemples irrationnels : √2, √3, π",
         ],
         tip:"Propriété : 1/3 n'est pas un nombre décimal (son développement est 0,333… infini non terminant → il est rationnel mais pas décimal)",
@@ -25109,10 +25100,7 @@ function CoursMathReels({onBack, onStartPractice}) {
     { emoji:"[·]", label:"Intervalles", color:"#DB2777", light:"#FDF2F8", rules:[
       { id:"i1",num:"3",title:"Notation des intervalles",
         fml:null,
-        blt:[
-          "[a ; b] : a ≤ x ≤ b  (crochets fermés = bornes incluses)",
-          "]a ; b[ : a < x < b  (crochets ouverts = bornes exclues)",
-          "[a ; b[ : a ≤ x < b  (mixte)",
+        bltTex:[r`[a\,;\,b]\text{ : }a\leq x\leq b\text{ (crochets fermés = bornes incluses)}`,r`]a\,;\,b[\text{ : }a<x<b\text{ (crochets ouverts = bornes exclues)}`,r`[a\,;\,b[\text{ : }a\leq x<b\text{ (mixte)}`,
           "[a ; +∞[ : x ≥ a  (toujours ouvert côté infini)",
         ],
         tip:"ℝ lui-même est l'intervalle ]−∞ ; +∞[",
@@ -25120,9 +25108,7 @@ function CoursMathReels({onBack, onStartPractice}) {
             a:r`[-2\ ;\ 7]`}},
       { id:"i2",num:"4",title:"Intersection et réunion",
         fml:r`A\cap B\ \text{(et)} \qquad A\cup B\ \text{(ou)}`,
-        blt:[
-          "Intersection A ∩ B : éléments appartenant à A ET à B",
-          "Réunion A ∪ B : éléments appartenant à A OU à B",
+        bltTex:[r`A\cap B\text{ : éléments appartenant à }A\textbf{ ET }\text{à }B`,r`A\cup B\text{ : éléments appartenant à }A\textbf{ OU }\text{à }B`,
           "Ensemble vide ∅ : A ∩ B = ∅ si pas d'élément commun",
         ],
         ex:{q:"I = ]−1 ; 3] et J = [0 ; 4[",
@@ -25131,18 +25117,12 @@ function CoursMathReels({onBack, onStartPractice}) {
     { emoji:"|·|", label:"Distance", color:"#7C3AED", light:"#F5F3FF", rules:[
       { id:"d1",num:"5",title:"Distance entre deux réels",
         fml:r`d(a,b)=|b-a|=|a-b|`,
-        blt:[
-          "La distance est toujours positive ou nulle",
-          "|b − a| = b − a si b ≥ a,  ou  a − b si a ≥ b",
-        ],
+        bltTex:[r`\text{La distance est toujours positive ou nulle}`,r`|b-a|=b-a\text{ si }b\geq a\quad\text{ou}\quad a-b\text{ si }a\geq b`],
         ex:{q:"Distance entre −1,5 et 4",
             a:r`|4-(-1{,}5)|=|5{,}5|=5{,}5`}},
       { id:"d2",num:"6",title:"Valeur absolue et intervalles",
         fml:r`|x-a|\leq r \Leftrightarrow x\in[a-r\ ;\ a+r]`,
-        blt:[
-          "|x| est la distance entre x et 0",
-          "|x − a| ≤ r : x est à distance au plus r de a",
-        ],
+        bltTex:[r`|x|\text{ est la distance entre }x\text{ et }0`,r`|x-a|\leq r\text{ : }x\text{ est à distance au plus }r\text{ de }a`],
         tip:"Interprétation géométrique : x est dans l'intervalle centré en a de rayon r",
         ex:{q:"Résoudre |x − 5| ≤ 2",
             a:r`|x-5|\leq2\Leftrightarrow x\in[5-2\,;\,5+2]=[3\,;\,7]`}},
@@ -25273,22 +25253,13 @@ function CoursMathFonctions({onBack, onStartPractice}) {
     { emoji:"📈", label:"Fonctions affines", color:"#EA580C", light:"#FFF7ED", rules:[
       { id:"fa1",num:"1",title:"Équation réduite y = mx + p",
         fml:r`y = m\,x + p`,
-        blt:[
-          "m : coefficient directeur (pente de la droite)",
-          "p : ordonnée à l'origine (intersection avec l'axe des y)",
-          "Si m > 0 → droite croissante · Si m < 0 → droite décroissante",
-          "Si m = 0 → droite horizontale (fonction constante)",
-        ],
+        bltTex:[r`m\text{ : coefficient directeur (pente de la droite)}`,r`p\text{ : ordonnée à l'origine (coupe l'axe des }y\text{)}`,r`m>0\text{ → droite croissante}\quad m<0\text{ → droite descendante}`,r`m=0\text{ → droite horizontale (fonction constante)}`],
         tip:"Une droite verticale (parallèle à l'axe des y) n'est PAS une fonction affine",
         ex:{q:"Droite passant par A(0 ; 3) et B(2 ; 7)",
             a:r`p=3\quad m=\dfrac{7-3}{2-0}=2\quad\Rightarrow\quad y=2x+3`}},
       { id:"fa2",num:"2",title:"Taux d'accroissement (coefficient directeur)",
         fml:r`m = \dfrac{y_B - y_A}{x_B - x_A}`,
-        blt:[
-          "A(xₐ ; yₐ) et B(x_b ; y_b) deux points distincts de la droite",
-          "Le résultat est le même quel que soit le choix des deux points",
-          "Se lit aussi graphiquement : Δy / Δx",
-        ],
+        bltTex:[r`A(x_A\,;\,y_A)\text{ et }B(x_B\,;\,y_B)\text{ deux points distincts de la droite}`,r`\text{Le résultat est le même quel que soit le choix des deux points}`,r`\text{Se lit graphiquement : }\Delta y/\Delta x`],
         ex:{q:"Points A(1 ; 2) et B(4 ; 8)",
             a:r`m=\dfrac{8-2}{4-1}=\dfrac{6}{3}=2`}},
       { id:"fa3",num:"3",title:"Lecture graphique de m et p",
@@ -25350,10 +25321,8 @@ function CoursMathFonctions({onBack, onStartPractice}) {
     <text x="164" y="54" font-size="11" font-weight="bold" fill="#2563EB" text-anchor="middle" font-family="sans-serif">m</text>
   </g>
 </svg>`,
-        blt:[
-          "p = ordonnée à l'origine : là où la droite coupe l'axe des y",
-          "m = pente : pour avancer de 1 vers la droite, on monte de m vers le haut",
-          "Si m > 0 → droite montante · Si m < 0 → droite descendante",
+        bltTex:[
+          r`p\text{ = ordonnée à l'origine : là où la droite coupe l'axe des }y`,r`m\text{ = pente : avancer de 1 vers la droite → monter de }m\text{ vers le haut}`,r`m>0\text{ → droite montante}\qquad m<0\text{ → droite descendante}`,
         ],
         ex:{q:"Sur le graphe ci-dessus : lire p et m",
             a:r`p=1\ \text{(coupe y en }y=1)\quad m=\dfrac{2}{1}=2\ \text{(monte de 2 pour 1 pas)}`}},
@@ -25361,20 +25330,16 @@ function CoursMathFonctions({onBack, onStartPractice}) {
     { emoji:"⚖️", label:"Équations", color:"#2563EB", light:"#EFF6FF", rules:[
       { id:"eq1",num:"2",title:"Résoudre une équation du 1er degré",
         fml:null,
-        blt:[
-          "Toute opération sur un membre doit être effectuée sur l'autre",
-          "① Développer et regrouper les termes en x d'un côté",
-          "② Les constantes de l'autre côté",
-          "③ Diviser par le coefficient de x (si ≠ 0)",
+        bltTex:[
+          r`\text{Toute opération sur un membre → même opération sur l'autre}`,r`\text{① Regrouper les termes en }x\text{ d'un côté}`,r`\text{② Les constantes de l'autre côté}`,r`\text{③ Diviser par le coefficient de }x\text{ (si }\neq0\text{)}`,
         ],
         tip:"Vérifier la solution en la substituant dans l'équation de départ",
         ex:{q:"Résoudre −3x − 2 = x − 14",
             a:r`-3x-x=-14+2\Rightarrow-4x=-12\Rightarrow x=3`}},
       { id:"eq2",num:"3",title:"Produit nul : A × B = 0",
         fml:r`A \times B = 0 \Leftrightarrow A = 0 \text{ ou } B = 0`,
-        blt:[
-          "Un produit est nul si et seulement si au moins un facteur est nul",
-          "Résoudre chaque facteur = 0 séparément",
+        bltTex:[
+          r`A\times B=0\Leftrightarrow A=0\text{ ou }B=0`,r`\text{Résoudre chaque facteur = 0 séparément}`,
         ],
         tip:"Attention : A × B = 2 ne donne PAS A = 2 ou B = 2 — cette règle ne vaut que pour 0 !",
         ex:{q:"Résoudre (5x − 2)(x − 3) = 0",
@@ -25383,22 +25348,16 @@ function CoursMathFonctions({onBack, onStartPractice}) {
     { emoji:"↔️", label:"Inéquations", color:"#7C3AED", light:"#F5F3FF", rules:[
       { id:"ineq1",num:"4",title:"Résoudre une inéquation du 1er degré",
         fml:null,
-        blt:[
-          "Même méthode que pour les équations : on opère sur les deux membres",
-          "Ajouter ou soustraire → le sens de l'inégalité NE CHANGE PAS",
-          "Multiplier ou diviser par un nombre POSITIF → sens inchangé",
-          "Multiplier ou diviser par un nombre NÉGATIF → le sens S'INVERSE (< devient >)",
+        bltTex:[
+          r`\text{Même méthode que pour les équations}`,r`\text{Ajouter / soustraire → sens de l'inégalité }\textbf{inchangé}`,r`\text{Multiplier / diviser par un réel }\textbf{positif}\text{ → sens }\textbf{inchangé}`,r`\text{Multiplier / diviser par un réel }\textbf{négatif}\text{ → sens }\textbf{inversé}`,
         ],
         tip:"⚠️ Diviser par −2 : 3x < −6 → x > 3 (le < devient >)",
         ex:{q:"Résoudre 3x − 4 < 5x − 1",
             a:r`3x-5x<-1+4\Rightarrow-2x<3\Rightarrow x>-\dfrac{3}{2}`}},
       { id:"ineq2",num:"4b",title:"Lire la solution : ensemble et intervalle",
         fml:null,
-        blt:[
-          "x > a → solution : ]a ; +∞[",
-          "x ≥ a → solution : [a ; +∞[",
-          "x < a → solution : ]−∞ ; a[",
-          "a < x ≤ b → solution : ]a ; b]",
+        bltTex:[
+          r`x>a\text{ → solution : }]a\,;+\infty[`,r`x\geq a\text{ → solution : }[a\,;+\infty[`,r`x<a\text{ → solution : }]-\infty\,;a[`,r`a<x\leq b\text{ → solution : }]a\,;b]`,
         ],
         ex:{q:"Solution de 3x − 4 < 5x − 1",
             a:r`x>-\dfrac{3}{2}\quad\Rightarrow\quad\mathcal{S}=\left]-\dfrac{3}{2}\,;+\infty\right[`}},
@@ -25528,7 +25487,9 @@ function CoursMathFonctionsGen({onBack, onStartPractice}) {
     if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
   },[secIdx]);
 
-  const SVG_IMG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 180" style="width:100%;display:block;border-radius:14px"><rect width="280" height="180" rx="14" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="2"/><rect x="38" y="10" width="206" height="154" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/><g stroke="#F1F5F9" stroke-width="0.8">
+  const SVG_ANT_REF=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 160" style="width:100%;display:block;border-radius:14px"><rect width="280" height="160" rx="14" fill="#EEF2FF" stroke="#C7D2FE" stroke-width="2"/><rect x="28" y="10" width="224" height="133" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/><g stroke="#F1F5F9" stroke-width="0.8"><line x1="28" y1="50" x2="252" y2="50"/><line x1="28" y1="90" x2="252" y2="90"/><line x1="28" y1="130" x2="252" y2="130"/><line x1="80" y1="10" x2="80" y2="143"/><line x1="130" y1="10" x2="130" y2="143"/><line x1="180" y1="10" x2="180" y2="143"/><line x1="230" y1="10" x2="230" y2="143"/></g><line x1="32" y1="90" x2="248" y2="90" stroke="#94A3B8" stroke-width="1.4"/><polygon points="247,86 254,90 247,94" fill="#94A3B8"/><line x1="80" y1="14" x2="80" y2="143" stroke="#94A3B8" stroke-width="1.4"/><polygon points="76,15 80,8 84,15" fill="#94A3B8"/><text x="70" y="100" font-size="8" fill="#94A3B8" font-family="sans-serif">O</text><text x="254" y="94" font-size="9" fill="#64748B" font-family="sans-serif">x</text><text x="83" y="12" font-size="9" fill="#64748B" font-family="sans-serif">y</text><path d="M 35,125 C 50,80 65,130 80,90 C 95,50 115,15 130,30 C 145,45 155,95 170,75 C 185,55 200,105 215,85 C 225,70 240,110 250,90" fill="none" stroke="#6366F1" stroke-width="2.5" stroke-linecap="round"/><line x1="35" y1="55" x2="252" y2="55" stroke="#DC2626" stroke-width="1.8" stroke-dasharray="6,3"/><text x="235" y="50" font-size="9" font-weight="bold" fill="#DC2626" font-family="sans-serif">y=b</text><circle cx="80" cy="55" r="4.5" fill="#DC2626" stroke="white" stroke-width="1.5"/><circle cx="130" cy="55" r="4.5" fill="#DC2626" stroke="white" stroke-width="1.5"/><circle cx="215" cy="55" r="4.5" fill="#DC2626" stroke="white" stroke-width="1.5"/><line x1="80" y1="57" x2="80" y2="88" stroke="#DC2626" stroke-width="1.2" stroke-dasharray="3,2"/><line x1="130" y1="57" x2="130" y2="88" stroke="#DC2626" stroke-width="1.2" stroke-dasharray="3,2"/><line x1="215" y1="57" x2="215" y2="88" stroke="#DC2626" stroke-width="1.2" stroke-dasharray="3,2"/><text x="80" y="100" font-size="9" font-weight="bold" fill="#DC2626" font-family="sans-serif" text-anchor="middle">x₁</text><text x="130" y="100" font-size="9" font-weight="bold" fill="#DC2626" font-family="sans-serif" text-anchor="middle">x₂</text><text x="215" y="100" font-size="9" font-weight="bold" fill="#DC2626" font-family="sans-serif" text-anchor="middle">x₃</text><text x="144" y="130" font-size="8.5" fill="#6366F1" font-family="sans-serif" text-anchor="middle">b a 3 antécédents : x₁, x₂, x₃</text></svg>`;
+  const SVG_CURVE_REF=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 215" style="width:100%;display:block;border-radius:14px"><rect width="290" height="215" rx="14" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2.5"/><rect x="28" y="12" width="234" height="185" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/><g stroke="#EDE9FE" stroke-width="0.9"><line x1="30" y1="3" x2="30" y2="197"/><line x1="58" y1="3" x2="58" y2="197"/><line x1="88" y1="3" x2="88" y2="197"/><line x1="118" y1="3" x2="118" y2="197"/><line x1="152" y1="3" x2="152" y2="197"/><line x1="180" y1="3" x2="180" y2="197"/><line x1="210" y1="3" x2="210" y2="197"/><line x1="240" y1="3" x2="240" y2="197"/><line x1="28" y1="23" x2="262" y2="23"/><line x1="28" y1="43" x2="262" y2="43"/><line x1="28" y1="63" x2="262" y2="63"/><line x1="28" y1="83" x2="262" y2="83"/><line x1="28" y1="103" x2="262" y2="103"/><line x1="28" y1="123" x2="262" y2="123"/><line x1="28" y1="143" x2="262" y2="143"/><line x1="28" y1="163" x2="262" y2="163"/><line x1="28" y1="183" x2="262" y2="183"/></g><line x1="32" y1="103" x2="258" y2="103" stroke="#64748B" stroke-width="1.5"/><polygon points="257,99 264,103 257,107" fill="#64748B"/><line x1="152" y1="16" x2="152" y2="194" stroke="#64748B" stroke-width="1.5"/><polygon points="148,17 152,10 156,17" fill="#64748B"/><text x="265" y="107" font-size="9" fill="#475569" font-family="sans-serif">x</text><text x="155" y="13" font-size="9" fill="#475569" font-family="sans-serif">y</text><text x="140" y="113" font-size="8" fill="#94A3B8" font-family="sans-serif">O</text><g font-size="8" fill="#94A3B8" font-family="sans-serif" text-anchor="middle"><text x="30" y="113">-8</text><text x="58" y="113">-6</text><text x="88" y="113">-4</text><text x="118" y="113">-2</text><text x="180" y="113">2</text><text x="210" y="113">4</text><text x="240" y="113">6</text><text x="140" y="83">1</text><text x="140" y="63">2</text><text x="140" y="43">3</text><text x="140" y="123">-1</text><text x="140" y="143">-2</text><text x="140" y="163">-3</text><text x="140" y="183">-4</text></g><path d="M 30,63 C 42,85 65,183 88,183 C 111,183 128,23 152,23 C 168,23 175,103 196,103 C 207,103 242,63 256,63" fill="none" stroke="#6366F1" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/><text x="250" y="54" font-size="11" font-style="italic" font-weight="bold" fill="#6366F1" font-family="sans-serif">f</text><circle cx="152" cy="23" r="5.5" fill="#059669" stroke="white" stroke-width="2"/><text x="158" y="16" font-size="9" font-weight="bold" fill="#059669" font-family="sans-serif">(0,3)</text><circle cx="88" cy="183" r="5.5" fill="#EA580C" stroke="white" stroke-width="2"/><text x="94" y="196" font-size="9" font-weight="bold" fill="#EA580C" font-family="sans-serif">(-4,-4)</text><circle cx="196" cy="103" r="5.5" fill="#EA580C" stroke="white" stroke-width="2"/><text x="202" y="97" font-size="9" font-weight="bold" fill="#EA580C" font-family="sans-serif">(3,0)</text><circle cx="30" cy="63" r="4" fill="#6366F1" stroke="white" stroke-width="1.5"/><circle cx="256" cy="63" r="4" fill="#6366F1" stroke="white" stroke-width="1.5"/></svg>`;
+    const SVG_IMG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 180" style="width:100%;display:block;border-radius:14px"><rect width="280" height="180" rx="14" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="2"/><rect x="38" y="10" width="206" height="154" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/><g stroke="#F1F5F9" stroke-width="0.8">
     <line x1="60" y1="10" x2="60" y2="164"/><line x1="90" y1="10" x2="90" y2="164"/>
     <line x1="120" y1="10" x2="120" y2="164"/><line x1="150" y1="10" x2="150" y2="164"/>
     <line x1="180" y1="10" x2="180" y2="164"/><line x1="210" y1="10" x2="210" y2="164"/>
@@ -25676,11 +25637,12 @@ function CoursMathFonctionsGen({onBack, onStartPractice}) {
             a:r`\text{On lit }f(1)=2\text{ (ordonnée du point d'abscisse 1)}`}},
       { id:"g2",num:"2",title:"Lire les antécédents de b par f",
         fml:null,
+        svgDiag:SVG_ANT_REF,
         bltTex:[
           r`\text{① Repérer }b\text{ sur l'axe des ordonnées}`,
           r`\text{② Tracer la droite horizontale }y=b`,
-          r`\text{③ Lire les abscisses de tous les points d'intersection}`,
-          r`\textbf{Un nombre peut avoir 0, 1 ou plusieurs antécédents !}`,
+          r`\text{③ Lire les abscisses des points d'intersection : }x_1, x_2, x_3\ldots`,
+          r`\text{Un nombre peut avoir 0, 1 ou }\textbf{plusieurs}\text{ antécédents}`,
         ],
         tip:"Remarque : il ne peut y avoir qu'une seule IMAGE, mais PLUSIEURS ANTÉCÉDENTS",
         ex:{q:"Sur la courbe ci-dessus : antécédents de 2",
@@ -25689,9 +25651,8 @@ function CoursMathFonctionsGen({onBack, onStartPractice}) {
     { emoji:"📌", label:"Point sur la courbe", color:"#0891B2", light:"#ECFEFF", rules:[
       { id:"p1",num:"3",title:"A appartient à la courbe ⟺ yₐ = f(xₐ)",
         fml:r`A(x_A\,;\,y_A)\in\mathcal{C}_f \Leftrightarrow y_A = f(x_A)`,
-        blt:[
-          "Pour vérifier si A appartient à Cf : calculer f(xₐ) et comparer à yₐ",
-          "Si f(xₐ) = yₐ → A ∈ Cf · Si f(xₐ) ≠ yₐ → A ∉ Cf",
+        bltTex:[
+          r`\text{Calculer }f(x_A)\text{ et comparer à }y_A`,r`f(x_A)=y_A\Rightarrow A\in\mathcal{C}_f\qquad f(x_A)\neq y_A\Rightarrow A\notin\mathcal{C}_f`,
         ],
         ex:{q:"f(x) = 9 − 2x² · Vérifier A(1 ; 7) et B(−2 ; 17)",
             a:r`f(1)=9-2=7=y_A\ ✓\quad f(-2)=9-8=1\neq17\ \Rightarrow B\notin\mathcal{C}_f`}},
@@ -25711,10 +25672,8 @@ function CoursMathFonctionsGen({onBack, onStartPractice}) {
       { id:"r2",num:"5",title:"Résoudre f(x) < k (ou > k)",
         fml:null,
         svgDiag:SVG_INEQ,
-        blt:[
-          "f(x) < k : abscisses des points de Cf SOUS la droite y = k",
-          "f(x) > k : abscisses des points de Cf AU-DESSUS de y = k",
-          "La solution est un (ou plusieurs) intervalle(s)",
+        bltTex:[
+          r`f(x)<k\text{ : abscisses des points de }\mathcal{C}_f\textbf{ sous }\text{la droite }y=k`,r`f(x)>k\text{ : abscisses des points de }\mathcal{C}_f\textbf{ au-dessus }\text{de }y=k`,r`\text{La solution est un (ou plusieurs) intervalle(s)}`,
         ],
         tip:"⚠️ Bien lire les inégalités strictes ou larges pour les crochets",
         ex:{q:"f(x) < k sur le graphe ci-dessus",
@@ -25722,16 +25681,17 @@ function CoursMathFonctionsGen({onBack, onStartPractice}) {
     ]},
     { emoji:"📉", label:"Variations", color:"#059669", light:"#F0FDF4", rules:[
       { id:"v1",num:"6",title:"Tableau de variations",
-        fml:r`\begin{array}{|c|ccccc|}\hline x & -\infty & & x_1 & & +\infty \\\hline f(x) & & \searrow & f(x_1) & \nearrow & \\\hline\end{array}`,
-        svgDiag:SVG_VAR,
+        fml:r`\begin{array}{|c|ccccccccc|}\hline x & -8 && -4 && 0 && 3 && 7\\\hline & 2 &&&& 3 &&&& 2\\f(x) && \searrow && \nearrow && \searrow && \nearrow &\\&&& -4 &&&& 0 &&\\\hline\end{array}`,
+        svgDiag:SVG_CURVE_REF,
         bltTex:[
           r`\text{Ligne 1 : valeurs de }x\text{ remarquables (limites + changements)}`,
           r`\searrow\ \text{(flèche descendante) : }f\text{ décroissante}`,
           r`\nearrow\ \text{(flèche montante) : }f\text{ croissante}`,
-          r`\text{Maximum : valeur la plus haute · Minimum : valeur la plus basse}`,
+          r`\text{Maximum : valeur la plus haute atteinte}`,
+          r`\text{Minimum : valeur la plus basse atteinte}`,
         ],
-        ex:{q:"Lire le max et le min sur le graphe ci-dessus",
-            a:r`\text{Maximum en }x_1\quad\text{Minimum en }x_2`}},
+        ex:{q:"Lire le tableau : f décroît puis croît",
+            a:r`f\text{ décroît sur }[-8;-4]\text{ puis croît sur }[-4;0]\text{ etc.}`}},
       { id:"v2",num:"7",title:"Tableau de signes",
         fml:r`\begin{array}{|c|ccccc|}\hline x & -\infty & x_1 & & x_2 & +\infty \\\hline \text{signe de }f(x) & + & 0 & - & 0 & + \\\hline\end{array}`,
         bltTex:[
@@ -25871,20 +25831,16 @@ function CoursMathLitteral({onBack, onStartPractice}) {
     { emoji:"✖️", label:"Distribution", color:"#DC2626", light:"#FEF2F2", rules:[
       { id:"d1",num:"1",title:"Simple distributivité",
         fml:r`k(a+b) = ka + kb`,
-        blt:[
-          "On multiplie le facteur k par CHAQUE terme de la parenthèse",
-          "Attention au signe : k(a − b) = ka − kb",
-          "k peut être un nombre, une variable ou une expression",
+        bltTex:[
+          r`\text{On multiplie }k\text{ par }\textbf{CHAQUE}\text{ terme de la parenthèse}`,r`k(a-b)=ka-kb\text{ (attention aux signes !)}`,r`k\text{ peut être un nombre, une variable ou une expression}`,
         ],
         tip:"⚠️ −(a + b) = −a − b  et  −(a − b) = −a + b",
         ex:{q:"Développer −4(x − 5)",
             a:r`-4(x-5)=-4\times x-(-4)\times5=-4x+20`}},
       { id:"d2",num:"2",title:"Double distributivité",
         fml:r`(a+b)(c+d) = ac + ad + bc + bd`,
-        blt:[
-          "Chaque terme du 1er facteur multiplie chaque terme du 2e",
-          "4 produits au total (méthode FOIL ou en croix)",
-          "Réduire en regroupant les termes de même degré",
+        bltTex:[
+          r`\text{Chaque terme du 1er facteur multiplie chaque terme du 2e}`,r`\text{4 produits au total — méthode FOIL ou en croix}`,r`\text{Réduire en regroupant les termes de même degré en }x`,
         ],
         tip:"⚠️ Attention aux signes quand on distribue avec des termes négatifs",
         ex:{q:"Développer (2x + 1)(3x − 5)",
@@ -25893,20 +25849,16 @@ function CoursMathLitteral({onBack, onStartPractice}) {
     { emoji:"🔲", label:"Identités remarquables", color:"#7C3AED", light:"#F5F3FF", rules:[
       { id:"ir1",num:"3",title:"Les 3 identités remarquables",
         fml:r`\begin{gathered}(a+b)^2 = a^2+2ab+b^2 \\ (a-b)^2 = a^2-2ab+b^2 \\ (a+b)(a-b) = a^2-b^2\end{gathered}`,
-        blt:[
-          "(a+b)² : carré d'une somme",
-          "(a−b)² : carré d'une différence",
-          "(a+b)(a−b) : produit de la somme par la différence = différence des carrés",
+        bltTex:[
+          r`(a+b)^2\text{ : carré d'une somme}`,r`(a-b)^2\text{ : carré d'une différence}`,r`(a+b)(a-b)\text{ : produit de la somme par la différence = différence des carrés}`,
         ],
         tip:"⚠️ (a+b)² ≠ a² + b²  — ne pas oublier le terme 2ab au milieu !",
         ex:{q:"Développer (2x − 1)²",
             a:r`(2x)^2-2\times2x\times1+1^2=4x^2-4x+1`}},
       { id:"ir2",num:"4",title:"Réduire une expression",
         fml:null,
-        blt:[
-          "Développer toutes les parenthèses",
-          "Regrouper les termes de même degré (en x², en x, constantes)",
-          "Additionner les coefficients de chaque degré",
+        bltTex:[
+          r`\text{① Développer toutes les parenthèses}`,r`\text{② Regrouper les termes de même degré (en }x^2\text{, en }x\text{, constantes)}`,r`\text{③ Additionner les coefficients de chaque degré}`,
         ],
         ex:{q:"Réduire f(x) = (x−3)² + 2(x+3)(x−1)",
             a:r`x^2-6x+9+2(x^2+2x-3)=x^2-6x+9+2x^2+4x-6=3x^2-2x+3`}},
@@ -25914,28 +25866,23 @@ function CoursMathLitteral({onBack, onStartPractice}) {
     { emoji:"🔧", label:"Factoriser", color:"#0891B2", light:"#ECFEFF", rules:[
       { id:"f1",num:"5",title:"Facteur commun",
         fml:r`ax^2 + bx = x(ax + b)`,
-        blt:[
-          "Identifier le facteur commun à tous les termes",
-          "Le facteur commun peut être un nombre, une variable ou une expression",
-          "Vérifier en redéveloppant",
+        bltTex:[
+          r`\text{Identifier le facteur commun à tous les termes}`,r`\text{Le facteur commun peut être un nombre, une variable ou une expression}`,r`\text{Vérifier en redéveloppant}`,
         ],
         ex:{q:"Factoriser 2x² − 4x",
             a:r`2x^2-4x=2x(x-2)`}},
       { id:"f2",num:"6",title:"Différence de deux carrés",
         fml:r`A^2 - B^2 = (A+B)(A-B)`,
-        blt:[
-          "Reconnaître la forme a² − b² (différence de deux carrés parfaits)",
-          "A et B peuvent être des expressions",
-          "(A+B)(A−B) = (A−B)(A+B) — l'ordre n'importe pas",
+        bltTex:[
+          r`\text{Reconnaître la forme }a^2-b^2\text{ (différence de deux carrés parfaits)}`,r`A\text{ et }B\text{ peuvent être des expressions}`,r`(A+B)(A-B)=(A-B)(A+B)\text{ — l'ordre n'importe pas}`,
         ],
         tip:"⚠️ Fonctionne UNIQUEMENT avec une soustraction — a² + b² ne se factorise pas !",
         ex:{q:"Factoriser 16 − (x−3)²",
             a:r`(4)^2-(x-3)^2=(4+x-3)(4-x+3)=(x+1)(7-x)`}},
       { id:"f3",num:"7",title:"Identités remarquables à l'envers",
         fml:r`\begin{gathered}a^2+2ab+b^2=(a+b)^2 \\ a^2-2ab+b^2=(a-b)^2\end{gathered}`,
-        blt:[
-          "Reconnaître le carré parfait : terme du milieu = 2×√(1er terme)×√(dernier terme)",
-          "Vérifier que le 1er et le dernier termes sont des carrés parfaits",
+        bltTex:[
+          r`\text{Terme du milieu }=2\times\sqrt{\text{1er terme}}\times\sqrt{\text{dernier terme}}`,r`\text{Vérifier que le 1er et le dernier termes sont des carrés parfaits}`,
         ],
         ex:{q:"Factoriser 4x² − 12x + 9",
             a:r`(2x)^2-2\times2x\times3+3^2=(2x-3)^2`}},
@@ -25943,11 +25890,8 @@ function CoursMathLitteral({onBack, onStartPractice}) {
     { emoji:"➗", label:"Fractions littérales", color:"#059669", light:"#F0FDF4", rules:[
       { id:"fl1",num:"8",title:"Mise au même dénominateur",
         fml:r`\dfrac{a}{b}+\dfrac{c}{d}=\dfrac{a\times d}{b\times d}+\dfrac{c\times b}{d\times b}=\dfrac{ad+cb}{bd}`,
-        blt:[
-          "Trouver un dénominateur commun (produit des dénominateurs ou PPCM)",
-          "Multiplier numérateur et dénominateur de chaque fraction par le bon facteur",
-          "Additionner les numérateurs en gardant le dénominateur commun",
-          "Simplifier le résultat si possible",
+        bltTex:[
+          r`\text{Trouver un dénominateur commun (produit des dén. ou PPCM)}`,r`\text{Multiplier num. et dén. de chaque fraction par le bon facteur}`,r`\text{Additionner les numérateurs (dénominateur commun)}`,r`\text{Simplifier le résultat si possible}`,
         ],
         tip:"⚠️ Ne jamais additionner les dénominateurs ! Seuls les numérateurs s'additionnent",
         ex:{q:"Réduire A = 7x/(x−2) − 5/(3−x)",
