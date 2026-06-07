@@ -24577,6 +24577,12 @@ const COURS_CATALOG = [
     chapitres:4, color:"#7C3AED",
     desc:"Fractions · Divisibilité · Puissances & notation scientifique · Racines carrées",
   },
+  { id:"reels", emoji:"ℝ",
+    title:"Manipuler les nombres réels",
+    niveaux:["2nde"],
+    chapitres:4, color:"#0891B2",
+    desc:"Ensembles ℕ ℤ 𝔻 ℚ ℝ · Intervalles · Intersection & union · Distance et valeur absolue",
+  },
 ];
 
 function CoursListScreen({onBack,onSelectCours}) {
@@ -24847,7 +24853,6 @@ function CoursMathScreen({onBack, onOpen, onStartPractice}) {
             </div>
           );
         })}
-        )}
       </div>
     </div>
   );
@@ -25027,11 +25032,191 @@ function CoursMathCalcul({onBack, onStartPractice}) {
 }
 
 
+// ── CoursMathReels — Chapitre 1 : Manipuler les nombres réels ────────────────
+function CoursMathReels({onBack, onStartPractice}) {
+  const [secIdx, setSecIdx] = React.useState(0);
+  const [openMap, setOpenMap] = React.useState({});
+  const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
+  const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
+  const tabsRef = React.useRef();
+  React.useEffect(()=>{
+    if(!tabsRef.current) return;
+    const btn=tabsRef.current.children[secIdx];
+    if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  },[secIdx]);
+
+  const SECS=[
+    { emoji:"🔢", label:"Ensembles", color:"#0891B2", light:"#ECFEFF", rules:[
+      { id:"e1",num:"1",title:"Les ensembles de nombres",
+        fml:r`\mathbb{N}\subset\mathbb{Z}\subset\mathbb{D}\subset\mathbb{Q}\subset\mathbb{R}`,
+        blt:[
+          "ℕ : entiers naturels {0; 1; 2; 3; …}",
+          "ℤ : entiers relatifs {…; −2; −1; 0; 1; 2; …}",
+          "𝔻 : décimaux (fraction a/10ⁿ, a entier, n entier naturel)",
+          "ℚ : rationnels (fraction a/b, a et b entiers, b ≠ 0)",
+          "ℝ : réels = abscisses d'une droite graduée",
+        ],
+        ex:{q:"Classer : 0,56 · 3 · 3/4 · −2 · √2",
+            a:r`0{,}56\in\mathbb{D}\quad 3\in\mathbb{N}\quad \tfrac{3}{4}\in\mathbb{Q}\quad -2\in\mathbb{Z}\quad \sqrt{2}\in\mathbb{R}\setminus\mathbb{Q}`}},
+      { id:"e2",num:"2",title:"Nombres rationnels et irrationnels",
+        fml:null,
+        blt:[
+          "Rationnel : s'écrit sous la forme a/b (b ≠ 0), développement décimal périodique",
+          "Irrationnel : pas de fraction a/b, développement décimal infini non périodique",
+          "Exemples irrationnels : √2, √3, π",
+        ],
+        tip:"Propriété : 1/3 n'est pas un nombre décimal (son développement est 0,333… infini non terminant → il est rationnel mais pas décimal)",
+        ex:{q:"√2 est-il rationnel ?",
+            a:r`\text{Non : }\sqrt{2}\approx1{,}41421356\ldots\ \text{(infini non périodique)}\Rightarrow\sqrt{2}\in\mathbb{R}\setminus\mathbb{Q}`}},
+    ]},
+    { emoji:"[·]", label:"Intervalles", color:"#DB2777", light:"#FDF2F8", rules:[
+      { id:"i1",num:"3",title:"Notation des intervalles",
+        fml:null,
+        blt:[
+          "[a ; b] : a ≤ x ≤ b  (crochets fermés = bornes incluses)",
+          "]a ; b[ : a < x < b  (crochets ouverts = bornes exclues)",
+          "[a ; b[ : a ≤ x < b  (mixte)",
+          "[a ; +∞[ : x ≥ a  (toujours ouvert côté infini)",
+        ],
+        tip:"ℝ lui-même est l'intervalle ]−∞ ; +∞[",
+        ex:{q:"Écrire {x ∈ ℝ | −2 ≤ x ≤ 7} en notation intervalle",
+            a:r`[-2\ ;\ 7]`}},
+      { id:"i2",num:"4",title:"Intersection et réunion",
+        fml:r`A\cap B\ \text{(et)} \qquad A\cup B\ \text{(ou)}`,
+        blt:[
+          "Intersection A ∩ B : éléments appartenant à A ET à B",
+          "Réunion A ∪ B : éléments appartenant à A OU à B",
+          "Ensemble vide ∅ : A ∩ B = ∅ si pas d'élément commun",
+        ],
+        ex:{q:"I = ]−1 ; 3] et J = [0 ; 4[",
+            a:r`I\cap J=]0\,;3]\qquad I\cup J=]-1\,;4[`}},
+    ]},
+    { emoji:"|·|", label:"Distance", color:"#7C3AED", light:"#F5F3FF", rules:[
+      { id:"d1",num:"5",title:"Distance entre deux réels",
+        fml:r`d(a,b)=|b-a|=|a-b|`,
+        blt:[
+          "La distance est toujours positive ou nulle",
+          "|b − a| = b − a si b ≥ a,  ou  a − b si a ≥ b",
+        ],
+        ex:{q:"Distance entre −1,5 et 4",
+            a:r`|4-(-1{,}5)|=|5{,}5|=5{,}5`}},
+      { id:"d2",num:"6",title:"Valeur absolue et intervalles",
+        fml:r`|x-a|\leq r \Leftrightarrow x\in[a-r\ ;\ a+r]`,
+        blt:[
+          "|x| est la distance entre x et 0",
+          "|x − a| ≤ r : x est à distance au plus r de a",
+        ],
+        tip:"Interprétation géométrique : x est dans l'intervalle centré en a de rayon r",
+        ex:{q:"Résoudre |x − 5| ≤ 2",
+            a:r`|x-5|\leq2\Leftrightarrow x\in[5-2\,;\,5+2]=[3\,;\,7]`}},
+    ]},
+    { emoji:"🏋️", label:"S\'entraîner", color:"#0F172A", light:"#F1F5F9", isPractice:true,
+      practices:[
+        {sub:"ensembles_nombres", label:"Ensembles de nombres",  emoji:"🔢", cat:"numerique"},
+        {sub:"intervalles",       label:"Intervalles",           emoji:"[·]", cat:"numerique"},
+      ]},
+  ];
+
+  const sec=SECS[secIdx]; const col=sec.color;
+  return (
+    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"var(--am-bg-light)"}}>
+      <div style={{background:`linear-gradient(135deg,${col},${col}CC)`,padding:"14px 18px 0",flexShrink:0}}>
+        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:10}}>
+          <button onClick={onBack} style={{background:"rgba(255,255,255,.2)",border:"none",
+            cursor:"pointer",color:"#fff",fontSize:14,borderRadius:99,
+            width:30,height:30,display:"flex",alignItems:"center",justifyContent:"center"}}>✕</button>
+          <div>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,color:"#fff"}}>Nombres réels</div>
+            <div style={{fontSize:10,color:"rgba(255,255,255,.7)"}}>📚 Cours interactif · Chapitre 1</div>
+          </div>
+        </div>
+        <div ref={tabsRef} style={{display:"flex",gap:6,overflowX:"auto",paddingBottom:12,scrollbarWidth:"none"}}>
+          {SECS.map((s,i)=>(
+            <button key={i} onClick={()=>{setSecIdx(i);setOpenMap({});}}
+              style={{border:"none",borderRadius:99,padding:"6px 13px",cursor:"pointer",
+                whiteSpace:"nowrap",flexShrink:0,fontFamily:"'Nunito',sans-serif",
+                fontWeight:700,fontSize:11.5,transition:"all .15s",
+                background:secIdx===i?"#fff":"rgba(255,255,255,.2)",
+                color:secIdx===i?col:"rgba(255,255,255,.85)"}}>
+              {s.emoji} {s.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div style={{flex:1,overflowY:"auto",padding:"12px 14px 24px"}}>
+        {sec.isPractice ? (
+          <div>
+            <div style={{background:"#F8FAFC",borderRadius:14,padding:"14px 15px",marginBottom:14,
+              fontSize:12.5,color:"#475569",lineHeight:1.6,border:"1px solid #E2E8F0"}}>
+              Lance un thème pour t\'entraîner directement sur les questions de l\'app !
+            </div>
+            {sec.practices.map(p=>(
+              <button key={p.sub} onClick={()=>onStartPractice&&onStartPractice(p.cat,p.sub)}
+                style={{width:"100%",background:"#fff",border:"2px solid #E2E8F0",
+                  borderRadius:16,padding:"14px 16px",marginBottom:10,
+                  cursor:onStartPractice?"pointer":"default",
+                  display:"flex",alignItems:"center",gap:14,textAlign:"left",
+                  boxShadow:"0 2px 10px rgba(0,0,0,.06)"}}>
+                <span style={{fontSize:26,flexShrink:0}}>{p.emoji}</span>
+                <div style={{flex:1}}>
+                  <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:"#1E293B"}}>{p.label}</div>
+                  <div style={{fontSize:11,color:"#94A3B8",marginTop:2}}>Questions · S\'entraîner</div>
+                </div>
+                {onStartPractice&&<span style={{color:"#6366F1",fontWeight:800,fontSize:13}}>Lancer →</span>}
+              </button>
+            ))}
+          </div>
+        ) : sec.rules.map((rl,i)=>{
+          const k=`${secIdx}_${i}`; const expanded=isOpen(k,i===0);
+          return (
+            <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
+              overflow:"hidden",boxShadow:"0 2px 14px rgba(0,0,0,.07)",borderLeft:`4px solid ${col}`}}>
+              <div onClick={()=>tog(k)} style={{display:"flex",alignItems:"center",gap:10,
+                padding:"13px 15px",cursor:"pointer",userSelect:"none"}}>
+                <div style={{width:30,height:30,borderRadius:"50%",background:col,color:"#fff",
+                  display:"flex",alignItems:"center",justifyContent:"center",
+                  fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
+                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}</div>
+                <span style={{color:"#94A3B8",fontSize:11,display:"block",
+                  transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
+              </div>
+              {expanded&&(
+                <div style={{padding:"0 15px 15px"}}>
+                  {rl.fml&&<div style={{background:sec.light,borderRadius:13,padding:"14px 12px",
+                    margin:"8px 0",textAlign:"center",overflowX:"auto"}}><M tex={rl.fml}/></div>}
+                  {(rl.blt||[]).map((b,j)=>(
+                    <div key={j} style={{display:"flex",gap:7,padding:"3px 0",fontSize:12.5,color:"#475569",lineHeight:1.4}}>
+                      <span style={{color:col,fontWeight:700,flexShrink:0}}>•</span><span>{b}</span>
+                    </div>
+                  ))}
+                  {rl.tip&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
+                    fontSize:12,fontWeight:600,color:"#713F12",
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>{rl.tip}</div>}
+                  {rl.ex&&(
+                    <div style={{background:"#F8FAFC",borderRadius:12,padding:"12px 13px",
+                      marginTop:10,borderLeft:`3px solid ${col}`}}>
+                      <div style={{fontSize:10,fontWeight:800,color:col,textTransform:"uppercase",
+                        letterSpacing:".7px",marginBottom:5}}>Exemple</div>
+                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>{rl.ex.q}</div>
+                      <div style={{textAlign:"center",overflowX:"auto"}}><M tex={rl.ex.a}/></div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+
 function BottomNav({screen, onTab}) {
   const BAC_NEW = 1781827200000;
   const tabs = [
     {id:"home",      emoji:"🏠", label:"Accueil",     active:screen==="dashboard"||screen==="home"},
-    {id:"apprendre", emoji:"📖", label:"Apprendre",   active:screen==="flashcard_setup"||screen==="flashcards"||screen==="apprendre"||screen==="cours"||screen==="cours_pourcentages"||screen==="cours_calcul"},
+    {id:"apprendre", emoji:"📖", label:"Apprendre",   active:screen==="flashcard_setup"||screen==="flashcards"||screen==="apprendre"||screen==="cours"||screen==="cours_pourcentages"||screen==="cours_calcul"||screen==="cours_reels"},
     {id:"train",     emoji:"💪", label:"S'entraîner", active:screen==="training_modes"},
     {id:"bac",       emoji:"🎯", label:"Bac",         badge:Date.now()<BAC_NEW, active:screen==="bac_subjects"},
     {id:"parcours",  emoji:"📊", label:"Parcours",    active:screen==="parcours_detail"||screen==="collection"||screen==="vigilance"},
@@ -25829,7 +26014,7 @@ function AutoMaths() {
   );
 
   const NAV_SCREENS = new Set(["dashboard","home","flashcard_setup","training_modes",
-    "bac_subjects","parcours_detail","collection","vigilance","cours","cours_pourcentages","cours_calcul","apprendre"]);
+    "bac_subjects","parcours_detail","collection","vigilance","cours","cours_pourcentages","cours_calcul","cours_reels","apprendre"]);
   const showBottomNav = NAV_SCREENS.has(screen);
   const hNavTab = (tabId) => {
     if      (tabId==="home")      setScreen(profile?"dashboard":"home");
@@ -25948,6 +26133,7 @@ function AutoMaths() {
           {screen==="cours"             && <CoursListScreen onBack={()=>setScreen("apprendre")} onSelectCours={id=>setScreen("cours_"+id)}/>}
           {screen==="cours_pourcentages" && <CoursMathScreen onBack={()=>setScreen("cours")} onStartPractice={hStartPractice} onOpen={()=>plsbl("Cours ouvert", {cours:"pourcentages"})}/>}
           {screen==="cours_calcul"        && <CoursMathCalcul  onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
+          {screen==="cours_reels"         && <CoursMathReels   onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="flashcard_setup" && <FlashcardSetupScreen onBack={()=>setScreen(profile?"dashboard":"home")} onStart={(cards)=>{ setPool(cards); plsbl("Flashcards lancées", {cartes: cards.length}); setScreen("flashcards"); }}/>}
           {screen==="flashcards"    && <FlashcardScreen cards={pool} onBack={()=>setScreen("flashcard_setup")}/>}
           {screen==="mission_theme" && missionTheme && <MissionThemeScreen theme={missionTheme} missionId={missionId} onBack={()=>setScreen("mission_select")} onStart={(qs, themeId)=>{
