@@ -24571,6 +24571,12 @@ const COURS_CATALOG = [
     chapitres:4, color:"#DB2777",
     desc:"Proportions · CM · Évolutions successives · Taux réciproque",
   },
+  { id:"calcul", emoji:"🔢",
+    title:"Calcul numérique",
+    niveaux:["2nde","1ère TC","1ère Techno","1ère Spé"],
+    chapitres:4, color:"#7C3AED",
+    desc:"Fractions · Divisibilité · Puissances & notation scientifique · Racines carrées",
+  },
 ];
 
 function CoursListScreen({onBack,onSelectCours}) {
@@ -24629,7 +24635,7 @@ function CoursListScreen({onBack,onSelectCours}) {
   );
 }
 
-function CoursMathScreen({onBack, onOpen}) {
+function CoursMathScreen({onBack, onOpen, onStartPractice}) {
   const [secIdx, setSecIdx] = React.useState(0);
   React.useEffect(()=>{ if(onOpen) onOpen(); }, []);
   const [openMap, setOpenMap] = React.useState({});
@@ -24714,6 +24720,13 @@ function CoursMathScreen({onBack, onOpen}) {
         blt:["+20% ↔ −16,7%  (×1,2 → 1/1,2)","+25% ↔ −20%    (×1,25 → 0,8)",
              "+50% ↔ −33,3%  (×1,5 → 0,667)","−20% ↔ +25%   (×0,8 → 1,25)","−50% ↔ +100% (×0,5 → 2)"]},
     ]},
+    { emoji:"🏋️", label:"S'entraîner", color:"#0F172A", light:"#F1F5F9", isPractice:true,
+      practices:[
+        {sub:"proportions",           label:"Proportions",              emoji:"📊", cat:"pourcentages"},
+        {sub:"taux_cm",               label:"Taux ↔ Coefficient mult.", emoji:"📈", cat:"pourcentages"},
+        {sub:"evolutions_successives",label:"Évolutions successives",   emoji:"🔗", cat:"pourcentages"},
+        {sub:"evolution_reciproque",  label:"Taux réciproque",          emoji:"🔄", cat:"pourcentages"},
+      ]},
   ];
 
   const sec = SECS[secIdx];
@@ -24745,7 +24758,30 @@ function CoursMathScreen({onBack, onOpen}) {
         </div>
       </div>
       <div style={{flex:1,overflowY:"auto",padding:"12px 14px 24px"}}>
-        {sec.rules.map((rl,i)=>{
+        {sec.isPractice ? (
+          <div>
+            <div style={{background:"#F8FAFC",borderRadius:14,padding:"14px 15px",marginBottom:14,
+              fontSize:12.5,color:"#475569",lineHeight:1.6,border:"1px solid #E2E8F0"}}>
+              Retrouve ici les QCM de l'application correspondant à ce chapitre.
+              Lance un thème pour t'entraîner directement !
+            </div>
+            {sec.practices.map(p=>(
+              <button key={p.sub} onClick={()=>onStartPractice&&onStartPractice(p.cat,p.sub)}
+                style={{width:"100%",background:"#fff",border:"2px solid #E2E8F0",
+                  borderRadius:16,padding:"14px 16px",marginBottom:10,
+                  cursor:onStartPractice?"pointer":"default",
+                  display:"flex",alignItems:"center",gap:14,textAlign:"left",
+                  boxShadow:"0 2px 10px rgba(0,0,0,.06)"}}>
+                <span style={{fontSize:26,flexShrink:0}}>{p.emoji}</span>
+                <div style={{flex:1}}>
+                  <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:"#1E293B"}}>{p.label}</div>
+                  <div style={{fontSize:11,color:"#94A3B8",marginTop:2}}>Questions · S'entraîner</div>
+                </div>
+                {onStartPractice&&<span style={{color:"#6366F1",fontWeight:800,fontSize:13}}>Lancer →</span>}
+              </button>
+            ))}
+          </div>
+        ) : sec.rules.map((rl,i)=>{
           const k=`${secIdx}_${i}`;
           const expanded=isOpen(k,i===0);
           return (
@@ -24811,6 +24847,180 @@ function CoursMathScreen({onBack, onOpen}) {
             </div>
           );
         })}
+        )}
+      </div>
+    </div>
+  );
+}
+
+
+// ── CoursMathCalcul — Calcul numérique (Chapitre 0) ──────────────────────────
+function CoursMathCalcul({onBack, onStartPractice}) {
+  const [secIdx, setSecIdx] = React.useState(0);
+  const [openMap, setOpenMap] = React.useState({});
+  const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
+  const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
+  const tabsRef = React.useRef();
+  React.useEffect(()=>{
+    if(!tabsRef.current) return;
+    const btn=tabsRef.current.children[secIdx];
+    if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  },[secIdx]);
+
+  const SECS=[
+    { emoji:"🔢", label:"Fractions", color:"#DB2777", light:"#FDF2F8", rules:[
+      { id:"f1",num:"1",title:"Simplifier / Comparer",
+        fml:r`\dfrac{a}{b}=\dfrac{a\times k}{b\times k} \qquad \dfrac{a}{b}=\dfrac{c}{d}\Leftrightarrow a\times d=b\times c`,
+        blt:["Pour simplifier : diviser numérateur et dénominateur par leur PGCD","Produit en croix pour vérifier l'égalité de deux fractions"],
+        tip:"Ne pas confondre simplification et réduction au même dénominateur",
+        ex:{q:"Simplifier 18/45",a:r`\text{PGCD}(18,45)=9\Rightarrow\dfrac{18}{45}=\dfrac{2}{5}`}},
+      { id:"f2",num:"2",title:"Additionner / Soustraire",
+        fml:r`\dfrac{a}{b}+\dfrac{c}{d}=\dfrac{a\times d+b\times c}{b\times d}`,
+        tip:"Réduire au même dénominateur avant d'additionner les numérateurs",
+        ex:{q:"Calculer 3/4 + 5/6",a:r`\dfrac{3\times6+4\times5}{24}=\dfrac{38}{24}=\dfrac{19}{12}`}},
+      { id:"f3",num:"3",title:"Multiplier / Diviser",
+        fml:r`\dfrac{a}{b}\times\dfrac{c}{d}=\dfrac{a\times c}{b\times d}\qquad\dfrac{a}{b}\div\dfrac{c}{d}=\dfrac{a}{b}\times\dfrac{d}{c}`,
+        tip:"⚠️ L'inverse de a/b est b/a — ne pas confondre avec l'opposé −a/b",
+        ex:{q:"Calculer (2/3) ÷ (4/9)",a:r`\dfrac{2}{3}\times\dfrac{9}{4}=\dfrac{18}{12}=\dfrac{3}{2}`}},
+    ]},
+    { emoji:"🔍", label:"Divisibilité", color:"#0891B2", light:"#ECFEFF", rules:[
+      { id:"d1",num:"4",title:"Critères de divisibilité",
+        fml:null,
+        blt:["Par 2 : chiffre des unités pair (0,2,4,6,8)","Par 3 : somme des chiffres divisible par 3",
+             "Par 4 : 2 derniers chiffres divisibles par 4","Par 5 : unités = 0 ou 5",
+             "Par 9 : somme des chiffres divisible par 9","Par 10 : chiffre des unités = 0"],
+        ex:{q:"76 : divisible par 2 ? 3 ? 4 ?",a:r`\text{Unités}=6\ (\text{pair})\Rightarrow\div2\ ✓\quad 7+6=13\ \not\div3\ ✗\quad 76=4\times19\Rightarrow\div4\ ✓`}},
+      { id:"d2",num:"4b",title:"Nombre premier",
+        fml:null,
+        blt:["Un nombre premier admet exactement 2 diviseurs : 1 et lui-même",
+             "1 n'est PAS un nombre premier","Premiers < 20 : 2, 3, 5, 7, 11, 13, 17, 19"],
+        tip:"Pour tester si n est premier : diviser par tous les premiers jusqu'à √n",
+        ex:{q:"Décomposer 330 en facteurs premiers",a:r`330=2\times3\times5\times11`}},
+    ]},
+    { emoji:"⚡", label:"Puissances", color:"#7C3AED", light:"#F5F3FF", rules:[
+      { id:"p1",num:"5",title:"Propriétés des puissances",
+        fml:r`a^n\times a^m=a^{n+m}\quad a^n\div a^m=a^{n-m}\quad(a^n)^m=a^{n\times m}`,
+        blt:["(a×b)ⁿ = aⁿ × bⁿ","a⁻ⁿ = 1/aⁿ  ·  a⁰ = 1"],
+        tip:"⚠️ a⁻ⁿ ≠ −aⁿ   et   (a+b)ⁿ ≠ aⁿ + bⁿ",
+        ex:{q:"Simplifier (3¹ × 3²) / 3¹",a:r`3^{1+2-1}=3^2=9`}},
+      { id:"p2",num:"6",title:"Notation scientifique",
+        fml:r`a\times10^n \quad\text{avec }1\leq a<10,\ n\in\mathbb{Z}`,
+        blt:["n > 0 → grand nombre  ·  n < 0 → petit nombre"],
+        ex:{q:"Écrire 0,00094 en notation scientifique",a:r`9{,}4\times10^{-4}`}},
+    ]},
+    { emoji:"√", label:"Racines", color:"#059669", light:"#F0FDF4", rules:[
+      { id:"r1",num:"7",title:"Définition et carrés parfaits",
+        fml:r`(\sqrt{a})^2=a\quad\text{définie pour }a\geq0`,
+        blt:["√4=2 · √9=3 · √16=4 · √25=5 · √36=6","√49=7 · √64=8 · √81=9 · √100=10 · √121=11 · √144=12 · √169=13"],
+        ex:{q:"Calculer √169",a:r`13^2=169\Rightarrow\sqrt{169}=13`}},
+      { id:"r2",num:"8",title:"Racine et valeur absolue",
+        fml:r`\sqrt{a^2}=|a|\quad\begin{cases}=a&\text{si }a\geq0\\=-a&\text{si }a<0\end{cases}`,
+        tip:"⚠️ √(−5)² = 5 (pas −5) — la racine carrée est toujours positive",
+        ex:{q:"Calculer √(−5)²",a:r`\sqrt{(-5)^2}=\sqrt{25}=5=|-5|`}},
+      { id:"r3",num:"9",title:"Opérations sur les racines",
+        fml:r`\sqrt{a\times b}=\sqrt{a}\times\sqrt{b}\qquad\dfrac{\sqrt{a}}{\sqrt{b}}=\sqrt{\dfrac{a}{b}}`,
+        tip:"⚠️ En général : √(a+b) ≠ √a + √b",
+        ex:{q:"Simplifier √48",a:r`\sqrt{48}=\sqrt{16\times3}=4\sqrt{3}`}},
+    ]},
+    { emoji:"🏋️", label:"S\'entraîner", color:"#0F172A", light:"#F1F5F9", isPractice:true,
+      practices:[
+        {sub:"fractions",   label:"Fractions",             emoji:"🔢", cat:"numerique"},
+        {sub:"puissances",  label:"Puissances",            emoji:"⚡", cat:"numerique"},
+        {sub:"scientifique",label:"Écriture scientifique", emoji:"🔬", cat:"numerique"},
+        {sub:"racines",     label:"Racines carrées",       emoji:"√",  cat:"numerique"},
+        {sub:"relatifs",    label:"Nombres relatifs",      emoji:"±",  cat:"numerique"},
+      ]},
+  ];
+
+  const sec=SECS[secIdx]; const col=sec.color;
+  return (
+    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"var(--am-bg-light)"}}>
+      <div style={{background:`linear-gradient(135deg,${col},${col}CC)`,padding:"14px 18px 0",flexShrink:0}}>
+        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:10}}>
+          <button onClick={onBack} style={{background:"rgba(255,255,255,.2)",border:"none",
+            cursor:"pointer",color:"#fff",fontSize:14,borderRadius:99,
+            width:30,height:30,display:"flex",alignItems:"center",justifyContent:"center"}}>✕</button>
+          <div>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,color:"#fff"}}>Calcul numérique</div>
+            <div style={{fontSize:10,color:"rgba(255,255,255,.7)"}}>📚 Cours interactif · Chapitre 0</div>
+          </div>
+        </div>
+        <div ref={tabsRef} style={{display:"flex",gap:6,overflowX:"auto",paddingBottom:12,scrollbarWidth:"none"}}>
+          {SECS.map((s,i)=>(
+            <button key={i} onClick={()=>{setSecIdx(i);setOpenMap({});}}
+              style={{border:"none",borderRadius:99,padding:"6px 13px",cursor:"pointer",
+                whiteSpace:"nowrap",flexShrink:0,fontFamily:"'Nunito',sans-serif",
+                fontWeight:700,fontSize:11.5,transition:"all .15s",
+                background:secIdx===i?"#fff":"rgba(255,255,255,.2)",
+                color:secIdx===i?col:"rgba(255,255,255,.85)"}}>
+              {s.emoji} {s.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div style={{flex:1,overflowY:"auto",padding:"12px 14px 24px"}}>
+        {sec.isPractice ? (
+          <div>
+            <div style={{background:"#F8FAFC",borderRadius:14,padding:"14px 15px",marginBottom:14,
+              fontSize:12.5,color:"#475569",lineHeight:1.6,border:"1px solid #E2E8F0"}}>
+              Retrouve ici les QCM correspondant à ce chapitre. Lance un thème pour t\'entraîner !
+            </div>
+            {sec.practices.map(p=>(
+              <button key={p.sub} onClick={()=>onStartPractice&&onStartPractice(p.cat,p.sub)}
+                style={{width:"100%",background:"#fff",border:"2px solid #E2E8F0",
+                  borderRadius:16,padding:"14px 16px",marginBottom:10,
+                  cursor:onStartPractice?"pointer":"default",
+                  display:"flex",alignItems:"center",gap:14,textAlign:"left",
+                  boxShadow:"0 2px 10px rgba(0,0,0,.06)"}}>
+                <span style={{fontSize:26,flexShrink:0}}>{p.emoji}</span>
+                <div style={{flex:1}}>
+                  <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:"#1E293B"}}>{p.label}</div>
+                  <div style={{fontSize:11,color:"#94A3B8",marginTop:2}}>Questions · S\'entraîner</div>
+                </div>
+                {onStartPractice&&<span style={{color:"#6366F1",fontWeight:800,fontSize:13}}>Lancer →</span>}
+              </button>
+            ))}
+          </div>
+        ) : sec.rules.map((rl,i)=>{
+          const k=`${secIdx}_${i}`; const expanded=isOpen(k,i===0);
+          return (
+            <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
+              overflow:"hidden",boxShadow:"0 2px 14px rgba(0,0,0,.07)",borderLeft:`4px solid ${col}`}}>
+              <div onClick={()=>tog(k)} style={{display:"flex",alignItems:"center",gap:10,
+                padding:"13px 15px",cursor:"pointer",userSelect:"none"}}>
+                <div style={{width:30,height:30,borderRadius:"50%",background:col,color:"#fff",
+                  display:"flex",alignItems:"center",justifyContent:"center",
+                  fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
+                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}</div>
+                <span style={{color:"#94A3B8",fontSize:11,display:"block",
+                  transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
+              </div>
+              {expanded&&(
+                <div style={{padding:"0 15px 15px"}}>
+                  {rl.fml&&<div style={{background:sec.light,borderRadius:13,padding:"14px 12px",
+                    margin:"8px 0",textAlign:"center",overflowX:"auto"}}><M tex={rl.fml}/></div>}
+                  {(rl.blt||[]).map((b,j)=>(
+                    <div key={j} style={{display:"flex",gap:7,padding:"3px 0",fontSize:12.5,color:"#475569",lineHeight:1.4}}>
+                      <span style={{color:col,fontWeight:700,flexShrink:0}}>•</span><span>{b}</span>
+                    </div>
+                  ))}
+                  {rl.tip&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
+                    fontSize:12,fontWeight:600,color:"#713F12",
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>{rl.tip}</div>}
+                  {rl.ex&&(
+                    <div style={{background:"#F8FAFC",borderRadius:12,padding:"12px 13px",
+                      marginTop:10,borderLeft:`3px solid ${col}`}}>
+                      <div style={{fontSize:10,fontWeight:800,color:col,textTransform:"uppercase",
+                        letterSpacing:".7px",marginBottom:5}}>Exemple</div>
+                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>{rl.ex.q}</div>
+                      <div style={{textAlign:"center",overflowX:"auto"}}><M tex={rl.ex.a}/></div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
@@ -24821,7 +25031,7 @@ function BottomNav({screen, onTab}) {
   const BAC_NEW = 1781827200000;
   const tabs = [
     {id:"home",      emoji:"🏠", label:"Accueil",     active:screen==="dashboard"||screen==="home"},
-    {id:"apprendre", emoji:"📖", label:"Apprendre",   active:screen==="flashcard_setup"||screen==="flashcards"||screen==="apprendre"||screen==="cours"||screen==="cours_pourcentages"},
+    {id:"apprendre", emoji:"📖", label:"Apprendre",   active:screen==="flashcard_setup"||screen==="flashcards"||screen==="apprendre"||screen==="cours"||screen==="cours_pourcentages"||screen==="cours_calcul"},
     {id:"train",     emoji:"💪", label:"S'entraîner", active:screen==="training_modes"},
     {id:"bac",       emoji:"🎯", label:"Bac",         badge:Date.now()<BAC_NEW, active:screen==="bac_subjects"},
     {id:"parcours",  emoji:"📊", label:"Parcours",    active:screen==="parcours_detail"||screen==="collection"||screen==="vigilance"},
@@ -25619,7 +25829,7 @@ function AutoMaths() {
   );
 
   const NAV_SCREENS = new Set(["dashboard","home","flashcard_setup","training_modes",
-    "bac_subjects","parcours_detail","collection","vigilance","cours","cours_pourcentages","apprendre"]);
+    "bac_subjects","parcours_detail","collection","vigilance","cours","cours_pourcentages","cours_calcul","apprendre"]);
   const showBottomNav = NAV_SCREENS.has(screen);
   const hNavTab = (tabId) => {
     if      (tabId==="home")      setScreen(profile?"dashboard":"home");
@@ -25736,7 +25946,8 @@ function AutoMaths() {
           }}/>}
           {screen==="apprendre"         && <ApprendreHubScreen onMode={hMode}/>}
           {screen==="cours"             && <CoursListScreen onBack={()=>setScreen("apprendre")} onSelectCours={id=>setScreen("cours_"+id)}/>}
-          {screen==="cours_pourcentages" && <CoursMathScreen onBack={()=>setScreen("cours")} onOpen={()=>plsbl("Cours ouvert", {cours:"pourcentages"})}/>}
+          {screen==="cours_pourcentages" && <CoursMathScreen onBack={()=>setScreen("cours")} onStartPractice={hStartPractice} onOpen={()=>plsbl("Cours ouvert", {cours:"pourcentages"})}/>}
+          {screen==="cours_calcul"        && <CoursMathCalcul  onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="flashcard_setup" && <FlashcardSetupScreen onBack={()=>setScreen(profile?"dashboard":"home")} onStart={(cards)=>{ setPool(cards); plsbl("Flashcards lancées", {cartes: cards.length}); setScreen("flashcards"); }}/>}
           {screen==="flashcards"    && <FlashcardScreen cards={pool} onBack={()=>setScreen("flashcard_setup")}/>}
           {screen==="mission_theme" && missionTheme && <MissionThemeScreen theme={missionTheme} missionId={missionId} onBack={()=>setScreen("mission_select")} onStart={(qs, themeId)=>{
