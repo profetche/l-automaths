@@ -1,4 +1,4 @@
-const CACHE_VERSION = 91;
+const CACHE_VERSION = 90;
 const CACHE_NAME = `automaths-v${CACHE_VERSION}`;
 
 const ASSETS = [
@@ -30,23 +30,13 @@ self.addEventListener('activate', event => {
 // Fetch : network-first, fallback cache
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
-  // Ignorer les schémas non-HTTP (chrome-extension://, etc.)
-  if (!event.request.url.startsWith('http')) return;
-
   event.respondWith(
     fetch(event.request)
       .then(response => {
-        // Ne mettre en cache que les réponses valides
-        if (response && response.status === 200) {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
-        }
+        const clone = response.clone();
+        caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
         return response;
       })
-      .catch(() =>
-        caches.match(event.request).then(cached =>
-          cached || new Response('', { status: 503, statusText: 'Offline' })
-        )
-      )
+      .catch(() => caches.match(event.request))
   );
 });
