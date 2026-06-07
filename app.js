@@ -25904,7 +25904,460 @@ function CoursMathLitteral({onBack, onStartPractice}) {
         ex:{q:"Factoriser 16 − (x−3)²",
             a:r`(4)^2-(x-3)^2=(4+x-3)(4-x+3)=(x+1)(7-x)`}},
       { id:"f3",num:"7",title:"Identités remarquables à l'envers",
-        fml:r`a^2+2ab+b^2=(a+b)^2 \qquad a^2-2ab+b^2=(a-b)^2`,
+        fml:r`\displaylines{a^2+2ab+b^2=(a+b)^2 \\ a^2-2ab+b^2=(a-b)^2}`,
+        blt:[
+          "Reconnaître le carré parfait : terme du milieu = 2×√(1er terme)×√(dernier terme)",
+          "Vérifier que le 1er et le dernier termes sont des carrés parfaits",
+        ],
+        ex:{q:"Factoriser 4x² − 12x + 9",
+            a:r`(2x)^2-2\times2x\times3+3^2=(2x-3)^2`}},
+    ]},
+    { emoji:"➗", label:"Fractions littérales", color:"#059669", light:"#F0FDF4", rules:[
+      { id:"fl1",num:"8",title:"Mise au même dénominateur",
+        fml:r`\dfrac{a}{b}+\dfrac{c}{d}=\dfrac{a\times d}{b\times d}+\dfrac{c\times b}{d\times b}=\dfrac{ad+cb}{bd}`,
+        blt:[
+          "Trouver un dénominateur commun (produit des dénominateurs ou PPCM)",
+          "Multiplier numérateur et dénominateur de chaque fraction par le bon facteur",
+          "Additionner les numérateurs en gardant le dénominateur commun",
+          "Simplifier le résultat si possible",
+        ],
+        tip:"⚠️ Ne jamais additionner les dénominateurs ! Seuls les numérateurs s'additionnent",
+        ex:{q:"Réduire A = 7x/(x−2) − 5/(3−x)",
+            a:r`\dfrac{7x(3-x)-5(x-2)}{(x-2)(3-x)}=\dfrac{21x-7x^2-5x+10}{(x-2)(3-x)}=\dfrac{-7x^2+16x+10}{(x-2)(3-x)}`}},
+    ]},
+    { emoji:"🏋️", label:"S\'entraîner", color:"#0F172A", light:"#F1F5F9", isPractice:true,
+      practices:[
+        {sub:"developpement",  label:"Développement (distributivité)",   emoji:"✖️", cat:"litteral"},
+        {sub:"id_remarquables",label:"Identités remarquables",           emoji:"🔲", cat:"litteral"},
+        {sub:"facto_commun",   label:"Factoriser — facteur commun",      emoji:"🔧", cat:"litteral"},
+        {sub:"facto_id",       label:"Factoriser — identités rem.",      emoji:"🔲", cat:"litteral"},
+        {sub:"manipulation",   label:"Manipulation de formules",         emoji:"➗", cat:"litteral"},
+      ]},
+  ];
+
+  const sec=SECS[secIdx]; const col=sec.color;
+  return (
+    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"var(--am-bg-light)"}}>
+      <div style={{background:`linear-gradient(135deg,${col},${col}CC)`,padding:"14px 18px 0",flexShrink:0}}>
+        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:10}}>
+          <button onClick={onBack} style={{background:"rgba(255,255,255,.2)",border:"none",
+            cursor:"pointer",color:"#fff",fontSize:14,borderRadius:99,
+            width:30,height:30,display:"flex",alignItems:"center",justifyContent:"center"}}>✕</button>
+          <div>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,color:"#fff"}}>Calcul littéral</div>
+            <div style={{fontSize:10,color:"rgba(255,255,255,.7)"}}>📚 Cours interactif · Chapitre 6</div>
+          </div>
+        </div>
+        <div ref={tabsRef} style={{display:"flex",gap:6,overflowX:"auto",paddingBottom:12,scrollbarWidth:"none"}}>
+          {SECS.map((s,i)=>(
+            <button key={i} onClick={()=>{setSecIdx(i);setOpenMap({});}}
+              style={{border:"none",borderRadius:99,padding:"6px 13px",cursor:"pointer",
+                whiteSpace:"nowrap",flexShrink:0,fontFamily:"'Nunito',sans-serif",
+                fontWeight:700,fontSize:11.5,transition:"all .15s",
+                background:secIdx===i?"#fff":"rgba(255,255,255,.2)",
+                color:secIdx===i?col:"rgba(255,255,255,.85)"}}>
+              {s.emoji} {s.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div style={{flex:1,overflowY:"auto",padding:"12px 14px 24px"}}>
+        {sec.isPractice ? (
+          <div>
+            <div style={{background:"#F8FAFC",borderRadius:14,padding:"14px 15px",marginBottom:14,
+              fontSize:12.5,color:"#475569",lineHeight:1.6,border:"1px solid #E2E8F0"}}>
+              Lance un thème pour t\'entraîner directement sur les questions de l\'app !
+            </div>
+            {sec.practices.map(p=>(
+              <button key={p.sub} onClick={()=>onStartPractice&&onStartPractice(p.cat,p.sub)}
+                style={{width:"100%",background:"#fff",border:"2px solid #E2E8F0",
+                  borderRadius:16,padding:"14px 16px",marginBottom:10,
+                  cursor:onStartPractice?"pointer":"default",
+                  display:"flex",alignItems:"center",gap:14,textAlign:"left",
+                  boxShadow:"0 2px 10px rgba(0,0,0,.06)"}}>
+                <span style={{fontSize:26,flexShrink:0}}>{p.emoji}</span>
+                <div style={{flex:1}}>
+                  <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:"#1E293B"}}>{p.label}</div>
+                  <div style={{fontSize:11,color:"#94A3B8",marginTop:2}}>Questions · S\'entraîner</div>
+                </div>
+                {onStartPractice&&<span style={{color:"#6366F1",fontWeight:800,fontSize:13}}>Lancer →</span>}
+              </button>
+            ))}
+          </div>
+        ) : sec.rules.map((rl,i)=>{
+          const k=`${secIdx}_${i}`; const expanded=isOpen(k,i===0);
+          return (
+            <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
+              overflow:"hidden",boxShadow:"0 2px 14px rgba(0,0,0,.07)",borderLeft:`4px solid ${col}`}}>
+              <div onClick={()=>tog(k)} style={{display:"flex",alignItems:"center",gap:10,
+                padding:"13px 15px",cursor:"pointer",userSelect:"none"}}>
+                <div style={{width:30,height:30,borderRadius:"50%",background:col,color:"#fff",
+                  display:"flex",alignItems:"center",justifyContent:"center",
+                  fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
+                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}</div>
+                <span style={{color:"#94A3B8",fontSize:11,display:"block",
+                  transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
+              </div>
+              {expanded&&(
+                <div style={{padding:"0 15px 15px"}}>
+                  {rl.fml&&<div style={{background:sec.light,borderRadius:13,padding:"14px 12px",
+                    margin:"8px 0",textAlign:"center",overflowX:"auto"}}><M tex={rl.fml}/></div>}
+                  {rl.svgDiag&&<div style={{margin:"8px 0",borderRadius:12,overflow:"hidden"}} dangerouslySetInnerHTML={{__html:rl.svgDiag}}/>}
+                  {(rl.blt||[]).map((b,j)=>(
+                    <div key={j} style={{display:"flex",gap:7,padding:"3px 0",fontSize:12.5,color:"#475569",lineHeight:1.4}}>
+                      <span style={{color:col,fontWeight:700,flexShrink:0}}>•</span><span>{b}</span>
+                    </div>
+                  ))}
+                  {rl.tip&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
+                    fontSize:12,fontWeight:600,color:"#713F12",
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>{rl.tip}</div>}
+                  {rl.ex&&(
+                    <div style={{background:"#F8FAFC",borderRadius:12,padding:"12px 13px",
+                      marginTop:10,borderLeft:`3px solid ${col}`}}>
+                      <div style={{fontSize:10,fontWeight:800,color:col,textTransform:"uppercase",
+                        letterSpacing:".7px",marginBottom:5}}>Exemple</div>
+                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>{rl.ex.q}</div>
+                      <div style={{textAlign:"center",overflowX:"auto"}}><M tex={rl.ex.a}/></div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+
+// ── CoursMathVecteurs — Les Vecteurs (Ch. 3, 6, 14) ──────────────────────────
+function CoursMathVecteurs({onBack, onStartPractice}) {
+  const [secIdx, setSecIdx] = React.useState(0);
+  const [openMap, setOpenMap] = React.useState({});
+  const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
+  const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
+  const tabsRef = React.useRef();
+  React.useEffect(()=>{
+    if(!tabsRef.current) return;
+    const btn=tabsRef.current.children[secIdx];
+    if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  },[secIdx]);
+
+  const SV1=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 130" style="width:100%;display:block;border-radius:14px"><rect width="280" height="130" rx="14" fill="#EEF2FF" stroke="#C7D2FE" stroke-width="2"/><rect x="30" y="10" width="220" height="108" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/><line x1="44" y1="113" x2="250" y2="37" stroke="#CBD5E1" stroke-width="1.2" stroke-dasharray="5,3"/><line x1="55" y1="105" x2="220" y2="45" stroke="#6366F1" stroke-width="3" stroke-linecap="round"/><polygon points="220,45 207,50 212,60" fill="#6366F1"/><circle cx="55" cy="105" r="5" fill="#6366F1" stroke="white" stroke-width="2"/><circle cx="220" cy="45" r="5" fill="#6366F1" stroke="white" stroke-width="2"/><text x="46" y="120" font-size="11" font-weight="bold" fill="#6366F1" font-family="sans-serif">A</text><text x="224" y="42" font-size="11" font-weight="bold" fill="#6366F1" font-family="sans-serif">B</text><text x="110" y="30" font-size="9" fill="#64748B" font-family="sans-serif" font-style="italic" text-anchor="middle">direction (droite support)</text><text x="155" y="58" font-size="9" font-weight="bold" fill="#EA580C" font-family="sans-serif">sens: de A vers B →</text><line x1="55" y1="118" x2="220" y2="118" stroke="#059669" stroke-width="2"/><polygon points="220,114 227,118 220,122" fill="#059669"/><polygon points="55,114 48,118 55,122" fill="#059669"/><text x="137" y="130" font-size="9" font-weight="bold" fill="#059669" font-family="sans-serif" text-anchor="middle">‖AB‖ = norme</text></svg>`;
+  const SPA=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 150" style="width:100%;display:block;border-radius:14px"><rect width="280" height="150" rx="14" fill="#ECFEFF" stroke="#A5F3FC" stroke-width="2"/><rect x="30" y="10" width="220" height="125" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/><polygon points="55,120 155,120 185,50 85,50" fill="#F0F9FF" stroke="#CBD5E1" stroke-width="1"/><line x1="57" y1="120" x2="153" y2="120" stroke="#EA580C" stroke-width="2.5"/><polygon points="150,116 158,120 150,124" fill="#EA580C"/><line x1="87" y1="50" x2="183" y2="50" stroke="#EA580C" stroke-width="2.5"/><polygon points="180,46 188,50 180,54" fill="#EA580C"/><line x1="55" y1="118" x2="85" y2="52" stroke="#CBD5E1" stroke-width="1.5"/><line x1="155" y1="118" x2="185" y2="52" stroke="#CBD5E1" stroke-width="1.5"/><circle cx="55" cy="120" r="4" fill="#1E293B" stroke="white" stroke-width="1.5"/><circle cx="155" cy="120" r="4" fill="#1E293B" stroke="white" stroke-width="1.5"/><circle cx="185" cy="50" r="4" fill="#1E293B" stroke="white" stroke-width="1.5"/><circle cx="85" cy="50" r="4" fill="#1E293B" stroke="white" stroke-width="1.5"/><text x="44" y="135" font-size="11" font-weight="bold" fill="#1E293B" font-family="sans-serif">A</text><text x="157" y="135" font-size="11" font-weight="bold" fill="#1E293B" font-family="sans-serif">B</text><text x="189" y="48" font-size="11" font-weight="bold" fill="#1E293B" font-family="sans-serif">C</text><text x="73" y="46" font-size="11" font-weight="bold" fill="#1E293B" font-family="sans-serif">D</text><text x="103" y="133" font-size="9" font-weight="bold" fill="#EA580C" font-family="sans-serif" text-anchor="middle">AB</text><text x="135" y="45" font-size="9" font-weight="bold" fill="#EA580C" font-family="sans-serif" text-anchor="middle">DC</text><text x="142" y="110" font-size="9" fill="#0891B2" font-family="sans-serif" text-anchor="middle">AB⃗ = DC⃗</text></svg>`;
+  const SCH=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 120" style="width:100%;display:block;border-radius:14px"><rect width="280" height="120" rx="14" fill="#F0FDF4" stroke="#A7F3D0" stroke-width="2"/><rect x="30" y="10" width="220" height="95" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/><circle cx="58" cy="80" r="5" fill="#DC2626" stroke="white" stroke-width="1.5"/><circle cx="148" cy="45" r="5" fill="#2563EB" stroke="white" stroke-width="1.5"/><circle cx="228" cy="68" r="5" fill="#059669" stroke="white" stroke-width="1.5"/><text x="48" y="96" font-size="12" font-weight="bold" fill="#DC2626" font-family="sans-serif">A</text><text x="142" y="38" font-size="12" font-weight="bold" fill="#2563EB" font-family="sans-serif">B</text><text x="230" y="66" font-size="12" font-weight="bold" fill="#059669" font-family="sans-serif">C</text><line x1="63" y1="78" x2="141" y2="49" stroke="#DC2626" stroke-width="2.2"/><polygon points="139,50 147,43 150,53" fill="#DC2626"/><line x1="153" y1="47" x2="221" y2="65" stroke="#2563EB" stroke-width="2.2"/><polygon points="219,66 226,60 228,70" fill="#2563EB"/><line x1="63" y1="81" x2="221" y2="69" stroke="#059669" stroke-width="2.2" stroke-dasharray="7,3"/><polygon points="219,70 226,64 228,74" fill="#059669"/><text x="93" y="55" font-size="9" font-weight="bold" fill="#DC2626" font-family="sans-serif">AB⃗</text><text x="183" y="50" font-size="9" font-weight="bold" fill="#2563EB" font-family="sans-serif">BC⃗</text><text x="137" y="95" font-size="10" font-weight="bold" fill="#059669" font-family="sans-serif" text-anchor="middle">AB⃗ + BC⃗ = AC⃗</text></svg>`;
+  const SCO=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 160" style="width:100%;display:block;border-radius:14px"><rect width="280" height="160" rx="14" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="2"/><rect x="30" y="10" width="220" height="138" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/><g stroke="#F1F5F9" stroke-width="0.8"><line x1="80" y1="10" x2="80" y2="148"/><line x1="120" y1="10" x2="120" y2="148"/><line x1="160" y1="10" x2="160" y2="148"/><line x1="200" y1="10" x2="200" y2="148"/><line x1="30" y1="50" x2="250" y2="50"/><line x1="30" y1="90" x2="250" y2="90"/><line x1="30" y1="130" x2="250" y2="130"/></g><line x1="38" y1="130" x2="244" y2="130" stroke="#94A3B8" stroke-width="1.6"/><polygon points="243,126 250,130 243,134" fill="#94A3B8"/><line x1="80" y1="18" x2="80" y2="145" stroke="#94A3B8" stroke-width="1.6"/><polygon points="76,19 80,12 84,19" fill="#94A3B8"/><text x="246" y="134" font-size="9" fill="#64748B" font-family="sans-serif">x</text><text x="83" y="14" font-size="9" fill="#64748B" font-family="sans-serif">y</text><text x="68" y="143" font-size="9" fill="#64748B" font-family="sans-serif">O</text><line x1="80" y1="130" x2="200" y2="130" stroke="#EA580C" stroke-width="2.2" stroke-dasharray="5,3"/><line x1="200" y1="130" x2="200" y2="50" stroke="#2563EB" stroke-width="2.2" stroke-dasharray="5,3"/><line x1="80" y1="130" x2="197" y2="53" stroke="#6366F1" stroke-width="2.8"/><polygon points="194,55 200,46 205,55" fill="#6366F1"/><circle cx="80" cy="130" r="4.5" fill="#6366F1" stroke="white" stroke-width="1.5"/><circle cx="200" cy="50" r="4.5" fill="#6366F1" stroke="white" stroke-width="1.5"/><text x="207" y="46" font-size="13" font-weight="bold" fill="#6366F1" font-family="sans-serif">u⃗</text><rect x="124" y="133" width="18" height="12" rx="3" fill="white" fill-opacity="0.9"/><text x="134" y="142" font-size="10" font-weight="bold" fill="#EA580C" font-family="sans-serif" text-anchor="middle">x</text><rect x="204" y="83" width="14" height="12" rx="3" fill="white" fill-opacity="0.9"/><text x="212" y="92" font-size="10" font-weight="bold" fill="#2563EB" font-family="sans-serif" text-anchor="middle">y</text></svg>`;
+  const SAL=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 110" style="width:100%;display:block;border-radius:14px"><rect width="280" height="110" rx="14" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="2"/><rect x="30" y="10" width="220" height="88" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/><line x1="45" y1="80" x2="245" y2="35" stroke="#CBD5E1" stroke-width="1.2" stroke-dasharray="4,3"/><circle cx="60" cy="77" r="5" fill="#DC2626" stroke="white" stroke-width="1.5"/><circle cx="148" cy="57" r="5" fill="#2563EB" stroke="white" stroke-width="1.5"/><circle cx="218" cy="42" r="5" fill="#059669" stroke="white" stroke-width="1.5"/><line x1="65" y1="75" x2="142" y2="59" stroke="#DC2626" stroke-width="2.2"/><polygon points="140,60 147,53 150,63" fill="#DC2626"/><line x1="65" y1="77" x2="212" y2="44" stroke="#2563EB" stroke-width="2.2" stroke-dasharray="6,3"/><polygon points="210,45 216,38 219,48" fill="#2563EB"/><text x="50" y="94" font-size="11" font-weight="bold" fill="#DC2626" font-family="sans-serif">A</text><text x="148" y="72" font-size="11" font-weight="bold" fill="#2563EB" font-family="sans-serif">B</text><text x="220" y="57" font-size="11" font-weight="bold" fill="#059669" font-family="sans-serif">C</text><text x="93" y="60" font-size="9" font-weight="bold" fill="#DC2626" font-family="sans-serif">AB⃗</text><text x="148" y="87" font-size="9" font-weight="bold" fill="#2563EB" font-family="sans-serif">AC⃗</text><text x="145" y="103" font-size="9" fill="#64748B" font-family="sans-serif" text-anchor="middle">A,B,C alignés ⟺ det(AB⃗,AC⃗) = 0</text></svg>`;
+  const SPL=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 110" style="width:100%;display:block;border-radius:14px"><rect width="280" height="110" rx="14" fill="#F0FDF4" stroke="#A7F3D0" stroke-width="2"/><rect x="30" y="10" width="220" height="88" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/><line x1="45" y1="50" x2="175" y2="50" stroke="#DC2626" stroke-width="2.5"/><polygon points="173,46 181,50 173,54" fill="#DC2626"/><circle cx="45" cy="50" r="4" fill="#DC2626" stroke="white" stroke-width="1.5"/><circle cx="175" cy="50" r="4" fill="#DC2626" stroke="white" stroke-width="1.5"/><text x="36" y="44" font-size="11" font-weight="bold" fill="#DC2626" font-family="sans-serif">A</text><text x="178" y="44" font-size="11" font-weight="bold" fill="#DC2626" font-family="sans-serif">B</text><line x1="80" y1="78" x2="230" y2="78" stroke="#2563EB" stroke-width="2.5"/><polygon points="228,74 236,78 228,82" fill="#2563EB"/><circle cx="80" cy="78" r="4" fill="#2563EB" stroke="white" stroke-width="1.5"/><circle cx="230" cy="78" r="4" fill="#2563EB" stroke="white" stroke-width="1.5"/><text x="70" y="95" font-size="11" font-weight="bold" fill="#2563EB" font-family="sans-serif">C</text><text x="233" y="95" font-size="11" font-weight="bold" fill="#2563EB" font-family="sans-serif">D</text><text x="195" y="45" font-size="14" fill="#94A3B8" font-family="sans-serif">//</text><text x="140" y="103" font-size="9" fill="#64748B" font-family="sans-serif" text-anchor="middle">(AB) // (CD) ⟺ det(AB⃗,CD⃗) = 0</text></svg>`;
+  const SDT=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 110" style="width:100%;display:block;border-radius:14px"><rect width="280" height="110" rx="14" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="2"/><rect x="30" y="10" width="220" height="88" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/><line x1="55" y1="80" x2="135" y2="48" stroke="#DC2626" stroke-width="2.8"/><polygon points="132,49 139,42 143,52" fill="#DC2626"/><circle cx="55" cy="80" r="5" fill="#DC2626" stroke="white" stroke-width="1.5"/><text x="42" y="94" font-size="10" font-weight="bold" fill="#DC2626" font-family="sans-serif">u⃗(x;y)</text><line x1="160" y1="76" x2="230" y2="32" stroke="#2563EB" stroke-width="2.8"/><polygon points="227,33 233,26 237,36" fill="#2563EB"/><circle cx="160" cy="76" r="5" fill="#2563EB" stroke="white" stroke-width="1.5"/><text x="148" y="90" font-size="10" font-weight="bold" fill="#2563EB" font-family="sans-serif">v⃗(x';y')</text><rect x="78" y="47" width="122" height="20" rx="6" fill="#FFF1F2" stroke="#FCA5A5" stroke-width="1.5"/><text x="139" y="61" font-size="11" font-weight="bold" fill="#DC2626" font-family="sans-serif" text-anchor="middle">det = xy' − yx'</text></svg>`;
+
+  const SECS=[
+    { emoji:"↗️", label:"Définitions", color:"#6366F1", light:"#EEF2FF", rules:[
+      { id:"v1",num:"1",title:"Le vecteur AB",
+        fml:r`\overrightarrow{AB}`,
+        svgDiag:SV1,
+        bltTex:[
+          r`\textbf{Direction :}\ \text{droite support (ou droite parallèle)}`,
+          r`\textbf{Sens :}\ \text{de A vers B}`,
+          r`\textbf{Norme :}\ \|\overrightarrow{AB}\|\ \text{(longueur)}`,
+        ],
+        ex:{q:"Norme de AB avec A(1;2) et B(4;6)",
+            a:r`\|\overrightarrow{AB}\|=\sqrt{(4-1)^2+(6-2)^2}=\sqrt{9+16}=5`}},
+      { id:"v2",num:"2",title:"Égalité de vecteurs",
+        fml:r`\overrightarrow{AB}=\overrightarrow{DC}\Leftrightarrow ABCD\ \text{est un parallélogramme}`,
+        svgDiag:SPA,
+        bltTex:[
+          r`\text{Deux vecteurs sont égaux si même sens, même direction, même norme}`,
+          r`\overrightarrow{AB}=\overrightarrow{DC}\ \Leftrightarrow\ \overrightarrow{AD}=\overrightarrow{BC}`,
+        ],
+        ex:{q:"Vrai ou faux : si ABCD est un parallélogramme, AB⃗ = CD⃗ ?",
+            a:r`\text{Faux : }\overrightarrow{AB}=\overrightarrow{DC}\text{ (pas CD, le sens est inversé !)}`}},
+      { id:"v3",num:"3",title:"Vecteurs particuliers",
+        fml:null,
+        bltTex:[
+          r`\overrightarrow{AA}=\vec{0}\quad\text{(vecteur nul : A = B)}`,
+          r`-\overrightarrow{AB}=\overrightarrow{BA}\quad\text{(vecteur opposé : sens contraire)}`,
+          r`\overrightarrow{AB}+\overrightarrow{BA}=\vec{0}`,
+          r`\text{Vecteur opposé à }\vec{u}\ \text{: noté}\ -\vec{u}`,
+        ]},
+    ]},
+    { emoji:"➕", label:"Opérations", color:"#0891B2", light:"#ECFEFF", rules:[
+      { id:"o1",num:"4",title:"Relation de Chasles",
+        fml:r`\overrightarrow{AB}+\overrightarrow{BC}=\overrightarrow{AC}`,
+        svgDiag:SCH,
+        bltTex:[
+          r`\text{Pour tout point K : }\overrightarrow{AC}=\overrightarrow{AK}+\overrightarrow{KC}`,
+          r`\overrightarrow{AB}=\overrightarrow{AK}+\overrightarrow{KL}+\cdots+\overrightarrow{NB}\ \text{(autant de points qu'on veut)}`,
+          r`\overrightarrow{AB}+\overrightarrow{BC}+\overrightarrow{CA}=\vec{0}`,
+        ],
+        ex:{q:"Simplifier AM⃗ + MN⃗ + NB⃗",
+            a:r`\overrightarrow{AM}+\overrightarrow{MN}+\overrightarrow{NB}=\overrightarrow{AB}`}},
+      { id:"o2",num:"5",title:"Différence de deux vecteurs",
+        fml:r`\vec{u}-\vec{v}=\vec{u}+(-\vec{v})`,
+        bltTex:[
+          r`-\vec{v}\ \text{: même direction et norme que }\vec{v}\text{, sens contraire}`,
+          r`\overrightarrow{BA}=-\overrightarrow{AB}`,
+        ],
+        ex:{q:"Exprimer AB⃗ − AC⃗ avec la relation de Chasles",
+            a:r`\overrightarrow{AB}-\overrightarrow{AC}=\overrightarrow{AB}+\overrightarrow{CA}=\overrightarrow{CA}+\overrightarrow{AB}=\overrightarrow{CB}`}},
+      { id:"o3",num:"6",title:"Multiplication par un réel k",
+        fml:r`k\,\vec{u}`,
+        bltTex:[
+          r`k>0\ \text{: même sens que }\vec{u}\text{, norme }=k\|\vec{u}\|`,
+          r`k<0\ \text{: sens contraire à }\vec{u}\text{, norme }=|k|\|\vec{u}\|`,
+          r`k=0\ \Rightarrow\ k\vec{u}=\vec{0}`,
+        ],
+        ex:{q:"Décrire 3u⃗ et −2u⃗",
+            a:r`3\vec{u}\ \text{: même sens, norme ×3}\qquad -2\vec{u}\ \text{: sens contraire, norme ×2}`}},
+    ]},
+    { emoji:"📍", label:"Coordonnées", color:"#059669", light:"#F0FDF4", rules:[
+      { id:"c1",num:"7",title:"Coordonnées d'un vecteur",
+        fml:r`\vec{u}\begin{pmatrix}x\\y\end{pmatrix}\ \text{dans la base }(\vec{i},\vec{j})`,
+        svgDiag:SCO,
+        bltTex:[
+          r`\vec{u}+\vec{v}\ \text{a pour coordonnées}\ \begin{pmatrix}x+x'\\y+y'\end{pmatrix}`,
+          r`k\vec{u}\ \text{a pour coordonnées}\ \begin{pmatrix}kx\\ky\end{pmatrix}`,
+          r`\vec{u}=\vec{0}\Leftrightarrow x=0\ \text{et}\ y=0`,
+        ],
+        ex:{q:"u⃗(2;1) et v⃗(−4;3) : u⃗+v⃗ et 2u⃗",
+            a:r`\vec{u}+\vec{v}=\begin{pmatrix}-2\\4\end{pmatrix}\qquad 2\vec{u}=\begin{pmatrix}4\\2\end{pmatrix}`}},
+      { id:"c2",num:"8",title:"Coordonnées du vecteur AB",
+        fml:r`\overrightarrow{AB}\begin{pmatrix}x_B-x_A\\y_B-y_A\end{pmatrix}`,
+        bltTex:[
+          r`\text{Coordonnées = arrivée} - \text{départ}`,
+          r`A(x_A\,;\,y_A)\text{ et }B(x_B\,;\,y_B)\Rightarrow\overrightarrow{AB}=\begin{pmatrix}x_B-x_A\\y_B-y_A\end{pmatrix}`,
+        ],
+        ex:{q:"A(−2 ; 3) et B(4 ; −1)",
+            a:r`\overrightarrow{AB}=\begin{pmatrix}4-(-2)\\-1-3\end{pmatrix}=\begin{pmatrix}6\\-4\end{pmatrix}`}},
+      { id:"c3",num:"9",title:"Milieu d'un segment",
+        fml:r`x_I=\dfrac{x_A+x_B}{2}\qquad y_I=\dfrac{y_A+y_B}{2}`,
+        bltTex:[
+          r`\text{I milieu de [AB] }\Leftrightarrow\ \overrightarrow{IA}+\overrightarrow{IB}=\vec{0}`,
+          r`\text{Coordonnées = moyenne des coordonnées des extrémités}`,
+        ],
+        ex:{q:"Milieu de [AB] avec A(−2 ; 4) et B(5 ; 2)",
+            a:r`x_I=\dfrac{-2+5}{2}=1{,}5\qquad y_I=\dfrac{4+2}{2}=3\qquad I(1{,}5\,;\,3)`}},
+    ]},
+    { emoji:"⊥", label:"Colinéarité", color:"#DC2626", light:"#FEF2F2", rules:[
+      { id:"col1",num:"10",title:"Déterminant et vecteurs colinéaires",
+        fml:r`\det(\vec{u},\vec{v})=xy'-yx'`,
+        svgDiag:SDT,
+        bltTex:[
+          r`\vec{u}\begin{pmatrix}x\\y\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}x'\\y'\end{pmatrix}\ \text{colinéaires}\Leftrightarrow xy'-yx'=0`,
+          r`\text{Colinéaires = même direction (l'un est multiple de l'autre)}`,
+        ],
+        ex:{q:"u⃗(3;4) et v⃗(−6;−8) colinéaires ?",
+            a:r`\det=3\times(-8)-4\times(-6)=-24+24=0\ \checkmark\ \text{colinéaires}`}},
+      { id:"col2",num:"11",title:"Alignement de trois points",
+        fml:r`A,B,C\ \text{alignés}\Leftrightarrow\det(\overrightarrow{AB},\overrightarrow{AC})=0`,
+        svgDiag:SAL,
+        bltTex:[
+          r`\text{① Calculer les coordonnées de }\overrightarrow{AB}\text{ et }\overrightarrow{AC}`,
+          r`\text{② Calculer }\det(\overrightarrow{AB},\overrightarrow{AC})=x_{AB}\cdot y_{AC}-y_{AB}\cdot x_{AC}`,
+          r`\det=0\Rightarrow\text{alignés}\qquad\det\neq0\Rightarrow\text{non alignés}`,
+        ],
+        ex:{q:"A(−2;3) B(2;1) C(4;0) : alignés ?",
+            a:r`\overrightarrow{AB}\binom{4}{-2}\ \overrightarrow{AC}\binom{6}{-3}\quad\det=4(-3)-(-2)(6)=0\ \checkmark`}},
+      { id:"col3",num:"12",title:"Parallélisme de deux droites",
+        fml:r`(AB)\parallel(CD)\Leftrightarrow\det(\overrightarrow{AB},\overrightarrow{CD})=0`,
+        svgDiag:SPL,
+        bltTex:[
+          r`\text{① Calculer }\overrightarrow{AB}\text{ et }\overrightarrow{CD}`,
+          r`\text{② Si }\det=0\text{ : parallèles (ou confondues si un point est commun)}`,
+        ],
+        ex:{q:"A(1;2) B(3;6) C(0;1) D(1;3)",
+            a:r`\overrightarrow{AB}\binom{2}{4}\ \overrightarrow{CD}\binom{1}{2}\quad\det=2(2)-4(1)=0\ \Rightarrow\ (AB)\parallel(CD)`}},
+    ]},
+    { emoji:"🏋️", label:"S\'entraîner", color:"#0F172A", light:"#F1F5F9", isPractice:true,
+      practices:[
+        {sub:"vecteurs_bases",      label:"Vecteurs : placement et égalité", emoji:"↗️", cat:"geometrie"},
+        {sub:"chasles",             label:"Relation de Chasles",             emoji:"➕", cat:"geometrie"},
+        {sub:"vecteurs_colineaires",label:"Vecteurs colinéaires",            emoji:"⊥", cat:"geometrie"},
+      ]},
+  ];
+
+  const sec=SECS[secIdx]; const col=sec.color;
+  return (
+    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"var(--am-bg-light)"}}>
+      <div style={{background:`linear-gradient(135deg,${col},${col}CC)`,padding:"14px 18px 0",flexShrink:0}}>
+        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:10}}>
+          <button onClick={onBack} style={{background:"rgba(255,255,255,.2)",border:"none",
+            cursor:"pointer",color:"#fff",fontSize:14,borderRadius:99,
+            width:30,height:30,display:"flex",alignItems:"center",justifyContent:"center"}}>✕</button>
+          <div>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,color:"#fff"}}>Les Vecteurs</div>
+            <div style={{fontSize:10,color:"rgba(255,255,255,.7)"}}>📚 Cours interactif · Ch. 3 · 6 · 14</div>
+          </div>
+        </div>
+        <div ref={tabsRef} style={{display:"flex",gap:6,overflowX:"auto",paddingBottom:12,scrollbarWidth:"none"}}>
+          {SECS.map((s,i)=>(
+            <button key={i} onClick={()=>{setSecIdx(i);setOpenMap({});}}
+              style={{border:"none",borderRadius:99,padding:"6px 13px",cursor:"pointer",
+                whiteSpace:"nowrap",flexShrink:0,fontFamily:"'Nunito',sans-serif",
+                fontWeight:700,fontSize:11.5,transition:"all .15s",
+                background:secIdx===i?"#fff":"rgba(255,255,255,.2)",
+                color:secIdx===i?col:"rgba(255,255,255,.85)"}}>
+              {s.emoji} {s.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div style={{flex:1,overflowY:"auto",padding:"12px 14px 24px"}}>
+        {sec.isPractice ? (
+          <div>
+            <div style={{background:"#F8FAFC",borderRadius:14,padding:"14px 15px",marginBottom:14,
+              fontSize:12.5,color:"#475569",lineHeight:1.6,border:"1px solid #E2E8F0"}}>
+              Lance un thème pour t\'entraîner directement sur les questions de l\'app !
+            </div>
+            {sec.practices.map(p=>(
+              <button key={p.sub} onClick={()=>onStartPractice&&onStartPractice(p.cat,p.sub)}
+                style={{width:"100%",background:"#fff",border:"2px solid #E2E8F0",
+                  borderRadius:16,padding:"14px 16px",marginBottom:10,
+                  cursor:onStartPractice?"pointer":"default",
+                  display:"flex",alignItems:"center",gap:14,textAlign:"left",
+                  boxShadow:"0 2px 10px rgba(0,0,0,.06)"}}>
+                <span style={{fontSize:26,flexShrink:0}}>{p.emoji}</span>
+                <div style={{flex:1}}>
+                  <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:"#1E293B"}}>{p.label}</div>
+                  <div style={{fontSize:11,color:"#94A3B8",marginTop:2}}>Questions · S\'entraîner</div>
+                </div>
+                {onStartPractice&&<span style={{color:"#6366F1",fontWeight:800,fontSize:13}}>Lancer →</span>}
+              </button>
+            ))}
+          </div>
+        ) : sec.rules.map((rl,i)=>{
+          const k=`${secIdx}_${i}`; const expanded=isOpen(k,i===0);
+          return (
+            <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
+              overflow:"hidden",boxShadow:"0 2px 14px rgba(0,0,0,.07)",borderLeft:`4px solid ${col}`}}>
+              <div onClick={()=>tog(k)} style={{display:"flex",alignItems:"center",gap:10,
+                padding:"13px 15px",cursor:"pointer",userSelect:"none"}}>
+                <div style={{width:30,height:30,borderRadius:"50%",background:col,color:"#fff",
+                  display:"flex",alignItems:"center",justifyContent:"center",
+                  fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
+                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}</div>
+                <span style={{color:"#94A3B8",fontSize:11,display:"block",
+                  transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
+              </div>
+              {expanded&&(
+                <div style={{padding:"0 15px 15px"}}>
+                  {rl.fml&&<div style={{background:sec.light,borderRadius:13,padding:"14px 12px",
+                    margin:"8px 0",textAlign:"center",overflowX:"auto"}}><M tex={rl.fml}/></div>}
+                  {rl.svgDiag&&<div style={{margin:"8px 0",borderRadius:12,overflow:"hidden"}} dangerouslySetInnerHTML={{__html:rl.svgDiag}}/>}
+                  {(rl.blt||[]).map((b,j)=>(
+                    <div key={j} style={{display:"flex",gap:7,padding:"3px 0",fontSize:12.5,color:"#475569",lineHeight:1.4}}>
+                      <span style={{color:col,fontWeight:700,flexShrink:0}}>•</span><span>{b}</span>
+                    </div>
+                  ))}
+                  {(rl.bltTex||[]).map((b,j)=>(
+                    <div key={j} style={{display:"flex",gap:7,padding:"4px 0",alignItems:"flex-start"}}>
+                      <span style={{color:col,fontWeight:700,flexShrink:0,marginTop:2}}>•</span>
+                      <span style={{overflowX:"auto"}}><M tex={b}/></span>
+                    </div>
+                  ))}
+                  {rl.tip&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
+                    fontSize:12,fontWeight:600,color:"#713F12",
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>{rl.tip}</div>}
+                  {rl.ex&&(
+                    <div style={{background:"#F8FAFC",borderRadius:12,padding:"12px 13px",
+                      marginTop:10,borderLeft:`3px solid ${col}`}}>
+                      <div style={{fontSize:10,fontWeight:800,color:col,textTransform:"uppercase",
+                        letterSpacing:".7px",marginBottom:5}}>Exemple</div>
+                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>{rl.ex.q}</div>
+                      <div style={{textAlign:"center",overflowX:"auto"}}><M tex={rl.ex.a}/></div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+
+// ── CoursMathLitteral — Chapitre 6 : Calcul littéral ─────────────────────────
+function CoursMathLitteral({onBack, onStartPractice}) {
+  const [secIdx, setSecIdx] = React.useState(0);
+  const [openMap, setOpenMap] = React.useState({});
+  const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
+  const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
+  const tabsRef = React.useRef();
+  React.useEffect(()=>{
+    if(!tabsRef.current) return;
+    const btn=tabsRef.current.children[secIdx];
+    if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  },[secIdx]);
+
+  const SECS=[
+    { emoji:"✖️", label:"Distribution", color:"#DC2626", light:"#FEF2F2", rules:[
+      { id:"d1",num:"1",title:"Simple distributivité",
+        fml:r`k(a+b) = ka + kb`,
+        blt:[
+          "On multiplie le facteur k par CHAQUE terme de la parenthèse",
+          "Attention au signe : k(a − b) = ka − kb",
+          "k peut être un nombre, une variable ou une expression",
+        ],
+        tip:"⚠️ −(a + b) = −a − b  et  −(a − b) = −a + b",
+        ex:{q:"Développer −4(x − 5)",
+            a:r`-4(x-5)=-4\times x-(-4)\times5=-4x+20`}},
+      { id:"d2",num:"2",title:"Double distributivité",
+        fml:r`(a+b)(c+d) = ac + ad + bc + bd`,
+        blt:[
+          "Chaque terme du 1er facteur multiplie chaque terme du 2e",
+          "4 produits au total (méthode FOIL ou en croix)",
+          "Réduire en regroupant les termes de même degré",
+        ],
+        tip:"⚠️ Attention aux signes quand on distribue avec des termes négatifs",
+        ex:{q:"Développer (2x + 1)(3x − 5)",
+            a:r`6x^2-10x+3x-5=6x^2-7x-5`}},
+    ]},
+    { emoji:"🔲", label:"Identités remarquables", color:"#7C3AED", light:"#F5F3FF", rules:[
+      { id:"ir1",num:"3",title:"Les 3 identités remarquables",
+        fml:r`\displaylines{(a+b)^2 = a^2+2ab+b^2 \\ (a-b)^2 = a^2-2ab+b^2 \\ (a+b)(a-b) = a^2-b^2}`,
+        blt:[
+          "(a+b)² : carré d'une somme",
+          "(a−b)² : carré d'une différence",
+          "(a+b)(a−b) : produit de la somme par la différence = différence des carrés",
+        ],
+        tip:"⚠️ (a+b)² ≠ a² + b²  — ne pas oublier le terme 2ab au milieu !",
+        ex:{q:"Développer (2x − 1)²",
+            a:r`(2x)^2-2\times2x\times1+1^2=4x^2-4x+1`}},
+      { id:"ir2",num:"4",title:"Réduire une expression",
+        fml:null,
+        blt:[
+          "Développer toutes les parenthèses",
+          "Regrouper les termes de même degré (en x², en x, constantes)",
+          "Additionner les coefficients de chaque degré",
+        ],
+        ex:{q:"Réduire f(x) = (x−3)² + 2(x+3)(x−1)",
+            a:r`x^2-6x+9+2(x^2+2x-3)=x^2-6x+9+2x^2+4x-6=3x^2-2x+3`}},
+    ]},
+    { emoji:"🔧", label:"Factoriser", color:"#0891B2", light:"#ECFEFF", rules:[
+      { id:"f1",num:"5",title:"Facteur commun",
+        fml:r`ax^2 + bx = x(ax + b)`,
+        blt:[
+          "Identifier le facteur commun à tous les termes",
+          "Le facteur commun peut être un nombre, une variable ou une expression",
+          "Vérifier en redéveloppant",
+        ],
+        ex:{q:"Factoriser 2x² − 4x",
+            a:r`2x^2-4x=2x(x-2)`}},
+      { id:"f2",num:"6",title:"Différence de deux carrés",
+        fml:r`A^2 - B^2 = (A+B)(A-B)`,
+        blt:[
+          "Reconnaître la forme a² − b² (différence de deux carrés parfaits)",
+          "A et B peuvent être des expressions",
+          "(A+B)(A−B) = (A−B)(A+B) — l'ordre n'importe pas",
+        ],
+        tip:"⚠️ Fonctionne UNIQUEMENT avec une soustraction — a² + b² ne se factorise pas !",
+        ex:{q:"Factoriser 16 − (x−3)²",
+            a:r`(4)^2-(x-3)^2=(4+x-3)(4-x+3)=(x+1)(7-x)`}},
+      { id:"f3",num:"7",title:"Identités remarquables à l'envers",
+        fml:r`\displaylines{a^2+2ab+b^2=(a+b)^2 \\ a^2-2ab+b^2=(a-b)^2}`,
         blt:[
           "Reconnaître le carré parfait : terme du milieu = 2×√(1er terme)×√(dernier terme)",
           "Vérifier que le 1er et le dernier termes sont des carrés parfaits",
