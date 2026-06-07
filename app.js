@@ -24589,6 +24589,12 @@ const COURS_CATALOG = [
     chapitres:3, color:"#EA580C",
     desc:"y = mx + p · Taux d'accroissement · Équations 1er degré · Produit nul · Inéquations",
   },
+  { id:"fonctions_gen", emoji:"📉",
+    title:"Généralités graphiques sur les fonctions",
+    niveaux:["2nde"],
+    chapitres:5, color:"#6366F1",
+    desc:"Image · Antécédent · Résoudre graphiquement · Tableau de variations · Tableau de signes",
+  },
 ];
 
 function CoursListScreen({onBack,onSelectCours}) {
@@ -25191,6 +25197,7 @@ function CoursMathReels({onBack, onStartPractice}) {
                 <div style={{padding:"0 15px 15px"}}>
                   {rl.fml&&<div style={{background:sec.light,borderRadius:13,padding:"14px 12px",
                     margin:"8px 0",textAlign:"center",overflowX:"auto"}}><M tex={rl.fml}/></div>}
+                  {rl.svgDiag&&<div style={{margin:"8px 0",borderRadius:12,overflow:"hidden"}} dangerouslySetInnerHTML={{__html:rl.svgDiag}}/>}
                   {(rl.blt||[]).map((b,j)=>(
                     <div key={j} style={{display:"flex",gap:7,padding:"3px 0",fontSize:12.5,color:"#475569",lineHeight:1.4}}>
                       <span style={{color:col,fontWeight:700,flexShrink:0}}>•</span><span>{b}</span>
@@ -25443,6 +25450,342 @@ function CoursMathFonctions({onBack, onStartPractice}) {
                 <div style={{padding:"0 15px 15px"}}>
                   {rl.fml&&<div style={{background:sec.light,borderRadius:13,padding:"14px 12px",
                     margin:"8px 0",textAlign:"center",overflowX:"auto"}}><M tex={rl.fml}/></div>}
+                  {rl.svgDiag&&<div style={{margin:"8px 0",borderRadius:12,overflow:"hidden"}} dangerouslySetInnerHTML={{__html:rl.svgDiag}}/>}
+                  {(rl.blt||[]).map((b,j)=>(
+                    <div key={j} style={{display:"flex",gap:7,padding:"3px 0",fontSize:12.5,color:"#475569",lineHeight:1.4}}>
+                      <span style={{color:col,fontWeight:700,flexShrink:0}}>•</span><span>{b}</span>
+                    </div>
+                  ))}
+                  {rl.tip&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
+                    fontSize:12,fontWeight:600,color:"#713F12",
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>{rl.tip}</div>}
+                  {rl.ex&&(
+                    <div style={{background:"#F8FAFC",borderRadius:12,padding:"12px 13px",
+                      marginTop:10,borderLeft:`3px solid ${col}`}}>
+                      <div style={{fontSize:10,fontWeight:800,color:col,textTransform:"uppercase",
+                        letterSpacing:".7px",marginBottom:5}}>Exemple</div>
+                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>{rl.ex.q}</div>
+                      <div style={{textAlign:"center",overflowX:"auto"}}><M tex={rl.ex.a}/></div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+
+// ── CoursMathFonctionsGen — Chapitre 4 : Généralités graphiques ───────────────
+function CoursMathFonctionsGen({onBack, onStartPractice}) {
+  const [secIdx, setSecIdx] = React.useState(0);
+  const [openMap, setOpenMap] = React.useState({});
+  const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
+  const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
+  const tabsRef = React.useRef();
+  React.useEffect(()=>{
+    if(!tabsRef.current) return;
+    const btn=tabsRef.current.children[secIdx];
+    if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  },[secIdx]);
+
+  const SVG_IMG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 180" style="width:100%;display:block;border-radius:14px"><rect width="280" height="180" rx="14" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="2"/><rect x="38" y="10" width="206" height="154" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/><g stroke="#F1F5F9" stroke-width="0.8">
+    <line x1="60" y1="10" x2="60" y2="164"/><line x1="90" y1="10" x2="90" y2="164"/>
+    <line x1="120" y1="10" x2="120" y2="164"/><line x1="150" y1="10" x2="150" y2="164"/>
+    <line x1="180" y1="10" x2="180" y2="164"/><line x1="210" y1="10" x2="210" y2="164"/>
+    <line x1="38" y1="40" x2="244" y2="40"/><line x1="38" y1="70" x2="244" y2="70"/>
+    <line x1="38" y1="100" x2="244" y2="100"/><line x1="38" y1="130" x2="244" y2="130"/>
+    <line x1="38" y1="160" x2="244" y2="160"/>
+    </g>
+    <line x1="42" y1="130" x2="238" y2="130" stroke="#94A3B8" stroke-width="1.6"/>
+    <line x1="90" y1="14" x2="90" y2="162" stroke="#94A3B8" stroke-width="1.6"/>
+    <polygon points="237,126 244,130 237,134" fill="#94A3B8"/>
+    <polygon points="86,15 90,8 94,15" fill="#94A3B8"/>
+    <text x="245" y="134" font-size="9" fill="#64748B" font-family="sans-serif">x</text>
+    <text x="93" y="12" font-size="9" fill="#64748B" font-family="sans-serif">y</text>
+    <text x="78" y="135" font-size="8" fill="#94A3B8" font-family="sans-serif" text-anchor="end">O</text>
+    <g font-size="8" fill="#94A3B8" font-family="sans-serif" text-anchor="middle">
+      <text x="120" y="143">1</text><text x="150" y="143">2</text>
+      <text x="180" y="143">3</text><text x="60" y="143">-1</text>
+      <text x="78" y="104" text-anchor="end">1</text><text x="78" y="74" text-anchor="end">2</text>
+      <text x="78" y="44" text-anchor="end">3</text>
+    </g>
+  <path d="M 50 160 Q 90 10 150 40 Q 180 55 210 130" fill="none" stroke="#6366F1" stroke-width="2.5" stroke-linecap="round" clip-path="url(#c1)"/>
+  <clipPath id="c1"><rect x="38" y="10" width="206" height="154"/></clipPath>
+  <circle cx="120" cy="70" r="4.5" fill="#EA580C" stroke="white" stroke-width="1.5"/>
+  <line x1="120" y1="132" x2="120" y2="72" stroke="#EA580C" stroke-width="1.5" stroke-dasharray="4,2.5"/>
+  <line x1="42" y1="70" x2="118" y2="70" stroke="#EA580C" stroke-width="1.5" stroke-dasharray="4,2.5"/>
+  <text x="120" y="145" font-size="9" font-weight="bold" fill="#EA580C" font-family="sans-serif" text-anchor="middle">a</text>
+  <text x="76" y="73" font-size="9" font-weight="bold" fill="#EA580C" font-family="sans-serif" text-anchor="end">f(a)</text>
+  <text x="130" y="55" font-size="8" fill="#EA580C" font-family="sans-serif" font-style="italic">image de a</text></svg>`;
+  const SVG_EQ  = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 180" style="width:100%;display:block;border-radius:14px"><rect width="280" height="180" rx="14" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="2"/><rect x="38" y="10" width="206" height="154" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/><g stroke="#F1F5F9" stroke-width="0.8">
+    <line x1="60" y1="10" x2="60" y2="164"/><line x1="90" y1="10" x2="90" y2="164"/>
+    <line x1="120" y1="10" x2="120" y2="164"/><line x1="150" y1="10" x2="150" y2="164"/>
+    <line x1="180" y1="10" x2="180" y2="164"/><line x1="210" y1="10" x2="210" y2="164"/>
+    <line x1="38" y1="40" x2="244" y2="40"/><line x1="38" y1="70" x2="244" y2="70"/>
+    <line x1="38" y1="100" x2="244" y2="100"/><line x1="38" y1="130" x2="244" y2="130"/>
+    <line x1="38" y1="160" x2="244" y2="160"/>
+    </g>
+    <line x1="42" y1="130" x2="238" y2="130" stroke="#94A3B8" stroke-width="1.6"/>
+    <line x1="90" y1="14" x2="90" y2="162" stroke="#94A3B8" stroke-width="1.6"/>
+    <polygon points="237,126 244,130 237,134" fill="#94A3B8"/>
+    <polygon points="86,15 90,8 94,15" fill="#94A3B8"/>
+    <text x="245" y="134" font-size="9" fill="#64748B" font-family="sans-serif">x</text>
+    <text x="93" y="12" font-size="9" fill="#64748B" font-family="sans-serif">y</text>
+    <text x="78" y="135" font-size="8" fill="#94A3B8" font-family="sans-serif" text-anchor="end">O</text>
+    <g font-size="8" fill="#94A3B8" font-family="sans-serif" text-anchor="middle">
+      <text x="120" y="143">1</text><text x="150" y="143">2</text>
+      <text x="180" y="143">3</text><text x="60" y="143">-1</text>
+      <text x="78" y="104" text-anchor="end">1</text><text x="78" y="74" text-anchor="end">2</text>
+      <text x="78" y="44" text-anchor="end">3</text>
+    </g>
+  <path d="M 50 160 Q 90 10 150 40 Q 180 55 210 130" fill="none" stroke="#6366F1" stroke-width="2.5" clip-path="url(#c2)"/>
+  <clipPath id="c2"><rect x="38" y="10" width="206" height="154"/></clipPath>
+  <line x1="42" y1="85" x2="240" y2="85" stroke="#DC2626" stroke-width="1.8" stroke-dasharray="6,3"/>
+  <text x="236" y="83" font-size="9" font-weight="bold" fill="#DC2626" font-family="sans-serif">y=k</text>
+  <circle cx="76" cy="85" r="4" fill="#DC2626" stroke="white" stroke-width="1.5"/>
+  <circle cx="165" cy="85" r="4" fill="#DC2626" stroke="white" stroke-width="1.5"/>
+  <line x1="76" y1="87" x2="76" y2="128" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="4,2.5"/>
+  <line x1="165" y1="87" x2="165" y2="128" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="4,2.5"/>
+  <text x="76" y="145" font-size="9" font-weight="bold" fill="#DC2626" font-family="sans-serif" text-anchor="middle">x₁</text>
+  <text x="165" y="145" font-size="9" font-weight="bold" fill="#DC2626" font-family="sans-serif" text-anchor="middle">x₂</text>
+  <text x="95" y="81" font-size="8" fill="#DC2626" font-family="sans-serif" font-style="italic">solutions de f(x)=k</text></svg>`;
+  const SVG_INEQ= `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 180" style="width:100%;display:block;border-radius:14px"><rect width="280" height="180" rx="14" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="2"/><rect x="38" y="10" width="206" height="154" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/><g stroke="#F1F5F9" stroke-width="0.8">
+    <line x1="60" y1="10" x2="60" y2="164"/><line x1="90" y1="10" x2="90" y2="164"/>
+    <line x1="120" y1="10" x2="120" y2="164"/><line x1="150" y1="10" x2="150" y2="164"/>
+    <line x1="180" y1="10" x2="180" y2="164"/><line x1="210" y1="10" x2="210" y2="164"/>
+    <line x1="38" y1="40" x2="244" y2="40"/><line x1="38" y1="70" x2="244" y2="70"/>
+    <line x1="38" y1="100" x2="244" y2="100"/><line x1="38" y1="130" x2="244" y2="130"/>
+    <line x1="38" y1="160" x2="244" y2="160"/>
+    </g>
+    <line x1="42" y1="130" x2="238" y2="130" stroke="#94A3B8" stroke-width="1.6"/>
+    <line x1="90" y1="14" x2="90" y2="162" stroke="#94A3B8" stroke-width="1.6"/>
+    <polygon points="237,126 244,130 237,134" fill="#94A3B8"/>
+    <polygon points="86,15 90,8 94,15" fill="#94A3B8"/>
+    <text x="245" y="134" font-size="9" fill="#64748B" font-family="sans-serif">x</text>
+    <text x="93" y="12" font-size="9" fill="#64748B" font-family="sans-serif">y</text>
+    <text x="78" y="135" font-size="8" fill="#94A3B8" font-family="sans-serif" text-anchor="end">O</text>
+    <g font-size="8" fill="#94A3B8" font-family="sans-serif" text-anchor="middle">
+      <text x="120" y="143">1</text><text x="150" y="143">2</text>
+      <text x="180" y="143">3</text><text x="60" y="143">-1</text>
+      <text x="78" y="104" text-anchor="end">1</text><text x="78" y="74" text-anchor="end">2</text>
+      <text x="78" y="44" text-anchor="end">3</text>
+    </g>
+  <clipPath id="c3"><rect x="38" y="10" width="206" height="154"/></clipPath>
+  <clipPath id="c3b"><rect x="76" y="85" width="89" height="80"/></clipPath>
+  <rect x="76" y="85" width="89" height="80" fill="#FCA5A5" fill-opacity="0.35" clip-path="url(#c3b)"/>
+  <path d="M 50 160 Q 90 10 150 40 Q 180 55 210 130" fill="none" stroke="#6366F1" stroke-width="2.5" clip-path="url(#c3)"/>
+  <line x1="42" y1="85" x2="240" y2="85" stroke="#DC2626" stroke-width="1.8" stroke-dasharray="6,3"/>
+  <text x="236" y="83" font-size="9" font-weight="bold" fill="#DC2626" font-family="sans-serif">y=k</text>
+  <circle cx="76" cy="85" r="4" fill="#DC2626" stroke="white" stroke-width="1.5"/>
+  <circle cx="165" cy="85" r="4" fill="#DC2626" stroke="white" stroke-width="1.5"/>
+  <line x1="76" y1="87" x2="76" y2="128" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <line x1="165" y1="87" x2="165" y2="128" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="76" y="145" font-size="9" font-weight="bold" fill="#DC2626" font-family="sans-serif" text-anchor="middle">x₁</text>
+  <text x="165" y="145" font-size="9" font-weight="bold" fill="#DC2626" font-family="sans-serif" text-anchor="middle">x₂</text>
+  <text x="120" y="115" font-size="9" font-weight="bold" fill="#DC2626" font-family="sans-serif" text-anchor="middle">f(x) &lt; k</text></svg>`;
+  const SVG_VAR = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 180" style="width:100%;display:block;border-radius:14px"><rect width="280" height="180" rx="14" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="2"/><rect x="38" y="10" width="206" height="154" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/><g stroke="#F1F5F9" stroke-width="0.8">
+    <line x1="60" y1="10" x2="60" y2="164"/><line x1="90" y1="10" x2="90" y2="164"/>
+    <line x1="120" y1="10" x2="120" y2="164"/><line x1="150" y1="10" x2="150" y2="164"/>
+    <line x1="180" y1="10" x2="180" y2="164"/><line x1="210" y1="10" x2="210" y2="164"/>
+    <line x1="38" y1="40" x2="244" y2="40"/><line x1="38" y1="70" x2="244" y2="70"/>
+    <line x1="38" y1="100" x2="244" y2="100"/><line x1="38" y1="130" x2="244" y2="130"/>
+    <line x1="38" y1="160" x2="244" y2="160"/>
+    </g>
+    <line x1="42" y1="130" x2="238" y2="130" stroke="#94A3B8" stroke-width="1.6"/>
+    <line x1="90" y1="14" x2="90" y2="162" stroke="#94A3B8" stroke-width="1.6"/>
+    <polygon points="237,126 244,130 237,134" fill="#94A3B8"/>
+    <polygon points="86,15 90,8 94,15" fill="#94A3B8"/>
+    <text x="245" y="134" font-size="9" fill="#64748B" font-family="sans-serif">x</text>
+    <text x="93" y="12" font-size="9" fill="#64748B" font-family="sans-serif">y</text>
+    <text x="78" y="135" font-size="8" fill="#94A3B8" font-family="sans-serif" text-anchor="end">O</text>
+    <g font-size="8" fill="#94A3B8" font-family="sans-serif" text-anchor="middle">
+      <text x="120" y="143">1</text><text x="150" y="143">2</text>
+      <text x="180" y="143">3</text><text x="60" y="143">-1</text>
+      <text x="78" y="104" text-anchor="end">1</text><text x="78" y="74" text-anchor="end">2</text>
+      <text x="78" y="44" text-anchor="end">3</text>
+    </g>
+  <clipPath id="c4"><rect x="38" y="10" width="206" height="154"/></clipPath>
+  <path d="M 50 130 C 70 130, 85 25, 120 40 C 145 50, 155 115, 180 100 C 200 88, 220 130, 240 140"
+    fill="none" stroke="#059669" stroke-width="2.5" clip-path="url(#c4)"/>
+  <circle cx="120" cy="40" r="5" fill="#059669" stroke="white" stroke-width="1.5"/>
+  <text x="122" y="34" font-size="8" font-weight="bold" fill="#059669" font-family="sans-serif">max</text>
+  <circle cx="178" cy="100" r="5" fill="#EA580C" stroke="white" stroke-width="1.5"/>
+  <text x="180" y="113" font-size="8" font-weight="bold" fill="#EA580C" font-family="sans-serif">min</text>
+  <line x1="120" y1="42" x2="120" y2="128" stroke="#059669" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="178" y1="102" x2="178" y2="128" stroke="#EA580C" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="120" y="143" font-size="8" fill="#64748B" font-family="sans-serif" text-anchor="middle">x₁</text>
+  <text x="178" y="143" font-size="8" fill="#64748B" font-family="sans-serif" text-anchor="middle">x₂</text>
+  <g stroke="#94A3B8" stroke-width="1.2" fill="none">
+    <path d="M68,95 C80,85 100,55 108,45" marker-end="url(#arr)"/>
+    <path d="M133,45 C145,55 160,85 165,97" marker-end="url(#arr)"/>
+    <path d="M184,100 C196,95 210,95 220,100" marker-end="url(#arr)"/>
+  </g></svg>`;
+
+  const SECS=[
+    { emoji:"📍", label:"Image/Antécédent", color:"#6366F1", light:"#EEF2FF", rules:[
+      { id:"g1",num:"1",title:"Lire l'image de a par f",
+        fml:r`f(a) = \text{ordonnée du point de }\mathcal{C}_f\text{ d'abscisse }a`,
+        svgDiag:SVG_IMG,
+        blt:[
+          "① Repérer a sur l'axe des abscisses",
+          "② Tracer la verticale jusqu'à la courbe",
+          "③ Lire l'ordonnée du point → c'est f(a)",
+          "L'image de a est UNIQUE (une seule valeur par abscisse)",
+        ],
+        ex:{q:"Sur la courbe : lire f(1)",
+            a:r`\text{On lit }f(1)=2\text{ (ordonnée du point d'abscisse 1)}`}},
+      { id:"g2",num:"2",title:"Lire les antécédents de b par f",
+        fml:null,
+        blt:[
+          "① Repérer b sur l'axe des ordonnées",
+          "② Tracer la droite horizontale y = b",
+          "③ Lire les abscisses de tous les points d'intersection",
+          "Un nombre peut avoir 0, 1 ou plusieurs antécédents !",
+        ],
+        tip:"Remarque : il ne peut y avoir qu'une seule IMAGE, mais PLUSIEURS ANTÉCÉDENTS",
+        ex:{q:"Sur la courbe ci-dessus : antécédents de 2",
+            a:r`\text{La droite }y=2\text{ coupe la courbe en }x_1\text{ et }x_2`}},
+    ]},
+    { emoji:"📌", label:"Point sur la courbe", color:"#0891B2", light:"#ECFEFF", rules:[
+      { id:"p1",num:"3",title:"A appartient à la courbe ⟺ yₐ = f(xₐ)",
+        fml:r`A(x_A\,;\,y_A)\in\mathcal{C}_f \Leftrightarrow y_A = f(x_A)`,
+        blt:[
+          "Pour vérifier si A appartient à Cf : calculer f(xₐ) et comparer à yₐ",
+          "Si f(xₐ) = yₐ → A ∈ Cf · Si f(xₐ) ≠ yₐ → A ∉ Cf",
+        ],
+        ex:{q:"f(x) = 9 − 2x² · Vérifier A(1 ; 7) et B(−2 ; 17)",
+            a:r`f(1)=9-2=7=y_A\ ✓\quad f(-2)=9-8=1\neq17\ \Rightarrow B\notin\mathcal{C}_f`}},
+    ]},
+    { emoji:"📈", label:"Résoudre graphiquement", color:"#DC2626", light:"#FEF2F2", rules:[
+      { id:"r1",num:"4",title:"Résoudre f(x) = k graphiquement",
+        fml:r`f(x)=k \Leftrightarrow \text{antécédents de }k\text{ par }f`,
+        svgDiag:SVG_EQ,
+        blt:[
+          "① Tracer la droite horizontale y = k",
+          "② Repérer les intersections avec la courbe",
+          "③ Lire les abscisses x₁, x₂, … : ce sont les solutions",
+          "Si pas d'intersection → équation sans solution (S = ∅)",
+        ],
+        ex:{q:"Solutions de f(x) = k sur le graphe",
+            a:r`S=\{x_1\,;\,x_2\}`}},
+      { id:"r2",num:"5",title:"Résoudre f(x) < k (ou > k)",
+        fml:null,
+        svgDiag:SVG_INEQ,
+        blt:[
+          "f(x) < k : abscisses des points de Cf SOUS la droite y = k",
+          "f(x) > k : abscisses des points de Cf AU-DESSUS de y = k",
+          "La solution est un (ou plusieurs) intervalle(s)",
+        ],
+        tip:"⚠️ Bien lire les inégalités strictes ou larges pour les crochets",
+        ex:{q:"f(x) < k sur le graphe ci-dessus",
+            a:r`S=\ ]x_1\,;\,x_2[`}},
+    ]},
+    { emoji:"📉", label:"Variations", color:"#059669", light:"#F0FDF4", rules:[
+      { id:"v1",num:"6",title:"Tableau de variations",
+        fml:null,
+        svgDiag:SVG_VAR,
+        blt:[
+          "Résume le sens de variation d'une fonction",
+          "Ligne 1 : valeurs de x remarquables (limites + changements)",
+          "Ligne 2 : flèches montantes (↗ croissante) ou descendantes (↘ décroissante)",
+          "Maximum : valeur la plus haute atteinte sur l'intervalle",
+          "Minimum : valeur la plus basse atteinte sur l'intervalle",
+        ],
+        ex:{q:"Lire le maximum et minimum sur le graphe",
+            a:r`\text{max en }x_1\text{ (point vert) · min en }x_2\text{ (point orange)}`}},
+      { id:"v2",num:"7",title:"Tableau de signes",
+        fml:null,
+        blt:[
+          "Résume le signe de f(x) sur chaque intervalle",
+          "f(x) > 0 : courbe AU-DESSUS de l'axe des x",
+          "f(x) < 0 : courbe EN DESSOUS de l'axe des x",
+          "f(x) = 0 : courbe COUPE l'axe des x (racines)",
+        ],
+        ex:{q:"f(x) : signe entre les racines x₁ et x₂",
+            a:r`\text{Lire si la courbe est au-dessus (+ ) ou en dessous (−) de l'axe des }x`}},
+    ]},
+    { emoji:"🏋️", label:"S\'entraîner", color:"#0F172A", light:"#F1F5F9", isPractice:true,
+      practices:[
+        {sub:"lecture_image",      label:"Lire l'image de f",           emoji:"📍", cat:"fonctions"},
+        {sub:"point_courbe",       label:"Point sur la courbe",         emoji:"📌", cat:"fonctions"},
+        {sub:"resolution_graphique",label:"Résoudre graphiquement",     emoji:"📈", cat:"fonctions"},
+        {sub:"tableau_variations", label:"Tableau de variations",       emoji:"📉", cat:"fonctions"},
+        {sub:"tableau_signes",     label:"Tableau de signes",           emoji:"±",  cat:"fonctions"},
+      ]},
+  ];
+
+  const sec=SECS[secIdx]; const col=sec.color;
+  return (
+    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"var(--am-bg-light)"}}>
+      <div style={{background:`linear-gradient(135deg,${col},${col}CC)`,padding:"14px 18px 0",flexShrink:0}}>
+        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:10}}>
+          <button onClick={onBack} style={{background:"rgba(255,255,255,.2)",border:"none",
+            cursor:"pointer",color:"#fff",fontSize:14,borderRadius:99,
+            width:30,height:30,display:"flex",alignItems:"center",justifyContent:"center"}}>✕</button>
+          <div>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:15,color:"#fff"}}>Généralités sur les fonctions</div>
+            <div style={{fontSize:10,color:"rgba(255,255,255,.7)"}}>📚 Cours interactif · Chapitre 4</div>
+          </div>
+        </div>
+        <div ref={tabsRef} style={{display:"flex",gap:6,overflowX:"auto",paddingBottom:12,scrollbarWidth:"none"}}>
+          {SECS.map((s,i)=>(
+            <button key={i} onClick={()=>{setSecIdx(i);setOpenMap({});}}
+              style={{border:"none",borderRadius:99,padding:"6px 13px",cursor:"pointer",
+                whiteSpace:"nowrap",flexShrink:0,fontFamily:"'Nunito',sans-serif",
+                fontWeight:700,fontSize:11.5,transition:"all .15s",
+                background:secIdx===i?"#fff":"rgba(255,255,255,.2)",
+                color:secIdx===i?col:"rgba(255,255,255,.85)"}}>
+              {s.emoji} {s.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div style={{flex:1,overflowY:"auto",padding:"12px 14px 24px"}}>
+        {sec.isPractice ? (
+          <div>
+            <div style={{background:"#F8FAFC",borderRadius:14,padding:"14px 15px",marginBottom:14,
+              fontSize:12.5,color:"#475569",lineHeight:1.6,border:"1px solid #E2E8F0"}}>
+              Lance un thème pour t\'entraîner sur les questions de l\'app !
+            </div>
+            {sec.practices.map(p=>(
+              <button key={p.sub} onClick={()=>onStartPractice&&onStartPractice(p.cat,p.sub)}
+                style={{width:"100%",background:"#fff",border:"2px solid #E2E8F0",
+                  borderRadius:16,padding:"14px 16px",marginBottom:10,
+                  cursor:onStartPractice?"pointer":"default",
+                  display:"flex",alignItems:"center",gap:14,textAlign:"left",
+                  boxShadow:"0 2px 10px rgba(0,0,0,.06)"}}>
+                <span style={{fontSize:26,flexShrink:0}}>{p.emoji}</span>
+                <div style={{flex:1}}>
+                  <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:"#1E293B"}}>{p.label}</div>
+                  <div style={{fontSize:11,color:"#94A3B8",marginTop:2}}>Questions · S\'entraîner</div>
+                </div>
+                {onStartPractice&&<span style={{color:"#6366F1",fontWeight:800,fontSize:13}}>Lancer →</span>}
+              </button>
+            ))}
+          </div>
+        ) : sec.rules.map((rl,i)=>{
+          const k=`${secIdx}_${i}`; const expanded=isOpen(k,i===0);
+          return (
+            <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
+              overflow:"hidden",boxShadow:"0 2px 14px rgba(0,0,0,.07)",borderLeft:`4px solid ${col}`}}>
+              <div onClick={()=>tog(k)} style={{display:"flex",alignItems:"center",gap:10,
+                padding:"13px 15px",cursor:"pointer",userSelect:"none"}}>
+                <div style={{width:30,height:30,borderRadius:"50%",background:col,color:"#fff",
+                  display:"flex",alignItems:"center",justifyContent:"center",
+                  fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
+                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}</div>
+                <span style={{color:"#94A3B8",fontSize:11,display:"block",
+                  transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
+              </div>
+              {expanded&&(
+                <div style={{padding:"0 15px 15px"}}>
+                  {rl.fml&&<div style={{background:sec.light,borderRadius:13,padding:"14px 12px",
+                    margin:"8px 0",textAlign:"center",overflowX:"auto"}}><M tex={rl.fml}/></div>}
+                  {rl.svgDiag&&<div style={{margin:"8px 0",borderRadius:12,overflow:"hidden"}} dangerouslySetInnerHTML={{__html:rl.svgDiag}}/>}
                   {(rl.blt||[]).map((b,j)=>(
                     <div key={j} style={{display:"flex",gap:7,padding:"3px 0",fontSize:12.5,color:"#475569",lineHeight:1.4}}>
                       <span style={{color:col,fontWeight:700,flexShrink:0}}>•</span><span>{b}</span>
@@ -25475,7 +25818,7 @@ function BottomNav({screen, onTab}) {
   const BAC_NEW = 1781827200000;
   const tabs = [
     {id:"home",      emoji:"🏠", label:"Accueil",     active:screen==="dashboard"||screen==="home"},
-    {id:"apprendre", emoji:"📖", label:"Apprendre",   active:screen==="flashcard_setup"||screen==="flashcards"||screen==="apprendre"||screen==="cours"||screen==="cours_pourcentages"||screen==="cours_calcul"||screen==="cours_reels"||screen==="cours_fonctions_affines"},
+    {id:"apprendre", emoji:"📖", label:"Apprendre",   active:screen==="flashcard_setup"||screen==="flashcards"||screen==="apprendre"||screen==="cours"||screen==="cours_pourcentages"||screen==="cours_calcul"||screen==="cours_reels"||screen==="cours_fonctions_affines"||screen==="cours_fonctions_gen"},
     {id:"train",     emoji:"💪", label:"S'entraîner", active:screen==="training_modes"},
     {id:"bac",       emoji:"🎯", label:"Bac",         badge:Date.now()<BAC_NEW, active:screen==="bac_subjects"},
     {id:"parcours",  emoji:"📊", label:"Parcours",    active:screen==="parcours_detail"||screen==="collection"||screen==="vigilance"},
@@ -26273,7 +26616,7 @@ function AutoMaths() {
   );
 
   const NAV_SCREENS = new Set(["dashboard","home","flashcard_setup","training_modes",
-    "bac_subjects","parcours_detail","collection","vigilance","cours","cours_pourcentages","cours_calcul","cours_reels","cours_fonctions_affines","apprendre"]);
+    "bac_subjects","parcours_detail","collection","vigilance","cours","cours_pourcentages","cours_calcul","cours_reels","cours_fonctions_affines","cours_fonctions_gen","apprendre"]);
   const showBottomNav = NAV_SCREENS.has(screen);
   const hNavTab = (tabId) => {
     if      (tabId==="home")      setScreen(profile?"dashboard":"home");
@@ -26393,7 +26736,8 @@ function AutoMaths() {
           {screen==="cours_pourcentages" && <CoursMathScreen onBack={()=>setScreen("cours")} onStartPractice={hStartPractice} onOpen={()=>plsbl("Cours ouvert", {cours:"pourcentages"})}/>}
           {screen==="cours_calcul"        && <CoursMathCalcul  onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_reels"             && <CoursMathReels      onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
-          {screen==="cours_fonctions_affines" && <CoursMathFonctions  onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
+          {screen==="cours_fonctions_affines" && <CoursMathFonctions    onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
+          {screen==="cours_fonctions_gen"    && <CoursMathFonctionsGen onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="flashcard_setup" && <FlashcardSetupScreen onBack={()=>setScreen(profile?"dashboard":"home")} onStart={(cards)=>{ setPool(cards); plsbl("Flashcards lancées", {cartes: cards.length}); setScreen("flashcards"); }}/>}
           {screen==="flashcards"    && <FlashcardScreen cards={pool} onBack={()=>setScreen("flashcard_setup")}/>}
           {screen==="mission_theme" && missionTheme && <MissionThemeScreen theme={missionTheme} missionId={missionId} onBack={()=>setScreen("mission_select")} onStart={(qs, themeId)=>{
