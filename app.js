@@ -25010,6 +25010,7 @@ function CoursMathCalcul({onBack, onStartPractice}) {
                 <div style={{padding:"0 15px 15px"}}>
                   {rl.fml&&<div style={{background:sec.light,borderRadius:13,padding:"14px 12px",
                     margin:"8px 0",textAlign:"center",overflowX:"auto"}}><M tex={rl.fml}/></div>}
+                  {rl.svgDiag&&<div style={{margin:"8px 0",overflowX:"auto"}} dangerouslySetInnerHTML={{__html:rl.svgDiag}}/>}
                   {(rl.blt||[]).map((b,j)=>(
                     <div key={j} style={{display:"flex",gap:7,padding:"3px 0",fontSize:12.5,color:"#475569",lineHeight:1.4}}>
                       <span style={{color:col,fontWeight:700,flexShrink:0}}>•</span><span>{b}</span>
@@ -25253,6 +25254,56 @@ function CoursMathFonctions({onBack, onStartPractice}) {
         ],
         ex:{q:"Points A(1 ; 2) et B(4 ; 8)",
             a:r`m=\dfrac{8-2}{4-1}=\dfrac{6}{3}=2`}},
+      { id:"fa3",num:"3",title:"Lecture graphique de m et p",
+        fml:null,
+        svgDiag:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 185" style="width:100%;display:block;border-radius:12px;background:#F8FAFC">
+  <g stroke="#E2E8F0" stroke-width="0.8">
+    <line x1="65" y1="12" x2="65" y2="165"/><line x1="95" y1="12" x2="95" y2="165"/>
+    <line x1="125" y1="12" x2="125" y2="165"/><line x1="155" y1="12" x2="155" y2="165"/>
+    <line x1="35" y1="130" x2="205" y2="130"/><line x1="35" y1="100" x2="205" y2="100"/>
+    <line x1="35" y1="70" x2="205" y2="70"/><line x1="35" y1="40" x2="205" y2="40"/>
+  </g>
+  <line x1="35" y1="160" x2="205" y2="160" stroke="#334155" stroke-width="1.8"/>
+  <line x1="65" y1="12" x2="65" y2="170" stroke="#334155" stroke-width="1.8"/>
+  <polygon points="205,156 213,160 205,164" fill="#334155"/>
+  <polygon points="61,12 65,5 69,12" fill="#334155"/>
+  <text x="214" y="164" font-size="10" fill="#475569" font-family="sans-serif">x</text>
+  <text x="68" y="10" font-size="10" fill="#475569" font-family="sans-serif">y</text>
+  <text x="52" y="172" font-size="9" fill="#64748B" font-family="sans-serif">O</text>
+  <g font-size="9" fill="#94A3B8" font-family="sans-serif" text-anchor="middle">
+    <line x1="95" y1="158" x2="95" y2="162" stroke="#94A3B8"/><text x="95" y="172">1</text>
+    <line x1="125" y1="158" x2="125" y2="162" stroke="#94A3B8"/><text x="125" y="172">2</text>
+    <line x1="155" y1="158" x2="155" y2="162" stroke="#94A3B8"/><text x="155" y="172">3</text>
+    <line x1="63" y1="130" x2="67" y2="130" stroke="#94A3B8"/><text x="55" y="134">1</text>
+    <line x1="63" y1="100" x2="67" y2="100" stroke="#94A3B8"/><text x="55" y="104">2</text>
+    <line x1="63" y1="70" x2="67" y2="70" stroke="#94A3B8"/><text x="55" y="74">3</text>
+    <line x1="63" y1="40" x2="67" y2="40" stroke="#94A3B8"/><text x="55" y="44">4</text>
+  </g>
+  <line x1="50" y1="160" x2="128" y2="4" stroke="#EA580C" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="130" y="18" font-size="10" font-style="italic" fill="#EA580C" font-family="sans-serif">y=2x+1</text>
+  <line x1="65" y1="162" x2="65" y2="132" stroke="#EA580C" stroke-width="1.8" stroke-dasharray="4,2.5"/>
+  <circle cx="65" cy="130" r="4.5" fill="#EA580C" stroke="white" stroke-width="1.5"/>
+  <text x="44" y="135" font-size="13" font-weight="bold" fill="#EA580C" font-family="sans-serif">p</text>
+  <line x1="80" y1="100" x2="110" y2="100" stroke="#2563EB" stroke-width="2.2" stroke-dasharray="5,3"/>
+  <line x1="110" y1="100" x2="110" y2="40" stroke="#2563EB" stroke-width="2.2" stroke-dasharray="5,3"/>
+  <path d="M103,100 L103,107 L110,107" fill="none" stroke="#2563EB" stroke-width="1.5"/>
+  <circle cx="80" cy="100" r="4" fill="#2563EB" stroke="white" stroke-width="1.5"/>
+  <circle cx="110" cy="40" r="4" fill="#2563EB" stroke="white" stroke-width="1.5"/>
+  <rect x="83" y="105" width="22" height="13" rx="3" fill="white" fill-opacity="0.92"/>
+  <text x="95" y="115" font-size="11" font-weight="bold" fill="#2563EB" text-anchor="middle" font-family="sans-serif">1</text>
+  <rect x="114" y="64" width="20" height="13" rx="3" fill="white" fill-opacity="0.92"/>
+  <text x="124" y="74" font-size="11" font-weight="bold" fill="#2563EB" text-anchor="middle" font-family="sans-serif">m</text>
+  <line x1="117" y1="44" x2="117" y2="96" stroke="#2563EB" stroke-width="1"/>
+  <polygon points="113,46 117,40 121,46" fill="#2563EB"/>
+  <polygon points="113,94 117,100 121,94" fill="#2563EB"/>
+</svg>`,
+        blt:[
+          "p = ordonnée à l'origine : là où la droite coupe l'axe des y",
+          "m = pente : pour avancer de 1 vers la droite, on monte de m vers le haut",
+          "Si m > 0 → droite montante · Si m < 0 → droite descendante",
+        ],
+        ex:{q:"Sur le graphe ci-dessus : lire p et m",
+            a:r`p=1\ \text{(coupe y en }y=1)\quad m=\dfrac{2}{1}=2\ \text{(monte de 2 pour 1 pas)}`}},
     ]},
     { emoji:"⚖️", label:"Équations", color:"#2563EB", light:"#EFF6FF", rules:[
       { id:"eq1",num:"2",title:"Résoudre une équation du 1er degré",
