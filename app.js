@@ -21687,6 +21687,15 @@ const FLASHCARDS = [
   { id:"fc_val_abs", level:"spe", chapitre:"Calcul numérique",
     recto:r`|a|=\,?\quad\text{Définition et propriétés}`,
     verso:r`|a|=\begin{cases}a&\text{si }a\geq0\\-a&\text{si }a<0\end{cases}\\[8pt]|a|\geq0\qquad|-a|=|a|\\[6pt]|a\times b|=|a|\times|b|\\[4pt]|a+b|\leq|a|+|b|\text{ (inégalité triangulaire)}` },
+  { id:"fc_eq_xa", level:"sec", chapitre:"Équations",
+    recto:r`\text{Solutions de }x^2=a\text{ selon le signe de }a\text{ ?}`,
+    verso:r`a<0:\quad S=\varnothing\\[6pt]a=0:\quad S=\{0\}\\[6pt]a>0:\quad S=\{-\sqrt{a}\,;\,\sqrt{a}\}` },
+  { id:"fc_eq_prod_01", level:"sec", chapitre:"Équations",
+    recto:r`\text{Théorème produit :}\\[4pt]A\times B=0\Leftrightarrow\,?`,
+    verso:r`A=0\quad\text{ou}\quad B=0\\[8pt]\text{Un produit est nul}\\[2pt]\text{ssi l'un des facteurs est nul}` },
+  { id:"fc_eq_quot_01", level:"sec", chapitre:"Équations",
+    recto:r`\dfrac{A}{B}=0\Leftrightarrow\,?`,
+    verso:r`A=0\quad\text{et}\quad B\neq0\\[8pt]\text{Numérateur nul ET}\\[2pt]\text{dénominateur non nul}` },
 ];
 
 
@@ -24601,6 +24610,12 @@ const COURS_CATALOG = [
     chapitres:4, color:"#DC2626",
     desc:"Distribution · Identités remarquables · Factoriser · Fractions littérales",
   },
+  { id:"equations", emoji:"⚖️",
+    title:"Équations · Inéquations",
+    niveaux:["2nde","1ère Spé"],
+    chapitres:6, color:"#D97706",
+    desc:"Produit nul · x²=a · Quotient · Signe · Inéquations",
+  },
   { id:"configs", emoji:"📐",
     title:"Configurations planes",
     niveaux:["2nde","1ère Spé"],
@@ -26455,11 +26470,176 @@ function CoursMathConfigs({onBack, onStartPractice}) {
 }
 
 
+
+// ── CoursMathEquations — Équations · Inéquations ─────────────────────────────
+function CoursMathEquations({onBack, onStartPractice}) {
+  const [secIdx, setSecIdx] = React.useState(0);
+  const [openMap, setOpenMap] = React.useState({});
+  const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
+  const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
+  const tabsRef = React.useRef();
+  React.useEffect(()=>{
+    if(!tabsRef.current) return;
+    const btn=tabsRef.current.children[secIdx];
+    if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  },[secIdx]);
+
+  const SECS=[
+    { emoji:"📝", label:"1er degré", color:"#D97706", light:"#FFFBEB", rules:[
+      { id:"eq1",num:"1",title:"Résolution de ax+b=0",
+        fml:r`ax+b=0\Leftrightarrow x=-\dfrac{b}{a}\quad(a\neq 0)`,
+        bltTex:[
+          r`\text{On isole }x\text{ en transposant les termes de l'autre côté}`,
+          r`\Leftrightarrow\text{ signifie « a les mêmes solutions que »}`,
+          r`\text{S'il n'y a pas de solution on note }S=\varnothing`,
+        ],
+        ex:{qTex:r`\text{Résoudre }2x+4=-3-5x`,
+            a:r`2x+5x=-3-4\Rightarrow 7x=-7\Rightarrow x=-1\quad S=\{-1\}`}},
+    ]},
+    { emoji:"✖️", label:"Produit nul", color:"#DC2626", light:"#FEF2F2", rules:[
+      { id:"eq2",num:"2",title:"Théorème produit nul",
+        fml:r`A\times B=0\Leftrightarrow A=0\text{ ou }B=0`,
+        bltTex:[
+          r`\text{Factoriser l'expression en premier}`,
+          r`\text{Résoudre chaque équation }A=0\text{ et }B=0\text{ séparément}`,
+          r`\text{L'ensemble solution est la réunion des solutions}`,
+        ],
+        tipTex:r`\text{Un produit est nul ssi l'un des facteurs est nul (TRÈS IMPORTANT)}`,
+        ex:{qTex:r`5(x+2)^2-(7x+3)(x+2)=0`,
+            a:r`(x+2)\bigl[5(x+2)-(7x+3)\bigr]=0\Rightarrow(x+2)(-2x+7)=0\\[6pt]S=\{-2\,;\,3{,}5\}`}},
+    ]},
+    { emoji:"²", label:"x²=a", color:"#7C3AED", light:"#F5F3FF", rules:[
+      { id:"eq3",num:"3",title:"Solutions de x²=a",
+        bltTex:[
+          r`a<0\text{ : l'équation n'a pas de solution, }S=\varnothing`,
+          r`a=0\text{ : la seule solution est }x=0\text{, }S=\{0\}`,
+          r`a>0\text{ : deux solutions }\sqrt{a}\text{ et }-\sqrt{a}\text{, }S=\{-\sqrt{a}\,;\,\sqrt{a}\}`,
+        ],
+        tipTex:r`\text{Simplifier les radicaux : }\sqrt{72}=\sqrt{36\times2}=6\sqrt{2}`,
+        ex:{qTex:r`x^2=72\quad\text{et}\quad x^2=-3`,
+            a:r`72>0\Rightarrow S_1=\{-6\sqrt{2}\,;\,6\sqrt{2}\}\qquad -3<0\Rightarrow S_2=\varnothing`}},
+    ]},
+    { emoji:"➗", label:"Quotient", color:"#059669", light:"#F0FDF4", rules:[
+      { id:"eq4",num:"4",title:"Théorème quotient",
+        fml:r`\dfrac{A}{B}=0\Leftrightarrow A=0\text{ et }B\neq 0`,
+        bltTex:[
+          r`\text{1) Chercher les valeurs interdites : résoudre }B=0`,
+          r`\text{2) Résoudre }A=0`,
+          r`\text{3) Vérifier que la solution n'est pas une valeur interdite}`,
+        ],
+        tipTex:r`\text{Un quotient est nul ssi le numérateur est nul et le dénominateur non nul}`,
+        ex:{qTex:r`\dfrac{6x-13}{(x-1)(x-2)}=0`,
+            a:r`\text{Interdits : }x=1\text{ et }x=2\\[6pt]6x-13=0\Rightarrow x=\tfrac{13}{6}\quad\tfrac{13}{6}\notin\{1,2\}\Rightarrow S=\!\left\{\tfrac{13}{6}\right\}`}},
+    ]},
+    { emoji:"📊", label:"Inéquations", color:"#2563EB", light:"#EFF6FF", rules:[
+      { id:"eq5",num:"5",title:"Signe de ax+b",
+        fml:r`ax+b=0\Leftrightarrow x_0=-\dfrac{b}{a}`,
+        bltTex:[
+          r`a>0\text{ : signe de }ax+b\text{ est }\boldsymbol{-}\text{ pour }x<x_0\text{, puis }\boldsymbol{+}`,
+          r`a<0\text{ : signe de }ax+b\text{ est }\boldsymbol{+}\text{ pour }x<x_0\text{, puis }\boldsymbol{-}`,
+        ],
+        tipTex:r`\text{Division par un nombre négatif : le sens de l'inégalité s'inverse !}`,
+        ex:{qTex:r`-x+3>0`,
+            a:r`-x>-3\xRightarrow{\div(-1)\ \text{(inversion)}}x<3\quad S=\,]-\infty\,;\,3\,[`}},
+      { id:"eq6",num:"6",title:"Inéquation produit/quotient",
+        bltTex:[
+          r`\text{Ramener à }f(x)>0\text{ (mettre 0 d'un côté)}`,
+          r`\text{Tableau de signes de chaque facteur (ou quotient)}`,
+          r`-\times-=+\quad-\times+=-\quad+\times+=+\quad\text{(règle des signes)}`,
+          r`\text{Pour un quotient : double barre à la valeur interdite}`,
+        ],
+        tipTex:r`\text{Pour un quotient : la valeur interdite n'est jamais incluse dans }S`,
+        ex:{qTex:r`(-2x-1)(3x-2)>0`,
+            a:r`\text{Racines : }x=-\tfrac{1}{2}\text{ et }x=\tfrac{2}{3}\\[6pt]S=\left]-\tfrac{1}{2}\,;\,\tfrac{2}{3}\right[`}},
+    ]},
+  ];
+
+  const sec=SECS[secIdx]; const col=sec.color;
+  return (
+    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"#F8FAFF"}}>
+      <div style={{background:"linear-gradient(135deg,#D97706,#B45309)",padding:"16px 18px 14px",flexShrink:0}}>
+        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:12}}>
+          <button onClick={onBack} style={{background:"rgba(255,255,255,.2)",border:"none",borderRadius:10,
+            cursor:"pointer",color:"#fff",fontSize:16,width:32,height:32,display:"flex",
+            alignItems:"center",justifyContent:"center"}}>✕</button>
+          <div style={{flex:1}}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:17,color:"#fff"}}>
+              ⚖️ Équations · Inéquations</div>
+            <div style={{fontSize:11,color:"rgba(255,255,255,.75)",marginTop:1}}>
+              Cours interactif · Ch. 7</div>
+          </div>
+        </div>
+        <div ref={tabsRef} style={{display:"flex",gap:6,overflowX:"auto",scrollbarWidth:"none",paddingBottom:2}}>
+          {SECS.map((s,i)=>(
+            <button key={i} onClick={()=>setSecIdx(i)}
+              style={{background:i===secIdx?"#fff":"rgba(255,255,255,.2)",
+                border:"none",borderRadius:99,padding:"6px 13px",cursor:"pointer",flexShrink:0,
+                fontFamily:"'Nunito',sans-serif",fontWeight:700,fontSize:11,
+                color:i===secIdx?s.color:"#fff",whiteSpace:"nowrap"}}>
+              {s.emoji} {s.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div style={{flex:1,overflowY:"auto",padding:"14px 14px 80px"}}>
+        {sec.rules.map((rl,i)=>{
+          const k=`${secIdx}_${i}`; const expanded=isOpen(k,i===0);
+          return (
+            <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
+              overflow:"hidden",boxShadow:"0 2px 14px rgba(0,0,0,.07)",borderLeft:`4px solid ${col}`}}>
+              <div onClick={()=>tog(k)} style={{display:"flex",alignItems:"center",gap:10,
+                padding:"13px 15px",cursor:"pointer",userSelect:"none"}}>
+                <div style={{width:30,height:30,borderRadius:"50%",background:col,color:"#fff",
+                  display:"flex",alignItems:"center",justifyContent:"center",
+                  fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
+                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}{rl.titleTex&&<M tex={rl.titleTex}/>}</div>
+                <span style={{color:"#94A3B8",fontSize:11,display:"block",
+                  transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
+              </div>
+              {expanded&&(
+                <div style={{padding:"0 15px 15px"}}>
+                  {rl.fml&&<div style={{background:sec.light,borderRadius:13,padding:"14px 12px",
+                    margin:"8px 0",textAlign:"center",overflowX:"auto"}}><M tex={rl.fml}/></div>}
+                  {rl.svgDiag&&<div style={{margin:"8px 0",borderRadius:12,overflow:"hidden"}}
+                    dangerouslySetInnerHTML={{__html:rl.svgDiag}}/>}
+                  {(rl.bltTex||[]).map((b,j)=>(
+                    <div key={j} style={{display:"flex",gap:7,padding:"4px 0",alignItems:"flex-start"}}>
+                      <span style={{color:col,fontWeight:700,flexShrink:0,marginTop:2}}>•</span>
+                      <span style={{overflowX:"auto"}}><M tex={b}/></span>
+                    </div>
+                  ))}
+                  {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,
+                    padding:"10px 12px",fontSize:12,fontWeight:600,color:"#713F12",
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>
+                    {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
+                  </div>}
+                  {rl.ex&&(
+                    <div style={{background:"#F8FAFC",borderRadius:12,padding:"12px 13px",
+                      marginTop:10,borderLeft:`3px solid ${col}`}}>
+                      <div style={{fontSize:10,fontWeight:800,color:col,textTransform:"uppercase",
+                        letterSpacing:".7px",marginBottom:5}}>Exemple</div>
+                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>
+                        {rl.ex.qTex?<M tex={rl.ex.qTex}/>:<span>{rl.ex.q}</span>}
+                      </div>
+                      <div style={{textAlign:"center",overflowX:"auto"}}><M tex={rl.ex.a}/></div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+
 function BottomNav({screen, onTab}) {
   const BAC_NEW = 1781827200000;
   const tabs = [
     {id:"home",      emoji:"🏠", label:"Accueil",     active:screen==="dashboard"||screen==="home"},
-    {id:"apprendre", emoji:"📖", label:"Apprendre",   active:screen==="flashcard_setup"||screen==="flashcards"||screen==="apprendre"||screen==="cours"||screen==="cours_pourcentages"||screen==="cours_calcul"||screen==="cours_reels"||screen==="cours_fonctions_affines"||screen==="cours_fonctions_gen"||screen==="cours_litteral"||screen==="cours_vecteurs"||screen==="cours_configs"},
+    {id:"apprendre", emoji:"📖", label:"Apprendre",   active:screen==="flashcard_setup"||screen==="flashcards"||screen==="apprendre"||screen==="cours"||screen==="cours_pourcentages"||screen==="cours_calcul"||screen==="cours_reels"||screen==="cours_fonctions_affines"||screen==="cours_fonctions_gen"||screen==="cours_litteral"||screen==="cours_vecteurs"||screen==="cours_equations"||screen==="cours_configs"},
     {id:"train",     emoji:"💪", label:"S'entraîner", active:screen==="training_modes"},
     {id:"bac",       emoji:"🎯", label:"Bac",         badge:Date.now()<BAC_NEW, active:screen==="bac_subjects"},
     {id:"parcours",  emoji:"📊", label:"Parcours",    active:screen==="parcours_detail"||screen==="collection"||screen==="vigilance"},
@@ -27381,6 +27561,7 @@ function AutoMaths() {
           {screen==="cours_fonctions_gen"    && <CoursMathFonctionsGen onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_litteral"         && <CoursMathLitteral     onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_vecteurs"         && <CoursMathVecteurs     onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
+          {screen==="cours_equations"         && <CoursMathEquations    onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_configs"          && <CoursMathConfigs      onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="flashcard_setup" && <FlashcardSetupScreen onBack={()=>setScreen(profile?"dashboard":"home")} onStart={(cards)=>{ setPool(cards); plsbl("Flashcards lancées", {cartes: cards.length}); setScreen("flashcards"); }}/>}
           {screen==="flashcards"    && <FlashcardScreen cards={pool} onBack={()=>setScreen("flashcard_setup")}/>}
