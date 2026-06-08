@@ -24893,7 +24893,7 @@ function CoursMathScreen({onBack, onOpen, onStartPractice}) {
                   {(rl.tipTex||rl.tip)&&(
                     <div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
                       fontSize:12,fontWeight:600,color:"#713F12",
-                      borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>
+                      borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4,overflowX:"auto"}}>
                       {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}</div>
                   )}
                   {rl.ex&&(
@@ -25074,7 +25074,7 @@ function CoursMathCalcul({onBack, onStartPractice}) {
                   ))}
                   {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
                     fontSize:12,fontWeight:600,color:"#713F12",
-                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4,overflowX:"auto"}}>
                     {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
                   </div>}
                   {rl.ex&&(
@@ -25249,7 +25249,7 @@ function CoursMathReels({onBack, onStartPractice}) {
                   ))}
                   {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
                     fontSize:12,fontWeight:600,color:"#713F12",
-                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4,overflowX:"auto"}}>
                     {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
                   </div>}
                   {rl.ex&&(
@@ -25491,7 +25491,7 @@ function CoursMathFonctions({onBack, onStartPractice}) {
                   ))}
                   {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
                     fontSize:12,fontWeight:600,color:"#713F12",
-                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4,overflowX:"auto"}}>
                     {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
                   </div>}
                   {rl.ex&&(
@@ -25838,7 +25838,7 @@ function CoursMathFonctionsGen({onBack, onStartPractice}) {
                   ))}
                   {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
                     fontSize:12,fontWeight:600,color:"#713F12",
-                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4,overflowX:"auto"}}>
                     {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
                   </div>}
                   {rl.ex&&(
@@ -26037,7 +26037,7 @@ function CoursMathLitteral({onBack, onStartPractice}) {
                   ))}
                   {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
                     fontSize:12,fontWeight:600,color:"#713F12",
-                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4,overflowX:"auto"}}>
                     {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
                   </div>}
                   {rl.ex&&(
@@ -26289,7 +26289,7 @@ function CoursMathVecteurs({onBack, onStartPractice}) {
                   ))}
                   {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,padding:"10px 12px",
                     fontSize:12,fontWeight:600,color:"#713F12",
-                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4,overflowX:"auto"}}>
                     {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
                   </div>}
                   {rl.ex&&(
@@ -26451,7 +26451,7 @@ function CoursMathConfigs({onBack, onStartPractice}) {
                   ))}
                   {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,
                     padding:"10px 12px",fontSize:12,fontWeight:600,color:"#713F12",
-                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4,overflowX:"auto"}}>
                     {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
                   </div>}
                   {rl.ex&&(
@@ -26490,6 +26490,7 @@ function CoursMathEquations({onBack, onStartPractice}) {
     if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
   },[secIdx]);
 
+  const SIGN_EQ6=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 305 130" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="305" height="130" fill="#F8FAFF" rx="8"/><rect x="0" y="0" width="305" height="30" fill="#DBEAFE" rx="8"/><rect x="0" y="16" width="305" height="14" fill="#DBEAFE"/><rect x="153" y="95" width="60" height="35" fill="#DCFCE7"/><line x1="0" y1="30" x2="305" y2="30" stroke="#93C5FD" stroke-width="1"/><line x1="0" y1="60" x2="305" y2="60" stroke="#93C5FD" stroke-width="1"/><line x1="0" y1="90" x2="305" y2="90" stroke="#93C5FD" stroke-width="2"/><rect x="0" y="0" width="305" height="130" fill="none" stroke="#BFDBFE" stroke-width="1.2" rx="8"/><line x1="72" y1="0" x2="72" y2="130" stroke="#BFDBFE" stroke-width="1"/><line x1="123" y1="0" x2="123" y2="130" stroke="#93C5FD" stroke-width="1.5"/><line x1="153" y1="0" x2="153" y2="130" stroke="#BFDBFE" stroke-width="1"/><line x1="213" y1="0" x2="213" y2="130" stroke="#93C5FD" stroke-width="1.5"/><line x1="243" y1="0" x2="243" y2="130" stroke="#BFDBFE" stroke-width="1"/><text x="36" y="20" text-anchor="middle" font-size="12" font-style="italic" fill="#1E293B" font-family="serif">x</text><text x="97" y="20" text-anchor="middle" font-size="10" fill="#475569" font-family="sans-serif">-&#x221E;</text><text x="138" y="20" text-anchor="middle" font-size="10" fill="#DC2626" font-weight="bold" font-family="sans-serif">-1/2</text><text x="183" y="20" text-anchor="middle" font-size="10" fill="#94A3B8" font-family="sans-serif"></text><text x="228" y="20" text-anchor="middle" font-size="10" fill="#059669" font-weight="bold" font-family="sans-serif">2/3</text><text x="274" y="20" text-anchor="middle" font-size="10" fill="#475569" font-family="sans-serif">+&#x221E;</text><text x="36" y="50" text-anchor="middle" font-size="10" fill="#1E293B" font-family="sans-serif">-2x-1</text><text x="97" y="51" text-anchor="middle" font-size="16" fill="#059669" font-weight="bold" font-family="sans-serif">+</text><text x="138" y="51" text-anchor="middle" font-size="16" fill="#475569" font-weight="bold" font-family="sans-serif">0</text><text x="183" y="51" text-anchor="middle" font-size="16" fill="#DC2626" font-weight="bold" font-family="sans-serif">-</text><text x="228" y="51" text-anchor="middle" font-size="16" fill="#DC2626" font-weight="bold" font-family="sans-serif">-</text><text x="274" y="51" text-anchor="middle" font-size="16" fill="#DC2626" font-weight="bold" font-family="sans-serif">-</text><text x="36" y="79" text-anchor="middle" font-size="10" fill="#1E293B" font-family="sans-serif">3x-2</text><text x="97" y="79" text-anchor="middle" font-size="16" fill="#DC2626" font-weight="bold" font-family="sans-serif">-</text><text x="138" y="79" text-anchor="middle" font-size="16" fill="#DC2626" font-weight="bold" font-family="sans-serif">-</text><text x="183" y="79" text-anchor="middle" font-size="16" fill="#DC2626" font-weight="bold" font-family="sans-serif">-</text><text x="228" y="79" text-anchor="middle" font-size="16" fill="#475569" font-weight="bold" font-family="sans-serif">0</text><text x="274" y="79" text-anchor="middle" font-size="16" fill="#059669" font-weight="bold" font-family="sans-serif">+</text><text x="36" y="111" text-anchor="middle" font-size="8.5" fill="#1E293B" font-family="sans-serif">(-2x-1)</text><text x="36" y="123" text-anchor="middle" font-size="8.5" fill="#1E293B" font-family="sans-serif">(3x-2)</text><text x="97" y="117" text-anchor="middle" font-size="16" fill="#DC2626" font-weight="bold" font-family="sans-serif">-</text><text x="138" y="117" text-anchor="middle" font-size="16" fill="#475569" font-weight="bold" font-family="sans-serif">0</text><text x="183" y="117" text-anchor="middle" font-size="16" fill="#059669" font-weight="bold" font-family="sans-serif">+</text><text x="228" y="117" text-anchor="middle" font-size="16" fill="#475569" font-weight="bold" font-family="sans-serif">0</text><text x="274" y="117" text-anchor="middle" font-size="16" fill="#DC2626" font-weight="bold" font-family="sans-serif">-</text></svg>`;
   const SECS=[
     { emoji:"📝", label:"1er degré", color:"#D97706", light:"#FFFBEB", rules:[
       { id:"eq1",num:"1",title:"Résolution de ax+b=0",
@@ -26500,7 +26501,7 @@ function CoursMathEquations({onBack, onStartPractice}) {
           r`\text{S'il n'y a pas de solution on note }S=\varnothing`,
         ],
         ex:{qTex:r`\text{Résoudre }2x+4=-3-5x`,
-            a:r`2x+5x=-3-4\Rightarrow 7x=-7\Rightarrow x=-1\quad S=\{-1\}`}},
+            a:r`\begin{gathered}2x+5x=-3-4\Rightarrow 7x=-7\\[4pt]x=-1\quad S=\{-1\}\end{gathered}`}},
     ]},
     { emoji:"✖️", label:"Produit nul", color:"#DC2626", light:"#FEF2F2", rules:[
       { id:"eq2",num:"2",title:"Théorème produit nul",
@@ -26512,7 +26513,7 @@ function CoursMathEquations({onBack, onStartPractice}) {
         ],
         tipTex:r`\text{Un produit est nul ssi l'un des facteurs est nul (TRÈS IMPORTANT)}`,
         ex:{qTex:r`5(x+2)^2-(7x+3)(x+2)=0`,
-            a:r`(x+2)\bigl[5(x+2)-(7x+3)\bigr]=0\Rightarrow(x+2)(-2x+7)=0\\[6pt]S=\{-2\,;\,3{,}5\}`}},
+            a:r`\begin{gathered}(x+2)\bigl[5(x+2)-(7x+3)\bigr]=0\\[4pt](x+2)(-2x+7)=0\\[4pt]S=\{-2\,;\,3{,}5\}\end{gathered}`}},
     ]},
     { emoji:"²", label:"x²=a", color:"#7C3AED", light:"#F5F3FF", rules:[
       { id:"eq3",num:"3",title:"Solutions de x²=a",
@@ -26523,7 +26524,7 @@ function CoursMathEquations({onBack, onStartPractice}) {
         ],
         tipTex:r`\text{Simplifier les radicaux : }\sqrt{72}=\sqrt{36\times2}=6\sqrt{2}`,
         ex:{qTex:r`x^2=72\quad\text{et}\quad x^2=-3`,
-            a:r`72>0\Rightarrow S_1=\{-6\sqrt{2}\,;\,6\sqrt{2}\}\qquad -3<0\Rightarrow S_2=\varnothing`}},
+            a:r`\begin{gathered}72>0\Rightarrow S_1=\{-6\sqrt{2}\,;\,6\sqrt{2}\}\\[4pt]-3<0\Rightarrow S_2=\varnothing\end{gathered}`}},
     ]},
     { emoji:"➗", label:"Quotient", color:"#059669", light:"#F0FDF4", rules:[
       { id:"eq4",num:"4",title:"Théorème quotient",
@@ -26535,7 +26536,7 @@ function CoursMathEquations({onBack, onStartPractice}) {
         ],
         tipTex:r`\text{Un quotient est nul ssi le numérateur est nul et le dénominateur non nul}`,
         ex:{qTex:r`\dfrac{6x-13}{(x-1)(x-2)}=0`,
-            a:r`\text{Interdits : }x=1\text{ et }x=2\\[6pt]6x-13=0\Rightarrow x=\tfrac{13}{6}\quad\tfrac{13}{6}\notin\{1,2\}\Rightarrow S=\!\left\{\tfrac{13}{6}\right\}`}},
+            a:r`\begin{gathered}\text{Interdits : }x=1\text{ et }x=2\\[4pt]6x-13=0\Rightarrow x=\tfrac{13}{6}\\[4pt]\tfrac{13}{6}\notin\{1,2\}\Rightarrow S=\!\left\{\tfrac{13}{6}\right\}\end{gathered}`}},
     ]},
     { emoji:"📊", label:"Inéquations", color:"#2563EB", light:"#EFF6FF", rules:[
       { id:"eq5",num:"5",title:"Signe de ax+b",
@@ -26546,8 +26547,9 @@ function CoursMathEquations({onBack, onStartPractice}) {
         ],
         tipTex:r`\text{Division par un nombre négatif : le sens de l'inégalité s'inverse !}`,
         ex:{qTex:r`-x+3>0`,
-            a:r`-x>-3\xRightarrow{\div(-1)\ \text{(inversion)}}x<3\quad S=\,]-\infty\,;\,3\,[`}},
+            a:r`\begin{gathered}-x>-3\xRightarrow{\div(-1)\text{ (inversion)}}\\[4pt]x<3\quad S=\,]-\infty\,;\,3\,[\end{gathered}`}},
       { id:"eq6",num:"6",title:"Inéquation produit/quotient",
+        svgDiag:SIGN_EQ6,
         bltTex:[
           r`\text{Ramener à }f(x)>0\text{ (mettre 0 d'un côté)}`,
           r`\text{Tableau de signes de chaque facteur (ou quotient)}`,
@@ -26556,7 +26558,7 @@ function CoursMathEquations({onBack, onStartPractice}) {
         ],
         tipTex:r`\text{Pour un quotient : la valeur interdite n'est jamais incluse dans }S`,
         ex:{qTex:r`(-2x-1)(3x-2)>0`,
-            a:r`\text{Racines : }x=-\tfrac{1}{2}\text{ et }x=\tfrac{2}{3}\\[6pt]S=\left]-\tfrac{1}{2}\,;\,\tfrac{2}{3}\right[`}},
+            a:r`\begin{gathered}\text{Racines : }x=-\tfrac{1}{2}\text{ et }x=\tfrac{2}{3}\\[4pt]S=\left]-\tfrac{1}{2}\,;\,\tfrac{2}{3}\right[\end{gathered}`}},
     ]},
   ];
 
@@ -26616,7 +26618,7 @@ function CoursMathEquations({onBack, onStartPractice}) {
                   ))}
                   {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,
                     padding:"10px 12px",fontSize:12,fontWeight:600,color:"#713F12",
-                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4,overflowX:"auto"}}>
                     {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
                   </div>}
                   {rl.ex&&(
@@ -26636,6 +26638,9 @@ function CoursMathEquations({onBack, onStartPractice}) {
           );
         })}
       </div>
+      {onStartPractice&&<div style={{padding:"12px 14px 16px",borderTop:"1px solid #F1F5F9",background:"white",flexShrink:0}}>
+        <button onClick={onStartPractice} style={{width:"100%",padding:"13px",background:"#D97706",border:"none",borderRadius:14,color:"white",fontSize:15,fontWeight:800,fontFamily:"'Nunito',sans-serif",cursor:"pointer",letterSpacing:".3px"}}>💪 S'entraîner</button>
+      </div>}
     </div>
   );
 }
@@ -26655,6 +26660,7 @@ function CoursMathStats({onBack, onStartPractice}) {
     if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
   },[secIdx]);
 
+  const BOX_PLOT=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 118" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="300" height="118" rx="8" fill="#EFF6FF"/><line x1="80" y1="17" x2="218" y2="17" stroke="#2563EB" stroke-width="1"/><line x1="80" y1="13" x2="80" y2="21" stroke="#2563EB" stroke-width="1"/><line x1="218" y1="13" x2="218" y2="21" stroke="#2563EB" stroke-width="1"/><text x="149" y="12" text-anchor="middle" font-size="8" fill="#2563EB" font-family="sans-serif">50 %</text><text x="48" y="24" text-anchor="middle" font-size="8" fill="#94A3B8" font-family="sans-serif">25 %</text><text x="249" y="24" text-anchor="middle" font-size="8" fill="#94A3B8" font-family="sans-serif">25 %</text><line x1="20" y1="60" x2="80" y2="60" stroke="#1E40AF" stroke-width="2"/><line x1="20" y1="52" x2="20" y2="68" stroke="#1E40AF" stroke-width="2.5"/><rect x="80" y="44" width="138" height="32" fill="#BFDBFE" stroke="#1E40AF" stroke-width="2" rx="2"/><line x1="149" y1="44" x2="149" y2="76" stroke="#DC2626" stroke-width="3"/><line x1="218" y1="60" x2="278" y2="60" stroke="#1E40AF" stroke-width="2"/><line x1="278" y1="52" x2="278" y2="68" stroke="#1E40AF" stroke-width="2.5"/><line x1="10" y1="76" x2="295" y2="76" stroke="#94A3B8" stroke-width="1"/><line x1="20" y1="76" x2="20" y2="83" stroke="#475569" stroke-width="1.5"/><line x1="80" y1="76" x2="80" y2="83" stroke="#475569" stroke-width="1.5"/><line x1="149" y1="76" x2="149" y2="83" stroke="#DC2626" stroke-width="1.5"/><line x1="218" y1="76" x2="218" y2="83" stroke="#475569" stroke-width="1.5"/><line x1="278" y1="76" x2="278" y2="83" stroke="#475569" stroke-width="1.5"/><text x="20" y="93" text-anchor="middle" font-size="9" fill="#475569" font-family="sans-serif">x</text><text x="26" y="97" text-anchor="start" font-size="7" fill="#475569" font-family="sans-serif">min</text><text x="77" y="93" text-anchor="middle" font-size="9" font-weight="bold" fill="#1E40AF" font-family="sans-serif">Q</text><text x="83" y="97" text-anchor="start" font-size="7" font-weight="bold" fill="#1E40AF" font-family="sans-serif">1</text><text x="143" y="93" text-anchor="middle" font-size="10" font-weight="bold" fill="#DC2626" font-family="sans-serif">M</text><text x="151" y="97" text-anchor="start" font-size="7" font-weight="bold" fill="#DC2626" font-family="sans-serif">e</text><text x="215" y="93" text-anchor="middle" font-size="9" font-weight="bold" fill="#1E40AF" font-family="sans-serif">Q</text><text x="221" y="97" text-anchor="start" font-size="7" font-weight="bold" fill="#1E40AF" font-family="sans-serif">3</text><text x="275" y="93" text-anchor="middle" font-size="9" fill="#475569" font-family="sans-serif">x</text><text x="281" y="97" text-anchor="start" font-size="7" fill="#475569" font-family="sans-serif">max</text><line x1="20" y1="108" x2="278" y2="108" stroke="#CBD5E1" stroke-width="1"/><line x1="20" y1="104" x2="20" y2="112" stroke="#CBD5E1" stroke-width="1"/><line x1="278" y1="104" x2="278" y2="112" stroke="#CBD5E1" stroke-width="1"/><text x="149" y="116" text-anchor="middle" font-size="8" fill="#94A3B8" font-family="sans-serif">étendue = x</text><text x="212" y="118" text-anchor="start" font-size="6" fill="#94A3B8" font-family="sans-serif">max</text><text x="222" y="116" text-anchor="start" font-size="8" fill="#94A3B8" font-family="sans-serif"> − x</text><text x="240" y="118" text-anchor="start" font-size="6" fill="#94A3B8" font-family="sans-serif">min</text></svg>`;
   const SECS=[
     { emoji:"📋", label:"Vocabulaire", color:"#0369A1", light:"#F0F9FF", rules:[
       { id:"st1",num:"1",title:"Vocabulaire de base",
@@ -26680,7 +26686,7 @@ function CoursMathStats({onBack, onStartPractice}) {
           r`\text{Additionner tous les produits }n_ix_i`,
           r`\text{Diviser par l'effectif total }N`,
         ],
-        tipTex:r`\text{Moyenne pondérée ≠ moyenne simple (sauf si tous les effectifs sont égaux)}`},
+        tip:"Moyenne pondérée ≠ moyenne simple (sauf si tous les effectifs sont égaux)"},
       { id:"st4",num:"4",title:"Fréquence",
         fml:r`f_i=\dfrac{n_i}{N}\quad\text{En \%{} : }f_i=\dfrac{n_i}{N}\times100`,
         bltTex:[
@@ -26696,7 +26702,7 @@ function CoursMathStats({onBack, onStartPractice}) {
           r`N\text{ impair : }M_e=\text{valeur de rang }\dfrac{N+1}{2}`,
           r`N\text{ pair : }M_e=\text{moyenne des valeurs de rangs }\dfrac{N}{2}\text{ et }\dfrac{N}{2}+1`,
         ],
-        tipTex:r`\text{«~La médiane : autant de valeurs au-dessus qu'en dessous~»}`},
+        tip:"« La médiane : autant de valeurs au-dessus qu'en dessous »"},
     ]},
     { emoji:"📦", label:"Quartiles", color:"#D97706", light:"#FFFBEB", rules:[
       { id:"st6",num:"6",title:"Quartiles Q₁ et Q₃",
@@ -26706,15 +26712,16 @@ function CoursMathStats({onBack, onStartPractice}) {
           r`\textbf{Écart interquartile }=Q_3-Q_1\text{ (50\%{} des données)}`,
           r`Q_2=M_e\text{ (le 2ème quartile est la médiane)}`,
         ],
-        tipTex:r`Q_1\text{ : rang }\dfrac{N}{4}\quad Q_3\text{ : rang }3\times\dfrac{N}{4}\text{ (arrondir au supérieur si non entier)}`},
+        tipTex:r`Q_1\text{ : rang }\tfrac{N}{4}\quad Q_3\text{ : rang }3\tfrac{N}{4}\text{ (arrondir au supérieur si non entier)}`},
       { id:"st7",num:"7",title:"Boîte à moustaches",
+        svgDiag:BOX_PLOT,
         bltTex:[
           r`\text{5 valeurs : }x_{\min}\,,\;Q_1\,,\;M_e\,,\;Q_3\,,\;x_{\max}`,
           r`\text{La boîte (rectangle) s'étend de }Q_1\text{ à }Q_3`,
           r`\text{Trait vertical dans la boîte = médiane}`,
           r`\text{Moustaches : de }x_{\min}\text{ à }Q_1\text{ et de }Q_3\text{ à }x_{\max}`,
         ],
-        tipTex:r`\text{La moyenne peut aussi être représentée (croix ×), mais ce n'est pas obligatoire}`},
+        tip:"La moyenne peut aussi être représentée (croix ×), mais ce n'est pas obligatoire"},
     ]},
     { emoji:"📐", label:"Variance", color:"#DC2626", light:"#FEF2F2", rules:[
       { id:"st8",num:"8",title:"Variance V",
@@ -26732,7 +26739,7 @@ function CoursMathStats({onBack, onStartPractice}) {
           r`\sigma\text{ est exprimé dans la même unité que la variable}`,
           r`\text{Plus }\sigma\text{ est grand, plus les valeurs sont dispersées}`,
         ],
-        tipTex:r`\text{Comparer deux séries : même }\bar{x}\text{ mais }\sigma\text{ différents → dispersion différente}`},
+        tip:"Comparer deux séries : même x̄ mais σ différents → dispersion différente"},
     ]},
   ];
 
@@ -26790,7 +26797,7 @@ function CoursMathStats({onBack, onStartPractice}) {
                   ))}
                   {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,
                     padding:"10px 12px",fontSize:12,fontWeight:600,color:"#713F12",
-                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4,overflowX:"auto"}}>
                     {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
                   </div>}
                   {rl.ex&&(
@@ -26810,6 +26817,9 @@ function CoursMathStats({onBack, onStartPractice}) {
           );
         })}
       </div>
+      {onStartPractice&&<div style={{padding:"12px 14px 16px",borderTop:"1px solid #F1F5F9",background:"white",flexShrink:0}}>
+        <button onClick={onStartPractice} style={{width:"100%",padding:"13px",background:"#0369A1",border:"none",borderRadius:14,color:"white",fontSize:15,fontWeight:800,fontFamily:"'Nunito',sans-serif",cursor:"pointer",letterSpacing:".3px"}}>💪 S'entraîner</button>
+      </div>}
     </div>
   );
 }
