@@ -24601,6 +24601,12 @@ const COURS_CATALOG = [
     chapitres:4, color:"#DC2626",
     desc:"Distribution · Identités remarquables · Factoriser · Fractions littérales",
   },
+  { id:"configs", emoji:"📐",
+    title:"Configurations planes",
+    niveaux:["2nde","1ère Spé"],
+    chapitres:4, color:"#0D9488",
+    desc:"Distance · Cercle & médiatrice · Distance point-droite · Trigonométrie",
+  },
   { id:"vecteurs", emoji:"↗️",
     title:"Les Vecteurs",
     niveaux:["2nde","1ère Spé"],
@@ -26287,11 +26293,169 @@ function CoursMathVecteurs({onBack, onStartPractice}) {
 }
 
 
+// ── CoursMathConfigs — Configurations planes (Ch. 5) ─────────────────────────
+function CoursMathConfigs({onBack, onStartPractice}) {
+  const [secIdx, setSecIdx] = React.useState(0);
+  const [openMap, setOpenMap] = React.useState({});
+  const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
+  const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
+  const tabsRef = React.useRef();
+  React.useEffect(()=>{
+    if(!tabsRef.current) return;
+    const btn=tabsRef.current.children[secIdx];
+    if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  },[secIdx]);
+
+  const STRIG=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 148" style="width:100%;display:block;border-radius:14px"><rect width="280" height="148" rx="14" fill="#FFF7ED" stroke="#FED7AA" stroke-width="2"/><rect x="30" y="12" width="220" height="122" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/><line x1="55" y1="118" x2="215" y2="118" stroke="#64748B" stroke-width="2"/><line x1="55" y1="118" x2="55" y2="40" stroke="#64748B" stroke-width="2"/><line x1="55" y1="40" x2="215" y2="118" stroke="#EA580C" stroke-width="2.5"/><polyline points="65,118 65,108 55,108" fill="none" stroke="#94A3B8" stroke-width="1.5"/><path d="M 196,118 A 19,19 0 0,0 200,110" fill="none" stroke="#EA580C" stroke-width="1.5"/><circle cx="55" cy="118" r="3" fill="#1E293B"/><circle cx="215" cy="118" r="3" fill="#1E293B"/><circle cx="55" cy="40" r="3" fill="#1E293B"/><text x="40" y="134" font-size="12" font-weight="bold" fill="#1E293B" font-family="sans-serif">A</text><text x="220" y="124" font-size="12" font-weight="bold" fill="#1E293B" font-family="sans-serif">B</text><text x="40" y="38" font-size="12" font-weight="bold" fill="#1E293B" font-family="sans-serif">C</text><text x="196" y="113" font-size="10" font-weight="bold" fill="#EA580C" font-family="sans-serif">&#x42;&#x302;</text><rect x="106" y="122" width="58" height="14" rx="3" fill="#ECFDF5"/><text x="135" y="133" font-size="9" font-weight="bold" fill="#059669" font-family="sans-serif" text-anchor="middle">adjacent</text><rect x="20" y="70" width="44" height="14" rx="3" fill="#EFF6FF"/><text x="42" y="81" font-size="9" font-weight="bold" fill="#2563EB" font-family="sans-serif" text-anchor="middle">oppos&#233;</text><rect x="116" y="55" width="70" height="14" rx="3" fill="#FFF7ED"/><text x="151" y="66" font-size="9" font-weight="bold" fill="#EA580C" font-family="sans-serif" text-anchor="middle">hypot&#233;nuse</text></svg>`;
+
+  const SECS=[
+    { emoji:"📏", label:"Distance", color:"#0D9488", light:"#F0FDFA", rules:[
+      { id:"cp1",num:"1",title:"Distance entre deux points",
+        fml:r`AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2}`,
+        bltTex:[
+          r`\text{Repère }\textbf{orthonormal}\text{ indispensable}`,
+          r`\text{Toujours un }+\text{ entre les deux termes (jamais un }-)`,
+          r`\text{L'ordre des points ne change pas le résultat}`,
+        ],
+        tipTex:r`\text{On calcule toujours }(arrivée-départ)^2\text{ pour chaque coordonnée}`,
+        ex:{qTex:r`A(-2\,;\,3)\text{ et }B(1\,;\,-1)`,
+            a:r`AB=\sqrt{(1-(-2))^2+(-1-3)^2}=\sqrt{3^2+(-4)^2}=\sqrt{9+16}=\sqrt{25}=5`}},
+    ]},
+    { emoji:"⭕", label:"Ensembles", color:"#7C3AED", light:"#F5F3FF", rules:[
+      { id:"cp2",num:"2",title:"Cercle de centre Ω et rayon r",
+        fml:r`\Omega M = r`,
+        bltTex:[
+          r`\text{Ensemble des points }M\text{ tels que }\Omega M=r`,
+          r`r>0\text{ : le rayon doit être strictement positif}`,
+        ]},
+      { id:"cp3",num:"3",title:"Médiatrice du segment [AB]",
+        fml:r`MA = MB`,
+        bltTex:[
+          r`\text{Ensemble des points }M\text{ équidistants de }A\text{ et }B`,
+          r`\text{Elle est perpendiculaire à }[AB]\text{ en son milieu}`,
+        ],
+        tipTex:r`\text{Médiatrice = droite passant par le milieu de [AB] et perpendiculaire à (AB)}`},
+    ]},
+    { emoji:"↕️", label:"Point-droite", color:"#DC2626", light:"#FEF2F2", rules:[
+      { id:"cp4",num:"4",title:"Distance d'un point à une droite",
+        bltTex:[
+          r`H\text{ : projeté orthogonal de }A\text{ sur la droite }d`,
+          r`d(A,d)=AH\text{ : c'est la plus petite distance entre }A\text{ et tout point de }d`,
+        ],
+        tipTex:r`\text{La distance }AH\text{ est aussi la longueur d'une hauteur dans un triangle}`,
+        ex:{qTex:r`\text{Triangle ABC, hauteur }[CK]\text{ issue de C. }AC=7\text{ cm},\ AK=6\text{ cm. Distance de C à }(AB)`,
+            a:r`KC^2=AC^2-AK^2=49-36=13\quad\Rightarrow\quad KC=\sqrt{13}\approx3{,}6\text{ cm}`}},
+    ]},
+    { emoji:"📐", label:"Trigonométrie", color:"#EA580C", light:"#FFF7ED", rules:[
+      { id:"cp5",num:"5",title:"Cos, Sin, Tan dans le triangle rectangle",
+        svgDiag:STRIG,
+        bltTex:[
+          r`\cos\hat{B}=\dfrac{\text{côté adjacent}}{\text{hypoténuse}}=\dfrac{AB}{BC}`,
+          r`\sin\hat{B}=\dfrac{\text{côté opposé}}{\text{hypoténuse}}=\dfrac{AC}{BC}`,
+          r`\tan\hat{B}=\dfrac{\text{côté opposé}}{\text{côté adjacent}}=\dfrac{AC}{AB}`,
+        ],
+        tipTex:r`\text{Moyen mnémotechnique : SOH-CAH-TOA}`,
+        ex:{qTex:r`\text{Triangle rectangle en A, }AB=8\text{ cm},\ BC=10\text{ cm}.\text{ Calculer }\cos\hat{B}`,
+            a:r`\cos\hat{B}=\dfrac{AB}{BC}=\dfrac{8}{10}=0{,}8`}},
+      { id:"cp6",num:"6",title:"Relation fondamentale",
+        fml:r`\cos^2\alpha+\sin^2\alpha=1`,
+        bltTex:[
+          r`\text{Valable pour tout angle }\alpha`,
+          r`\Rightarrow\ \sin^2\alpha=1-\cos^2\alpha`,
+          r`\Rightarrow\ \cos^2\alpha=1-\sin^2\alpha`,
+        ],
+        tipTex:r`\cos^2\alpha\text{ est une écriture de }(\cos\alpha)^2\text{, pas }\cos(\alpha^2)`,
+        ex:{qTex:r`\cos60°=\tfrac{1}{2}\text{. Donner la valeur exacte de }\sin60°`,
+            a:r`\sin^2 60°=1-\left(\tfrac{1}{2}\right)^2=1-\tfrac{1}{4}=\tfrac{3}{4}\quad\Rightarrow\quad\sin60°=\dfrac{\sqrt{3}}{2}`}},
+    ]},
+  ];
+
+  const sec=SECS[secIdx]; const col=sec.color;
+  return (
+    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"#F8FAFF"}}>
+      <div style={{background:"linear-gradient(135deg,#0D9488,#0891B2)",padding:"16px 18px 14px",flexShrink:0}}>
+        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:12}}>
+          <button onClick={onBack} style={{background:"rgba(255,255,255,.2)",border:"none",borderRadius:10,
+            cursor:"pointer",color:"#fff",fontSize:16,width:32,height:32,display:"flex",
+            alignItems:"center",justifyContent:"center"}}>✕</button>
+          <div style={{flex:1}}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:17,color:"#fff"}}>
+              📐 Configurations planes</div>
+            <div style={{fontSize:11,color:"rgba(255,255,255,.75)",marginTop:1}}>
+              Cours interactif · Ch. 5</div>
+          </div>
+        </div>
+        <div ref={tabsRef} style={{display:"flex",gap:6,overflowX:"auto",scrollbarWidth:"none",paddingBottom:2}}>
+          {SECS.map((s,i)=>(
+            <button key={i} onClick={()=>setSecIdx(i)}
+              style={{background:i===secIdx?"#fff":"rgba(255,255,255,.2)",
+                border:"none",borderRadius:99,padding:"6px 13px",cursor:"pointer",flexShrink:0,
+                fontFamily:"'Nunito',sans-serif",fontWeight:700,fontSize:11,
+                color:i===secIdx?s.color:"#fff",whiteSpace:"nowrap"}}>
+              {s.emoji} {s.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div style={{flex:1,overflowY:"auto",padding:"14px 14px 80px"}}>
+        {sec.rules.map((rl,i)=>{
+          const k=`${secIdx}_${i}`; const expanded=isOpen(k,i===0);
+          return (
+            <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
+              overflow:"hidden",boxShadow:"0 2px 14px rgba(0,0,0,.07)",borderLeft:`4px solid ${col}`}}>
+              <div onClick={()=>tog(k)} style={{display:"flex",alignItems:"center",gap:10,
+                padding:"13px 15px",cursor:"pointer",userSelect:"none"}}>
+                <div style={{width:30,height:30,borderRadius:"50%",background:col,color:"#fff",
+                  display:"flex",alignItems:"center",justifyContent:"center",
+                  fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
+                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}{rl.titleTex&&<M tex={rl.titleTex}/>}</div>
+                <span style={{color:"#94A3B8",fontSize:11,display:"block",
+                  transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
+              </div>
+              {expanded&&(
+                <div style={{padding:"0 15px 15px"}}>
+                  {rl.fml&&<div style={{background:sec.light,borderRadius:13,padding:"14px 12px",
+                    margin:"8px 0",textAlign:"center",overflowX:"auto"}}><M tex={rl.fml}/></div>}
+                  {rl.svgDiag&&<div style={{margin:"8px 0",borderRadius:12,overflow:"hidden"}}
+                    dangerouslySetInnerHTML={{__html:rl.svgDiag}}/>}
+                  {(rl.bltTex||[]).map((b,j)=>(
+                    <div key={j} style={{display:"flex",gap:7,padding:"4px 0",alignItems:"flex-start"}}>
+                      <span style={{color:col,fontWeight:700,flexShrink:0,marginTop:2}}>•</span>
+                      <span style={{overflowX:"auto"}}><M tex={b}/></span>
+                    </div>
+                  ))}
+                  {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,
+                    padding:"10px 12px",fontSize:12,fontWeight:600,color:"#713F12",
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>
+                    {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
+                  </div>}
+                  {rl.ex&&(
+                    <div style={{background:"#F8FAFC",borderRadius:12,padding:"12px 13px",
+                      marginTop:10,borderLeft:`3px solid ${col}`}}>
+                      <div style={{fontSize:10,fontWeight:800,color:col,textTransform:"uppercase",
+                        letterSpacing:".7px",marginBottom:5}}>Exemple</div>
+                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>
+                        {rl.ex.qTex?<M tex={rl.ex.qTex}/>:<span>{rl.ex.q}</span>}
+                      </div>
+                      <div style={{textAlign:"center",overflowX:"auto"}}><M tex={rl.ex.a}/></div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+
 function BottomNav({screen, onTab}) {
   const BAC_NEW = 1781827200000;
   const tabs = [
     {id:"home",      emoji:"🏠", label:"Accueil",     active:screen==="dashboard"||screen==="home"},
-    {id:"apprendre", emoji:"📖", label:"Apprendre",   active:screen==="flashcard_setup"||screen==="flashcards"||screen==="apprendre"||screen==="cours"||screen==="cours_pourcentages"||screen==="cours_calcul"||screen==="cours_reels"||screen==="cours_fonctions_affines"||screen==="cours_fonctions_gen"||screen==="cours_litteral"||screen==="cours_vecteurs"},
+    {id:"apprendre", emoji:"📖", label:"Apprendre",   active:screen==="flashcard_setup"||screen==="flashcards"||screen==="apprendre"||screen==="cours"||screen==="cours_pourcentages"||screen==="cours_calcul"||screen==="cours_reels"||screen==="cours_fonctions_affines"||screen==="cours_fonctions_gen"||screen==="cours_litteral"||screen==="cours_vecteurs"||screen==="cours_configs"},
     {id:"train",     emoji:"💪", label:"S'entraîner", active:screen==="training_modes"},
     {id:"bac",       emoji:"🎯", label:"Bac",         badge:Date.now()<BAC_NEW, active:screen==="bac_subjects"},
     {id:"parcours",  emoji:"📊", label:"Parcours",    active:screen==="parcours_detail"||screen==="collection"||screen==="vigilance"},
@@ -27213,6 +27377,7 @@ function AutoMaths() {
           {screen==="cours_fonctions_gen"    && <CoursMathFonctionsGen onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_litteral"         && <CoursMathLitteral     onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_vecteurs"         && <CoursMathVecteurs     onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
+          {screen==="cours_configs"          && <CoursMathConfigs      onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="flashcard_setup" && <FlashcardSetupScreen onBack={()=>setScreen(profile?"dashboard":"home")} onStart={(cards)=>{ setPool(cards); plsbl("Flashcards lancées", {cartes: cards.length}); setScreen("flashcards"); }}/>}
           {screen==="flashcards"    && <FlashcardScreen cards={pool} onBack={()=>setScreen("flashcard_setup")}/>}
           {screen==="mission_theme" && missionTheme && <MissionThemeScreen theme={missionTheme} missionId={missionId} onBack={()=>setScreen("mission_select")} onStart={(qs, themeId)=>{
