@@ -24822,7 +24822,7 @@ function CoursMathScreen({onBack, onOpen, onStartPractice}) {
                 <div style={{width:30,height:30,borderRadius:"50%",background:col,
                   color:"#fff",display:"flex",alignItems:"center",justifyContent:"center",
                   fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
-                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}</div>
+                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}{rl.titleTex&&<M tex={rl.titleTex}/>}</div>
                 <span style={{color:"#94A3B8",fontSize:11,display:"block",
                   transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
               </div>
@@ -25025,7 +25025,7 @@ function CoursMathCalcul({onBack, onStartPractice}) {
                 <div style={{width:30,height:30,borderRadius:"50%",background:col,color:"#fff",
                   display:"flex",alignItems:"center",justifyContent:"center",
                   fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
-                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}</div>
+                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}{rl.titleTex&&<M tex={rl.titleTex}/>}</div>
                 <span style={{color:"#94A3B8",fontSize:11,display:"block",
                   transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
               </div>
@@ -25200,7 +25200,7 @@ function CoursMathReels({onBack, onStartPractice}) {
                 <div style={{width:30,height:30,borderRadius:"50%",background:col,color:"#fff",
                   display:"flex",alignItems:"center",justifyContent:"center",
                   fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
-                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}</div>
+                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}{rl.titleTex&&<M tex={rl.titleTex}/>}</div>
                 <span style={{color:"#94A3B8",fontSize:11,display:"block",
                   transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
               </div>
@@ -25442,7 +25442,7 @@ function CoursMathFonctions({onBack, onStartPractice}) {
                 <div style={{width:30,height:30,borderRadius:"50%",background:col,color:"#fff",
                   display:"flex",alignItems:"center",justifyContent:"center",
                   fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
-                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}</div>
+                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}{rl.titleTex&&<M tex={rl.titleTex}/>}</div>
                 <span style={{color:"#94A3B8",fontSize:11,display:"block",
                   transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
               </div>
@@ -25789,7 +25789,7 @@ function CoursMathFonctionsGen({onBack, onStartPractice}) {
                 <div style={{width:30,height:30,borderRadius:"50%",background:col,color:"#fff",
                   display:"flex",alignItems:"center",justifyContent:"center",
                   fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
-                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}</div>
+                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}{rl.titleTex&&<M tex={rl.titleTex}/>}</div>
                 <span style={{color:"#94A3B8",fontSize:11,display:"block",
                   transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
               </div>
@@ -25988,7 +25988,7 @@ function CoursMathLitteral({onBack, onStartPractice}) {
                 <div style={{width:30,height:30,borderRadius:"50%",background:col,color:"#fff",
                   display:"flex",alignItems:"center",justifyContent:"center",
                   fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
-                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}</div>
+                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}{rl.titleTex&&<M tex={rl.titleTex}/>}</div>
                 <span style={{color:"#94A3B8",fontSize:11,display:"block",
                   transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
               </div>
@@ -26240,7 +26240,7 @@ function CoursMathVecteurs({onBack, onStartPractice}) {
                 <div style={{width:30,height:30,borderRadius:"50%",background:col,color:"#fff",
                   display:"flex",alignItems:"center",justifyContent:"center",
                   fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
-                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}</div>
+                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}{rl.titleTex&&<M tex={rl.titleTex}/>}</div>
                 <span style={{color:"#94A3B8",fontSize:11,display:"block",
                   transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
               </div>
