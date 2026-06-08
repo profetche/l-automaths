@@ -24610,6 +24610,12 @@ const COURS_CATALOG = [
     chapitres:4, color:"#DC2626",
     desc:"Distribution · Identités remarquables · Factoriser · Fractions littérales",
   },
+  { id:"stats", emoji:"📊",
+    title:"Statistiques",
+    niveaux:["2nde"],
+    chapitres:9, color:"#0369A1",
+    desc:"Effectifs · Moyenne · Médiane · Quartiles · Boîte à moustaches · Variance",
+  },
   { id:"equations", emoji:"⚖️",
     title:"Équations · Inéquations",
     niveaux:["2nde","1ère Spé"],
@@ -26635,11 +26641,185 @@ function CoursMathEquations({onBack, onStartPractice}) {
 }
 
 
+
+// ── CoursMathStats — Statistiques (Ch. 11) ───────────────────────────────────
+function CoursMathStats({onBack, onStartPractice}) {
+  const [secIdx, setSecIdx] = React.useState(0);
+  const [openMap, setOpenMap] = React.useState({});
+  const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
+  const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
+  const tabsRef = React.useRef();
+  React.useEffect(()=>{
+    if(!tabsRef.current) return;
+    const btn=tabsRef.current.children[secIdx];
+    if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  },[secIdx]);
+
+  const SECS=[
+    { emoji:"📋", label:"Vocabulaire", color:"#0369A1", light:"#F0F9FF", rules:[
+      { id:"st1",num:"1",title:"Vocabulaire de base",
+        bltTex:[
+          r`\textbf{Population}\text{ : ensemble de tous les individus étudiés}`,
+          r`\textbf{Caractère}\text{ (ou variable) : ce qu'on mesure sur chaque individu}`,
+          r`\textbf{Classes}\text{ (catégories) : regroupements de valeurs}`,
+          r`\textbf{Effectif}\,n_i\text{ : nombre d'individus ayant la valeur }x_i`,
+          r`N=\sum n_i\text{ : effectif total}`,
+        ]},
+      { id:"st2",num:"2",title:"Étendue",
+        fml:r`\text{Étendue}=x_{\max}-x_{\min}`,
+        bltTex:[
+          r`\text{Mesure la dispersion globale de la série}`,
+          r`\text{Sensible aux valeurs extrêmes (aberrantes)}`,
+        ]},
+    ]},
+    { emoji:"📈", label:"Moyenne", color:"#059669", light:"#F0FDF4", rules:[
+      { id:"st3",num:"3",title:"Moyenne pondérée",
+        fml:r`\bar{x}=\dfrac{\sum n_i x_i}{N}=\dfrac{n_1x_1+n_2x_2+\cdots}{N}`,
+        bltTex:[
+          r`\text{Multiplier chaque valeur }x_i\text{ par son effectif }n_i`,
+          r`\text{Additionner tous les produits }n_ix_i`,
+          r`\text{Diviser par l'effectif total }N`,
+        ],
+        tipTex:r`\text{Moyenne pondérée ≠ moyenne simple (sauf si tous les effectifs sont égaux)}`},
+      { id:"st4",num:"4",title:"Fréquence",
+        fml:r`f_i=\dfrac{n_i}{N}\quad\text{En \%{} : }f_i=\dfrac{n_i}{N}\times100`,
+        bltTex:[
+          r`\text{La somme des fréquences vaut 1 (ou 100\%{})}`,
+          r`\textbf{Effectifs cumulés croissants}\text{ : somme des effectifs jusqu'à }x_i`,
+        ]},
+    ]},
+    { emoji:"📍", label:"Médiane", color:"#7C3AED", light:"#F5F3FF", rules:[
+      { id:"st5",num:"5",title:"Médiane",
+        fml:r`M_e\text{ partage la série (ordonnée) en 2 parties d'effectifs égaux}`,
+        bltTex:[
+          r`\text{1) Classer les données dans l'ordre croissant}`,
+          r`N\text{ impair : }M_e=\text{valeur de rang }\dfrac{N+1}{2}`,
+          r`N\text{ pair : }M_e=\text{moyenne des valeurs de rangs }\dfrac{N}{2}\text{ et }\dfrac{N}{2}+1`,
+        ],
+        tipTex:r`\text{«~La médiane : autant de valeurs au-dessus qu'en dessous~»}`},
+    ]},
+    { emoji:"📦", label:"Quartiles", color:"#D97706", light:"#FFFBEB", rules:[
+      { id:"st6",num:"6",title:"Quartiles Q₁ et Q₃",
+        bltTex:[
+          r`Q_1\text{ : au moins 25\%{} des données lui sont inférieures ou égales}`,
+          r`Q_3\text{ : au moins 75\%{} des données lui sont inférieures ou égales}`,
+          r`\textbf{Écart interquartile }=Q_3-Q_1\text{ (50\%{} des données)}`,
+          r`Q_2=M_e\text{ (le 2ème quartile est la médiane)}`,
+        ],
+        tipTex:r`Q_1\text{ : rang }\dfrac{N}{4}\quad Q_3\text{ : rang }3\times\dfrac{N}{4}\text{ (arrondir au supérieur si non entier)}`},
+      { id:"st7",num:"7",title:"Boîte à moustaches",
+        bltTex:[
+          r`\text{5 valeurs : }x_{\min}\,,\;Q_1\,,\;M_e\,,\;Q_3\,,\;x_{\max}`,
+          r`\text{La boîte (rectangle) s'étend de }Q_1\text{ à }Q_3`,
+          r`\text{Trait vertical dans la boîte = médiane}`,
+          r`\text{Moustaches : de }x_{\min}\text{ à }Q_1\text{ et de }Q_3\text{ à }x_{\max}`,
+        ],
+        tipTex:r`\text{La moyenne peut aussi être représentée (croix ×), mais ce n'est pas obligatoire}`},
+    ]},
+    { emoji:"📐", label:"Variance", color:"#DC2626", light:"#FEF2F2", rules:[
+      { id:"st8",num:"8",title:"Variance V",
+        fml:r`V=\dfrac{\sum n_i(x_i-\bar{x})^2}{N}=\dfrac{\sum n_ix_i^2}{N}-\bar{x}^2`,
+        bltTex:[
+          r`\text{V = moyenne des carrés des écarts à la moyenne}`,
+          r`\text{Formule pratique : V = (moyenne des carrés) }-\text{ (carré de la moyenne)}`,
+          r`V\geq 0\text{ ; }V=0\Leftrightarrow\text{toutes les valeurs sont égales à }\bar{x}`,
+        ],
+        tipTex:r`\text{À la calculatrice : }V=\dfrac{\sum n_ix_i^2}{N}-\bar{x}^2`},
+      { id:"st9",num:"9",title:"Écart type σ",
+        fml:r`\sigma=\sqrt{V}`,
+        bltTex:[
+          r`\text{Mesure la dispersion des valeurs autour de la moyenne}`,
+          r`\sigma\text{ est exprimé dans la même unité que la variable}`,
+          r`\text{Plus }\sigma\text{ est grand, plus les valeurs sont dispersées}`,
+        ],
+        tipTex:r`\text{Comparer deux séries : même }\bar{x}\text{ mais }\sigma\text{ différents → dispersion différente}`},
+    ]},
+  ];
+
+  const sec=SECS[secIdx]; const col=sec.color;
+  return (
+    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"#F8FAFF"}}>
+      <div style={{background:"linear-gradient(135deg,#0369A1,#0284C7)",padding:"16px 18px 14px",flexShrink:0}}>
+        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:12}}>
+          <button onClick={onBack} style={{background:"rgba(255,255,255,.2)",border:"none",borderRadius:10,
+            cursor:"pointer",color:"#fff",fontSize:16,width:32,height:32,display:"flex",
+            alignItems:"center",justifyContent:"center"}}>✕</button>
+          <div style={{flex:1}}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:17,color:"#fff"}}>
+              📊 Statistiques</div>
+            <div style={{fontSize:11,color:"rgba(255,255,255,.75)",marginTop:1}}>
+              Cours interactif · Ch. 11</div>
+          </div>
+        </div>
+        <div ref={tabsRef} style={{display:"flex",gap:6,overflowX:"auto",scrollbarWidth:"none",paddingBottom:2}}>
+          {SECS.map((s,i)=>(
+            <button key={i} onClick={()=>setSecIdx(i)}
+              style={{background:i===secIdx?"#fff":"rgba(255,255,255,.2)",
+                border:"none",borderRadius:99,padding:"6px 13px",cursor:"pointer",flexShrink:0,
+                fontFamily:"'Nunito',sans-serif",fontWeight:700,fontSize:11,
+                color:i===secIdx?s.color:"#fff",whiteSpace:"nowrap"}}>
+              {s.emoji} {s.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div style={{flex:1,overflowY:"auto",padding:"14px 14px 80px"}}>
+        {sec.rules.map((rl,i)=>{
+          const k=`${secIdx}_${i}`; const expanded=isOpen(k,i===0);
+          return (
+            <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
+              overflow:"hidden",boxShadow:"0 2px 14px rgba(0,0,0,.07)",borderLeft:`4px solid ${col}`}}>
+              <div onClick={()=>tog(k)} style={{display:"flex",alignItems:"center",gap:10,
+                padding:"13px 15px",cursor:"pointer",userSelect:"none"}}>
+                <div style={{width:30,height:30,borderRadius:"50%",background:col,color:"#fff",
+                  display:"flex",alignItems:"center",justifyContent:"center",
+                  fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
+                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}{rl.titleTex&&<M tex={rl.titleTex}/>}</div>
+                <span style={{color:"#94A3B8",fontSize:11,display:"block",
+                  transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
+              </div>
+              {expanded&&(
+                <div style={{padding:"0 15px 15px"}}>
+                  {rl.fml&&<div style={{background:sec.light,borderRadius:13,padding:"14px 12px",
+                    margin:"8px 0",textAlign:"center",overflowX:"auto"}}><M tex={rl.fml}/></div>}
+                  {(rl.bltTex||[]).map((b,j)=>(
+                    <div key={j} style={{display:"flex",gap:7,padding:"4px 0",alignItems:"flex-start"}}>
+                      <span style={{color:col,fontWeight:700,flexShrink:0,marginTop:2}}>•</span>
+                      <span style={{overflowX:"auto"}}><M tex={b}/></span>
+                    </div>
+                  ))}
+                  {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,
+                    padding:"10px 12px",fontSize:12,fontWeight:600,color:"#713F12",
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4}}>
+                    {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
+                  </div>}
+                  {rl.ex&&(
+                    <div style={{background:"#F8FAFC",borderRadius:12,padding:"12px 13px",
+                      marginTop:10,borderLeft:`3px solid ${col}`}}>
+                      <div style={{fontSize:10,fontWeight:800,color:col,textTransform:"uppercase",
+                        letterSpacing:".7px",marginBottom:5}}>Exemple</div>
+                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>
+                        {rl.ex.qTex?<M tex={rl.ex.qTex}/>:<span>{rl.ex.q}</span>}
+                      </div>
+                      <div style={{textAlign:"center",overflowX:"auto"}}><M tex={rl.ex.a}/></div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+
 function BottomNav({screen, onTab}) {
   const BAC_NEW = 1781827200000;
   const tabs = [
     {id:"home",      emoji:"🏠", label:"Accueil",     active:screen==="dashboard"||screen==="home"},
-    {id:"apprendre", emoji:"📖", label:"Apprendre",   active:screen==="flashcard_setup"||screen==="flashcards"||screen==="apprendre"||screen==="cours"||screen==="cours_pourcentages"||screen==="cours_calcul"||screen==="cours_reels"||screen==="cours_fonctions_affines"||screen==="cours_fonctions_gen"||screen==="cours_litteral"||screen==="cours_vecteurs"||screen==="cours_equations"||screen==="cours_configs"},
+    {id:"apprendre", emoji:"📖", label:"Apprendre",   active:screen==="flashcard_setup"||screen==="flashcards"||screen==="apprendre"||screen==="cours"||screen==="cours_pourcentages"||screen==="cours_calcul"||screen==="cours_reels"||screen==="cours_fonctions_affines"||screen==="cours_fonctions_gen"||screen==="cours_litteral"||screen==="cours_vecteurs"||screen==="cours_stats"||screen==="cours_equations"||screen==="cours_configs"},
     {id:"train",     emoji:"💪", label:"S'entraîner", active:screen==="training_modes"},
     {id:"bac",       emoji:"🎯", label:"Bac",         badge:Date.now()<BAC_NEW, active:screen==="bac_subjects"},
     {id:"parcours",  emoji:"📊", label:"Parcours",    active:screen==="parcours_detail"||screen==="collection"||screen==="vigilance"},
@@ -27561,6 +27741,7 @@ function AutoMaths() {
           {screen==="cours_fonctions_gen"    && <CoursMathFonctionsGen onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_litteral"         && <CoursMathLitteral     onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_vecteurs"         && <CoursMathVecteurs     onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
+          {screen==="cours_stats"             && <CoursMathStats         onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_equations"         && <CoursMathEquations    onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_configs"          && <CoursMathConfigs      onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="flashcard_setup" && <FlashcardSetupScreen onBack={()=>setScreen(profile?"dashboard":"home")} onStart={(cards)=>{ setPool(cards); plsbl("Flashcards lancées", {cartes: cards.length}); setScreen("flashcards"); }}/>}
