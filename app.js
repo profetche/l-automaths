@@ -27442,6 +27442,8 @@ function CoursMathDroites({onBack, onStartPractice}) {
                 <div style={{padding:"0 15px 15px"}}>
                   {rl.fml&&<div style={{background:sec.light,borderRadius:13,padding:"14px 12px",
                     margin:"8px 0",textAlign:"center",overflowX:"auto"}}><M tex={rl.fml}/></div>}
+                  {rl.svgDiag&&<div style={{margin:"8px 0",borderRadius:12,overflow:"hidden"}}
+                    dangerouslySetInnerHTML={{__html:rl.svgDiag}}/>}
                   {(rl.bltTex||[]).map((b,j)=>(
                     <div key={j} style={{display:"flex",gap:7,padding:"4px 0",alignItems:"flex-start"}}>
                       <span style={{color:col,fontWeight:700,flexShrink:0,marginTop:2}}>•</span>
