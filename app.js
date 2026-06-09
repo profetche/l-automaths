@@ -24610,6 +24610,12 @@ const COURS_CATALOG = [
     chapitres:4, color:"#DC2626",
     desc:"Distribution · Identités remarquables · Factoriser · Fractions littérales",
   },
+  { id:"fonctions_ref", emoji:"📉",
+    title:"Fonctions de référence",
+    niveaux:["2nde","1ère Spé"],
+    chapitres:12, color:"#7C3AED",
+    desc:"x² · √x · 1/x · x³ : courbes, variations, ordre, équations",
+  },
   { id:"stats", emoji:"📊",
     title:"Statistiques",
     niveaux:["2nde"],
@@ -26538,13 +26544,6 @@ function CoursMathEquations({onBack, onStartPractice}) {
         ex:{qTex:r`\dfrac{6x-13}{(x-1)(x-2)}=0`,
             a:r`\begin{gathered}\text{Interdits : }x=1\text{ et }x=2\\[4pt]6x-13=0\Rightarrow x=\tfrac{13}{6}\\[4pt]\tfrac{13}{6}\notin\{1,2\}\Rightarrow S=\!\left\{\tfrac{13}{6}\right\}\end{gathered}`}},
     ]},
-    { emoji:"🏋️", label:"S'entraîner", color:"#D97706", light:"#FFFBEB", isPractice:true,
-      practices:[
-        {sub:"eq1",         label:"Équation 1er degré",      emoji:"📝", cat:"litteral"},
-        {sub:"produit_nul", label:"Équation produit nul",    emoji:"✖️",  cat:"litteral"},
-        {sub:"eq_x2",       label:"x²=a",                    emoji:"²",  cat:"litteral"},
-        {sub:"inequation1", label:"Inéquation 1er degré",    emoji:"📊", cat:"litteral"},
-      ]},
     { emoji:"📊", label:"Inéquations", color:"#2563EB", light:"#EFF6FF", rules:[
       { id:"eq5",num:"5",title:"Signe de ax+b",
         fml:r`ax+b=0\Leftrightarrow x_0=-\dfrac{b}{a}`,
@@ -26567,6 +26566,14 @@ function CoursMathEquations({onBack, onStartPractice}) {
         ex:{qTex:r`(-2x-1)(3x-2)>0`,
             a:r`\begin{gathered}\text{Racines : }x=-\tfrac{1}{2}\text{ et }x=\tfrac{2}{3}\\[4pt]S=\left]-\tfrac{1}{2}\,;\,\tfrac{2}{3}\right[\end{gathered}`}},
     ]},
+
+    { emoji:"🏋️", label:"S'entraîner", color:"#D97706", light:"#FFFBEB", isPractice:true,
+      practices:[
+        {sub:"eq1",         label:"Équation 1er degré",      emoji:"📝", cat:"litteral"},
+        {sub:"produit_nul", label:"Équation produit nul",    emoji:"✖️",  cat:"litteral"},
+        {sub:"eq_x2",       label:"x²=a",                    emoji:"²",  cat:"litteral"},
+        {sub:"inequation1", label:"Inéquation 1er degré",    emoji:"📊", cat:"litteral"},
+      ]},
   ];
 
   const sec=SECS[secIdx]; const col=sec.color;
@@ -26873,11 +26880,191 @@ function CoursMathStats({onBack, onStartPractice}) {
 }
 
 
+// ── CoursMathFonctionsRef — Fonctions de référence ───────────────────────────
+function CoursMathFonctionsRef({onBack, onStartPractice}) {
+  const [secIdx, setSecIdx] = React.useState(0);
+  const [openMap, setOpenMap] = React.useState({});
+  const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
+  const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
+  const tabsRef = React.useRef();
+  React.useEffect(()=>{
+    if(!tabsRef.current) return;
+    const btn=tabsRef.current.children[secIdx];
+    if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  },[secIdx]);
+
+  const COURBE_X2=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 155" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="260" height="155" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.2"/><line x1="12" y1="140" x2="248" y2="140" stroke="#94A3B8" stroke-width="1.2"/><polygon points="243,137 252,140 243,143" fill="#94A3B8"/><line x1="130" y1="148" x2="130" y2="8" stroke="#94A3B8" stroke-width="1.2"/><polygon points="127,13 130,4 133,13" fill="#94A3B8"/><polyline points="30,46 50,80 70,106 90,125 110,136 130,140 150,136 170,125 190,106 210,80 230,46" fill="none" stroke="#DC2626" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><text x="253" y="143" text-anchor="middle" font-size="10" font-weight="italic" fill="#475569" font-family="sans-serif">x</text><text x="125" y="6" text-anchor="middle" font-size="10" font-weight="italic" fill="#475569" font-family="sans-serif">f</text><text x="118" y="150" text-anchor="middle" font-size="9" font-weight="normal" fill="#475569" font-family="sans-serif">O</text><text x="125" y="150" text-anchor="middle" font-size="9" font-weight="normal" fill="#475569" font-family="sans-serif"></text><line x1="90" y1="140" x2="90" y2="144" stroke="#64748B" stroke-width="1"/><text x="90" y="153" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">-1</text><line x1="170" y1="140" x2="170" y2="144" stroke="#64748B" stroke-width="1"/><text x="170" y="153" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">1</text><line x1="50" y1="140" x2="50" y2="144" stroke="#64748B" stroke-width="1"/><text x="50" y="153" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">-2</text><line x1="210" y1="140" x2="210" y2="144" stroke="#64748B" stroke-width="1"/><text x="210" y="153" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">2</text><line x1="130" y1="125" x2="134" y2="125" stroke="#64748B" stroke-width="1"/><text x="126" y="128.5" text-anchor="middle" font-size="8" font-weight="end" fill="#64748B" font-family="sans-serif">1</text><line x1="130" y1="80" x2="134" y2="80" stroke="#64748B" stroke-width="1"/><text x="126" y="83.5" text-anchor="middle" font-size="8" font-weight="end" fill="#64748B" font-family="sans-serif">4</text><text x="136" y="47" text-anchor="start" font-size="9" font-weight="bold" fill="#DC2626" font-family="sans-serif">y=x&#178;</text></svg>`;
+  const TABLE_X2=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 72" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="240" height="72" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.2"/><line x1="52" y1="0" x2="52" y2="72" stroke="#E2E8F0" stroke-width="1"/><line x1="116" y1="0" x2="116" y2="72" stroke="#CBD5E1" stroke-width="1.5"/><line x1="124" y1="0" x2="124" y2="72" stroke="#CBD5E1" stroke-width="1.5"/><line x1="0" y1="30" x2="240" y2="30" stroke="#E2E8F0" stroke-width="1.2"/><text x="26" y="20" text-anchor="middle" font-size="11" font-weight="italic" fill="#1E293B" font-family="sans-serif">x</text><text x="75" y="20" text-anchor="middle" font-size="10" font-weight="normal" fill="#475569" font-family="sans-serif">-&#x221E;</text><text x="120" y="20" text-anchor="middle" font-size="10" font-weight="bold" fill="#1E293B" font-family="sans-serif">0</text><text x="182" y="20" text-anchor="middle" font-size="10" font-weight="normal" fill="#475569" font-family="sans-serif">+&#x221E;</text><text x="26" y="52" text-anchor="middle" font-size="10" font-weight="normal" fill="#1E293B" font-family="sans-serif">x&#178;</text><text x="68" y="38" text-anchor="middle" font-size="9" font-weight="normal" fill="#475569" font-family="sans-serif">+&#x221E;</text><line x1="80.0" y1="42.0" x2="112.0" y2="65.0" stroke="#DC2626" stroke-width="1.5"/><polygon points="106.2,64.5 112.0,65.0 109.7,59.6" fill="#DC2626"/><text x="120" y="69" text-anchor="middle" font-size="12" font-weight="bold" fill="#DC2626" font-family="sans-serif">0</text><line x1="128.0" y1="65.0" x2="160.0" y2="42.0" stroke="#DC2626" stroke-width="1.5"/><polygon points="157.7,47.4 160.0,42.0 154.2,42.5" fill="#DC2626"/><text x="184" y="38" text-anchor="middle" font-size="9" font-weight="normal" fill="#475569" font-family="sans-serif">+&#x221E;</text></svg>`;
+  const COURBE_SQ=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 140" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="260" height="140" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.2"/><line x1="12" y1="120" x2="255" y2="120" stroke="#94A3B8" stroke-width="1.2"/><polygon points="250,117 259,120 250,123" fill="#94A3B8"/><line x1="20" y1="128" x2="20" y2="8" stroke="#94A3B8" stroke-width="1.2"/><polygon points="17,13 20,4 23,13" fill="#94A3B8"/><polyline points="20,120 26,102 45,85 70,71 95,59 120,50 145,42 170,34 195,27 220,21 245,15" fill="none" stroke="#059669" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><text x="258" y="123" text-anchor="middle" font-size="10" font-weight="italic" fill="#475569" font-family="sans-serif">x</text><text x="15" y="6" text-anchor="middle" font-size="10" font-weight="italic" fill="#475569" font-family="sans-serif">f</text><text x="12" y="127" text-anchor="middle" font-size="9" font-weight="normal" fill="#475569" font-family="sans-serif">O</text><line x1="45" y1="120" x2="45" y2="124" stroke="#64748B" stroke-width="1"/><text x="45" y="133" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">1</text><line x1="120" y1="120" x2="120" y2="124" stroke="#64748B" stroke-width="1"/><text x="120" y="133" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">4</text><line x1="245" y1="120" x2="245" y2="124" stroke="#64748B" stroke-width="1"/><text x="245" y="133" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">9</text><line x1="20" y1="85" x2="24" y2="85" stroke="#64748B" stroke-width="1"/><text x="16" y="88.5" text-anchor="middle" font-size="8" font-weight="end" fill="#64748B" font-family="sans-serif">1</text><line x1="20" y1="50" x2="24" y2="50" stroke="#64748B" stroke-width="1"/><text x="16" y="53.5" text-anchor="middle" font-size="8" font-weight="end" fill="#64748B" font-family="sans-serif">2</text><line x1="20" y1="15" x2="24" y2="15" stroke="#64748B" stroke-width="1"/><text x="16" y="18.5" text-anchor="middle" font-size="8" font-weight="end" fill="#64748B" font-family="sans-serif">3</text><text x="140" y="42" text-anchor="start" font-size="9" font-weight="bold" fill="#059669" font-family="sans-serif">y=&#x221A;x</text></svg>`;
+  const TABLE_SQ=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 65" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="220" height="65" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.2"/><line x1="52" y1="0" x2="52" y2="65" stroke="#E2E8F0" stroke-width="1"/><line x1="88" y1="0" x2="88" y2="65" stroke="#CBD5E1" stroke-width="1.5"/><line x1="0" y1="28" x2="220" y2="28" stroke="#E2E8F0" stroke-width="1.2"/><text x="26" y="18" text-anchor="middle" font-size="11" font-weight="italic" fill="#1E293B" font-family="sans-serif">x</text><text x="70" y="18" text-anchor="middle" font-size="10" font-weight="bold" fill="#1E293B" font-family="sans-serif">0</text><text x="154" y="18" text-anchor="middle" font-size="10" font-weight="normal" fill="#475569" font-family="sans-serif">+&#x221E;</text><text x="26" y="48" text-anchor="middle" font-size="10" font-weight="normal" fill="#1E293B" font-family="sans-serif">&#x221A;x</text><text x="70" y="60" text-anchor="middle" font-size="12" font-weight="bold" fill="#059669" font-family="sans-serif">0</text><line x1="80.0" y1="57.0" x2="148.0" y2="34.0" stroke="#059669" stroke-width="1.5"/><polygon points="144.2,38.4 148.0,34.0 142.3,32.8" fill="#059669"/><text x="158" y="32" text-anchor="middle" font-size="9" font-weight="normal" fill="#475569" font-family="sans-serif">+&#x221E;</text></svg>`;
+  const COURBE_INV=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 175" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="260" height="175" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.2"/><line x1="12" y1="87" x2="248" y2="87" stroke="#94A3B8" stroke-width="1.2"/><polygon points="243,84 252,87 243,90" fill="#94A3B8"/><line x1="130" y1="170" x2="130" y2="8" stroke="#94A3B8" stroke-width="1.2"/><polygon points="127,13 130,4 133,13" fill="#94A3B8"/><polyline points="140,16 142,24 145,37 151,51 160,62 175,70 190,74 220,79 235,80" fill="none" stroke="#2563EB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="25,94 40,95 70,100 85,104 100,112 109,123 115,137 118,150 120,158" fill="none" stroke="#2563EB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><text x="253" y="90" text-anchor="middle" font-size="10" font-weight="italic" fill="#475569" font-family="sans-serif">x</text><text x="125" y="6" text-anchor="middle" font-size="10" font-weight="italic" fill="#475569" font-family="sans-serif">f</text><text x="118" y="94" text-anchor="middle" font-size="9" font-weight="normal" fill="#475569" font-family="sans-serif">O</text><line x1="160" y1="87" x2="160" y2="91" stroke="#64748B" stroke-width="1"/><text x="160" y="100" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">1</text><line x1="190" y1="87" x2="190" y2="91" stroke="#64748B" stroke-width="1"/><text x="190" y="100" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">2</text><line x1="100" y1="87" x2="100" y2="91" stroke="#64748B" stroke-width="1"/><text x="100" y="100" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">-1</text><line x1="70" y1="87" x2="70" y2="91" stroke="#64748B" stroke-width="1"/><text x="70" y="100" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">-2</text><line x1="130" y1="62" x2="134" y2="62" stroke="#64748B" stroke-width="1"/><text x="126" y="65.5" text-anchor="middle" font-size="8" font-weight="end" fill="#64748B" font-family="sans-serif">1</text><line x1="130" y1="37" x2="134" y2="37" stroke="#64748B" stroke-width="1"/><text x="126" y="40.5" text-anchor="middle" font-size="8" font-weight="end" fill="#64748B" font-family="sans-serif">2</text><line x1="130" y1="112" x2="134" y2="112" stroke="#64748B" stroke-width="1"/><text x="126" y="115.5" text-anchor="middle" font-size="8" font-weight="end" fill="#64748B" font-family="sans-serif">-1</text><line x1="130" y1="137" x2="134" y2="137" stroke="#64748B" stroke-width="1"/><text x="126" y="140.5" text-anchor="middle" font-size="8" font-weight="end" fill="#64748B" font-family="sans-serif">-2</text><text x="195" y="38" text-anchor="start" font-size="9" font-weight="bold" fill="#2563EB" font-family="sans-serif">y=1/x</text></svg>`;
+  const TABLE_INV=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 72" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="280" height="72" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.2"/><line x1="52" y1="0" x2="52" y2="72" stroke="#E2E8F0" stroke-width="1"/><line x1="130" y1="0" x2="130" y2="72" stroke="#CBD5E1" stroke-width="1.5"/><line x1="138" y1="0" x2="138" y2="72" stroke="#CBD5E1" stroke-width="1.5"/><line x1="0" y1="30" x2="280" y2="30" stroke="#E2E8F0" stroke-width="1.2"/><text x="26" y="20" text-anchor="middle" font-size="11" font-weight="italic" fill="#1E293B" font-family="sans-serif">x</text><text x="83" y="20" text-anchor="middle" font-size="10" font-weight="normal" fill="#475569" font-family="sans-serif">-&#x221E;</text><text x="134" y="20" text-anchor="middle" font-size="10" font-weight="bold" fill="#DC2626" font-family="sans-serif">0</text><text x="208" y="20" text-anchor="middle" font-size="10" font-weight="normal" fill="#475569" font-family="sans-serif">+&#x221E;</text><line x1="132" y1="30" x2="132" y2="72" stroke="#DC2626" stroke-width="1"/><line x1="136" y1="30" x2="136" y2="72" stroke="#DC2626" stroke-width="1"/><text x="26" y="52" text-anchor="middle" font-size="10" font-weight="normal" fill="#1E293B" font-family="sans-serif">1/x</text><text x="65" y="38" text-anchor="middle" font-size="9" font-weight="normal" fill="#475569" font-family="sans-serif">0&#x207B;</text><line x1="75.0" y1="42.0" x2="122.0" y2="67.0" stroke="#2563EB" stroke-width="1.5"/><polygon points="116.2,67.3 122.0,67.0 119.0,62.0" fill="#2563EB"/><text x="122" y="70" text-anchor="middle" font-size="8" font-weight="normal" fill="#475569" font-family="sans-serif">-&#x221E;</text><text x="150" y="38" text-anchor="middle" font-size="9" font-weight="normal" fill="#475569" font-family="sans-serif">+&#x221E;</text><line x1="164.0" y1="42.0" x2="240.0" y2="67.0" stroke="#2563EB" stroke-width="1.5"/><polygon points="234.3,68.3 240.0,67.0 236.2,62.6" fill="#2563EB"/><text x="245" y="70" text-anchor="middle" font-size="8" font-weight="normal" fill="#475569" font-family="sans-serif">0&#x207A;</text></svg>`;
+  const COURBE_CU=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 175" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="260" height="175" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.2"/><line x1="12" y1="88" x2="248" y2="88" stroke="#94A3B8" stroke-width="1.2"/><polygon points="243,85 252,88 243,91" fill="#94A3B8"/><line x1="130" y1="170" x2="130" y2="8" stroke="#94A3B8" stroke-width="1.2"/><polygon points="127,13 130,4 133,13" fill="#94A3B8"/><polyline points="50,172 70,123 90,98 110,89 122,88 130,88 138,88 150,87 170,78 190,53 210,4" fill="none" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><text x="253" y="91" text-anchor="middle" font-size="10" font-weight="italic" fill="#475569" font-family="sans-serif">x</text><text x="125" y="6" text-anchor="middle" font-size="10" font-weight="italic" fill="#475569" font-family="sans-serif">f</text><text x="118" y="95" text-anchor="middle" font-size="9" font-weight="normal" fill="#475569" font-family="sans-serif">O</text><line x1="170" y1="88" x2="170" y2="92" stroke="#64748B" stroke-width="1"/><text x="170" y="101" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">1</text><line x1="90" y1="88" x2="90" y2="92" stroke="#64748B" stroke-width="1"/><text x="90" y="101" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">-1</text><line x1="210" y1="88" x2="210" y2="92" stroke="#64748B" stroke-width="1"/><text x="210" y="101" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">2</text><line x1="50" y1="88" x2="50" y2="92" stroke="#64748B" stroke-width="1"/><text x="50" y="101" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">-2</text><line x1="130" y1="77.5" x2="134" y2="77.5" stroke="#64748B" stroke-width="1"/><text x="126" y="81.0" text-anchor="middle" font-size="8" font-weight="end" fill="#64748B" font-family="sans-serif">1</text><line x1="130" y1="98.5" x2="134" y2="98.5" stroke="#64748B" stroke-width="1"/><text x="126" y="102.0" text-anchor="middle" font-size="8" font-weight="end" fill="#64748B" font-family="sans-serif">-1</text><text x="198" y="20" text-anchor="start" font-size="9" font-weight="bold" fill="#7C3AED" font-family="sans-serif">y=x&#179;</text></svg>`;
+  const TABLE_CU=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 65" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="220" height="65" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.2"/><line x1="52" y1="0" x2="52" y2="65" stroke="#E2E8F0" stroke-width="1"/><line x1="0" y1="28" x2="220" y2="28" stroke="#E2E8F0" stroke-width="1.2"/><text x="26" y="18" text-anchor="middle" font-size="11" font-weight="italic" fill="#1E293B" font-family="sans-serif">x</text><text x="80" y="18" text-anchor="middle" font-size="10" font-weight="normal" fill="#475569" font-family="sans-serif">-&#x221E;</text><text x="172" y="18" text-anchor="middle" font-size="10" font-weight="normal" fill="#475569" font-family="sans-serif">+&#x221E;</text><text x="26" y="48" text-anchor="middle" font-size="10" font-weight="normal" fill="#1E293B" font-family="sans-serif">x&#179;</text><text x="70" y="60" text-anchor="middle" font-size="9" font-weight="normal" fill="#475569" font-family="sans-serif">-&#x221E;</text><line x1="85.0" y1="57.0" x2="158.0" y2="34.0" stroke="#7C3AED" stroke-width="1.5"/><polygon points="154.1,38.4 158.0,34.0 152.3,32.6" fill="#7C3AED"/><text x="168" y="32" text-anchor="middle" font-size="9" font-weight="normal" fill="#475569" font-family="sans-serif">+&#x221E;</text></svg>`;
+  const SECS=[
+    { emoji:"²", label:"x²", color:"#DC2626", light:"#FEF2F2", rules:[
+      { id:"r1a",num:"1",title:"Définition",
+        fml:r`f(x)=x^2\qquad\mathbb{D}_f=\mathbb{R}`,
+        svgDiag:COURBE_X2,
+        bltTex:[
+          r`\text{Courbe : parabole d'axe de symétrie }x=0`,
+          r`\text{Minimum en }x=0\text{ : }f(0)=0`,
+          r`f(-x)=f(x)\text{ : fonction paire (symétrie axe }Oy\text{)}`,
+        ]},
+      { id:"r1b",num:"2",title:"Tableau de variations",
+        svgDiag:TABLE_X2,
+        bltTex:[
+          r`\text{Décroissante sur }]-\infty\,;0]`,
+          r`\text{Croissante sur }[0\,;+\infty[`,
+        ],
+        tipTex:r`0\leq a<b\Rightarrow a^2<b^2\quad\text{et}\quad a<b\leq0\Rightarrow a^2>b^2`},
+      { id:"r1c",num:"3",title:"f(x) = a",
+        bltTex:[
+          r`a<0\text{ : }S=\varnothing`,
+          r`a=0\text{ : }S=\{0\}`,
+          r`a>0\text{ : }S=\{-\sqrt{a}\,;\,\sqrt{a}\}`,
+        ]},
+    ]},
+    { emoji:"√", label:"√x", color:"#059669", light:"#F0FDF4", rules:[
+      { id:"r2a",num:"1",title:"Définition",
+        fml:r`f(x)=\sqrt{x}\qquad\mathbb{D}_f=[0\,;+\infty[`,
+        svgDiag:COURBE_SQ,
+        bltTex:[
+          r`\text{Définie uniquement pour }x\geq0`,
+          r`\sqrt{x}\text{ est le réel positif dont le carré vaut }x`,
+          r`\sqrt{a^2}=|a|\quad(\text{pas toujours }a\text{ !})`,
+        ]},
+      { id:"r2b",num:"2",title:"Tableau de variations",
+        svgDiag:TABLE_SQ,
+        bltTex:[
+          r`\text{Strictement croissante sur }[0\,;+\infty[`,
+        ],
+        tipTex:r`0\leq a<b\Rightarrow\sqrt{a}<\sqrt{b}\text{ (conserve l'ordre)}`},
+      { id:"r2c",num:"3",title:"f(x) = a",
+        bltTex:[
+          r`a<0\text{ : }S=\varnothing\text{ (}\sqrt{x}\geq0\text{ toujours)}`,
+          r`a\geq0\text{ : }\sqrt{x}=a\Leftrightarrow x=a^2\quad\Rightarrow S=\{a^2\}`,
+        ]},
+    ]},
+    { emoji:"1/x", label:"1/x", color:"#2563EB", light:"#EFF6FF", rules:[
+      { id:"r3a",num:"1",title:"Définition",
+        fml:r`f(x)=\dfrac{1}{x}\qquad\mathbb{D}_f=\mathbb{R}\setminus\{0\}`,
+        svgDiag:COURBE_INV,
+        bltTex:[
+          r`\text{Valeur interdite : }x=0\text{ (division par zéro)}`,
+          r`\text{Courbe : hyperbole, symétrique par rapport à }O`,
+          r`f(-x)=-f(x)\text{ : fonction impaire}`,
+        ]},
+      { id:"r3b",num:"2",title:"Tableau de variations",
+        svgDiag:TABLE_INV,
+        bltTex:[
+          r`\text{Décroissante sur }]-\infty\,;0[\text{ et sur }]0\,;+\infty[`,
+          r`\text{Pas de minimum ni maximum (asymptotes en }x=0\text{ et }y=0\text{)}`,
+        ],
+        tipTex:r`a<b\text{ de même signe}\Rightarrow\dfrac{1}{a}>\dfrac{1}{b}\text{ (inverse l'ordre)}`},
+      { id:"r3c",num:"3",title:"f(x) = a",
+        bltTex:[
+          r`a=0\text{ : }S=\varnothing\text{ (0 n'est jamais atteint)}`,
+          r`a\neq0\text{ : }\dfrac{1}{x}=a\Leftrightarrow x=\dfrac{1}{a}\quad\Rightarrow S=\left\{\dfrac{1}{a}\right\}`,
+        ]},
+    ]},
+    { emoji:"x³", label:"x³", color:"#7C3AED", light:"#F5F3FF", rules:[
+      { id:"r4a",num:"1",title:"Définition",
+        fml:r`f(x)=x^3\qquad\mathbb{D}_f=\mathbb{R}`,
+        svgDiag:COURBE_CU,
+        bltTex:[
+          r`\text{Courbe symétrique par rapport à l'origine }O`,
+          r`f(-x)=(-x)^3=-x^3=-f(x)\text{ : fonction impaire}`,
+        ]},
+      { id:"r4b",num:"2",title:"Tableau de variations",
+        svgDiag:TABLE_CU,
+        bltTex:[
+          r`\text{Strictement croissante sur }\mathbb{R}`,
+        ],
+        tipTex:r`a<b\Rightarrow a^3<b^3\text{ (conserve l'ordre sur }\mathbb{R}\text{)}`},
+      { id:"r4c",num:"3",title:"f(x) = a",
+        bltTex:[
+          r`\text{Pour tout }a\in\mathbb{R}\text{ : une unique solution }x=\sqrt[3]{a}`,
+          r`\text{Exemples : }x^3=8\Rightarrow x=2\text{, }x^3=-27\Rightarrow x=-3`,
+        ]},
+    ]},
+  ];
+
+  const sec=SECS[secIdx]; const col=sec.color;
+  return (
+    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"#F8FAFF"}}>
+      <div style={{background:"linear-gradient(135deg,#7C3AED,#5B21B6)",padding:"16px 18px 14px",flexShrink:0}}>
+        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:12}}>
+          <button onClick={onBack} style={{background:"rgba(255,255,255,.2)",border:"none",borderRadius:10,
+            cursor:"pointer",color:"#fff",fontSize:16,width:32,height:32,display:"flex",
+            alignItems:"center",justifyContent:"center"}}>✕</button>
+          <div style={{flex:1}}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:17,color:"#fff"}}>
+              📉 Fonctions de référence</div>
+            <div style={{fontSize:11,color:"rgba(255,255,255,.75)",marginTop:1}}>
+              Cours interactif · Ch. 9 · 11</div>
+          </div>
+        </div>
+        <div ref={tabsRef} style={{display:"flex",gap:6,overflowX:"auto",scrollbarWidth:"none",paddingBottom:2}}>
+          {SECS.map((s,i)=>(
+            <button key={i} onClick={()=>setSecIdx(i)}
+              style={{background:i===secIdx?"#fff":"rgba(255,255,255,.2)",
+                border:"none",borderRadius:99,padding:"6px 13px",cursor:"pointer",flexShrink:0,
+                fontFamily:"'Nunito',sans-serif",fontWeight:700,fontSize:11,
+                color:i===secIdx?s.color:"#fff",whiteSpace:"nowrap"}}>
+              {s.emoji} {s.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div style={{flex:1,overflowY:"auto",padding:"14px 14px 24px"}}>
+        {sec.rules.map((rl,i)=>{
+          const k=`${secIdx}_${i}`; const expanded=isOpen(k,i===0);
+          return (
+            <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
+              overflow:"hidden",boxShadow:"0 2px 14px rgba(0,0,0,.07)",borderLeft:`4px solid ${col}`}}>
+              <div onClick={()=>tog(k)} style={{display:"flex",alignItems:"center",gap:10,
+                padding:"13px 15px",cursor:"pointer",userSelect:"none"}}>
+                <div style={{width:30,height:30,borderRadius:"50%",background:col,color:"#fff",
+                  display:"flex",alignItems:"center",justifyContent:"center",
+                  fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
+                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}</div>
+                <span style={{color:"#94A3B8",fontSize:11,
+                  display:"block",transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
+              </div>
+              {expanded&&(
+                <div style={{padding:"0 15px 15px"}}>
+                  {rl.fml&&<div style={{background:sec.light,borderRadius:13,padding:"14px 12px",
+                    margin:"8px 0",textAlign:"center",overflowX:"auto"}}><M tex={rl.fml}/></div>}
+                  {rl.svgDiag&&<div style={{margin:"8px 0",borderRadius:12,overflow:"hidden"}}
+                    dangerouslySetInnerHTML={{__html:rl.svgDiag}}/>}
+                  {(rl.bltTex||[]).map((b,j)=>(
+                    <div key={j} style={{display:"flex",gap:7,padding:"4px 0",alignItems:"flex-start"}}>
+                      <span style={{color:col,fontWeight:700,flexShrink:0,marginTop:2}}>•</span>
+                      <span style={{overflowX:"auto"}}><M tex={b}/></span>
+                    </div>
+                  ))}
+                  {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,
+                    padding:"10px 12px",fontSize:12,fontWeight:600,color:"#713F12",
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4,overflowX:"auto"}}>
+                    {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
+                  </div>}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+
 function BottomNav({screen, onTab}) {
   const BAC_NEW = 1781827200000;
   const tabs = [
     {id:"home",      emoji:"🏠", label:"Accueil",     active:screen==="dashboard"||screen==="home"},
-    {id:"apprendre", emoji:"📖", label:"Apprendre",   active:screen==="flashcard_setup"||screen==="flashcards"||screen==="apprendre"||screen==="cours"||screen==="cours_pourcentages"||screen==="cours_calcul"||screen==="cours_reels"||screen==="cours_fonctions_affines"||screen==="cours_fonctions_gen"||screen==="cours_litteral"||screen==="cours_vecteurs"||screen==="cours_stats"||screen==="cours_equations"||screen==="cours_configs"},
+    {id:"apprendre", emoji:"📖", label:"Apprendre",   active:screen==="flashcard_setup"||screen==="flashcards"||screen==="apprendre"||screen==="cours"||screen==="cours_pourcentages"||screen==="cours_calcul"||screen==="cours_reels"||screen==="cours_fonctions_affines"||screen==="cours_fonctions_gen"||screen==="cours_litteral"||screen==="cours_vecteurs"||screen==="cours_fonctions_ref"||screen==="cours_stats"||screen==="cours_equations"||screen==="cours_configs"},
     {id:"train",     emoji:"💪", label:"S'entraîner", active:screen==="training_modes"},
     {id:"bac",       emoji:"🎯", label:"Bac",         badge:Date.now()<BAC_NEW, active:screen==="bac_subjects"},
     {id:"parcours",  emoji:"📊", label:"Parcours",    active:screen==="parcours_detail"||screen==="collection"||screen==="vigilance"},
@@ -27799,6 +27986,7 @@ function AutoMaths() {
           {screen==="cours_fonctions_gen"    && <CoursMathFonctionsGen onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_litteral"         && <CoursMathLitteral     onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_vecteurs"         && <CoursMathVecteurs     onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
+          {screen==="cours_fonctions_ref"   && <CoursMathFonctionsRef  onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_stats"             && <CoursMathStats         onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_equations"         && <CoursMathEquations    onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_configs"          && <CoursMathConfigs      onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
