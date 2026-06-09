@@ -24610,6 +24610,12 @@ const COURS_CATALOG = [
     chapitres:4, color:"#DC2626",
     desc:"Distribution · Identités remarquables · Factoriser · Fractions littérales",
   },
+  { id:"droites", emoji:"📐",
+    title:"Équations de droites",
+    niveaux:["2nde","1ère Spé"],
+    chapitres:9, color:"#1D4ED8",
+    desc:"y=mx+p · Coeff. directeur · Position relative · Systèmes de 2 équations",
+  },
   { id:"proba", emoji:"🎲",
     title:"Probabilités",
     niveaux:["2nde","1ère Spé"],
@@ -27265,11 +27271,215 @@ function CoursMathProba({onBack, onStartPractice}) {
 }
 
 
+
+// ── CoursMathDroites — Équations de droites & Systèmes ───────────────────────
+function CoursMathDroites({onBack, onStartPractice}) {
+  const [secIdx, setSecIdx] = React.useState(0);
+  const [openMap, setOpenMap] = React.useState({});
+  const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
+  const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
+  const tabsRef = React.useRef();
+  React.useEffect(()=>{
+    if(!tabsRef.current) return;
+    const btn=tabsRef.current.children[secIdx];
+    if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  },[secIdx]);
+
+  const SECS=[
+    { emoji:"📐", label:"Équations", color:"#1D4ED8", light:"#EFF6FF", rules:[
+      { id:"d1",num:"1",title:"Équation réduite d'une droite",
+        fml:r`y=mx+p`,
+        bltTex:[
+          r`m\text{ : \textbf{coefficient directeur}} \text{ (pente de la droite)}`,
+          r`p\text{ : \textbf{ordonnée à l'origine}} \text{ (valeur en }x=0\text{)}`,
+          r`\text{Si }D\text{ est parallèle à l'axe des ordonnées : }x=k\text{ (pas de forme }y=mx+p\text{)}`,
+        ],
+        tipTex:r`\text{La forme }y=mx+p\text{ est valide pour toute droite }\textbf{non verticale}`},
+      { id:"d2",num:"2",title:"Coefficient directeur",
+        fml:r`m=\dfrac{y_B-y_A}{x_B-x_A}`,
+        bltTex:[
+          r`\text{Pour tout couple de points }A(x_A\,;\,y_A)\text{ et }B(x_B\,;\,y_B)\text{ de la droite}`,
+          r`x_B\neq x_A\text{ (sinon la droite est verticale)}`,
+        ],
+        ex:{qTex:r`A(2\,;\,1)\text{ et }B(3\,;\,-1)`,
+            a:r`m=\dfrac{-1-1}{3-2}=\dfrac{-2}{1}=-2`}},
+      { id:"d3",num:"3",title:"Vérifier l'appartenance d'un point",
+        fml:r`M(x_M\,;\,y_M)\in(d)\Leftrightarrow y_M=m\,x_M+p`,
+        bltTex:[
+          r`\text{Remplacer }x\text{ et }y\text{ par les coordonnées de }M\text{ dans l'équation}`,
+          r`\text{Si l'égalité est vraie : }M\in(d)\text{; sinon }M\notin(d)`,
+        ]},
+      { id:"d4",num:"4",title:"Équation cartésienne & vecteur directeur",
+        fml:r`ax+by+c=0`,
+        bltTex:[
+          r`\text{Toute droite a une équation cartésienne de la forme }ax+by+c=0`,
+          r`\text{Vecteur directeur de }ax+by+c=0\text{ : }\vec{u}\begin{pmatrix}-b\\a\end{pmatrix}`,
+          r`\text{Vecteur directeur de }y=mx+p\text{ : }\vec{u}\begin{pmatrix}1\\m\end{pmatrix}`,
+        ],
+        tipTex:r`\text{Le vecteur directeur est }\textbf{parallèle}\text{ à la droite}`},
+    ]},
+    { emoji:"🔵", label:"Position relative", color:"#7C3AED", light:"#F5F3FF", rules:[
+      { id:"d5",num:"5",title:"Droites parallèles, sécantes, confondues",
+        bltTex:[
+          r`\textbf{Même }m\textbf{ et même }p\text{ : droites }\textbf{confondues}\text{ (identiques)}`,
+          r`\textbf{Même }m\textbf{, }p\neq p'\text{ : droites }\textbf{parallèles}\text{ (pas d'intersection)}`,
+          r`m\neq m'\text{ : droites }\textbf{sécantes}\text{ (une unique intersection)}`,
+        ],
+        tipTex:r`\text{Pour savoir si deux droites sont parallèles : comparer les coefficients directeurs}`},
+      { id:"d6",num:"6",title:"Droite parallèle passant par un point",
+        fml:r`y=mx+p\text{ avec }m\text{ connu, }p=y_E-m\,x_E`,
+        bltTex:[
+          r`\text{Si }D\text{ est d'équation }y=mx+p\text{ et }E(x_E\,;\,y_E)`,
+          r`\text{La droite parallèle à }D\text{ passant par }E\text{ a le }\textbf{même }m`,
+          r`\text{On trouve }p\text{ en écrivant que }E\in\Delta\text{ : }y_E=m\,x_E+p`,
+        ],
+        ex:{qTex:r`\text{Droite parallèle à }y=2x+1\text{ passant par }E(-3\,;\,1)`,
+            a:r`m=2\quad 1=2\times(-3)+p\Rightarrow p=7\quad\Rightarrow y=2x+7`}},
+    ]},
+    { emoji:"🔢", label:"Systèmes", color:"#059669", light:"#F0FDF4", rules:[
+      { id:"d7",num:"7",title:"Résolution par substitution",
+        bltTex:[
+          r`\textbf{Étape 1 :}\text{ isoler une inconnue dans une équation (ex : }y\text{ dans (1))}`,
+          r`\textbf{Étape 2 :}\text{ substituer (remplacer) dans l'autre équation (2)}`,
+          r`\textbf{Étape 3 :}\text{ résoudre l'équation à une inconnue → trouver }x`,
+          r`\textbf{Étape 4 :}\text{ remplacer }x\text{ dans (1) pour trouver }y`,
+        ],
+        tipTex:r`\text{Choisir l'équation où isoler l'inconnue est le plus simple (coefficient 1 ou -1)}`,
+        ex:{qTex:r`\begin{cases}3x+y=7\quad(1)\\2x-3y=1\quad(2)\end{cases}`,
+            a:r`\begin{gathered}(1)\Rightarrow y=7-3x\\(2)\Rightarrow 2x-3(7-3x)=1\Rightarrow 11x=22\Rightarrow x=2\\y=7-6=1\quad S=\{(2\,;\,1)\}\end{gathered}`}},
+      { id:"d8",num:"8",title:"Résolution par combinaison linéaire",
+        bltTex:[
+          r`\textbf{Étape 1 :}\text{ choisir l'inconnue à éliminer (ex : }y\text{)}`,
+          r`\textbf{Étape 2 :}\text{ multiplier les équations pour que les coeff. de }y\text{ soient opposés}`,
+          r`\textbf{Étape 3 :}\text{ additionner membre à membre → }y\text{ disparaît}`,
+          r`\textbf{Étape 4 :}\text{ résoudre pour }x\text{, puis retrouver }y`,
+        ],
+        tipTex:r`\text{Propriété : on obtient une égalité en }\textbf{ajoutant membre à membre}\text{ deux égalités}`,
+        ex:{qTex:r`\begin{cases}2x+y=7\quad(L_1)\\-x-2y=1\quad(L_2)\end{cases}`,
+            a:r`\begin{gathered}2\times(L_1)+(L_2)\text{ : }(4x+2y)+(-x-2y)=14+1\\3x=15\Rightarrow x=5\\2(5)+y=7\Rightarrow y=-3\quad S=\{(5\,;\,-3)\}\end{gathered}`}},
+      { id:"d9",num:"9",title:"Interprétation géométrique",
+        bltTex:[
+          r`\text{Résoudre un système de 2 droites = trouver leur point d'intersection}`,
+          r`S=\varnothing\Leftrightarrow\text{droites parallèles (pas d'intersection)}`,
+          r`S=\{(x_0\,;\,y_0)\}\Leftrightarrow\text{droites sécantes en }(x_0\,;\,y_0)`,
+          r`\text{Infinité de solutions }\Leftrightarrow\text{droites confondues}`,
+        ]},
+    ]},
+    { emoji:"🏋️", label:"S'entraîner", color:"#1D4ED8", light:"#EFF6FF", isPractice:true,
+      practices:[
+        {sub:"eq_droite",    label:"Équation d'une droite",    emoji:"📐", cat:"fonctions_affines"},
+        {sub:"coeff_dir",    label:"Coefficient directeur",    emoji:"📏", cat:"fonctions_affines"},
+        {sub:"systeme_subst",label:"Système – substitution",   emoji:"🔄", cat:"litteral"},
+        {sub:"systeme_combi",label:"Système – combinaison",    emoji:"➕", cat:"litteral"},
+      ]},
+  ];
+
+  const sec=SECS[secIdx]; const col=sec.color;
+  return (
+    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"#F8FAFF"}}>
+      <div style={{background:"linear-gradient(135deg,#1D4ED8,#1E40AF)",padding:"16px 18px 14px",flexShrink:0}}>
+        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:12}}>
+          <button onClick={onBack} style={{background:"rgba(255,255,255,.2)",border:"none",borderRadius:10,
+            cursor:"pointer",color:"#fff",fontSize:16,width:32,height:32,display:"flex",
+            alignItems:"center",justifyContent:"center"}}>✕</button>
+          <div style={{flex:1}}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:17,color:"#fff"}}>
+              📐 Équations de droites · Systèmes</div>
+            <div style={{fontSize:11,color:"rgba(255,255,255,.75)",marginTop:1}}>
+              Cours interactif · Ch. 14</div>
+          </div>
+        </div>
+        <div ref={tabsRef} style={{display:"flex",gap:6,overflowX:"auto",scrollbarWidth:"none",paddingBottom:2}}>
+          {SECS.map((s,i)=>(
+            <button key={i} onClick={()=>setSecIdx(i)}
+              style={{background:i===secIdx?"#fff":"rgba(255,255,255,.2)",
+                border:"none",borderRadius:99,padding:"6px 13px",cursor:"pointer",flexShrink:0,
+                fontFamily:"'Nunito',sans-serif",fontWeight:700,fontSize:11,
+                color:i===secIdx?s.color:"#fff",whiteSpace:"nowrap"}}>
+              {s.emoji} {s.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div style={{flex:1,overflowY:"auto",padding:"14px 14px 24px"}}>
+        {sec.isPractice ? (
+          <div>
+            <div style={{background:"#F8FAFC",borderRadius:14,padding:"14px 15px",marginBottom:14,
+              fontSize:12.5,color:"#475569",lineHeight:1.6,border:"1px solid #E2E8F0"}}>
+              Lance un thème pour t'entraîner directement sur les questions de l'app !
+            </div>
+            {sec.practices.map(p=>(
+              <button key={p.sub} onClick={()=>onStartPractice&&onStartPractice(p.cat,p.sub)}
+                style={{width:"100%",background:"#fff",border:"2px solid #E2E8F0",
+                  borderRadius:16,padding:"14px 16px",marginBottom:10,
+                  cursor:onStartPractice?"pointer":"default",
+                  display:"flex",alignItems:"center",gap:14,textAlign:"left",
+                  boxShadow:"0 2px 10px rgba(0,0,0,.06)"}}>
+                <span style={{fontSize:26,flexShrink:0}}>{p.emoji}</span>
+                <div style={{flex:1}}>
+                  <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:"#1E293B"}}>{p.label}</div>
+                  <div style={{fontSize:11,color:"#94A3B8",marginTop:2}}>Questions · S'entraîner</div>
+                </div>
+                {onStartPractice&&<span style={{color:col,fontWeight:800,fontSize:13}}>Lancer →</span>}
+              </button>
+            ))}
+          </div>
+        ) : sec.rules.map((rl,i)=>{
+          const k=`${secIdx}_${i}`; const expanded=isOpen(k,i===0);
+          return (
+            <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
+              overflow:"hidden",boxShadow:"0 2px 14px rgba(0,0,0,.07)",borderLeft:`4px solid ${col}`}}>
+              <div onClick={()=>tog(k)} style={{display:"flex",alignItems:"center",gap:10,
+                padding:"13px 15px",cursor:"pointer",userSelect:"none"}}>
+                <div style={{width:30,height:30,borderRadius:"50%",background:col,color:"#fff",
+                  display:"flex",alignItems:"center",justifyContent:"center",
+                  fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
+                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}</div>
+                <span style={{color:"#94A3B8",fontSize:11,display:"block",
+                  transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
+              </div>
+              {expanded&&(
+                <div style={{padding:"0 15px 15px"}}>
+                  {rl.fml&&<div style={{background:sec.light,borderRadius:13,padding:"14px 12px",
+                    margin:"8px 0",textAlign:"center",overflowX:"auto"}}><M tex={rl.fml}/></div>}
+                  {(rl.bltTex||[]).map((b,j)=>(
+                    <div key={j} style={{display:"flex",gap:7,padding:"4px 0",alignItems:"flex-start"}}>
+                      <span style={{color:col,fontWeight:700,flexShrink:0,marginTop:2}}>•</span>
+                      <span style={{overflowX:"auto"}}><M tex={b}/></span>
+                    </div>
+                  ))}
+                  {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,
+                    padding:"10px 12px",fontSize:12,fontWeight:600,color:"#713F12",
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4,overflowX:"auto"}}>
+                    {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
+                  </div>}
+                  {rl.ex&&(
+                    <div style={{background:"#F8FAFC",borderRadius:12,padding:"12px 13px",
+                      marginTop:10,borderLeft:`3px solid ${col}`}}>
+                      <div style={{fontSize:10,fontWeight:800,color:col,textTransform:"uppercase",
+                        letterSpacing:".7px",marginBottom:5}}>Exemple</div>
+                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,overflowX:"auto"}}>
+                        {rl.ex.qTex?<M tex={rl.ex.qTex}/>:<span>{rl.ex.q}</span>}
+                      </div>
+                      <div style={{textAlign:"center",overflowX:"auto"}}><M tex={rl.ex.a}/></div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+
 function BottomNav({screen, onTab}) {
   const BAC_NEW = 1781827200000;
   const tabs = [
     {id:"home",      emoji:"🏠", label:"Accueil",     active:screen==="dashboard"||screen==="home"},
-    {id:"apprendre", emoji:"📖", label:"Apprendre",   active:screen==="flashcard_setup"||screen==="flashcards"||screen==="apprendre"||screen==="cours"||screen==="cours_pourcentages"||screen==="cours_calcul"||screen==="cours_reels"||screen==="cours_fonctions_affines"||screen==="cours_fonctions_gen"||screen==="cours_litteral"||screen==="cours_vecteurs"||screen==="cours_proba"||screen==="cours_fonctions_ref"||screen==="cours_stats"||screen==="cours_equations"||screen==="cours_configs"},
+    {id:"apprendre", emoji:"📖", label:"Apprendre",   active:screen==="flashcard_setup"||screen==="flashcards"||screen==="apprendre"||screen==="cours"||screen==="cours_pourcentages"||screen==="cours_calcul"||screen==="cours_reels"||screen==="cours_fonctions_affines"||screen==="cours_fonctions_gen"||screen==="cours_litteral"||screen==="cours_vecteurs"||screen==="cours_droites"||screen==="cours_proba"||screen==="cours_fonctions_ref"||screen==="cours_stats"||screen==="cours_equations"||screen==="cours_configs"},
     {id:"train",     emoji:"💪", label:"S'entraîner", active:screen==="training_modes"},
     {id:"bac",       emoji:"🎯", label:"Bac",         badge:Date.now()<BAC_NEW, active:screen==="bac_subjects"},
     {id:"parcours",  emoji:"📊", label:"Parcours",    active:screen==="parcours_detail"||screen==="collection"||screen==="vigilance"},
@@ -28191,6 +28401,7 @@ function AutoMaths() {
           {screen==="cours_fonctions_gen"    && <CoursMathFonctionsGen onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_litteral"         && <CoursMathLitteral     onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_vecteurs"         && <CoursMathVecteurs     onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
+          {screen==="cours_droites"           && <CoursMathDroites       onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_proba"             && <CoursMathProba         onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_fonctions_ref"   && <CoursMathFonctionsRef  onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_stats"             && <CoursMathStats         onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
