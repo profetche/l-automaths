@@ -27285,6 +27285,7 @@ function CoursMathDroites({onBack, onStartPractice}) {
     if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
   },[secIdx]);
 
+  const TABLE_COMBI=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 312 185" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="312" height="185" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.2"/><text x="156" y="15" text-anchor="middle" font-size="9" fill="#475569" font-family="sans-serif">Système : 2x+y=7 (L&#x2081;) et -x-2y=1 (L&#x2082;)</text><line x1="0" y1="22" x2="312" y2="22" stroke="#E2E8F0" stroke-width="1"/><line x1="156" y1="22" x2="156" y2="165" stroke="#CBD5E1" stroke-width="1.2"/><rect x="0" y="22" width="156" height="26" fill="#FEF3C7" rx="0"/><text x="78" y="39" text-anchor="middle" font-size="9" font-weight="bold" fill="#92400E" font-family="sans-serif">2&#xD7;(L&#x2081;)+(L&#x2082;) &#x2192; trouver x</text><rect x="156" y="22" width="156" height="26" fill="#DBEAFE" rx="0"/><text x="234" y="39" text-anchor="middle" font-size="9" font-weight="bold" fill="#1E40AF" font-family="sans-serif">x=5 dans (L&#x2081;) &#x2192; trouver y</text><line x1="0" y1="48" x2="312" y2="48" stroke="#E2E8F0" stroke-width="1"/><text x="10" y="65" font-size="9" fill="#1E293B" font-family="sans-serif">2(2x+y)+(-x-2y) = 2&#xD7;7+1</text><text x="10" y="82" font-size="9" fill="#1E293B" font-family="sans-serif">4x+2y-x-2y = 15</text><text x="10" y="99" font-size="9.5" fill="#1E293B" font-family="sans-serif">3x = 15</text><text x="10" y="120" font-size="12" font-weight="bold" fill="#059669" font-family="sans-serif">x = 5</text><text x="166" y="65" font-size="9" fill="#1E293B" font-family="sans-serif">2&#xD7;5 + y = 7</text><text x="166" y="82" font-size="9" fill="#1E293B" font-family="sans-serif">10 + y = 7</text><text x="166" y="99" font-size="9.5" fill="#1E293B" font-family="sans-serif">y = 7 - 10</text><text x="166" y="120" font-size="12" font-weight="bold" fill="#059669" font-family="sans-serif">y = -3</text><line x1="0" y1="133" x2="312" y2="133" stroke="#E2E8F0" stroke-width="1.5"/><rect x="0" y="133" width="312" height="52" fill="#F0FDF4" rx="0"/><rect x="0" y="159" width="312" height="26" fill="#F0FDF4" rx="0 0 8 8"/><text x="156" y="155" text-anchor="middle" font-size="12" font-weight="bold" fill="#059669" font-family="sans-serif">S = {(5 &#x00A0;;&#x00A0; -3)}</text><text x="156" y="172" text-anchor="middle" font-size="8.5" fill="#64748B" font-family="sans-serif">Point d'intersection des deux droites : (5&#x00A0;;&#x00A0;-3)</text></svg>`;
   const SECS=[
     { emoji:"📐", label:"Équations", color:"#1D4ED8", light:"#EFF6FF", rules:[
       { id:"d1",num:"1",title:"Équation réduite d'une droite",
@@ -27294,7 +27295,7 @@ function CoursMathDroites({onBack, onStartPractice}) {
           r`p\text{ : \textbf{ordonnée à l'origine}} \text{ (valeur en }x=0\text{)}`,
           r`\text{Si }D\text{ est parallèle à l'axe des ordonnées : }x=k\text{ (pas de forme }y=mx+p\text{)}`,
         ],
-        tipTex:r`\text{La forme }y=mx+p\text{ est valide pour toute droite }\textbf{non verticale}`},
+        tip:"La forme y=mx+p est valide pour toute droite non verticale."},
       { id:"d2",num:"2",title:"Coefficient directeur",
         fml:r`m=\dfrac{y_B-y_A}{x_B-x_A}`,
         bltTex:[
@@ -27316,7 +27317,7 @@ function CoursMathDroites({onBack, onStartPractice}) {
           r`\text{Vecteur directeur de }ax+by+c=0\text{ : }\vec{u}\begin{pmatrix}-b\\a\end{pmatrix}`,
           r`\text{Vecteur directeur de }y=mx+p\text{ : }\vec{u}\begin{pmatrix}1\\m\end{pmatrix}`,
         ],
-        tipTex:r`\text{Le vecteur directeur est }\textbf{parallèle}\text{ à la droite}`},
+        tip:"Le vecteur directeur est parallèle à la droite."},
     ]},
     { emoji:"🔵", label:"Position relative", color:"#7C3AED", light:"#F5F3FF", rules:[
       { id:"d5",num:"5",title:"Droites parallèles, sécantes, confondues",
@@ -27325,7 +27326,7 @@ function CoursMathDroites({onBack, onStartPractice}) {
           r`\textbf{Même }m\textbf{, }p\neq p'\text{ : droites }\textbf{parallèles}\text{ (pas d'intersection)}`,
           r`m\neq m'\text{ : droites }\textbf{sécantes}\text{ (une unique intersection)}`,
         ],
-        tipTex:r`\text{Pour savoir si deux droites sont parallèles : comparer les coefficients directeurs}`},
+        tip:"Pour savoir si deux droites sont parallèles : comparer les coefficients directeurs."},
       { id:"d6",num:"6",title:"Droite parallèle passant par un point",
         fml:r`y=mx+p\text{ avec }m\text{ connu, }p=y_E-m\,x_E`,
         bltTex:[
@@ -27344,19 +27345,18 @@ function CoursMathDroites({onBack, onStartPractice}) {
           r`\textbf{Étape 3 :}\text{ résoudre l'équation à une inconnue → trouver }x`,
           r`\textbf{Étape 4 :}\text{ remplacer }x\text{ dans (1) pour trouver }y`,
         ],
-        tipTex:r`\text{Choisir l'équation où isoler l'inconnue est le plus simple (coefficient 1 ou -1)}`,
+        tip:"Choisir l'équation où isoler l'inconnue est le plus simple (coefficient 1 ou -1).",
         ex:{qTex:r`\begin{cases}3x+y=7\quad(1)\\2x-3y=1\quad(2)\end{cases}`,
             a:r`\begin{gathered}(1)\Rightarrow y=7-3x\\(2)\Rightarrow 2x-3(7-3x)=1\Rightarrow 11x=22\Rightarrow x=2\\y=7-6=1\quad S=\{(2\,;\,1)\}\end{gathered}`}},
       { id:"d8",num:"8",title:"Résolution par combinaison linéaire",
+        svgDiag:TABLE_COMBI,
         bltTex:[
           r`\textbf{Étape 1 :}\text{ choisir l'inconnue à éliminer (ex : }y\text{)}`,
           r`\textbf{Étape 2 :}\text{ multiplier les équations pour que les coeff. de }y\text{ soient opposés}`,
           r`\textbf{Étape 3 :}\text{ additionner membre à membre → }y\text{ disparaît}`,
           r`\textbf{Étape 4 :}\text{ résoudre pour }x\text{, puis retrouver }y`,
         ],
-        tipTex:r`\text{Propriété : on obtient une égalité en }\textbf{ajoutant membre à membre}\text{ deux égalités}`,
-        ex:{qTex:r`\begin{cases}2x+y=7\quad(L_1)\\-x-2y=1\quad(L_2)\end{cases}`,
-            a:r`\begin{gathered}2\times(L_1)+(L_2)\text{ : }(4x+2y)+(-x-2y)=14+1\\3x=15\Rightarrow x=5\\2(5)+y=7\Rightarrow y=-3\quad S=\{(5\,;\,-3)\}\end{gathered}`}},
+        tip:"Propriété : on obtient une égalité en ajoutant membre à membre deux égalités."},
       { id:"d9",num:"9",title:"Interprétation géométrique",
         bltTex:[
           r`\text{Résoudre un système de 2 droites = trouver leur point d'intersection}`,
