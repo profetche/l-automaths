@@ -24616,12 +24616,6 @@ const COURS_CATALOG = [
     chapitres:12, color:"#7C3AED",
     desc:"x² · √x · 1/x · x³ : courbes, variations, ordre, équations",
   },
-  { id:"fonctions_ref", emoji:"📉",
-    title:"Fonctions de référence",
-    niveaux:["2nde","1ère Spé"],
-    chapitres:12, color:"#7C3AED",
-    desc:"x² · √x · 1/x · x³ : courbes, variations, ordre, équations",
-  },
   { id:"stats", emoji:"📊",
     title:"Statistiques",
     niveaux:["2nde"],
@@ -26908,7 +26902,7 @@ function CoursMathFonctionsRef({onBack, onStartPractice}) {
   const COURBE_CU=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 175" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="260" height="175" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.2"/><line x1="12" y1="88" x2="248" y2="88" stroke="#94A3B8" stroke-width="1.3"/><polygon points="243,85 252,88 243,91" fill="#94A3B8"/><line x1="130" y1="170" x2="130" y2="8" stroke="#94A3B8" stroke-width="1.3"/><polygon points="127,13 130,4 133,13" fill="#94A3B8"/><polyline points="50.0,172.0 50.8,169.5 51.6,167.1 52.4,164.7 53.2,162.3 54.0,160.0 54.8,157.8 55.6,155.6 56.4,153.4 57.2,151.3 58.0,149.2 58.8,147.2 59.6,145.2 60.4,143.3 61.2,141.4 62.0,139.6 62.8,137.8 63.6,136.0 64.4,134.3 65.2,132.6 66.0,131.0 66.8,129.4 67.6,127.9 68.4,126.3 69.2,124.9 70.0,123.4 70.8,122.0 71.6,120.7 72.4,119.4 73.2,118.1 74.0,116.8 74.8,115.6 75.6,114.4 76.4,113.3 77.2,112.1 78.0,111.1 78.8,110.0 79.6,109.0 80.4,108.0 81.2,107.1 82.0,106.1 82.8,105.3 83.6,104.4 84.4,103.6 85.2,102.8 86.0,102.0 86.8,101.2 87.6,100.5 88.4,99.8 89.2,99.1 90.0,98.5 90.8,97.9 91.6,97.3 92.4,96.7 93.2,96.2 94.0,95.7 94.8,95.2 95.6,94.7 96.4,94.2 97.2,93.8 98.0,93.4 98.8,93.0 99.6,92.6 100.4,92.3 101.2,91.9 102.0,91.6 102.8,91.3 103.6,91.0 104.4,90.8 105.2,90.5 106.0,90.3 106.8,90.0 107.6,89.8 108.4,89.7 109.2,89.5 110.0,89.3 110.8,89.2 111.6,89.0 112.4,88.9 113.2,88.8 114.0,88.7 114.8,88.6 115.6,88.5 116.4,88.4 117.2,88.3 118.0,88.3 118.8,88.2 119.6,88.2 120.4,88.1 121.2,88.1 122.0,88.1 122.8,88.1 123.6,88.0 124.4,88.0 125.2,88.0 126.0,88.0 126.8,88.0 127.6,88.0 128.4,88.0 129.2,88.0 130.0,88.0 130.8,88.0 131.6,88.0 132.4,88.0 133.2,88.0 134.0,88.0 134.8,88.0 135.6,88.0 136.4,88.0 137.2,87.9 138.0,87.9 138.8,87.9 139.6,87.9 140.4,87.8 141.2,87.8 142.0,87.7 142.8,87.7 143.6,87.6 144.4,87.5 145.2,87.4 146.0,87.3 146.8,87.2 147.6,87.1 148.4,87.0 149.2,86.8 150.0,86.7 150.8,86.5 151.6,86.3 152.4,86.2 153.2,86.0 154.0,85.7 154.8,85.5 155.6,85.2 156.4,85.0 157.2,84.7 158.0,84.4 158.8,84.1 159.6,83.7 160.4,83.4 161.2,83.0 162.0,82.6 162.8,82.2 163.6,81.8 164.4,81.3 165.2,80.8 166.0,80.3 166.8,79.8 167.6,79.3 168.4,78.7 169.2,78.1 170.0,77.5 170.8,76.9 171.6,76.2 172.4,75.5 173.2,74.8 174.0,74.0 174.8,73.2 175.6,72.4 176.4,71.6 177.2,70.7 178.0,69.9 178.8,68.9 179.6,68.0 180.4,67.0 181.2,66.0 182.0,64.9 182.8,63.9 183.6,62.7 184.4,61.6 185.2,60.4 186.0,59.2 186.8,57.9 187.6,56.6 188.4,55.3 189.2,54.0 190.0,52.6 190.8,51.1 191.6,49.7 192.4,48.1 193.2,46.6 194.0,45.0 194.8,43.4 195.6,41.7 196.4,40.0 197.2,38.2 198.0,36.4 198.8,34.6 199.6,32.7 200.4,30.8 201.2,28.8 202.0,26.8 202.8,24.7 203.6,22.6 204.4,20.4 205.2,18.2 206.0,16.0 206.8,13.7 207.6,11.3 208.4,8.9 209.2,6.5 210.0,4.0" fill="none" stroke="#7C3AED" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/><text x="253" y="91" text-anchor="middle" font-size="10" font-weight="italic" fill="#475569" font-family="sans-serif">x</text><text x="125" y="6" text-anchor="middle" font-size="10" font-weight="italic" fill="#475569" font-family="sans-serif">f</text><text x="118" y="95" text-anchor="middle" font-size="9" font-weight="normal" fill="#475569" font-family="sans-serif">O</text><line x1="170" y1="88" x2="170" y2="92" stroke="#64748B" stroke-width="1"/><text x="170" y="101" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">1</text><line x1="90" y1="88" x2="90" y2="92" stroke="#64748B" stroke-width="1"/><text x="90" y="101" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">-1</text><line x1="210" y1="88" x2="210" y2="92" stroke="#64748B" stroke-width="1"/><text x="210" y="101" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">2</text><line x1="50" y1="88" x2="50" y2="92" stroke="#64748B" stroke-width="1"/><text x="50" y="101" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">-2</text><line x1="130" y1="77.5" x2="134" y2="77.5" stroke="#64748B" stroke-width="1"/><text x="125" y="81.0" text-anchor="middle" font-size="8" font-weight="end" fill="#64748B" font-family="sans-serif">1</text><line x1="130" y1="98.5" x2="134" y2="98.5" stroke="#64748B" stroke-width="1"/><text x="125" y="102.0" text-anchor="middle" font-size="8" font-weight="end" fill="#64748B" font-family="sans-serif">-1</text><text x="205" y="20" text-anchor="start" font-size="9" font-weight="bold" fill="#7C3AED" font-family="sans-serif">y=x&#179;</text></svg>`;
   const TABLE_CU=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 82" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="230" height="82" rx="8" fill="white" stroke="#CBD5E1" stroke-width="1.5"/><rect x="0" y="0" width="230" height="32" rx="8" fill="#F1F5F9"/><rect x="0" y="20" width="230" height="12" fill="#F1F5F9"/><line x1="0" y1="32" x2="230" y2="32" stroke="#CBD5E1" stroke-width="1.5"/><line x1="64" y1="0" x2="64" y2="82" stroke="#CBD5E1" stroke-width="1"/><text x="32" y="20" text-anchor="middle" font-size="10.5" font-weight="normal" font-style="italic" fill="#1E293B" font-family="sans-serif">x</text><text x="100" y="20" text-anchor="middle" font-size="10.5" font-weight="normal" font-style="normal" fill="#1E293B" font-family="sans-serif">-&#x221E;</text><text x="178" y="20" text-anchor="middle" font-size="10.5" font-weight="normal" font-style="normal" fill="#1E293B" font-family="sans-serif">+&#x221E;</text><text x="32" y="58" text-anchor="middle" font-size="10.5" font-weight="normal" fill="#1E293B" font-family="sans-serif">x&#179;</text><text x="75" y="76" text-anchor="middle" font-size="9" font-weight="normal" fill="#475569" font-family="sans-serif">-&#x221E;</text><line x1="90.0" y1="71.0" x2="170.0" y2="44.0" stroke="#7C3AED" stroke-width="2.2"/><polygon points="163.5,49.9 170.0,44.0 161.3,43.2" fill="#7C3AED"/><text x="188" y="42" text-anchor="middle" font-size="9" font-weight="normal" fill="#475569" font-family="sans-serif">+&#x221E;</text></svg>`;
   const SECS=[
-    { emoji:"&#178;",  label:"Fn. carr&#233;e", color:"#DC2626", light:"#FEF2F2", rules:[
+    { emoji:"²",  label:"Fn. carrée", color:"#DC2626", light:"#FEF2F2", rules:[
       { id:"r1a",num:"1",title:"Définition",
         fml:r`f(x)=x^2\qquad\mathbb{D}_f=\mathbb{R}`,
         svgDiag:COURBE_X2,
@@ -26931,7 +26925,7 @@ function CoursMathFonctionsRef({onBack, onStartPractice}) {
           r`a>0\text{ : }S=\{-\sqrt{a}\,;\,\sqrt{a}\}`,
         ]},
     ]},
-    { emoji:"&#x221A;", label:"Racine &#x221A;", color:"#059669", light:"#F0FDF4", rules:[
+    { emoji:"√", label:"Racine √", color:"#059669", light:"#F0FDF4", rules:[
       { id:"r2a",num:"1",title:"Définition",
         fml:r`f(x)=\sqrt{x}\qquad\mathbb{D}_f=[0\,;+\infty[`,
         svgDiag:COURBE_SQ,
@@ -26952,7 +26946,7 @@ function CoursMathFonctionsRef({onBack, onStartPractice}) {
           r`a\geq0\text{ : }\sqrt{x}=a\Leftrightarrow x=a^2\quad\Rightarrow S=\{a^2\}`,
         ]},
     ]},
-    { emoji:"&#x215F;", label:"Inverse", color:"#2563EB", light:"#EFF6FF", rules:[
+    { emoji:"⅟", label:"Inverse", color:"#2563EB", light:"#EFF6FF", rules:[
       { id:"r3a",num:"1",title:"Définition",
         fml:r`f(x)=\dfrac{1}{x}\qquad\mathbb{D}_f=\mathbb{R}\setminus\{0\}`,
         svgDiag:COURBE_INV,
@@ -26974,7 +26968,7 @@ function CoursMathFonctionsRef({onBack, onStartPractice}) {
           r`a\neq0\text{ : }\dfrac{1}{x}=a\Leftrightarrow x=\dfrac{1}{a}\quad\Rightarrow S=\left\{\dfrac{1}{a}\right\}`,
         ]},
     ]},
-    { emoji:"&#179;",  label:"Fn. cube", color:"#7C3AED", light:"#F5F3FF", rules:[
+    { emoji:"³",  label:"Fn. cube", color:"#7C3AED", light:"#F5F3FF", rules:[
       { id:"r4a",num:"1",title:"Définition",
         fml:r`f(x)=x^3\qquad\mathbb{D}_f=\mathbb{R}`,
         svgDiag:COURBE_CU,
@@ -27072,7 +27066,7 @@ function BottomNav({screen, onTab}) {
   const BAC_NEW = 1781827200000;
   const tabs = [
     {id:"home",      emoji:"🏠", label:"Accueil",     active:screen==="dashboard"||screen==="home"},
-    {id:"apprendre", emoji:"📖", label:"Apprendre",   active:screen==="flashcard_setup"||screen==="flashcards"||screen==="apprendre"||screen==="cours"||screen==="cours_pourcentages"||screen==="cours_calcul"||screen==="cours_reels"||screen==="cours_fonctions_affines"||screen==="cours_fonctions_gen"||screen==="cours_litteral"||screen==="cours_vecteurs"||screen==="cours_fonctions_ref"||screen==="cours_fonctions_ref"||screen==="cours_stats"||screen==="cours_equations"||screen==="cours_configs"},
+    {id:"apprendre", emoji:"📖", label:"Apprendre",   active:screen==="flashcard_setup"||screen==="flashcards"||screen==="apprendre"||screen==="cours"||screen==="cours_pourcentages"||screen==="cours_calcul"||screen==="cours_reels"||screen==="cours_fonctions_affines"||screen==="cours_fonctions_gen"||screen==="cours_litteral"||screen==="cours_vecteurs"||screen==="cours_fonctions_ref"||screen==="cours_stats"||screen==="cours_equations"||screen==="cours_configs"},
     {id:"train",     emoji:"💪", label:"S'entraîner", active:screen==="training_modes"},
     {id:"bac",       emoji:"🎯", label:"Bac",         badge:Date.now()<BAC_NEW, active:screen==="bac_subjects"},
     {id:"parcours",  emoji:"📊", label:"Parcours",    active:screen==="parcours_detail"||screen==="collection"||screen==="vigilance"},
@@ -27994,7 +27988,6 @@ function AutoMaths() {
           {screen==="cours_fonctions_gen"    && <CoursMathFonctionsGen onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_litteral"         && <CoursMathLitteral     onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_vecteurs"         && <CoursMathVecteurs     onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
-          {screen==="cours_fonctions_ref"   && <CoursMathFonctionsRef  onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_fonctions_ref"   && <CoursMathFonctionsRef  onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_stats"             && <CoursMathStats         onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_equations"         && <CoursMathEquations    onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
