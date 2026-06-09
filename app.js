@@ -26538,6 +26538,13 @@ function CoursMathEquations({onBack, onStartPractice}) {
         ex:{qTex:r`\dfrac{6x-13}{(x-1)(x-2)}=0`,
             a:r`\begin{gathered}\text{Interdits : }x=1\text{ et }x=2\\[4pt]6x-13=0\Rightarrow x=\tfrac{13}{6}\\[4pt]\tfrac{13}{6}\notin\{1,2\}\Rightarrow S=\!\left\{\tfrac{13}{6}\right\}\end{gathered}`}},
     ]},
+    { emoji:"🏋️", label:"S'entraîner", color:"#D97706", light:"#FFFBEB", isPractice:true,
+      practices:[
+        {sub:"eq1",         label:"Équation 1er degré",      emoji:"📝", cat:"litteral"},
+        {sub:"produit_nul", label:"Équation produit nul",    emoji:"✖️",  cat:"litteral"},
+        {sub:"eq_x2",       label:"x²=a",                    emoji:"²",  cat:"litteral"},
+        {sub:"inequation1", label:"Inéquation 1er degré",    emoji:"📊", cat:"litteral"},
+      ]},
     { emoji:"📊", label:"Inéquations", color:"#2563EB", light:"#EFF6FF", rules:[
       { id:"eq5",num:"5",title:"Signe de ax+b",
         fml:r`ax+b=0\Leftrightarrow x_0=-\dfrac{b}{a}`,
@@ -26589,8 +26596,30 @@ function CoursMathEquations({onBack, onStartPractice}) {
           ))}
         </div>
       </div>
-      <div style={{flex:1,overflowY:"auto",padding:"14px 14px 80px"}}>
-        {sec.rules.map((rl,i)=>{
+      <div style={{flex:1,overflowY:"auto",padding:"14px 14px 24px"}}>
+        {sec.isPractice ? (
+          <div>
+            <div style={{background:"#F8FAFC",borderRadius:14,padding:"14px 15px",marginBottom:14,
+              fontSize:12.5,color:"#475569",lineHeight:1.6,border:"1px solid #E2E8F0"}}>
+              Lance un thème pour t'entraîner directement sur les questions de l'app !
+            </div>
+            {sec.practices.map(p=>(
+              <button key={p.sub} onClick={()=>onStartPractice&&onStartPractice(p.cat,p.sub)}
+                style={{width:"100%",background:"#fff",border:"2px solid #E2E8F0",
+                  borderRadius:16,padding:"14px 16px",marginBottom:10,
+                  cursor:onStartPractice?"pointer":"default",
+                  display:"flex",alignItems:"center",gap:14,textAlign:"left",
+                  boxShadow:"0 2px 10px rgba(0,0,0,.06)"}}>
+                <span style={{fontSize:26,flexShrink:0}}>{p.emoji}</span>
+                <div style={{flex:1}}>
+                  <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:"#1E293B"}}>{p.label}</div>
+                  <div style={{fontSize:11,color:"#94A3B8",marginTop:2}}>Questions · S'entraîner</div>
+                </div>
+                {onStartPractice&&<span style={{color:col,fontWeight:800,fontSize:13}}>Lancer →</span>}
+              </button>
+            ))}
+          </div>
+        ) : sec.rules.map((rl,i)=>{
           const k=`${secIdx}_${i}`; const expanded=isOpen(k,i===0);
           return (
             <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
@@ -26638,9 +26667,6 @@ function CoursMathEquations({onBack, onStartPractice}) {
           );
         })}
       </div>
-      {onStartPractice&&<div style={{padding:"12px 14px 16px",borderTop:"1px solid #F1F5F9",background:"white",flexShrink:0}}>
-        <button onClick={onStartPractice} style={{width:"100%",padding:"13px",background:"#D97706",border:"none",borderRadius:14,color:"white",fontSize:15,fontWeight:800,fontFamily:"'Nunito',sans-serif",cursor:"pointer",letterSpacing:".3px"}}>💪 S'entraîner</button>
-      </div>}
     </div>
   );
 }
@@ -26660,7 +26686,6 @@ function CoursMathStats({onBack, onStartPractice}) {
     if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
   },[secIdx]);
 
-  const BOX_PLOT=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 118" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="300" height="118" rx="8" fill="#EFF6FF"/><line x1="80" y1="17" x2="218" y2="17" stroke="#2563EB" stroke-width="1"/><line x1="80" y1="13" x2="80" y2="21" stroke="#2563EB" stroke-width="1"/><line x1="218" y1="13" x2="218" y2="21" stroke="#2563EB" stroke-width="1"/><text x="149" y="12" text-anchor="middle" font-size="8" fill="#2563EB" font-family="sans-serif">50 %</text><text x="48" y="24" text-anchor="middle" font-size="8" fill="#94A3B8" font-family="sans-serif">25 %</text><text x="249" y="24" text-anchor="middle" font-size="8" fill="#94A3B8" font-family="sans-serif">25 %</text><line x1="20" y1="60" x2="80" y2="60" stroke="#1E40AF" stroke-width="2"/><line x1="20" y1="52" x2="20" y2="68" stroke="#1E40AF" stroke-width="2.5"/><rect x="80" y="44" width="138" height="32" fill="#BFDBFE" stroke="#1E40AF" stroke-width="2" rx="2"/><line x1="149" y1="44" x2="149" y2="76" stroke="#DC2626" stroke-width="3"/><line x1="218" y1="60" x2="278" y2="60" stroke="#1E40AF" stroke-width="2"/><line x1="278" y1="52" x2="278" y2="68" stroke="#1E40AF" stroke-width="2.5"/><line x1="10" y1="76" x2="295" y2="76" stroke="#94A3B8" stroke-width="1"/><line x1="20" y1="76" x2="20" y2="83" stroke="#475569" stroke-width="1.5"/><line x1="80" y1="76" x2="80" y2="83" stroke="#475569" stroke-width="1.5"/><line x1="149" y1="76" x2="149" y2="83" stroke="#DC2626" stroke-width="1.5"/><line x1="218" y1="76" x2="218" y2="83" stroke="#475569" stroke-width="1.5"/><line x1="278" y1="76" x2="278" y2="83" stroke="#475569" stroke-width="1.5"/><text x="20" y="93" text-anchor="middle" font-size="9" fill="#475569" font-family="sans-serif">x</text><text x="26" y="97" text-anchor="start" font-size="7" fill="#475569" font-family="sans-serif">min</text><text x="77" y="93" text-anchor="middle" font-size="9" font-weight="bold" fill="#1E40AF" font-family="sans-serif">Q</text><text x="83" y="97" text-anchor="start" font-size="7" font-weight="bold" fill="#1E40AF" font-family="sans-serif">1</text><text x="143" y="93" text-anchor="middle" font-size="10" font-weight="bold" fill="#DC2626" font-family="sans-serif">M</text><text x="151" y="97" text-anchor="start" font-size="7" font-weight="bold" fill="#DC2626" font-family="sans-serif">e</text><text x="215" y="93" text-anchor="middle" font-size="9" font-weight="bold" fill="#1E40AF" font-family="sans-serif">Q</text><text x="221" y="97" text-anchor="start" font-size="7" font-weight="bold" fill="#1E40AF" font-family="sans-serif">3</text><text x="275" y="93" text-anchor="middle" font-size="9" fill="#475569" font-family="sans-serif">x</text><text x="281" y="97" text-anchor="start" font-size="7" fill="#475569" font-family="sans-serif">max</text><line x1="20" y1="108" x2="278" y2="108" stroke="#CBD5E1" stroke-width="1"/><line x1="20" y1="104" x2="20" y2="112" stroke="#CBD5E1" stroke-width="1"/><line x1="278" y1="104" x2="278" y2="112" stroke="#CBD5E1" stroke-width="1"/><text x="149" y="116" text-anchor="middle" font-size="8" fill="#94A3B8" font-family="sans-serif">étendue = x</text><text x="212" y="118" text-anchor="start" font-size="6" fill="#94A3B8" font-family="sans-serif">max</text><text x="222" y="116" text-anchor="start" font-size="8" fill="#94A3B8" font-family="sans-serif"> − x</text><text x="240" y="118" text-anchor="start" font-size="6" fill="#94A3B8" font-family="sans-serif">min</text></svg>`;
   const SECS=[
     { emoji:"📋", label:"Vocabulaire", color:"#0369A1", light:"#F0F9FF", rules:[
       { id:"st1",num:"1",title:"Vocabulaire de base",
@@ -26686,7 +26711,7 @@ function CoursMathStats({onBack, onStartPractice}) {
           r`\text{Additionner tous les produits }n_ix_i`,
           r`\text{Diviser par l'effectif total }N`,
         ],
-        tip:"Moyenne pondérée ≠ moyenne simple (sauf si tous les effectifs sont égaux)"},
+        tipTex:r`\text{Moyenne pondérée ≠ moyenne simple (sauf si tous les effectifs sont égaux)}`},
       { id:"st4",num:"4",title:"Fréquence",
         fml:r`f_i=\dfrac{n_i}{N}\quad\text{En \%{} : }f_i=\dfrac{n_i}{N}\times100`,
         bltTex:[
@@ -26702,7 +26727,7 @@ function CoursMathStats({onBack, onStartPractice}) {
           r`N\text{ impair : }M_e=\text{valeur de rang }\dfrac{N+1}{2}`,
           r`N\text{ pair : }M_e=\text{moyenne des valeurs de rangs }\dfrac{N}{2}\text{ et }\dfrac{N}{2}+1`,
         ],
-        tip:"« La médiane : autant de valeurs au-dessus qu'en dessous »"},
+        tipTex:r`\text{«~La médiane : autant de valeurs au-dessus qu'en dessous~»}`},
     ]},
     { emoji:"📦", label:"Quartiles", color:"#D97706", light:"#FFFBEB", rules:[
       { id:"st6",num:"6",title:"Quartiles Q₁ et Q₃",
@@ -26712,17 +26737,21 @@ function CoursMathStats({onBack, onStartPractice}) {
           r`\textbf{Écart interquartile }=Q_3-Q_1\text{ (50\%{} des données)}`,
           r`Q_2=M_e\text{ (le 2ème quartile est la médiane)}`,
         ],
-        tipTex:r`Q_1\text{ : rang }\tfrac{N}{4}\quad Q_3\text{ : rang }3\tfrac{N}{4}\text{ (arrondir au supérieur si non entier)}`},
+        tipTex:r`Q_1\text{ : rang }\dfrac{N}{4}\quad Q_3\text{ : rang }3\times\dfrac{N}{4}\text{ (arrondir au supérieur si non entier)}`},
       { id:"st7",num:"7",title:"Boîte à moustaches",
-        svgDiag:BOX_PLOT,
         bltTex:[
           r`\text{5 valeurs : }x_{\min}\,,\;Q_1\,,\;M_e\,,\;Q_3\,,\;x_{\max}`,
           r`\text{La boîte (rectangle) s'étend de }Q_1\text{ à }Q_3`,
           r`\text{Trait vertical dans la boîte = médiane}`,
           r`\text{Moustaches : de }x_{\min}\text{ à }Q_1\text{ et de }Q_3\text{ à }x_{\max}`,
         ],
-        tip:"La moyenne peut aussi être représentée (croix ×), mais ce n'est pas obligatoire"},
+        tipTex:r`\text{La moyenne peut aussi être représentée (croix ×), mais ce n'est pas obligatoire}`},
     ]},
+    { emoji:"🏋️", label:"S'entraîner", color:"#0369A1", light:"#F0F9FF", isPractice:true,
+      practices:[
+        {sub:"stat_centrale",   label:"Moyenne & médiane",     emoji:"📈", cat:"statistiques"},
+        {sub:"stat_dispersion", label:"Quartiles & dispersion", emoji:"📦", cat:"statistiques"},
+      ]},
     { emoji:"📐", label:"Variance", color:"#DC2626", light:"#FEF2F2", rules:[
       { id:"st8",num:"8",title:"Variance V",
         fml:r`V=\dfrac{\sum n_i(x_i-\bar{x})^2}{N}=\dfrac{\sum n_ix_i^2}{N}-\bar{x}^2`,
@@ -26739,7 +26768,7 @@ function CoursMathStats({onBack, onStartPractice}) {
           r`\sigma\text{ est exprimé dans la même unité que la variable}`,
           r`\text{Plus }\sigma\text{ est grand, plus les valeurs sont dispersées}`,
         ],
-        tip:"Comparer deux séries : même x̄ mais σ différents → dispersion différente"},
+        tipTex:r`\text{Comparer deux séries : même }\bar{x}\text{ mais }\sigma\text{ différents → dispersion différente}`},
     ]},
   ];
 
@@ -26770,8 +26799,30 @@ function CoursMathStats({onBack, onStartPractice}) {
           ))}
         </div>
       </div>
-      <div style={{flex:1,overflowY:"auto",padding:"14px 14px 80px"}}>
-        {sec.rules.map((rl,i)=>{
+      <div style={{flex:1,overflowY:"auto",padding:"14px 14px 24px"}}>
+        {sec.isPractice ? (
+          <div>
+            <div style={{background:"#F8FAFC",borderRadius:14,padding:"14px 15px",marginBottom:14,
+              fontSize:12.5,color:"#475569",lineHeight:1.6,border:"1px solid #E2E8F0"}}>
+              Lance un thème pour t'entraîner directement sur les questions de l'app !
+            </div>
+            {sec.practices.map(p=>(
+              <button key={p.sub} onClick={()=>onStartPractice&&onStartPractice(p.cat,p.sub)}
+                style={{width:"100%",background:"#fff",border:"2px solid #E2E8F0",
+                  borderRadius:16,padding:"14px 16px",marginBottom:10,
+                  cursor:onStartPractice?"pointer":"default",
+                  display:"flex",alignItems:"center",gap:14,textAlign:"left",
+                  boxShadow:"0 2px 10px rgba(0,0,0,.06)"}}>
+                <span style={{fontSize:26,flexShrink:0}}>{p.emoji}</span>
+                <div style={{flex:1}}>
+                  <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:"#1E293B"}}>{p.label}</div>
+                  <div style={{fontSize:11,color:"#94A3B8",marginTop:2}}>Questions · S'entraîner</div>
+                </div>
+                {onStartPractice&&<span style={{color:col,fontWeight:800,fontSize:13}}>Lancer →</span>}
+              </button>
+            ))}
+          </div>
+        ) : sec.rules.map((rl,i)=>{
           const k=`${secIdx}_${i}`; const expanded=isOpen(k,i===0);
           return (
             <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
@@ -26817,9 +26868,6 @@ function CoursMathStats({onBack, onStartPractice}) {
           );
         })}
       </div>
-      {onStartPractice&&<div style={{padding:"12px 14px 16px",borderTop:"1px solid #F1F5F9",background:"white",flexShrink:0}}>
-        <button onClick={onStartPractice} style={{width:"100%",padding:"13px",background:"#0369A1",border:"none",borderRadius:14,color:"white",fontSize:15,fontWeight:800,fontFamily:"'Nunito',sans-serif",cursor:"pointer",letterSpacing:".3px"}}>💪 S'entraîner</button>
-      </div>}
     </div>
   );
 }
