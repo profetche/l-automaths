@@ -24610,6 +24610,12 @@ const COURS_CATALOG = [
     chapitres:4, color:"#DC2626",
     desc:"Distribution · Identités remarquables · Factoriser · Fractions littérales",
   },
+  { id:"proba", emoji:"🎲",
+    title:"Probabilités",
+    niveaux:["2nde","1ère Spé"],
+    chapitres:8, color:"#F59E0B",
+    desc:"Univers · Événements · Loi de probabilité · Équiprobabilité · Arbre pondéré",
+  },
   { id:"fonctions_ref", emoji:"📉",
     title:"Fonctions de référence",
     niveaux:["2nde","1ère Spé"],
@@ -27062,11 +27068,196 @@ function CoursMathFonctionsRef({onBack, onStartPractice}) {
 
 // ── CoursMathFonctionsRef — Fonctions de référence ───────────────────────────
 
+
+// ── CoursMathProba — Probabilités ─────────────────────────────────────────────
+function CoursMathProba({onBack, onStartPractice}) {
+  const [secIdx, setSecIdx] = React.useState(0);
+  const [openMap, setOpenMap] = React.useState({});
+  const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
+  const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
+  const tabsRef = React.useRef();
+  React.useEffect(()=>{
+    if(!tabsRef.current) return;
+    const btn=tabsRef.current.children[secIdx];
+    if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  },[secIdx]);
+
+  const VENN=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 120" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="280" height="120" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.2"/><rect x="10" y="12" width="260" height="96" rx="8" fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="5,3"/><text x="17" y="26" font-size="13" font-style="italic" fill="#64748B" font-family="serif">&#937;</text><circle cx="105" cy="62" r="44" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2" fill-opacity="0.75"/><circle cx="163" cy="62" r="44" fill="#DBEAFE" stroke="#2563EB" stroke-width="2" fill-opacity="0.75"/><text x="80" y="66" text-anchor="middle" font-size="14" font-weight="bold" fill="#B45309" font-family="sans-serif">A</text><text x="135" y="55" text-anchor="middle" font-size="9" font-weight="bold" fill="#374151" font-family="sans-serif">A&#x2229;B</text><text x="186" y="66" text-anchor="middle" font-size="14" font-weight="bold" fill="#1D4ED8" font-family="sans-serif">B</text><text x="246" y="90" text-anchor="middle" font-size="9" fill="#94A3B8" font-family="sans-serif">ni A ni B</text></svg>`;
+  const ARBRE=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 295 175" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="295" height="175" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.2"/><circle cx="30" cy="88" r="6" fill="#F59E0B"/><line x1="36" y1="85" x2="100" y2="45" stroke="#1E293B" stroke-width="1.8"/><line x1="36" y1="91" x2="100" y2="131" stroke="#1E293B" stroke-width="1.8"/><text x="60" y="58" text-anchor="middle" font-size="9" fill="#F59E0B" font-weight="bold" font-family="sans-serif">p(A)</text><text x="60" y="122" text-anchor="middle" font-size="9" fill="#F59E0B" font-weight="bold" font-family="sans-serif">p(&#256;)</text><circle cx="104" cy="43" r="5" fill="#F59E0B"/><text x="112" y="47" font-size="11" font-weight="bold" fill="#B45309" font-family="sans-serif">A</text><circle cx="104" cy="133" r="5" fill="#F59E0B"/><text x="112" y="137" font-size="11" font-weight="bold" fill="#B45309" font-family="sans-serif">&#256;</text><line x1="108" y1="40" x2="192" y2="22" stroke="#475569" stroke-width="1.4"/><line x1="108" y1="46" x2="192" y2="64" stroke="#475569" stroke-width="1.4"/><text x="146" y="26" text-anchor="middle" font-size="9" fill="#2563EB" font-family="sans-serif">p(B|A)</text><text x="146" y="62" text-anchor="middle" font-size="9" fill="#2563EB" font-family="sans-serif">p(&#x42;&#x305;|A)</text><line x1="108" y1="130" x2="192" y2="112" stroke="#475569" stroke-width="1.4"/><line x1="108" y1="136" x2="192" y2="154" stroke="#475569" stroke-width="1.4"/><text x="146" y="116" text-anchor="middle" font-size="9" fill="#2563EB" font-family="sans-serif">p(B|&#256;)</text><text x="146" y="154" text-anchor="middle" font-size="9" fill="#2563EB" font-family="sans-serif">p(&#x42;&#x305;|&#256;)</text><circle cx="196" cy="20" r="4" fill="#2563EB"/><text x="204" y="24" font-size="9" fill="#1E293B" font-family="sans-serif">A&#x2229;B</text><circle cx="196" cy="66" r="4" fill="#94A3B8"/><text x="204" y="70" font-size="9" fill="#475569" font-family="sans-serif">A&#x2229;&#x42;&#x305;</text><circle cx="196" cy="110" r="4" fill="#2563EB"/><text x="204" y="114" font-size="9" fill="#1E293B" font-family="sans-serif">&#256;&#x2229;B</text><circle cx="196" cy="156" r="4" fill="#94A3B8"/><text x="204" y="160" font-size="9" fill="#475569" font-family="sans-serif">&#256;&#x2229;&#x42;&#x305;</text><text x="148" y="180" text-anchor="middle" font-size="8" fill="#94A3B8" font-family="sans-serif" display="none">P(A&#x2229;B) = p(A) &#xD7; p(B|A)</text></svg>`;
+  const SECS=[
+    { emoji:"🎲", label:"Vocabulaire", color:"#F59E0B", light:"#FFFBEB", rules:[
+      { id:"pb1",num:"1",title:"Expérience aléatoire et univers",
+        fml:r`\Omega=\{x_1,x_2,\ldots,x_n\}`,
+        bltTex:[
+          r`\textbf{Expérience aléatoire}\text{ : résultat imprévisible}`,
+          r`\textbf{Éventualité}\text{ (issue) : chaque résultat possible}`,
+          r`\boldsymbol{\Omega}\text{ : l'univers = l'ensemble de toutes les éventualités}`,
+          r`\textbf{Événement}\text{ : toute partie de }\Omega\text{ (ensemble d'éventualités)}`,
+        ],
+        tipTex:r`\varnothing\text{ = événement impossible}\quad\Omega\text{ = événement certain}`},
+      { id:"pb2",num:"2",title:"Intersection, réunion, complémentaire",
+        svgDiag:VENN,
+        bltTex:[
+          r`A\cap B\text{ : issues réalisant }A\textbf{ ET }B\text{ (intersection)}`,
+          r`A\cup B\text{ : issues réalisant }A\textbf{ OU }B\text{ (réunion)}`,
+          r`\bar{A}\text{ : issues }\textbf{ne réalisant pas }A\text{ (complémentaire)}`,
+          r`A\text{ et }B\textbf{ incompatibles}\Leftrightarrow A\cap B=\varnothing`,
+        ]},
+    ]},
+    { emoji:"📊", label:"Loi de proba", color:"#059669", light:"#F0FDF4", rules:[
+      { id:"pb3",num:"3",title:"Loi de probabilité",
+        fml:r`0\leq p_i\leq1\quad\text{et}\quad p_1+p_2+\cdots+p_n=1`,
+        bltTex:[
+          r`\text{Associer à chaque éventualité }x_i\text{ un nombre }p_i=p(x_i)`,
+          r`\text{Représentation : tableau Issue / Probabilité}`,
+          r`p(A)=\text{somme des probabilités des issues qui réalisent }A`,
+        ]},
+      { id:"pb4",num:"4",title:"Équiprobabilité",
+        fml:r`p(x_i)=\dfrac{1}{n}\quad\text{et}\quad p(A)=\dfrac{\text{nb d'issues favorables}}{\text{nb d'issues total}}`,
+        bltTex:[
+          r`\text{Quand toutes les issues ont la même probabilité : équiprobabilité}`,
+          r`\text{Mots-clés : « au hasard », « non pipé », « indiscernables au toucher »}`,
+        ],
+        tipTex:r`p(A)=\dfrac{\text{card}(A)}{\text{card}(\Omega)}\text{ uniquement en situation d'équiprobabilité}`},
+      { id:"pb5",num:"5",title:"Théorèmes",
+        bltTex:[
+          r`0\leq p(A)\leq1\quad p(\varnothing)=0\quad p(\Omega)=1`,
+          r`p(A\cup B)=p(A)+p(B)-p(A\cap B)`,
+          r`\text{Si }A\text{ et }B\text{ incompatibles : }p(A\cup B)=p(A)+p(B)`,
+          r`p(\bar{A})=1-p(A)`,
+        ],
+        tipTex:r`p(\bar{A})=1-p(A)\text{ est souvent plus rapide (complément à 1)}`},
+    ]},
+    { emoji:"🌳", label:"Arbre pondéré", color:"#7C3AED", light:"#F5F3FF", rules:[
+      { id:"pb6",num:"6",title:"Arbre pondéré",
+        svgDiag:ARBRE,
+        bltTex:[
+          r`\text{Représente une expérience à }\textbf{deux épreuves}`,
+          r`\text{Les branches portent des probabilités (poids)}`,
+          r`\text{Chaque chemin de la racine à une feuille est un }\textbf{trajet complet}`,
+        ]},
+      { id:"pb7",num:"7",title:"3 règles de l'arbre",
+        bltTex:[
+          r`\textbf{Règle 1 :}\text{ la somme des poids des branches primaires vaut }1`,
+          r`\textbf{Règle 2 :}\text{ pour chaque nœud, la somme des branches secondaires vaut }1`,
+          r`\textbf{Règle 3 :}\text{ probabilité d'un trajet = produit des poids des branches}`,
+          r`\textbf{Règle 4 :}\text{ prob. d'un événement = somme des prob. des trajets favorables}`,
+        ],
+        tipTex:r`P(A\cap B)=p(A)\times p(B|A)\quad\text{(produit des poids du trajet)}`},
+      { id:"pb8",num:"8",title:"Loi des grands nombres",
+        fml:r`f_{\text{issue}}=\dfrac{\text{effectif de l'issue}}{\text{effectif total}}`,
+        bltTex:[
+          r`\text{Quand on ne connaît pas la loi de probabilité : on utilise les }\textbf{fréquences}`,
+          r`\text{Sur un grand nombre d'expériences, la fréquence se rapproche de la probabilité}`,
+        ],
+        tip:"Loi des grands nombres : la simulation répétée converge vers la loi de probabilité."},
+    ]},
+    { emoji:"🏋️", label:"S'entraîner", color:"#F59E0B", light:"#FFFBEB", isPractice:true,
+      practices:[
+        {sub:"tableau",      label:"Tableau double entrée",   emoji:"📋", cat:"probabilites"},
+        {sub:"tableau_fill", label:"Tableau à compléter",      emoji:"📝", cat:"probabilites"},
+        {sub:"arbre",        label:"Arbre pondéré",            emoji:"🌳", cat:"probabilites"},
+        {sub:"contraire",    label:"Événement contraire",      emoji:"🔄", cat:"probabilites"},
+      ]},
+  ];
+
+  const sec=SECS[secIdx]; const col=sec.color;
+  return (
+    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"#F8FAFF"}}>
+      <div style={{background:"linear-gradient(135deg,#F59E0B,#D97706)",padding:"16px 18px 14px",flexShrink:0}}>
+        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:12}}>
+          <button onClick={onBack} style={{background:"rgba(255,255,255,.2)",border:"none",borderRadius:10,
+            cursor:"pointer",color:"#fff",fontSize:16,width:32,height:32,display:"flex",
+            alignItems:"center",justifyContent:"center"}}>✕</button>
+          <div style={{flex:1}}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:17,color:"#fff"}}>
+              🎲 Probabilités</div>
+            <div style={{fontSize:11,color:"rgba(255,255,255,.75)",marginTop:1}}>
+              Cours interactif · Ch. 13</div>
+          </div>
+        </div>
+        <div ref={tabsRef} style={{display:"flex",gap:6,overflowX:"auto",scrollbarWidth:"none",paddingBottom:2}}>
+          {SECS.map((s,i)=>(
+            <button key={i} onClick={()=>setSecIdx(i)}
+              style={{background:i===secIdx?"#fff":"rgba(255,255,255,.2)",
+                border:"none",borderRadius:99,padding:"6px 13px",cursor:"pointer",flexShrink:0,
+                fontFamily:"'Nunito',sans-serif",fontWeight:700,fontSize:11,
+                color:i===secIdx?s.color:"#fff",whiteSpace:"nowrap"}}>
+              {s.emoji} {s.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div style={{flex:1,overflowY:"auto",padding:"14px 14px 24px"}}>
+        {sec.isPractice ? (
+          <div>
+            <div style={{background:"#F8FAFC",borderRadius:14,padding:"14px 15px",marginBottom:14,
+              fontSize:12.5,color:"#475569",lineHeight:1.6,border:"1px solid #E2E8F0"}}>
+              Lance un thème pour t'entraîner directement sur les questions de l'app !
+            </div>
+            {sec.practices.map(p=>(
+              <button key={p.sub} onClick={()=>onStartPractice&&onStartPractice(p.cat,p.sub)}
+                style={{width:"100%",background:"#fff",border:"2px solid #E2E8F0",
+                  borderRadius:16,padding:"14px 16px",marginBottom:10,
+                  cursor:onStartPractice?"pointer":"default",
+                  display:"flex",alignItems:"center",gap:14,textAlign:"left",
+                  boxShadow:"0 2px 10px rgba(0,0,0,.06)"}}>
+                <span style={{fontSize:26,flexShrink:0}}>{p.emoji}</span>
+                <div style={{flex:1}}>
+                  <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:"#1E293B"}}>{p.label}</div>
+                  <div style={{fontSize:11,color:"#94A3B8",marginTop:2}}>Questions · S'entraîner</div>
+                </div>
+                {onStartPractice&&<span style={{color:col,fontWeight:800,fontSize:13}}>Lancer →</span>}
+              </button>
+            ))}
+          </div>
+        ) : sec.rules.map((rl,i)=>{
+          const k=`${secIdx}_${i}`; const expanded=isOpen(k,i===0);
+          return (
+            <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
+              overflow:"hidden",boxShadow:"0 2px 14px rgba(0,0,0,.07)",borderLeft:`4px solid ${col}`}}>
+              <div onClick={()=>tog(k)} style={{display:"flex",alignItems:"center",gap:10,
+                padding:"13px 15px",cursor:"pointer",userSelect:"none"}}>
+                <div style={{width:30,height:30,borderRadius:"50%",background:col,color:"#fff",
+                  display:"flex",alignItems:"center",justifyContent:"center",
+                  fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
+                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}</div>
+                <span style={{color:"#94A3B8",fontSize:11,display:"block",
+                  transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
+              </div>
+              {expanded&&(
+                <div style={{padding:"0 15px 15px"}}>
+                  {rl.fml&&<div style={{background:sec.light,borderRadius:13,padding:"14px 12px",
+                    margin:"8px 0",textAlign:"center",overflowX:"auto"}}><M tex={rl.fml}/></div>}
+                  {rl.svgDiag&&<div style={{margin:"8px 0",borderRadius:12,overflow:"hidden"}}
+                    dangerouslySetInnerHTML={{__html:rl.svgDiag}}/>}
+                  {(rl.bltTex||[]).map((b,j)=>(
+                    <div key={j} style={{display:"flex",gap:7,padding:"4px 0",alignItems:"flex-start"}}>
+                      <span style={{color:col,fontWeight:700,flexShrink:0,marginTop:2}}>•</span>
+                      <span style={{overflowX:"auto"}}><M tex={b}/></span>
+                    </div>
+                  ))}
+                  {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,
+                    padding:"10px 12px",fontSize:12,fontWeight:600,color:"#713F12",
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4,overflowX:"auto"}}>
+                    {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
+                  </div>}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+
 function BottomNav({screen, onTab}) {
   const BAC_NEW = 1781827200000;
   const tabs = [
     {id:"home",      emoji:"🏠", label:"Accueil",     active:screen==="dashboard"||screen==="home"},
-    {id:"apprendre", emoji:"📖", label:"Apprendre",   active:screen==="flashcard_setup"||screen==="flashcards"||screen==="apprendre"||screen==="cours"||screen==="cours_pourcentages"||screen==="cours_calcul"||screen==="cours_reels"||screen==="cours_fonctions_affines"||screen==="cours_fonctions_gen"||screen==="cours_litteral"||screen==="cours_vecteurs"||screen==="cours_fonctions_ref"||screen==="cours_stats"||screen==="cours_equations"||screen==="cours_configs"},
+    {id:"apprendre", emoji:"📖", label:"Apprendre",   active:screen==="flashcard_setup"||screen==="flashcards"||screen==="apprendre"||screen==="cours"||screen==="cours_pourcentages"||screen==="cours_calcul"||screen==="cours_reels"||screen==="cours_fonctions_affines"||screen==="cours_fonctions_gen"||screen==="cours_litteral"||screen==="cours_vecteurs"||screen==="cours_proba"||screen==="cours_fonctions_ref"||screen==="cours_stats"||screen==="cours_equations"||screen==="cours_configs"},
     {id:"train",     emoji:"💪", label:"S'entraîner", active:screen==="training_modes"},
     {id:"bac",       emoji:"🎯", label:"Bac",         badge:Date.now()<BAC_NEW, active:screen==="bac_subjects"},
     {id:"parcours",  emoji:"📊", label:"Parcours",    active:screen==="parcours_detail"||screen==="collection"||screen==="vigilance"},
@@ -27988,6 +28179,7 @@ function AutoMaths() {
           {screen==="cours_fonctions_gen"    && <CoursMathFonctionsGen onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_litteral"         && <CoursMathLitteral     onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_vecteurs"         && <CoursMathVecteurs     onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
+          {screen==="cours_proba"             && <CoursMathProba         onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_fonctions_ref"   && <CoursMathFonctionsRef  onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_stats"             && <CoursMathStats         onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_equations"         && <CoursMathEquations    onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
