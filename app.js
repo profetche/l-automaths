@@ -7953,12 +7953,23 @@ const DB = {
       { q:r`\text{300 € soldé }-15\%\text{. Prix soldé :}`,
         choices:[r`300-0{,}15`,r`300\times0{,}85`,r`300\times1{,}15`,r`300\times0{,}15`],
         a:r`300\times0{,}85`, tip:r`1-0{,}15=0{,}85` },
-      { q:r`2x^2-3x-4\text{ pour }x=-1:`, choices:[r`-9`,r`-3`,r`-5`,r`1`], a:r`1`, tip:r`2+3-4=1` },
+      { q:r`\text{Équation réduite de la droite (AB) :}`,
+        gspec:{fn:x=>-0.5*x+2, xr:[-2,6], yr:[-1,4],
+          extras:c=><>{gPt(-2,3,c)}{gPt(4,0,c)}</>},
+        choices:[r`y=4x+2`,r`y=-2x+2`,r`y=2x+4`,r`y=-0{,}5x+2`],
+        a:r`y=-0{,}5x+2`, tip:r`m=\dfrac{0-2}{4-(-2)}=\dfrac{-2}{6}=-0{,}5\text{ et ordonnée à l'origine }2` },
+            { q:r`2x^2-3x-4\text{ pour }x=-1:`, choices:[r`-9`,r`-3`,r`-5`,r`1`], a:r`1`, tip:r`2+3-4=1` },
       { q:r`(x-4)^2=?`, choices:[r`x^2-8x+16`,r`x^2+8x+16`,r`x^2+8x-16`,r`x^2-8x-16`],
         a:r`x^2-8x+16`, tip:r`(a-b)^2=a^2-2ab+b^2` },
       { q:r`(2x+4)(-3x-9)=0`, choices:[r`\{-2\}`,r`\{-4{;}-3\}`,r`\{-2{;}3\}`,r`\{-2{;}-3\}`],
         a:r`\{-2{;}-3\}`, tip:r`x=-2\text{ ou }x=-3` },
-      { q:r`F=G\dfrac{m_1m_2}{R^2}\text{. }m_1=?`,
+      { q:r`\text{Courbe de }f\text{ sur }[-6{;}5]\text{. }\mathcal{S}\text{ solutions de }f(x)\geq3:`,
+        gspec:{fn:x=>Math.abs(x)<=5?(-0.08*(x+3.5)*(x+3.5)*(x+3.5)+0.6*(x+3.5)+3.5):0,
+          xr:[-6,5], yr:[-3,6],
+          extras:c=><>{gDH(3,c)}</> },
+        choices:[r`\mathcal{S}=[-6{;}5]\cup[-2{;}5]`,r`\mathcal{S}=[-5{;}2]`,r`\mathcal{S}=[-5{;}-2]`,r`\mathcal{S}=\{-3\}`],
+        a:r`\mathcal{S}=[-5{;}-2]`, tip:r`\text{Lire où la courbe est au-dessus de }y=3` },
+            { q:r`F=G\dfrac{m_1m_2}{R^2}\text{. }m_1=?`,
         choices:[r`\dfrac{FG}{R^2m_2}`,r`\dfrac{FR^2}{Gm_2}`,r`\dfrac{GR^2}{Fm_2}`,r`FR^2Gm_2`],
         a:r`\dfrac{FR^2}{Gm_2}`, tip:r`m_1=\dfrac{FR^2}{Gm_2}` },
       { q:r`\text{Arbre. Vrai :}`, svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 165" style="width:100%;display:block;border-radius:8px"><rect width="290" height="165" rx="8" fill="white" stroke="#E2E8F0"/><circle cx="26" cy="82" r="5" fill="#F59E0B"/><line x1="31" y1="79" x2="98" y2="39" stroke="#1E293B" stroke-width="1.8"/><line x1="31" y1="85" x2="98" y2="125" stroke="#1E293B" stroke-width="1.8"/><text x="59" y="53" text-anchor="middle" font-size="8" font-weight="bold" fill="#F59E0B" font-family="sans-serif">p(A)=0.8</text><text x="59" y="115" text-anchor="middle" font-size="8" font-weight="bold" fill="#F59E0B" font-family="sans-serif">p(A̅)=0.2</text><circle cx="102" cy="37" r="5" fill="#F59E0B"/><text x="110" y="41" text-anchor="start" font-size="11" font-weight="bold" fill="#B45309" font-family="sans-serif">A</text><circle cx="102" cy="127" r="5" fill="#F59E0B"/><text x="110" y="131" text-anchor="start" font-size="11" font-weight="bold" fill="#B45309" font-family="sans-serif">A̅</text><line x1="106" y1="34" x2="192" y2="17" stroke="#475569" stroke-width="1.4"/><line x1="106" y1="40" x2="192" y2="57" stroke="#475569" stroke-width="1.4"/><text x="148" y="20" text-anchor="middle" font-size="8" font-weight="normal" fill="#2563EB" font-family="sans-serif">pA(B)=0.3</text><text x="148" y="56" text-anchor="middle" font-size="8" font-weight="normal" fill="#94A3B8" font-family="sans-serif">pA(B̅)=0.7</text><line x1="106" y1="124" x2="192" y2="107" stroke="#475569" stroke-width="1.4"/><line x1="106" y1="130" x2="192" y2="147" stroke="#475569" stroke-width="1.4"/><text x="148" y="107" text-anchor="middle" font-size="8" font-weight="normal" fill="#2563EB" font-family="sans-serif">pA̅(B)=0.4</text><text x="148" y="146" text-anchor="middle" font-size="8" font-weight="normal" fill="#94A3B8" font-family="sans-serif">pA̅(B̅)=0.6</text><circle cx="196" cy="15" r="3" fill="#2563EB"/><text x="202" y="19" text-anchor="start" font-size="8" font-weight="normal" fill="#1E293B" font-family="sans-serif">A∩B</text><circle cx="196" cy="59" r="3" fill="#94A3B8"/><text x="202" y="63" text-anchor="start" font-size="8" font-weight="normal" fill="#475569" font-family="sans-serif">A∩B̅</text><circle cx="196" cy="105" r="3" fill="#2563EB"/><text x="202" y="109" text-anchor="start" font-size="8" font-weight="normal" fill="#1E293B" font-family="sans-serif">A̅∩B</text><circle cx="196" cy="149" r="3" fill="#94A3B8"/><text x="202" y="153" text-anchor="start" font-size="8" font-weight="normal" fill="#475569" font-family="sans-serif">A̅∩B̅</text></svg>`,
@@ -7972,9 +7983,16 @@ const DB = {
       { q:r`\text{Arbre. }p(\bar{A}\cap B)=?`, svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 165" style="width:100%;display:block;border-radius:8px"><rect width="290" height="165" rx="8" fill="white" stroke="#E2E8F0"/><circle cx="26" cy="82" r="5" fill="#F59E0B"/><line x1="31" y1="79" x2="98" y2="39" stroke="#1E293B" stroke-width="1.8"/><line x1="31" y1="85" x2="98" y2="125" stroke="#1E293B" stroke-width="1.8"/><text x="59" y="53" text-anchor="middle" font-size="8" font-weight="bold" fill="#F59E0B" font-family="sans-serif">p(A)=0.4</text><text x="59" y="115" text-anchor="middle" font-size="8" font-weight="bold" fill="#F59E0B" font-family="sans-serif">p(A̅)=0.6</text><circle cx="102" cy="37" r="5" fill="#F59E0B"/><text x="110" y="41" text-anchor="start" font-size="11" font-weight="bold" fill="#B45309" font-family="sans-serif">A</text><circle cx="102" cy="127" r="5" fill="#F59E0B"/><text x="110" y="131" text-anchor="start" font-size="11" font-weight="bold" fill="#B45309" font-family="sans-serif">A̅</text><line x1="106" y1="34" x2="192" y2="17" stroke="#475569" stroke-width="1.4"/><line x1="106" y1="40" x2="192" y2="57" stroke="#475569" stroke-width="1.4"/><text x="148" y="20" text-anchor="middle" font-size="8" font-weight="normal" fill="#2563EB" font-family="sans-serif">pA(B)=0.7</text><text x="148" y="56" text-anchor="middle" font-size="8" font-weight="normal" fill="#94A3B8" font-family="sans-serif">pA(B̅)=0.3</text><line x1="106" y1="124" x2="192" y2="107" stroke="#475569" stroke-width="1.4"/><line x1="106" y1="130" x2="192" y2="147" stroke="#475569" stroke-width="1.4"/><text x="148" y="107" text-anchor="middle" font-size="8" font-weight="normal" fill="#2563EB" font-family="sans-serif">pA̅(B)=0.3</text><text x="148" y="146" text-anchor="middle" font-size="8" font-weight="normal" fill="#94A3B8" font-family="sans-serif">pA̅(B̅)=0.7</text><circle cx="196" cy="15" r="3" fill="#2563EB"/><text x="202" y="19" text-anchor="start" font-size="8" font-weight="normal" fill="#1E293B" font-family="sans-serif">A∩B</text><circle cx="196" cy="59" r="3" fill="#94A3B8"/><text x="202" y="63" text-anchor="start" font-size="8" font-weight="normal" fill="#475569" font-family="sans-serif">A∩B̅</text><circle cx="196" cy="105" r="3" fill="#2563EB"/><text x="202" y="109" text-anchor="start" font-size="8" font-weight="normal" fill="#1E293B" font-family="sans-serif">A̅∩B</text><circle cx="196" cy="149" r="3" fill="#94A3B8"/><text x="202" y="153" text-anchor="start" font-size="8" font-weight="normal" fill="#475569" font-family="sans-serif">A̅∩B̅</text></svg>`,
         choices:[r`1{,}2`,r`0{,}42`,r`0{,}7`,r`0{,}18`],
         a:r`0{,}18`, tip:r`0{,}6\times0{,}3=0{,}18` },
+      { q:r`A=\dfrac{1}{3}\text{ et }B=\dfrac{5}{6}\text{. }\dfrac{A}{B}+1=?`,
+        choices:[r`\dfrac{7}{5}`,r`\dfrac{7}{3}`,r`\dfrac{23}{18}`,r`\dfrac{12}{5}`],
+        a:r`\dfrac{7}{5}`, tip:r`\dfrac{A}{B}=\dfrac{1/3}{5/6}=\dfrac{2}{5}\quad\dfrac{2}{5}+1=\dfrac{7}{5}` },
       { q:r`(x^2-1)^2=?`, choices:[r`x^4-1`,r`x^4-2x^2+1`,r`x^4+2x^2+1`,r`x^4+2x^2-1`],
         a:r`x^4-2x^2+1`, tip:r`(a-b)^2=a^2-2ab+b^2` },
-      { q:r`\text{Hausse }20\%\text{ puis baisse }50\%:`,
+      { q:r`\text{Droite d'équation réduite }y=\dfrac{1}{2}x+1\text{. Représentation :}`,
+        gspec:{fn:x=>0.5*x+1, xr:[-4,5], yr:[-2,4]},
+        choices:[r`\text{pente }4\text{, ord. }2`,r`\text{pente }-2\text{, ord. }2`,r`\text{pente }2\text{, ord. }4`,r`\text{pente }\frac{1}{2}\text{, ord. }1`],
+        a:r`\text{pente }\frac{1}{2}\text{, ord. }1`, tip:r`y=\dfrac{1}{2}x+1\text{ : pente }\frac{1}{2}\text{, ordonnée à l'origine }1` },
+            { q:r`\text{Hausse }20\%\text{ puis baisse }50\%:`,
         choices:[r`-10\%`,r`-30\%`,r`-40\%`,r`-60\%`], a:r`-40\%`, tip:r`1{,}2\times0{,}5=0{,}6` },
       { q:r`x=\dfrac{5}{2+y}\text{. }y=?`,
         choices:[r`\dfrac{10}{2x-5}`,r`\dfrac{10}{5+2x}`,r`5-2x`,r`\dfrac{5}{x}-2`],
@@ -19447,12 +19465,11 @@ function SplashScreen({onStart, onMySpace, onRestore, profile}) {
         alignItems:"center",width:"100%"}}>
 
         <div style={{display:"flex",flexDirection:"column",alignItems:"center",marginBottom:6,width:"100%"}}>
-          <div className="sigma-float">
-            <img src={SIGMA_IMG} alt="Sigma"
-              style={{width:180,height:180,objectFit:"contain",display:"block",
-                filter:"drop-shadow(0 8px 24px rgba(0,0,0,0.45))"}}/>
+          <div style={{borderRadius:16,overflow:"hidden",width:"100%",maxWidth:300,
+            boxShadow:"0 12px 40px rgba(0,0,0,0.4)",marginBottom:4}}>
+            <img src={PROMO_IMG} alt="Bac Centre Étrangers 2026"
+              style={{width:"100%",display:"block"}}/>
           </div>
-          <div className="sigma-shadow" style={{marginTop:-4}}/>
         </div>
 
         <div style={{textAlign:"center",marginBottom:4}}>
@@ -22725,7 +22742,7 @@ const BAC_GROUPS = [
       {id:"tronc_annales_s2_2026", label:"Annales 2026 — Sujet 2", year:2026, n:12},
       {id:"tronc_annales_s3_2026", label:"Annales 2026 — Sujet 3", year:2026, n:12},
       {id:"tronc_annales_s4_2026", label:"Amérique du Nord 2026", year:2026, n:12},
-      {id:"tronc_ce_2026", label:"Centres Étrangers 2026", year:2026, n:10, newUntil:1750550400000},
+      {id:"tronc_ce_2026", label:"Centres Étrangers 2026", year:2026, n:10, newUntil:1784119200000},
     ],
   },
   {
@@ -22734,7 +22751,7 @@ const BAC_GROUPS = [
       {id:"spe_annales_s1_2026", label:"Annales 2026 — Sujet 1", year:2026, n:12},
       {id:"spe_annales_s2_2026", label:"Annales 2026 — Sujet 2", year:2026, n:12},
       {id:"spe_annales_s3_2026", label:"Amérique du Nord 2026", year:2026, n:9},
-      {id:"spe_ce_2026", label:"Centres Étrangers 2026", year:2026, n:6, newUntil:1750550400000},
+      {id:"spe_ce_2026", label:"Centres Étrangers 2026", year:2026, n:6, newUntil:1784119200000},
     ],
   },
 ];
