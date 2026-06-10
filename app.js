@@ -7944,6 +7944,47 @@ const DB = {
         choices:[r`S=\{2\}`,r`S=\{-2\,;\,2\,;\,3\}`,r`S=[-2\,;\,3]`,r`S=\{-0{,}5\,;\,0{,}5\}`], a:r`S=\{-2\,;\,2\,;\,3\}`, tip:r`\text{La courbe coupe la droite }y=2\text{ en trois points : }x=-2,\ x=2\ \text{et}\ x=3` },
       { q:r`\text{Série 1 : }9\,;\,11\,;\,13.\text{ On ajoute les notes }10\text{ et }17.\\[4pt]\text{Série 2 : }9\,;\,10\,;\,11\,;\,13\,;\,17.\text{ La proposition vraie est :}`, choices:[r`\text{Mêmes moyennes et mêmes médianes}`,r`\text{Mêmes moyennes, médianes différentes}`,r`\text{Moyennes différentes, mêmes médianes}`,r`\text{Moyennes différentes et médianes différentes}`], a:r`\text{Moyennes différentes, mêmes médianes}`, tip:r`\text{Moy}_1=11\neq\text{Moy}_2=12\,;\quad\text{Méd}_1=11=\text{Méd}_2=11` },
     ],
+    tronc_ce_2026: [
+      { q:r`A=4-2\times\dfrac{1}{3}\text{. On a :}`,
+        choices:[r`A=\dfrac{2}{3}`,r`A=\dfrac{10}{3}`,r`A=\dfrac{4}{3}`,r`A=\dfrac{11}{3}`],
+        a:r`A=\dfrac{10}{3}`, tip:r`4-\dfrac{2}{3}=\dfrac{10}{3}` },
+      { q:r`B=2\times5^2+3\text{. On a :}`, choices:[r`B=103`,r`B=53`,r`B=97`,r`B=23`], a:r`B=53`, tip:r`2\times25+3=53` },
+      { q:r`25\%\text{ de }250:`, choices:[r`62{,}5`,r`125`,r`50`,r`225`], a:r`62{,}5`, tip:r`250\times0{,}25=62{,}5` },
+      { q:r`\text{300 € soldé }-15\%\text{. Prix soldé :}`,
+        choices:[r`300-0{,}15`,r`300\times0{,}85`,r`300\times1{,}15`,r`300\times0{,}15`],
+        a:r`300\times0{,}85`, tip:r`1-0{,}15=0{,}85` },
+      { q:r`2x^2-3x-4\text{ pour }x=-1:`, choices:[r`-9`,r`-3`,r`-5`,r`1`], a:r`1`, tip:r`2+3-4=1` },
+      { q:r`(x-4)^2=?`, choices:[r`x^2-8x+16`,r`x^2+8x+16`,r`x^2+8x-16`,r`x^2-8x-16`],
+        a:r`x^2-8x+16`, tip:r`(a-b)^2=a^2-2ab+b^2` },
+      { q:r`(2x+4)(-3x-9)=0`, choices:[r`\{-2\}`,r`\{-4{;}-3\}`,r`\{-2{;}3\}`,r`\{-2{;}-3\}`],
+        a:r`\{-2{;}-3\}`, tip:r`x=-2\text{ ou }x=-3` },
+      { q:r`F=G\dfrac{m_1m_2}{R^2}\text{. }m_1=?`,
+        choices:[r`\dfrac{FG}{R^2m_2}`,r`\dfrac{FR^2}{Gm_2}`,r`\dfrac{GR^2}{Fm_2}`,r`FR^2Gm_2`],
+        a:r`\dfrac{FR^2}{Gm_2}`, tip:r`m_1=\dfrac{FR^2}{Gm_2}` },
+      { q:r`\text{Arbre. Vrai :}`, svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 165" style="width:100%;display:block;border-radius:8px"><rect width="290" height="165" rx="8" fill="white" stroke="#E2E8F0"/><circle cx="26" cy="82" r="5" fill="#F59E0B"/><line x1="31" y1="79" x2="98" y2="39" stroke="#1E293B" stroke-width="1.8"/><line x1="31" y1="85" x2="98" y2="125" stroke="#1E293B" stroke-width="1.8"/><text x="59" y="53" text-anchor="middle" font-size="8" font-weight="bold" fill="#F59E0B" font-family="sans-serif">p(A)=0.8</text><text x="59" y="115" text-anchor="middle" font-size="8" font-weight="bold" fill="#F59E0B" font-family="sans-serif">p(A̅)=0.2</text><circle cx="102" cy="37" r="5" fill="#F59E0B"/><text x="110" y="41" text-anchor="start" font-size="11" font-weight="bold" fill="#B45309" font-family="sans-serif">A</text><circle cx="102" cy="127" r="5" fill="#F59E0B"/><text x="110" y="131" text-anchor="start" font-size="11" font-weight="bold" fill="#B45309" font-family="sans-serif">A̅</text><line x1="106" y1="34" x2="192" y2="17" stroke="#475569" stroke-width="1.4"/><line x1="106" y1="40" x2="192" y2="57" stroke="#475569" stroke-width="1.4"/><text x="148" y="20" text-anchor="middle" font-size="8" font-weight="normal" fill="#2563EB" font-family="sans-serif">pA(B)=0.3</text><text x="148" y="56" text-anchor="middle" font-size="8" font-weight="normal" fill="#94A3B8" font-family="sans-serif">pA(B̅)=0.7</text><line x1="106" y1="124" x2="192" y2="107" stroke="#475569" stroke-width="1.4"/><line x1="106" y1="130" x2="192" y2="147" stroke="#475569" stroke-width="1.4"/><text x="148" y="107" text-anchor="middle" font-size="8" font-weight="normal" fill="#2563EB" font-family="sans-serif">pA̅(B)=0.4</text><text x="148" y="146" text-anchor="middle" font-size="8" font-weight="normal" fill="#94A3B8" font-family="sans-serif">pA̅(B̅)=0.6</text><circle cx="196" cy="15" r="3" fill="#2563EB"/><text x="202" y="19" text-anchor="start" font-size="8" font-weight="normal" fill="#1E293B" font-family="sans-serif">A∩B</text><circle cx="196" cy="59" r="3" fill="#94A3B8"/><text x="202" y="63" text-anchor="start" font-size="8" font-weight="normal" fill="#475569" font-family="sans-serif">A∩B̅</text><circle cx="196" cy="105" r="3" fill="#2563EB"/><text x="202" y="109" text-anchor="start" font-size="8" font-weight="normal" fill="#1E293B" font-family="sans-serif">A̅∩B</text><circle cx="196" cy="149" r="3" fill="#94A3B8"/><text x="202" y="153" text-anchor="start" font-size="8" font-weight="normal" fill="#475569" font-family="sans-serif">A̅∩B̅</text></svg>`,
+        choices:[r`p_{\bar{A}}(\bar{B})=0{,}3`,r`p_{\bar{A}}(\bar{B})=0{,}48`,r`p_{\bar{A}}(\bar{B})=0{,}8`,r`p_{\bar{A}}(\bar{B})=0{,}6`],
+        a:r`p_{\bar{A}}(\bar{B})=0{,}6`, tip:r`1-0{,}4=0{,}6` },
+      { q:r`\text{Même arbre. Vrai :}`, svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 165" style="width:100%;display:block;border-radius:8px"><rect width="290" height="165" rx="8" fill="white" stroke="#E2E8F0"/><circle cx="26" cy="82" r="5" fill="#F59E0B"/><line x1="31" y1="79" x2="98" y2="39" stroke="#1E293B" stroke-width="1.8"/><line x1="31" y1="85" x2="98" y2="125" stroke="#1E293B" stroke-width="1.8"/><text x="59" y="53" text-anchor="middle" font-size="8" font-weight="bold" fill="#F59E0B" font-family="sans-serif">p(A)=0.8</text><text x="59" y="115" text-anchor="middle" font-size="8" font-weight="bold" fill="#F59E0B" font-family="sans-serif">p(A̅)=0.2</text><circle cx="102" cy="37" r="5" fill="#F59E0B"/><text x="110" y="41" text-anchor="start" font-size="11" font-weight="bold" fill="#B45309" font-family="sans-serif">A</text><circle cx="102" cy="127" r="5" fill="#F59E0B"/><text x="110" y="131" text-anchor="start" font-size="11" font-weight="bold" fill="#B45309" font-family="sans-serif">A̅</text><line x1="106" y1="34" x2="192" y2="17" stroke="#475569" stroke-width="1.4"/><line x1="106" y1="40" x2="192" y2="57" stroke="#475569" stroke-width="1.4"/><text x="148" y="20" text-anchor="middle" font-size="8" font-weight="normal" fill="#2563EB" font-family="sans-serif">pA(B)=0.3</text><text x="148" y="56" text-anchor="middle" font-size="8" font-weight="normal" fill="#94A3B8" font-family="sans-serif">pA(B̅)=0.7</text><line x1="106" y1="124" x2="192" y2="107" stroke="#475569" stroke-width="1.4"/><line x1="106" y1="130" x2="192" y2="147" stroke="#475569" stroke-width="1.4"/><text x="148" y="107" text-anchor="middle" font-size="8" font-weight="normal" fill="#2563EB" font-family="sans-serif">pA̅(B)=0.4</text><text x="148" y="146" text-anchor="middle" font-size="8" font-weight="normal" fill="#94A3B8" font-family="sans-serif">pA̅(B̅)=0.6</text><circle cx="196" cy="15" r="3" fill="#2563EB"/><text x="202" y="19" text-anchor="start" font-size="8" font-weight="normal" fill="#1E293B" font-family="sans-serif">A∩B</text><circle cx="196" cy="59" r="3" fill="#94A3B8"/><text x="202" y="63" text-anchor="start" font-size="8" font-weight="normal" fill="#475569" font-family="sans-serif">A∩B̅</text><circle cx="196" cy="105" r="3" fill="#2563EB"/><text x="202" y="109" text-anchor="start" font-size="8" font-weight="normal" fill="#1E293B" font-family="sans-serif">A̅∩B</text><circle cx="196" cy="149" r="3" fill="#94A3B8"/><text x="202" y="153" text-anchor="start" font-size="8" font-weight="normal" fill="#475569" font-family="sans-serif">A̅∩B̅</text></svg>`,
+        choices:[r`p_A(\bar{B})=0{,}3`,r`p_A(\bar{B})=0{,}2`,r`p_A(\bar{B})=0{,}14`,r`p_A(\bar{B})=0{,}7`],
+        a:r`p_A(\bar{B})=0{,}7`, tip:r`1-0{,}3=0{,}7` },
+    ],
+    spe_ce_2026: [
+      { q:r`\text{Arbre. }p(\bar{A}\cap B)=?`, svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 165" style="width:100%;display:block;border-radius:8px"><rect width="290" height="165" rx="8" fill="white" stroke="#E2E8F0"/><circle cx="26" cy="82" r="5" fill="#F59E0B"/><line x1="31" y1="79" x2="98" y2="39" stroke="#1E293B" stroke-width="1.8"/><line x1="31" y1="85" x2="98" y2="125" stroke="#1E293B" stroke-width="1.8"/><text x="59" y="53" text-anchor="middle" font-size="8" font-weight="bold" fill="#F59E0B" font-family="sans-serif">p(A)=0.4</text><text x="59" y="115" text-anchor="middle" font-size="8" font-weight="bold" fill="#F59E0B" font-family="sans-serif">p(A̅)=0.6</text><circle cx="102" cy="37" r="5" fill="#F59E0B"/><text x="110" y="41" text-anchor="start" font-size="11" font-weight="bold" fill="#B45309" font-family="sans-serif">A</text><circle cx="102" cy="127" r="5" fill="#F59E0B"/><text x="110" y="131" text-anchor="start" font-size="11" font-weight="bold" fill="#B45309" font-family="sans-serif">A̅</text><line x1="106" y1="34" x2="192" y2="17" stroke="#475569" stroke-width="1.4"/><line x1="106" y1="40" x2="192" y2="57" stroke="#475569" stroke-width="1.4"/><text x="148" y="20" text-anchor="middle" font-size="8" font-weight="normal" fill="#2563EB" font-family="sans-serif">pA(B)=0.7</text><text x="148" y="56" text-anchor="middle" font-size="8" font-weight="normal" fill="#94A3B8" font-family="sans-serif">pA(B̅)=0.3</text><line x1="106" y1="124" x2="192" y2="107" stroke="#475569" stroke-width="1.4"/><line x1="106" y1="130" x2="192" y2="147" stroke="#475569" stroke-width="1.4"/><text x="148" y="107" text-anchor="middle" font-size="8" font-weight="normal" fill="#2563EB" font-family="sans-serif">pA̅(B)=0.3</text><text x="148" y="146" text-anchor="middle" font-size="8" font-weight="normal" fill="#94A3B8" font-family="sans-serif">pA̅(B̅)=0.7</text><circle cx="196" cy="15" r="3" fill="#2563EB"/><text x="202" y="19" text-anchor="start" font-size="8" font-weight="normal" fill="#1E293B" font-family="sans-serif">A∩B</text><circle cx="196" cy="59" r="3" fill="#94A3B8"/><text x="202" y="63" text-anchor="start" font-size="8" font-weight="normal" fill="#475569" font-family="sans-serif">A∩B̅</text><circle cx="196" cy="105" r="3" fill="#2563EB"/><text x="202" y="109" text-anchor="start" font-size="8" font-weight="normal" fill="#1E293B" font-family="sans-serif">A̅∩B</text><circle cx="196" cy="149" r="3" fill="#94A3B8"/><text x="202" y="153" text-anchor="start" font-size="8" font-weight="normal" fill="#475569" font-family="sans-serif">A̅∩B̅</text></svg>`,
+        choices:[r`1{,}2`,r`0{,}42`,r`0{,}7`,r`0{,}18`],
+        a:r`0{,}18`, tip:r`0{,}6\times0{,}3=0{,}18` },
+      { q:r`(x^2-1)^2=?`, choices:[r`x^4-1`,r`x^4-2x^2+1`,r`x^4+2x^2+1`,r`x^4+2x^2-1`],
+        a:r`x^4-2x^2+1`, tip:r`(a-b)^2=a^2-2ab+b^2` },
+      { q:r`\text{Hausse }20\%\text{ puis baisse }50\%:`,
+        choices:[r`-10\%`,r`-30\%`,r`-40\%`,r`-60\%`], a:r`-40\%`, tip:r`1{,}2\times0{,}5=0{,}6` },
+      { q:r`x=\dfrac{5}{2+y}\text{. }y=?`,
+        choices:[r`\dfrac{10}{2x-5}`,r`\dfrac{10}{5+2x}`,r`5-2x`,r`\dfrac{5}{x}-2`],
+        a:r`\dfrac{5}{x}-2`, tip:r`y=\dfrac{5}{x}-2` },
+      { q:r`\text{Classe 25 élèves. Prob. spé sachant >16 ans :}`,
+        choices:[r`\dfrac{3}{7}`,r`\dfrac{6}{5}`,r`6`,r`\dfrac{3}{5}`],
+        a:r`\dfrac{3}{5}`, tip:r`\dfrac{6}{10}=\dfrac{3}{5}` },
+      { q:r`150\text{ élèves spé}=\dfrac{1}{2}\text{ des 1ᴪes. Total :}`,
+        choices:[r`90`,r`200`,r`250`,r`300`], a:r`300`, tip:r`150\times2=300` },
+    ],
     tronc_original: [],
     // ── Spécialité · Annales · Sujet 1 (2026) ────────────────────────────────
     spe_annales_s1_2026: [
@@ -15031,6 +15072,7 @@ function DiagnosticScreen({profile, onComplete}) {
   const [results, setResults] = useState({}); // catId → {correct, total}
 
   const q = diagQ[idx];
+  const shuffledChoices = React.useMemo(() => q?.choices ? shuffle([...q.choices]) : [], [idx]);
   const pct = Math.round((idx / diagQ.length) * 100);
 
   const pick = choice => {
@@ -15126,7 +15168,7 @@ function DiagnosticScreen({profile, onComplete}) {
 
         {/* Choices */}
         <div style={{display:'flex',flexDirection:'column',gap:8,flex:1}}>
-          {q.choices && q.choices.map((c,i) => {
+          {shuffledChoices.map((c,i) => {
             const st = getState(c);
             const col = COLORS[st];
             return (
@@ -22682,7 +22724,8 @@ const BAC_GROUPS = [
       {id:"tronc_annales_s1_2026", label:"Annales 2026 — Sujet 1", year:2026, n:12},
       {id:"tronc_annales_s2_2026", label:"Annales 2026 — Sujet 2", year:2026, n:12},
       {id:"tronc_annales_s3_2026", label:"Annales 2026 — Sujet 3", year:2026, n:12},
-      {id:"tronc_annales_s4_2026", label:"Amérique du Nord 2026", year:2026, n:12, newUntil:1781827200000},
+      {id:"tronc_annales_s4_2026", label:"Amérique du Nord 2026", year:2026, n:12},
+      {id:"tronc_ce_2026", label:"Centres Étrangers 2026", year:2026, n:10, newUntil:1750550400000},
     ],
   },
   {
@@ -22690,7 +22733,8 @@ const BAC_GROUPS = [
     subs:[
       {id:"spe_annales_s1_2026", label:"Annales 2026 — Sujet 1", year:2026, n:12},
       {id:"spe_annales_s2_2026", label:"Annales 2026 — Sujet 2", year:2026, n:12},
-      {id:"spe_annales_s3_2026", label:"Amérique du Nord 2026", year:2026, n:9, newUntil:1781827200000},
+      {id:"spe_annales_s3_2026", label:"Amérique du Nord 2026", year:2026, n:9},
+      {id:"spe_ce_2026", label:"Centres Étrangers 2026", year:2026, n:6, newUntil:1750550400000},
     ],
   },
 ];
@@ -24609,24 +24653,6 @@ const COURS_CATALOG = [
     niveaux:["2nde","1ère TC","1ère Techno","1ère Spé"],
     chapitres:4, color:"#DC2626",
     desc:"Distribution · Identités remarquables · Factoriser · Fractions littérales",
-  },
-  { id:"droites", emoji:"📐",
-    title:"Équations de droites",
-    niveaux:["2nde","1ère Spé"],
-    chapitres:9, color:"#1D4ED8",
-    desc:"y=mx+p · Coeff. directeur · Position relative · Systèmes de 2 équations",
-  },
-  { id:"proba", emoji:"🎲",
-    title:"Probabilités",
-    niveaux:["2nde","1ère Spé"],
-    chapitres:8, color:"#F59E0B",
-    desc:"Univers · Événements · Loi de probabilité · Équiprobabilité · Arbre pondéré",
-  },
-  { id:"fonctions_ref", emoji:"📉",
-    title:"Fonctions de référence",
-    niveaux:["2nde","1ère Spé"],
-    chapitres:12, color:"#7C3AED",
-    desc:"x² · √x · 1/x · x³ : courbes, variations, ordre, équations",
   },
   { id:"stats", emoji:"📊",
     title:"Statistiques",
@@ -26578,14 +26604,6 @@ function CoursMathEquations({onBack, onStartPractice}) {
         ex:{qTex:r`(-2x-1)(3x-2)>0`,
             a:r`\begin{gathered}\text{Racines : }x=-\tfrac{1}{2}\text{ et }x=\tfrac{2}{3}\\[4pt]S=\left]-\tfrac{1}{2}\,;\,\tfrac{2}{3}\right[\end{gathered}`}},
     ]},
-
-    { emoji:"🏋️", label:"S'entraîner", color:"#D97706", light:"#FFFBEB", isPractice:true,
-      practices:[
-        {sub:"eq1",         label:"Équation 1er degré",      emoji:"📝", cat:"litteral"},
-        {sub:"produit_nul", label:"Équation produit nul",    emoji:"✖️",  cat:"litteral"},
-        {sub:"eq_x2",       label:"x²=a",                    emoji:"²",  cat:"litteral"},
-        {sub:"inequation1", label:"Inéquation 1er degré",    emoji:"📊", cat:"litteral"},
-      ]},
   ];
 
   const sec=SECS[secIdx]; const col=sec.color;
@@ -26615,30 +26633,8 @@ function CoursMathEquations({onBack, onStartPractice}) {
           ))}
         </div>
       </div>
-      <div style={{flex:1,overflowY:"auto",padding:"14px 14px 24px"}}>
-        {sec.isPractice ? (
-          <div>
-            <div style={{background:"#F8FAFC",borderRadius:14,padding:"14px 15px",marginBottom:14,
-              fontSize:12.5,color:"#475569",lineHeight:1.6,border:"1px solid #E2E8F0"}}>
-              Lance un thème pour t'entraîner directement sur les questions de l'app !
-            </div>
-            {sec.practices.map(p=>(
-              <button key={p.sub} onClick={()=>onStartPractice&&onStartPractice(p.cat,p.sub)}
-                style={{width:"100%",background:"#fff",border:"2px solid #E2E8F0",
-                  borderRadius:16,padding:"14px 16px",marginBottom:10,
-                  cursor:onStartPractice?"pointer":"default",
-                  display:"flex",alignItems:"center",gap:14,textAlign:"left",
-                  boxShadow:"0 2px 10px rgba(0,0,0,.06)"}}>
-                <span style={{fontSize:26,flexShrink:0}}>{p.emoji}</span>
-                <div style={{flex:1}}>
-                  <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:"#1E293B"}}>{p.label}</div>
-                  <div style={{fontSize:11,color:"#94A3B8",marginTop:2}}>Questions · S'entraîner</div>
-                </div>
-                {onStartPractice&&<span style={{color:col,fontWeight:800,fontSize:13}}>Lancer →</span>}
-              </button>
-            ))}
-          </div>
-        ) : sec.rules.map((rl,i)=>{
+      <div style={{flex:1,overflowY:"auto",padding:"14px 14px 80px"}}>
+        {sec.rules.map((rl,i)=>{
           const k=`${secIdx}_${i}`; const expanded=isOpen(k,i===0);
           return (
             <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
@@ -26686,6 +26682,9 @@ function CoursMathEquations({onBack, onStartPractice}) {
           );
         })}
       </div>
+      {onStartPractice&&<div style={{padding:"12px 14px 16px",borderTop:"1px solid #F1F5F9",background:"white",flexShrink:0}}>
+        <button onClick={onStartPractice} style={{width:"100%",padding:"13px",background:"#D97706",border:"none",borderRadius:14,color:"white",fontSize:15,fontWeight:800,fontFamily:"'Nunito',sans-serif",cursor:"pointer",letterSpacing:".3px"}}>💪 S'entraîner</button>
+      </div>}
     </div>
   );
 }
@@ -26766,11 +26765,6 @@ function CoursMathStats({onBack, onStartPractice}) {
         ],
         tipTex:r`\text{La moyenne peut aussi être représentée (croix ×), mais ce n'est pas obligatoire}`},
     ]},
-    { emoji:"🏋️", label:"S'entraîner", color:"#0369A1", light:"#F0F9FF", isPractice:true,
-      practices:[
-        {sub:"stat_centrale",   label:"Moyenne & médiane",     emoji:"📈", cat:"statistiques"},
-        {sub:"stat_dispersion", label:"Quartiles & dispersion", emoji:"📦", cat:"statistiques"},
-      ]},
     { emoji:"📐", label:"Variance", color:"#DC2626", light:"#FEF2F2", rules:[
       { id:"st8",num:"8",title:"Variance V",
         fml:r`V=\dfrac{\sum n_i(x_i-\bar{x})^2}{N}=\dfrac{\sum n_ix_i^2}{N}-\bar{x}^2`,
@@ -26818,30 +26812,8 @@ function CoursMathStats({onBack, onStartPractice}) {
           ))}
         </div>
       </div>
-      <div style={{flex:1,overflowY:"auto",padding:"14px 14px 24px"}}>
-        {sec.isPractice ? (
-          <div>
-            <div style={{background:"#F8FAFC",borderRadius:14,padding:"14px 15px",marginBottom:14,
-              fontSize:12.5,color:"#475569",lineHeight:1.6,border:"1px solid #E2E8F0"}}>
-              Lance un thème pour t'entraîner directement sur les questions de l'app !
-            </div>
-            {sec.practices.map(p=>(
-              <button key={p.sub} onClick={()=>onStartPractice&&onStartPractice(p.cat,p.sub)}
-                style={{width:"100%",background:"#fff",border:"2px solid #E2E8F0",
-                  borderRadius:16,padding:"14px 16px",marginBottom:10,
-                  cursor:onStartPractice?"pointer":"default",
-                  display:"flex",alignItems:"center",gap:14,textAlign:"left",
-                  boxShadow:"0 2px 10px rgba(0,0,0,.06)"}}>
-                <span style={{fontSize:26,flexShrink:0}}>{p.emoji}</span>
-                <div style={{flex:1}}>
-                  <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:"#1E293B"}}>{p.label}</div>
-                  <div style={{fontSize:11,color:"#94A3B8",marginTop:2}}>Questions · S'entraîner</div>
-                </div>
-                {onStartPractice&&<span style={{color:col,fontWeight:800,fontSize:13}}>Lancer →</span>}
-              </button>
-            ))}
-          </div>
-        ) : sec.rules.map((rl,i)=>{
+      <div style={{flex:1,overflowY:"auto",padding:"14px 14px 80px"}}>
+        {sec.rules.map((rl,i)=>{
           const k=`${secIdx}_${i}`; const expanded=isOpen(k,i===0);
           return (
             <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
@@ -26892,599 +26864,11 @@ function CoursMathStats({onBack, onStartPractice}) {
 }
 
 
-// ── CoursMathFonctionsRef — Fonctions de référence ───────────────────────────
-function CoursMathFonctionsRef({onBack, onStartPractice}) {
-  const [secIdx, setSecIdx] = React.useState(0);
-  const [openMap, setOpenMap] = React.useState({});
-  const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
-  const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
-  const tabsRef = React.useRef();
-  React.useEffect(()=>{
-    if(!tabsRef.current) return;
-    const btn=tabsRef.current.children[secIdx];
-    if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
-  },[secIdx]);
-
-  const COURBE_X2=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 155" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="260" height="155" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.2"/><line x1="12" y1="140" x2="248" y2="140" stroke="#94A3B8" stroke-width="1.3"/><polygon points="243,137 252,140 243,143" fill="#94A3B8"/><line x1="130" y1="148" x2="130" y2="8" stroke="#94A3B8" stroke-width="1.3"/><polygon points="127,13 130,4 133,13" fill="#94A3B8"/><polyline points="30.0,46.2 32.0,50.0 34.0,53.6 36.0,57.2 38.0,60.7 40.0,64.1 42.0,67.4 44.0,70.7 46.0,73.8 48.0,77.0 50.0,80.0 52.0,83.0 54.0,85.8 56.0,88.7 58.0,91.4 60.0,94.1 62.0,96.7 64.0,99.2 66.0,101.6 68.0,104.0 70.0,106.2 72.0,108.5 74.0,110.6 76.0,112.7 78.0,114.7 80.0,116.6 82.0,118.4 84.0,120.2 86.0,121.8 88.0,123.5 90.0,125.0 92.0,126.5 94.0,127.8 96.0,129.2 98.0,130.4 100.0,131.6 102.0,132.7 104.0,133.7 106.0,134.6 108.0,135.5 110.0,136.2 112.0,137.0 114.0,137.6 116.0,138.2 118.0,138.7 120.0,139.1 122.0,139.4 124.0,139.7 126.0,139.8 128.0,140.0 130.0,140.0 132.0,140.0 134.0,139.8 136.0,139.7 138.0,139.4 140.0,139.1 142.0,138.7 144.0,138.2 146.0,137.6 148.0,137.0 150.0,136.2 152.0,135.5 154.0,134.6 156.0,133.7 158.0,132.7 160.0,131.6 162.0,130.4 164.0,129.2 166.0,127.8 168.0,126.5 170.0,125.0 172.0,123.5 174.0,121.8 176.0,120.2 178.0,118.4 180.0,116.6 182.0,114.7 184.0,112.7 186.0,110.6 188.0,108.5 190.0,106.2 192.0,104.0 194.0,101.6 196.0,99.2 198.0,96.7 200.0,94.1 202.0,91.4 204.0,88.7 206.0,85.8 208.0,83.0 210.0,80.0 212.0,77.0 214.0,73.8 216.0,70.7 218.0,67.4 220.0,64.1 222.0,60.7 224.0,57.2 226.0,53.6 228.0,50.0 230.0,46.2" fill="none" stroke="#DC2626" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/><text x="253" y="143" text-anchor="middle" font-size="10" font-weight="italic" fill="#475569" font-family="sans-serif">x</text><text x="125" y="6" text-anchor="middle" font-size="10" font-weight="italic" fill="#475569" font-family="sans-serif">f</text><text x="118" y="150" text-anchor="middle" font-size="9" font-weight="normal" fill="#475569" font-family="sans-serif">O</text><line x1="90" y1="140" x2="90" y2="144" stroke="#64748B" stroke-width="1"/><text x="90" y="153" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">-1</text><line x1="170" y1="140" x2="170" y2="144" stroke="#64748B" stroke-width="1"/><text x="170" y="153" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">1</text><line x1="50" y1="140" x2="50" y2="144" stroke="#64748B" stroke-width="1"/><text x="50" y="153" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">-2</text><line x1="210" y1="140" x2="210" y2="144" stroke="#64748B" stroke-width="1"/><text x="210" y="153" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">2</text><line x1="130" y1="125" x2="134" y2="125" stroke="#64748B" stroke-width="1"/><text x="125" y="128.5" text-anchor="middle" font-size="8" font-weight="end" fill="#64748B" font-family="sans-serif">1</text><line x1="130" y1="80" x2="134" y2="80" stroke="#64748B" stroke-width="1"/><text x="125" y="83.5" text-anchor="middle" font-size="8" font-weight="end" fill="#64748B" font-family="sans-serif">4</text><text x="196" y="50" text-anchor="start" font-size="9" font-weight="bold" fill="#DC2626" font-family="sans-serif">y=x&#178;</text></svg>`;
-  const TABLE_X2=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 265 88" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="265" height="88" rx="8" fill="white" stroke="#CBD5E1" stroke-width="1.5"/><rect x="0" y="0" width="265" height="32" rx="8" fill="#F1F5F9"/><rect x="0" y="20" width="265" height="12" fill="#F1F5F9"/><line x1="0" y1="32" x2="265" y2="32" stroke="#CBD5E1" stroke-width="1.5"/><line x1="64" y1="0" x2="64" y2="88" stroke="#CBD5E1" stroke-width="1"/><line x1="134" y1="0" x2="134" y2="88" stroke="#CBD5E1" stroke-width="1"/><line x1="142" y1="0" x2="142" y2="88" stroke="#CBD5E1" stroke-width="1"/><text x="32" y="20" text-anchor="middle" font-size="10.5" font-weight="normal" font-style="italic" fill="#1E293B" font-family="sans-serif">x</text><text x="98" y="20" text-anchor="middle" font-size="10.5" font-weight="normal" font-style="normal" fill="#1E293B" font-family="sans-serif">-&#x221E;</text><text x="138" y="20" text-anchor="middle" font-size="10.5" font-weight="bold" font-style="normal" fill="#1E293B" font-family="sans-serif">0</text><text x="203" y="20" text-anchor="middle" font-size="10.5" font-weight="normal" font-style="normal" fill="#1E293B" font-family="sans-serif">+&#x221E;</text><text x="32" y="62" text-anchor="middle" font-size="10.5" font-weight="normal" fill="#1E293B" font-family="sans-serif">x&#178;</text><text x="80" y="44" text-anchor="middle" font-size="9" font-weight="normal" fill="#475569" font-family="sans-serif">+&#x221E;</text><line x1="90.0" y1="48.0" x2="126.0" y2="77.0" stroke="#DC2626" stroke-width="2.2"/><polygon points="117.6,74.7 126.0,77.0 122.0,69.3" fill="#DC2626"/><text x="138" y="84" text-anchor="middle" font-size="13" font-weight="bold" fill="#DC2626" font-family="sans-serif">0</text><text x="138" y="78" text-anchor="middle" font-size="7" font-weight="normal" fill="#DC2626" font-family="sans-serif">min</text><line x1="150.0" y1="77.0" x2="188.0" y2="48.0" stroke="#DC2626" stroke-width="2.2"/><polygon points="183.8,55.6 188.0,48.0 179.5,50.1" fill="#DC2626"/><text x="200" y="44" text-anchor="middle" font-size="9" font-weight="normal" fill="#475569" font-family="sans-serif">+&#x221E;</text></svg>`;
-  const COURBE_SQ=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 140" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="260" height="140" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.2"/><line x1="12" y1="120" x2="255" y2="120" stroke="#94A3B8" stroke-width="1.3"/><polygon points="250,117 259,120 250,123" fill="#94A3B8"/><line x1="20" y1="128" x2="20" y2="8" stroke="#94A3B8" stroke-width="1.3"/><polygon points="17,13 20,4 23,13" fill="#94A3B8"/><polyline points="20.0,120.0 21.2,112.2 22.5,108.9 23.8,106.4 25.0,104.3 26.2,102.5 27.5,100.8 28.8,99.3 30.0,97.9 31.2,96.5 32.5,95.3 33.8,94.0 35.0,92.9 36.2,91.8 37.5,90.7 38.8,89.7 40.0,88.7 41.2,87.7 42.5,86.8 43.8,85.9 45.0,85.0 46.2,84.1 47.5,83.3 48.8,82.5 50.0,81.7 51.2,80.9 52.5,80.1 53.8,79.3 55.0,78.6 56.2,77.9 57.5,77.1 58.8,76.4 60.0,75.7 61.2,75.0 62.5,74.4 63.8,73.7 65.0,73.0 66.2,72.4 67.5,71.8 68.8,71.1 70.0,70.5 71.2,69.9 72.5,69.3 73.8,68.7 75.0,68.1 76.2,67.5 77.5,66.9 78.8,66.3 80.0,65.8 81.2,65.2 82.5,64.7 83.8,64.1 85.0,63.6 86.2,63.0 87.5,62.5 88.8,62.0 90.0,61.4 91.2,60.9 92.5,60.4 93.8,59.9 95.0,59.4 96.2,58.9 97.5,58.4 98.8,57.9 100.0,57.4 101.2,56.9 102.5,56.4 103.8,55.9 105.0,55.5 106.2,55.0 107.5,54.5 108.8,54.1 110.0,53.6 111.2,53.1 112.5,52.7 113.8,52.2 115.0,51.8 116.2,51.3 117.5,50.9 118.8,50.4 120.0,50.0 121.2,49.6 122.5,49.1 123.8,48.7 125.0,48.3 126.2,47.8 127.5,47.4 128.8,47.0 130.0,46.6 131.2,46.2 132.5,45.8 133.8,45.3 135.0,44.9 136.2,44.5 137.5,44.1 138.8,43.7 140.0,43.3 141.2,42.9 142.5,42.5 143.8,42.1 145.0,41.7 146.2,41.3 147.5,41.0 148.8,40.6 150.0,40.2 151.2,39.8 152.5,39.4 153.8,39.0 155.0,38.7 156.2,38.3 157.5,37.9 158.8,37.5 160.0,37.2 161.2,36.8 162.5,36.4 163.8,36.1 165.0,35.7 166.2,35.3 167.5,35.0 168.8,34.6 170.0,34.3 171.2,33.9 172.5,33.6 173.8,33.2 175.0,32.9 176.2,32.5 177.5,32.2 178.8,31.8 180.0,31.5 181.2,31.1 182.5,30.8 183.8,30.4 185.0,30.1 186.2,29.7 187.5,29.4 188.8,29.1 190.0,28.7 191.2,28.4 192.5,28.1 193.8,27.7 195.0,27.4 196.2,27.1 197.5,26.7 198.8,26.4 200.0,26.1 201.2,25.8 202.5,25.4 203.8,25.1 205.0,24.8 206.2,24.5 207.5,24.1 208.8,23.8 210.0,23.5 211.2,23.2 212.5,22.9 213.8,22.6 215.0,22.3 216.2,21.9 217.5,21.6 218.8,21.3 220.0,21.0 221.3,20.7 222.5,20.4 223.8,20.1 225.0,19.8 226.2,19.5 227.5,19.2 228.8,18.9 230.0,18.6 231.2,18.3 232.5,18.0 233.8,17.7 235.0,17.4 236.2,17.1 237.5,16.8 238.8,16.5 240.0,16.2 241.2,15.9 242.5,15.6 243.7,15.3 245.0,15.0" fill="none" stroke="#059669" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/><text x="258" y="123" text-anchor="middle" font-size="10" font-weight="italic" fill="#475569" font-family="sans-serif">x</text><text x="15" y="6" text-anchor="middle" font-size="10" font-weight="italic" fill="#475569" font-family="sans-serif">f</text><text x="12" y="127" text-anchor="middle" font-size="9" font-weight="normal" fill="#475569" font-family="sans-serif">O</text><line x1="45" y1="120" x2="45" y2="124" stroke="#64748B" stroke-width="1"/><text x="45" y="133" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">1</text><line x1="120" y1="120" x2="120" y2="124" stroke="#64748B" stroke-width="1"/><text x="120" y="133" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">4</text><line x1="245" y1="120" x2="245" y2="124" stroke="#64748B" stroke-width="1"/><text x="245" y="133" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">9</text><line x1="20" y1="85" x2="24" y2="85" stroke="#64748B" stroke-width="1"/><text x="15" y="88.5" text-anchor="middle" font-size="8" font-weight="end" fill="#64748B" font-family="sans-serif">1</text><line x1="20" y1="50" x2="24" y2="50" stroke="#64748B" stroke-width="1"/><text x="15" y="53.5" text-anchor="middle" font-size="8" font-weight="end" fill="#64748B" font-family="sans-serif">2</text><line x1="20" y1="15" x2="24" y2="15" stroke="#64748B" stroke-width="1"/><text x="15" y="18.5" text-anchor="middle" font-size="8" font-weight="end" fill="#64748B" font-family="sans-serif">3</text><text x="148" y="42" text-anchor="start" font-size="9" font-weight="bold" fill="#059669" font-family="sans-serif">y=&#x221A;x</text></svg>`;
-  const TABLE_SQ=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 82" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="230" height="82" rx="8" fill="white" stroke="#CBD5E1" stroke-width="1.5"/><rect x="0" y="0" width="230" height="32" rx="8" fill="#F1F5F9"/><rect x="0" y="20" width="230" height="12" fill="#F1F5F9"/><line x1="0" y1="32" x2="230" y2="32" stroke="#CBD5E1" stroke-width="1.5"/><line x1="64" y1="0" x2="64" y2="82" stroke="#CBD5E1" stroke-width="1"/><line x1="92" y1="0" x2="92" y2="82" stroke="#CBD5E1" stroke-width="1"/><text x="32" y="20" text-anchor="middle" font-size="10.5" font-weight="normal" font-style="italic" fill="#1E293B" font-family="sans-serif">x</text><text x="78" y="20" text-anchor="middle" font-size="10.5" font-weight="bold" font-style="normal" fill="#1E293B" font-family="sans-serif">0</text><text x="160" y="20" text-anchor="middle" font-size="10.5" font-weight="normal" font-style="normal" fill="#1E293B" font-family="sans-serif">+&#x221E;</text><text x="32" y="58" text-anchor="middle" font-size="10.5" font-weight="normal" fill="#1E293B" font-family="sans-serif">&#x221A;x</text><text x="78" y="76" text-anchor="middle" font-size="13" font-weight="bold" fill="#059669" font-family="sans-serif">0</text><text x="78" y="69" text-anchor="middle" font-size="7" font-weight="normal" fill="#059669" font-family="sans-serif">min</text><line x1="90.0" y1="71.0" x2="168.0" y2="44.0" stroke="#059669" stroke-width="2.2"/><polygon points="161.6,49.9 168.0,44.0 159.3,43.3" fill="#059669"/><text x="185" y="42" text-anchor="middle" font-size="9" font-weight="normal" fill="#475569" font-family="sans-serif">+&#x221E;</text></svg>`;
-  const COURBE_INV=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 175" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="260" height="175" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.2"/><line x1="12" y1="87" x2="248" y2="87" stroke="#94A3B8" stroke-width="1.3"/><polygon points="243,84 252,87 243,90" fill="#94A3B8"/><line x1="130" y1="170" x2="130" y2="8" stroke="#94A3B8" stroke-width="1.3"/><polygon points="127,13 130,4 133,13" fill="#94A3B8"/><polyline points="140.5,15.6 142.0,24.5 143.5,31.4 145.0,37.0 146.5,41.5 148.0,45.3 149.5,48.5 151.0,51.3 152.5,53.7 154.0,55.8 155.5,57.6 157.0,59.2 158.5,60.7 160.0,62.0 161.5,63.2 163.0,64.3 164.5,65.3 166.0,66.2 167.5,67.0 169.0,67.8 170.5,68.5 172.0,69.1 173.5,69.8 175.0,70.3 176.5,70.9 178.0,71.4 179.5,71.8 181.0,72.3 182.5,72.7 184.0,73.1 185.5,73.5 187.0,73.8 188.5,74.2 190.0,74.5 191.5,74.8 193.0,75.1 194.5,75.4 196.0,75.6 197.5,75.9 199.0,76.1 200.5,76.4 202.0,76.6 203.5,76.8 205.0,77.0 206.5,77.2 208.0,77.4 209.5,77.6 211.0,77.7 212.5,77.9 214.0,78.1 215.5,78.2 217.0,78.4 218.5,78.5 220.0,78.7 221.5,78.8 223.0,78.9 224.5,79.1 226.0,79.2 227.5,79.3 229.0,79.4 230.5,79.5 232.0,79.6 233.5,79.8 235.0,79.9" fill="none" stroke="#2563EB" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/><polyline points="25.0,94.1 26.5,94.2 28.0,94.4 29.5,94.5 31.0,94.6 32.5,94.7 34.0,94.8 35.5,94.9 37.0,95.1 38.5,95.2 40.0,95.3 41.5,95.5 43.0,95.6 44.5,95.8 46.0,95.9 47.5,96.1 49.0,96.3 50.5,96.4 52.0,96.6 53.5,96.8 55.0,97.0 56.5,97.2 58.0,97.4 59.5,97.6 61.0,97.9 62.5,98.1 64.0,98.4 65.5,98.6 67.0,98.9 68.5,99.2 70.0,99.5 71.5,99.8 73.0,100.2 74.5,100.5 76.0,100.9 77.5,101.3 79.0,101.7 80.5,102.2 82.0,102.6 83.5,103.1 85.0,103.7 86.5,104.2 88.0,104.9 89.5,105.5 91.0,106.2 92.5,107.0 94.0,107.8 95.5,108.7 97.0,109.7 98.5,110.8 100.0,112.0 101.5,113.3 103.0,114.8 104.5,116.4 106.0,118.2 107.5,120.3 109.0,122.7 110.5,125.5 112.0,128.7 113.5,132.5 115.0,137.0 116.5,142.6 118.0,149.5 119.5,158.4" fill="none" stroke="#2563EB" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/><text x="253" y="90" text-anchor="middle" font-size="10" font-weight="italic" fill="#475569" font-family="sans-serif">x</text><text x="125" y="6" text-anchor="middle" font-size="10" font-weight="italic" fill="#475569" font-family="sans-serif">f</text><text x="118" y="94" text-anchor="middle" font-size="9" font-weight="normal" fill="#475569" font-family="sans-serif">O</text><line x1="160" y1="87" x2="160" y2="91" stroke="#64748B" stroke-width="1"/><text x="160" y="100" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">1</text><line x1="190" y1="87" x2="190" y2="91" stroke="#64748B" stroke-width="1"/><text x="190" y="100" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">2</text><line x1="100" y1="87" x2="100" y2="91" stroke="#64748B" stroke-width="1"/><text x="100" y="100" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">-1</text><line x1="70" y1="87" x2="70" y2="91" stroke="#64748B" stroke-width="1"/><text x="70" y="100" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">-2</text><line x1="130" y1="62" x2="134" y2="62" stroke="#64748B" stroke-width="1"/><text x="125" y="65.5" text-anchor="middle" font-size="8" font-weight="end" fill="#64748B" font-family="sans-serif">1</text><line x1="130" y1="37" x2="134" y2="37" stroke="#64748B" stroke-width="1"/><text x="125" y="40.5" text-anchor="middle" font-size="8" font-weight="end" fill="#64748B" font-family="sans-serif">2</text><line x1="130" y1="112" x2="134" y2="112" stroke="#64748B" stroke-width="1"/><text x="125" y="115.5" text-anchor="middle" font-size="8" font-weight="end" fill="#64748B" font-family="sans-serif">-1</text><line x1="130" y1="137" x2="134" y2="137" stroke="#64748B" stroke-width="1"/><text x="125" y="140.5" text-anchor="middle" font-size="8" font-weight="end" fill="#64748B" font-family="sans-serif">-2</text><text x="205" y="34" text-anchor="start" font-size="9" font-weight="bold" fill="#2563EB" font-family="sans-serif">y=1/x</text></svg>`;
-  const TABLE_INV=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 285 88" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="285" height="88" rx="8" fill="white" stroke="#CBD5E1" stroke-width="1.5"/><rect x="0" y="0" width="285" height="32" rx="8" fill="#F1F5F9"/><rect x="0" y="20" width="285" height="12" fill="#F1F5F9"/><line x1="0" y1="32" x2="285" y2="32" stroke="#CBD5E1" stroke-width="1.5"/><line x1="56" y1="0" x2="56" y2="88" stroke="#CBD5E1" stroke-width="1"/><line x1="132" y1="0" x2="132" y2="88" stroke="#CBD5E1" stroke-width="1"/><line x1="140" y1="0" x2="140" y2="88" stroke="#CBD5E1" stroke-width="1"/><text x="28" y="20" text-anchor="middle" font-size="10.5" font-weight="normal" font-style="italic" fill="#1E293B" font-family="sans-serif">x</text><text x="94" y="20" text-anchor="middle" font-size="10.5" font-weight="normal" font-style="normal" fill="#1E293B" font-family="sans-serif">-&#x221E;</text><text x="136" y="20" text-anchor="middle" font-size="10.5" font-weight="bold" font-style="normal" fill="#1E293B" font-family="sans-serif">0</text><text x="212" y="20" text-anchor="middle" font-size="10.5" font-weight="normal" font-style="normal" fill="#1E293B" font-family="sans-serif">+&#x221E;</text><line x1="134" y1="32" x2="134" y2="88" stroke="#DC2626" stroke-width="1.2"/><line x1="138" y1="32" x2="138" y2="88" stroke="#DC2626" stroke-width="1.2"/><text x="28" y="62" text-anchor="middle" font-size="10.5" font-weight="normal" fill="#1E293B" font-family="sans-serif">1/x</text><text x="68" y="44" text-anchor="middle" font-size="9" font-weight="normal" fill="#475569" font-family="sans-serif">0&#x207B;</text><line x1="78.0" y1="49.0" x2="122.0" y2="76.0" stroke="#2563EB" stroke-width="2.2"/><polygon points="113.4,74.8 122.0,76.0 117.0,68.8" fill="#2563EB"/><text x="124" y="82" text-anchor="middle" font-size="8" font-weight="normal" fill="#475569" font-family="sans-serif">-&#x221E;</text><text x="155" y="44" text-anchor="middle" font-size="9" font-weight="normal" fill="#475569" font-family="sans-serif">+&#x221E;</text><line x1="170.0" y1="49.0" x2="245.0" y2="76.0" stroke="#2563EB" stroke-width="2.2"/><polygon points="236.3,76.6 245.0,76.0 238.7,70.0" fill="#2563EB"/><text x="252" y="82" text-anchor="middle" font-size="8" font-weight="normal" fill="#475569" font-family="sans-serif">0&#x207A;</text></svg>`;
-  const COURBE_CU=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 175" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="260" height="175" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.2"/><line x1="12" y1="88" x2="248" y2="88" stroke="#94A3B8" stroke-width="1.3"/><polygon points="243,85 252,88 243,91" fill="#94A3B8"/><line x1="130" y1="170" x2="130" y2="8" stroke="#94A3B8" stroke-width="1.3"/><polygon points="127,13 130,4 133,13" fill="#94A3B8"/><polyline points="50.0,172.0 50.8,169.5 51.6,167.1 52.4,164.7 53.2,162.3 54.0,160.0 54.8,157.8 55.6,155.6 56.4,153.4 57.2,151.3 58.0,149.2 58.8,147.2 59.6,145.2 60.4,143.3 61.2,141.4 62.0,139.6 62.8,137.8 63.6,136.0 64.4,134.3 65.2,132.6 66.0,131.0 66.8,129.4 67.6,127.9 68.4,126.3 69.2,124.9 70.0,123.4 70.8,122.0 71.6,120.7 72.4,119.4 73.2,118.1 74.0,116.8 74.8,115.6 75.6,114.4 76.4,113.3 77.2,112.1 78.0,111.1 78.8,110.0 79.6,109.0 80.4,108.0 81.2,107.1 82.0,106.1 82.8,105.3 83.6,104.4 84.4,103.6 85.2,102.8 86.0,102.0 86.8,101.2 87.6,100.5 88.4,99.8 89.2,99.1 90.0,98.5 90.8,97.9 91.6,97.3 92.4,96.7 93.2,96.2 94.0,95.7 94.8,95.2 95.6,94.7 96.4,94.2 97.2,93.8 98.0,93.4 98.8,93.0 99.6,92.6 100.4,92.3 101.2,91.9 102.0,91.6 102.8,91.3 103.6,91.0 104.4,90.8 105.2,90.5 106.0,90.3 106.8,90.0 107.6,89.8 108.4,89.7 109.2,89.5 110.0,89.3 110.8,89.2 111.6,89.0 112.4,88.9 113.2,88.8 114.0,88.7 114.8,88.6 115.6,88.5 116.4,88.4 117.2,88.3 118.0,88.3 118.8,88.2 119.6,88.2 120.4,88.1 121.2,88.1 122.0,88.1 122.8,88.1 123.6,88.0 124.4,88.0 125.2,88.0 126.0,88.0 126.8,88.0 127.6,88.0 128.4,88.0 129.2,88.0 130.0,88.0 130.8,88.0 131.6,88.0 132.4,88.0 133.2,88.0 134.0,88.0 134.8,88.0 135.6,88.0 136.4,88.0 137.2,87.9 138.0,87.9 138.8,87.9 139.6,87.9 140.4,87.8 141.2,87.8 142.0,87.7 142.8,87.7 143.6,87.6 144.4,87.5 145.2,87.4 146.0,87.3 146.8,87.2 147.6,87.1 148.4,87.0 149.2,86.8 150.0,86.7 150.8,86.5 151.6,86.3 152.4,86.2 153.2,86.0 154.0,85.7 154.8,85.5 155.6,85.2 156.4,85.0 157.2,84.7 158.0,84.4 158.8,84.1 159.6,83.7 160.4,83.4 161.2,83.0 162.0,82.6 162.8,82.2 163.6,81.8 164.4,81.3 165.2,80.8 166.0,80.3 166.8,79.8 167.6,79.3 168.4,78.7 169.2,78.1 170.0,77.5 170.8,76.9 171.6,76.2 172.4,75.5 173.2,74.8 174.0,74.0 174.8,73.2 175.6,72.4 176.4,71.6 177.2,70.7 178.0,69.9 178.8,68.9 179.6,68.0 180.4,67.0 181.2,66.0 182.0,64.9 182.8,63.9 183.6,62.7 184.4,61.6 185.2,60.4 186.0,59.2 186.8,57.9 187.6,56.6 188.4,55.3 189.2,54.0 190.0,52.6 190.8,51.1 191.6,49.7 192.4,48.1 193.2,46.6 194.0,45.0 194.8,43.4 195.6,41.7 196.4,40.0 197.2,38.2 198.0,36.4 198.8,34.6 199.6,32.7 200.4,30.8 201.2,28.8 202.0,26.8 202.8,24.7 203.6,22.6 204.4,20.4 205.2,18.2 206.0,16.0 206.8,13.7 207.6,11.3 208.4,8.9 209.2,6.5 210.0,4.0" fill="none" stroke="#7C3AED" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/><text x="253" y="91" text-anchor="middle" font-size="10" font-weight="italic" fill="#475569" font-family="sans-serif">x</text><text x="125" y="6" text-anchor="middle" font-size="10" font-weight="italic" fill="#475569" font-family="sans-serif">f</text><text x="118" y="95" text-anchor="middle" font-size="9" font-weight="normal" fill="#475569" font-family="sans-serif">O</text><line x1="170" y1="88" x2="170" y2="92" stroke="#64748B" stroke-width="1"/><text x="170" y="101" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">1</text><line x1="90" y1="88" x2="90" y2="92" stroke="#64748B" stroke-width="1"/><text x="90" y="101" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">-1</text><line x1="210" y1="88" x2="210" y2="92" stroke="#64748B" stroke-width="1"/><text x="210" y="101" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">2</text><line x1="50" y1="88" x2="50" y2="92" stroke="#64748B" stroke-width="1"/><text x="50" y="101" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">-2</text><line x1="130" y1="77.5" x2="134" y2="77.5" stroke="#64748B" stroke-width="1"/><text x="125" y="81.0" text-anchor="middle" font-size="8" font-weight="end" fill="#64748B" font-family="sans-serif">1</text><line x1="130" y1="98.5" x2="134" y2="98.5" stroke="#64748B" stroke-width="1"/><text x="125" y="102.0" text-anchor="middle" font-size="8" font-weight="end" fill="#64748B" font-family="sans-serif">-1</text><text x="205" y="20" text-anchor="start" font-size="9" font-weight="bold" fill="#7C3AED" font-family="sans-serif">y=x&#179;</text></svg>`;
-  const TABLE_CU=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 82" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="230" height="82" rx="8" fill="white" stroke="#CBD5E1" stroke-width="1.5"/><rect x="0" y="0" width="230" height="32" rx="8" fill="#F1F5F9"/><rect x="0" y="20" width="230" height="12" fill="#F1F5F9"/><line x1="0" y1="32" x2="230" y2="32" stroke="#CBD5E1" stroke-width="1.5"/><line x1="64" y1="0" x2="64" y2="82" stroke="#CBD5E1" stroke-width="1"/><text x="32" y="20" text-anchor="middle" font-size="10.5" font-weight="normal" font-style="italic" fill="#1E293B" font-family="sans-serif">x</text><text x="100" y="20" text-anchor="middle" font-size="10.5" font-weight="normal" font-style="normal" fill="#1E293B" font-family="sans-serif">-&#x221E;</text><text x="178" y="20" text-anchor="middle" font-size="10.5" font-weight="normal" font-style="normal" fill="#1E293B" font-family="sans-serif">+&#x221E;</text><text x="32" y="58" text-anchor="middle" font-size="10.5" font-weight="normal" fill="#1E293B" font-family="sans-serif">x&#179;</text><text x="75" y="76" text-anchor="middle" font-size="9" font-weight="normal" fill="#475569" font-family="sans-serif">-&#x221E;</text><line x1="90.0" y1="71.0" x2="170.0" y2="44.0" stroke="#7C3AED" stroke-width="2.2"/><polygon points="163.5,49.9 170.0,44.0 161.3,43.2" fill="#7C3AED"/><text x="188" y="42" text-anchor="middle" font-size="9" font-weight="normal" fill="#475569" font-family="sans-serif">+&#x221E;</text></svg>`;
-  const SECS=[
-    { emoji:"²",  label:"Fn. carrée", color:"#DC2626", light:"#FEF2F2", rules:[
-      { id:"r1a",num:"1",title:"Définition",
-        fml:r`f(x)=x^2\qquad\mathbb{D}_f=\mathbb{R}`,
-        svgDiag:COURBE_X2,
-        bltTex:[
-          r`\text{Courbe : parabole d'axe de symétrie }x=0`,
-          r`\text{Minimum en }x=0\text{ : }f(0)=0`,
-          r`f(-x)=f(x)\text{ : fonction paire (symétrie axe }Oy\text{)}`,
-        ]},
-      { id:"r1b",num:"2",title:"Tableau de variations",
-        svgDiag:TABLE_X2,
-        bltTex:[
-          r`\text{Décroissante sur }]-\infty\,;0]`,
-          r`\text{Croissante sur }[0\,;+\infty[`,
-        ],
-        tipTex:r`0\leq a<b\Rightarrow a^2<b^2\quad\text{et}\quad a<b\leq0\Rightarrow a^2>b^2`},
-      { id:"r1c",num:"3",title:"f(x) = a",
-        bltTex:[
-          r`a<0\text{ : }S=\varnothing`,
-          r`a=0\text{ : }S=\{0\}`,
-          r`a>0\text{ : }S=\{-\sqrt{a}\,;\,\sqrt{a}\}`,
-        ]},
-    ]},
-    { emoji:"√", label:"Racine √", color:"#059669", light:"#F0FDF4", rules:[
-      { id:"r2a",num:"1",title:"Définition",
-        fml:r`f(x)=\sqrt{x}\qquad\mathbb{D}_f=[0\,;+\infty[`,
-        svgDiag:COURBE_SQ,
-        bltTex:[
-          r`\text{Définie uniquement pour }x\geq0`,
-          r`\sqrt{x}\text{ est le réel positif dont le carré vaut }x`,
-          r`\sqrt{a^2}=|a|\quad(\text{pas toujours }a\text{ !})`,
-        ]},
-      { id:"r2b",num:"2",title:"Tableau de variations",
-        svgDiag:TABLE_SQ,
-        bltTex:[
-          r`\text{Strictement croissante sur }[0\,;+\infty[`,
-        ],
-        tipTex:r`0\leq a<b\Rightarrow\sqrt{a}<\sqrt{b}\text{ (conserve l'ordre)}`},
-      { id:"r2c",num:"3",title:"f(x) = a",
-        bltTex:[
-          r`a<0\text{ : }S=\varnothing\text{ (}\sqrt{x}\geq0\text{ toujours)}`,
-          r`a\geq0\text{ : }\sqrt{x}=a\Leftrightarrow x=a^2\quad\Rightarrow S=\{a^2\}`,
-        ]},
-    ]},
-    { emoji:"⅟", label:"Inverse", color:"#2563EB", light:"#EFF6FF", rules:[
-      { id:"r3a",num:"1",title:"Définition",
-        fml:r`f(x)=\dfrac{1}{x}\qquad\mathbb{D}_f=\mathbb{R}\setminus\{0\}`,
-        svgDiag:COURBE_INV,
-        bltTex:[
-          r`\text{Valeur interdite : }x=0\text{ (division par zéro)}`,
-          r`\text{Courbe : hyperbole, symétrique par rapport à }O`,
-          r`f(-x)=-f(x)\text{ : fonction impaire}`,
-        ]},
-      { id:"r3b",num:"2",title:"Tableau de variations",
-        svgDiag:TABLE_INV,
-        bltTex:[
-          r`\text{Décroissante sur }]-\infty\,;0[\text{ et sur }]0\,;+\infty[`,
-          r`\text{Pas de minimum ni maximum (asymptotes en }x=0\text{ et }y=0\text{)}`,
-        ],
-        tipTex:r`a<b\text{ de même signe}\Rightarrow\dfrac{1}{a}>\dfrac{1}{b}\text{ (inverse l'ordre)}`},
-      { id:"r3c",num:"3",title:"f(x) = a",
-        bltTex:[
-          r`a=0\text{ : }S=\varnothing\text{ (0 n'est jamais atteint)}`,
-          r`a\neq0\text{ : }\dfrac{1}{x}=a\Leftrightarrow x=\dfrac{1}{a}\quad\Rightarrow S=\left\{\dfrac{1}{a}\right\}`,
-        ]},
-    ]},
-    { emoji:"³",  label:"Fn. cube", color:"#7C3AED", light:"#F5F3FF", rules:[
-      { id:"r4a",num:"1",title:"Définition",
-        fml:r`f(x)=x^3\qquad\mathbb{D}_f=\mathbb{R}`,
-        svgDiag:COURBE_CU,
-        bltTex:[
-          r`\text{Courbe symétrique par rapport à l'origine }O`,
-          r`f(-x)=(-x)^3=-x^3=-f(x)\text{ : fonction impaire}`,
-        ]},
-      { id:"r4b",num:"2",title:"Tableau de variations",
-        svgDiag:TABLE_CU,
-        bltTex:[
-          r`\text{Strictement croissante sur }\mathbb{R}`,
-        ],
-        tipTex:r`a<b\Rightarrow a^3<b^3\text{ (conserve l'ordre sur }\mathbb{R}\text{)}`},
-      { id:"r4c",num:"3",title:"f(x) = a",
-        bltTex:[
-          r`\text{Pour tout }a\in\mathbb{R}\text{ : une unique solution }x=\sqrt[3]{a}`,
-          r`\text{Exemples : }x^3=8\Rightarrow x=2\text{, }x^3=-27\Rightarrow x=-3`,
-        ]},
-    ]},
-  ];
-
-  const sec=SECS[secIdx]; const col=sec.color;
-  return (
-    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"#F8FAFF"}}>
-      <div style={{background:"linear-gradient(135deg,#7C3AED,#5B21B6)",padding:"16px 18px 14px",flexShrink:0}}>
-        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:12}}>
-          <button onClick={onBack} style={{background:"rgba(255,255,255,.2)",border:"none",borderRadius:10,
-            cursor:"pointer",color:"#fff",fontSize:16,width:32,height:32,display:"flex",
-            alignItems:"center",justifyContent:"center"}}>✕</button>
-          <div style={{flex:1}}>
-            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:17,color:"#fff"}}>
-              📉 Fonctions de référence</div>
-            <div style={{fontSize:11,color:"rgba(255,255,255,.75)",marginTop:1}}>
-              Cours interactif · Ch. 9 · 11</div>
-          </div>
-        </div>
-        <div ref={tabsRef} style={{display:"flex",gap:6,overflowX:"auto",scrollbarWidth:"none",paddingBottom:2}}>
-          {SECS.map((s,i)=>(
-            <button key={i} onClick={()=>setSecIdx(i)}
-              style={{background:i===secIdx?"#fff":"rgba(255,255,255,.2)",
-                border:"none",borderRadius:99,padding:"6px 13px",cursor:"pointer",flexShrink:0,
-                fontFamily:"'Nunito',sans-serif",fontWeight:700,fontSize:11,
-                color:i===secIdx?s.color:"#fff",whiteSpace:"nowrap"}}>
-              {s.emoji} {s.label}
-            </button>
-          ))}
-        </div>
-      </div>
-      <div style={{flex:1,overflowY:"auto",padding:"14px 14px 24px"}}>
-        {sec.rules.map((rl,i)=>{
-          const k=`${secIdx}_${i}`; const expanded=isOpen(k,i===0);
-          return (
-            <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
-              overflow:"hidden",boxShadow:"0 2px 14px rgba(0,0,0,.07)",borderLeft:`4px solid ${col}`}}>
-              <div onClick={()=>tog(k)} style={{display:"flex",alignItems:"center",gap:10,
-                padding:"13px 15px",cursor:"pointer",userSelect:"none"}}>
-                <div style={{width:30,height:30,borderRadius:"50%",background:col,color:"#fff",
-                  display:"flex",alignItems:"center",justifyContent:"center",
-                  fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
-                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}</div>
-                <span style={{color:"#94A3B8",fontSize:11,
-                  display:"block",transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
-              </div>
-              {expanded&&(
-                <div style={{padding:"0 15px 15px"}}>
-                  {rl.fml&&<div style={{background:sec.light,borderRadius:13,padding:"14px 12px",
-                    margin:"8px 0",textAlign:"center",overflowX:"auto"}}><M tex={rl.fml}/></div>}
-                  {rl.svgDiag&&<div style={{margin:"8px 0",borderRadius:12,overflow:"hidden"}}
-                    dangerouslySetInnerHTML={{__html:rl.svgDiag}}/>}
-                  {(rl.bltTex||[]).map((b,j)=>(
-                    <div key={j} style={{display:"flex",gap:7,padding:"4px 0",alignItems:"flex-start"}}>
-                      <span style={{color:col,fontWeight:700,flexShrink:0,marginTop:2}}>•</span>
-                      <span style={{overflowX:"auto"}}><M tex={b}/></span>
-                    </div>
-                  ))}
-                  {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,
-                    padding:"10px 12px",fontSize:12,fontWeight:600,color:"#713F12",
-                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4,overflowX:"auto"}}>
-                    {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
-                  </div>}
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-
-// ── CoursMathFonctionsRef — Fonctions de référence ───────────────────────────
-
-
-// ── CoursMathProba — Probabilités ─────────────────────────────────────────────
-function CoursMathProba({onBack, onStartPractice}) {
-  const [secIdx, setSecIdx] = React.useState(0);
-  const [openMap, setOpenMap] = React.useState({});
-  const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
-  const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
-  const tabsRef = React.useRef();
-  React.useEffect(()=>{
-    if(!tabsRef.current) return;
-    const btn=tabsRef.current.children[secIdx];
-    if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
-  },[secIdx]);
-
-  const VENN=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 120" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="280" height="120" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.2"/><rect x="10" y="12" width="260" height="96" rx="8" fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="5,3"/><text x="17" y="26" font-size="13" font-style="italic" fill="#64748B" font-family="serif">&#937;</text><circle cx="105" cy="62" r="44" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2" fill-opacity="0.75"/><circle cx="163" cy="62" r="44" fill="#DBEAFE" stroke="#2563EB" stroke-width="2" fill-opacity="0.75"/><text x="80" y="66" text-anchor="middle" font-size="14" font-weight="bold" fill="#B45309" font-family="sans-serif">A</text><text x="135" y="55" text-anchor="middle" font-size="9" font-weight="bold" fill="#374151" font-family="sans-serif">A&#x2229;B</text><text x="186" y="66" text-anchor="middle" font-size="14" font-weight="bold" fill="#1D4ED8" font-family="sans-serif">B</text><text x="246" y="90" text-anchor="middle" font-size="9" fill="#94A3B8" font-family="sans-serif">ni A ni B</text></svg>`;
-  const ARBRE=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 175" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="310" height="175" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.2"/><circle cx="28" cy="88" r="6" fill="#F59E0B"/><line x1="34" y1="85" x2="100" y2="44" stroke="#1E293B" stroke-width="1.8"/><line x1="34" y1="91" x2="100" y2="132" stroke="#1E293B" stroke-width="1.8"/><text x="59" y="58" text-anchor="middle" font-size="9" font-weight="bold" fill="#F59E0B" font-family="sans-serif">p(A)</text><text x="59" y="124" text-anchor="middle" font-size="9" font-weight="bold" fill="#F59E0B" font-family="sans-serif">p(A&#x305;)</text><circle cx="104" cy="42" r="5" fill="#F59E0B"/><text x="112" y="46" font-size="11" font-weight="bold" fill="#B45309" font-family="sans-serif">A</text><circle cx="104" cy="134" r="5" fill="#F59E0B"/><text x="112" y="138" font-size="11" font-weight="bold" fill="#B45309" font-family="sans-serif">A&#x305;</text><line x1="108" y1="39" x2="195" y2="20" stroke="#475569" stroke-width="1.4"/><line x1="108" y1="45" x2="195" y2="64" stroke="#475569" stroke-width="1.4"/><text x="150" y="24" text-anchor="middle" font-size="9" fill="#2563EB" font-family="sans-serif">p<tspan dy="3" font-size="7">A</tspan><tspan dy="-3">(B)</tspan></text><text x="150" y="62" text-anchor="middle" font-size="9" fill="#2563EB" font-family="sans-serif">p<tspan dy="3" font-size="7">A</tspan><tspan dy="-3">(B&#x305;)</tspan></text><line x1="108" y1="131" x2="195" y2="112" stroke="#475569" stroke-width="1.4"/><line x1="108" y1="137" x2="195" y2="156" stroke="#475569" stroke-width="1.4"/><text x="150" y="116" text-anchor="middle" font-size="9" fill="#2563EB" font-family="sans-serif">p<tspan dy="3" font-size="7">A&#x305;</tspan><tspan dy="-3">(B)</tspan></text><text x="150" y="155" text-anchor="middle" font-size="9" fill="#2563EB" font-family="sans-serif">p<tspan dy="3" font-size="7">A&#x305;</tspan><tspan dy="-3">(B&#x305;)</tspan></text><circle cx="199" cy="18" r="4" fill="#2563EB"/><text x="207" y="22" font-size="9" fill="#1E293B" font-family="sans-serif">A&#x2229;B</text><circle cx="199" cy="66" r="4" fill="#94A3B8"/><text x="207" y="70" font-size="9" fill="#475569" font-family="sans-serif">A&#x2229;B&#x305;</text><circle cx="199" cy="110" r="4" fill="#2563EB"/><text x="207" y="114" font-size="9" fill="#1E293B" font-family="sans-serif">A&#x305;&#x2229;B</text><circle cx="199" cy="158" r="4" fill="#94A3B8"/><text x="207" y="162" font-size="9" fill="#475569" font-family="sans-serif">A&#x305;&#x2229;B&#x305;</text><text x="155" y="172" text-anchor="middle" font-size="7.5" fill="#94A3B8" font-family="sans-serif">P(A&#x2229;B) = p(A) &#xD7; p<tspan dy="2" font-size="6">A</tspan><tspan dy="-2">(B)</tspan></text></svg>`;
-  const SECS=[
-    { emoji:"🎲", label:"Vocabulaire", color:"#F59E0B", light:"#FFFBEB", rules:[
-      { id:"pb1",num:"1",title:"Expérience aléatoire et univers",
-        fml:r`\Omega=\{x_1,x_2,\ldots,x_n\}`,
-        bltTex:[
-          r`\textbf{Expérience aléatoire}\text{ : résultat imprévisible}`,
-          r`\textbf{Éventualité}\text{ (issue) : chaque résultat possible}`,
-          r`\boldsymbol{\Omega}\text{ : l'univers = l'ensemble de toutes les éventualités}`,
-          r`\textbf{Événement}\text{ : toute partie de }\Omega\text{ (ensemble d'éventualités)}`,
-        ],
-        tipTex:r`\varnothing\text{ = événement impossible}\quad\Omega\text{ = événement certain}`},
-      { id:"pb2",num:"2",title:"Intersection, réunion, complémentaire",
-        svgDiag:VENN,
-        bltTex:[
-          r`A\cap B\text{ : issues réalisant }A\textbf{ ET }B\text{ (intersection)}`,
-          r`A\cup B\text{ : issues réalisant }A\textbf{ OU }B\text{ (réunion)}`,
-          r`\bar{A}\text{ : issues }\textbf{ne réalisant pas }A\text{ (complémentaire)}`,
-          r`A\text{ et }B\textbf{ incompatibles}\Leftrightarrow A\cap B=\varnothing`,
-        ]},
-    ]},
-    { emoji:"📊", label:"Loi de proba", color:"#059669", light:"#F0FDF4", rules:[
-      { id:"pb3",num:"3",title:"Loi de probabilité",
-        fml:r`0\leq p_i\leq1\quad\text{et}\quad p_1+p_2+\cdots+p_n=1`,
-        bltTex:[
-          r`\text{Associer à chaque éventualité }x_i\text{ un nombre }p_i=p(x_i)`,
-          r`\text{Représentation : tableau Issue / Probabilité}`,
-          r`p(A)=\text{somme des probabilités des issues qui réalisent }A`,
-        ]},
-      { id:"pb4",num:"4",title:"Équiprobabilité",
-        fml:r`p(x_i)=\dfrac{1}{n}\quad\text{et}\quad p(A)=\dfrac{\text{nb d'issues favorables}}{\text{nb d'issues total}}`,
-        bltTex:[
-          r`\text{Quand toutes les issues ont la même probabilité : équiprobabilité}`,
-          r`\text{Mots-clés : « au hasard », « non pipé », « indiscernables au toucher »}`,
-        ],
-        tipTex:r`p(A)=\dfrac{\text{card}(A)}{\text{card}(\Omega)}\text{ uniquement en situation d'équiprobabilité}`},
-      { id:"pb5",num:"5",title:"Théorèmes",
-        bltTex:[
-          r`0\leq p(A)\leq1\quad p(\varnothing)=0\quad p(\Omega)=1`,
-          r`p(A\cup B)=p(A)+p(B)-p(A\cap B)`,
-          r`\text{Si }A\text{ et }B\text{ incompatibles : }p(A\cup B)=p(A)+p(B)`,
-          r`p(\bar{A})=1-p(A)`,
-        ],
-        tipTex:r`p(\bar{A})=1-p(A)\text{ est souvent plus rapide (complément à 1)}`},
-    ]},
-    { emoji:"📋", label:"Tableau", color:"#0891B2", light:"#F0F9FF", rules:[
-      { id:"pb_tab",num:"1",title:"Tableau de contingence (double entrée)",
-        fml:r`\begin{array}{|c|c|c|c|}\hline & B & \bar{B} & \text{Total}\\\hline A & p(A\cap B) & p(A\cap\bar{B}) & p(A)\\\hline\bar{A} & p(\bar{A}\cap B) & p(\bar{A}\cap\bar{B}) & p(\bar{A})\\\hline\text{Total} & p(B) & p(\bar{B}) & 1\\\hline\end{array}`,
-        bltTex:[
-          r`\text{Cases intérieures : probabilités des }\textbf{intersections }p(A\cap B)\text{ etc.}`,
-          r`\text{Colonne et ligne Total : probabilités }\textbf{simples }p(A),\,p(B)`,
-          r`\text{Somme d'une ligne = marge de cette ligne}`,
-          r`\text{Case Totaux/Totaux = }1`,
-        ],
-        tipTex:r`p(A\cup B)=p(A)+p(B)-p(A\cap B)\text{ — les valeurs se lisent dans le tableau}`},
-    ]},
-    { emoji:"🌳", label:"Arbre pondéré", color:"#7C3AED", light:"#F5F3FF", rules:[
-      { id:"pb6",num:"6",title:"Arbre pondéré",
-        svgDiag:ARBRE,
-        bltTex:[
-          r`\text{Représente une expérience à }\textbf{deux épreuves}`,
-          r`\text{Les branches portent des probabilités (poids)}`,
-          r`\text{Chaque chemin de la racine à une feuille est un }\textbf{trajet complet}`,
-        ]},
-      { id:"pb7",num:"7",title:"Les règles des arbres",
-        bltTex:[
-          r`\textbf{Règle 1 :}\text{ la somme des poids des branches primaires vaut }1`,
-          r`\textbf{Règle 2 :}\text{ le poids d'une branche secondaire est une proba conditionnelle : branche de }A\text{ vers }B\text{ porte }p_A(B)`,
-          r`\textbf{Règle 3 :}\text{ pour chaque nœud, la somme des branches secondaires vaut }1`,
-          r`\textbf{Règle 4 :}\text{ probabilité d'un trajet = produit des poids des branches}`,
-          r`\textbf{Règle 5 :}\text{ prob. d'un événement = somme des prob. des trajets favorables}`,
-        ],
-        tipTex:r`P(A\cap B)=p(A)\times p_A(B)\quad\text{(produit des poids du trajet)}`},
-      { id:"pb8",num:"8",title:"Loi des grands nombres",
-        fml:r`f_{\text{issue}}=\dfrac{\text{effectif de l'issue}}{\text{effectif total}}`,
-        bltTex:[
-          r`\text{Quand on ne connaît pas la loi de probabilité : on utilise les }\textbf{fréquences}`,
-          r`\text{Sur un grand nombre d'expériences, la fréquence se rapproche de la probabilité}`,
-        ],
-        tip:"Loi des grands nombres : la simulation répétée converge vers la loi de probabilité."},
-    ]},
-    { emoji:"🏋️", label:"S'entraîner", color:"#F59E0B", light:"#FFFBEB", isPractice:true,
-      practices:[
-        {sub:"tableau",      label:"Tableau double entrée",   emoji:"📋", cat:"probabilites"},
-        {sub:"tableau_fill", label:"Tableau à compléter",      emoji:"📝", cat:"probabilites"},
-        {sub:"arbre",        label:"Arbre pondéré",            emoji:"🌳", cat:"probabilites"},
-        {sub:"contraire",    label:"Événement contraire",      emoji:"🔄", cat:"probabilites"},
-      ]},
-  ];
-
-  const sec=SECS[secIdx]; const col=sec.color;
-  return (
-    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"#F8FAFF"}}>
-      <div style={{background:"linear-gradient(135deg,#F59E0B,#D97706)",padding:"16px 18px 14px",flexShrink:0}}>
-        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:12}}>
-          <button onClick={onBack} style={{background:"rgba(255,255,255,.2)",border:"none",borderRadius:10,
-            cursor:"pointer",color:"#fff",fontSize:16,width:32,height:32,display:"flex",
-            alignItems:"center",justifyContent:"center"}}>✕</button>
-          <div style={{flex:1}}>
-            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:17,color:"#fff"}}>
-              🎲 Probabilités</div>
-            <div style={{fontSize:11,color:"rgba(255,255,255,.75)",marginTop:1}}>
-              Cours interactif · Ch. 13</div>
-          </div>
-        </div>
-        <div ref={tabsRef} style={{display:"flex",gap:6,overflowX:"auto",scrollbarWidth:"none",paddingBottom:2}}>
-          {SECS.map((s,i)=>(
-            <button key={i} onClick={()=>setSecIdx(i)}
-              style={{background:i===secIdx?"#fff":"rgba(255,255,255,.2)",
-                border:"none",borderRadius:99,padding:"6px 13px",cursor:"pointer",flexShrink:0,
-                fontFamily:"'Nunito',sans-serif",fontWeight:700,fontSize:11,
-                color:i===secIdx?s.color:"#fff",whiteSpace:"nowrap"}}>
-              {s.emoji} {s.label}
-            </button>
-          ))}
-        </div>
-      </div>
-      <div style={{flex:1,overflowY:"auto",padding:"14px 14px 24px"}}>
-        {sec.isPractice ? (
-          <div>
-            <div style={{background:"#F8FAFC",borderRadius:14,padding:"14px 15px",marginBottom:14,
-              fontSize:12.5,color:"#475569",lineHeight:1.6,border:"1px solid #E2E8F0"}}>
-              Lance un thème pour t'entraîner directement sur les questions de l'app !
-            </div>
-            {sec.practices.map(p=>(
-              <button key={p.sub} onClick={()=>onStartPractice&&onStartPractice(p.cat,p.sub)}
-                style={{width:"100%",background:"#fff",border:"2px solid #E2E8F0",
-                  borderRadius:16,padding:"14px 16px",marginBottom:10,
-                  cursor:onStartPractice?"pointer":"default",
-                  display:"flex",alignItems:"center",gap:14,textAlign:"left",
-                  boxShadow:"0 2px 10px rgba(0,0,0,.06)"}}>
-                <span style={{fontSize:26,flexShrink:0}}>{p.emoji}</span>
-                <div style={{flex:1}}>
-                  <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:"#1E293B"}}>{p.label}</div>
-                  <div style={{fontSize:11,color:"#94A3B8",marginTop:2}}>Questions · S'entraîner</div>
-                </div>
-                {onStartPractice&&<span style={{color:col,fontWeight:800,fontSize:13}}>Lancer →</span>}
-              </button>
-            ))}
-          </div>
-        ) : sec.rules.map((rl,i)=>{
-          const k=`${secIdx}_${i}`; const expanded=isOpen(k,i===0);
-          return (
-            <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
-              overflow:"hidden",boxShadow:"0 2px 14px rgba(0,0,0,.07)",borderLeft:`4px solid ${col}`}}>
-              <div onClick={()=>tog(k)} style={{display:"flex",alignItems:"center",gap:10,
-                padding:"13px 15px",cursor:"pointer",userSelect:"none"}}>
-                <div style={{width:30,height:30,borderRadius:"50%",background:col,color:"#fff",
-                  display:"flex",alignItems:"center",justifyContent:"center",
-                  fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
-                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}</div>
-                <span style={{color:"#94A3B8",fontSize:11,display:"block",
-                  transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
-              </div>
-              {expanded&&(
-                <div style={{padding:"0 15px 15px"}}>
-                  {rl.fml&&<div style={{background:sec.light,borderRadius:13,padding:"14px 12px",
-                    margin:"8px 0",textAlign:"center",overflowX:"auto"}}><M tex={rl.fml}/></div>}
-                  {rl.svgDiag&&<div style={{margin:"8px 0",borderRadius:12,overflow:"hidden"}}
-                    dangerouslySetInnerHTML={{__html:rl.svgDiag}}/>}
-                  {(rl.bltTex||[]).map((b,j)=>(
-                    <div key={j} style={{display:"flex",gap:7,padding:"4px 0",alignItems:"flex-start"}}>
-                      <span style={{color:col,fontWeight:700,flexShrink:0,marginTop:2}}>•</span>
-                      <span style={{overflowX:"auto"}}><M tex={b}/></span>
-                    </div>
-                  ))}
-                  {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,
-                    padding:"10px 12px",fontSize:12,fontWeight:600,color:"#713F12",
-                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4,overflowX:"auto"}}>
-                    {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
-                  </div>}
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-
-
-// ── CoursMathDroites — Équations de droites & Systèmes ───────────────────────
-function CoursMathDroites({onBack, onStartPractice}) {
-  const [secIdx, setSecIdx] = React.useState(0);
-  const [openMap, setOpenMap] = React.useState({});
-  const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
-  const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
-  const tabsRef = React.useRef();
-  React.useEffect(()=>{
-    if(!tabsRef.current) return;
-    const btn=tabsRef.current.children[secIdx];
-    if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
-  },[secIdx]);
-
-  const SVG_D9=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 265 155" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="265" height="155" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.2"/><line x1="10" y1="105" x2="245" y2="105" stroke="#94A3B8" stroke-width="1.3"/><polygon points="240,102 249,105 240,108" fill="#94A3B8"/><line x1="65" y1="148" x2="65" y2="8" stroke="#94A3B8" stroke-width="1.3"/><polygon points="62,13 65,4 68,13" fill="#94A3B8"/><line x1="93" y1="102" x2="93" y2="108" stroke="#64748B" stroke-width="1"/><text x="93" y="118" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">1</text><line x1="121" y1="102" x2="121" y2="108" stroke="#64748B" stroke-width="1"/><text x="121" y="118" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">2</text><line x1="149" y1="102" x2="149" y2="108" stroke="#64748B" stroke-width="1"/><text x="149" y="118" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">3</text><line x1="37" y1="102" x2="37" y2="108" stroke="#64748B" stroke-width="1"/><text x="37" y="118" text-anchor="middle" font-size="8" font-weight="normal" fill="#64748B" font-family="sans-serif">-1</text><line x1="62" y1="77" x2="68" y2="77" stroke="#64748B" stroke-width="1"/><text x="58" y="80.5" text-anchor="middle" font-size="8" font-weight="end" fill="#64748B" font-family="sans-serif">1</text><line x1="62" y1="49" x2="68" y2="49" stroke="#64748B" stroke-width="1"/><text x="58" y="52.5" text-anchor="middle" font-size="8" font-weight="end" fill="#64748B" font-family="sans-serif">2</text><line x1="62" y1="133" x2="68" y2="133" stroke="#64748B" stroke-width="1"/><text x="58" y="136.5" text-anchor="middle" font-size="8" font-weight="end" fill="#64748B" font-family="sans-serif">-1</text><text x="249" y="108" text-anchor="middle" font-size="10" font-weight="italic" fill="#475569" font-family="sans-serif">x</text><text x="60" y="5" text-anchor="middle" font-size="10" font-weight="italic" fill="#475569" font-family="sans-serif">y</text><text x="55" y="118" text-anchor="middle" font-size="9" font-weight="normal" fill="#475569" font-family="sans-serif">O</text><line x1="56.6" y1="141.4" x2="185.4" y2="12.6" stroke="#2563EB" stroke-width="2.2"/><line x1="56.6" y1="12.6" x2="185.4" y2="141.4" stroke="#DC2626" stroke-width="2.2"/><text x="183.39999999999998" y="6.6000000000000085" text-anchor="end" font-size="8" font-weight="bold" fill="#2563EB" font-family="sans-serif">(d&#x2081;) y=x-1</text><text x="183.39999999999998" y="155.4" text-anchor="end" font-size="8" font-weight="bold" fill="#DC2626" font-family="sans-serif">(d&#x2082;) y=-x+3</text><circle cx="121.0" cy="77.0" r="5" fill="white" stroke="#059669" stroke-width="2.5"/><circle cx="121.0" cy="77.0" r="2.5" fill="#059669"/><text x="129" y="67" text-anchor="start" font-size="9" font-weight="bold" fill="#059669" font-family="sans-serif">M(2&#xA0;;&#xA0;1)</text><text x="130" y="148" text-anchor="middle" font-size="7.5" font-weight="normal" fill="#64748B" font-family="sans-serif">Le point M est l'intersection de (d&#x2081;) et (d&#x2082;) : S&#xA0;=&#xA0;{(2&#xA0;;&#xA0;1)}</text></svg>`;
-  const TABLE_COMBI=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 312 185" style="width:100%;display:block;border-radius:10px;margin:8px 0"><rect width="312" height="185" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.2"/><text x="156" y="15" text-anchor="middle" font-size="9" fill="#475569" font-family="sans-serif">Système : 2x+y=7 (L&#x2081;) et -x-2y=1 (L&#x2082;)</text><line x1="0" y1="22" x2="312" y2="22" stroke="#E2E8F0" stroke-width="1"/><line x1="156" y1="22" x2="156" y2="165" stroke="#CBD5E1" stroke-width="1.2"/><rect x="0" y="22" width="156" height="26" fill="#FEF3C7" rx="0"/><text x="78" y="39" text-anchor="middle" font-size="9" font-weight="bold" fill="#92400E" font-family="sans-serif">2&#xD7;(L&#x2081;)+(L&#x2082;) &#x2192; trouver x</text><rect x="156" y="22" width="156" height="26" fill="#DBEAFE" rx="0"/><text x="234" y="39" text-anchor="middle" font-size="9" font-weight="bold" fill="#1E40AF" font-family="sans-serif">x=5 dans (L&#x2081;) &#x2192; trouver y</text><line x1="0" y1="48" x2="312" y2="48" stroke="#E2E8F0" stroke-width="1"/><text x="10" y="65" font-size="9" fill="#1E293B" font-family="sans-serif">2(2x+y)+(-x-2y) = 2&#xD7;7+1</text><text x="10" y="82" font-size="9" fill="#1E293B" font-family="sans-serif">4x+2y-x-2y = 15</text><text x="10" y="99" font-size="9.5" fill="#1E293B" font-family="sans-serif">3x = 15</text><text x="10" y="120" font-size="12" font-weight="bold" fill="#059669" font-family="sans-serif">x = 5</text><text x="166" y="65" font-size="9" fill="#1E293B" font-family="sans-serif">2&#xD7;5 + y = 7</text><text x="166" y="82" font-size="9" fill="#1E293B" font-family="sans-serif">10 + y = 7</text><text x="166" y="99" font-size="9.5" fill="#1E293B" font-family="sans-serif">y = 7 - 10</text><text x="166" y="120" font-size="12" font-weight="bold" fill="#059669" font-family="sans-serif">y = -3</text><line x1="0" y1="133" x2="312" y2="133" stroke="#E2E8F0" stroke-width="1.5"/><rect x="0" y="133" width="312" height="52" fill="#F0FDF4" rx="0"/><rect x="0" y="159" width="312" height="26" fill="#F0FDF4" rx="0 0 8 8"/><text x="156" y="155" text-anchor="middle" font-size="12" font-weight="bold" fill="#059669" font-family="sans-serif">S = {(5 &#x00A0;;&#x00A0; -3)}</text><text x="156" y="172" text-anchor="middle" font-size="8.5" fill="#64748B" font-family="sans-serif">Point d'intersection des deux droites : (5&#x00A0;;&#x00A0;-3)</text></svg>`;
-  const SECS=[
-    { emoji:"📐", label:"Équations", color:"#1D4ED8", light:"#EFF6FF", rules:[
-      { id:"d1",num:"1",title:"Équation réduite d'une droite",
-        fml:r`y=mx+p`,
-        bltTex:[
-          r`m\text{ : \textbf{coefficient directeur}} \text{ (pente de la droite)}`,
-          r`p\text{ : \textbf{ordonnée à l'origine}} \text{ (valeur en }x=0\text{)}`,
-          r`\text{Si }D\text{ est parallèle à l'axe des ordonnées : }x=k\text{ (pas de forme }y=mx+p\text{)}`,
-        ],
-        tip:"La forme y=mx+p est valide pour toute droite non verticale."},
-      { id:"d2",num:"2",title:"Coefficient directeur",
-        fml:r`m=\dfrac{y_B-y_A}{x_B-x_A}`,
-        bltTex:[
-          r`\text{Pour tout couple de points }A(x_A\,;\,y_A)\text{ et }B(x_B\,;\,y_B)\text{ de la droite}`,
-          r`x_B\neq x_A\text{ (sinon la droite est verticale)}`,
-        ],
-        ex:{qTex:r`A(2\,;\,1)\text{ et }B(3\,;\,-1)`,
-            a:r`m=\dfrac{-1-1}{3-2}=\dfrac{-2}{1}=-2`}},
-      { id:"d3",num:"3",title:"Vérifier l'appartenance d'un point",
-        fml:r`M(x_M\,;\,y_M)\in(d)\Leftrightarrow y_M=m\,x_M+p`,
-        bltTex:[
-          r`\text{Remplacer }x\text{ et }y\text{ par les coordonnées de }M\text{ dans l'équation}`,
-          r`\text{Si l'égalité est vraie : }M\in(d)\text{; sinon }M\notin(d)`,
-        ]},
-      { id:"d4",num:"4",title:"Équation cartésienne & vecteur directeur",
-        fml:r`ax+by+c=0`,
-        bltTex:[
-          r`\text{Toute droite a une équation cartésienne de la forme }ax+by+c=0`,
-          r`\text{Vecteur directeur de }ax+by+c=0\text{ : }\vec{u}\begin{pmatrix}-b\\a\end{pmatrix}`,
-          r`\text{Vecteur directeur de }y=mx+p\text{ : }\vec{u}\begin{pmatrix}1\\m\end{pmatrix}`,
-        ],
-        tip:"Le vecteur directeur est parallèle à la droite."},
-    ]},
-    { emoji:"🔵", label:"Position relative", color:"#7C3AED", light:"#F5F3FF", rules:[
-      { id:"d5",num:"5",title:"Droites parallèles, sécantes, confondues",
-        bltTex:[
-          r`\textbf{Même }m\textbf{ et même }p\text{ : droites }\textbf{confondues}\text{ (identiques)}`,
-          r`\textbf{Même }m\textbf{, }p\neq p'\text{ : droites }\textbf{parallèles}\text{ (pas d'intersection)}`,
-          r`m\neq m'\text{ : droites }\textbf{sécantes}\text{ (une unique intersection)}`,
-        ],
-        tip:"Pour savoir si deux droites sont parallèles : comparer les coefficients directeurs."},
-      { id:"d6",num:"6",title:"Droite parallèle passant par un point",
-        fml:r`y=mx+p\text{ avec }m\text{ connu, }p=y_E-m\,x_E`,
-        bltTex:[
-          r`\text{Si }D\text{ est d'équation }y=mx+p\text{ et }E(x_E\,;\,y_E)`,
-          r`\text{La droite parallèle à }D\text{ passant par }E\text{ a le }\textbf{même }m`,
-          r`\text{On trouve }p\text{ en écrivant que }E\in\Delta\text{ : }y_E=m\,x_E+p`,
-        ],
-        ex:{qTex:r`\text{Droite parallèle à }y=2x+1\text{ passant par }E(-3\,;\,1)`,
-            a:r`m=2\quad 1=2\times(-3)+p\Rightarrow p=7\quad\Rightarrow y=2x+7`}},
-    ]},
-    { emoji:"🔢", label:"Systèmes", color:"#059669", light:"#F0FDF4", rules:[
-      { id:"d7",num:"7",title:"Résolution par substitution",
-        bltTex:[
-          r`\textbf{Étape 1 :}\text{ isoler une inconnue dans une équation (ex : }y\text{ dans (1))}`,
-          r`\textbf{Étape 2 :}\text{ substituer (remplacer) dans l'autre équation (2)}`,
-          r`\textbf{Étape 3 :}\text{ résoudre l'équation à une inconnue → trouver }x`,
-          r`\textbf{Étape 4 :}\text{ remplacer }x\text{ dans (1) pour trouver }y`,
-        ],
-        tip:"Choisir l'équation où isoler l'inconnue est le plus simple (coefficient 1 ou -1).",
-        ex:{qTex:r`\begin{cases}3x+y=7\quad(1)\\2x-3y=1\quad(2)\end{cases}`,
-            a:r`\begin{gathered}(1)\Rightarrow y=7-3x\\(2)\Rightarrow 2x-3(7-3x)=1\Rightarrow 11x=22\Rightarrow x=2\\y=7-6=1\quad S=\{(2\,;\,1)\}\end{gathered}`}},
-      { id:"d8",num:"8",title:"Résolution par combinaison linéaire",
-        bltTex:[
-          r`\textbf{Étape 1 :}\text{ choisir l'inconnue à éliminer (ex : }y\text{)}`,
-          r`\textbf{Étape 2 :}\text{ multiplier les lignes pour que les coeff. de }y\text{ soient opposés}`,
-          r`\textbf{Étape 3 :}\text{ additionner membre à membre → }y\text{ disparaît → on trouve }x`,
-          r`\textbf{Étape 4 :}\text{ refaire une combinaison différente pour éliminer }x\text{ et trouver }y`,
-        ],
-        tip:"Propriété : on obtient une égalité en ajoutant membre à membre deux égalités.",
-        ex:{qTex:r`\begin{cases}2x+y=7\quad(L_1)\\-x-2y=1\quad(L_2)\end{cases}`,
-            a:r`\begin{gathered}\begin{array}{|l|l|}\hline\textcolor{orange}{\textbf{2(L_1)+(L_2)\to x}} & \textcolor{blue}{\textbf{(L_1)+2(L_2)\to y}}\\\hline(4x+2y)+(-x-2y)=15 & (2x+y)+(-2x-4y)=9\\3x=15 & -3y=9\\\boldsymbol{x=5} & \boldsymbol{y=-3}\\\hline\end{array}\\[8pt]S=\{(5\,;\,-3)\}\end{gathered}`}},
-      { id:"d9",num:"9",title:"Interprétation géométrique",
-        svgDiag:SVG_D9,
-        bltTex:[
-          r`\text{Résoudre un système de 2 droites = trouver leur point d'intersection}`,
-          r`S=\varnothing\Leftrightarrow\text{droites parallèles (pas d'intersection)}`,
-          r`S=\{(x_0\,;\,y_0)\}\Leftrightarrow\text{droites sécantes en }(x_0\,;\,y_0)`,
-          r`\text{Infinité de solutions }\Leftrightarrow\text{droites confondues}`,
-        ]},
-    ]},
-    { emoji:"🏋️", label:"S'entraîner", color:"#1D4ED8", light:"#EFF6FF", isPractice:true,
-      practices:[
-        {sub:"eq_droite",    label:"Équation d'une droite",    emoji:"📐", cat:"fonctions_affines"},
-        {sub:"coeff_dir",    label:"Coefficient directeur",    emoji:"📏", cat:"fonctions_affines"},
-        {sub:"systeme_subst",label:"Système – substitution",   emoji:"🔄", cat:"litteral"},
-        {sub:"systeme_combi",label:"Système – combinaison",    emoji:"➕", cat:"litteral"},
-      ]},
-  ];
-
-  const sec=SECS[secIdx]; const col=sec.color;
-  return (
-    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"#F8FAFF"}}>
-      <div style={{background:"linear-gradient(135deg,#1D4ED8,#1E40AF)",padding:"16px 18px 14px",flexShrink:0}}>
-        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:12}}>
-          <button onClick={onBack} style={{background:"rgba(255,255,255,.2)",border:"none",borderRadius:10,
-            cursor:"pointer",color:"#fff",fontSize:16,width:32,height:32,display:"flex",
-            alignItems:"center",justifyContent:"center"}}>✕</button>
-          <div style={{flex:1}}>
-            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:17,color:"#fff"}}>
-              📐 Équations de droites · Systèmes</div>
-            <div style={{fontSize:11,color:"rgba(255,255,255,.75)",marginTop:1}}>
-              Cours interactif · Ch. 14</div>
-          </div>
-        </div>
-        <div ref={tabsRef} style={{display:"flex",gap:6,overflowX:"auto",scrollbarWidth:"none",paddingBottom:2}}>
-          {SECS.map((s,i)=>(
-            <button key={i} onClick={()=>setSecIdx(i)}
-              style={{background:i===secIdx?"#fff":"rgba(255,255,255,.2)",
-                border:"none",borderRadius:99,padding:"6px 13px",cursor:"pointer",flexShrink:0,
-                fontFamily:"'Nunito',sans-serif",fontWeight:700,fontSize:11,
-                color:i===secIdx?s.color:"#fff",whiteSpace:"nowrap"}}>
-              {s.emoji} {s.label}
-            </button>
-          ))}
-        </div>
-      </div>
-      <div style={{flex:1,overflowY:"auto",padding:"14px 14px 24px"}}>
-        {sec.isPractice ? (
-          <div>
-            <div style={{background:"#F8FAFC",borderRadius:14,padding:"14px 15px",marginBottom:14,
-              fontSize:12.5,color:"#475569",lineHeight:1.6,border:"1px solid #E2E8F0"}}>
-              Lance un thème pour t'entraîner directement sur les questions de l'app !
-            </div>
-            {sec.practices.map(p=>(
-              <button key={p.sub} onClick={()=>onStartPractice&&onStartPractice(p.cat,p.sub)}
-                style={{width:"100%",background:"#fff",border:"2px solid #E2E8F0",
-                  borderRadius:16,padding:"14px 16px",marginBottom:10,
-                  cursor:onStartPractice?"pointer":"default",
-                  display:"flex",alignItems:"center",gap:14,textAlign:"left",
-                  boxShadow:"0 2px 10px rgba(0,0,0,.06)"}}>
-                <span style={{fontSize:26,flexShrink:0}}>{p.emoji}</span>
-                <div style={{flex:1}}>
-                  <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:"#1E293B"}}>{p.label}</div>
-                  <div style={{fontSize:11,color:"#94A3B8",marginTop:2}}>Questions · S'entraîner</div>
-                </div>
-                {onStartPractice&&<span style={{color:col,fontWeight:800,fontSize:13}}>Lancer →</span>}
-              </button>
-            ))}
-          </div>
-        ) : sec.rules.map((rl,i)=>{
-          const k=`${secIdx}_${i}`; const expanded=isOpen(k,i===0);
-          return (
-            <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
-              overflow:"hidden",boxShadow:"0 2px 14px rgba(0,0,0,.07)",borderLeft:`4px solid ${col}`}}>
-              <div onClick={()=>tog(k)} style={{display:"flex",alignItems:"center",gap:10,
-                padding:"13px 15px",cursor:"pointer",userSelect:"none"}}>
-                <div style={{width:30,height:30,borderRadius:"50%",background:col,color:"#fff",
-                  display:"flex",alignItems:"center",justifyContent:"center",
-                  fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
-                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}</div>
-                <span style={{color:"#94A3B8",fontSize:11,display:"block",
-                  transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
-              </div>
-              {expanded&&(
-                <div style={{padding:"0 15px 15px"}}>
-                  {rl.fml&&<div style={{background:sec.light,borderRadius:13,padding:"14px 12px",
-                    margin:"8px 0",textAlign:"center",overflowX:"auto"}}><M tex={rl.fml}/></div>}
-                  {rl.svgDiag&&<div style={{margin:"8px 0",borderRadius:12,overflow:"hidden"}}
-                    dangerouslySetInnerHTML={{__html:rl.svgDiag}}/>}
-                  {(rl.bltTex||[]).map((b,j)=>(
-                    <div key={j} style={{display:"flex",gap:7,padding:"4px 0",alignItems:"flex-start"}}>
-                      <span style={{color:col,fontWeight:700,flexShrink:0,marginTop:2}}>•</span>
-                      <span style={{overflowX:"auto"}}><M tex={b}/></span>
-                    </div>
-                  ))}
-                  {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,
-                    padding:"10px 12px",fontSize:12,fontWeight:600,color:"#713F12",
-                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4,overflowX:"auto"}}>
-                    {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
-                  </div>}
-                  {rl.ex&&(
-                    <div style={{background:"#F8FAFC",borderRadius:12,padding:"12px 13px",
-                      marginTop:10,borderLeft:`3px solid ${col}`}}>
-                      <div style={{fontSize:10,fontWeight:800,color:col,textTransform:"uppercase",
-                        letterSpacing:".7px",marginBottom:5}}>Exemple</div>
-                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,overflowX:"auto"}}>
-                        {rl.ex.qTex?<M tex={rl.ex.qTex}/>:<span>{rl.ex.q}</span>}
-                      </div>
-                      <div style={{textAlign:"center",overflowX:"auto"}}><M tex={rl.ex.a}/></div>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-
 function BottomNav({screen, onTab}) {
   const BAC_NEW = 1781827200000;
   const tabs = [
     {id:"home",      emoji:"🏠", label:"Accueil",     active:screen==="dashboard"||screen==="home"},
-    {id:"apprendre", emoji:"📖", label:"Apprendre",   active:screen==="flashcard_setup"||screen==="flashcards"||screen==="apprendre"||screen==="cours"||screen==="cours_pourcentages"||screen==="cours_calcul"||screen==="cours_reels"||screen==="cours_fonctions_affines"||screen==="cours_fonctions_gen"||screen==="cours_litteral"||screen==="cours_vecteurs"||screen==="cours_droites"||screen==="cours_proba"||screen==="cours_fonctions_ref"||screen==="cours_stats"||screen==="cours_equations"||screen==="cours_configs"},
+    {id:"apprendre", emoji:"📖", label:"Apprendre",   active:screen==="flashcard_setup"||screen==="flashcards"||screen==="apprendre"||screen==="cours"||screen==="cours_pourcentages"||screen==="cours_calcul"||screen==="cours_reels"||screen==="cours_fonctions_affines"||screen==="cours_fonctions_gen"||screen==="cours_litteral"||screen==="cours_vecteurs"||screen==="cours_stats"||screen==="cours_equations"||screen==="cours_configs"},
     {id:"train",     emoji:"💪", label:"S'entraîner", active:screen==="training_modes"},
     {id:"bac",       emoji:"🎯", label:"Bac",         badge:Date.now()<BAC_NEW, active:screen==="bac_subjects"},
     {id:"parcours",  emoji:"📊", label:"Parcours",    active:screen==="parcours_detail"||screen==="collection"||screen==="vigilance"},
@@ -28406,9 +27790,6 @@ function AutoMaths() {
           {screen==="cours_fonctions_gen"    && <CoursMathFonctionsGen onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_litteral"         && <CoursMathLitteral     onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_vecteurs"         && <CoursMathVecteurs     onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
-          {screen==="cours_droites"           && <CoursMathDroites       onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
-          {screen==="cours_proba"             && <CoursMathProba         onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
-          {screen==="cours_fonctions_ref"   && <CoursMathFonctionsRef  onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_stats"             && <CoursMathStats         onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_equations"         && <CoursMathEquations    onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_configs"          && <CoursMathConfigs      onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
