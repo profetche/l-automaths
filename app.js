@@ -19482,6 +19482,11 @@ function SplashScreen({onStart, onMySpace, onRestore, profile}) {
             borderRadius:99,width:100,margin:"9px auto 0",opacity:.8}}/>
         </div>
 
+        <div className="sigma-float" style={{marginTop:14}}>
+          <Sigma emotion="happy" size={120}/>
+        </div>
+        <div className="sigma-shadow" style={{width:"40%",marginTop:-2}}/>
+
         <div style={{textAlign:"center",color:"#94A3B8",fontSize:13,lineHeight:1.6,marginTop:14,marginBottom:20}}>
           Sigma, ton assistante maths.<br/>
           <span style={{color:"#F59E0B",fontWeight:700}}>5 min par jour</span>
