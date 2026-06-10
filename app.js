@@ -19468,14 +19468,6 @@ function SplashScreen({onStart, onMySpace, onRestore, profile}) {
       <div className="slide-up" style={{zIndex:1,display:"flex",flexDirection:"column",
         alignItems:"center",width:"100%"}}>
 
-        <div style={{display:"flex",flexDirection:"column",alignItems:"center",marginBottom:6,width:"100%"}}>
-          <div style={{borderRadius:16,overflow:"hidden",width:"100%",maxWidth:300,
-            boxShadow:"0 12px 40px rgba(0,0,0,0.4)",marginBottom:4}}>
-            <img src={PROMO_IMG} alt="Bac Centre Étrangers 2026"
-              style={{width:"100%",display:"block"}}/>
-          </div>
-        </div>
-
         <div style={{textAlign:"center",marginBottom:4}}>
           <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:11,
             letterSpacing:5,color:"#64748B",textTransform:"uppercase",marginBottom:6}}>
