@@ -1,4 +1,4 @@
-const CACHE_VERSION = 132;
+const CACHE_VERSION = 134;
 const CACHE_NAME = `automaths-v${CACHE_VERSION}`;
 
 const ASSETS = [

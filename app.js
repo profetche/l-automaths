@@ -24941,6 +24941,18 @@ const COURS_CATALOG = [
     chapitres:5, color:"#16A34A",
     desc:"Paraboles · Forme factorisée · Racines (produit nul) · Signe · x²=a",
   },
+  { id:"suites", emoji:"🔁",
+    title:"Les suites numériques",
+    niveaux:["1ère Techno"],
+    chapitres:6, color:"#EA580C",
+    desc:"Vocabulaire · Explicite & récurrence · Variations · Arithmétiques · Géométriques",
+  },
+  { id:"probas", emoji:"🎲",
+    title:"Probabilités",
+    niveaux:["1ère Techno"],
+    chapitres:8, color:"#7C3AED",
+    desc:"Conditionnelles · Arbres & variables aléatoires · Loi binomiale (3 phases)",
+  },
 ];
 
 function CoursPracticeList({practices, onStartPractice, col}){
@@ -27206,6 +27218,451 @@ function CoursMathSecondDegre({onBack, onStartPractice}) {
 
 
 
+// ── CoursMathSuites — Les suites numériques (1ère Techno · Ch. 2) ─────────────
+function CoursMathSuites({onBack, onStartPractice}) {
+  const [secIdx, setSecIdx] = React.useState(0);
+  const [openMap, setOpenMap] = React.useState({});
+  const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
+  const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
+  const tabsRef = React.useRef();
+  React.useEffect(()=>{
+    if(!tabsRef.current) return;
+    const btn=tabsRef.current.children[secIdx];
+    if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  },[secIdx]);
+
+  const SU_NUAGE=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 172" style="width:100%;display:block;border-radius:12px;margin:8px 0"><rect width="290" height="172" rx="10" fill="#F5F3FF"/><line x1="24" y1="160" x2="24" y2="12" stroke="#94A3B8" stroke-width="1.3"/><polygon points="20,16 24,8 28,16" fill="#94A3B8"/><line x1="16" y1="138" x2="276" y2="138" stroke="#94A3B8" stroke-width="1.3"/><polygon points="274,134 282,138 274,142" fill="#94A3B8"/><text x="270" y="152" font-size="9" fill="#94A3B8" font-family="sans-serif">n</text><text x="10" y="16" font-size="9" fill="#94A3B8" font-family="sans-serif">u</text><circle cx="35" cy="150" r="4" fill="#7C3AED" stroke="#fff" stroke-width="1.3"/><text x="35" y="158" text-anchor="middle" font-size="7.5" fill="#A78BFA" font-family="sans-serif">0</text><circle cx="63" cy="147.969" r="4" fill="#7C3AED" stroke="#fff" stroke-width="1.3"/><text x="63" y="158" text-anchor="middle" font-size="7.5" fill="#A78BFA" font-family="sans-serif">1</text><circle cx="91" cy="141.875" r="4" fill="#7C3AED" stroke="#fff" stroke-width="1.3"/><text x="91" y="158" text-anchor="middle" font-size="7.5" fill="#A78BFA" font-family="sans-serif">2</text><circle cx="119" cy="131.719" r="4" fill="#7C3AED" stroke="#fff" stroke-width="1.3"/><text x="119" y="158" text-anchor="middle" font-size="7.5" fill="#A78BFA" font-family="sans-serif">3</text><circle cx="147" cy="117.5" r="4" fill="#7C3AED" stroke="#fff" stroke-width="1.3"/><text x="147" y="158" text-anchor="middle" font-size="7.5" fill="#A78BFA" font-family="sans-serif">4</text><circle cx="175" cy="99.2188" r="4" fill="#7C3AED" stroke="#fff" stroke-width="1.3"/><text x="175" y="158" text-anchor="middle" font-size="7.5" fill="#A78BFA" font-family="sans-serif">5</text><circle cx="203" cy="76.875" r="4" fill="#7C3AED" stroke="#fff" stroke-width="1.3"/><text x="203" y="158" text-anchor="middle" font-size="7.5" fill="#A78BFA" font-family="sans-serif">6</text><circle cx="231" cy="50.4688" r="4" fill="#7C3AED" stroke="#fff" stroke-width="1.3"/><text x="231" y="158" text-anchor="middle" font-size="7.5" fill="#A78BFA" font-family="sans-serif">7</text><circle cx="259" cy="20" r="4" fill="#7C3AED" stroke="#fff" stroke-width="1.3"/><text x="259" y="158" text-anchor="middle" font-size="7.5" fill="#A78BFA" font-family="sans-serif">8</text><text x="196" y="70" font-size="9" font-weight="bold" fill="#7C3AED" font-family="sans-serif">(n ; uₙ)</text><line x1="205" y1="73" x2="203" y2="81" stroke="#7C3AED" stroke-width="1"/></svg>`;
+  const SU_ARITH=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 172" style="width:100%;display:block;border-radius:12px;margin:8px 0"><rect width="290" height="172" rx="10" fill="#ECFDF5"/><line x1="22" y1="160" x2="22" y2="12" stroke="#94A3B8" stroke-width="1.3"/><polygon points="18,16 22,8 26,16" fill="#94A3B8"/><line x1="16" y1="150" x2="276" y2="150" stroke="#94A3B8" stroke-width="1.3"/><polygon points="274,146 282,150 274,154" fill="#94A3B8"/><text x="270" y="164" font-size="9" fill="#94A3B8" font-family="sans-serif">n</text><line x1="32" y1="142" x2="262" y2="28" stroke="#2563EB" stroke-width="1.2" stroke-dasharray="4,3" opacity="0.5"/><circle cx="32" cy="142" r="3.5" fill="#2563EB" stroke="#fff" stroke-width="1.3"/><circle cx="57.5" cy="129.333" r="3.5" fill="#2563EB" stroke="#fff" stroke-width="1.3"/><circle cx="83" cy="116.667" r="3.5" fill="#2563EB" stroke="#fff" stroke-width="1.3"/><circle cx="108.5" cy="104" r="3.5" fill="#2563EB" stroke="#fff" stroke-width="1.3"/><circle cx="134" cy="91.3333" r="3.5" fill="#2563EB" stroke="#fff" stroke-width="1.3"/><circle cx="159.5" cy="78.6667" r="3.5" fill="#2563EB" stroke="#fff" stroke-width="1.3"/><circle cx="185" cy="66" r="3.5" fill="#2563EB" stroke="#fff" stroke-width="1.3"/><circle cx="210.5" cy="53.3333" r="3.5" fill="#2563EB" stroke="#fff" stroke-width="1.3"/><circle cx="236" cy="40.6667" r="3.5" fill="#2563EB" stroke="#fff" stroke-width="1.3"/><circle cx="261.5" cy="28" r="3.5" fill="#2563EB" stroke="#fff" stroke-width="1.3"/><text x="150" y="56" font-size="9.5" font-weight="bold" fill="#2563EB" font-family="sans-serif">r &gt; 0  (croissante)</text><line x1="32" y1="40" x2="262" y2="120" stroke="#DB2777" stroke-width="1.2" stroke-dasharray="4,3" opacity="0.5"/><circle cx="32" cy="40" r="3.5" fill="#DB2777" stroke="#fff" stroke-width="1.3"/><circle cx="57.5" cy="48.8889" r="3.5" fill="#DB2777" stroke="#fff" stroke-width="1.3"/><circle cx="83" cy="57.7778" r="3.5" fill="#DB2777" stroke="#fff" stroke-width="1.3"/><circle cx="108.5" cy="66.6667" r="3.5" fill="#DB2777" stroke="#fff" stroke-width="1.3"/><circle cx="134" cy="75.5556" r="3.5" fill="#DB2777" stroke="#fff" stroke-width="1.3"/><circle cx="159.5" cy="84.4444" r="3.5" fill="#DB2777" stroke="#fff" stroke-width="1.3"/><circle cx="185" cy="93.3333" r="3.5" fill="#DB2777" stroke="#fff" stroke-width="1.3"/><circle cx="210.5" cy="102.222" r="3.5" fill="#DB2777" stroke="#fff" stroke-width="1.3"/><circle cx="236" cy="111.111" r="3.5" fill="#DB2777" stroke="#fff" stroke-width="1.3"/><circle cx="261.5" cy="120" r="3.5" fill="#DB2777" stroke="#fff" stroke-width="1.3"/><text x="150" y="138" font-size="9.5" font-weight="bold" fill="#DB2777" font-family="sans-serif">r &lt; 0  (décroissante)</text></svg>`;
+  const SU_GEO=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 172" style="width:100%;display:block;border-radius:12px;margin:8px 0"><rect width="290" height="172" rx="10" fill="#FDF2F8"/><line x1="22" y1="160" x2="22" y2="12" stroke="#94A3B8" stroke-width="1.3"/><polygon points="18,16 22,8 26,16" fill="#94A3B8"/><line x1="16" y1="150" x2="276" y2="150" stroke="#94A3B8" stroke-width="1.3"/><polygon points="274,146 282,150 274,154" fill="#94A3B8"/><text x="270" y="164" font-size="9" fill="#94A3B8" font-family="sans-serif">n</text><circle cx="30" cy="145" r="3.6" fill="#059669" stroke="#fff" stroke-width="1.3"/><circle cx="59" cy="142.5" r="3.6" fill="#059669" stroke="#fff" stroke-width="1.3"/><circle cx="88" cy="138.75" r="3.6" fill="#059669" stroke="#fff" stroke-width="1.3"/><circle cx="117" cy="133.125" r="3.6" fill="#059669" stroke="#fff" stroke-width="1.3"/><circle cx="146" cy="124.688" r="3.6" fill="#059669" stroke="#fff" stroke-width="1.3"/><circle cx="175" cy="112.031" r="3.6" fill="#059669" stroke="#fff" stroke-width="1.3"/><circle cx="204" cy="93.0469" r="3.6" fill="#059669" stroke="#fff" stroke-width="1.3"/><circle cx="233" cy="64.5703" r="3.6" fill="#059669" stroke="#fff" stroke-width="1.3"/><circle cx="262" cy="21.8555" r="3.6" fill="#059669" stroke="#fff" stroke-width="1.3"/><circle cx="30" cy="25" r="3.6" fill="#DB2777" stroke="#fff" stroke-width="1.3"/><circle cx="59" cy="87.5" r="3.6" fill="#DB2777" stroke="#fff" stroke-width="1.3"/><circle cx="88" cy="118.75" r="3.6" fill="#DB2777" stroke="#fff" stroke-width="1.3"/><circle cx="117" cy="134.375" r="3.6" fill="#DB2777" stroke="#fff" stroke-width="1.3"/><circle cx="146" cy="142.188" r="3.6" fill="#DB2777" stroke="#fff" stroke-width="1.3"/><circle cx="175" cy="146.094" r="3.6" fill="#DB2777" stroke="#fff" stroke-width="1.3"/><circle cx="204" cy="148.047" r="3.6" fill="#DB2777" stroke="#fff" stroke-width="1.3"/><circle cx="233" cy="149.023" r="3.6" fill="#DB2777" stroke="#fff" stroke-width="1.3"/><circle cx="262" cy="149.512" r="3.6" fill="#DB2777" stroke="#fff" stroke-width="1.3"/><text x="150" y="40" font-size="9.5" font-weight="bold" fill="#059669" font-family="sans-serif">q &gt; 1  (croissante)</text><text x="150" y="120" font-size="9.5" font-weight="bold" fill="#DB2777" font-family="sans-serif">0 &lt; q &lt; 1  (décroissante)</text></svg>`;
+
+  const SECS=[
+    { emoji:"📖", label:"Vocabulaire", color:"#0369A1", light:"#EFF6FF", rules:[
+      { id:"su1",num:"1",title:"Qu'est-ce qu'une suite ?",
+        bltTex:[
+          r`\text{Une suite est une succession ordonnée de nombres réels}`,
+          r`\text{Chaque nombre est un }\textbf{terme}\text{ de la suite}`,
+          r`\text{On note une suite }(u_n),\ (v_n)\ \text{ou}\ (w_n)`,
+        ],
+        tipTex:r`u_n\text{ se lit « u indice n » : c'est le terme de rang }n`,
+        ex:{qTex:r`\text{Dans }(u_n),\ \text{que sont }u_0\text{ et }u_5\ ?`,
+            a:r`u_0\ \text{: premier terme (rang 0)}\ ;\ \ u_5\ \text{: terme de rang }5`}},
+      { id:"su2",num:"2",title:"Deux façons de définir une suite",
+        bltTex:[
+          r`\textbf{Formule explicite}\ :\ u_n\text{ en fonction de }n\quad(\text{Catégorie 1})`,
+          r`\textbf{Relation de récurrence}\ :\ u_{n+1}\text{ à partir de }u_n\quad(\text{Catégorie 2})`,
+        ]},
+    ]},
+    { emoji:"🔢", label:"Définir une suite", color:"#2563EB", light:"#EFF6FF", rules:[
+      { id:"su3",num:"3",title:"Formule explicite (Catégorie 1)",
+        fml:r`u_n=f(n)`,
+        bltTex:[
+          r`\text{Chaque terme se calcule directement avec son rang }n`,
+          r`\textbf{Avantage}\ :\ \text{on obtient n'importe quel terme directement}`,
+        ],
+        ex:{qTex:r`u_n=2n^2-1\quad\text{Calculer }u_0,\ u_2,\ u_{11}`,
+            a:r`\begin{gathered}u_0=2(0)^2-1=-1\\[4pt]u_2=2(2)^2-1=7\\[4pt]u_{11}=2(11)^2-1=241\end{gathered}`}},
+      { id:"su4",num:"4",title:"Relation de récurrence (Catégorie 2)",
+        fml:r`u_{n+1}=f(u_n)\quad(\text{avec un premier terme donné})`,
+        bltTex:[
+          r`\text{Chaque terme s'obtient à partir du }\textbf{précédent}`,
+          r`\textbf{Inconvénient}\ :\ \text{pour }u_{100}\text{ il faut tous les termes avant}`,
+        ],
+        tipTex:r`\text{Ne pas confondre }u_{n+1}\ (\text{terme suivant})\ \text{et}\ u_n+1`,
+        ex:{qTex:r`u_0=5\ \text{et}\ u_{n+1}=3u_n\quad\text{Premiers termes ?}`,
+            a:r`u_0=5,\ \ u_1=15,\ \ u_2=45,\ \ u_3=135`}},
+    ]},
+    { emoji:"📊", label:"Graphique & variations", color:"#7C3AED", light:"#F5F3FF", rules:[
+      { id:"su5",num:"5",title:"Représentation graphique",
+        svgDiag:SU_NUAGE,
+        bltTex:[
+          r`\text{On représente une suite par un }\textbf{nuage de points}`,
+          r`\text{Chaque point a pour coordonnées }(n\,;\,u_n)`,
+        ],
+        tipTex:r`\text{On ne relie jamais les points : }n\text{ est un entier}`},
+      { id:"su6",num:"6",title:"Suite croissante / décroissante",
+        fml:r`\begin{gathered}(u_n)\text{ croissante}:\ u_{n+1}\geq u_n\\[4pt](u_n)\text{ décroissante}:\ u_{n+1}\leq u_n\end{gathered}`,
+        bltTex:[
+          r`\text{L'inégalité doit être vraie }\textbf{pour tout }n`,
+        ]},
+      { id:"su7",num:"7",title:"Méthode : étudier les variations",
+        fml:r`\text{On étudie le signe de}\ \ u_{n+1}-u_n`,
+        bltTex:[
+          r`u_{n+1}-u_n>0\ \text{pour tout }n\ \Rightarrow\ \text{croissante}`,
+          r`u_{n+1}-u_n<0\ \text{pour tout }n\ \Rightarrow\ \text{décroissante}`,
+        ],
+        ex:{qTex:r`v_n=4n+4\quad\text{Sens de variation ?}`,
+            a:r`\begin{gathered}v_{n+1}-v_n=4(n+1)+4-(4n+4)\\[4pt]=4>0\ \Rightarrow\ (v_n)\text{ croissante}\end{gathered}`}},
+    ]},
+    { emoji:"➕", label:"Arithmétiques", color:"#059669", light:"#ECFDF5", rules:[
+      { id:"su8",num:"8",title:"Définition",
+        fml:r`u_{n+1}=u_n+r`,
+        bltTex:[
+          r`\text{On passe au terme suivant en ajoutant toujours }r`,
+          r`r\text{ est la }\textbf{raison}\text{ de la suite}`,
+        ],
+        ex:{qTex:r`5,\ 12,\ 19,\ 26,\ 33,\ \dots\quad\text{Premier terme ? Raison ?}`,
+            a:r`u_0=5\ ;\quad r=12-5=7`}},
+      { id:"su9",num:"9",title:"Sens de variation",
+        svgDiag:SU_ARITH,
+        bltTex:[
+          r`r>0\ \Rightarrow\ \text{croissante}`,
+          r`r=0\ \Rightarrow\ \text{constante}`,
+          r`r<0\ \Rightarrow\ \text{décroissante}`,
+          r`\text{Les points sont alignés sur une droite de pente }r`,
+        ],
+        ex:{qTex:r`u_0=5\ \text{et}\ u_{n+1}=u_n-4`,
+            a:r`r=-4<0\ \Rightarrow\ (u_n)\text{ décroissante}`}},
+      { id:"su10",num:"10",title:"Application : intérêts simples",
+        fml:r`C_{n+1}=C_n+50\quad(\text{arithmétique, }r=50)`,
+        bltTex:[
+          r`\text{Capital }1000\,\text{€, intérêts }5\%\text{ du dépôt initial par an}`,
+          r`\text{Intérêt annuel fixe : }0{,}05\times 1000=50\,\text{€}`,
+        ],
+        ex:{qTex:r`\text{Capital au bout de 5 ans ?}`,
+            a:r`C_5=1000+5\times 50=1250\,\text{€}`}},
+    ]},
+    { emoji:"✖️", label:"Géométriques", color:"#DB2777", light:"#FDF2F8", rules:[
+      { id:"su11",num:"11",title:"Définition",
+        fml:r`u_{n+1}=q\times u_n\quad(q>0)`,
+        bltTex:[
+          r`\text{On passe au terme suivant en multipliant toujours par }q`,
+          r`q\text{ est la }\textbf{raison}\text{ de la suite}`,
+        ],
+        ex:{qTex:r`1,\ 2,\ 4,\ 8,\ 16,\ \dots\quad\text{Premier terme ? Raison ?}`,
+            a:r`u_0=1\ ;\quad q=\dfrac{2}{1}=2`}},
+      { id:"su12",num:"12",title:"Sens de variation (premier terme > 0)",
+        svgDiag:SU_GEO,
+        bltTex:[
+          r`q>1\ \Rightarrow\ \text{croissante}`,
+          r`q=1\ \Rightarrow\ \text{constante}`,
+          r`0<q<1\ \Rightarrow\ \text{décroissante}`,
+        ],
+        tipTex:r`\text{Valable seulement si le premier terme est strictement positif}`,
+        ex:{qTex:r`u_0=25\ \text{et}\ q=0{,}5`,
+            a:r`0<q<1\ \Rightarrow\ (u_n)\text{ décroissante (tend vers }0)`}},
+      { id:"su13",num:"13",title:"Application : intérêts composés",
+        fml:r`C_{n+1}=C_n\times 1{,}04\quad(\text{géométrique, }q=1{,}04)`,
+        bltTex:[
+          r`\text{Capital }1000\,\text{€, intérêts }4\%\text{ ajoutés chaque année}`,
+          r`\text{Multiplier par }1+0{,}04=1{,}04\text{ chaque année}`,
+        ],
+        ex:{qTex:r`\text{Capital au bout de 5 ans ?}`,
+            a:r`C_5=1000\times 1{,}04^{5}\approx 1216{,}65\,\text{€}`}},
+    ]},
+    { emoji:"🏋️", label:"S'entraîner", color:"#0F172A", light:"#F1F5F9", isPractice:true,
+      practices:[
+        {sub:"suites_nature",          label:"Nature d'une suite",       emoji:"🔎", cat:"suites"},
+        {sub:"suites_termes",          label:"Calculer un terme",        emoji:"🔢", cat:"suites"},
+        {sub:"suites_explicite_recurr",label:"Explicite vs récurrence",  emoji:"🔁", cat:"suites"},
+        {sub:"suites_variations",      label:"Sens de variation",        emoji:"↕️", cat:"suites"},
+        {sub:"suites_finances",        label:"Applications financières", emoji:"💶", cat:"suites"},
+      ]},
+  ];
+
+  const sec=SECS[secIdx]; const col=sec.color;
+  return (
+    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"#F8FAFF"}}>
+      <div style={{background:"linear-gradient(135deg,#F97316,#C2410C)",padding:"16px 18px 14px",flexShrink:0}}>
+        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:12}}>
+          <button onClick={onBack} style={{background:"rgba(255,255,255,.2)",border:"none",borderRadius:10,
+            cursor:"pointer",color:"#fff",fontSize:16,width:32,height:32,display:"flex",
+            alignItems:"center",justifyContent:"center"}}>✕</button>
+          <div style={{flex:1}}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:17,color:"#fff"}}>
+              🔁 Les suites numériques</div>
+            <div style={{fontSize:11,color:"rgba(255,255,255,.75)",marginTop:1}}>
+              Cours interactif · Ch. 2 · 1ère Techno</div>
+          </div>
+        </div>
+        <div ref={tabsRef} style={{display:"flex",gap:6,overflowX:"auto",scrollbarWidth:"none",paddingBottom:2}}>
+          {SECS.map((s,i)=>(
+            <button key={i} onClick={()=>setSecIdx(i)}
+              style={{background:i===secIdx?"#fff":"rgba(255,255,255,.2)",
+                border:"none",borderRadius:99,padding:"6px 13px",cursor:"pointer",flexShrink:0,
+                fontFamily:"'Nunito',sans-serif",fontWeight:700,fontSize:11,
+                color:i===secIdx?s.color:"#fff",whiteSpace:"nowrap"}}>
+              {s.emoji} {s.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div style={{flex:1,overflowY:"auto",padding:"14px 14px 80px"}}>
+        {sec.isPractice ? <CoursPracticeList practices={sec.practices} onStartPractice={onStartPractice} col={col}/> : sec.rules.map((rl,i)=>{
+          const k=`${secIdx}_${i}`; const expanded=isOpen(k,i===0);
+          return (
+            <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
+              overflow:"hidden",boxShadow:"0 2px 14px rgba(0,0,0,.07)",borderLeft:`4px solid ${col}`}}>
+              <div onClick={()=>tog(k)} style={{display:"flex",alignItems:"center",gap:10,
+                padding:"13px 15px",cursor:"pointer",userSelect:"none"}}>
+                <div style={{width:30,height:30,borderRadius:"50%",background:col,color:"#fff",
+                  display:"flex",alignItems:"center",justifyContent:"center",
+                  fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
+                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}{rl.titleTex&&<M tex={rl.titleTex}/>}</div>
+                <span style={{color:"#94A3B8",fontSize:11,display:"block",
+                  transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
+              </div>
+              {expanded&&(
+                <div style={{padding:"0 15px 15px"}}>
+                  {rl.fml&&<div style={{background:sec.light,borderRadius:13,padding:"14px 12px",
+                    margin:"8px 0",textAlign:"center",overflowX:"auto"}}><M tex={rl.fml}/></div>}
+                  {rl.svgDiag&&<div style={{margin:"8px 0",borderRadius:12,overflow:"hidden"}}
+                    dangerouslySetInnerHTML={{__html:rl.svgDiag}}/>}
+                  {(rl.bltTex||[]).map((b,j)=>(
+                    <div key={j} style={{display:"flex",gap:7,padding:"4px 0",alignItems:"flex-start"}}>
+                      <span style={{color:col,fontWeight:700,flexShrink:0,marginTop:2}}>•</span>
+                      <span style={{overflowX:"auto"}}><M tex={b}/></span>
+                    </div>
+                  ))}
+                  {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,
+                    padding:"10px 12px",fontSize:12,fontWeight:600,color:"#713F12",
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4,overflowX:"auto"}}>
+                    {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
+                  </div>}
+                  {rl.ex&&(
+                    <div style={{background:"#F8FAFC",borderRadius:12,padding:"12px 13px",
+                      marginTop:10,borderLeft:`3px solid ${col}`}}>
+                      <div style={{fontSize:10,fontWeight:800,color:col,textTransform:"uppercase",
+                        letterSpacing:".7px",marginBottom:5}}>Exemple</div>
+                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>
+                        {rl.ex.qTex?<M tex={rl.ex.qTex}/>:<span>{rl.ex.q}</span>}
+                      </div>
+                      <div style={{textAlign:"center",overflowX:"auto"}}><M tex={rl.ex.a}/></div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+
+
+// ── CoursMathProbas — Probabilités, 3 phases (1ère Techno) ───────────────────
+function CoursMathProbas({onBack, onStartPractice}) {
+  const [secIdx, setSecIdx] = React.useState(0);
+  const [openMap, setOpenMap] = React.useState({});
+  const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
+  const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
+  const tabsRef = React.useRef();
+  React.useEffect(()=>{
+    if(!tabsRef.current) return;
+    const btn=tabsRef.current.children[secIdx];
+    if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  },[secIdx]);
+
+  const PB_TABLEAU=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 150" style="width:100%;display:block;border-radius:12px;margin:8px 0"><rect width="290" height="150" rx="10" fill="#EFF6FF"/><line x1="18" y1="16" x2="290" y2="16" stroke="#BFDBFE" stroke-width="1.2"/><line x1="18" y1="46" x2="290" y2="46" stroke="#BFDBFE" stroke-width="1.2"/><line x1="18" y1="76" x2="290" y2="76" stroke="#BFDBFE" stroke-width="1.2"/><line x1="18" y1="106" x2="290" y2="106" stroke="#BFDBFE" stroke-width="1.2"/><line x1="18" y1="136" x2="290" y2="136" stroke="#BFDBFE" stroke-width="1.2"/><line x1="18" y1="16" x2="18" y2="136" stroke="#BFDBFE" stroke-width="1.2"/><line x1="86" y1="16" x2="86" y2="136" stroke="#BFDBFE" stroke-width="1.2"/><line x1="154" y1="16" x2="154" y2="136" stroke="#BFDBFE" stroke-width="1.2"/><line x1="222" y1="16" x2="222" y2="136" stroke="#BFDBFE" stroke-width="1.2"/><line x1="290" y1="16" x2="290" y2="136" stroke="#BFDBFE" stroke-width="1.2"/><text x="120" y="35" font-size="9.5" fill="#1E3A8A" font-weight="bold" text-anchor="middle" font-style="normal" font-family="sans-serif">B</text><text x="188" y="35" font-size="9.5" fill="#1E3A8A" font-weight="bold" text-anchor="middle" font-style="normal" font-family="sans-serif">non B</text><text x="256" y="35" font-size="9.5" fill="#1E3A8A" font-weight="bold" text-anchor="middle" font-style="normal" font-family="sans-serif">Total</text><text x="52" y="65" font-size="9.5" fill="#1E3A8A" font-weight="bold" text-anchor="middle" font-style="normal" font-family="sans-serif">A</text><text x="52" y="95" font-size="9.5" fill="#1E3A8A" font-weight="bold" text-anchor="middle" font-style="normal" font-family="sans-serif">non A</text><text x="52" y="125" font-size="9.5" fill="#1E3A8A" font-weight="bold" text-anchor="middle" font-style="normal" font-family="sans-serif">Total</text><text x="120" y="65" font-size="8.5" fill="#DC2626" font-weight="bold" text-anchor="middle" font-style="normal" font-family="sans-serif">Card(A∩B)</text><text x="256" y="65" font-size="8.5" fill="#2563EB" font-weight="bold" text-anchor="middle" font-style="normal" font-family="sans-serif">Card(A)</text><text x="120" y="125" font-size="8.5" fill="#2563EB" font-weight="bold" text-anchor="middle" font-style="normal" font-family="sans-serif">Card(B)</text><text x="256" y="125" font-size="8.5" fill="#059669" font-weight="bold" text-anchor="middle" font-style="normal" font-family="sans-serif">Card(E)</text></svg>`;
+  const PB_ARBRE=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 180" style="width:100%;display:block;border-radius:12px;margin:8px 0"><rect width="290" height="180" rx="10" fill="#F5F3FF"/><line x1="22" y1="88" x2="116" y2="46" stroke="#7C3AED" stroke-width="2.2"/><line x1="22" y1="88" x2="116" y2="130" stroke="#A78BFA" stroke-width="1.6"/><circle cx="22" cy="88" r="3" fill="#7C3AED"/><circle cx="116" cy="46" r="3" fill="#7C3AED"/><circle cx="116" cy="130" r="3" fill="#7C3AED"/><text x="56" y="58" font-size="8.5" fill="#7C3AED" font-weight="bold" text-anchor="middle" font-family="sans-serif">0,6</text><text x="56" y="116" font-size="8.5" fill="#7C3AED" font-weight="bold" text-anchor="middle" font-family="sans-serif">0,4</text><text x="122" y="50" font-size="10" fill="#1E293B" font-weight="bold" text-anchor="start" font-family="sans-serif">A</text><text x="122" y="134" font-size="10" fill="#1E293B" font-weight="bold" text-anchor="start" font-family="sans-serif">B</text><line x1="116" y1="46" x2="232" y2="26" stroke="#16A34A" stroke-width="2"/><line x1="116" y1="46" x2="232" y2="66" stroke="#C4B5FD" stroke-width="1.5"/><circle cx="232" cy="26" r="2.8" fill="#16A34A"/><circle cx="232" cy="66" r="2.4" fill="#A78BFA"/><text x="176" y="30" font-size="7.5" fill="#16A34A" font-weight="bold" text-anchor="middle" font-family="sans-serif">0,7</text><text x="176" y="58" font-size="7.5" fill="#7C3AED" font-weight="bold" text-anchor="middle" font-family="sans-serif">0,3</text><text x="238" y="30" font-size="9" fill="#1E293B" font-weight="bold" text-anchor="start" font-family="sans-serif">C</text><text x="238" y="70" font-size="9" fill="#1E293B" font-weight="bold" text-anchor="start" font-family="sans-serif">D</text><line x1="116" y1="130" x2="232" y2="114" stroke="#C4B5FD" stroke-width="1.5"/><line x1="116" y1="130" x2="232" y2="154" stroke="#C4B5FD" stroke-width="1.5"/><circle cx="232" cy="114" r="2.4" fill="#A78BFA"/><circle cx="232" cy="154" r="2.4" fill="#A78BFA"/><text x="176" y="118" font-size="7.5" fill="#7C3AED" font-weight="bold" text-anchor="middle" font-family="sans-serif">0,5</text><text x="176" y="150" font-size="7.5" fill="#7C3AED" font-weight="bold" text-anchor="middle" font-family="sans-serif">0,5</text><text x="238" y="118" font-size="9" fill="#1E293B" font-weight="bold" text-anchor="start" font-family="sans-serif">C</text><text x="238" y="158" font-size="9" fill="#1E293B" font-weight="bold" text-anchor="start" font-family="sans-serif">D</text><text x="150" y="174" font-size="8.5" fill="#16A34A" font-weight="bold" text-anchor="middle" font-family="sans-serif">trajet A–C  :  0,6 × 0,7 = 0,42</text></svg>`;
+  const PB_BERNOULLI=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 120" style="width:100%;display:block;border-radius:12px;margin:8px 0"><rect width="250" height="120" rx="10" fill="#FFF7ED"/><line x1="34" y1="60" x2="150" y2="34" stroke="#EA580C" stroke-width="1.8"/><line x1="34" y1="60" x2="150" y2="86" stroke="#EA580C" stroke-width="1.8"/><circle cx="34" cy="60" r="3.4" fill="#EA580C"/><circle cx="150" cy="34" r="3.6" fill="#16A34A"/><circle cx="150" cy="86" r="3.6" fill="#DC2626"/><text x="86" y="38" font-size="10" fill="#16A34A" font-weight="bold" text-anchor="middle" font-style="normal" font-family="sans-serif">p</text><text x="86" y="82" font-size="9" fill="#DC2626" font-weight="bold" text-anchor="middle" font-style="normal" font-family="sans-serif">q = 1 − p</text><text x="160" y="38" font-size="10" fill="#16A34A" font-weight="bold" text-anchor="start" font-style="normal" font-family="sans-serif">S  (succès)</text><text x="160" y="90" font-size="10" fill="#DC2626" font-weight="bold" text-anchor="start" font-style="normal" font-family="sans-serif">E  (échec)</text></svg>`;
+  const PB_BINOMIALE=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 180" style="width:100%;display:block;border-radius:12px;margin:8px 0"><rect width="290" height="180" rx="10" fill="#FEF2F2"/><line x1="24" y1="90" x2="96" y2="46" stroke="#DC2626" stroke-width="1.6"/><line x1="24" y1="90" x2="96" y2="134" stroke="#DC2626" stroke-width="1.6"/><circle cx="24" cy="90" r="3" fill="#DC2626"/><text x="54" y="58" font-size="8" fill="#16A34A" font-weight="bold" text-anchor="middle" font-style="normal" font-family="sans-serif">p</text><text x="54" y="118" font-size="8" fill="#DC2626" font-weight="bold" text-anchor="middle" font-style="normal" font-family="sans-serif">q</text><text x="98" y="42" font-size="9" fill="#16A34A" font-weight="bold" text-anchor="start" font-style="normal" font-family="sans-serif">S</text><text x="98" y="140" font-size="9" fill="#DC2626" font-weight="bold" text-anchor="start" font-style="normal" font-family="sans-serif">E</text><line x1="96" y1="46" x2="168" y2="22" stroke="#F87171" stroke-width="1.4"/><line x1="96" y1="46" x2="168" y2="70" stroke="#F87171" stroke-width="1.4"/><circle cx="96" cy="46" r="2.6" fill="#DC2626"/><text x="174" y="25" font-size="8" fill="#16A34A" font-weight="bold" text-anchor="start" font-style="normal" font-family="sans-serif">S</text><text x="174" y="73" font-size="8" fill="#DC2626" font-weight="bold" text-anchor="start" font-style="normal" font-family="sans-serif">E</text><circle cx="168" cy="22" r="2.2" fill="#F87171"/><circle cx="168" cy="70" r="2.2" fill="#F87171"/><line x1="96" y1="134" x2="168" y2="110" stroke="#F87171" stroke-width="1.4"/><line x1="96" y1="134" x2="168" y2="158" stroke="#F87171" stroke-width="1.4"/><circle cx="96" cy="134" r="2.6" fill="#DC2626"/><text x="174" y="113" font-size="8" fill="#16A34A" font-weight="bold" text-anchor="start" font-style="normal" font-family="sans-serif">S</text><text x="174" y="161" font-size="8" fill="#DC2626" font-weight="bold" text-anchor="start" font-style="normal" font-family="sans-serif">E</text><circle cx="168" cy="110" r="2.2" fill="#F87171"/><circle cx="168" cy="158" r="2.2" fill="#F87171"/><line x1="186" y1="22" x2="210" y2="22" stroke="#CBD5E1" stroke-width="1.4" stroke-dasharray="2,3"/><line x1="186" y1="70" x2="210" y2="70" stroke="#CBD5E1" stroke-width="1.4" stroke-dasharray="2,3"/><line x1="186" y1="110" x2="210" y2="110" stroke="#CBD5E1" stroke-width="1.4" stroke-dasharray="2,3"/><line x1="186" y1="158" x2="210" y2="158" stroke="#CBD5E1" stroke-width="1.4" stroke-dasharray="2,3"/><text x="232" y="94" font-size="16" fill="#94A3B8" font-weight="bold" text-anchor="middle" font-style="normal" font-family="sans-serif">⋯</text><text x="150" y="174" font-size="8.5" fill="#991B1B" font-weight="bold" text-anchor="middle" font-style="normal" font-family="sans-serif">n répétitions identiques et indépendantes</text></svg>`;
+
+  const SECS=[
+    { emoji:"①", label:"Tableaux croisés", color:"#0369A1", light:"#EFF6FF", rules:[
+      { id:"pb1",num:"1",title:"Tableau croisé d'effectifs",
+        svgDiag:PB_TABLEAU,
+        bltTex:[
+          r`\text{On croise deux caractères }A\text{ et }B\text{ dans un tableau}`,
+          r`\text{Card}(A)\text{ : nombre d'individus ayant le caractère }A`,
+          r`\text{Card}(A\cap B)\text{ : individus ayant }A\ \textbf{et}\ B`,
+          r`\text{Card}(E)\text{ : effectif total}`,
+        ]},
+      { id:"pb2",num:"2",title:"Fréquences",
+        fml:r`\begin{gathered}f(A)=\dfrac{\text{Card}(A)}{\text{Card}(E)}\quad(\text{marginale})\\[6pt]f_A(B)=\dfrac{\text{Card}(A\cap B)}{\text{Card}(A)}\quad(\text{conditionnelle})\end{gathered}`,
+        bltTex:[
+          r`\text{Marginale : part de }A\text{ dans l'ensemble }E`,
+          r`\text{Conditionnelle : part de }B\text{ parmi les individus de }A`,
+        ]},
+    ]},
+    { emoji:"①", label:"Proba conditionnelle", color:"#2563EB", light:"#EFF6FF", rules:[
+      { id:"pb3",num:"3",title:"Définition",
+        bltTex:[
+          r`P_A(B)\text{ : probabilité que }B\text{ se réalise }\textbf{sachant que }A\text{ est réalisé}`,
+          r`\text{On suppose }P(A)\neq 0`,
+        ],
+        tipTex:r`\text{« sachant }A\text{ » : on se place parmi les cas où }A\text{ est vrai}`},
+      { id:"pb4",num:"4",title:"Formule",
+        fml:r`P_A(B)=\dfrac{\text{Card}(A\cap B)}{\text{Card}(A)}=\dfrac{P(A\cap B)}{P(A)}`,
+        bltTex:[
+          r`\text{En situation d'équiprobabilité, on peut compter les effectifs}`,
+        ],
+        ex:{qTex:r`\text{800 patients : 455 ont pris }A,\ \text{dont 383 sont guéris}`,
+            a:r`P_A(G)=\dfrac{383}{455}\approx 0{,}84`}},
+    ]},
+    { emoji:"②", label:"Arbres pondérés", color:"#7C3AED", light:"#F5F3FF", rules:[
+      { id:"pb5",num:"5",title:"Deux épreuves & indépendance",
+        bltTex:[
+          r`\text{Une expérience à deux épreuves se représente par un }\textbf{arbre pondéré}`,
+          r`\text{Deux épreuves sont }\textbf{indépendantes}\text{ si l'une n'influence pas l'autre}`,
+        ]},
+      { id:"pb6",num:"6",title:"Les règles de l'arbre",
+        svgDiag:PB_ARBRE,
+        bltTex:[
+          r`\text{La somme des poids des branches d'un même nœud vaut }1`,
+          r`\text{Poids d'un trajet = }\textbf{produit}\text{ des branches du trajet}`,
+          r`\text{Proba d'un événement = }\textbf{somme}\text{ des trajets qui le réalisent}`,
+        ],
+        tipTex:r`\text{Les branches secondaires sont des probabilités conditionnelles}`},
+    ]},
+    { emoji:"②", label:"Variable aléatoire", color:"#6D28D9", light:"#F5F3FF", rules:[
+      { id:"pb7",num:"7",title:"Variable aléatoire",
+        bltTex:[
+          r`\text{Une variable aléatoire }X\text{ associe un nombre au résultat d'une expérience}`,
+          r`\text{Exemple : un gain, un nombre de succès…}`,
+        ]},
+      { id:"pb8",num:"8",title:"Loi de probabilité",
+        fml:r`\sum P(X=x_i)=1`,
+        bltTex:[
+          r`\text{On dresse le tableau des valeurs }x_i\text{ et des }P(X=x_i)`,
+          r`\text{La somme de toutes les probabilités vaut toujours }1`,
+        ],
+        ex:{qTex:r`X\ \text{prend }0,\ 1,\ 2\ \text{avec }P=0{,}7\,;\ 0{,}2\,;\ 0{,}1`,
+            a:r`0{,}7+0{,}2+0{,}1=1\qquad P(X>0)=0{,}3`}},
+    ]},
+    { emoji:"②", label:"Espérance", color:"#059669", light:"#ECFDF5", rules:[
+      { id:"pb9",num:"9",title:"Espérance E(X)",
+        fml:r`E(X)=x_1p_1+x_2p_2+\dots+x_np_n=\sum x_i\,p_i`,
+        bltTex:[
+          r`\text{C'est la }\textbf{moyenne}\text{ des valeurs, pondérée par les probabilités}`,
+          r`\text{Interprétation : gain moyen sur un grand nombre de répétitions}`,
+        ],
+        ex:{qTex:r`X:\ 0\,;\ 1\,;\ 2\qquad P:\ 0{,}7\,;\ 0{,}2\,;\ 0{,}1`,
+            a:r`E(X)=0\times 0{,}7+1\times 0{,}2+2\times 0{,}1=0{,}4`}},
+    ]},
+    { emoji:"③", label:"Épreuve de Bernoulli", color:"#EA580C", light:"#FFF7ED", rules:[
+      { id:"pb10",num:"10",title:"Épreuve de Bernoulli",
+        svgDiag:PB_BERNOULLI,
+        bltTex:[
+          r`\text{Une épreuve à }\textbf{deux issues}\text{ : succès }S\text{ et échec }E`,
+          r`P(S)=p\quad\text{et}\quad P(E)=q=1-p`,
+          r`p\text{ est le }\textbf{paramètre}\text{ de l'épreuve}`,
+        ],
+        ex:{qTex:r`\text{Dé : « obtenir un 6 »}`,
+            a:r`p=\dfrac{1}{6}\ ;\quad q=\dfrac{5}{6}`}},
+      { id:"pb11",num:"11",title:"Loi de Bernoulli",
+        fml:r`X=1\ (\text{succès})\ \text{ou}\ X=0\ (\text{échec})\qquad E(X)=p`,
+        bltTex:[
+          r`X\text{ vaut }1\text{ en cas de succès, }0\text{ sinon}`,
+        ]},
+    ]},
+    { emoji:"③", label:"Loi binomiale", color:"#DC2626", light:"#FEF2F2", rules:[
+      { id:"pb12",num:"12",title:"Schéma de Bernoulli",
+        svgDiag:PB_BINOMIALE,
+        bltTex:[
+          r`\text{On répète }n\text{ fois la même épreuve de Bernoulli}`,
+          r`\text{Les répétitions sont }\textbf{identiques et indépendantes}`,
+        ]},
+      { id:"pb13",num:"13",title:"Loi binomiale",
+        fml:r`X\sim\mathcal{B}(n\,;\,p)`,
+        bltTex:[
+          r`X\text{ compte le }\textbf{nombre de succès}\text{ sur les }n\text{ répétitions}`,
+          r`\text{Paramètres : }n\ (\text{répétitions})\ \text{et}\ p\ (\text{proba de succès})`,
+          r`\text{On calcule }P(X=k)\text{ à la calculatrice}`,
+        ],
+        tipTex:r`\text{On dénombre les trajets de l'arbre donnant }k\text{ succès}`},
+      { id:"pb14",num:"14",title:"Espérance",
+        fml:r`E(X)=n\times p`,
+        bltTex:[
+          r`\text{Nombre moyen de succès attendu sur }n\text{ répétitions}`,
+        ],
+        ex:{qTex:r`\text{Tir à l'arc : }p=0{,}4,\ n=4\ \text{tirs}`,
+            a:r`E(X)=4\times 0{,}4=1{,}6\ \text{succès en moyenne}`}},
+    ]},
+    { emoji:"🏋️", label:"S'entraîner", color:"#0F172A", light:"#F1F5F9", isPractice:true,
+      practices:[
+        {sub:"tableau_fill",          label:"Tableau à compléter",        emoji:"📝", cat:"probabilites"},
+        {sub:"arbre",                 label:"Arbre de probabilité",       emoji:"🌳", cat:"probabilites"},
+        {sub:"contraire",             label:"Événements contraires",      emoji:"🔄", cat:"probabilites"},
+        {sub:"probas_conditionnelles",label:"Probabilités conditionnelles",emoji:"🎯", cat:"probabilites"},
+        {sub:"probas_var_aleatoires", label:"Variables aléatoires",       emoji:"🎲", cat:"probabilites"},
+        {sub:"probas_loi_binomiale",  label:"Loi binomiale",              emoji:"🔔", cat:"probabilites"},
+      ]},
+  ];
+
+  const sec=SECS[secIdx]; const col=sec.color;
+  return (
+    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"#F8FAFF"}}>
+      <div style={{background:"linear-gradient(135deg,#8B5CF6,#6D28D9)",padding:"16px 18px 14px",flexShrink:0}}>
+        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:12}}>
+          <button onClick={onBack} style={{background:"rgba(255,255,255,.2)",border:"none",borderRadius:10,
+            cursor:"pointer",color:"#fff",fontSize:16,width:32,height:32,display:"flex",
+            alignItems:"center",justifyContent:"center"}}>✕</button>
+          <div style={{flex:1}}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:17,color:"#fff"}}>
+              🎲 Probabilités</div>
+            <div style={{fontSize:11,color:"rgba(255,255,255,.75)",marginTop:1}}>
+              Cours interactif · 3 phases · 1ère Techno</div>
+          </div>
+        </div>
+        <div ref={tabsRef} style={{display:"flex",gap:6,overflowX:"auto",scrollbarWidth:"none",paddingBottom:2}}>
+          {SECS.map((s,i)=>(
+            <button key={i} onClick={()=>setSecIdx(i)}
+              style={{background:i===secIdx?"#fff":"rgba(255,255,255,.2)",
+                border:"none",borderRadius:99,padding:"6px 13px",cursor:"pointer",flexShrink:0,
+                fontFamily:"'Nunito',sans-serif",fontWeight:700,fontSize:11,
+                color:i===secIdx?s.color:"#fff",whiteSpace:"nowrap"}}>
+              {s.emoji} {s.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div style={{flex:1,overflowY:"auto",padding:"14px 14px 80px"}}>
+        {sec.isPractice ? <CoursPracticeList practices={sec.practices} onStartPractice={onStartPractice} col={col}/> : sec.rules.map((rl,i)=>{
+          const k=`${secIdx}_${i}`; const expanded=isOpen(k,i===0);
+          return (
+            <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
+              overflow:"hidden",boxShadow:"0 2px 14px rgba(0,0,0,.07)",borderLeft:`4px solid ${col}`}}>
+              <div onClick={()=>tog(k)} style={{display:"flex",alignItems:"center",gap:10,
+                padding:"13px 15px",cursor:"pointer",userSelect:"none"}}>
+                <div style={{width:30,height:30,borderRadius:"50%",background:col,color:"#fff",
+                  display:"flex",alignItems:"center",justifyContent:"center",
+                  fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
+                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}{rl.titleTex&&<M tex={rl.titleTex}/>}</div>
+                <span style={{color:"#94A3B8",fontSize:11,display:"block",
+                  transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
+              </div>
+              {expanded&&(
+                <div style={{padding:"0 15px 15px"}}>
+                  {rl.fml&&<div style={{background:sec.light,borderRadius:13,padding:"14px 12px",
+                    margin:"8px 0",textAlign:"center",overflowX:"auto"}}><M tex={rl.fml}/></div>}
+                  {rl.svgDiag&&<div style={{margin:"8px 0",borderRadius:12,overflow:"hidden"}}
+                    dangerouslySetInnerHTML={{__html:rl.svgDiag}}/>}
+                  {(rl.bltTex||[]).map((b,j)=>(
+                    <div key={j} style={{display:"flex",gap:7,padding:"4px 0",alignItems:"flex-start"}}>
+                      <span style={{color:col,fontWeight:700,flexShrink:0,marginTop:2}}>•</span>
+                      <span style={{overflowX:"auto"}}><M tex={b}/></span>
+                    </div>
+                  ))}
+                  {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,
+                    padding:"10px 12px",fontSize:12,fontWeight:600,color:"#713F12",
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4,overflowX:"auto"}}>
+                    {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
+                  </div>}
+                  {rl.ex&&(
+                    <div style={{background:"#F8FAFC",borderRadius:12,padding:"12px 13px",
+                      marginTop:10,borderLeft:`3px solid ${col}`}}>
+                      <div style={{fontSize:10,fontWeight:800,color:col,textTransform:"uppercase",
+                        letterSpacing:".7px",marginBottom:5}}>Exemple</div>
+                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>
+                        {rl.ex.qTex?<M tex={rl.ex.qTex}/>:<span>{rl.ex.q}</span>}
+                      </div>
+                      <div style={{textAlign:"center",overflowX:"auto"}}><M tex={rl.ex.a}/></div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+
+
 // ── CoursMathStats — Statistiques (Ch. 11) ───────────────────────────────────
 function CoursMathStats({onBack, onStartPractice}) {
   const [secIdx, setSecIdx] = React.useState(0);
@@ -28315,6 +28772,8 @@ function AutoMaths() {
           {screen==="cours_equations"         && <CoursMathEquations    onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_configs"          && <CoursMathConfigs      onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_second_degre"     && <CoursMathSecondDegre  onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
+          {screen==="cours_suites"           && <CoursMathSuites       onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
+          {screen==="cours_probas"           && <CoursMathProbas       onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="flashcard_setup" && <FlashcardSetupScreen onBack={()=>setScreen(profile?"dashboard":"home")} onStart={(cards)=>{ setPool(cards); plsbl("Flashcards lancées", {cartes: cards.length}); setScreen("flashcards"); }}/>}
           {screen==="flashcards"    && <FlashcardScreen cards={pool} onBack={()=>setScreen("flashcard_setup")}/>}
           {screen==="mission_theme" && missionTheme && <MissionThemeScreen theme={missionTheme} missionId={missionId} onBack={()=>setScreen("mission_select")} onStart={(qs, themeId)=>{
