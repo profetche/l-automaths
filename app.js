@@ -10156,6 +10156,48 @@ const DB = {
         tip: r`n=6\text{ : }Q_1\text{ est la médiane de la moitié inférieure }(2;4;6)\text{ : }Q_1=4.` },
     ],
 
+    boite_moustaches: [
+      { q: r`\text{Une boîte à moustaches résume une série par :}`,
+        choices:[ r`\text{min, }Q_1\text{, médiane, }Q_3\text{, max}`, r`\text{la moyenne seulement}`,
+                  r`\text{le minimum et le maximum seulement}`, r`\text{l'effectif total}` ],
+        a: r`\text{min, }Q_1\text{, médiane, }Q_3\text{, max}`,
+        tip: r`\text{Ce sont les 5 valeurs du résumé : min, }Q_1\text{, Méd, }Q_3\text{, max.}` },
+      { q: r`\text{L'écart interquartile vaut :}`,
+        choices:[ r`Q_3-Q_1`, r`Q_1-Q_3`, r`\text{max}-\text{min}`, r`\text{médiane}` ],
+        a: r`Q_3-Q_1`, tip: r`\text{Écart interquartile : }EI=Q_3-Q_1.` },
+      { q: r`\text{Le rectangle (la « boîte ») s'étend :}`,
+        choices:[ r`\text{de }Q_1\text{ à }Q_3`, r`\text{de min à max}`,
+                  r`\text{de }Q_1\text{ à la médiane}`, r`\text{de la médiane à }Q_3` ],
+        a: r`\text{de }Q_1\text{ à }Q_3`, tip: r`\text{La boîte va du 1}^{er}\text{ au 3}^{e}\text{ quartile.}` },
+      { q: r`\text{Les « moustaches » atteignent :}`,
+        choices:[ r`\text{le minimum et le maximum}`, r`Q_1\text{ et }Q_3`,
+                  r`\text{la médiane}`, r`\text{la moyenne}` ],
+        a: r`\text{le minimum et le maximum}`, tip: r`\text{Les moustaches vont jusqu'aux valeurs extrêmes.}` },
+      { q: r`Q_1=5,\quad Q_3=12.\\[4pt]\text{Écart interquartile}=\,?`,
+        numpad:true, a:"7", tip: r`EI=Q_3-Q_1=12-5=7` },
+      { q: r`\text{min}=2,\quad \text{max}=18.\\[4pt]\text{Étendue}=\,?`,
+        numpad:true, a:"16", tip: r`\text{Étendue}=\text{max}-\text{min}=18-2=16` },
+      { q: r`\text{Série triée : }2;4;6;8;10;12;14;16\ (n=8).\\[4pt]\text{Médiane}=\,?`,
+        numpad:true, a:"9", tip: r`\text{Médiane}=\dfrac{8+10}{2}=9` },
+      { q: r`\text{Série triée : }2;4;6;8;10;12;14;16.\\[4pt]Q_1=\,?`,
+        numpad:true, a:"5", tip: r`Q_1=\text{médiane de }(2;4;6;8)=\dfrac{4+6}{2}=5` },
+      { q: r`\text{Série triée : }2;4;6;8;10;12;14;16.\\[4pt]Q_3=\,?`,
+        numpad:true, a:"13", tip: r`Q_3=\text{médiane de }(10;12;14;16)=\dfrac{12+14}{2}=13` },
+      { q: r`\text{Série triée : }3;5;7;9;11\ (n=5).\\[4pt]\text{Médiane}=\,?`,
+        numpad:true, a:"7", tip: r`\text{Valeur centrale (3}^{e}\text{) : }7.` },
+      { q: r`\text{min}=4,\ Q_1=8,\ \text{Méd}=10,\ Q_3=14,\ \text{max}=20.\\[4pt]\text{Écart interquartile}=\,?`,
+        numpad:true, a:"6", tip: r`EI=Q_3-Q_1=14-8=6` },
+      { q: r`\text{Entre }Q_1\text{ et }Q_3\text{ se trouvent environ :}`,
+        choices:[ r`\text{50\% des valeurs}`, r`\text{25\% des valeurs}`,
+                  r`\text{100\% des valeurs}`, r`\text{10\% des valeurs}` ],
+        a: r`\text{50\% des valeurs}`, tip: r`\text{La boîte contient la moitié centrale des données.}` },
+      { q: r`\text{Deux séries : même médiane, mais boîtes de largeurs}\\[4pt]\text{différentes. Cela traduit :}`,
+        choices:[ r`\text{des dispersions différentes}`, r`\text{des séries identiques}`,
+                  r`\text{des moyennes égales}`, r`\text{des effectifs égaux}` ],
+        a: r`\text{des dispersions différentes}`,
+        tip: r`\text{Une boîte plus large }\Rightarrow\text{ un écart interquartile plus grand.}` },
+    ],
+
     loi_binomiale: [
 
       // lb_01 — schéma de Bernoulli
@@ -13590,6 +13632,164 @@ const DB = {
 
 
     ],
+    // ════ CERCLE & MÉDIATRICE ════
+    config_cercle_med: [
+      { q: r`\text{Cercle de centre }O(0;0)\text{ et rayon }5.\\[4pt]\text{Le point }A(3;4)\text{ lui appartient-il ?}`,
+        choices:[ r`\text{Oui, car }OA=5`, r`\text{Non, car }OA=7`,
+                  r`\text{Non, car }OA=4`, r`\text{Oui, car }OA=4` ],
+        a: r`\text{Oui, car }OA=5`,
+        tip: r`OA=\sqrt{3^2+4^2}=5=r\Rightarrow A\in\mathcal C` },
+      { q: r`\text{Cercle de centre }O(0;0)\text{ et rayon }5.\\[4pt]\text{Le point }C(2;3)\text{ lui appartient-il ?}`,
+        choices:[ r`\text{Non, car }OC=\sqrt{13}\ne5`, r`\text{Oui, car }OC=5`,
+                  r`\text{Oui, car }OC=\sqrt{13}`, r`\text{Non, car }OC=6` ],
+        a: r`\text{Non, car }OC=\sqrt{13}\ne5`,
+        tip: r`OC=\sqrt{2^2+3^2}=\sqrt{13}\approx3{,}6\ne5` },
+      { q: r`\text{Rayon du cercle de centre }O(0;0)\text{ passant par }A(6;8) :`,
+        numpad:true, a:"10", tip: r`r=OA=\sqrt{36+64}=10` },
+      { q: r`\text{Rayon du cercle de centre }O(0;0)\text{ passant par }B(5;12) :`,
+        numpad:true, a:"13", tip: r`r=\sqrt{25+144}=13` },
+      { q: r`\text{La médiatrice d'un segment }[AB]\text{ est l'ensemble des points :}`,
+        choices:[ r`\text{équidistants de }A\text{ et }B`, r`\text{plus proches de }A`,
+                  r`\text{situés entre }A\text{ et }B`, r`\text{alignés avec }A\text{ et }B` ],
+        a: r`\text{équidistants de }A\text{ et }B`,
+        tip: r`M\in\text{médiatrice}\iff MA=MB` },
+      { q: r`M\text{ appartient à la médiatrice de }[AB].\\[4pt]\text{Quelle égalité est vraie ?}`,
+        choices:[ r`MA=MB`, r`MA=AB`, r`MA=2\,MB`, r`MA+MB=AB` ],
+        a: r`MA=MB`, tip: r`\text{Par définition de la médiatrice.}` },
+      { q: r`A(0;0)\text{ et }B(4;0).\\[4pt]\text{Équation de la médiatrice de }[AB] :`,
+        choices:[ r`x=2`, r`y=2`, r`x=4`, r`y=0` ],
+        a: r`x=2`, tip: r`\text{Verticale passant par le milieu }I(2;0).` },
+      { q: r`A(0;0)\text{ et }B(0;6).\\[4pt]\text{Équation de la médiatrice de }[AB] :`,
+        choices:[ r`y=3`, r`x=3`, r`y=6`, r`x=0` ],
+        a: r`y=3`, tip: r`\text{Horizontale passant par le milieu }I(0;3).` },
+      { q: r`A(-2;0)\text{ et }B(4;0).\\[4pt]\text{Équation de la médiatrice de }[AB] :`,
+        choices:[ r`x=1`, r`x=2`, r`x=-1`, r`y=1` ],
+        a: r`x=1`, tip: r`\text{Milieu }I\left(\dfrac{-2+4}{2};0\right)=(1;0).` },
+      { q: r`A(1;3)\text{ et }B(5;7).\\[4pt]\text{Coordonnées du milieu }I\text{ de }[AB] :`,
+        choices:[ r`I(3;5)`, r`I(6;10)`, r`I(2;2)`, r`I(4;4)` ],
+        a: r`I(3;5)`, tip: r`I\left(\dfrac{1+5}{2};\dfrac{3+7}{2}\right)=(3;5)` },
+      { q: r`\text{Le milieu }I\text{ de }[AB]\text{ appartient-il toujours}\\[4pt]\text{à la médiatrice de }[AB]\text{ ?}`,
+        choices:[ r`\text{Oui, toujours}`, r`\text{Non, jamais}`,
+                  r`\text{Seulement si }A=B`, r`\text{Seulement si }AB=1` ],
+        a: r`\text{Oui, toujours}`,
+        tip: r`IA=IB\text{ : le milieu est équidistant de }A\text{ et }B.` },
+      { q: r`\text{Cercle de diamètre }[AB]\text{ avec }A(0;0),\,B(6;0).\\[4pt]\text{Centre et rayon ?}`,
+        choices:[ r`\text{centre }(3;0),\ r=3`, r`\text{centre }(6;0),\ r=6`,
+                  r`\text{centre }(3;0),\ r=6`, r`\text{centre }(0;0),\ r=3` ],
+        a: r`\text{centre }(3;0),\ r=3`,
+        tip: r`\text{Centre = milieu }(3;0)\text{ ; }r=\dfrac{AB}{2}=3.` },
+      { q: r`\text{Le point }\Omega(2;1)\text{ (centre) appartient-il}\\[4pt]\text{au cercle de centre }\Omega\text{ et rayon }3\text{ ?}`,
+        choices:[ r`\text{Non, car }\Omega\Omega=0\ne3`, r`\text{Oui}`,
+                  r`\text{Non, car }\Omega\Omega=3`, r`\text{Cela dépend}` ],
+        a: r`\text{Non, car }\Omega\Omega=0\ne3`,
+        tip: r`\text{Le centre est à distance }0,\text{ pas }3,\text{ de lui-même.}` },
+      { q: r`\text{Cercle de centre }O(0;0)\text{ et rayon }5.\\[4pt]\text{Le point }B(5;0)\text{ lui appartient-il ?}`,
+        choices:[ r`\text{Oui, car }OB=5`, r`\text{Non, car }OB=0`,
+                  r`\text{Non, car }OB=25`, r`\text{Oui, car }OB=0` ],
+        a: r`\text{Oui, car }OB=5`, tip: r`OB=\sqrt{5^2+0^2}=5=r` },
+      { q: r`A(1;1)\text{ et }B(5;1).\ M(\,?\,;y)\text{ est sur la médiatrice.}\\[4pt]\text{Quelle abscisse pour }M\text{ ?}`,
+        numpad:true, a:"3", tip: r`\text{Médiatrice : }x=\dfrac{1+5}{2}=3\text{ (pour tout }y).` },
+    ],
+
+    // ════ DISTANCE D'UN POINT À UNE DROITE ════
+    config_point_droite: [
+      { q: r`\text{Droite }(d):y=0\ (\text{axe des abscisses}).\\[4pt]\text{Distance de }M(3;4)\text{ à }(d) :`,
+        numpad:true, a:"4", tip: r`\text{Distance verticale }=|4-0|=4` },
+      { q: r`(d):y=2.\quad M(1;5).\\[4pt]\text{Distance de }M\text{ à }(d) :`,
+        numpad:true, a:"3", tip: r`|5-2|=3` },
+      { q: r`(d):x=0\ (\text{axe des ordonnées}).\\[4pt]\text{Distance de }M(-5;2)\text{ à }(d) :`,
+        numpad:true, a:"5", tip: r`\text{Distance horizontale }=|-5-0|=5` },
+      { q: r`(d):x=3.\quad M(7;1).\\[4pt]\text{Distance de }M\text{ à }(d) :`,
+        numpad:true, a:"4", tip: r`|7-3|=4` },
+      { q: r`(d):y=-1.\quad M(2;3).\\[4pt]\text{Distance de }M\text{ à }(d) :`,
+        numpad:true, a:"4", tip: r`|3-(-1)|=4` },
+      { q: r`\text{La distance d'un point }M\text{ à une droite }(d)\text{ est :}`,
+        choices:[ r`\text{la longueur de la perpendiculaire à }(d)\text{ issue de }M`,
+                  r`\text{la distance de }M\text{ à un point quelconque de }(d)`,
+                  r`\text{toujours nulle}`, r`\text{la moitié de }OM` ],
+        a: r`\text{la longueur de la perpendiculaire à }(d)\text{ issue de }M`,
+        tip: r`\text{C'est le plus court chemin de }M\text{ à }(d).` },
+      { q: r`\text{Le point de }(d)\text{ le plus proche de }M\text{ s'appelle :}`,
+        choices:[ r`\text{le projeté orthogonal de }M\text{ sur }(d)`,
+                  r`\text{le milieu de }M`, r`\text{le symétrique de }M`,
+                  r`\text{le centre de }(d)` ],
+        a: r`\text{le projeté orthogonal de }M\text{ sur }(d)`,
+        tip: r`\text{Pied de la perpendiculaire abaissée de }M.` },
+      { q: r`(d):y=4.\quad M(2;4).\\[4pt]\text{Distance de }M\text{ à }(d) :`,
+        numpad:true, a:"0", tip: r`M\in(d)\Rightarrow\text{distance}=0` },
+      { q: r`(d):x=-2.\quad M(3;5).\\[4pt]\text{Distance de }M\text{ à }(d) :`,
+        numpad:true, a:"5", tip: r`|3-(-2)|=5` },
+      { q: r`(d):y=1.\quad M(0;7).\\[4pt]\text{Distance de }M\text{ à }(d) :`,
+        numpad:true, a:"6", tip: r`|7-1|=6` },
+      { q: r`\text{Projeté orthogonal de }M(5;3)\text{ sur l'axe }(Ox) :`,
+        choices:[ r`H(5;0)`, r`H(0;3)`, r`H(5;3)`, r`H(0;0)` ],
+        a: r`H(5;0)`, tip: r`\text{On garde l'abscisse, l'ordonnée devient }0.` },
+      { q: r`\text{Projeté orthogonal de }M(5;3)\text{ sur l'axe }(Oy) :`,
+        choices:[ r`H(0;3)`, r`H(5;0)`, r`H(3;5)`, r`H(5;3)` ],
+        a: r`H(0;3)`, tip: r`\text{On garde l'ordonnée, l'abscisse devient }0.` },
+      { q: r`(d):x=1.\quad M(6;-2).\\[4pt]\text{Distance de }M\text{ à }(d) :`,
+        numpad:true, a:"5", tip: r`|6-1|=5` },
+      { q: r`\text{Vrai ou faux : la distance de }M\text{ à }(d)\text{ est}\\[4pt]\text{inférieure ou égale à }MP\text{ pour tout }P\in(d).`,
+        choices:[ r`\text{Vrai}`, r`\text{Faux}`,
+                  r`\text{Vrai seulement si }M\in(d)`, r`\text{On ne peut pas savoir}` ],
+        a: r`\text{Vrai}`,
+        tip: r`\text{La perpendiculaire donne le plus court chemin.}` },
+      { q: r`(d):y=3.\quad M(0;8).\\[4pt]\text{Distance de }M\text{ à }(d) :`,
+        numpad:true, a:"5", tip: r`|8-3|=5` },
+    ],
+
+    // ════ TRIGONOMÉTRIE DANS LE TRIANGLE RECTANGLE ════
+    config_trigo: [
+      { q: r`\text{Dans un triangle rectangle, }\cos\text{ d'un angle aigu}=`,
+        choices:[ r`\dfrac{\text{adjacent}}{\text{hypoténuse}}`, r`\dfrac{\text{opposé}}{\text{hypoténuse}}`,
+                  r`\dfrac{\text{opposé}}{\text{adjacent}}`, r`\dfrac{\text{hypoténuse}}{\text{adjacent}}` ],
+        a: r`\dfrac{\text{adjacent}}{\text{hypoténuse}}`, tip: r`\text{CAH : Cos = Adjacent / Hypoténuse}` },
+      { q: r`\text{Dans un triangle rectangle, }\sin\text{ d'un angle aigu}=`,
+        choices:[ r`\dfrac{\text{opposé}}{\text{hypoténuse}}`, r`\dfrac{\text{adjacent}}{\text{hypoténuse}}`,
+                  r`\dfrac{\text{opposé}}{\text{adjacent}}`, r`\dfrac{\text{hypoténuse}}{\text{opposé}}` ],
+        a: r`\dfrac{\text{opposé}}{\text{hypoténuse}}`, tip: r`\text{SOH : Sin = Opposé / Hypoténuse}` },
+      { q: r`\text{Dans un triangle rectangle, }\tan\text{ d'un angle aigu}=`,
+        choices:[ r`\dfrac{\text{opposé}}{\text{adjacent}}`, r`\dfrac{\text{adjacent}}{\text{opposé}}`,
+                  r`\dfrac{\text{opposé}}{\text{hypoténuse}}`, r`\dfrac{\text{adjacent}}{\text{hypoténuse}}` ],
+        a: r`\dfrac{\text{opposé}}{\text{adjacent}}`, tip: r`\text{TOA : Tan = Opposé / Adjacent}` },
+      { q: r`\text{Hypoténuse }=10,\ \text{côté adjacent à }\alpha=6.\\[4pt]\cos\alpha=\,?`,
+        choices:[ r`0{,}6`, r`0{,}8`, r`0{,}75`, r`1{,}67` ],
+        a: r`0{,}6`, tip: r`\cos\alpha=\dfrac{6}{10}=0{,}6` },
+      { q: r`\text{Hypoténuse }=10,\ \text{côté opposé à }\alpha=8.\\[4pt]\sin\alpha=\,?`,
+        choices:[ r`0{,}8`, r`0{,}6`, r`1{,}25`, r`0{,}75` ],
+        a: r`0{,}8`, tip: r`\sin\alpha=\dfrac{8}{10}=0{,}8` },
+      { q: r`\text{Opposé }=8,\ \text{adjacent }=6.\\[4pt]\tan\alpha=\,?`,
+        choices:[ r`\dfrac{4}{3}`, r`\dfrac{3}{4}`, r`\dfrac{4}{5}`, r`\dfrac{3}{5}` ],
+        a: r`\dfrac{4}{3}`, tip: r`\tan\alpha=\dfrac{8}{6}=\dfrac{4}{3}` },
+      { q: r`ABC\text{ rectangle en }A,\ AB=3,\ AC=4,\ BC=5.\\[4pt]\cos(\widehat{B})=\,?`,
+        choices:[ r`\dfrac{3}{5}`, r`\dfrac{4}{5}`, r`\dfrac{4}{3}`, r`\dfrac{3}{4}` ],
+        a: r`\dfrac{3}{5}`, tip: r`\cos\widehat B=\dfrac{AB}{BC}=\dfrac{3}{5}\ (\text{adj/hyp})` },
+      { q: r`ABC\text{ rectangle en }A,\ AB=3,\ AC=4,\ BC=5.\\[4pt]\sin(\widehat{B})=\,?`,
+        choices:[ r`\dfrac{4}{5}`, r`\dfrac{3}{5}`, r`\dfrac{4}{3}`, r`\dfrac{5}{4}` ],
+        a: r`\dfrac{4}{5}`, tip: r`\sin\widehat B=\dfrac{AC}{BC}=\dfrac{4}{5}\ (\text{opp/hyp})` },
+      { q: r`ABC\text{ rectangle en }A,\ AB=3,\ AC=4,\ BC=5.\\[4pt]\tan(\widehat{B})=\,?`,
+        choices:[ r`\dfrac{4}{3}`, r`\dfrac{3}{4}`, r`\dfrac{4}{5}`, r`\dfrac{3}{5}` ],
+        a: r`\dfrac{4}{3}`, tip: r`\tan\widehat B=\dfrac{AC}{AB}=\dfrac{4}{3}\ (\text{opp/adj})` },
+      { q: r`\cos(60^\circ)=\,?`,
+        choices:[ r`\dfrac{1}{2}`, r`\dfrac{\sqrt2}{2}`, r`\dfrac{\sqrt3}{2}`, r`1` ],
+        a: r`\dfrac{1}{2}`, tip: r`\cos(60^\circ)=0{,}5=\dfrac12` },
+      { q: r`\sin(30^\circ)=\,?`,
+        choices:[ r`\dfrac{1}{2}`, r`\dfrac{\sqrt3}{2}`, r`\dfrac{\sqrt2}{2}`, r`1` ],
+        a: r`\dfrac{1}{2}`, tip: r`\sin(30^\circ)=0{,}5=\dfrac12` },
+      { q: r`\cos(45^\circ)=\,?`,
+        choices:[ r`\dfrac{\sqrt2}{2}`, r`\dfrac{1}{2}`, r`\dfrac{\sqrt3}{2}`, r`1` ],
+        a: r`\dfrac{\sqrt2}{2}`, tip: r`\cos(45^\circ)=\dfrac{\sqrt2}{2}\approx0{,}71` },
+      { q: r`\tan(45^\circ)=\,?`,
+        numpad:true, a:"1", tip: r`\tan(45^\circ)=\dfrac{\sin45^\circ}{\cos45^\circ}=1` },
+      { q: r`\text{Dans un triangle rectangle, l'hypoténuse est :}`,
+        choices:[ r`\text{le côté opposé à l'angle droit (le plus long)}`,
+                  r`\text{un des côtés de l'angle droit}`,
+                  r`\text{le plus petit côté}`, r`\text{toujours horizontale}` ],
+        a: r`\text{le côté opposé à l'angle droit (le plus long)}`,
+        tip: r`\text{L'hypoténuse fait face à l'angle de }90^\circ.` },
+      { q: r`\text{Pour tout angle aigu }\alpha :\quad \cos^2\alpha+\sin^2\alpha=\,?`,
+        numpad:true, a:"1", tip: r`\text{Relation fondamentale : }\cos^2\alpha+\sin^2\alpha=1` },
+    ],
 
   },
 
@@ -13764,6 +13964,7 @@ const CATS = [
     subs:[
       {id:"stat_centrale",  label:"Moyenne & médiane",      group:"base",   levels:["sec","tc","stmg","spe","term"]},
       {id:"stat_dispersion",label:"Quartiles & dispersion", group:"base",   levels:["sec","tc","stmg","spe","term"]},
+      {id:"boite_moustaches",label:"Boîte à moustaches",    group:"base",   levels:["sec","tc","stmg","spe","term"]},
       {id:"loi_binomiale",  label:"Loi binomiale",          group:"avance", levels:["stmg","spe","term"]},
       {id:"echantillonnage",label:"Échantillonnage",        group:"avance", levels:["stmg"]},
     ] },
@@ -13823,6 +14024,9 @@ const CATS = [
       {id:"geom_espace_vecteurs",  label:"Vecteurs et plans dans l'espace",  group:"espace", levels:["term"]},
       {id:"geom_espace_equations", label:"Équations de plan",                group:"espace", levels:["term"]},
       {id:"geom_espace_droites",   label:"Droites dans l'espace",            group:"espace", levels:["term"]},
+      {id:"config_cercle_med",   label:"Cercle & médiatrice",         group:"plan", levels:["sec","spe"]},
+      {id:"config_point_droite", label:"Distance point-droite",       group:"plan", levels:["sec","spe"]},
+      {id:"config_trigo",        label:"Trigo du triangle rectangle", group:"plan", levels:["sec","spe"]},
     ] },
   { id:"algo_python", label:"Algorithmique Python", emoji:"🐍", color:"#15803D", grad:"linear-gradient(135deg,#22C55E,#15803D)", light:"#F0FDF4", border:"#BBF7D0",
     subs:[
@@ -24698,6 +24902,32 @@ const COURS_CATALOG = [
   },
 ];
 
+function CoursPracticeList({practices, onStartPractice, col}){
+  return (
+    <div>
+      <div style={{background:"#F8FAFC",borderRadius:14,padding:"14px 15px",marginBottom:14,
+        fontSize:12.5,color:"#475569",lineHeight:1.6,border:"1px solid #E2E8F0"}}>
+        Retrouve ici les QCM de l'application correspondant à ce chapitre. Lance un thème pour t'entraîner directement !
+      </div>
+      {practices.map(p=>(
+        <button key={p.sub} onClick={()=>onStartPractice&&onStartPractice(p.cat,p.sub)}
+          style={{width:"100%",background:"#fff",border:"2px solid #E2E8F0",
+            borderRadius:16,padding:"14px 16px",marginBottom:10,
+            cursor:onStartPractice?"pointer":"default",
+            display:"flex",alignItems:"center",gap:14,textAlign:"left",
+            boxShadow:"0 2px 10px rgba(0,0,0,.06)"}}>
+          <span style={{fontSize:26,flexShrink:0}}>{p.emoji}</span>
+          <div style={{flex:1}}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:"#1E293B"}}>{p.label}</div>
+            <div style={{fontSize:11,color:"#94A3B8",marginTop:2}}>Questions · S'entraîner</div>
+          </div>
+          {onStartPractice&&<span style={{color:"#6366F1",fontWeight:800,fontSize:13}}>Lancer →</span>}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 function CoursListScreen({onBack,onSelectCours}) {
   return (
     <div style={{display:"flex",flexDirection:"column",height:"100%",background:"var(--am-bg-light)"}}>
@@ -25050,7 +25280,10 @@ function CoursMathCalcul({onBack, onStartPractice}) {
         {sub:"fractions",   label:"Fractions",             emoji:"🔢", cat:"numerique"},
         {sub:"puissances",  label:"Puissances",            emoji:"⚡", cat:"numerique"},
         {sub:"scientifique",label:"Écriture scientifique", emoji:"🔬", cat:"numerique"},
-        {sub:"racines",     label:"Racines carrées",       emoji:"√",  cat:"numerique"},
+        {sub:"racines_n1", label:"Racines carrées · niveau 1", emoji:"√", cat:"numerique"},
+        {sub:"racines_n2", label:"Racines carrées · niveau 2", emoji:"√", cat:"numerique"},
+        {sub:"racines_n3", label:"Racines carrées · niveau 3", emoji:"√", cat:"numerique"},
+        {sub:"racines_n4", label:"Racines carrées · niveau 4", emoji:"√", cat:"numerique"},
         {sub:"relatifs",    label:"Nombres relatifs",      emoji:"±",  cat:"numerique"},
       ]},
   ];
@@ -26455,6 +26688,13 @@ function CoursMathConfigs({onBack, onStartPractice}) {
         ex:{qTex:r`\cos60°=\tfrac{1}{2}\text{. Donner la valeur exacte de }\sin60°`,
             a:r`\sin^2 60°=1-\left(\tfrac{1}{2}\right)^2=1-\tfrac{1}{4}=\tfrac{3}{4}\quad\Rightarrow\quad\sin60°=\dfrac{\sqrt{3}}{2}`}},
     ]},
+    { emoji:"🏋️", label:"S'entraîner", color:"#0F172A", light:"#F1F5F9", isPractice:true,
+      practices:[
+        {sub:"geom_analytique",     label:"Distance & coordonnées",        emoji:"📏", cat:"geometrie"},
+        {sub:"config_cercle_med",   label:"Cercle & médiatrice",          emoji:"⭕", cat:"geometrie"},
+        {sub:"config_point_droite", label:"Distance point-droite",        emoji:"📐", cat:"geometrie"},
+        {sub:"config_trigo",        label:"Trigo du triangle rectangle",  emoji:"📐", cat:"geometrie"},
+      ]},
   ];
 
   const sec=SECS[secIdx]; const col=sec.color;
@@ -26485,7 +26725,7 @@ function CoursMathConfigs({onBack, onStartPractice}) {
         </div>
       </div>
       <div style={{flex:1,overflowY:"auto",padding:"14px 14px 80px"}}>
-        {sec.rules.map((rl,i)=>{
+        {sec.isPractice ? <CoursPracticeList practices={sec.practices} onStartPractice={onStartPractice} col={col}/> : sec.rules.map((rl,i)=>{
           const k=`${secIdx}_${i}`; const expanded=isOpen(k,i===0);
           return (
             <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
@@ -26622,6 +26862,14 @@ function CoursMathEquations({onBack, onStartPractice}) {
         ex:{qTex:r`(-2x-1)(3x-2)>0`,
             a:r`\begin{gathered}\text{Racines : }x=-\tfrac{1}{2}\text{ et }x=\tfrac{2}{3}\\[4pt]S=\left]-\tfrac{1}{2}\,;\,\tfrac{2}{3}\right[\end{gathered}`}},
     ]},
+    { emoji:"🏋️", label:"S'entraîner", color:"#0F172A", light:"#F1F5F9", isPractice:true,
+      practices:[
+        {sub:"produit_nul",    label:"Équation produit nul", emoji:"✖️", cat:"litteral"},
+        {sub:"eq_x2",          label:"Équation x² = a",      emoji:"²",  cat:"litteral"},
+        {sub:"signe_produit",  label:"Signe d'un produit",   emoji:"±",  cat:"fonctions"},
+        {sub:"signe_quotient", label:"Signe d'un quotient",  emoji:"➗", cat:"fonctions"},
+        {sub:"inequation1",    label:"Inéquation 1er degré", emoji:"↔️", cat:"litteral"},
+      ]},
   ];
 
   const sec=SECS[secIdx]; const col=sec.color;
@@ -26652,7 +26900,7 @@ function CoursMathEquations({onBack, onStartPractice}) {
         </div>
       </div>
       <div style={{flex:1,overflowY:"auto",padding:"14px 14px 80px"}}>
-        {sec.rules.map((rl,i)=>{
+        {sec.isPractice ? <CoursPracticeList practices={sec.practices} onStartPractice={onStartPractice} col={col}/> : sec.rules.map((rl,i)=>{
           const k=`${secIdx}_${i}`; const expanded=isOpen(k,i===0);
           return (
             <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
@@ -26700,9 +26948,6 @@ function CoursMathEquations({onBack, onStartPractice}) {
           );
         })}
       </div>
-      {onStartPractice&&<div style={{padding:"12px 14px 16px",borderTop:"1px solid #F1F5F9",background:"white",flexShrink:0}}>
-        <button onClick={onStartPractice} style={{width:"100%",padding:"13px",background:"#D97706",border:"none",borderRadius:14,color:"white",fontSize:15,fontWeight:800,fontFamily:"'Nunito',sans-serif",cursor:"pointer",letterSpacing:".3px"}}>💪 S'entraîner</button>
-      </div>}
     </div>
   );
 }
@@ -26801,6 +27046,12 @@ function CoursMathStats({onBack, onStartPractice}) {
         ],
         tipTex:r`\text{Comparer deux séries : même }\bar{x}\text{ mais }\sigma\text{ différents → dispersion différente}`},
     ]},
+    { emoji:"🏋️", label:"S'entraîner", color:"#0F172A", light:"#F1F5F9", isPractice:true,
+      practices:[
+        {sub:"stat_centrale",   label:"Moyenne · Médiane · Quartiles",   emoji:"📊", cat:"statistiques"},
+        {sub:"stat_dispersion", label:"Étendue · Variance · Écart-type", emoji:"📈", cat:"statistiques"},
+        {sub:"boite_moustaches", label:"Boîte à moustaches",                emoji:"📦", cat:"statistiques"},
+      ]},
   ];
 
   const sec=SECS[secIdx]; const col=sec.color;
@@ -26831,7 +27082,7 @@ function CoursMathStats({onBack, onStartPractice}) {
         </div>
       </div>
       <div style={{flex:1,overflowY:"auto",padding:"14px 14px 80px"}}>
-        {sec.rules.map((rl,i)=>{
+        {sec.isPractice ? <CoursPracticeList practices={sec.practices} onStartPractice={onStartPractice} col={col}/> : sec.rules.map((rl,i)=>{
           const k=`${secIdx}_${i}`; const expanded=isOpen(k,i===0);
           return (
             <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
