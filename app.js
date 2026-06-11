@@ -10097,10 +10097,10 @@ const DB = {
         a: r`\text{l'écart interquartile}`, tip: r`EI=Q_3-Q_1\text{ : il contient 50\% des données.}` },
       // sd_08
       { q: r`\text{Série (triée, }n=7\text{) : }1\ ;\ 3\ ;\ 5\ ;\ 7\ ;\ 9\ ;\ 11\ ;\ 13\\[4pt]Q_1=\,?`,
-        choices: [`3`, `5`, `4`, `7`], a: `3`, tip: r`Q_1=2^\text{e}\text{ valeur}=3` },
+        choices: [`3`, `5`, `4`, `7`], a: `3`, tip: r`\text{Rang}=\left\lceil\dfrac{7}{4}\right\rceil=2\Rightarrow Q_1=2^\text{e}\text{ valeur}=3` },
       // sd_09
       { q: r`\text{Série (triée, }n=7\text{) : }1\ ;\ 3\ ;\ 5\ ;\ 7\ ;\ 9\ ;\ 11\ ;\ 13\\[4pt]Q_3=\,?`,
-        choices: [`11`, `9`, `13`, `7`], a: `11`, tip: r`Q_3=6^\text{e}\text{ valeur}=11` },
+        choices: [`11`, `9`, `13`, `7`], a: `11`, tip: r`\text{Rang}=\left\lceil\dfrac{3\times7}{4}\right\rceil=\left\lceil5{,}25\right\rceil=6\Rightarrow Q_3=6^\text{e}\text{ valeur}=11` },
       // sd_10
       { q: r`Q_1=10{,}\quad Q_3=30\\[4pt]\text{50\% des données sont dans :}`,
         choices: [r`[10\,;30]`, r`[0\,;20]`, r`[20\,;50]`, r`[10\,;20]`],
@@ -10153,7 +10153,7 @@ const DB = {
       // sd_20
       { q: r`\text{Série (triée) : }2\ ;\ 4\ ;\ 6\ ;\ 8\ ;\ 10\ ;\ 12\\[4pt]Q_1=\,?`,
         choices: [`4`, `3`, `5`, `6`], a: `4`,
-        tip: r`n=6\text{ : }Q_1\text{ est la médiane de la moitié inférieure }(2;4;6)\text{ : }Q_1=4.` },
+        tip: r`\text{Rang}=\left\lceil\dfrac{6}{4}\right\rceil=\left\lceil1{,}5\right\rceil=2\Rightarrow Q_1=2^\text{e}\text{ valeur}=4.` },
     ],
 
     boite_moustaches: [
@@ -10180,9 +10180,9 @@ const DB = {
       { q: r`\text{Série triée : }2;4;6;8;10;12;14;16\ (n=8).\\[4pt]\text{Médiane}=\,?`,
         numpad:true, a:"9", tip: r`\text{Médiane}=\dfrac{8+10}{2}=9` },
       { q: r`\text{Série triée : }2;4;6;8;10;12;14;16.\\[4pt]Q_1=\,?`,
-        numpad:true, a:"5", tip: r`Q_1=\text{médiane de }(2;4;6;8)=\dfrac{4+6}{2}=5` },
+        numpad:true, a:"4", tip: r`\text{Rang}=\left\lceil\dfrac{n}{4}\right\rceil=\left\lceil\dfrac{8}{4}\right\rceil=2\Rightarrow Q_1=2^\text{e}\text{ valeur}=4` },
       { q: r`\text{Série triée : }2;4;6;8;10;12;14;16.\\[4pt]Q_3=\,?`,
-        numpad:true, a:"13", tip: r`Q_3=\text{médiane de }(10;12;14;16)=\dfrac{12+14}{2}=13` },
+        numpad:true, a:"12", tip: r`\text{Rang}=\left\lceil\dfrac{3n}{4}\right\rceil=\left\lceil\dfrac{24}{4}\right\rceil=6\Rightarrow Q_3=6^\text{e}\text{ valeur}=12` },
       { q: r`\text{Série triée : }3;5;7;9;11\ (n=5).\\[4pt]\text{Médiane}=\,?`,
         numpad:true, a:"7", tip: r`\text{Valeur centrale (3}^{e}\text{) : }7.` },
       { q: r`\text{min}=4,\ Q_1=8,\ \text{Méd}=10,\ Q_3=14,\ \text{max}=20.\\[4pt]\text{Écart interquartile}=\,?`,
