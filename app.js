@@ -24935,6 +24935,12 @@ const COURS_CATALOG = [
     chapitres:4, color:"#6366F1",
     desc:"Définitions · Opérations (Chasles) · Coordonnées & milieu · Colinéarité & parallélisme",
   },
+  { id:"second_degre", emoji:"📈",
+    title:"Polynômes du second degré",
+    niveaux:["1ère Techno"],
+    chapitres:5, color:"#16A34A",
+    desc:"Paraboles · Forme factorisée · Racines (produit nul) · Signe · x²=a",
+  },
 ];
 
 function CoursPracticeList({practices, onStartPractice, col}){
@@ -26989,6 +26995,196 @@ function CoursMathEquations({onBack, onStartPractice}) {
 
 
 
+// ── CoursMathSecondDegre — Polynômes du second degré (1ère Techno · Ch. 1) ────
+function CoursMathSecondDegre({onBack, onStartPractice}) {
+  const [secIdx, setSecIdx] = React.useState(0);
+  const [openMap, setOpenMap] = React.useState({});
+  const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
+  const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
+  const tabsRef = React.useRef();
+  React.useEffect(()=>{
+    if(!tabsRef.current) return;
+    const btn=tabsRef.current.children[secIdx];
+    if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  },[secIdx]);
+
+  const SD_PARAB=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 155" style="width:100%;display:block;border-radius:12px;margin:8px 0"><rect width="300" height="155" rx="10" fill="#F0FDF4"/><line x1="20" y1="130" x2="135" y2="130" stroke="#94A3B8" stroke-width="1.4"/><polygon points="133,126 141,130 133,134" fill="#94A3B8"/><line x1="75" y1="145" x2="75" y2="22" stroke="#94A3B8" stroke-width="1.4"/><polygon points="71,24 75,16 79,24" fill="#94A3B8"/><path d="M 25,30 Q 75,110 125,30" fill="none" stroke="#16A34A" stroke-width="2.6" stroke-linecap="round"/><circle cx="75" cy="70" r="4.5" fill="#059669" stroke="#fff" stroke-width="1.6"/><text x="82" y="66" font-size="9" font-weight="bold" fill="#059669" font-family="sans-serif">(0 ; b)</text><text x="63" y="142" font-size="8" fill="#94A3B8" font-family="sans-serif">O</text><text x="34" y="48" font-size="11" font-weight="bold" fill="#16A34A" font-family="sans-serif">a &gt; 0</text><line x1="170" y1="130" x2="285" y2="130" stroke="#94A3B8" stroke-width="1.4"/><polygon points="283,126 291,130 283,134" fill="#94A3B8"/><line x1="225" y1="145" x2="225" y2="22" stroke="#94A3B8" stroke-width="1.4"/><polygon points="221,24 225,16 229,24" fill="#94A3B8"/><path d="M 175,110 Q 225,30 275,110" fill="none" stroke="#DC2626" stroke-width="2.6" stroke-linecap="round"/><circle cx="225" cy="70" r="4.5" fill="#059669" stroke="#fff" stroke-width="1.6"/><text x="232" y="66" font-size="9" font-weight="bold" fill="#059669" font-family="sans-serif">(0 ; b)</text><text x="213" y="142" font-size="8" fill="#94A3B8" font-family="sans-serif">O</text><text x="184" y="48" font-size="11" font-weight="bold" fill="#DC2626" font-family="sans-serif">a &lt; 0</text></svg>`;
+  const SD_RACINES=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 165" style="width:100%;display:block;border-radius:12px;margin:8px 0"><rect width="290" height="165" rx="10" fill="#F0FDF4"/><line x1="140" y1="48" x2="140" y2="158" stroke="#7C3AED" stroke-width="1.3" stroke-dasharray="5,4"/><text x="146" y="46" font-size="9" font-weight="bold" fill="#7C3AED" font-family="sans-serif">x = p</text><line x1="18" y1="110" x2="275" y2="110" stroke="#94A3B8" stroke-width="1.4"/><polygon points="273,106 281,110 273,114" fill="#94A3B8"/><text x="278" y="114" font-size="9" fill="#94A3B8" font-family="sans-serif">x</text><path d="M 55,60 Q 140,240 225,60" fill="none" stroke="#16A34A" stroke-width="2.6" stroke-linecap="round"/><text x="222" y="72" font-size="11" font-style="italic" font-weight="bold" fill="#16A34A" font-family="sans-serif">f</text><circle cx="83" cy="110" r="4.5" fill="#059669" stroke="#fff" stroke-width="1.6"/><circle cx="197" cy="110" r="4.5" fill="#059669" stroke="#fff" stroke-width="1.6"/><text x="75" y="126" font-size="10" font-weight="bold" fill="#059669" font-family="sans-serif">x₁</text><text x="190" y="126" font-size="10" font-weight="bold" fill="#059669" font-family="sans-serif">x₂</text><circle cx="140" cy="150" r="4.5" fill="#EA580C" stroke="#fff" stroke-width="1.6"/><text x="148" y="154" font-size="9" font-weight="bold" fill="#EA580C" font-family="sans-serif">sommet</text></svg>`;
+  const SD_SIGNE=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 192" style="width:100%;display:block;border-radius:12px;margin:8px 0"><rect width="290" height="192" rx="10" fill="#F0FDF4"/><text x="8" y="18" font-size="11" font-weight="bold" fill="#16A34A" font-family="sans-serif">Si a &gt; 0</text><rect x="8" y="24" width="274" height="56" rx="6" fill="#fff" stroke="#BBF7D0" stroke-width="1.4"/><line x1="8" y1="48" x2="282" y2="48" stroke="#BBF7D0" stroke-width="1.2"/><line x1="70" y1="24" x2="70" y2="80" stroke="#BBF7D0" stroke-width="1.2"/><line x1="130" y1="24" x2="130" y2="80" stroke="#86EFAC" stroke-width="1.4"/><line x1="200" y1="24" x2="200" y2="80" stroke="#86EFAC" stroke-width="1.4"/><text x="39" y="40" text-anchor="middle" font-size="11" font-style="italic" fill="#1E293B" font-family="serif">x</text><text x="98" y="40" text-anchor="middle" font-size="10" fill="#475569" font-family="sans-serif">−∞</text><text x="130" y="40" text-anchor="middle" font-size="10" font-weight="bold" fill="#0F172A" font-family="sans-serif">x₁</text><text x="200" y="40" text-anchor="middle" font-size="10" font-weight="bold" fill="#0F172A" font-family="sans-serif">x₂</text><text x="266" y="40" text-anchor="middle" font-size="10" fill="#475569" font-family="sans-serif">+∞</text><text x="39" y="68" text-anchor="middle" font-size="9.5" fill="#1E293B" font-family="sans-serif">f(x)</text><text x="100" y="68" text-anchor="middle" font-size="15" font-weight="bold" fill="#059669" font-family="sans-serif">+</text><text x="130" y="68" text-anchor="middle" font-size="15" font-weight="bold" fill="#475569" font-family="sans-serif">0</text><text x="165" y="68" text-anchor="middle" font-size="15" font-weight="bold" fill="#DC2626" font-family="sans-serif">−</text><text x="200" y="68" text-anchor="middle" font-size="15" font-weight="bold" fill="#475569" font-family="sans-serif">0</text><text x="240" y="68" text-anchor="middle" font-size="15" font-weight="bold" fill="#059669" font-family="sans-serif">+</text><text x="8" y="114" font-size="11" font-weight="bold" fill="#DC2626" font-family="sans-serif">Si a &lt; 0</text><rect x="8" y="120" width="274" height="56" rx="6" fill="#fff" stroke="#BBF7D0" stroke-width="1.4"/><line x1="8" y1="144" x2="282" y2="144" stroke="#BBF7D0" stroke-width="1.2"/><line x1="70" y1="120" x2="70" y2="176" stroke="#BBF7D0" stroke-width="1.2"/><line x1="130" y1="120" x2="130" y2="176" stroke="#86EFAC" stroke-width="1.4"/><line x1="200" y1="120" x2="200" y2="176" stroke="#86EFAC" stroke-width="1.4"/><text x="39" y="136" text-anchor="middle" font-size="11" font-style="italic" fill="#1E293B" font-family="serif">x</text><text x="98" y="136" text-anchor="middle" font-size="10" fill="#475569" font-family="sans-serif">−∞</text><text x="130" y="136" text-anchor="middle" font-size="10" font-weight="bold" fill="#0F172A" font-family="sans-serif">x₁</text><text x="200" y="136" text-anchor="middle" font-size="10" font-weight="bold" fill="#0F172A" font-family="sans-serif">x₂</text><text x="266" y="136" text-anchor="middle" font-size="10" fill="#475569" font-family="sans-serif">+∞</text><text x="39" y="164" text-anchor="middle" font-size="9.5" fill="#1E293B" font-family="sans-serif">f(x)</text><text x="100" y="164" text-anchor="middle" font-size="15" font-weight="bold" fill="#DC2626" font-family="sans-serif">−</text><text x="130" y="164" text-anchor="middle" font-size="15" font-weight="bold" fill="#475569" font-family="sans-serif">0</text><text x="165" y="164" text-anchor="middle" font-size="15" font-weight="bold" fill="#059669" font-family="sans-serif">+</text><text x="200" y="164" text-anchor="middle" font-size="15" font-weight="bold" fill="#475569" font-family="sans-serif">0</text><text x="240" y="164" text-anchor="middle" font-size="15" font-weight="bold" fill="#DC2626" font-family="sans-serif">−</text></svg>`;
+
+  const SECS=[
+    { emoji:"📈", label:"Paraboles", color:"#16A34A", light:"#F0FDF4", rules:[
+      { id:"sd1",num:"1",title:"Fonction polynôme du second degré",
+        fml:r`f(x)=ax^2\quad\text{ou}\quad f(x)=ax^2+b\quad(a\neq 0)`,
+        bltTex:[
+          r`a\text{ et }b\text{ sont des réels donnés, avec }a\neq 0`,
+          r`\text{Exemples : }3x^2,\ -x^2+3,\ \tfrac{1}{4}x^2+1`,
+        ],
+        ex:{qTex:r`\text{La fonction }f(x)=-2x^2+5\text{ est-elle du second degré ?}`,
+            a:r`\text{Oui : }a=-2\neq 0\ \text{et}\ b=5`}},
+      { id:"sd2",num:"2",title:"Représentation : la parabole",
+        svgDiag:SD_PARAB,
+        bltTex:[
+          r`\text{La courbe représentative est une }\textbf{parabole}`,
+          r`a>0\ :\ \text{branches vers le haut (sommet en bas)}`,
+          r`a<0\ :\ \text{branches vers le bas (sommet en haut)}`,
+          r`\text{Axe de symétrie : la droite }x=0\ \text{(axe des ordonnées)}`,
+          r`\text{Sommet de coordonnées }(0\,;\,b)`,
+        ],
+        tipTex:r`\text{Le signe de }a\text{ donne le sens ; }b\text{ donne la hauteur du sommet}`,
+        ex:{qTex:r`f(x)=x^2+3`,
+            a:r`a=1>0\Rightarrow\text{vers le haut}\ ;\ \text{sommet }(0\,;\,3)`}},
+    ]},
+    { emoji:"✖️", label:"Forme factorisée", color:"#7C3AED", light:"#F5F3FF", rules:[
+      { id:"sd3",num:"3",title:"Forme factorisée",
+        fml:r`f(x)=a(x-x_1)(x-x_2)\quad(a\neq 0)`,
+        bltTex:[
+          r`\text{C'est aussi une fonction polynôme du second degré}`,
+          r`\text{En développant on retrouve la forme }ax^2+bx+c`,
+        ],
+        ex:{qTex:r`f(x)=2(x-2)(x+2)`,
+            a:r`\begin{gathered}=2(x^2-4)=2x^2-8\\[4pt]\text{forme }ax^2+b\ \text{avec}\ a=2,\ b=-8\end{gathered}`}},
+      { id:"sd4",num:"4",title:"Forme développée (générale)",
+        fml:r`f(x)=ax^2+bx+c\quad(a\neq 0)`,
+        bltTex:[
+          r`\text{Forme la plus générale d'un polynôme du second degré}`,
+          r`\text{Exemple : }f(x)=3x^2-2x+1`,
+        ]},
+      { id:"sd5",num:"5",title:"Racines : théorème du produit nul",
+        svgDiag:SD_RACINES,
+        fml:r`a(x-x_1)(x-x_2)=0\Leftrightarrow x=x_1\ \text{ou}\ x=x_2`,
+        bltTex:[
+          r`x_1\text{ et }x_2\text{ sont les }\textbf{racines}\text{ du polynôme}`,
+          r`\text{Ce sont les abscisses où la parabole coupe l'axe des abscisses}`,
+        ],
+        tipTex:r`\text{Un produit est nul si et seulement si l'un des facteurs est nul}`,
+        ex:{qTex:r`f(x)=2(x-2)(x+4)=0`,
+            a:r`x-2=0\ \text{ou}\ x+4=0\Rightarrow S=\{-4\,;\,2\}`}},
+      { id:"sd6",num:"6",title:"Axe de symétrie",
+        fml:r`x=p\quad\text{avec}\quad p=\dfrac{x_1+x_2}{2}`,
+        bltTex:[
+          r`\text{L'axe de symétrie passe au milieu des deux racines}`,
+          r`\text{Le sommet a pour abscisse }p`,
+        ],
+        ex:{qTex:r`f(x)=2(x-2)(x+4)\quad(\text{racines }2\text{ et }-4)`,
+            a:r`p=\dfrac{2+(-4)}{2}=-1\ ;\ \text{sommet d'abscisse }-1`}},
+    ]},
+    { emoji:"±", label:"Signe", color:"#DC2626", light:"#FEF2F2", rules:[
+      { id:"sd7",num:"7",title:"Signe d'un polynôme factorisé",
+        svgDiag:SD_SIGNE,
+        fml:r`f(x)=a(x-x_1)(x-x_2)`,
+        bltTex:[
+          r`f(x)\text{ est du }\textbf{signe de }a\text{ à l'extérieur des racines}`,
+          r`f(x)\text{ est du signe }\textbf{opposé à }a\text{ entre les racines}`,
+          r`f(x)=0\text{ pour }x=x_1\text{ et }x=x_2`,
+        ],
+        tipTex:r`\text{On suppose }x_1<x_2\text{ : « extérieur » = avant }x_1\text{ et après }x_2`,
+        ex:{qTex:r`f(x)=-2(x-3)(x+2)\quad(a<0,\ \text{racines }-2\text{ et }3)`,
+            a:r`\begin{gathered}x<-2:\ f(x)<0\ ;\quad -2<x<3:\ f(x)>0\\[4pt]x>3:\ f(x)<0\end{gathered}`}},
+    ]},
+    { emoji:"²", label:"x²=a", color:"#D97706", light:"#FFFBEB", rules:[
+      { id:"sd8",num:"8",title:"Résoudre x² = a",
+        bltTex:[
+          r`a<0\ :\ \text{aucune solution, }S=\varnothing`,
+          r`a=0\ :\ \text{une solution }x=0,\ S=\{0\}`,
+          r`a>0\ :\ \text{deux solutions, }S=\{-\sqrt{a}\,;\,\sqrt{a}\}`,
+        ],
+        tipTex:r`\text{Bien isoler }x^2\text{ d'un côté avant de conclure}`,
+        ex:{qTex:r`x^2=5\ ;\quad 2x^2-128=0\ ;\quad 3x^2+15=0`,
+            a:r`\begin{gathered}S_1=\{-\sqrt5\,;\,\sqrt5\}\\[4pt]2x^2=128\Rightarrow x^2=64\Rightarrow S_2=\{-8\,;\,8\}\\[4pt]3x^2=-15\Rightarrow x^2=-5\Rightarrow S_3=\varnothing\end{gathered}`}},
+    ]},
+    { emoji:"🏋️", label:"S'entraîner", color:"#0F172A", light:"#F1F5F9", isPractice:true,
+      practices:[
+        {sub:"facto_commun",  label:"Factoriser — facteur commun", emoji:"🔧", cat:"litteral"},
+        {sub:"facto_id",      label:"Factoriser — identités rem.", emoji:"🔲", cat:"litteral"},
+        {sub:"produit_nul",   label:"Équation produit nul",        emoji:"✖️", cat:"litteral"},
+        {sub:"eq_x2",         label:"Équation x² = a",             emoji:"²",  cat:"litteral"},
+        {sub:"signe_produit", label:"Signe d'un produit",          emoji:"±",  cat:"fonctions"},
+      ]},
+  ];
+
+  const sec=SECS[secIdx]; const col=sec.color;
+  return (
+    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"#F8FAFF"}}>
+      <div style={{background:"linear-gradient(135deg,#16A34A,#15803D)",padding:"16px 18px 14px",flexShrink:0}}>
+        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:12}}>
+          <button onClick={onBack} style={{background:"rgba(255,255,255,.2)",border:"none",borderRadius:10,
+            cursor:"pointer",color:"#fff",fontSize:16,width:32,height:32,display:"flex",
+            alignItems:"center",justifyContent:"center"}}>✕</button>
+          <div style={{flex:1}}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:17,color:"#fff"}}>
+              📈 Polynômes du second degré</div>
+            <div style={{fontSize:11,color:"rgba(255,255,255,.75)",marginTop:1}}>
+              Cours interactif · Ch. 1 · 1ère Techno</div>
+          </div>
+        </div>
+        <div ref={tabsRef} style={{display:"flex",gap:6,overflowX:"auto",scrollbarWidth:"none",paddingBottom:2}}>
+          {SECS.map((s,i)=>(
+            <button key={i} onClick={()=>setSecIdx(i)}
+              style={{background:i===secIdx?"#fff":"rgba(255,255,255,.2)",
+                border:"none",borderRadius:99,padding:"6px 13px",cursor:"pointer",flexShrink:0,
+                fontFamily:"'Nunito',sans-serif",fontWeight:700,fontSize:11,
+                color:i===secIdx?s.color:"#fff",whiteSpace:"nowrap"}}>
+              {s.emoji} {s.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div style={{flex:1,overflowY:"auto",padding:"14px 14px 80px"}}>
+        {sec.isPractice ? <CoursPracticeList practices={sec.practices} onStartPractice={onStartPractice} col={col}/> : sec.rules.map((rl,i)=>{
+          const k=`${secIdx}_${i}`; const expanded=isOpen(k,i===0);
+          return (
+            <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
+              overflow:"hidden",boxShadow:"0 2px 14px rgba(0,0,0,.07)",borderLeft:`4px solid ${col}`}}>
+              <div onClick={()=>tog(k)} style={{display:"flex",alignItems:"center",gap:10,
+                padding:"13px 15px",cursor:"pointer",userSelect:"none"}}>
+                <div style={{width:30,height:30,borderRadius:"50%",background:col,color:"#fff",
+                  display:"flex",alignItems:"center",justifyContent:"center",
+                  fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
+                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}{rl.titleTex&&<M tex={rl.titleTex}/>}</div>
+                <span style={{color:"#94A3B8",fontSize:11,display:"block",
+                  transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
+              </div>
+              {expanded&&(
+                <div style={{padding:"0 15px 15px"}}>
+                  {rl.fml&&<div style={{background:sec.light,borderRadius:13,padding:"14px 12px",
+                    margin:"8px 0",textAlign:"center",overflowX:"auto"}}><M tex={rl.fml}/></div>}
+                  {rl.svgDiag&&<div style={{margin:"8px 0",borderRadius:12,overflow:"hidden"}}
+                    dangerouslySetInnerHTML={{__html:rl.svgDiag}}/>}
+                  {(rl.bltTex||[]).map((b,j)=>(
+                    <div key={j} style={{display:"flex",gap:7,padding:"4px 0",alignItems:"flex-start"}}>
+                      <span style={{color:col,fontWeight:700,flexShrink:0,marginTop:2}}>•</span>
+                      <span style={{overflowX:"auto"}}><M tex={b}/></span>
+                    </div>
+                  ))}
+                  {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,
+                    padding:"10px 12px",fontSize:12,fontWeight:600,color:"#713F12",
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4,overflowX:"auto"}}>
+                    {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
+                  </div>}
+                  {rl.ex&&(
+                    <div style={{background:"#F8FAFC",borderRadius:12,padding:"12px 13px",
+                      marginTop:10,borderLeft:`3px solid ${col}`}}>
+                      <div style={{fontSize:10,fontWeight:800,color:col,textTransform:"uppercase",
+                        letterSpacing:".7px",marginBottom:5}}>Exemple</div>
+                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>
+                        {rl.ex.qTex?<M tex={rl.ex.qTex}/>:<span>{rl.ex.q}</span>}
+                      </div>
+                      <div style={{textAlign:"center",overflowX:"auto"}}><M tex={rl.ex.a}/></div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+
+
 // ── CoursMathStats — Statistiques (Ch. 11) ───────────────────────────────────
 function CoursMathStats({onBack, onStartPractice}) {
   const [secIdx, setSecIdx] = React.useState(0);
@@ -28097,6 +28293,7 @@ function AutoMaths() {
           {screen==="cours_stats"             && <CoursMathStats         onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_equations"         && <CoursMathEquations    onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_configs"          && <CoursMathConfigs      onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
+          {screen==="cours_second_degre"     && <CoursMathSecondDegre  onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="flashcard_setup" && <FlashcardSetupScreen onBack={()=>setScreen(profile?"dashboard":"home")} onStart={(cards)=>{ setPool(cards); plsbl("Flashcards lancées", {cartes: cards.length}); setScreen("flashcards"); }}/>}
           {screen==="flashcards"    && <FlashcardScreen cards={pool} onBack={()=>setScreen("flashcard_setup")}/>}
           {screen==="mission_theme" && missionTheme && <MissionThemeScreen theme={missionTheme} missionId={missionId} onBack={()=>setScreen("mission_select")} onStart={(qs, themeId)=>{
