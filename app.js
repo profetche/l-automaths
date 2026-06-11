@@ -24970,6 +24970,11 @@ function CoursPracticeList({practices, onStartPractice, col}){
 }
 
 function CoursListScreen({onBack,onSelectCours}) {
+  const NIVEAU_ORDER=["2nde","1ère TC","1ère Techno","1ère Spé","Terminale Spé"];
+  const dispoNiveaux=NIVEAU_ORDER.filter(n=>COURS_CATALOG.some(c=>c.niveaux.includes(n)));
+  const filtres=[{label:"Tous",val:null},...dispoNiveaux.map(n=>({label:n,val:n}))];
+  const [niv,setNiv]=React.useState(null);
+  const liste=COURS_CATALOG.filter(c=>!niv||c.niveaux.includes(niv));
   return (
     <div style={{display:"flex",flexDirection:"column",height:"100%",background:"var(--am-bg-light)"}}>
       <div style={{padding:"16px 18px 12px",display:"flex",alignItems:"center",gap:12,flexShrink:0}}>
@@ -24987,8 +24992,24 @@ function CoursListScreen({onBack,onSelectCours}) {
           <div style={{fontSize:11,color:"#047857",marginTop:1}}>D'autres arrivent bientôt — restez connectés 👀</div>
         </div>
       </div>
+      <div style={{display:"flex",gap:6,overflowX:"auto",scrollbarWidth:"none",
+        padding:"0 16px 12px",flexShrink:0}}>
+        {filtres.map(f=>{
+          const active=niv===f.val;
+          return (
+            <button key={f.label} onClick={()=>setNiv(f.val)}
+              style={{flexShrink:0,border:"none",borderRadius:99,padding:"7px 14px",cursor:"pointer",
+                fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:12,whiteSpace:"nowrap",
+                background:active?"linear-gradient(135deg,#10B981,#047857)":"#fff",
+                color:active?"#fff":"#64748B",
+                boxShadow:active?"0 3px 10px rgba(16,185,129,.3)":"0 1px 4px rgba(0,0,0,.06)"}}>
+              {f.label}
+            </button>
+          );
+        })}
+      </div>
       <div style={{flex:1,overflowY:"auto",padding:"0 16px 24px"}}>
-        {COURS_CATALOG.map(c=>(
+        {liste.map(c=>(
           <button key={c.id} onClick={()=>onSelectCours(c.id)}
             style={{width:"100%",background:"#fff",border:`2px solid ${c.color}20`,
               borderRadius:18,padding:"16px",marginBottom:12,cursor:"pointer",
