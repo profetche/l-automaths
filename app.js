@@ -8007,7 +8007,7 @@ const DB = {
         choices:[r`\dfrac{10}{2x-5}`,r`\dfrac{10}{5+2x}`,r`5-2x`,r`\dfrac{5}{x}-2`],
         a:r`\dfrac{5}{x}-2`, tip:r`x(2+y)=5\Rightarrow y=\dfrac{5}{x}-2` },
     ],
-    tronc_metropole_2026: [
+    spe_metropole_2026: [
       { q:r`\text{La forme développée de }(3x-2)^2\text{ est :}`,
         choices:[r`9x^2-4`,r`3x^2-12x+4`,r`9x^2-12x+4`,r`6x-4`],
         a:r`9x^2-12x+4`, tip:r`(3x-2)^2=9x^2-2\times3x\times2+4=9x^2-12x+4` },
@@ -8042,7 +8042,7 @@ const DB = {
         choices:[r`15`,r`30`,r`45`,r`60`],
         a:r`45`, tip:r`\dfrac{30}{100}\times150=45` },
       { q:r`\text{On donne ci-contre la représentation graphique d'une fonction }f.\text{ Lequel de ces nombres est un antécédent de 3 ?}`,
-        svg:`<svg viewBox="0 0 380 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:380px"><line x1="0.0" y1="0" x2="0.0" y2="200" stroke="#ddd" stroke-width="1"/><line x1="40.0" y1="0" x2="40.0" y2="200" stroke="#ddd" stroke-width="1"/><line x1="80.0" y1="0" x2="80.0" y2="200" stroke="#ddd" stroke-width="1"/><line x1="120.0" y1="0" x2="120.0" y2="200" stroke="#ddd" stroke-width="1"/><line x1="160.0" y1="0" x2="160.0" y2="200" stroke="#ddd" stroke-width="1"/><line x1="200.0" y1="0" x2="200.0" y2="200" stroke="#ddd" stroke-width="1"/><line x1="240.0" y1="0" x2="240.0" y2="200" stroke="#ddd" stroke-width="1"/><line x1="280.0" y1="0" x2="280.0" y2="200" stroke="#ddd" stroke-width="1"/><line x1="320.0" y1="0" x2="320.0" y2="200" stroke="#ddd" stroke-width="1"/><line x1="360.0" y1="0" x2="360.0" y2="200" stroke="#ddd" stroke-width="1"/><line x1="0" y1="200.0" x2="360" y2="200.0" stroke="#ddd" stroke-width="1"/><line x1="0" y1="160.0" x2="360" y2="160.0" stroke="#ddd" stroke-width="1"/><line x1="0" y1="120.0" x2="360" y2="120.0" stroke="#ddd" stroke-width="1"/><line x1="0" y1="80.0" x2="360" y2="80.0" stroke="#ddd" stroke-width="1"/><line x1="0" y1="40.0" x2="360" y2="40.0" stroke="#ddd" stroke-width="1"/><line x1="0" y1="0.0" x2="360" y2="0.0" stroke="#ddd" stroke-width="1"/><line x1="0.0" y1="120.0" x2="360.0" y2="120.0" stroke="#333" stroke-width="1.5"/><line x1="160.0" y1="0" x2="160.0" y2="200" stroke="#333" stroke-width="1.5"/><text x="0.0" y="134.0" font-size="9" text-anchor="middle" fill="#333">-4</text><text x="40.0" y="134.0" font-size="9" text-anchor="middle" fill="#333">-3</text><text x="80.0" y="134.0" font-size="9" text-anchor="middle" fill="#333">-2</text><text x="120.0" y="134.0" font-size="9" text-anchor="middle" fill="#333">-1</text><text x="200.0" y="134.0" font-size="9" text-anchor="middle" fill="#333">1</text><text x="240.0" y="134.0" font-size="9" text-anchor="middle" fill="#333">2</text><text x="280.0" y="134.0" font-size="9" text-anchor="middle" fill="#333">3</text><text x="320.0" y="134.0" font-size="9" text-anchor="middle" fill="#333">4</text><text x="360.0" y="134.0" font-size="9" text-anchor="middle" fill="#333">5</text><text x="152.0" y="203.0" font-size="9" text-anchor="middle" fill="#333">-2</text><text x="152.0" y="163.0" font-size="9" text-anchor="middle" fill="#333">-1</text><text x="152.0" y="83.0" font-size="9" text-anchor="middle" fill="#333">1</text><text x="152.0" y="43.0" font-size="9" text-anchor="middle" fill="#333">2</text><text x="152.0" y="3.0" font-size="9" text-anchor="middle" fill="#333">3</text><text x="152.0" y="132.0" font-size="9" text-anchor="middle" fill="#333">0</text><path d="M 0.0 144.0 L 20.0 76.0 L 40.0 60.0 L 60.0 80.0 L 80.0 128.0 L 96.0 180.0 L 120.0 180.0 L 140.0 152.0 L 160.0 80.0 L 180.0 40.0 L 200.0 0.0 L 220.0 40.0 L 240.0 60.0 L 260.0 80.0 L 280.0 100.0 L 300.0 80.0 L 320.0 60.0 L 340.0 40.0 L 360.0 20.0" fill="none" stroke="#dc2626" stroke-width="2.5"/><circle cx="200.0" cy="0.0" r="3" fill="#dc2626"/></svg>`,
+        svg:`<svg viewBox="0 0 380 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:380px;background:#fff;border-radius:8px;font-family:sans-serif"><line x1="0.0" y1="0" x2="0.0" y2="200" stroke="#ddd" stroke-width="1"/><line x1="40.0" y1="0" x2="40.0" y2="200" stroke="#ddd" stroke-width="1"/><line x1="80.0" y1="0" x2="80.0" y2="200" stroke="#ddd" stroke-width="1"/><line x1="120.0" y1="0" x2="120.0" y2="200" stroke="#ddd" stroke-width="1"/><line x1="160.0" y1="0" x2="160.0" y2="200" stroke="#ddd" stroke-width="1"/><line x1="200.0" y1="0" x2="200.0" y2="200" stroke="#ddd" stroke-width="1"/><line x1="240.0" y1="0" x2="240.0" y2="200" stroke="#ddd" stroke-width="1"/><line x1="280.0" y1="0" x2="280.0" y2="200" stroke="#ddd" stroke-width="1"/><line x1="320.0" y1="0" x2="320.0" y2="200" stroke="#ddd" stroke-width="1"/><line x1="360.0" y1="0" x2="360.0" y2="200" stroke="#ddd" stroke-width="1"/><line x1="0" y1="200.0" x2="360" y2="200.0" stroke="#ddd" stroke-width="1"/><line x1="0" y1="160.0" x2="360" y2="160.0" stroke="#ddd" stroke-width="1"/><line x1="0" y1="120.0" x2="360" y2="120.0" stroke="#ddd" stroke-width="1"/><line x1="0" y1="80.0" x2="360" y2="80.0" stroke="#ddd" stroke-width="1"/><line x1="0" y1="40.0" x2="360" y2="40.0" stroke="#ddd" stroke-width="1"/><line x1="0" y1="0.0" x2="360" y2="0.0" stroke="#ddd" stroke-width="1"/><line x1="0.0" y1="120.0" x2="360.0" y2="120.0" stroke="#333" stroke-width="1.5"/><line x1="160.0" y1="0" x2="160.0" y2="200" stroke="#333" stroke-width="1.5"/><text x="0.0" y="134.0" font-size="9" text-anchor="middle" fill="#333">-4</text><text x="40.0" y="134.0" font-size="9" text-anchor="middle" fill="#333">-3</text><text x="80.0" y="134.0" font-size="9" text-anchor="middle" fill="#333">-2</text><text x="120.0" y="134.0" font-size="9" text-anchor="middle" fill="#333">-1</text><text x="200.0" y="134.0" font-size="9" text-anchor="middle" fill="#333">1</text><text x="240.0" y="134.0" font-size="9" text-anchor="middle" fill="#333">2</text><text x="280.0" y="134.0" font-size="9" text-anchor="middle" fill="#333">3</text><text x="320.0" y="134.0" font-size="9" text-anchor="middle" fill="#333">4</text><text x="360.0" y="134.0" font-size="9" text-anchor="middle" fill="#333">5</text><text x="152.0" y="203.0" font-size="9" text-anchor="middle" fill="#333">-2</text><text x="152.0" y="163.0" font-size="9" text-anchor="middle" fill="#333">-1</text><text x="152.0" y="83.0" font-size="9" text-anchor="middle" fill="#333">1</text><text x="152.0" y="43.0" font-size="9" text-anchor="middle" fill="#333">2</text><text x="152.0" y="3.0" font-size="9" text-anchor="middle" fill="#333">3</text><text x="152.0" y="132.0" font-size="9" text-anchor="middle" fill="#333">0</text><path d="M 0.0 144.0 L 20.0 76.0 L 40.0 60.0 L 60.0 80.0 L 80.0 128.0 L 96.0 180.0 L 120.0 180.0 L 140.0 152.0 L 160.0 80.0 L 180.0 40.0 L 200.0 0.0 L 220.0 40.0 L 240.0 60.0 L 260.0 80.0 L 280.0 100.0 L 300.0 80.0 L 320.0 60.0 L 340.0 40.0 L 360.0 20.0" fill="none" stroke="#dc2626" stroke-width="2.5"/><circle cx="200.0" cy="0.0" r="3" fill="#dc2626"/></svg>`,
         choices:[r`0{,}5`,r`1`,r`1{,}5`,r`2`],
         a:r`1`, tip:r`f(1)=3\text{ : le maximum de la courbe est atteint en }x=1` },
       { q:r`\text{La solution de l'équation }7x+4=5x+6\text{ est :}`,
@@ -23037,7 +23037,6 @@ const BAC_GROUPS = [
       {id:"tronc_annales_s3_2026", label:"Annales 2026 — Sujet 3", year:2026, n:12},
       {id:"tronc_annales_s4_2026", label:"Amérique du Nord 2026", year:2026, n:12},
       {id:"tronc_ce_2026", label:"Centres Étrangers 2026", year:2026, n:10, newUntil:1784119200000},
-      {id:"tronc_metropole_2026", label:"Métropole 2026", year:2026, n:8, newUntil:1784312952867},
       {id:"tronc_metropole_sansspe_2026", label:"Métropole 12 juin 2026", year:2026, n:8, newUntil:1784312952867},
     ],
   },
@@ -23048,6 +23047,7 @@ const BAC_GROUPS = [
       {id:"spe_annales_s2_2026", label:"Annales 2026 — Sujet 2", year:2026, n:12},
       {id:"spe_annales_s3_2026", label:"Amérique du Nord 2026", year:2026, n:9},
       {id:"spe_ce_2026", label:"Centres Étrangers 2026", year:2026, n:6, newUntil:1784119200000},
+      {id:"spe_metropole_2026", label:"Métropole 2026", year:2026, n:8, newUntil:1784312952867},
     ],
   },
 ];
@@ -24892,7 +24892,7 @@ function PromoScreen({onDismiss}) {
       }}>
       {/* Image plein écran */}
       <img src={PROMO_IMG} alt="Épreuve anticipée Métropole 2026"
-        style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }}/>
+        style={{ width:"100%", height:"100%", objectFit:"contain", objectPosition:"center", display:"block", background:"#000" }}/>
 
       {/* Badge countdown en haut à droite */}
       <div style={{
