@@ -27831,7 +27831,7 @@ function CoursMathDerivation({onBack, onStartPractice}) {
       rules:[
         { id:'d12', num:'12', title:'Équation de la tangente',
           fml: r`y = f'(a)(x-a)+f(a)`,
-          tipTex: r`\text{Retenir : \textbf{ordonnée à l'origine}} = f(a) - a\cdot f'(a)`,
+          tipTex: r`\\text{Retenir : }\\textbf{p = f(a) - a \\cdot f'(a)}`,
           bltTex:[
             r`\text{Pente de la tangente en }a : f'(a)`,
             r`\text{Point de tangence : }A\bigl(a\,;\,f(a)\bigr)`,
@@ -27840,7 +27840,7 @@ function CoursMathDerivation({onBack, onStartPractice}) {
                a: r`f(1)=-3\;;\ f'(x)=2x-3\;;\ f'(1)=-1\;;\quad y=-1(x-1)-3=-x-2` }},
         { id:'d13', num:'13', title:'Interprétation graphique',
           bltTex:[
-            r`\text{Ordonnée à l'origine de la tangente} : p = f(a)-a\cdot f'(a)`,
+            r`\text{Ordonnée à l'origine de la tangente :}\quad p \;{=}\; f(a)-a\cdot f'(a)`,
             r`\text{Coefficient directeur visible sur le graphe :}\quad f'(a)`,
           ]},
       ]},
