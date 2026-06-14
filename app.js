@@ -24991,6 +24991,12 @@ const COURS_CATALOG = [
     chapitres:4, color:"#6366F1",
     desc:"Définitions · Opérations (Chasles) · Coordonnées & milieu · Colinéarité & parallélisme",
   },
+  { id:"derivation_techno", emoji:"∂",
+    title:"La dérivation",
+    niveaux:["1ère Techno"],
+    chapitres:6, color:"#2563EB",
+    desc:"Nombre dérivé · Formules · Poly. 2 & 3 · Sens de variation · Tangente",
+  },
   { id:"second_degre", emoji:"📈",
     title:"Polynômes du second degré",
     niveaux:["1ère Techno"],
@@ -27719,6 +27725,184 @@ function CoursMathProbas({onBack, onStartPractice}) {
 
 
 
+// ── CoursMathDerivation — La dérivation (1ère Techno · Ch. 6) ───────────────
+function CoursMathDerivation({onBack, onStartPractice}) {
+  const r = String.raw;
+  const [secIdx, setSecIdx] = React.useState(0);
+  const [openMap, setOpenMap] = React.useState({});
+  const tabsRef = React.useRef(null);
+  React.useEffect(() => {
+    if (tabsRef.current) {
+      const btn = tabsRef.current.querySelectorAll('button')[secIdx];
+      if (btn) btn.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
+    }
+  }, [secIdx]);
+
+  const SECS = [
+    { emoji:'📐', label:'Nombre dérivé', color:'#2563EB', light:'#EFF6FF',
+      rules:[
+        { id:'d1', num:'1', title:"Coefficient directeur d'une droite",
+          fml: r`a = \dfrac{\Delta y}{\Delta x} = \dfrac{y_B - y_A}{x_B - x_A}`,
+          bltTex:[
+            r`a > 0 \Rightarrow \text{droite croissante}`,
+            r`a < 0 \Rightarrow \text{droite décroissante}`,
+            r`a = 0 \Rightarrow \text{droite horizontale}`,
+          ],
+          ex:{ qTex:r`A(1;2)\text{ et }B(3;-2)\text{. Coefficient directeur ?}`,
+               answer:r`a=\dfrac{-2-2}{3-1}=\dfrac{-4}{2}=-2` }},
+        { id:'d2', num:'2', title:'Tangente à une courbe',
+          bltTex:[
+            r`\text{La \textbf{tangente} à la courbe en un point }A\text{ est la droite qui « épouse » localement la courbe en }A`,
+            r`\text{Si la tangente est horizontale, alors le coefficient directeur est }0`,
+            r`\text{La tangente est toujours tracée dans les exercices (sauf si elle est horizontale)}`,
+          ]},
+        { id:'d3', num:'3', title:'Le nombre dérivé f\'(a)',
+          fml: r`f'(a) = \text{coefficient directeur de la tangente en }a`,
+          tipTex: r`\text{Pour trouver }f'(a)\text{ graphiquement : se placer sur la courbe au point d'abscisse }a\text{, repérer la tangente, calculer son coefficient directeur}`,
+          ex:{ qTex:r`\text{Tangente en }x=2\text{ : passe par }(2;4)\text{ et }(4;6).\text{ Calculer }f'(2)`,
+               answer:r`f'(2)=\dfrac{6-4}{4-2}=\dfrac{2}{2}=1` }},
+      ]},
+    { emoji:'📋', label:'Formules', color:'#7C3AED', light:'#F5F3FF',
+      rules:[
+        { id:'d4', num:'4', title:'Fonctions de référence',
+          svgDiag:`<svg viewBox="0 0 340 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;background:#fff;border-radius:8px;font-family:sans-serif"><rect width="340" height="120" rx="8" fill="#F5F3FF" stroke="#DDD6FE"/><rect x="0" y="0" width="340" height="28" rx="8" fill="#7C3AED"/><rect x="0" y="14" width="340" height="14" fill="#7C3AED"/><text x="85" y="19" text-anchor="middle" font-size="10" fill="white" font-weight="bold" font-family="sans-serif">f(x)</text><text x="170" y="19" text-anchor="middle" font-size="10" fill="white" font-weight="bold" font-family="sans-serif">f'(x)</text><text x="275" y="19" text-anchor="middle" font-size="10" fill="white" font-weight="bold" font-family="sans-serif">Condition</text><line x1="0" y1="28" x2="340" y2="28" stroke="#DDD6FE" stroke-width="1"/><line x1="140" y1="0" x2="140" y2="120" stroke="#DDD6FE" stroke-width="1"/><line x1="220" y1="0" x2="220" y2="120" stroke="#DDD6FE" stroke-width="1"/><line x1="0" y1="55" x2="340" y2="55" stroke="#EDE9FE" stroke-width="1"/><line x1="0" y1="82" x2="340" y2="82" stroke="#EDE9FE" stroke-width="1"/><text x="85" y="46" text-anchor="middle" font-size="12" fill="#1E293B" font-family="sans-serif">c (constante)</text><text x="170" y="46" text-anchor="middle" font-size="13" fill="#7C3AED" font-weight="bold" font-family="sans-serif">0</text><text x="275" y="46" text-anchor="middle" font-size="10" fill="#64748B" font-family="sans-serif">c ∈ ℝ</text><text x="85" y="73" text-anchor="middle" font-size="12" fill="#1E293B" font-family="sans-serif">x</text><text x="170" y="73" text-anchor="middle" font-size="13" fill="#7C3AED" font-weight="bold" font-family="sans-serif">1</text><text x="275" y="73" text-anchor="middle" font-size="10" fill="#64748B" font-family="sans-serif">sur ℝ</text><text x="85" y="100" text-anchor="middle" font-size="12" fill="#1E293B" font-family="sans-serif">x²</text><text x="170" y="100" text-anchor="middle" font-size="13" fill="#7C3AED" font-weight="bold" font-family="sans-serif">2x</text><text x="275" y="100" text-anchor="middle" font-size="10" fill="#64748B" font-family="sans-serif">sur ℝ</text><text x="85" y="118" text-anchor="middle" font-size="12" fill="#1E293B" font-family="sans-serif">x³</text><text x="170" y="118" text-anchor="middle" font-size="13" fill="#7C3AED" font-weight="bold" font-family="sans-serif">3x²</text><text x="275" y="118" text-anchor="middle" font-size="10" fill="#64748B" font-family="sans-serif">sur ℝ</text></svg>`,
+        },
+        { id:'d5', num:'5', title:'Règles de calcul',
+          bltTex:[
+            r`(u+v)' = u'+v'`,
+            r`(k \cdot u)' = k \cdot u'\quad (k \in \mathbb{R})`,
+          ],
+          tipTex: r`\text{On derive terme par terme, les constantes multiplicatives restent}`,
+          ex:{ qTex: r`f(x)=3x^2-5x+2\text{. Calculer }f'(x)`,
+               answer: r`f'(x)=3\times2x-5\times1+0=6x-5` }},
+      ]},
+    { emoji:'📈', label:'Poly. degré 2', color:'#16A34A', light:'#F0FDF4',
+      rules:[
+        { id:'d6', num:'6', title:'Définition et dérivée',
+          fml: r`f(x)=ax^2+bx+c \;\Rightarrow\; f'(x)=2ax+b`,
+          tipTex: r`a\neq0\text{ (sinon ce n'est pas un polynôme du 2\textsuperscript{nd} degré)}`,
+          ex:{ qTex: r`f(x)=4x^2-6x+1\text{. Calculer }f'(x)`,
+               answer: r`f'(x)=8x-6` }},
+        { id:'d7', num:'7', title:'Autres exemples',
+          bltTex:[
+            r`g(x)=x^2-2x+6 \;\Rightarrow\; g'(x)=2x-2`,
+            r`h(x)=-3x^2+2x+8 \;\Rightarrow\; h'(x)=-6x+2`,
+            r`\hat{k}(x)=x^2+x+1 \;\Rightarrow\; \hat{k}'(x)=2x+1`,
+            r`l(x)=-5x^2+5 \;\Rightarrow\; l'(x)=-10x`,
+          ]},
+      ]},
+    { emoji:'🔢', label:'Poly. degré 3', color:'#0891B2', light:'#F0F9FF',
+      rules:[
+        { id:'d8', num:'8', title:'Définition et dérivée',
+          fml: r`f(x)=ax^3+bx^2+cx+d \;\Rightarrow\; f'(x)=3ax^2+2bx+c`,
+          ex:{ qTex: r`f(x)=2x^3-3x^2+5x-1\text{. Calculer }f'(x)`,
+               answer: r`f'(x)=6x^2-6x+5` }},
+        { id:'d9', num:'9', title:'Méthode : dériver terme par terme',
+          svgDiag:`<svg viewBox="0 0 320 100" xmlns="http://www.w3.org/2000/svg" style="width:100%;background:#fff;border-radius:8px;font-family:sans-serif"><rect width="320" height="100" rx="8" fill="#F0F9FF" stroke="#BAE6FD"/><text x="160" y="22" text-anchor="middle" font-size="12" fill="#0C4A6E" font-family="sans-serif">f(x) = 2×x³ − 3×x² + 5×x − 1</text><text x="160" y="42" text-anchor="middle" font-size="16" fill="#0891B2" font-family="sans-serif">⟹</text><text x="160" y="68" text-anchor="middle" font-size="12" fill="#0C4A6E" font-family="sans-serif">f'(x) = 2×</text><text x="220" y="68" text-anchor="middle" font-size="12" fill="#DC2626" font-weight="bold" font-family="sans-serif">3x²</text><text x="248" y="68" text-anchor="middle" font-size="12" fill="#0C4A6E" font-family="sans-serif">− 3×</text><text x="277" y="68" text-anchor="middle" font-size="12" fill="#DC2626" font-weight="bold" font-family="sans-serif">2x</text><text x="295" y="68" text-anchor="middle" font-size="12" fill="#0C4A6E" font-family="sans-serif">+ 5×</text><text x="160" y="88" text-anchor="middle" font-size="12" fill="#0891B2" font-weight="bold" font-family="sans-serif">= 6x² − 6x + 5</text></svg>`,
+        },
+      ]},
+    { emoji:'📊', label:'Sens de variation', color:'#EA580C', light:'#FFF7ED',
+      rules:[
+        { id:'d10', num:'10', title:'Théorème fondamental',
+          svgDiag:`<svg viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg" style="width:100%;background:#fff;border-radius:8px;font-family:sans-serif"><rect width="320" height="80" rx="8" fill="#FFF7ED" stroke="#FED7AA"/><rect x="0" y="0" width="320" height="26" rx="8" fill="#EA580C"/><rect x="0" y="14" width="320" height="12" fill="#EA580C"/><text x="160" y="18" text-anchor="middle" font-size="10" fill="white" font-weight="bold" font-family="sans-serif">Théorème</text><text x="20" y="46" font-size="11" fill="#1E293B" font-family="sans-serif">f'(x) &gt; 0 sur I</text><text x="170" y="46" font-size="12" fill="#16A34A" font-weight="bold" font-family="sans-serif">⟹  f croissante sur I</text><text x="20" y="68" font-size="11" fill="#1E293B" font-family="sans-serif">f'(x) &lt; 0 sur I</text><text x="170" y="68" font-size="12" fill="#DC2626" font-weight="bold" font-family="sans-serif">⟹  f décroissante sur I</text></svg>`,
+          tipTex: r`\text{Étudier les variations de }f\text{ revient à étudier le \textbf{signe} de }f'`,
+        },
+        { id:'d11', num:'11', title:'Méthode',
+          bltTex:[
+            r`\textbf{1.}\text{ Calculer }f'(x)`,
+            r`\textbf{2.}\text{ Résoudre }f'(x)=0\text{ pour trouver les valeurs critiques}`,
+            r`\textbf{3.}\text{ Dresser le tableau de signes de }f'\text{ (factoriser si nécessaire)}`,
+            r`\textbf{4.}\text{ Conclure sur les variations de }f`,
+          ],
+          ex:{ qTex: r`f(x)=-x^2+4x-3.\text{ Étudier les variations}`,
+               answer: r`f'(x)=-2x+4=0\Rightarrow x=2\text{ ; }f'\text{ change de signe : }f\nearrow\text{ sur }]-\infty;2]\text{, }f\searrow\text{ sur }[2;+\infty[` }},
+      ]},
+    { emoji:'📏', label:'Tangente', color:'#DB2777', light:'#FDF2F8',
+      rules:[
+        { id:'d12', num:'12', title:'Équation de la tangente',
+          fml: r`y = f'(a)(x-a)+f(a)`,
+          tipTex: r`\text{Retenir : \textbf{ordonnée à l'origine}} = f(a) - a\cdot f'(a)`,
+          bltTex:[
+            r`\text{Pente de la tangente en }a : f'(a)`,
+            r`\text{Point de tangence : }A\bigl(a\,;\,f(a)\bigr)`,
+          ],
+          ex:{ qTex: r`f(x)=x^2-3x-1.\text{ Tangente en }x=1`,
+               answer: r`f(1)=-3\;;\ f'(x)=2x-3\;;\ f'(1)=-1\;;\quad y=-1(x-1)-3=-x-2` }},
+        { id:'d13', num:'13', title:'Interprétation graphique',
+          bltTex:[
+            r`\text{Ordonnée à l'origine de la tangente} : p = f(a)-a\cdot f'(a)`,
+            r`\text{Coefficient directeur visible sur le graphe} = f'(a)`,
+          ]},
+      ]},
+    { isPractice:true, emoji:'🏋️', label:'S\'entraîner',
+      practices:[
+        { sub:'lecture_derivee',      label:'Lecture graphique de f\'(a)', emoji:'📊', cat:'derivation' },
+        { sub:'calcul_derivee',       label:'Calculer f\'(x)',              emoji:'✏️', cat:'derivation' },
+        { sub:'deriv_tangente',       label:'Équation de tangente',         emoji:'📏', cat:'derivation' },
+        { sub:'deriv_variations',     label:'Sens de variation',            emoji:'📈', cat:'derivation' },
+      ]},
+  ];
+
+  const sec = SECS[secIdx];
+  return (
+    <div style={{display:'flex',flexDirection:'column',height:'100%',background:'#F8FAFC'}}>
+      <div style={{background:'linear-gradient(135deg,#2563EB,#1D4ED8)',padding:'16px 16px 0',flexShrink:0}}>
+        <div style={{display:'flex',alignItems:'center',marginBottom:10}}>
+          <button onClick={onBack} style={{background:'rgba(255,255,255,.18)',border:'none',borderRadius:8,color:'#fff',padding:'5px 10px',marginRight:10,cursor:'pointer',fontSize:16}}>✕</button>
+          <div>
+            <div style={{color:'rgba(255,255,255,.75)',fontSize:11}}>1ère Techno · Chapitre 6</div>
+            <div style={{color:'#fff',fontWeight:800,fontSize:17,fontFamily:"'Nunito',sans-serif"}}>La dérivation</div>
+          </div>
+        </div>
+        <div ref={tabsRef} style={{display:'flex',gap:6,overflowX:'auto',paddingBottom:10,scrollbarWidth:'none'}}>
+          {SECS.map((s,i)=>(
+            <button key={i} onClick={()=>setSecIdx(i)}
+              style={{flexShrink:0,padding:'6px 13px',borderRadius:20,border:'none',cursor:'pointer',
+                fontSize:12,fontWeight:700,fontFamily:"'Nunito',sans-serif",
+                background: secIdx===i ? '#fff' : 'rgba(255,255,255,.2)',
+                color: secIdx===i ? '#2563EB' : '#fff',
+              }}>{s.emoji} {s.label}</button>
+          ))}
+        </div>
+      </div>
+      <div style={{flex:1,overflowY:'auto',padding:'14px 14px 80px'}}>
+        {sec.isPractice
+          ? <CoursPracticeList practices={sec.practices} onStartPractice={onStartPractice} col='#2563EB'/>
+          : sec.rules.map(rule=>(
+            <div key={rule.id} style={{background:'#fff',borderRadius:14,marginBottom:12,overflow:'hidden',
+              border:`1.5px solid ${sec.color}33`}}>
+              <button onClick={()=>setOpenMap(m=>({...m,[rule.id]:!m[rule.id]}))}
+                style={{width:'100%',background:`linear-gradient(135deg,${sec.color}15,${sec.light})`,
+                  border:'none',padding:'12px 14px',textAlign:'left',cursor:'pointer',display:'flex',alignItems:'center',gap:10}}>
+                <span style={{background:sec.color,color:'#fff',borderRadius:20,padding:'2px 9px',fontSize:11,fontWeight:800,flexShrink:0}}>
+                  {rule.num}</span>
+                <span style={{fontWeight:700,fontSize:14,color:'#1E293B',flex:1,fontFamily:"'Nunito',sans-serif"}}>{rule.title}</span>
+                <span style={{fontSize:14,color:sec.color}}>{openMap[rule.id]?'▲':'▼'}</span>
+              </button>
+              {openMap[rule.id] && (
+                <div style={{padding:'12px 14px',borderTop:`1px solid ${sec.color}22`}}>
+                  {rule.fml && <div style={{background:`${sec.color}10`,borderLeft:`3px solid ${sec.color}`,borderRadius:'0 8px 8px 0',padding:'10px 12px',marginBottom:10,overflowX:'auto'}}>
+                    <M>{rule.fml}</M></div>}
+                  {rule.svgDiag && <div style={{marginBottom:10}} dangerouslySetInnerHTML={{__html:rule.svgDiag}}/>}
+                  {rule.bltTex && rule.bltTex.map((b,j)=>(
+                    <div key={j} style={{display:'flex',alignItems:'flex-start',gap:8,marginBottom:6}}>
+                      <span style={{color:sec.color,fontWeight:900,flexShrink:0,marginTop:1}}>•</span>
+                      <span style={{fontSize:13,color:'#334155'}}><M>{b}</M></span>
+                    </div>))}
+                  {rule.tipTex && <div style={{background:'#FFFBEB',border:'1px solid #FDE68A',borderRadius:8,padding:'8px 11px',marginTop:8,fontSize:12.5}}>
+                    💡 <M>{rule.tipTex}</M></div>}
+                  {rule.ex && <div style={{background:'#F0FDF4',border:'1px solid #86EFAC',borderRadius:8,padding:'10px 12px',marginTop:10}}>
+                    <div style={{fontWeight:700,fontSize:12,color:'#15803D',marginBottom:4}}>✏️ Exemple</div>
+                    <div style={{fontSize:13,marginBottom:6}}><M>{rule.ex.qTex}</M></div>
+                    <div style={{fontSize:13,color:'#166534'}}><M>{rule.ex.answer}</M></div>
+                  </div>}
+                </div>)}
+            </div>))}
+      </div>
+    </div>
+  );
+}
+
 // ── CoursMathStats — Statistiques (Ch. 11) ───────────────────────────────────
 function CoursMathStats({onBack, onStartPractice}) {
   const [secIdx, setSecIdx] = React.useState(0);
@@ -28827,6 +29011,7 @@ function AutoMaths() {
           {screen==="cours_stats"             && <CoursMathStats         onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_equations"         && <CoursMathEquations    onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_configs"          && <CoursMathConfigs      onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
+          {screen==="cours_derivation_techno" && <CoursMathDerivation onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_second_degre"     && <CoursMathSecondDegre  onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_suites"           && <CoursMathSuites       onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_probas"           && <CoursMathProbas       onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
