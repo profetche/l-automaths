@@ -27882,19 +27882,19 @@ function CoursMathDerivation({onBack, onStartPractice}) {
               {openMap[rule.id] && (
                 <div style={{padding:'12px 14px',borderTop:`1px solid ${sec.color}22`}}>
                   {rule.fml && <div style={{background:`${sec.color}10`,borderLeft:`3px solid ${sec.color}`,borderRadius:'0 8px 8px 0',padding:'10px 12px',marginBottom:10,overflowX:'auto'}}>
-                    <M>{rule.fml}</M></div>}
+                    <M tex={rule.fml}/></div>}
                   {rule.svgDiag && <div style={{marginBottom:10}} dangerouslySetInnerHTML={{__html:rule.svgDiag}}/>}
                   {rule.bltTex && rule.bltTex.map((b,j)=>(
                     <div key={j} style={{display:'flex',alignItems:'flex-start',gap:8,marginBottom:6}}>
                       <span style={{color:sec.color,fontWeight:900,flexShrink:0,marginTop:1}}>•</span>
-                      <span style={{fontSize:13,color:'#334155'}}><M>{b}</M></span>
+                      <span style={{fontSize:13,color:'#334155'}}><M tex={b}/></span>
                     </div>))}
                   {rule.tipTex && <div style={{background:'#FFFBEB',border:'1px solid #FDE68A',borderRadius:8,padding:'8px 11px',marginTop:8,fontSize:12.5}}>
-                    💡 <M>{rule.tipTex}</M></div>}
+                    💡 <M tex={rule.tipTex}/></div>}
                   {rule.ex && <div style={{background:'#F0FDF4',border:'1px solid #86EFAC',borderRadius:8,padding:'10px 12px',marginTop:10}}>
                     <div style={{fontWeight:700,fontSize:12,color:'#15803D',marginBottom:4}}>✏️ Exemple</div>
-                    <div style={{fontSize:13,marginBottom:6}}><M>{rule.ex.qTex}</M></div>
-                    <div style={{fontSize:13,color:'#166534'}}><M>{rule.ex.answer}</M></div>
+                    <div style={{fontSize:13,marginBottom:6}}><M tex={rule.ex.qTex}/></div>
+                    <div style={{fontSize:13,color:'#166534'}}><M tex={rule.ex.a}/></div>
                   </div>}
                 </div>)}
             </div>))}
