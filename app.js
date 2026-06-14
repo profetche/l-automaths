@@ -27790,7 +27790,7 @@ function CoursMathDerivation({onBack, onStartPractice}) {
       rules:[
         { id:'d6', num:'6', title:'Définition et dérivée',
           fml: r`f(x)=ax^2+bx+c \;\Rightarrow\; f'(x)=2ax+b`,
-          tipTex: r`a\neq0\text{ (sinon ce n'est pas un polynôme du 2\textsuperscript{nd} degré)}`,
+          tipTex: r`a\neq0\text{ (sinon ce n'est pas un polynôme du2ndegré)}`,
           ex:{ qTex: r`f(x)=4x^2-6x+1\text{. Calculer }f'(x)`,
                a: r`f'(x)=8x-6` }},
         { id:'d7', num:'7', title:'Autres exemples',
