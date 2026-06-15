@@ -25102,6 +25102,12 @@ const COURS_CATALOG = [
     chapitres:8, color:"#7C3AED",
     desc:"Conditionnelles · Arbres & variables aléatoires · Loi binomiale (3 phases)",
   },
+  { id:"stats_2var", emoji:"📡",
+    title:"Statistiques à deux variables",
+    niveaux:["1ère Techno"],
+    chapitres:4, color:"#0D9488",
+    desc:"Nuage de points · Point moyen · Ajustement affine · Interpolation & extrapolation",
+  },
 ];
 
 function CoursPracticeList({practices, onStartPractice, col}){
@@ -27606,6 +27612,16 @@ function CoursMathSuites({onBack, onStartPractice}) {
         ],
         ex:{qTex:r`u_0=5\ \text{et}\ u_{n+1}=u_n-4`,
             a:r`r=-4<0\ \Rightarrow\ (u_n)\text{ décroissante}`}},
+      { id:"su9b",num:"9b",title:"Terme de rang n (formule explicite)",
+        fml:r`u_n=u_0+n\times r\qquad\text{ou}\qquad u_n=u_1+(n-1)\times r`,
+        bltTex:[
+          r`\textbf{Depuis }u_0\ :\quad u_n=u_0+n\cdot r`,
+          r`\textbf{Depuis }u_1\ :\quad u_n=u_1+(n-1)\cdot r`,
+          r`\text{Permet de calculer }u_n\text{ directement sans passer par tous les termes}`,
+        ],
+        tipTex:r`u_0=3,\ r=5\Rightarrow u_{10}=3+10\times5=53`,
+        ex:{qTex:r`u_1=7,\ r=4\quad\text{Calculer }u_{20}`,
+            a:r`u_{20}=u_1+(20-1)\times r=7+19\times 4=7+76=83`}},
       { id:"su10",num:"10",title:"Application : intérêts simples",
         fml:r`C_{n+1}=C_n+50\quad(\text{arithmétique, }r=50)`,
         bltTex:[
@@ -27634,6 +27650,16 @@ function CoursMathSuites({onBack, onStartPractice}) {
         tipTex:r`\text{Valable seulement si le premier terme est strictement positif}`,
         ex:{qTex:r`u_0=25\ \text{et}\ q=0{,}5`,
             a:r`0<q<1\ \Rightarrow\ (u_n)\text{ décroissante (tend vers }0)`}},
+      { id:"su12b",num:"12b",title:"Terme de rang n (formule explicite)",
+        fml:r`u_n=u_0\times q^n\qquad\text{ou}\qquad u_n=u_1\times q^{n-1}`,
+        bltTex:[
+          r`\textbf{Depuis }u_0\ :\quad u_n=u_0\times q^n`,
+          r`\textbf{Depuis }u_1\ :\quad u_n=u_1\times q^{n-1}`,
+          r`\text{Permet de calculer }u_n\text{ directement}`,
+        ],
+        tipTex:r`u_0=2,\ q=3\Rightarrow u_5=2\times3^5=2\times243=486`,
+        ex:{qTex:r`u_1=100,\ q=1{,}05\quad\text{Calculer }u_{10}\text{ (en €)}`,
+            a:r`u_{10}=100\times1{,}05^{10-1}=100\times1{,}05^9\approx155{,}13\,\text{€}`}},
       { id:"su13",num:"13",title:"Application : intérêts composés",
         fml:r`C_{n+1}=C_n\times 1{,}04\quad(\text{géométrique, }q=1{,}04)`,
         bltTex:[
@@ -27894,6 +27920,28 @@ function CoursMathProbas({onBack, onStartPractice}) {
         ],
         ex:{qTex:r`\text{Sur 500 élèves : 200 pratiquent un sport (}S\text{), dont 120 aiment les maths (}M\text{)}`,
             a:r`P_S(M)=\dfrac{120}{200}=0{,}6\qquad P(S\cap M)=\dfrac{120}{500}=0{,}24`}},
+    ]},
+        { emoji:"🔗", label:"Indépendance", color:"#0891B2", light:"#F0F9FF", rules:[
+      { id:"pb_ind1",num:"I1",title:"Indépendance de deux événements",
+        fml:r`A\text{ et }B\text{ indépendants}\Leftrightarrow P(A\cap B)=P(A)\times P(B)`,
+        bltTex:[
+          r`\text{Si }A\text{ et }B\text{ sont indépendants, la réalisation de l'un n'influence pas l'autre}`,
+          r`\text{Équivalence : }P_A(B)=P(B)\quad(\text{et }P_B(A)=P(A))`,
+          r`\text{En pratique : vérifier }P(A\cap B)=P(A)\times P(B)`,
+        ],
+        tipTex:r`P(A)=0{,}4\quad P(B)=0{,}3\quad P(A\cap B)=0{,}12=0{,}4\times0{,}3\ \Rightarrow\ \text{indépendants}`,
+        ex:{qTex:r`P(A)=0{,}5,\ P(B)=0{,}4,\ P(A\cap B)=0{,}2\ \text{: indépendants ?}`,
+            a:r`P(A)\times P(B)=0{,}5\times0{,}4=0{,}2=P(A\cap B)\ \Rightarrow\ \text{oui, indépendants}`}},
+      { id:"pb_ind2",num:"I2",title:"Formule des probabilités totales",
+        fml:r`P(B)=P(A)\cdot P_A(B)+P(\bar{A})\cdot P_{\bar{A}}(B)`,
+        bltTex:[
+          r`\text{Valable quand }A\text{ et }\bar{A}\text{ forment une partition de l'univers}`,
+          r`\text{On « décompose » }B\text{ selon les cas }A\text{ et }\bar{A}`,
+          r`\text{Lire les probabilités sur l'arbre de gauche à droite}`,
+        ],
+        tipTex:r`\text{Stratégie : dessiner un arbre, puis multiplier sur chaque chemin menant à }B`,
+        ex:{qTex:r`P(A)=0{,}6,\ P_A(B)=0{,}7,\ P_{\bar{A}}(B)=0{,}2\quad P(B)=\ ?`,
+            a:r`P(B)=0{,}6\times0{,}7+0{,}4\times0{,}2=0{,}42+0{,}08=0{,}50`}},
     ]},
     { emoji:"🏋️", label:"S'entraîner", color:"#0F172A", light:"#F1F5F9", isPractice:true,
       practices:[
@@ -28171,6 +28219,190 @@ function CoursMathDerivation({onBack, onStartPractice}) {
                   </div>}
                 </div>)}
             </div>))}
+      </div>
+    </div>
+  );
+}
+
+// ── CoursMathStats2var — Série statistiques à deux variables (1ère Techno) ──
+function CoursMathStats2var({onBack, onStartPractice}) {
+  const [secIdx, setSecIdx] = React.useState(0);
+  const [openMap, setOpenMap] = React.useState({});
+  const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
+  const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
+  const tabsRef = React.useRef();
+  React.useEffect(()=>{
+    if(!tabsRef.current) return;
+    const btn=tabsRef.current.children[secIdx];
+    if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  },[secIdx]);
+
+  const SVG_NUAGE=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15 -15 310 210" width="100%" style="background:#F0FDFA;font-family:sans-serif;border-radius:12px">
+  <defs><marker id="ah_2v" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><polygon points="0,0 6,3 0,6" fill="#334155"/></marker></defs>
+  <g stroke="#CCFBF1" stroke-width="0.8">
+    <line x1="0" y1="0" x2="0" y2="180"/><line x1="50" y1="0" x2="50" y2="180"/>
+    <line x1="100" y1="0" x2="100" y2="180"/><line x1="150" y1="0" x2="150" y2="180"/>
+    <line x1="200" y1="0" x2="200" y2="180"/><line x1="250" y1="0" x2="250" y2="180"/>
+    <line x1="0" y1="180" x2="270" y2="180"/><line x1="0" y1="130" x2="270" y2="130"/>
+    <line x1="0" y1="80" x2="270" y2="80"/><line x1="0" y1="30" x2="270" y2="30"/>
+  </g>
+  <line x1="0" y1="-10" x2="0" y2="188" stroke="#334155" stroke-width="1.5" marker-end="url(#ah_2v)"/>
+  <line x1="-5" y1="180" x2="278" y2="180" stroke="#334155" stroke-width="1.5" marker-end="url(#ah_2v)"/>
+  <!-- nuage de points -->
+  <circle cx="30" cy="162" r="4" fill="#0D9488"/>
+  <circle cx="60" cy="145" r="4" fill="#0D9488"/>
+  <circle cx="90" cy="130" r="4" fill="#0D9488"/>
+  <circle cx="120" cy="112" r="4" fill="#0D9488"/>
+  <circle cx="150" cy="98" r="4" fill="#0D9488"/>
+  <circle cx="180" cy="80" r="4" fill="#0D9488"/>
+  <circle cx="210" cy="62" r="4" fill="#0D9488"/>
+  <circle cx="240" cy="48" r="4" fill="#0D9488"/>
+  <!-- droite ajustement -->
+  <line x1="10" y1="172" x2="258" y2="42" stroke="#F59E0B" stroke-width="2" stroke-dasharray="5,3"/>
+  <!-- point moyen -->
+  <circle cx="135" cy="105" r="6" fill="none" stroke="#DC2626" stroke-width="2"/>
+  <line x1="129" y1="105" x2="141" y2="105" stroke="#DC2626" stroke-width="1.5"/>
+  <line x1="135" y1="99" x2="135" y2="111" stroke="#DC2626" stroke-width="1.5"/>
+  <text x="142" y="101" font-size="9" fill="#DC2626" font-weight="bold">G(x̄, ȳ)</text>
+  <text x="-8" y="4" font-size="9" fill="#334155" font-style="italic">y</text>
+  <text x="270" y="184" font-size="9" fill="#334155" font-style="italic">x</text>
+</svg>`;
+
+  const SECS=[
+    { emoji:"📍", label:"Nuage de points", color:"#0D9488", light:"#F0FDFA", rules:[
+      { id:"sv1",num:"1",title:"Série à deux variables quantitatives",
+        bltTex:[
+          r`\text{On étudie simultanément deux caractères quantitatifs }x\text{ et }y`,
+          r`\text{Chaque individu donne un couple }(x_i\,;\,y_i)`,
+          r`\text{On représente ces couples par un }\\textbf{nuage de points}\\text{ dans un repère}`,
+        ],
+        tipTex:r`\text{Exemple : taille }x\text{ (cm) et poids }y\text{ (kg) de }n\text{ personnes}`,
+        ex:{qTex:r`\text{Données : }(2\,;\,5),\,(4\,;\,9),\,(6\,;\,11)\text{ — représenter le nuage}`,
+            a:r`\text{Points d'abscisses }2,4,6\text{ et ordonnées }5,9,11`}},
+      { id:"sv2",num:"2",title:"Représentation graphique",
+        svgDiag:SVG_NUAGE,
+        bltTex:[
+          r`\text{Chaque couple }(x_i\,;\,y_i)\text{ est un point du repère}`,
+          r`\text{On observe la « forme » du nuage pour deviner un lien entre }x\text{ et }y`,
+          r`\text{Si le nuage est allongé : lien linéaire (affine) probable}`,
+        ]},
+    ]},
+    { emoji:"🎯", label:"Point moyen", color:"#2563EB", light:"#EFF6FF", rules:[
+      { id:"sv3",num:"3",title:"Point moyen G",
+        fml:r`G\!\left(\bar{x}\,;\,\bar{y}\right)\qquad\bar{x}=\frac{1}{n}\sum x_i\quad\bar{y}=\frac{1}{n}\sum y_i`,
+        bltTex:[
+          r`\bar{x}\text{ : moyenne des valeurs de }x`,
+          r`\bar{y}\text{ : moyenne des valeurs de }y`,
+          r`G\text{ est le }\\textbf{centre de gravité}\\text{ du nuage : la droite d'ajustement passe par }G`,
+        ],
+        tipTex:r`\text{Commencer toujours par calculer }G\text{ avant de chercher la droite}`,
+        ex:{qTex:r`x:\,2,4,6\quad y:\,5,9,11\quad G=\ ?`,
+            a:r`\bar{x}=\dfrac{2+4+6}{3}=4\qquad\bar{y}=\dfrac{5+9+11}{3}=\dfrac{25}{3}\approx8{,}33\qquad G(4\,;\,8{,}33)`}},
+    ]},
+    { emoji:"📏", label:"Ajustement affine", color:"#7C3AED", light:"#F5F3FF", rules:[
+      { id:"sv4",num:"4",title:"Droite d'ajustement",
+        fml:r`y=ax+b`,
+        bltTex:[
+          r`\text{On cherche la droite qui « colle » le mieux au nuage}`,
+          r`\text{Elle passe toujours par le point moyen }G(\bar{x}\,;\,\bar{y})`,
+          r`a\text{ : coefficient directeur (pente)}\quad b\text{ : ordonnée à l'origine}`,
+          r`b=\bar{y}-a\bar{x}\quad(\text{on trouve }b\text{ après }a)`,
+        ],
+        tipTex:r`\text{À la calculatrice : « regression linéaire » donne directement }a\text{ et }b`,
+        ex:{qTex:r`a=2{,}5\text{ et }G(4\,;\,8{,}33)\quad\text{Trouver }b`,
+            a:r`b=\bar{y}-a\bar{x}=8{,}33-2{,}5\times4=8{,}33-10=-1{,}67\qquad y=2{,}5x-1{,}67`}},
+      { id:"sv5",num:"5",title:"Interpolation et extrapolation",
+        fml:r`\hat{y}=ax+b`,
+        bltTex:[
+          r`\text{On utilise la droite pour }\\textbf{estimer}\\text{ une valeur de }y\text{ à partir d'un }x`,
+          r`\\textbf{Interpolation}\text{ : }x\text{ est }\\textbf{dans}\\text{ la plage des données}`,
+          r`\\textbf{Extrapolation}\text{ : }x\text{ est }\\textbf{hors}\\text{ de la plage (moins fiable)}`,
+        ],
+        tipTex:r`\text{⚠️ L'extrapolation est risquée : la tendance peut changer au-delà des données}`,
+        ex:{qTex:r`y=2{,}5x-1{,}67\quad\text{Estimer }y\text{ pour }x=7`,
+            a:r`\hat{y}=2{,}5\times7-1{,}67=17{,}5-1{,}67=15{,}83`}},
+    ]},
+    { emoji:"🏋️", label:"S'entraîner", color:"#0F172A", light:"#F1F5F9", isPractice:true,
+      practices:[
+        {sub:"tableau", label:"Tableau double entrée", emoji:"📋", cat:"probabilites"},
+      ]},
+  ];
+
+  const sec=SECS[secIdx]; const col=sec.color;
+  return (
+    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"#F8FAFF"}}>
+      <div style={{background:"linear-gradient(135deg,#0D9488,#0F766E)",padding:"16px 18px 14px",flexShrink:0}}>
+        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:12}}>
+          <button onClick={onBack} style={{background:"rgba(255,255,255,.2)",border:"none",borderRadius:10,
+            cursor:"pointer",color:"#fff",fontSize:16,width:32,height:32,display:"flex",
+            alignItems:"center",justifyContent:"center"}}>✕</button>
+          <div style={{flex:1}}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:17,color:"#fff"}}>
+              📡 Statistiques à deux variables</div>
+            <div style={{fontSize:11,color:"rgba(255,255,255,.75)",marginTop:1}}>
+              Cours interactif · 1ère Techno</div>
+          </div>
+        </div>
+        <div ref={tabsRef} style={{display:"flex",gap:6,overflowX:"auto",scrollbarWidth:"none",paddingBottom:2}}>
+          {SECS.map((s,i)=>(
+            <button key={i} onClick={()=>setSecIdx(i)}
+              style={{background:i===secIdx?"#fff":"rgba(255,255,255,.2)",
+                border:"none",borderRadius:99,padding:"6px 13px",cursor:"pointer",flexShrink:0,
+                fontFamily:"'Nunito',sans-serif",fontWeight:700,fontSize:11,
+                color:i===secIdx?s.color:"#fff",whiteSpace:"nowrap"}}>
+              {s.emoji} {s.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div style={{flex:1,overflowY:"auto",padding:"14px 14px 80px"}}>
+        {sec.isPractice ? <CoursPracticeList practices={sec.practices} onStartPractice={onStartPractice} col={col}/> : sec.rules.map((rl,i)=>{
+          const k=`${secIdx}_${i}`; const expanded=isOpen(k,i===0);
+          return (
+            <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
+              overflow:"hidden",boxShadow:"0 2px 14px rgba(0,0,0,.07)",borderLeft:`4px solid ${col}`}}>
+              <div onClick={()=>tog(k)} style={{display:"flex",alignItems:"center",gap:10,
+                padding:"13px 15px",cursor:"pointer",userSelect:"none"}}>
+                <div style={{width:30,height:30,borderRadius:"50%",background:col,color:"#fff",
+                  display:"flex",alignItems:"center",justifyContent:"center",
+                  fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
+                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}</div>
+                <span style={{color:"#94A3B8",fontSize:11,display:"block",
+                  transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
+              </div>
+              {expanded&&(
+                <div style={{padding:"0 15px 15px"}}>
+                  {rl.fml&&<div style={{background:sec.light,borderRadius:13,padding:"14px 12px",
+                    margin:"8px 0",textAlign:"center",overflowX:"auto"}}><M tex={rl.fml}/></div>}
+                  {rl.svgDiag&&<div style={{margin:"8px 0",borderRadius:12,overflow:"hidden"}}
+                    dangerouslySetInnerHTML={{__html:rl.svgDiag}}/>}
+                  {(rl.bltTex||[]).map((b,j)=>(
+                    <div key={j} style={{display:"flex",gap:7,padding:"4px 0",alignItems:"flex-start"}}>
+                      <span style={{color:col,fontWeight:700,flexShrink:0,marginTop:2}}>•</span>
+                      <span style={{overflowX:"auto"}}><M tex={b}/></span>
+                    </div>
+                  ))}
+                  {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,
+                    padding:"10px 12px",fontSize:12,fontWeight:600,color:"#713F12",
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4,overflowX:"auto"}}>
+                    {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
+                  </div>}
+                  {rl.ex&&(
+                    <div style={{background:"#F8FAFC",borderRadius:12,padding:"12px 13px",
+                      marginTop:10,borderLeft:`3px solid ${col}`}}>
+                      <div style={{fontSize:10,fontWeight:800,color:col,textTransform:"uppercase",
+                        letterSpacing:".7px",marginBottom:5}}>Exemple</div>
+                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>
+                        {rl.ex.qTex?<M tex={rl.ex.qTex}/>:<span>{rl.ex.q}</span>}
+                      </div>
+                      <div style={{textAlign:"center",overflowX:"auto"}}><M tex={rl.ex.a}/></div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
@@ -29331,6 +29563,7 @@ function AutoMaths() {
           {screen==="cours_second_degre"     && <CoursMathSecondDegre  onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_suites"           && <CoursMathSuites       onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_probas"           && <CoursMathProbas       onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
+          {screen==="cours_stats_2var"        && <CoursMathStats2var    onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="flashcard_setup" && <FlashcardSetupScreen onBack={()=>setScreen(profile?"dashboard":"home")} onStart={(cards)=>{ setPool(cards); plsbl("Flashcards lancées", {cartes: cards.length}); setScreen("flashcards"); }}/>}
           {screen==="flashcards"    && <FlashcardScreen cards={pool} onBack={()=>setScreen("flashcard_setup")}/>}
           {screen==="mission_theme" && missionTheme && <MissionThemeScreen theme={missionTheme} missionId={missionId} onBack={()=>setScreen("mission_select")} onStart={(qs, themeId)=>{
