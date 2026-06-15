@@ -23145,13 +23145,14 @@ function BacSubjectScreen({onStart, onBack}) {
           const isOpen = open[group.id];
           const totalAvail = group.subs.filter(s=>(DB.bac?.[s.id]||[]).length>0).length;
           return (
-            <div key={group.id} style={{borderRadius:16,overflow:"hidden",
+            <div key={group.id} style={{borderRadius:16,
               boxShadow:"0 2px 12px rgba(0,0,0,.06)",background:"#fff"}}>
               {/* Accordion header */}
               <button onClick={()=>toggle(group.id)}
                 style={{width:"100%",display:"flex",alignItems:"center",gap:10,
                   padding:"13px 16px",border:"none",background:"transparent",
-                  cursor:"pointer",textAlign:"left"}}>
+                  cursor:"pointer",textAlign:"left",
+                  borderRadius:isOpen?"16px 16px 0 0":"16px"}}>
                 <span style={{fontSize:18}}>{group.emoji}</span>
                 <div style={{flex:1}}>
                   <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:13,color:"#1E293B"}}>
@@ -23168,7 +23169,8 @@ function BacSubjectScreen({onStart, onBack}) {
               {/* Subjects list */}
               {isOpen&&(
                 <div style={{display:"flex",flexDirection:"column",gap:0,
-                  borderTop:"1px solid #F1F5F9",padding:"6px 10px 10px"}}>
+                  borderTop:"1px solid #F1F5F9",padding:"6px 10px 10px",
+                  borderRadius:"0 0 16px 16px"}}>
                   {group.subs.map(sub=>{
                     const qs = DB.bac?.[sub.id] || [];
                     const isEmpty = qs.length === 0;
