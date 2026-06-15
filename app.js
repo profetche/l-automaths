@@ -8062,6 +8062,67 @@ const DB = {
         a:r`3`, tip:r`\text{Tri : }2,2,3,3,4,5\text{ ; médiane }=\dfrac{3+3}{2}=3` },
     ],
     tronc_original: [],
+    // ── Tronc commun · Annales · Sujet Antilles-Guyane (12 juin 2026, hors Spé) ──
+    tronc_ag_2026: [
+      { q:r`\text{Une forme factorisée de }9x^2-\dfrac{1}{9}\text{ est :}`,
+        choices:[r`\left(3x-\dfrac{1}{3}\right)^2`,r`\left(3x-\dfrac{1}{3}\right)\!\left(3x+\dfrac{1}{3}\right)`,r`\left(9x-\dfrac{1}{3}\right)^2`,r`\left(9x-\dfrac{1}{3}\right)\!\left(9x+\dfrac{1}{3}\right)`],
+        a:r`\left(3x-\dfrac{1}{3}\right)\!\left(3x+\dfrac{1}{3}\right)`,
+        tip:r`9x^2-\dfrac{1}{9}=(3x)^2-\left(\dfrac{1}{3}\right)^2=\left(3x-\dfrac{1}{3}\right)\!\left(3x+\dfrac{1}{3}\right)` },
+      { q:r`E=\dfrac{x-y}{zt}\text{ avec }x=3,\,y=-2,\,z=-3,\,t=-4.\\[4pt]E\text{ vaut :}`,
+        choices:[r`\dfrac{1}{12}`,r`-\dfrac{5}{12}`,r`\dfrac{5}{12}`,r`-\dfrac{1}{12}`],
+        a:r`\dfrac{5}{12}`,
+        tip:r`E=\dfrac{3-(-2)}{(-3)\times(-4)}=\dfrac{5}{12}` },
+      { q:r`f\text{ est définie sur }[-5\,;9].\\[4pt]A=\dfrac{f(-4)}{f(-1)}.\\[4pt]\text{Laquelle de ces propositions est vraie ?}`,
+        svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="-60 -40 340 240" width="100%" style="background:#fff;font-family:sans-serif;border-radius:8px">
+  <defs><marker id="ah" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><polygon points="0,0 6,3 0,6" fill="#334155"/></marker></defs>
+  <g stroke="#E5EAF1" stroke-width="1">
+    <line x1="-50" y1="-30" x2="-50" y2="190"/><line x1="-20" y1="-30" x2="-20" y2="190"/>
+    <line x1="10" y1="-30" x2="10" y2="190"/><line x1="40" y1="-30" x2="40" y2="190"/>
+    <line x1="70" y1="-30" x2="70" y2="190"/><line x1="100" y1="-30" x2="100" y2="190"/>
+    <line x1="130" y1="-30" x2="130" y2="190"/><line x1="160" y1="-30" x2="160" y2="190"/>
+    <line x1="190" y1="-30" x2="190" y2="190"/><line x1="220" y1="-30" x2="220" y2="190"/>
+    <line x1="-50" y1="-30" x2="230" y2="-30"/><line x1="-50" y1="0" x2="230" y2="0"/>
+    <line x1="-50" y1="30" x2="230" y2="30"/><line x1="-50" y1="60" x2="230" y2="60"/>
+    <line x1="-50" y1="90" x2="230" y2="90"/><line x1="-50" y1="120" x2="230" y2="120"/>
+    <line x1="-50" y1="150" x2="230" y2="150"/><line x1="-50" y1="180" x2="230" y2="180"/>
+  </g>
+  <line x1="10" y1="-30" x2="10" y2="195" stroke="#334155" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="-55" y1="90" x2="230" y2="90" stroke="#334155" stroke-width="1.5" marker-end="url(#ah)"/>
+  <g font-size="10" fill="#475569" text-anchor="middle">
+    <text x="-50" y="103">-5</text><text x="-20" y="103">-4</text><text x="10" y="103">-3</text>
+    <text x="40" y="103">-2</text><text x="70" y="103">-1</text><text x="130" y="103">1</text>
+    <text x="160" y="103">2</text><text x="190" y="103">3</text><text x="220" y="103">4</text>
+    <text x="100" y="103">0</text>
+    <text x="2" y="88" text-anchor="end">3</text><text x="2" y="58" text-anchor="end">2</text>
+    <text x="2" y="28" text-anchor="end">1</text><text x="2" y="120" text-anchor="end">-1</text>
+    <text x="2" y="150" text-anchor="end">-2</text><text x="2" y="180" text-anchor="end">-3</text>
+  </g>
+  <path d="M -50,120 C -30,40 -10,10 10,60 S 70,150 100,90 S 160,10 190,30 S 210,60 220,120" fill="none" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round"/>
+</svg>`,
+        choices:[r`A=0`,r`A<0`,r`A>0`,r`\text{On ne peut pas connaître le signe de }A`],
+        a:r`A<0`,
+        tip:r`f(-4)\approx2>0\text{ et }f(-1)\approx-1{,}5<0\Rightarrow A=\dfrac{f(-4)}{f(-1)}<0` },
+      { q:r`-2x+2\geqslant0.\\[4pt]S\text{ est l'ensemble des solutions. On peut affirmer que :}`,
+        choices:[r`S=\left]-\infty\,;1\right]`,r`S=\left[1\,;+\infty\right[`,r`S=\left[-1\,;+\infty\right[`,r`S=\left]-\infty\,;-1\right]`],
+        a:r`S=\left]-\infty\,;1\right]`,
+        tip:r`-2x+2\geqslant0\Leftrightarrow-2x\geqslant-2\Leftrightarrow x\leqslant1` },
+      { q:r`\text{Tableau de signes d'une fonction }f\text{ définie sur }\mathbb{R}\text{ :}\\[6pt]\begin{array}{c|ccccccc}x&-\infty&&-3&&2&&+\infty\\\hline\text{Signe de }f(x)&&+&0&-&0&+&\end{array}\\[6pt]\text{Une expression possible de }f(x)\text{ est :}`,
+        choices:[r`f(x)=(x+3)(2-x)`,r`f(x)=(x+2)(x-3)`,r`f(x)=(x-2)(x+3)`,r`f(x)=(x+2)(3+x)`],
+        a:r`f(x)=(x-2)(x+3)`,
+        tip:r`\text{Racines }-3\text{ et }2\text{ ; positif à l'extérieur : }f(x)=(x+3)(x-2)=(x-2)(x+3)` },
+      { q:r`\text{Prix }-50\,\%\text{ puis }+40\,\%.\\[4pt]\text{Ces deux variations sont équivalentes à :}`,
+        choices:[r`\text{une baisse de }0\,\%`,r`\text{une baisse de }70\,\%`,r`\text{une baisse de }10\,\%`,r`\text{une baisse de }30\,\%`],
+        a:r`\text{une baisse de }30\,\%`,
+        tip:r`\times0{,}5\times1{,}4=\times0{,}7\Rightarrow\text{baisse de }30\,\%` },
+      { q:r`\text{40\,\% des adhérents d'une association sont des hommes.}\\[4pt]\text{Il y a 30 femmes. Le nombre total d'adhérents est :}`,
+        choices:[r`70`,r`40`,r`75`,r`50`],
+        a:r`50`,
+        tip:r`60\,\%\text{ de femmes}=30\Rightarrow\text{total}=\dfrac{30}{0{,}6}=50` },
+      { q:r`a\neq0.\text{ Une seule égalité est vraie. Laquelle ?}`,
+        choices:[r`\dfrac{a^8}{a^{-5}}=a^3`,r`\dfrac{a^{30}}{a^2}=a^{15}`,r`\left(a^{10}\right)^3=a^{13}`,r`\dfrac{a\times a^5}{a^2}=a^4`],
+        a:r`\dfrac{a\times a^5}{a^2}=a^4`,
+        tip:r`\dfrac{a^1\times a^5}{a^2}=\dfrac{a^6}{a^2}=a^4` },
+    ],
     // ── Spécialité · Annales · Sujet 1 (2026) ────────────────────────────────
     spe_annales_s1_2026: [
       { q:r`\text{L'inverse du double de 5 est égal à :}`, choices:[r`\dfrac{2}{5}`,r`\dfrac{1}{10}`,r`\dfrac{5}{2}`,`10`], a:r`\dfrac{1}{10}`, tip:r`\frac{1}{2\times5}=\frac{1}{10}` },
@@ -23038,6 +23099,7 @@ const BAC_GROUPS = [
       {id:"tronc_annales_s4_2026", label:"Amérique du Nord 2026", year:2026, n:12},
       {id:"tronc_ce_2026", label:"Centres Étrangers 2026", year:2026, n:10, newUntil:1784119200000},
       {id:"tronc_metropole_sansspe_2026", label:"Métropole 12 juin 2026", year:2026, n:8, newUntil:1784312952867},
+      {id:"tronc_ag_2026", label:"Antilles-Guyane 12 juin 2026", year:2026, n:8, newUntil:1786300800000},
     ],
   },
   {
