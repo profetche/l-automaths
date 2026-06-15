@@ -8062,8 +8062,8 @@ const DB = {
         a:r`3`, tip:r`\text{Tri : }2,2,3,3,4,5\text{ ; médiane }=\dfrac{3+3}{2}=3` },
     ],
     tronc_original: [],
-    // ── Tronc commun · Annales · Sujet Antilles-Guyane (12 juin 2026, hors Spé) ──
-    tronc_ag_2026: [
+    // ── Spécialité · Annales · Sujet Antilles-Guyane (12 juin 2026) ──────────
+    spe_ag_2026: [
       { q:r`\text{Une forme factorisée de }9x^2-\dfrac{1}{9}\text{ est :}`,
         choices:[r`\left(3x-\dfrac{1}{3}\right)^2`,r`\left(3x-\dfrac{1}{3}\right)\!\left(3x+\dfrac{1}{3}\right)`,r`\left(9x-\dfrac{1}{3}\right)^2`,r`\left(9x-\dfrac{1}{3}\right)\!\left(9x+\dfrac{1}{3}\right)`],
         a:r`\left(3x-\dfrac{1}{3}\right)\!\left(3x+\dfrac{1}{3}\right)`,
@@ -23099,7 +23099,6 @@ const BAC_GROUPS = [
       {id:"tronc_annales_s4_2026", label:"Amérique du Nord 2026", year:2026, n:12},
       {id:"tronc_ce_2026", label:"Centres Étrangers 2026", year:2026, n:10, newUntil:1784119200000},
       {id:"tronc_metropole_sansspe_2026", label:"Métropole 12 juin 2026", year:2026, n:8, newUntil:1784312952867},
-      {id:"tronc_ag_2026", label:"Antilles-Guyane 12 juin 2026", year:2026, n:8, newUntil:1786300800000},
     ],
   },
   {
@@ -23110,11 +23109,19 @@ const BAC_GROUPS = [
       {id:"spe_annales_s3_2026", label:"Amérique du Nord 2026", year:2026, n:9},
       {id:"spe_ce_2026", label:"Centres Étrangers 2026", year:2026, n:6, newUntil:1784119200000},
       {id:"spe_metropole_2026", label:"Métropole 2026", year:2026, n:8, newUntil:1784312952867},
+      {id:"spe_ag_2026", label:"Antilles-Guyane 12 juin 2026", year:2026, n:8, newUntil:1786300800000},
     ],
   },
 ];
 
 function BacSubjectScreen({onStart, onBack}) {
+  const [open, setOpen] = useState(()=>{
+    const o={};
+    BAC_GROUPS.forEach(g=>{ o[g.id]=true; });
+    return o;
+  });
+  const toggle = id => setOpen(p=>({...p,[id]:!p[id]}));
+
   return (
     <div style={{display:"flex",flexDirection:"column",height:"100%",background:"var(--am-bg-light)"}}>
       {/* Header */}
@@ -23127,68 +23134,84 @@ function BacSubjectScreen({onStart, onBack}) {
           <span style={{fontSize:28}}>🏆</span>
           <div>
             <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:18,color:"#fff"}}>En route pour le Bac</div>
-            <div style={{color:"rgba(255,255,255,0.7)",fontSize:11}}>Automatismes QCM — Partie 1 des sujets 0</div>
+            <div style={{color:"rgba(255,255,255,0.7)",fontSize:11}}>Automatismes QCM — Partie 1 des sujets officiels</div>
           </div>
         </div>
       </div>
 
       {/* Body */}
-      <div style={{flex:1,overflowY:"auto",padding:"14px 14px 20px",display:"flex",flexDirection:"column",gap:14}}>
-        {BAC_GROUPS.map(group=>(
-          <div key={group.id}>
-            {/* Group header */}
-            <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:8}}>
-              <span style={{fontSize:16}}>{group.emoji}</span>
-              <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:13,color:"#1E293B"}}>{group.label}</div>
-              <div style={{flex:1,height:1,background:"#E2E8F0",marginLeft:4}}/>
+      <div style={{flex:1,overflowY:"auto",padding:"14px 14px 20px",display:"flex",flexDirection:"column",gap:10}}>
+        {BAC_GROUPS.map(group=>{
+          const isOpen = open[group.id];
+          const totalAvail = group.subs.filter(s=>(DB.bac?.[s.id]||[]).length>0).length;
+          return (
+            <div key={group.id} style={{borderRadius:16,overflow:"hidden",
+              boxShadow:"0 2px 12px rgba(0,0,0,.06)",background:"#fff"}}>
+              {/* Accordion header */}
+              <button onClick={()=>toggle(group.id)}
+                style={{width:"100%",display:"flex",alignItems:"center",gap:10,
+                  padding:"13px 16px",border:"none",background:"transparent",
+                  cursor:"pointer",textAlign:"left"}}>
+                <span style={{fontSize:18}}>{group.emoji}</span>
+                <div style={{flex:1}}>
+                  <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:13,color:"#1E293B"}}>
+                    {group.label}
+                  </div>
+                  <div style={{fontSize:10,color:"#94A3B8",marginTop:1}}>
+                    {totalAvail} sujet{totalAvail>1?"s":""} disponible{totalAvail>1?"s":""}
+                  </div>
+                </div>
+                <span style={{fontSize:14,color:"#94A3B8",transform:isOpen?"rotate(180deg)":"rotate(0deg)",
+                  transition:"transform .22s ease",display:"block"}}>▾</span>
+              </button>
+
+              {/* Subjects list */}
+              {isOpen&&(
+                <div style={{display:"flex",flexDirection:"column",gap:0,
+                  borderTop:"1px solid #F1F5F9",padding:"6px 10px 10px"}}>
+                  {group.subs.map(sub=>{
+                    const qs = DB.bac?.[sub.id] || [];
+                    const isEmpty = qs.length === 0;
+                    return (
+                      <button key={sub.id}
+                        onClick={()=>!isEmpty && onStart(sub.id, qs)}
+                        disabled={isEmpty}
+                        style={{padding:"10px 10px",borderRadius:11,border:"none",
+                          background:"transparent",
+                          cursor:isEmpty?"not-allowed":"pointer",
+                          display:"flex",alignItems:"center",gap:10,textAlign:"left",
+                          opacity:isEmpty?0.45:1,
+                          transition:"background .15s"}}>
+                        <div style={{width:7,height:7,borderRadius:"50%",flexShrink:0,
+                          background:isEmpty?"#CBD5E1":group.color}}/>
+                        <div style={{flex:1}}>
+                          <div style={{display:"flex",alignItems:"center",gap:6}}>
+                            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:700,
+                              fontSize:12.5,color:isEmpty?"#94A3B8":"#1E293B"}}>{sub.label}</div>
+                            {sub.newUntil&&Date.now()<sub.newUntil&&<span style={{fontSize:8,fontWeight:900,color:"#fff",
+                              background:"linear-gradient(135deg,#EF4444,#DC2626)",borderRadius:99,
+                              padding:"1px 5px",letterSpacing:0.5,
+                              boxShadow:"0 1px 4px rgba(239,68,68,.45)"}}>NEW</span>}
+                          </div>
+                          <div style={{fontSize:10,color:"#94A3B8",marginTop:1}}>
+                            {isEmpty?"🔧 Bientôt disponible":`${qs.length} question${qs.length>1?"s":""} · Automatismes Partie 1`}
+                          </div>
+                        </div>
+                        {!isEmpty&&<span style={{fontSize:10.5,color:group.color,fontWeight:800,
+                          background:`${group.color}18`,borderRadius:99,padding:"3px 8px",flexShrink:0}}>
+                          {qs.length} QCM →
+                        </span>}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
             </div>
-            {/* Subjects */}
-            <div style={{display:"flex",flexDirection:"column",gap:7}}>
-              {group.subs.map(sub=>{
-                const qs = DB.bac?.[sub.id] || [];
-                const isEmpty = qs.length === 0;
-                return (
-                  <button key={sub.id}
-                    onClick={()=>!isEmpty && onStart(sub.id, qs)}
-                    disabled={isEmpty}
-                    style={{padding:"13px 16px",borderRadius:14,border:"none",
-                      background:isEmpty?"#F1F5F9":"#fff",
-                      boxShadow:isEmpty?"none":"0 2px 10px rgba(0,0,0,.07)",
-                      cursor:isEmpty?"not-allowed":"pointer",
-                      display:"flex",alignItems:"center",gap:12,textAlign:"left",
-                      opacity:isEmpty?0.55:1}}>
-                    {/* Color dot */}
-                    <div style={{width:8,height:8,borderRadius:"50%",flexShrink:0,
-                      background:isEmpty?"#CBD5E1":group.color}}/>
-                    <div style={{flex:1}}>
-                      <div style={{display:"flex",alignItems:"center",gap:6}}>
-                        <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,
-                          fontSize:13,color:isEmpty?"#94A3B8":"#1E293B"}}>{sub.label}</div>
-                        {sub.newUntil&&Date.now()<sub.newUntil&&<span style={{fontSize:8.5,fontWeight:900,color:"#fff",
-                          background:"linear-gradient(135deg,#EF4444,#DC2626)",borderRadius:99,
-                          padding:"1.5px 6px",letterSpacing:0.5,
-                          boxShadow:"0 1px 4px rgba(239,68,68,.45)"}}>NEW</span>}
-                      </div>
-                      {sub.year&&<div style={{fontSize:10,color:"#94A3B8",marginTop:1}}>
-                        {qs.length} question{qs.length>1?"s":""} · Automatismes Partie 1
-                      </div>}
-                      {isEmpty&&<div style={{fontSize:10,color:"#CBD5E1",marginTop:1}}>
-                        🔧 Bientôt disponible
-                      </div>}
-                    </div>
-                    {!isEmpty&&<span style={{fontSize:11,color:group.color,fontWeight:800,
-                      background:`${group.color}18`,borderRadius:99,padding:"3px 9px",flexShrink:0}}>
-                      {qs.length} QCM →
-                    </span>}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        ))}
+          );
+        })}
 
         <div style={{background:"#FEF9C3",borderRadius:12,padding:"10px 14px",
-          fontSize:11,color:"#92400E",fontWeight:600,lineHeight:1.5}}>
+          fontSize:11,color:"#92400E",fontWeight:600,lineHeight:1.5,marginTop:4}}>
           💡 Les questions des annales sont extraites de la <strong>Partie 1 — Automatismes</strong> des sujets officiels 2026.
           De nouvelles annales seront ajoutées chaque année.
         </div>
