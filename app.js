@@ -26237,6 +26237,38 @@ function CoursMathFonctionsGen({onBack, onStartPractice}) {
     { emoji:"🔣", label:"Fonctions de référence", color:"#7C3AED", light:"#F5F3FF", rules:[
       { id:"ref1",num:"A",title:"Fonction carré",
         fml:r`f(x)=x^2`,
+        svgDiag:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="-110 -20 220 190" width="100%" style="background:#fff;font-family:sans-serif;border-radius:12px">
+  <defs><marker id="ah_c" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><polygon points="0,0 6,3 0,6" fill="#334155"/></marker></defs>
+  <g stroke="#E5EAF1" stroke-width="0.8">
+    <line x1="-100" y1="-10" x2="-100" y2="160"/><line x1="-80" y1="-10" x2="-80" y2="160"/>
+    <line x1="-60" y1="-10" x2="-60" y2="160"/><line x1="-40" y1="-10" x2="-40" y2="160"/>
+    <line x1="-20" y1="-10" x2="-20" y2="160"/><line x1="20" y1="-10" x2="20" y2="160"/>
+    <line x1="40" y1="-10" x2="40" y2="160"/><line x1="60" y1="-10" x2="60" y2="160"/>
+    <line x1="80" y1="-10" x2="80" y2="160"/><line x1="100" y1="-10" x2="100" y2="160"/>
+    <line x1="-100" y1="0" x2="100" y2="0"/><line x1="-100" y1="20" x2="100" y2="20"/>
+    <line x1="-100" y1="40" x2="100" y2="40"/><line x1="-100" y1="60" x2="100" y2="60"/>
+    <line x1="-100" y1="80" x2="100" y2="80"/><line x1="-100" y1="100" x2="100" y2="100"/>
+    <line x1="-100" y1="120" x2="100" y2="120"/><line x1="-100" y1="140" x2="100" y2="140"/>
+  </g>
+  <line x1="0" y1="-10" x2="0" y2="165" stroke="#334155" stroke-width="1.5" marker-end="url(#ah_c)"/>
+  <line x1="-104" y1="140" x2="104" y2="140" stroke="#334155" stroke-width="1.5" marker-end="url(#ah_c)"/>
+  <path d="M -95,121 C -80,73 -60,29 -40,9 S -20,1 0,140 S 20,1 40,9 C 60,29 80,73 95,121" fill="none" stroke="none"/>
+  <path d="M -95,121 Q -70,40 -40,9 Q -20,1 0,140 Q 20,1 40,9 Q 70,40 95,121" fill="none" stroke="none"/>
+  <polyline points="-95,121 -80,84 -60,44 -40,12 -20,4 0,140 20,4 40,12 60,44 80,84 95,121" fill="none" stroke="none"/>
+  <path d="M -96,124.416 C -80,84 -60,44 -40,12.16 C -26.67,1.067 -13.33,0.107 0,0.16 C 13.33,0.107 26.67,1.067 40,12.16 C 60,44 80,84 96,124.416" fill="none" stroke="#7C3AED" stroke-width="2.5" stroke-linecap="round"/>
+  <g font-size="9" fill="#475569" text-anchor="middle">
+    <text x="-40" y="149">-2</text><text x="-20" y="149">-1</text>
+    <text x="20" y="149">1</text><text x="40" y="149">2</text>
+    <text x="-10" y="135" text-anchor="end">0</text>
+    <text x="-10" y="121" text-anchor="end">1</text>
+    <text x="-10" y="101" text-anchor="end">2</text>
+    <text x="-10" y="61" text-anchor="end">4</text>
+  </g>
+  <text x="8" y="-2" font-size="9" fill="#7C3AED" font-style="italic">y</text>
+  <text x="96" y="153" font-size="9" fill="#475569" font-style="italic">x</text>
+  <circle cx="0" cy="140" r="2.5" fill="#7C3AED"/>
+  <text x="12" y="136" font-size="8.5" fill="#7C3AED">min (0,0)</text>
+</svg>`,
         bltTex:[
           r`\mathcal{D}_f=\mathbb{R}\text{ — courbe : parabole}`,
           r`\text{Décroissante sur }\left]-\infty\,;\,0\right]\text{, croissante sur }\left[0\,;\,+\infty\right[`,
@@ -26246,6 +26278,34 @@ function CoursMathFonctionsGen({onBack, onStartPractice}) {
         ex:{qTex:r`f(-3)\text{ et }f(1{,}5)`,a:r`f(-3)=9\qquad f(1{,}5)=2{,}25`}},
       { id:"ref2",num:"B",title:"Fonction inverse",
         fml:r`f(x)=\dfrac{1}{x}`,
+        svgDiag:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="-110 -15 220 190" width="100%" style="background:#fff;font-family:sans-serif;border-radius:12px">
+  <defs><marker id="ah_i" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><polygon points="0,0 6,3 0,6" fill="#334155"/></marker></defs>
+  <g stroke="#E5EAF1" stroke-width="0.8">
+    <line x1="-100" y1="-5" x2="-100" y2="165"/><line x1="-60" y1="-5" x2="-60" y2="165"/>
+    <line x1="-20" y1="-5" x2="-20" y2="165"/><line x1="20" y1="-5" x2="20" y2="165"/>
+    <line x1="60" y1="-5" x2="60" y2="165"/><line x1="100" y1="-5" x2="100" y2="165"/>
+    <line x1="-100" y1="0" x2="100" y2="0"/><line x1="-100" y1="40" x2="100" y2="40"/>
+    <line x1="-100" y1="80" x2="100" y2="80"/><line x1="-100" y1="120" x2="100" y2="120"/>
+    <line x1="-100" y1="160" x2="100" y2="160"/>
+  </g>
+  <line x1="0" y1="-5" x2="0" y2="168" stroke="#334155" stroke-width="1.5" marker-end="url(#ah_i)"/>
+  <line x1="-104" y1="80" x2="104" y2="80" stroke="#334155" stroke-width="1.5" marker-end="url(#ah_i)"/>
+  <!-- branche x>0 : 1/x*40 décalé de 80 -->
+  <path d="M 10,76 C 15,50 25,30 40,70 C 55,77 70,79 100,79.5" fill="none" stroke="none"/>
+  <path d="M 5,40 C 8,10 15,-2 20,6 C 30,20 40,55 60,72 C 80,78 100,79.2" fill="none" stroke="#0891B2" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- branche x<0 -->
+  <path d="M -5,120 C -8,150 -15,162 -20,154 C -30,140 -40,105 -60,88 C -80,82 -100,80.8" fill="none" stroke="#0891B2" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="-100" y1="80" x2="100" y2="80" stroke="#94A3B8" stroke-width="0.8" stroke-dasharray="4,3"/>
+  <line x1="0" y1="-5" x2="0" y2="165" stroke="#94A3B8" stroke-width="0.8" stroke-dasharray="4,3"/>
+  <g font-size="9" fill="#475569">
+    <text x="-60" y="92" text-anchor="middle">-2</text><text x="-20" y="92" text-anchor="middle">-1</text>
+    <text x="20" y="92" text-anchor="middle">1</text><text x="60" y="92" text-anchor="middle">2</text>
+    <text x="-8" y="43" text-anchor="end">1</text><text x="-8" y="3" text-anchor="end">2</text>
+    <text x="-8" y="123" text-anchor="end">-1</text><text x="-8" y="163" text-anchor="end">-2</text>
+  </g>
+  <text x="8" y="-2" font-size="9" fill="#0891B2" font-style="italic">y</text>
+  <text x="96" y="92" font-size="9" fill="#475569" font-style="italic">x</text>
+</svg>`,
         bltTex:[
           r`\mathcal{D}_f=\mathbb{R}\setminus\{0\}\text{ — courbe : hyperbole}`,
           r`\text{Décroissante sur }\left]-\infty\,;\,0\right[\text{ et sur }\left]0\,;\,+\infty\right[`,
@@ -26255,6 +26315,36 @@ function CoursMathFonctionsGen({onBack, onStartPractice}) {
         ex:{qTex:r`f(4)\text{ et }f(-0{,}5)`,a:r`f(4)=\dfrac{1}{4}=0{,}25\qquad f(-0{,}5)=\dfrac{1}{-0{,}5}=-2`}},
       { id:"ref3",num:"C",title:"Valeur absolue",
         fml:r`f(x)=|x|`,
+        svgDiag:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="-110 -20 220 190" width="100%" style="background:#fff;font-family:sans-serif;border-radius:12px">
+  <defs><marker id="ah_a" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><polygon points="0,0 6,3 0,6" fill="#334155"/></marker></defs>
+  <g stroke="#E5EAF1" stroke-width="0.8">
+    <line x1="-100" y1="-10" x2="-100" y2="160"/><line x1="-80" y1="-10" x2="-80" y2="160"/>
+    <line x1="-60" y1="-10" x2="-60" y2="160"/><line x1="-40" y1="-10" x2="-40" y2="160"/>
+    <line x1="-20" y1="-10" x2="-20" y2="160"/><line x1="20" y1="-10" x2="20" y2="160"/>
+    <line x1="40" y1="-10" x2="40" y2="160"/><line x1="60" y1="-10" x2="60" y2="160"/>
+    <line x1="80" y1="-10" x2="80" y2="160"/><line x1="100" y1="-10" x2="100" y2="160"/>
+    <line x1="-100" y1="0" x2="100" y2="0"/><line x1="-100" y1="20" x2="100" y2="20"/>
+    <line x1="-100" y1="40" x2="100" y2="40"/><line x1="-100" y1="60" x2="100" y2="60"/>
+    <line x1="-100" y1="80" x2="100" y2="80"/><line x1="-100" y1="100" x2="100" y2="100"/>
+    <line x1="-100" y1="120" x2="100" y2="120"/><line x1="-100" y1="140" x2="100" y2="140"/>
+  </g>
+  <line x1="0" y1="-10" x2="0" y2="165" stroke="#334155" stroke-width="1.5" marker-end="url(#ah_a)"/>
+  <line x1="-104" y1="140" x2="104" y2="140" stroke="#334155" stroke-width="1.5" marker-end="url(#ah_a)"/>
+  <!-- V shape: y=|x|*20, axe en y=140 -->
+  <polyline points="-95,45 0,140 95,45" fill="none" stroke="#DC2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="0" cy="140" r="2.5" fill="#DC2626"/>
+  <g font-size="9" fill="#475569" text-anchor="middle">
+    <text x="-40" y="149">-2</text><text x="-20" y="149">-1</text>
+    <text x="20" y="149">1</text><text x="40" y="149">2</text>
+    <text x="-10" y="135" text-anchor="end">0</text>
+    <text x="-10" y="121" text-anchor="end">1</text>
+    <text x="-10" y="101" text-anchor="end">2</text>
+    <text x="-10" y="61" text-anchor="end">4</text>
+  </g>
+  <text x="8" y="-2" font-size="9" fill="#DC2626" font-style="italic">y</text>
+  <text x="96" y="153" font-size="9" fill="#475569" font-style="italic">x</text>
+  <text x="12" y="136" font-size="8.5" fill="#DC2626">min (0,0)</text>
+</svg>`,
         bltTex:[
           r`\mathcal{D}_f=\mathbb{R}\text{ — courbe : chevron (deux demi-droites)}`,
           r`|x|=x\text{ si }x\geq0\qquad |x|=-x\text{ si }x<0`,
