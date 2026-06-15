@@ -8063,6 +8063,40 @@ const DB = {
     ],
     tronc_original: [],
     // ── Spécialité · Annales · Sujet Antilles-Guyane (12 juin 2026) ──────────
+    stmg_ag_2026: [
+      { q:r`\text{Un objet coûtait 100 €. Après une remise, il coûte 80 €.}\\[4pt]\text{Quel était le pourcentage de cette remise ?}`,
+        choices:["0,2\\%","20\\%","0,8\\%","80\\%"], a:1},
+      { q:r`\text{Dans une salle de cinéma, 60\\% des personnes ont moins de 25 ans,}\\[4pt]\text{dont 10\\% sont mineurs. Quelle est la proportion de mineurs dans la salle ?}`,
+        choices:["0{,}1","0{,}5","0{,}06","0{,}6"], a:2},
+      { q:r`\text{Un prix augmente de 10\\% puis diminue de 20\\%.}\\[4pt]\text{Quelle est l'évolution globale de ce prix ?}`,
+        choices:["\\text{Baisse de 10\\%}","\\text{Baisse de 12\\%}","\\text{Hausse de 10\\%}","\\text{Baisse de 88\\%}"], a:1},
+      { q:r`F=1{,}8C+32\\quad\text{Sachant que l'eau bout à 100 °C, la température d'ébullition en °F est :}`,
+        choices:["33{,}8\ \\text{°F}","50\ \\text{°F}","100\ \\text{°F}","212\ \\text{°F}"], a:3},
+      { q:r`\text{La formule permettant de transformer les degrés Fahrenheit en degrés Celsius est :}`,
+        choices:[r`C=\dfrac{F}{1{,}8}-32`,r`C=\dfrac{F-32}{1{,}8}`,r`C=\dfrac{F-1{,}8}{32}`,r`C=\dfrac{F}{32}-1{,}8`], a:1},
+      { q:r`\text{On considère }A=\dfrac{\dfrac{5}{3}}{15}\text{ :}`,
+        choices:[r`A=\dfrac{1}{9}`,r`A=25`,r`A=\dfrac{1}{45}`,r`A=5`], a:0},
+      { q:r`\text{Dans le repère ci-dessous, on a représenté une droite }d.\\[4pt]\text{L'équation réduite de cette droite est :}`,
+        svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="-30 -30 200 200" width="100%" style="background:#fff;font-family:sans-serif;border-radius:8px">\n  <defs><marker id="ah7" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><polygon points="0,0 6,3 0,6" fill="#334155"/></marker></defs>\n  <g stroke="#E5EAF1" stroke-width="0.8">\n    <line x1="0" y1="-20" x2="0" y2="160"/><line x1="40" y1="-20" x2="40" y2="160"/>\n    <line x1="80" y1="-20" x2="80" y2="160"/><line x1="120" y1="-20" x2="120" y2="160"/>\n    <line x1="-20" y1="0" x2="160" y2="0"/><line x1="-20" y1="40" x2="160" y2="40"/>\n    <line x1="-20" y1="80" x2="160" y2="80"/><line x1="-20" y1="120" x2="160" y2="120"/>\n  </g>\n  <line x1="0" y1="-25" x2="0" y2="165" stroke="#334155" stroke-width="1.5" marker-end="url(#ah7)"/>\n  <line x1="-25" y1="120" x2="165" y2="120" stroke="#334155" stroke-width="1.5" marker-end="url(#ah7)"/>\n  <!-- droite : passe par (0,120-80=40→y=2→80px) et (4→160px,0→120px) -->\n  <!-- y=-0.5x+2 : x=0→y=2(80), x=4→y=0(120), x=-1→y=2.5(70) -->\n  <line x1="-20" y1="50" x2="160" y2="140" stroke="#DC2626" stroke-width="2" stroke-linecap="round"/>\n  <text x="5" y="35" font-size="9.5" fill="#DC2626" font-style="italic">(d)</text>\n  <g font-size="9" fill="#64748B" text-anchor="middle">\n    <text x="40" y="134">1</text><text x="80" y="134">2</text><text x="120" y="134">3</text>\n    <text x="-12" y="83">1</text><text x="-12" y="43">2</text>\n  </g>\n  <text x="3" y="-16" font-size="9" fill="#334155" font-style="italic">y</text>\n  <text x="158" y="134" font-size="9" fill="#334155" font-style="italic">x</text>\n  <circle cx="0" cy="40" r="3" fill="#DC2626"/>\n  <circle cx="80" cy="80" r="2" fill="#94A3B8"/>\n</svg>`,
+        choices:[r`y=-0{,}5x+4`,r`y=-0{,}5x+2`,r`y=-2x+4`,r`y=-2x+2`], a:1},
+      { q:r`\text{E a pour coordonnées }(20\,;\,25)\text{ et F a pour coordonnées }(5\,;\,15).\\[4pt]\text{Le coefficient directeur de la droite (EF) est :}`,
+        choices:[r`2`,r`\dfrac{3}{2}`,r`\dfrac{2}{3}`,r`\dfrac{1}{2}`], a:2},
+      { q:r`\text{Dans le repère ci-dessous, on a représenté une fonction }f\text{ sur }[-5\,;\,3].\\[4pt]\text{Le tableau de signes de }f\text{ est :}`,
+        svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -70 280 160" width="100%" style="background:#fff;font-family:sans-serif;border-radius:8px">\n  <defs><marker id="ah9" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><polygon points="0,0 6,3 0,6" fill="#334155"/></marker></defs>\n  <g stroke="#E5EAF1" stroke-width="0.8">\n    <line x1="0" y1="-65" x2="0" y2="85"/><line x1="30" y1="-65" x2="30" y2="85"/>\n    <line x1="60" y1="-65" x2="60" y2="85"/><line x1="90" y1="-65" x2="90" y2="85"/>\n    <line x1="120" y1="-65" x2="120" y2="85"/><line x1="150" y1="-65" x2="150" y2="85"/>\n    <line x1="180" y1="-65" x2="180" y2="85"/><line x1="210" y1="-65" x2="210" y2="85"/>\n    <line x1="240" y1="-65" x2="240" y2="85"/>\n    <line x1="-10" y1="-40" x2="260" y2="-40"/><line x1="-10" y1="-20" x2="260" y2="-20"/>\n    <line x1="-10" y1="20" x2="260" y2="20"/><line x1="-10" y1="40" x2="260" y2="40"/>\n    <line x1="-10" y1="60" x2="260" y2="60"/>\n  </g>\n  <line x1="120" y1="-65" x2="120" y2="90" stroke="#334155" stroke-width="1.5" marker-end="url(#ah9)"/>\n  <line x1="-15" y1="0" x2="265" y2="0" stroke="#334155" stroke-width="1.5" marker-end="url(#ah9)"/>\n  <!-- axe x : 0 est à x=120. 1 unité = 30px. x=-5→x=120-150=−30? non repère: 0 au centre -->\n  <!-- x=-5→px=120+(-5)*24=0, x=-3→px=120+(-3)*24=48, x=1.5→px=120+1.5*24=156, x=3→px=120+3*24=192 -->\n  <!-- courbe : sin-like, pos sur [-5,-3], nég sur [-3,1.5], pos sur [1.5,3] -->\n  <path d="M 0,0 C 12,-50 36,-50 48,0 C 80,80 110,80 156,0 C 170,-40 184,-40 192,0" fill="none" stroke="#0891B2" stroke-width="2" stroke-linecap="round"/>\n  <g font-size="9" fill="#64748B" text-anchor="middle">\n    <text x="0" y="12">-5</text><text x="48" y="12">-3</text>\n    <text x="156" y="12">1,5</text><text x="192" y="12">3</text>\n    <text x="120" y="12">0</text><text x="144" y="12">1</text>\n  </g>\n  <text x="124" y="-57" font-size="9" fill="#334155" font-style="italic">y</text>\n  <text x="256" y="10" font-size="9" fill="#334155" font-style="italic">x</text>\n  <text x="108" y="-12" font-size="9" fill="#334155">1</text>\n</svg>`,
+        choices:[
+          r`\begin{array}{|c|cccc|}\hline x & -5 & -3 & 1{,}5 & 3 \\ \hline \text{signe} & + & 0 & - & 0 & + \\ \hline \end{array}`,
+          r`\begin{array}{|c|ccc|}\hline x & -5 & -1 & 3 \\ \hline \text{signe} & + & 0 & - \\ \hline \end{array}`,
+          r`\begin{array}{|c|ccc|}\hline x & -5 & -1{,}5 & 3 \\ \hline \text{signe} & - & 0 & + \\ \hline \end{array}`,
+          r`\begin{array}{|c|cccc|}\hline x & -5 & -1 & 0 & 3 \\ \hline \text{signe} & + & 0 & - & 0 & + \\ \hline \end{array}`,
+        ], a:0},
+      { q:r`\text{Paramètres statistiques d'une série de notes sur 20 :}\\[4pt]\text{Min}=2,\ Q_1=5,\ \text{Médiane}=10,\ Q_3=12,\ \text{Max}=17\\[4pt]\text{La proportion d'élèves ayant une note inférieure ou égale à 12 est :}`,
+        choices:["\\text{inférieure ou égale à 25\\%}","\\text{égale à 50\\%}","\\text{supérieure ou égale à 75\\%}","\\text{égale à 100\\%}"], a:2},
+      { q:r`\text{Répartition des joueurs de jeux vidéo par tranche d'âge (source : CNC – TNS Sofres 2014).}\\[4pt]\text{La proportion de joueurs de 24 ans et moins est :}`,
+        svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 190" width="100%" style="background:#FAFAFA;font-family:sans-serif;border-radius:8px"><path d="M 120,90 L 120.0,20.0 A 70,70 0 0,1 155.6,29.7 Z" fill="#6366F1" stroke="#fff" stroke-width="1.5"/><text x="144" y="1" font-size="7.5" fill="#1E293B" text-anchor="middle" font-weight="600">6-9 ans</text><text x="144" y="11" font-size="7.5" fill="#1E293B" text-anchor="middle">8,5%</text><path d="M 120,90 L 155.6,29.7 A 70,70 0 0,1 187.8,72.6 Z" fill="#8B5CF6" stroke="#fff" stroke-width="1.5"/><text x="194" y="35" font-size="7.5" fill="#1E293B" text-anchor="middle" font-weight="600">10-14 ans</text><text x="194" y="45" font-size="7.5" fill="#1E293B" text-anchor="middle">12,5%</text><path d="M 120,90 L 187.8,72.6 A 70,70 0 0,1 161.5,146.4 Z" fill="#EC4899" stroke="#fff" stroke-width="1.5"/><text x="207" y="121" font-size="7.5" fill="#1E293B" text-anchor="middle" font-weight="600">15-24 ans</text><text x="207" y="131" font-size="7.5" fill="#1E293B" text-anchor="middle">18,9%</text><path d="M 120,90 L 161.5,146.4 A 70,70 0 0,1 84.4,150.3 Z" fill="#F59E0B" stroke="#fff" stroke-width="1.5"/><text x="125" y="182" font-size="7.5" fill="#1E293B" text-anchor="middle" font-weight="600">25-34 ans</text><text x="125" y="192" font-size="7.5" fill="#1E293B" text-anchor="middle">18,6%</text><path d="M 120,90 L 84.4,150.3 A 70,70 0 0,1 59.3,55.1 Z" fill="#10B981" stroke="#fff" stroke-width="1.5"/><text x="31" y="113" font-size="7.5" fill="#1E293B" text-anchor="middle" font-weight="600">35-49 ans</text><text x="31" y="123" font-size="7.5" fill="#1E293B" text-anchor="middle">24,8%</text><path d="M 120,90 L 59.3,55.1 A 70,70 0 0,1 120.0,20.0 Z" fill="#3B82F6" stroke="#fff" stroke-width="1.5"/><text x="74" y="10" font-size="7.5" fill="#1E293B" text-anchor="middle" font-weight="600">50-65 ans</text><text x="74" y="20" font-size="7.5" fill="#1E293B" text-anchor="middle">16,7%</text><text x="120" y="180" font-size="8" fill="#64748B" text-anchor="middle">Source : CNC – TNS Sofres 2014</text></svg>`,
+        choices:["60{,}1\\%","18{,}9\\%","39{,}9\\%",r`\dfrac{1}{3}`], a:2},
+      { q:r`\text{Enquête auprès de 800 élèves :}\\[4pt]\begin{array}{|l|c|c|c|}\hline & \text{Fille} & \text{Garçon} & \text{Total} \\ \hline \text{Aucune activité} & 90 & 200 & 290 \\ \hline \text{Au moins une} & 210 & 300 & 510 \\ \hline \text{Total} & 300 & 500 & 800 \\ \hline \end{array}\\[6pt]\text{On choisit un élève parmi les garçons. Probabilité qu'il ne pratique aucune activité ?}`,
+        choices:[r`\dfrac{200}{290}`,r`\dfrac{200}{800}`,r`\dfrac{290}{800}`,r`\dfrac{200}{500}`], a:3},
+    ],
     spe_ag_2026: [
       { q:r`\text{Une forme factorisée de }9x^2-\dfrac{1}{9}\text{ est :}`,
         choices:[r`\left(3x-\dfrac{1}{3}\right)^2`,r`\left(3x-\dfrac{1}{3}\right)\!\left(3x+\dfrac{1}{3}\right)`,r`\left(9x-\dfrac{1}{3}\right)^2`,r`\left(9x-\dfrac{1}{3}\right)\!\left(9x+\dfrac{1}{3}\right)`],
@@ -14046,12 +14080,12 @@ const CATS = [
       {id:"term",    label:"🎓 Terminale"},
     ],
     subs:[
-      {id:"lecture_derivee",        label:"Lecture graphique du nombre dérivé",      group:"base",   levels:["tc","stmg","spe","term"]},
-      {id:"calcul_derivee",         label:"Calcul de dérivées (deg. 2 et 3)",        group:"base",   levels:["tc","stmg","spe","term"]},
-      {id:"deriv_vitesse",          label:"Vitesse moyenne / instantanée",           group:"base",   levels:["tc","spe","term"]},
-      {id:"deriv_tangente",         label:"Tangente — lecture graphique",            group:"base",   levels:["tc","stmg","spe","term"]},
+      {id:"lecture_derivee",        label:"Lecture graphique du nombre dérivé",      group:"base",   levels:["stmg","spe","term"]},
+      {id:"calcul_derivee",         label:"Calcul de dérivées (deg. 2 et 3)",        group:"base",   levels:["stmg","spe","term"]},
+      {id:"deriv_vitesse",          label:"Vitesse moyenne / instantanée",           group:"base",   levels:["spe","term"]},
+      {id:"deriv_tangente",         label:"Tangente — lecture graphique",            group:"base",   levels:["stmg","spe","term"]},
       {id:"deriv_fonctions_ref",    label:"Dérivées des fonctions de référence",     group:"avance", levels:["spe","term"]},
-      {id:"deriv_variations",       label:"Dérivée et variations",                   group:"avance", levels:["tc","stmg","spe","term"]},
+      {id:"deriv_variations",       label:"Dérivée et variations",                   group:"avance", levels:["stmg","spe","term"]},
       {id:"deriv_produit",          label:"Dérivée d'un produit",                    group:"avance", levels:["spe","term"]},
       {id:"deriv_quotient",         label:"Dérivée d'un quotient",                   group:"avance", levels:["spe","term"]},
       {id:"deriv_rationnelle",      label:"Dérivée de fonction rationnelle",          group:"avance", levels:["spe","term"]},
@@ -15310,7 +15344,7 @@ async function generateWeeklyProgram(profile, allProg, diagResults) {
   const CORE_CATS = {
     terminale_spe:  ['limites','derivation','primitives','equa_diff','suites','probabilites','denombrement','trigonometrie'],
     premiere_spe:   ['polynomes','derivation','suites','probabilites','litteral'],
-    premiere_tronc: ['derivation','expo','suites','polynomes','litteral','probabilites'],
+    premiere_tronc: ['expo','suites','polynomes','litteral','probabilites'],
     premiere_stmg:  ['pourcentages','suites','statistiques','derivation','polynomes'],
   };
   const isAdvanced = ADVANCED_LEVELS.includes(profile.level);
@@ -21698,10 +21732,10 @@ const FLASHCARDS = [
   { id:"fc_tc_02",  level:"tc", chapitre:"Pourcentages",
     recto:r`\text{Évolution réciproque :}\\[4pt]\text{CM réciproque et taux }t'\text{ ?}`,
     verso:r`\text{CM}'=\dfrac{1}{\text{CM}}\\[6pt]t'=\text{CM}'\times100-100` },
-  { id:"fc_all_deriv_sens", level:"tc", chapitre:"Dérivation",
+  { id:"fc_all_deriv_sens", level:"stmg", chapitre:"Dérivation",
     recto:r`\text{Que représente }f'(a)\text{ géométriquement ?}`,
     verso:r`f'(a)\text{ est le coefficient directeur}\\[6pt]\text{de la tangente à la courbe }C_f\\[6pt]\text{au point d'abscisse }a` },
-  { id:"fc_all_deriv_poly3", level:"tc", chapitre:"Dérivation",
+  { id:"fc_all_deriv_poly3", level:"stmg", chapitre:"Dérivation",
     recto:r`f(x)=ax^3+bx^2+cx+d\\[6pt]f'(x)=\,?`,
     verso:r`f'(x)=3ax^2+2bx+c` },
   { id:"fc_tc_03", level:"spe", chapitre:"Suites",
@@ -23088,6 +23122,7 @@ const BAC_GROUPS = [
     subs:[
       {id:"stmg_annales_s1_2026", label:"Annales 2026 — Sujet 1", year:2026, n:12},
       {id:"stmg_annales_s2_2026", label:"Annales 2026 — Sujet 2", year:2026, n:12},
+      {id:"stmg_ag_2026", label:"Antilles-Guyane 12 juin 2026", year:2026, n:12, newUntil:1786300800000},
     ],
   },
   {
@@ -25102,9 +25137,15 @@ const COURS_CATALOG = [
     chapitres:8, color:"#7C3AED",
     desc:"Conditionnelles · Arbres & variables aléatoires · Loi binomiale (3 phases)",
   },
+  { id:"expo_tc", emoji:"📈",
+    title:"Fonctions exponentielles de base a",
+    niveaux:["1ère TC"],
+    chapitres:4, color:"#16A34A",
+    desc:"Définition aˣ · Croissance & décroissance · Propriétés algébriques · Étude complète",
+  },
   { id:"stats_2var", emoji:"📡",
     title:"Statistiques à deux variables",
-    niveaux:["1ère Techno"],
+    niveaux:["1ère TC","1ère Techno"],
     chapitres:4, color:"#0D9488",
     desc:"Nuage de points · Point moyen · Ajustement affine · Interpolation & extrapolation",
   },
@@ -28224,6 +28265,248 @@ function CoursMathDerivation({onBack, onStartPractice}) {
   );
 }
 
+// ── CoursMathExpoTC — Fonctions exponentielles de base a (1ère TC) ────────────
+function CoursMathExpoTC({onBack, onStartPractice}) {
+  const [secIdx, setSecIdx] = React.useState(0);
+  const [openMap, setOpenMap] = React.useState({});
+  const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
+  const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
+  const tabsRef = React.useRef();
+  React.useEffect(()=>{
+    if(!tabsRef.current) return;
+    const btn=tabsRef.current.children[secIdx];
+    if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  },[secIdx]);
+
+  const SVG_CROIS=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15 -15 310 210" width="100%" style="background:#F0FDF4;font-family:sans-serif;border-radius:12px">
+  <defs><marker id="ah_ec" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><polygon points="0,0 6,3 0,6" fill="#334155"/></marker></defs>
+  <g stroke="#DCFCE7" stroke-width="0.8">
+    <line x1="-10" y1="0" x2="-10" y2="185"/><line x1="40" y1="0" x2="40" y2="185"/>
+    <line x1="90" y1="0" x2="90" y2="185"/><line x1="140" y1="0" x2="140" y2="185"/>
+    <line x1="190" y1="0" x2="190" y2="185"/><line x1="240" y1="0" x2="240" y2="185"/>
+    <line x1="-10" y1="185" x2="270" y2="185"/><line x1="-10" y1="135" x2="270" y2="135"/>
+    <line x1="-10" y1="85" x2="270" y2="85"/><line x1="-10" y1="35" x2="270" y2="35"/>
+  </g>
+  <line x1="0" y1="-10" x2="0" y2="193" stroke="#334155" stroke-width="1.5" marker-end="url(#ah_ec)"/>
+  <line x1="-8" y1="185" x2="278" y2="185" stroke="#334155" stroke-width="1.5" marker-end="url(#ah_ec)"/>
+  <!-- a>1 : 2^x croissante (verte) -->
+  <path d="M -10,183 C 40,178 90,160 140,135 C 190,108 220,70 255,20" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- 0<a<1 : (1/2)^x décroissante (bleue) -->
+  <path d="M -10,20 C 30,70 80,108 140,135 C 190,160 220,178 265,183" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- point (0,1) commun -->
+  <circle cx="140" cy="135" r="4" fill="#DC2626" stroke="#fff" stroke-width="1.5"/>
+  <text x="148" y="131" font-size="9" fill="#DC2626" font-weight="bold">(0,1)</text>
+  <!-- asymptote -->
+  <line x1="-10" y1="185" x2="270" y2="185" stroke="#94A3B8" stroke-width="1" stroke-dasharray="4,3"/>
+  <!-- labels -->
+  <text x="240" y="32" font-size="9.5" fill="#16A34A" font-weight="bold">a &gt; 1</text>
+  <text x="230" y="175" font-size="9.5" fill="#2563EB" font-weight="bold">0 &lt; a &lt; 1</text>
+  <text x="2" y="-2" font-size="9" fill="#334155" font-style="italic">y</text>
+  <text x="268" y="193" font-size="9" fill="#334155" font-style="italic">x</text>
+  <!-- axe x labels -->
+  <text x="137" y="197" font-size="9" fill="#64748B" text-anchor="middle">0</text>
+  <text x="187" y="197" font-size="9" fill="#64748B" text-anchor="middle">1</text>
+  <text x="87" y="197" font-size="9" fill="#64748B" text-anchor="middle">-1</text>
+</svg>`;
+  const SVG_TABLEAU=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 130" width="100%" style="background:#F0FDF4;font-family:sans-serif;border-radius:12px">
+  <!-- Tableau de variations a>1 -->
+  <rect width="300" height="130" rx="10" fill="#F0FDF4"/>
+  <!-- grille -->
+  <line x1="10" y1="30" x2="290" y2="30" stroke="#86EFAC" stroke-width="1"/>
+  <line x1="10" y1="60" x2="290" y2="60" stroke="#86EFAC" stroke-width="1"/>
+  <line x1="10" y1="90" x2="290" y2="90" stroke="#86EFAC" stroke-width="1"/>
+  <line x1="10" y1="120" x2="290" y2="120" stroke="#86EFAC" stroke-width="1"/>
+  <line x1="10" y1="30" x2="10" y2="120" stroke="#86EFAC" stroke-width="1"/>
+  <line x1="80" y1="30" x2="80" y2="120" stroke="#86EFAC" stroke-width="1"/>
+  <line x1="185" y1="30" x2="185" y2="120" stroke="#86EFAC" stroke-width="1"/>
+  <line x1="290" y1="30" x2="290" y2="120" stroke="#86EFAC" stroke-width="1"/>
+  <!-- en-têtes -->
+  <text x="45" y="50" font-size="10" fill="#15803D" font-weight="bold" text-anchor="middle">x</text>
+  <text x="132" y="50" font-size="10" fill="#15803D" text-anchor="middle">−∞</text>
+  <text x="237" y="50" font-size="10" fill="#15803D" text-anchor="middle">+∞</text>
+  <!-- a>1 -->
+  <text x="45" y="78" font-size="9.5" fill="#16A34A" font-weight="bold" text-anchor="middle">a &gt; 1</text>
+  <text x="132" y="78" font-size="9" fill="#64748B" text-anchor="middle">0⁺</text>
+  <text x="237" y="78" font-size="9" fill="#64748B" text-anchor="middle">+∞</text>
+  <line x1="100" y1="88" x2="270" y2="68" stroke="#16A34A" stroke-width="1.8" marker-end="url(#arr_g)"/>
+  <!-- 0<a<1 -->
+  <text x="45" y="108" font-size="9" fill="#2563EB" font-weight="bold" text-anchor="middle">0&lt;a&lt;1</text>
+  <text x="132" y="108" font-size="9" fill="#64748B" text-anchor="middle">+∞</text>
+  <text x="237" y="108" font-size="9" fill="#64748B" text-anchor="middle">0⁺</text>
+  <line x1="100" y1="98" x2="270" y2="118" stroke="#2563EB" stroke-width="1.8"/>
+  <defs><marker id="arr_g" markerWidth="5" markerHeight="5" refX="3" refY="2.5" orient="auto"><polygon points="0,0 5,2.5 0,5" fill="#16A34A"/></marker></defs>
+  <text x="150" y="22" font-size="10" fill="#15803D" font-weight="bold" text-anchor="middle">Tableaux de variations de f(x) = aˣ</text>
+</svg>`;
+
+  const SECS=[
+    { emoji:"📖", label:"Définition", color:"#15803D", light:"#F0FDF4", rules:[
+      { id:"ex1",num:"1",title:"Fonction exponentielle de base a",
+        fml:r`f(x)=a^x\quad a>0,\quad a
+eq 1`,
+        bltTex:[
+          r`a	ext{ est la }\textbf{base}\text{ de la fonction exponentielle}`,
+          r`	ext{Domaine de définition : }\mathbb{R}`,
+          r`	ext{Pour tout }x,\quad a^x>0\quad(	ext{toujours strictement positif})`,
+          r`	ext{Valeur remarquable : }a^0=1\quad(	ext{le point }(0\,;\,1)\text{ appartient à toute courbe})`,
+        ],
+        tipTex:r`	ext{Exemples de bases : }2^x,\ 3^x,\ \left(\tfrac{1}{2}\right)^x,\ 10^x`,
+        ex:{qTex:r`f(x)=2^x\quad\text{Calculer }f(0),\ f(1),\ f(-1),\ f(3)`,
+            a:r`f(0)=1\qquad f(1)=2\qquad f(-1)=\dfrac{1}{2}\qquad f(3)=8`}},
+      { id:"ex2",num:"2",title:"Les deux cas selon la base",
+        svgDiag:SVG_CROIS,
+        bltTex:[
+          r`a>1\ :\quad f\text{ est }\textbf{strictement croissante}\text{ sur }\mathbb{R}`,
+          r`0<a<1\ :\quad f\text{ est }\textbf{strictement décroissante}\text{ sur }\mathbb{R}`,
+          r`\text{Dans les deux cas : }\lim_{x\to-\infty}a^x=0^+\text{ (asymptote }y=0)`,
+          r`\text{Dans les deux cas : toutes les courbes passent par }(0\,;\,1)`,
+        ],
+        tipTex:r`\left(\tfrac{1}{2}\right)^x=2^{-x}\text{ : la décroissante est le symétrique de la croissante par rapport à l'axe }y`},
+    ]},
+    { emoji:"📊", label:"Variations", color:"#16A34A", light:"#F0FDF4", rules:[
+      { id:"ex3",num:"3",title:"Tableaux de variations",
+        svgDiag:SVG_TABLEAU,
+        bltTex:[
+          r`a>1\ :\quad a^x\nearrow\text{ de }0^+\text{ vers }+\infty`,
+          r`0<a<1\ :\quad a^x\searrow\text{ de }+\infty\text{ vers }0^+`,
+          r`\text{Dans les deux cas : pas de maximum ni de minimum (pas d'extremum)}`,
+        ],
+        ex:{qTex:r`f(x)=\left(\tfrac{1}{3}\right)^x\quad\text{Sens de variation ?}`,
+            a:r`\dfrac{1}{3}<1\ \Rightarrow\ f\text{ strictement décroissante sur }\mathbb{R}`}},
+      { id:"ex4",num:"4",title:"Lien avec l'ordre",
+        fml:r`a>1\ :\quad x_1<x_2\Leftrightarrow a^{x_1}<a^{x_2}`,
+        bltTex:[
+          r`\text{Si }a>1\text{ : la fonction préserve l'ordre (croissante)}`,
+          r`\text{Si }0<a<1\text{ : la fonction renverse l'ordre (décroissante)}`,
+          r`\text{Utile pour résoudre des inéquations du type }a^x>k`,
+        ],
+        ex:{qTex:r`\text{Résoudre }2^x>2^3`,
+            a:r`2>1\Rightarrow\text{croissante}\Rightarrow x>3`}},
+    ]},
+    { emoji:"🧮", label:"Propriétés", color:"#059669", light:"#ECFDF5", rules:[
+      { id:"ex5",num:"5",title:"Règles de calcul",
+        fml:r`a^{x+y}=a^x\cdot a^y\qquad a^{x-y}=\dfrac{a^x}{a^y}\qquad (a^x)^n=a^{nx}`,
+        bltTex:[
+          r`a^{-x}=\dfrac{1}{a^x}=\left(\dfrac{1}{a}\right)^x`,
+          r`\sqrt[n]{a}=a^{1/n}\quad\text{en particulier }\sqrt{a}=a^{1/2}`,
+          r`(ab)^x=a^x\cdot b^x`,
+        ],
+        ex:{qTex:r`\text{Simplifier }\dfrac{3^5\times 3^{-2}}{3^2}`,
+            a:r`\dfrac{3^5\times 3^{-2}}{3^2}=3^{5-2-2}=3^1=3`}},
+      { id:"ex6",num:"6",title:"Équations exponentielles",
+        fml:r`a^{f(x)}=a^{g(x)}\Leftrightarrow f(x)=g(x)\ \text{ (si }a\neq 1\text{)}`,
+        bltTex:[
+          r`\text{Mettre les deux membres sous la même base}`,
+          r`\text{Puis identifier les exposants}`,
+        ],
+        tipTex:r`\text{Astuce : }8=2^3,\ 9=3^2,\ 27=3^3,\ 25=5^2,\ 4=2^2`,
+        ex:{qTex:r`2^{3x-1}=2^5`,
+            a:r`3x-1=5\Rightarrow 3x=6\Rightarrow x=2`}},
+    ]},
+    { emoji:"📈", label:"Étude complète", color:"#0891B2", light:"#F0F9FF", rules:[
+      { id:"ex7",num:"7",title:"Méthode : étudier f(x) = aˣ",
+        bltTex:[
+          r`\textbf{1.}\text{ Identifier la base }a\text{ et le cas }(a>1\text{ ou }0<a<1)`,
+          r`\textbf{2.}\text{ Écrire le domaine de définition : }\mathbb{R}`,
+          r`\textbf{3.}\text{ Donner le sens de variation et les limites}`,
+          r`\textbf{4.}\text{ Repérer le point }(0\,;\,1)\text{ et placer quelques valeurs}`,
+          r`\textbf{5.}\text{ Tracer la courbe (allure exponentielle, jamais négative)}`,
+        ]},
+      { id:"ex8",num:"8",title:"Exemple complet : f(x) = (0,5)ˣ",
+        fml:r`f(x)=\left(0{,}5\right)^x=\left(\dfrac{1}{2}\right)^x=2^{-x}`,
+        bltTex:[
+          r`\text{Base }a=0{,}5<1\Rightarrow f\text{ strictement }\textbf{décroissante}`,
+          r`\lim_{x\to-\infty}f(x)=+\infty\qquad\lim_{x\to+\infty}f(x)=0^+`,
+          r`\text{Point fixe : }f(0)=1`,
+          r`f(-1)=2\quad f(1)=0{,}5\quad f(2)=0{,}25`,
+        ],
+        tipTex:r`(0{,}5)^x=2^{-x}\text{ : retrouver la courbe de }2^x\text{ par symétrie axe }y`},
+    ]},
+    { emoji:"🏋️", label:"S'entraîner", color:"#0F172A", light:"#F1F5F9", isPractice:true,
+      practices:[
+        {sub:"expo_tc", label:"Fonctions x↦aˣ", emoji:"📈", cat:"expo"},
+      ]},
+  ];
+
+  const sec=SECS[secIdx]; const col=sec.color;
+  return (
+    <div style={{display:"flex",flexDirection:"column",height:"100%",background:"#F8FAFF"}}>
+      <div style={{background:"linear-gradient(135deg,#16A34A,#15803D)",padding:"16px 18px 14px",flexShrink:0}}>
+        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:12}}>
+          <button onClick={onBack} style={{background:"rgba(255,255,255,.2)",border:"none",borderRadius:10,
+            cursor:"pointer",color:"#fff",fontSize:16,width:32,height:32,display:"flex",
+            alignItems:"center",justifyContent:"center"}}>✕</button>
+          <div style={{flex:1}}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:17,color:"#fff"}}>
+              📈 Fonctions exponentielles de base a</div>
+            <div style={{fontSize:11,color:"rgba(255,255,255,.75)",marginTop:1}}>
+              Cours interactif · 1ère TC</div>
+          </div>
+        </div>
+        <div ref={tabsRef} style={{display:"flex",gap:6,overflowX:"auto",scrollbarWidth:"none",paddingBottom:2}}>
+          {SECS.map((s,i)=>(
+            <button key={i} onClick={()=>setSecIdx(i)}
+              style={{background:i===secIdx?"#fff":"rgba(255,255,255,.2)",
+                border:"none",borderRadius:99,padding:"6px 13px",cursor:"pointer",flexShrink:0,
+                fontFamily:"'Nunito',sans-serif",fontWeight:700,fontSize:11,
+                color:i===secIdx?s.color:"#fff",whiteSpace:"nowrap"}}>
+              {s.emoji} {s.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div style={{flex:1,overflowY:"auto",padding:"14px 14px 80px"}}>
+        {sec.isPractice ? <CoursPracticeList practices={sec.practices} onStartPractice={onStartPractice} col={col}/> : sec.rules.map((rl,i)=>{
+          const k=`${secIdx}_${i}`; const expanded=isOpen(k,i===0);
+          return (
+            <div key={rl.id} style={{background:"#fff",borderRadius:18,marginBottom:10,
+              overflow:"hidden",boxShadow:"0 2px 14px rgba(0,0,0,.07)",borderLeft:`4px solid ${col}`}}>
+              <div onClick={()=>tog(k)} style={{display:"flex",alignItems:"center",gap:10,
+                padding:"13px 15px",cursor:"pointer",userSelect:"none"}}>
+                <div style={{width:30,height:30,borderRadius:"50%",background:col,color:"#fff",
+                  display:"flex",alignItems:"center",justifyContent:"center",
+                  fontSize:10,fontWeight:800,flexShrink:0}}>{rl.num}</div>
+                <div style={{flex:1,fontSize:14.5,fontWeight:700,color:"#0F172A",lineHeight:1.2}}>{rl.title}</div>
+                <span style={{color:"#94A3B8",fontSize:11,
+                  transform:expanded?"rotate(180deg)":"",transition:"transform .2s"}}>▼</span>
+              </div>
+              {expanded&&(
+                <div style={{padding:"0 15px 15px"}}>
+                  {rl.fml&&<div style={{background:sec.light,borderRadius:13,padding:"14px 12px",
+                    margin:"8px 0",textAlign:"center",overflowX:"auto"}}><M tex={rl.fml}/></div>}
+                  {rl.svgDiag&&<div style={{margin:"8px 0",borderRadius:12,overflow:"hidden"}}
+                    dangerouslySetInnerHTML={{__html:rl.svgDiag}}/>}
+                  {(rl.bltTex||[]).map((b,j)=>(
+                    <div key={j} style={{display:"flex",gap:7,padding:"4px 0",alignItems:"flex-start"}}>
+                      <span style={{color:col,fontWeight:700,flexShrink:0,marginTop:2}}>•</span>
+                      <span style={{overflowX:"auto"}}><M tex={b}/></span>
+                    </div>
+                  ))}
+                  {(rl.tipTex||rl.tip)&&<div style={{background:"#FEFCE8",borderRadius:10,
+                    padding:"10px 12px",fontSize:12,fontWeight:600,color:"#713F12",
+                    borderLeft:"3px solid #EAB308",margin:"10px 0",lineHeight:1.4,overflowX:"auto"}}>
+                    {rl.tipTex?<M tex={rl.tipTex}/>:<span>{rl.tip}</span>}
+                  </div>}
+                  {rl.ex&&(
+                    <div style={{background:"#F8FAFC",borderRadius:12,padding:"12px 13px",
+                      marginTop:10,borderLeft:`3px solid ${col}`}}>
+                      <div style={{fontSize:10,fontWeight:800,color:col,textTransform:"uppercase",
+                        letterSpacing:".7px",marginBottom:5}}>Exemple</div>
+                      <div style={{fontSize:12.5,color:"#475569",marginBottom:8,lineHeight:1.4}}>
+                        {rl.ex.qTex?<M tex={rl.ex.qTex}/>:<span>{rl.ex.q}</span>}
+                      </div>
+                      <div style={{textAlign:"center",overflowX:"auto"}}><M tex={rl.ex.a}/></div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 // ── CoursMathStats2var — Série statistiques à deux variables (1ère Techno) ──
 function CoursMathStats2var({onBack, onStartPractice}) {
   const [secIdx, setSecIdx] = React.useState(0);
@@ -29563,6 +29846,7 @@ function AutoMaths() {
           {screen==="cours_second_degre"     && <CoursMathSecondDegre  onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_suites"           && <CoursMathSuites       onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_probas"           && <CoursMathProbas       onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
+          {screen==="cours_expo_tc"           && <CoursMathExpoTC       onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_stats_2var"        && <CoursMathStats2var    onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="flashcard_setup" && <FlashcardSetupScreen onBack={()=>setScreen(profile?"dashboard":"home")} onStart={(cards)=>{ setPool(cards); plsbl("Flashcards lancées", {cartes: cards.length}); setScreen("flashcards"); }}/>}
           {screen==="flashcards"    && <FlashcardScreen cards={pool} onBack={()=>setScreen("flashcard_setup")}/>}
