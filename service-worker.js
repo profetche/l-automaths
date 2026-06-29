@@ -1,4 +1,4 @@
-const CACHE_VERSION = 162;
+const CACHE_VERSION = 163;
 const CACHE_NAME = `automaths-v${CACHE_VERSION}`;
 
 // Shell minimal pré-mis en cache à l'installation
