@@ -1,4 +1,4 @@
-const CACHE_VERSION = 166;
+const CACHE_VERSION = 167;
 const CACHE_NAME = `automaths-v${CACHE_VERSION}`;
 
 // Shell minimal pré-mis en cache à l'installation
@@ -60,6 +60,25 @@ self.addEventListener('fetch', event => {
         .catch(() =>
           caches.match('/index.html').then(c => c || caches.match('/'))
         )
+    );
+    return;
+  }
+
+  // 1bis) Images (avatars, cartes) dans /cartes/ : cache-first.
+  //    Une image ne change jamais → on la sert depuis le cache si on l'a,
+  //    sinon on la récupère du réseau et on la stocke pour l'offline.
+  if (sameOrigin && url.pathname.startsWith('/cartes/')) {
+    event.respondWith(
+      caches.match(req).then(cached => {
+        if (cached) return cached;
+        return fetch(req).then(res => {
+          if (res && res.status === 200) {
+            const clone = res.clone();
+            caches.open(CACHE_NAME).then(c => c.put(req, clone));
+          }
+          return res;
+        });
+      })
     );
     return;
   }
