@@ -18229,6 +18229,15 @@ function updateQStatus(state, key, correct) {
     }
   };
 }
+// Met à jour les patterns d'erreur d'une question dans qState (cross-session)
+function addErrorPatternToState(state, key, patternName) {
+  if (!patternName || !key) return state;
+  const entry = state[key] || {};
+  const prev = entry.patterns || [];
+  // On stocke le name + timestamp, cap à 20 entrées pour éviter une accumulation infinie
+  const updated = [...prev, { name: patternName, ts: Date.now() }].slice(-20);
+  return { ...state, [key]: { ...entry, patterns: updated } };
+}
 // Génère la clé d'une question : on a besoin de l'index dans le tableau DB
 function getQKey(catId, subId, question) {
   const arr = DB[catId]?.[subId] || [];
@@ -23851,6 +23860,8 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
   // Track failed question indices for spaced repetition
   const failedIdx = React.useRef([]);
   const reinjectedKeys = React.useRef(new Set()); // clés des questions déjà ré-injectées (max 1 fois)
+  // Track error patterns for cross-session analysis: [{origIdx, patternName}]
+  const errorPatternsRef = React.useRef([]);
 
   // ── Ré-injection mid-session : file de questions à rejouer 2 places plus loin ──
   // On travaille sur un tableau mutable (ref) initialisé à partir de questions.
@@ -23993,7 +24004,20 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
     setSelected(c);setShown(true);
     const ok=c===q.a;
     if(ok){setScore(s=>s+1);setStreak(s=>s+1);}
-    else{setStreak(0);setShake(true);setTimeout(()=>setShake(false),420);}
+    else{
+      setStreak(0);setShake(true);setTimeout(()=>setShake(false),420);
+      // Capturer le pattern d'erreur pour stockage cross-session
+      const pName = (() => {
+        for (const p of ERROR_PATTERNS) {
+          try { if (p.detect(q.a, c, q)) return p.name; } catch {}
+        }
+        return null;
+      })();
+      if (pName) {
+        const origIdx = questions.indexOf(q);
+        if (origIdx >= 0) errorPatternsRef.current.push({ origIdx, patternName: pName });
+      }
+    }
   };
 
   // Numpad validate
@@ -24043,7 +24067,7 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
     // validation de la réponse. On ne le re-incrémente PAS ici, sinon la dernière
     // bonne réponse compterait double (bug du 110% : 11 sur 10 questions).
     // La session se termine quand on a traité toutes les questions du tableau original.
-    if(idx+1>=sessionQueue.current.length){onFinish(score, failedIdx.current);return;}
+    if(idx+1>=sessionQueue.current.length){onFinish(score, failedIdx.current, errorPatternsRef.current);return;}
     setIdx(i=>i+1);
   };
 
@@ -29193,7 +29217,7 @@ function AutoMaths() {
   };
 
   // ── Finish handler — saves progress ──────────────────────────────────────
-  const hFinish = async (sc, failedIdx) => {
+  const hFinish = async (sc, failedIdx, errorPatterns) => {
     setScore(sc);
     const total = questions.length;
     const pct   = Math.round(sc/total*100);
@@ -29260,6 +29284,24 @@ function AutoMaths() {
         if (key) {
           newState = updateQStatus(newState, key, correct);
           seenKeys.push(key);
+        }
+      }
+      // ── Stocker les patterns d'erreur cross-session ──────────────────────
+      if (errorPatterns && errorPatterns.length > 0) {
+        for (const { origIdx, patternName } of errorPatterns) {
+          const q = questions[origIdx];
+          if (!q) continue;
+          let epKey = null;
+          for (const cId of Object.keys(DB)) {
+            for (const sId of Object.keys(DB[cId])) {
+              const arr = DB[cId][sId];
+              if (!Array.isArray(arr)) continue;
+              const idx = arr.indexOf(q);
+              if (idx >= 0) { epKey = `${cId}:${sId}:${idx}`; break; }
+            }
+            if (epKey) break;
+          }
+          if (epKey) newState = addErrorPatternToState(newState, epKey, patternName);
         }
       }
       await saveQState(newState);
