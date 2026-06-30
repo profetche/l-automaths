@@ -18596,6 +18596,50 @@ function detectErrorPattern(correct, given, question) {
   return null;
 }
 
+// ── Analyse cross-session des patterns d'erreur ────────────────────────────
+// Libellé court et conseil par type de pattern, pour des messages personnalisés.
+const ERROR_PATTERN_LABELS = {
+  sign_flip:              { court: "le signe du résultat",        conseil: "Pense à vérifier le signe : un résultat juste en valeur mais avec le mauvais signe, c'est souvent une distraction." },
+  double_value:          { court: "un facteur 2 en trop",         conseil: "Tu comptes parfois un terme deux fois. Relis ton calcul en isolant chaque terme." },
+  half_value:            { court: "un facteur 2 oublié",          conseil: "Il te manque souvent un facteur 2. Vérifie les doubles produits et les coefficients." },
+  fraction_inverted:     { court: "l'inversion des fractions",    conseil: "Attention à ne pas permuter numérateur et dénominateur." },
+  missing_double_product:{ court: "le double produit (a+b)²",     conseil: "Rappelle-toi : (a+b)² = a² + 2ab + b², le terme 2ab est essentiel." },
+  distributivity_sign:   { court: "le signe « − » devant une parenthèse", conseil: "Quand tu distribues un « − », chaque terme à l'intérieur change de signe." },
+  root_vs_square:        { court: "la confusion racine / carré",  conseil: "√a, c'est le nombre dont le carré vaut a — pas a²." },
+  mul_vs_add:            { court: "multiplication et addition",   conseil: "Attention à bien multiplier quand l'opération est une multiplication." },
+  power_vs_mult:         { court: "les puissances (aⁿ ≠ a×n)",    conseil: "aⁿ, c'est a multiplié par lui-même n fois. Par ex. 2³ = 8, pas 6." },
+  unit_shift:            { court: "les conversions d'unités",     conseil: "Surveille le décalage de la virgule : facteur 10, 100 ou 1000 selon l'unité." },
+};
+
+// Parcourt qState, agrège les patterns par (sous-catégorie × type), et retourne
+// les récurrences atteignant le seuil. Retour : tableau trié [{catId, subId, name, count, court, conseil}]
+function analyzeErrorPatterns(qState, threshold = 3) {
+  const agg = {}; // "catId:subId|name" -> count
+  for (const key of Object.keys(qState || {})) {
+    const parts = key.split(':');
+    if (parts.length !== 3) continue;
+    const [cId, sId] = parts;
+    const pats = qState[key] && qState[key].patterns;
+    if (!Array.isArray(pats)) continue;
+    for (const p of pats) {
+      if (!p || !p.name) continue;
+      const aggKey = `${cId}:${sId}|${p.name}`;
+      agg[aggKey] = (agg[aggKey] || 0) + 1;
+    }
+  }
+  const out = [];
+  for (const aggKey of Object.keys(agg)) {
+    const count = agg[aggKey];
+    if (count < threshold) continue;
+    const [subKey, name] = aggKey.split('|');
+    const [catId, subId] = subKey.split(':');
+    const lbl = ERROR_PATTERN_LABELS[name] || { court: "une erreur récurrente", conseil: "" };
+    out.push({ catId, subId, name, count, court: lbl.court, conseil: lbl.conseil });
+  }
+  // Les plus fréquents d'abord
+  return out.sort((a, b) => b.count - a.count);
+}
+
 // ── Badge unlock helper ───────────────────────────────────────────────────────
 async function checkAndUnlockBadge(badgeId, setBadgesState) {
   const current = await loadBadges();
@@ -18928,6 +18972,9 @@ function VigilanceScreen({profile, qState, onBack, onRemediation, onWorkTheme, s
     return { learning, mastered, total };
   }, [qState]);
 
+  // Erreurs récurrentes détectées à travers les sessions (seuil = 3 occurrences)
+  const recurringErrors = React.useMemo(() => analyzeErrorPatterns(qState, 3), [qState]);
+
   return (
     <div className="slide-up" style={{display:"flex",flexDirection:"column",height:"100%",padding:"20px 18px 16px"}}>
       <Back onClick={onBack}/>
@@ -18970,6 +19017,37 @@ function VigilanceScreen({profile, qState, onBack, onRemediation, onWorkTheme, s
           </div>
         </div>
       </div>
+
+      {/* ── Erreurs récurrentes détectées (cross-session) ───────── */}
+      {recurringErrors.length > 0 && (
+        <div style={{marginBottom:12}}>
+          <div style={{fontSize:9,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
+            letterSpacing:1,marginBottom:6}}>🔍 Ce que Sigma remarque</div>
+          {recurringErrors.slice(0,3).map((e, i) => {
+            const subLabel = (getSubInfo(e.catId, e.subId) && getSubInfo(e.catId, e.subId).label) || e.subId;
+            const catLabel = (getCatInfo(e.catId) && getCatInfo(e.catId).label) || e.catId;
+            return (
+              <div key={i} style={{background:"#FFF7ED",border:"1px solid #FED7AA",borderRadius:13,
+                padding:"12px 14px",marginBottom:8,display:"flex",gap:11,alignItems:"flex-start"}}>
+                <span style={{fontSize:20,flexShrink:0,marginTop:1}}>💡</span>
+                <div style={{flex:1}}>
+                  <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:13,color:"#9A3412",lineHeight:1.35}}>
+                    En {catLabel.toLowerCase()} ({subLabel.toLowerCase()}), reviens souvent {e.court}.
+                  </div>
+                  {e.conseil && (
+                    <div style={{fontSize:11,color:"#7C2D12",marginTop:4,lineHeight:1.45,opacity:.9}}>
+                      {e.conseil}
+                    </div>
+                  )}
+                  <div style={{fontSize:9,color:"#C2410C",marginTop:5,fontWeight:700}}>
+                    Repéré {e.count} fois
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
 
       {/* Bouton Séance de remédiation (si il y a des questions en difficulté) */}
       {analysis.some(s => s.failedIdx.length > 0) && (
