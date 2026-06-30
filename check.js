@@ -47,30 +47,73 @@ try {
 }
 
 // ─────────────────────────────────────────────────────────────────────────
-log('\n2. Sauts de ligne dans les formules (bug [Npt])');
-// On ne fait PAS une validation KaTeX complète : extraire des formules d'un fichier JS
-// par regex tronque les formules longues et génère des faux positifs.
-// En revanche, la détection du saut de ligne mal échappé \\[Npt] est fiable et c'est
-// LE bug récurrent (il affiche "[4pt]" en clair à l'élève). On cible uniquement ça.
+log('\n2. Rendu des formules KaTeX (via AST)');
 {
-  // Un \\[Npt] dans une raw string (2 backslashes dans le fichier) = bug.
-  // Un \\\\[Npt] (4 backslashes) = saut propre, OK.
-  // On cherche donc exactement 2 backslashes suivis de [Npt], hors blocs svg:.
-  const noSvg = src.replace(/svg:\s*`[^`]*`/g, '');
-  // (?<!\\) : pas précédé d'un 3e backslash → exactement 2
-  const bad = noSvg.match(/(?<!\\)\\\\\[\d+pt\]/g) || [];
-  if (bad.length === 0) {
-    ok('aucun saut de ligne cassé (\\[Npt])');
-  } else {
-    err(`${bad.length} sauts de ligne mal échappés (\\[Npt] → doivent devenir \\\\)`);
-    // Montrer le contexte des 5 premiers
-    let shown = 0;
-    const ctxRe = /(.{30})(?<!\\)\\\\\[\d+pt\]/g;
-    let cm;
-    while ((cm = ctxRe.exec(noSvg)) !== null && shown < 5) {
-      console.log(`      …${cm[1].replace(/\n/g,' ')}\\\\[Npt]`);
-      shown++;
+  let katex;
+  try { katex = require('katex'); }
+  catch { warn('katex non installé (npm install katex) — vérification sautée'); katex = null; }
+
+  if (katex) {
+    const parser = require('@babel/parser');
+    const ast = parser.parse(src, { sourceType: 'script', plugins: ['jsx'] });
+    const formulas = [];
+    const FORMULA_KEYS = new Set(['q', 'tip', 'a', 'recto', 'verso']);
+
+    function rawOf(node) {
+      // Renvoie le texte brut d'un template, qu'il soit nu (`...`) ou taggé (r`...`)
+      let tpl = null;
+      if (node.type === 'TemplateLiteral') tpl = node;
+      else if (node.type === 'TaggedTemplateExpression' && node.quasi && node.quasi.type === 'TemplateLiteral') tpl = node.quasi;
+      if (!tpl || tpl.quasis.length !== 1) return null; // on ignore les templates avec ${...}
+      return tpl.quasis[0].value.raw;
     }
+
+    function walk(node) {
+      if (!node || typeof node !== 'object') return;
+      if (Array.isArray(node)) { node.forEach(walk); return; }
+      if (node.type === 'ObjectProperty' && node.key) {
+        const kname = node.key.name || node.key.value;
+        if (FORMULA_KEYS.has(kname)) {
+          const raw = rawOf(node.value);
+          if (raw !== null) formulas.push(raw);
+          else if (node.value.type === 'StringLiteral' && /\\[a-zA-Z]/.test(node.value.value)) formulas.push(node.value.value);
+        }
+        if (kname === 'choices' && node.value.type === 'ArrayExpression') {
+          for (const el of node.value.elements) {
+            if (!el) continue;
+            const raw = rawOf(el);
+            if (raw !== null) formulas.push(raw);
+          }
+        }
+      }
+      for (const k in node) {
+        if (k === 'loc' || k === 'start' || k === 'end') continue;
+        walk(node[k]);
+      }
+    }
+    walk(ast);
+
+    let bad = 0;
+    const seen = new Set();
+    for (const f of formulas) {
+      if (seen.has(f)) continue; seen.add(f);
+      if (f.includes('<svg')) continue; // un champ q peut contenir un SVG : pas du KaTeX
+      // On rend avec throwOnError:false — EXACTEMENT le réglage de l'app.
+      // Ce qui produit "katex-error" ou "[Npt]" ici sera réellement cassé à l'écran.
+      let html;
+      try {
+        html = katex.renderToString(f, { throwOnError: false, strict: false });
+      } catch (e) {
+        // Erreurs purement Node (métriques de police/glyphe absentes) = pas un bug app
+        if (/Font metrics|character metrics|No character metrics/i.test(e.message)) continue;
+        err(`KaTeX plante : ${JSON.stringify(f.slice(0, 55))} — ${e.message.split('\n')[0].slice(0, 40)}`);
+        bad++; continue;
+      }
+      if (html.includes('katex-error')) { err(`Formule cassée : ${JSON.stringify(f.slice(0, 55))}`); bad++; }
+      else if (/\[\d+pt\]/.test(html)) { err(`Saut de ligne cassé "[Npt]" : ${JSON.stringify(f.slice(0, 55))}`); bad++; }
+    }
+    if (bad === 0) ok(`${seen.size} formules KaTeX rendues — toutes OK`);
+    else log(`  → ${bad} formule(s) à corriger`);
   }
 }
 

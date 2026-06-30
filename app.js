@@ -6677,7 +6677,7 @@ const DB = {
           r`\left(\dfrac{1}{u}\right)' = -\dfrac{1}{u^2}`
         ],
         a: r`\left(\dfrac{1}{u}\right)' = -\dfrac{u'}{u^2}`,
-        tip: r`\text{Formule à connaître par cœur : }\left(\dfrac{1}{u}\right)' = -\dfrac{u'}{u^2}\text{. Distracteur D piège les élèves qui généralisent à tort la formule de la fonction de référence }\left(\dfrac{1}` },
+        tip: r`\text{Formule à connaître par cœur : }\left(\dfrac{1}{u}\right)' = -\dfrac{u'}{u^2}\text{.}` },
       // spe_quot_03 — application_un_sur_u — n2
       { q: r`\text{Soit }f(x) = \dfrac{1}{x^2 + 1}\text{ définie sur }\mathbb{R}\text{. Quelle est sa dérivée ?}`,
         choices: [
@@ -6866,7 +6866,7 @@ const DB = {
           r`\text{Le périmètre n'a pas de minimum}`
         ],
         a: r`\ell = 6\text{ m}`,
-        tip: r`\text{Avec }\ell L = 36\text{, on a }L = \dfrac{36}{\ell}\text{. Le périmètre est }P(\ell) = 2\ell + \dfrac{72}{\ell}\text{ pour }\ell > 0\text{. La dérivée est }P'(\ell) = 2 - \dfrac{72}{\ell^2}\text` },
+        tip: r`\text{Avec }\ell L = 36\text{, on a }L = \dfrac{36}{\ell}\text{. Le périmètre est }P(\ell) = 2\ell + \dfrac{72}{\ell}\text{ pour }\ell > 0\text{. La dérivée est }P'(\ell) = 2 - \dfrac{72}{\ell^2}.` },
       // spe_opt_06 — produit_max_somme_fixee — n3
       { q: r`\text{Soient }a\text{ et }b\text{ deux nombres réels strictement positifs vérifiant }a + b = 10\text{. Quelle est la valeur maximale du produit }a \cdot b\text{ ?}`,
         choices: [
@@ -7108,7 +7108,7 @@ const DB = {
           r`f\text{ est concave sur }\left]0\,;\,1\right]\text{ et convexe sur }\left[1\,;\,+\infty\right[`
         ],
         a: r`f\text{ est convexe sur }\left]0\,;\,+\infty\right[`,
-        tip: r`f'(x) = 1 - \dfrac{1}{x^2}\text{, puis }f''(x) = \dfrac{2}{x^3}\text{. Sur }\left]0\,;\,+\infty\right[\text{, on a }x^3 > 0\text{ donc }f''(x) > 0\text{. Donc }f\text{ est convexe sur tout }\left]0\,;` },
+        tip: r`f'(x) = 1 - \dfrac{1}{x^2}\text{, puis }f''(x) = \dfrac{2}{x^3}\text{. Sur }\left]0\,;\,+\infty\right[\text{, on a }x^3 > 0\text{ donc }f''(x) > 0\text{. Donc }f\text{ est convexe sur }\left]0\,;+\infty\right[.` },
       // term_convex_07 — Étudier la convexité (fonction avec ln) — dure
       // ⚠️ Distracteur 1 = élève qui inverse le signe. Vérifier que la dérivée de x*ln(x) est bien attendue connue à ce stade dans ta progression.
       { q: r`\text{Soit }f\text{ définie sur }\left]0\,;\,+\infty\right[\text{ par }f(x) = x\ln(x) - x^2\text{. Sur quel intervalle }f\text{ est-elle convexe ?}`,
@@ -8153,7 +8153,7 @@ const DB = {
         tip:r`x-2=0\Rightarrow x=2\quad;\quad2x+1=0\Rightarrow x=-\dfrac{1}{2}`},
       { q:r`\text{Notes : }7,10,12,14\text{ avec effectifs }5,7,8,10\text{ (30 élèves).}\\\text{La note médiane est :}`,
         choices:[r`12`,r`11`,r`11{,}37`,r`7{,}5`], a:r`12`,
-        tip:r`\text{30 élèves : médiane = moyenne des 15^e et 16^e valeurs.}\\\text{Effectifs cumulés : }5,12,20,30\Rightarrow\text{les deux valent }12`},
+        tip:r`\text{30 élèves : médiane = moyenne des 15e et 16e valeurs.}\\\text{Effectifs cumulés : }5,12,20,30\Rightarrow\text{les deux valent }12`},
       { q:r`\text{On donne la courbe }\mathscr{C}_f\text{ d'une fonction }f\text{ sur }[-4\,;3].\\\text{L'ensemble des solutions de }f(x)\geq 0\text{ est :}`,
         img:"cartes/ce_techno_2026_q7.webp",
         choices:[r`[0\,;3]`,r`[-4\,;-2]`,r`[-4\,;-3]\cup[-1\,;3]`,r`[-4\,;-3]\cup[0\,;3]`], a:r`[-4\,;-3]\cup[-1\,;3]`,
@@ -8507,7 +8507,7 @@ const DB = {
           r`\text{On ne peut pas conclure}`
         ],
         a: r`-\infty`,
-        tip: r`\text{En }-\infty\text{, }x^3 \to -\infty\text{ et }-2x \to +\infty\text{ : c'est une forme }-\infty + \infty\text{, donc indéterminée par opération directe. On factorise : }x^3 - 2x = x^3\!\left(1 - ` },
+        tip: r`\text{En }-\infty\text{, }x^3 \to -\infty\text{ et }-2x \to +\infty\text{ : c'est une forme }-\infty + \infty\text{, donc indéterminée par opération directe. On factorise.}` },
       // term_lim_11 — Limite d'une somme avec 1/x — moyenne
       { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to +\infty} \left(\dfrac{1}{x} + 2\right)\text{ ?}`,
         choices: [
@@ -8593,7 +8593,7 @@ const DB = {
           r`-\dfrac{3}{2}`
         ],
         a: r`\dfrac{1}{2}`,
-        tip: r`\text{Forme }\dfrac{\infty}{\infty}\text{. On factorise }x^2\text{ au numérateur et au dénominateur : }\dfrac{x^2 - 3x}{2x^2 + 1} = \dfrac{x^2\!\left(1 - \frac{3}{x}\right)}{x^2\!\left(2 + \frac{1}{x^}}` },
+        tip: r`\text{Forme }\dfrac{\infty}{\infty}\text{. On factorise }x^2\text{ au numérateur et au dénominateur : }\dfrac{x^2 - 3x}{2x^2 + 1} = \dfrac{1 - \frac{3}{x}}{2 + \frac{1}{x^2}} \to \dfrac{1}{2}.` },
       // term_lim_19 — FI ∞-∞ avec racine : expression conjuguée — dure
       // ⚠️ Question dure (technique de l'expression conjuguée). À garder pour des élèves prêts.
       { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to +\infty} \left(\sqrt{x^{2} + x} - x\right)\text{ ?}`,
@@ -8615,7 +8615,7 @@ const DB = {
           r`-\infty`
         ],
         a: r`+\infty`,
-        tip: r`\text{Forme }\dfrac{\infty}{\infty}\text{. On factorise par les termes dominants : }\dfrac{2x^3 + x - 1}{x^2 + 1} = \dfrac{x^3\!\left(2 + \frac{1}{x^2} - \frac{1}{x^3}\right)}{x^2\!\left(1 + \frac{1}{}}` },
+        tip: r`\text{Forme }\dfrac{\infty}{\infty}\text{. On factorise par les termes dominants : }\dfrac{2x^3 + x - 1}{x^2 + 1} = \dfrac{x(2 + \frac{1}{x^2})}{1} \to +\infty.` },
       // term_lim_21 — Croissance comparée : exp domine — moyenne
       { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to +\infty} \dfrac{\mathrm{e}^{x}}{x}\text{ ?}`,
         choices: [
@@ -8625,7 +8625,7 @@ const DB = {
           r`\mathrm{e}`
         ],
         a: r`+\infty`,
-        tip: r`\text{Forme }\dfrac{\infty}{\infty}\text{. C'est une croissance comparée fondamentale : l'exponentielle l'emporte sur toute fonction puissance. Théorème : }\displaystyle\lim_{x \to +\infty} \dfrac{\ma}` },
+        tip: r`\text{Forme }\dfrac{\infty}{\infty}\text{. C'est une croissance comparée fondamentale : l'exponentielle l'emporte sur toute fonction puissance. Théorème : }\text{par croissance comparée.}` },
       // term_lim_22 — Croissance comparée : x*ln(x) en 0 — moyenne
       { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to 0^{+}} x\ln(x)\text{ ?}`,
         choices: [
@@ -8666,7 +8666,7 @@ const DB = {
           r`\text{La limite n'existe pas}`
         ],
         a: r`4`,
-        tip: r`\text{Forme }\dfrac{0}{0}\text{ : indéterminée. On factorise au numérateur en utilisant l'identité remarquable }x^2 - 4 = (x-2)(x+2)\text{. Donc pour }x \neq 2\text{ : }\dfrac{x^2 - 4}{x - 2} = \dfrac` },
+        tip: r`\text{Forme }\dfrac{0}{0}\text{ : indéterminée. On factorise au numérateur en utilisant l'identité remarquable }x^2 - 4 = (x-2)(x+2)\text{. Donc pour }x \neq 2\text{ : }\dfrac{x^2 - 4}{x - 2} = x + 2.` },
       // term_lim_26 — FI 0/0 : factorisation polynomiale (trinôme) — dure
       { q: r`\text{Quelle est la valeur de }\displaystyle\lim_{x \to 2} \dfrac{x^{2} - 5x + 6}{x - 2}\text{ ?}`,
         choices: [
@@ -8813,7 +8813,7 @@ const DB = {
           r`\text{Pas d'asymptote}`
         ],
         a: r`\text{Asymptote horizontale }y = 1\text{ en }+\infty\text{ uniquement}`,
-        tip: r`\text{En }+\infty\text{ : }-x \to -\infty\text{, donc }\mathrm{e}^{-x} \to 0\text{. Ainsi }f(x) \to 0 + 1 = 1\text{. Donc }y = 1\text{ est asymptote horizontale en }+\infty\text{. En }-\infty\text{ : }` },
+        tip: r`\text{En }+\infty\text{ : }-x \to -\infty\text{, donc }\mathrm{e}^{-x} \to 0\text{. Ainsi }f(x) \to 0 + 1 = 1\text{. Donc }y = 1\text{ est asymptote horizontale en }+\infty\text{.}` },
       // term_lim_33 — Asymptote verticale du logarithme — moyenne
       // ⚠️ Distracteur 2 vise l'élève qui confond 'l'expression contient +2' avec 'asymptote y=2'.
       { q: r`\text{Soit }f\text{ définie sur }]0\,;\,+\infty[\text{ par }f(x) = \ln(x) + 2\text{. Quelles sont les asymptotes de }\mathcal{C}_f\text{ ?}`,
@@ -8835,7 +8835,7 @@ const DB = {
           r`\text{Pas d'asymptote}`
         ],
         a: r`\text{Asymptote horizontale }y = 0\text{ en }+\infty\text{ et asymptote verticale }x = 0`,
-        tip: r`\text{En }+\infty\text{ : par croissance comparée, }\dfrac{\ln(x)}{x} \to 0\text{. Donc }y = 0\text{ est asymptote horizontale en }+\infty\text{. En }0^+\text{ : }\ln(x) \to -\infty\text{ et }x \to 0^` },
+        tip: r`\text{En }+\infty\text{ : par croissance comparée, }\dfrac{\ln(x)}{x} \to 0\text{. Donc }y = 0\text{ est asymptote horizontale en }+\infty\text{. En }0^+\text{ : }\ln(x) \to -\infty\text{ et }x \to 0^+.` },
     ],
 
     // ── Comparaison et encadrement ── (6 questions)
@@ -10639,7 +10639,7 @@ const DB = {
         choices: [`0{,}2`, `0{,}4`, `0{,}04`, `0{,}5`], a: `0{,}2`,
         tip: r`\dfrac{1}{\sqrt{25}}=\dfrac{1}{5}=0{,}2` },
       // ec_10
-      { q: r`\text{Un sondage donne une fréquence }f=0{,}48\text{ pour }n=100.\\\text{L'intervalle est }[0{,}4\,;\,0{,}6].\ f\in I\,?}`,
+      { q: r`\text{Un sondage donne une fréquence }f=0{,}48\text{ pour }n=100.\\\text{L'intervalle est }[0{,}4\,;\,0{,}6].`,
         choices: [r`\text{Oui, 0{,}48}\in[0{,}4\,;\,0{,}6]`, r`\text{Non}`, r`\text{Impossible à dire}`, r`\text{Oui, mais p=0{,}5}`],
         a: r`\text{Oui, 0{,}48}\in[0{,}4\,;\,0{,}6]`,
         tip: r`0{,}4\leq0{,}48\leq0{,}6\text{ : résultat compatible avec l'hypothèse.}` },
@@ -13248,7 +13248,7 @@ const DB = {
       { q: r`\text{Dans un cube }ABCDA'B'C'D'\text{, les droites }(AB)\text{ et }(CC')\text{ sont :}`,
         choices:[r`\text{Gauches}`,r`\text{Parallèles}`,r`\text{Sécantes}`,r`\text{Confondues}`],
         a: r`\text{Gauches}`,
-        tip: r`(AB)\text{ est selon }\'\overrightarrow{AB}\text{ (horizontal), }(CC')\text{ est vertical. Pas de point commun et non parallèles}\\ \Rightarrow\text{gauches.}` },
+        tip: r`(AB)\text{ est selon }\overrightarrow{AB}\text{ (horizontal), }(CC')\text{ est vertical. Pas de point commun et non parallèles}\\ \Rightarrow\text{gauches.}` },
 
       // gep_14 — Droite incluse dans un plan
       { q: r`\text{Quelle est la différence entre "droite incluse dans un plan" et "droite parallèle à un plan" ?}`,
@@ -13964,7 +13964,7 @@ const DB = {
       { q: r`d:\begin{cases}x=1+t\\y=t\\z=1-t\end{cases}\text{ et }\mathcal{P}: x-z=0.\\\text{La droite est :}`,
         choices:[r`\text{Incluse dans }\mathcal{P}`,r`\text{Parallèle à }\mathcal{P}`,r`\text{Sécante en un point}`,r`\text{Gauche}`],
         a: r`\text{Incluse dans }\mathcal{P}`,
-        tip: r`\vec{n}=(1;0;-1).\quad\vec{u}\cdot\vec{n}=1+0-(-1)=2\neq0\Rightarrow\text{sécante en un point.}\\\text{(Correction attendue: tester d'abord le pt }t=0: x=1,z=1\Rightarrow x-z=0\ \checkmark,\text{ puis }\vec{u}\cdot\vec{n}.)}` },
+        tip: r`\vec{n}=(1;0;-1).\quad\vec{u}\cdot\vec{n}=1+0-(-1)=2\neq0\Rightarrow\text{sécante en un point.}\\\text{(Correction attendue: tester d'abord le pt }t=0: x=1,z=1\Rightarrow x-z=0\ \checkmark,\text{ puis }\vec{u}\cdot\vec{n}.)` },
 
       // ged_25 — Synthèse droites de l'espace
       { q: r`d_1:\begin{cases}x=1\\y=t\\z=0\end{cases}\quad d_2:\begin{cases}x=0\\y=t\\z=1\end{cases}.\\\text{Ces droites sont :}`,
