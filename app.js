@@ -1056,115 +1056,115 @@ const DB = {
         gspec: { fn:x=>-x*x+4, xr:[-4,4], yr:[-2,5],
           extras:c=><>{gDH(0,c,"#94A3B8")}{gPt(-2,0,c)}{gPt(2,0,c)}</> },
         choices:[r`x=-2\text{ et }x=2`,r`x=4`,r`x=0`,r`x=-4\text{ et }x=4`],
-        a:r`x=-2\text{ et }x=2`, tip:r`\text{On trace l'horizontale }y=0\\[4pt]\text{et on lit les abscisses}\\[4pt]\text{des intersections avec la courbe}` },
+        a:r`x=-2\text{ et }x=2`, tip:r`\text{On trace l'horizontale }y=0\\\text{et on lit les abscisses}\\\text{des intersections avec la courbe}` },
 
       { q: r`\text{Antécédents de }3\text{ d'après le graphique :}`,
         gspec: { fn:x=>x*x-1, xr:[-3,3], yr:[-2,5],
           extras:c=><>{gDH(3,c)}{gPt(-2,3,c)}{gPt(2,3,c)}</> },
         choices:[r`x=-2\text{ et }x=2`,r`x=3`,r`x=-3\text{ et }x=3`,r`x=1`],
-        a:r`x=-2\text{ et }x=2`, tip:r`\text{On trace l'horizontale }y=3\\[4pt]\text{et on lit les abscisses}\\[4pt]\text{des intersections avec la courbe}` },
+        a:r`x=-2\text{ et }x=2`, tip:r`\text{On trace l'horizontale }y=3\\\text{et on lit les abscisses}\\\text{des intersections avec la courbe}` },
 
       { q: r`\text{D'après le graphique, }f(0)=?`,
         gspec: { fn:x=>2*x-1, xr:[-3,4], yr:[-4,5],
           extras:c=><>{gPt(0,-1,c)}{gNote(0,-1,'f(0)',c,'#EF4444')}</> },
-        choices:[`-1`,`0`,`1`,`2`], a:`-1`, tip:r`\text{On repère }x=0\text{ sur l'axe }(Ox)\\[4pt]\text{puis on lit l'ordonnée sur la courbe}` },
+        choices:[`-1`,`0`,`1`,`2`], a:`-1`, tip:r`\text{On repère }x=0\text{ sur l'axe }(Ox)\\\text{puis on lit l'ordonnée sur la courbe}` },
 
       // ── NUMPAD — images ──
       { q: r`f(3)=?`,
         gspec:{ fn:x=>x+2, xr:[-4,4], yr:[-2,7],
           extras:c=><>{gDV(3,c)}{gDH(5,c)}{gPt(3,5,c)}</> },
-        numpad:true, a:"5", tip:r`\text{On repère }x=3\text{ sur l'axe }(Ox)\\[4pt]\text{puis on lit l'ordonnée sur la courbe}` },
+        numpad:true, a:"5", tip:r`\text{On repère }x=3\text{ sur l'axe }(Ox)\\\text{puis on lit l'ordonnée sur la courbe}` },
 
       { q: r`f(2)=?`,
         gspec:{ fn:x=>x*x-2, xr:[-3,3], yr:[-3,5],
           extras:c=><>{gDV(2,c)}{gDH(2,c)}{gPt(2,2,c)}</> },
-        numpad:true, a:"2", tip:r`\text{On repère }x=2\text{ sur l'axe }(Ox)\\[4pt]\text{puis on lit l'ordonnée sur la courbe}` },
+        numpad:true, a:"2", tip:r`\text{On repère }x=2\text{ sur l'axe }(Ox)\\\text{puis on lit l'ordonnée sur la courbe}` },
 
       { q: r`f(-1)=?`,
         gspec:{ fn:x=>-x+4, xr:[-2,5], yr:[-1,6],
           extras:c=><>{gDV(-1,c)}{gDH(5,c)}{gPt(-1,5,c)}</> },
-        numpad:true, a:"5", tip:r`\text{On repère }x=-1\text{ sur l'axe }(Ox)\\[4pt]\text{puis on lit l'ordonnée sur la courbe}` },
+        numpad:true, a:"5", tip:r`\text{On repère }x=-1\text{ sur l'axe }(Ox)\\\text{puis on lit l'ordonnée sur la courbe}` },
 
       { q: r`f(3)=?`,
         gspec:{ fn:x=>2*x+1, xr:[-2,4], yr:[-3,8],
           extras:c=><>{gDV(3,c)}{gDH(7,c)}{gPt(3,7,c)}</> },
-        numpad:true, a:"7", tip:r`\text{On repère }x=3\text{ sur l'axe }(Ox)\\[4pt]\text{puis on lit l'ordonnée sur la courbe}` },
+        numpad:true, a:"7", tip:r`\text{On repère }x=3\text{ sur l'axe }(Ox)\\\text{puis on lit l'ordonnée sur la courbe}` },
 
       { q: r`f(-2)=?`,
         gspec:{ fn:x=>x*x+1, xr:[-3,3], yr:[-1,6],
           extras:c=><>{gDV(-2,c)}{gDH(5,c)}{gPt(-2,5,c)}</> },
-        numpad:true, a:"5", tip:r`\text{On repère }x=-2\text{ sur l'axe }(Ox)\\[4pt]\text{puis on lit l'ordonnée sur la courbe}` },
+        numpad:true, a:"5", tip:r`\text{On repère }x=-2\text{ sur l'axe }(Ox)\\\text{puis on lit l'ordonnée sur la courbe}` },
 
       { q: r`f(-2)=?`,
         gspec:{ fn:x=>-x*x+9, xr:[-4,4], yr:[-1,10],
           extras:c=><>{gDV(-2,c)}{gDH(5,c)}{gPt(-2,5,c)}</> },
-        numpad:true, a:"5", tip:r`\text{On repère }x=-2\text{ sur l'axe }(Ox)\\[4pt]\text{puis on lit l'ordonnée sur la courbe}` },
+        numpad:true, a:"5", tip:r`\text{On repère }x=-2\text{ sur l'axe }(Ox)\\\text{puis on lit l'ordonnée sur la courbe}` },
 
       { q: r`f(0)=?`,
         gspec:{ fn:x=>x*x-4, xr:[-3,3], yr:[-5,4],
           extras:c=><>{gPt(0,-4,c)}</> },
-        numpad:true, a:"-4", tip:r`\text{On repère }x=0\text{ sur l'axe }(Ox)\\[4pt]\text{puis on lit l'ordonnée sur la courbe}` },
+        numpad:true, a:"-4", tip:r`\text{On repère }x=0\text{ sur l'axe }(Ox)\\\text{puis on lit l'ordonnée sur la courbe}` },
 
       { q: r`f(4)=?`,
         gspec:{ fn:x=>3*x-6, xr:[-1,4], yr:[-7,7],
           extras:c=><>{gDV(4,c)}{gDH(6,c)}{gPt(4,6,c)}</> },
-        numpad:true, a:"6", tip:r`\text{On repère }x=4\text{ sur l'axe }(Ox)\\[4pt]\text{puis on lit l'ordonnée sur la courbe}` },
+        numpad:true, a:"6", tip:r`\text{On repère }x=4\text{ sur l'axe }(Ox)\\\text{puis on lit l'ordonnée sur la courbe}` },
 
       { q: r`f(1)=?`,
         gspec:{ fn:x=>-2*x+6, xr:[-1,4], yr:[-2,8],
           extras:c=><>{gDV(1,c)}{gDH(4,c)}{gPt(1,4,c)}</> },
-        numpad:true, a:"4", tip:r`\text{On repère }x=1\text{ sur l'axe }(Ox)\\[4pt]\text{puis on lit l'ordonnée sur la courbe}` },
+        numpad:true, a:"4", tip:r`\text{On repère }x=1\text{ sur l'axe }(Ox)\\\text{puis on lit l'ordonnée sur la courbe}` },
 
       { q: r`f(3)=?`,
         gspec:{ fn:x=>x*x-x, xr:[-2,4], yr:[-2,7],
           extras:c=><>{gDV(3,c)}{gDH(6,c)}{gPt(3,6,c)}</> },
-        numpad:true, a:"6", tip:r`\text{On repère }x=3\text{ sur l'axe }(Ox)\\[4pt]\text{puis on lit l'ordonnée sur la courbe}` },
+        numpad:true, a:"6", tip:r`\text{On repère }x=3\text{ sur l'axe }(Ox)\\\text{puis on lit l'ordonnée sur la courbe}` },
 
       // ── NUMPAD — antécédents ──
       { q: r`\text{Antécédent de }5=?`,
         gspec:{ fn:x=>x+2, xr:[-3,5], yr:[-1,8],
           extras:c=><>{gDH(5,c)}{gDV(3,c)}{gPt(3,5,c)}</> },
-        numpad:true, a:"3", tip:r`\text{On trace l'horizontale }y=5\\[4pt]\text{et on lit les abscisses}\\[4pt]\text{des intersections avec la courbe}` },
+        numpad:true, a:"3", tip:r`\text{On trace l'horizontale }y=5\\\text{et on lit les abscisses}\\\text{des intersections avec la courbe}` },
 
       { q: r`\text{Antécédent de }3=?`,
         gspec:{ fn:x=>2*x-1, xr:[-2,4], yr:[-3,7],
           extras:c=><>{gDH(3,c)}{gDV(2,c)}{gPt(2,3,c)}</> },
-        numpad:true, a:"2", tip:r`\text{On trace l'horizontale }y=3\\[4pt]\text{et on lit les abscisses}\\[4pt]\text{des intersections avec la courbe}` },
+        numpad:true, a:"2", tip:r`\text{On trace l'horizontale }y=3\\\text{et on lit les abscisses}\\\text{des intersections avec la courbe}` },
 
       { q: r`\text{Antécédent de }2=?`,
         gspec:{ fn:x=>-x+5, xr:[-1,6], yr:[-2,7],
           extras:c=><>{gDH(2,c)}{gDV(3,c)}{gPt(3,2,c)}</> },
-        numpad:true, a:"3", tip:r`\text{On trace l'horizontale }y=2\\[4pt]\text{et on lit les abscisses}\\[4pt]\text{des intersections avec la courbe}` },
+        numpad:true, a:"3", tip:r`\text{On trace l'horizontale }y=2\\\text{et on lit les abscisses}\\\text{des intersections avec la courbe}` },
 
       { q: r`\text{Antécédent de }9=?`,
         gspec:{ fn:x=>3*x, xr:[-1,4], yr:[-3,10],
           extras:c=><>{gDH(9,c)}{gDV(3,c)}{gPt(3,9,c)}</> },
-        numpad:true, a:"3", tip:r`\text{On trace l'horizontale }y=9\\[4pt]\text{et on lit les abscisses}\\[4pt]\text{des intersections avec la courbe}` },
+        numpad:true, a:"3", tip:r`\text{On trace l'horizontale }y=9\\\text{et on lit les abscisses}\\\text{des intersections avec la courbe}` },
 
       { q: r`\text{Antécédent de }2=?`,
         gspec:{ fn:x=>-2*x+8, xr:[-1,5], yr:[-2,9],
           extras:c=><>{gDH(2,c)}{gDV(3,c)}{gPt(3,2,c)}</> },
-        numpad:true, a:"3", tip:r`\text{On trace l'horizontale }y=2\\[4pt]\text{et on lit les abscisses}\\[4pt]\text{des intersections avec la courbe}` },
+        numpad:true, a:"3", tip:r`\text{On trace l'horizontale }y=2\\\text{et on lit les abscisses}\\\text{des intersections avec la courbe}` },
 
       { q: r`\text{Antécédent de }0=?`,
         gspec:{ fn:x=>x+4, xr:[-6,3], yr:[-2,7],
           extras:c=><>{gDH(0,c,"#94A3B8")}{gDV(-4,c)}{gPt(-4,0,c)}</> },
-        numpad:true, a:"-4", tip:r`\text{On trace l'horizontale }y=0\\[4pt]\text{et on lit les abscisses}\\[4pt]\text{des intersections avec la courbe}` },
+        numpad:true, a:"-4", tip:r`\text{On trace l'horizontale }y=0\\\text{et on lit les abscisses}\\\text{des intersections avec la courbe}` },
 
       { q: r`\text{Antécédent de }6=?`,
         gspec:{ fn:x=>2*x+2, xr:[-2,4], yr:[-2,8],
           extras:c=><>{gDH(6,c)}{gDV(2,c)}{gPt(2,6,c)}</> },
-        numpad:true, a:"2", tip:r`\text{On trace l'horizontale }y=6\\[4pt]\text{et on lit les abscisses}\\[4pt]\text{des intersections avec la courbe}` },
+        numpad:true, a:"2", tip:r`\text{On trace l'horizontale }y=6\\\text{et on lit les abscisses}\\\text{des intersections avec la courbe}` },
 
       { q: r`\text{Antécédent de }{-1}=?`,
         gspec:{ fn:x=>-x+3, xr:[-1,5], yr:[-3,5],
           extras:c=><>{gDH(-1,c)}{gDV(4,c)}{gPt(4,-1,c)}</> },
-        numpad:true, a:"4", tip:r`\text{On trace l'horizontale }y=-1\\[4pt]\text{et on lit les abscisses}\\[4pt]\text{des intersections avec la courbe}` },
+        numpad:true, a:"4", tip:r`\text{On trace l'horizontale }y=-1\\\text{et on lit les abscisses}\\\text{des intersections avec la courbe}` },
 
       { q: r`\text{Antécédent de }4=?`,
         gspec:{ fn:x=>4*x-8, xr:[-1,4], yr:[-9,9],
           extras:c=><>{gDH(4,c)}{gDV(3,c)}{gPt(3,4,c)}</> },
-        numpad:true, a:"3", tip:r`\text{On trace l'horizontale }y=4\\[4pt]\text{et on lit les abscisses}\\[4pt]\text{des intersections avec la courbe}` },
+        numpad:true, a:"3", tip:r`\text{On trace l'horizontale }y=4\\\text{et on lit les abscisses}\\\text{des intersections avec la courbe}` },
     ],
 
     // ── b. Résolution graphique ──
@@ -1174,173 +1174,173 @@ const DB = {
         gspec: { fn:x=>x*x-4, xr:[-4,4], yr:[-5,4],
           extras:c=><>{gDH(0,c,"#94A3B8")}{gPt(-2,0,c)}{gPt(2,0,c)}</> },
         choices:[r`S=\{-2\ ;\ 2\}`,r`S=\{-4\ ;\ 4\}`,r`S=\{2\}`,r`S=\emptyset`],
-        a:r`S=\{-2\ ;\ 2\}`, tip:r`\text{Abscisses des points où la courbe}\\[4pt]\text{coupe l'axe }(Ox)` },
+        a:r`S=\{-2\ ;\ 2\}`, tip:r`\text{Abscisses des points où la courbe}\\\text{coupe l'axe }(Ox)` },
 
       { q: r`f(x)>0\text{ pour (graphique) :}`,
         gspec: { fn:x=>-x*x+4, xr:[-4,4], yr:[-2,5],
           extras:c=><>{gDH(0,c,"#94A3B8")}{gPt(-2,0,c,'#F59E0B')}{gPt(2,0,c,'#F59E0B')}</> },
         choices:[r`x\in{]}\ {-2}\ ;\ 2\ {[}`,r`x\in{[}{-2}\ ;\ 2{]}`,r`x\in{]}{-\infty}\ ;\ {-2}{[}\cup{]}2\ ;\ {+\infty}{[}`,r`\text{Jamais}`],
-        a:r`x\in{]}\ {-2}\ ;\ 2\ {[}`, tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement au-dessus de l'axe }(Ox)` },
+        a:r`x\in{]}\ {-2}\ ;\ 2\ {[}`, tip:r`\text{Abscisses où la courbe est}\\\text{strictement au-dessus de l'axe }(Ox)` },
 
       { q: r`f(x)\geq0\text{ pour (graphique) :}`,
         gspec: { fn:x=>x-2, xr:[-2,5], yr:[-4,4],
           extras:c=><>{gDH(0,c,"#94A3B8")}{gPt(2,0,c,'#F59E0B')}</> },
         choices:[r`x\in[2\ ;\ +\infty[`,r`x\in]2\ ;\ +\infty[`,r`x\in{]}\ {-\infty}\ ;\ 2{]}`,r`\text{Toujours}`],
-        a:r`x\in[2\ ;\ +\infty[`, tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{au-dessus ou sur l'axe }(Ox)` },
+        a:r`x\in[2\ ;\ +\infty[`, tip:r`\text{Abscisses où la courbe est}\\\text{au-dessus ou sur l'axe }(Ox)` },
 
       // ── NUMPAD — équations f(x)=k, trouver x ──
       { q: r`\text{Résoudre graphiquement }f(x)=4`,
         gspec:{ fn:x=>x+1, fn2:x=>4, xr:[-2,5], yr:[-1,6],
           extras:c=><>{gPt(3,4,c)}</> },
-        eqpad:true, a:"{3}", tip:r`\text{On trace l'horizontale }y=4\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
+        eqpad:true, a:"{3}", tip:r`\text{On trace l'horizontale }y=4\\\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=1`,
         gspec:{ fn:x=>2*x-3, fn2:x=>1, xr:[-1,4], yr:[-4,6],
           extras:c=><>{gPt(2,1,c)}</> },
-        eqpad:true, a:"{2}", tip:r`\text{On trace l'horizontale }y=1\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
+        eqpad:true, a:"{2}", tip:r`\text{On trace l'horizontale }y=1\\\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=2`,
         gspec:{ fn:x=>-x+5, fn2:x=>2, xr:[-1,6], yr:[-1,7],
           extras:c=><>{gPt(3,2,c)}</> },
-        eqpad:true, a:"{3}", tip:r`\text{On trace l'horizontale }y=2\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
+        eqpad:true, a:"{3}", tip:r`\text{On trace l'horizontale }y=2\\\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=0`,
         gspec:{ fn:x=>3*x-6, fn2:x=>0, xr:[-1,4], yr:[-7,5],
           extras:c=><>{gPt(2,0,c)}</> },
-        eqpad:true, a:"{2}", tip:r`\text{On trace l'horizontale }y=0\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
+        eqpad:true, a:"{2}", tip:r`\text{On trace l'horizontale }y=0\\\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=2`,
         gspec:{ fn:x=>-2*x+8, fn2:x=>2, xr:[-1,5], yr:[-1,9],
           extras:c=><>{gPt(3,2,c)}</> },
-        eqpad:true, a:"{3}", tip:r`\text{On trace l'horizontale }y=2\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
+        eqpad:true, a:"{3}", tip:r`\text{On trace l'horizontale }y=2\\\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=-1`,
         gspec:{ fn:x=>x-4, fn2:x=>-1, xr:[-1,5], yr:[-5,3],
           extras:c=><>{gPt(3,-1,c)}</> },
-        eqpad:true, a:"{3}", tip:r`\text{On trace l'horizontale }y=-1\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
+        eqpad:true, a:"{3}", tip:r`\text{On trace l'horizontale }y=-1\\\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=0`,
         gspec:{ fn:x=>2*x+4, fn2:x=>0, xr:[-4,2], yr:[-3,7],
           extras:c=><>{gPt(-2,0,c)}</> },
-        eqpad:true, a:"{-2}", tip:r`\text{On trace l'horizontale }y=0\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
+        eqpad:true, a:"{-2}", tip:r`\text{On trace l'horizontale }y=0\\\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=4`,
         gspec:{ fn:x=>4*x-8, fn2:x=>4, xr:[-1,4], yr:[-9,9],
           extras:c=><>{gPt(3,4,c)}</> },
-        eqpad:true, a:"{3}", tip:r`\text{On trace l'horizontale }y=4\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
+        eqpad:true, a:"{3}", tip:r`\text{On trace l'horizontale }y=4\\\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=-3`,
         gspec:{ fn:x=>-x+1, fn2:x=>-3, xr:[-1,5], yr:[-4,3],
           extras:c=><>{gPt(4,-3,c)}</> },
-        eqpad:true, a:"{4}", tip:r`\text{On trace l'horizontale }y=-3\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
+        eqpad:true, a:"{4}", tip:r`\text{On trace l'horizontale }y=-3\\\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=6`,
         gspec:{ fn:x=>3*x+3, fn2:x=>6, xr:[-2,3], yr:[-3,9],
           extras:c=><>{gPt(1,6,c)}</> },
-        eqpad:true, a:"{1}", tip:r`\text{On trace l'horizontale }y=6\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
+        eqpad:true, a:"{1}", tip:r`\text{On trace l'horizontale }y=6\\\text{et on lit l'abscisse du point d'intersection}` },
 
       // ── SOLPAD — inéquations, ensemble solution complet ──
       { q: r`\text{Résoudre graphiquement }f(x)>0`,
         gspec:{ fn:x=>x-3, fn2:x=>0, xr:[-1,5], yr:[-4,3],
           extras:c=><>{gPt(3,0,c,'#F59E0B')}</> },
-        solpad:true, a:"]3;+∞[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement au-dessus de l'axe }(Ox)` },
+        solpad:true, a:"]3;+∞[", tip:r`\text{Abscisses où la courbe est}\\\text{strictement au-dessus de l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)<0`,
         gspec:{ fn:x=>-x+4, fn2:x=>0, xr:[-1,6], yr:[-2,6],
           extras:c=><>{gPt(4,0,c,'#F59E0B')}</> },
-        solpad:true, a:"]4;+∞[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement en-dessous de l'axe }(Ox)` },
+        solpad:true, a:"]4;+∞[", tip:r`\text{Abscisses où la courbe est}\\\text{strictement en-dessous de l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)\geq0`,
         gspec:{ fn:x=>2*x-6, fn2:x=>0, xr:[-1,5], yr:[-7,5],
           extras:c=><>{gPt(3,0,c,'#F59E0B')}</> },
-        solpad:true, a:"[3;+∞[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{au-dessus ou sur l'axe }(Ox)` },
+        solpad:true, a:"[3;+∞[", tip:r`\text{Abscisses où la courbe est}\\\text{au-dessus ou sur l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)\leq0`,
         gspec:{ fn:x=>x+2, fn2:x=>0, xr:[-4,2], yr:[-3,5],
           extras:c=><>{gPt(-2,0,c,'#F59E0B')}</> },
-        solpad:true, a:"]-∞;-2]", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{en-dessous ou sur l'axe }(Ox)` },
+        solpad:true, a:"]-∞;-2]", tip:r`\text{Abscisses où la courbe est}\\\text{en-dessous ou sur l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)\leq0`,
         gspec:{ fn:x=>-2*x+4, fn2:x=>0, xr:[-1,5], yr:[-4,6],
           extras:c=><>{gPt(2,0,c,'#F59E0B')}</> },
-        solpad:true, a:"[2;+∞[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{en-dessous ou sur l'axe }(Ox)` },
+        solpad:true, a:"[2;+∞[", tip:r`\text{Abscisses où la courbe est}\\\text{en-dessous ou sur l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)>0`,
         gspec:{ fn:x=>3*x-9, fn2:x=>0, xr:[-1,5], yr:[-10,5],
           extras:c=><>{gPt(3,0,c,'#F59E0B')}</> },
-        solpad:true, a:"]3;+∞[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement au-dessus de l'axe }(Ox)` },
+        solpad:true, a:"]3;+∞[", tip:r`\text{Abscisses où la courbe est}\\\text{strictement au-dessus de l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)>0`,
         gspec:{ fn:x=>-x-1, fn2:x=>0, xr:[-4,2], yr:[-3,4],
           extras:c=><>{gPt(-1,0,c,'#F59E0B')}</> },
-        solpad:true, a:"]-∞;-1[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement au-dessus de l'axe }(Ox)` },
+        solpad:true, a:"]-∞;-1[", tip:r`\text{Abscisses où la courbe est}\\\text{strictement au-dessus de l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)\geq0`,
         gspec:{ fn:x=>x-1, fn2:x=>0, xr:[-2,4], yr:[-3,4],
           extras:c=><>{gPt(1,0,c,'#F59E0B')}</> },
-        solpad:true, a:"[1;+∞[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{au-dessus ou sur l'axe }(Ox)` },
+        solpad:true, a:"[1;+∞[", tip:r`\text{Abscisses où la courbe est}\\\text{au-dessus ou sur l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)\geq0`,
         gspec:{ fn:x=>2*x+6, fn2:x=>0, xr:[-5,2], yr:[-3,8],
           extras:c=><>{gPt(-3,0,c,'#F59E0B')}</> },
-        solpad:true, a:"[-3;+∞[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{au-dessus ou sur l'axe }(Ox)` },
+        solpad:true, a:"[-3;+∞[", tip:r`\text{Abscisses où la courbe est}\\\text{au-dessus ou sur l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)<0`,
         gspec:{ fn:x=>-3*x+6, fn2:x=>0, xr:[-1,4], yr:[-4,8],
           extras:c=><>{gPt(2,0,c,'#F59E0B')}</> },
-        solpad:true, a:"]2;+∞[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement en-dessous de l'axe }(Ox)` },
+        solpad:true, a:"]2;+∞[", tip:r`\text{Abscisses où la courbe est}\\\text{strictement en-dessous de l'axe }(Ox)` },
 
       // ── Équations — polynômes deg. 2-3 & homographiques (EqPad) ──
 
       { q: r`\text{Résoudre graphiquement }f(x)=9\text{ (lire }x>0\text{)}`,
         gspec:{ fn:x=>x*x, fn2:x=>9, xr:[0,4], yr:[-1,10],
           extras:c=><>{gPt(3,9,c)}</> },
-        eqpad:true, a:"{3}", tip:r`\text{On trace l'horizontale }y=9\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
+        eqpad:true, a:"{3}", tip:r`\text{On trace l'horizontale }y=9\\\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=0\text{ (lire }x>0\text{)}`,
         gspec:{ fn:x=>-x*x+4, fn2:x=>0, xr:[0,4], yr:[-2,5],
           extras:c=><>{gPt(2,0,c)}</> },
-        eqpad:true, a:"{2}", tip:r`\text{On trace l'horizontale }y=0\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
+        eqpad:true, a:"{2}", tip:r`\text{On trace l'horizontale }y=0\\\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=-8`,
         gspec:{ fn:x=>x*x*x, fn2:x=>-8, xr:[-3,1], yr:[-9,3],
           extras:c=><>{gPt(-2,-8,c)}</> },
-        eqpad:true, a:"{-2}", tip:r`\text{On trace l'horizontale }y=-8\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
+        eqpad:true, a:"{-2}", tip:r`\text{On trace l'horizontale }y=-8\\\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=8`,
         gspec:{ fn:x=>x*x*x, fn2:x=>8, xr:[0,3], yr:[-1,10],
           extras:c=><>{gPt(2,8,c)}</> },
-        eqpad:true, a:"{2}", tip:r`\text{On trace l'horizontale }y=8\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
+        eqpad:true, a:"{2}", tip:r`\text{On trace l'horizontale }y=8\\\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=-3\text{ (lire }x>0\text{)}`,
         gspec:{ fn:x=>x*x-4*x, fn2:x=>-3, xr:[1,5], yr:[-5,4],
           extras:c=><>{gPt(3,-3,c)}</> },
-        eqpad:true, a:"{3}", tip:r`\text{On trace l'horizontale }y=-3\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
+        eqpad:true, a:"{3}", tip:r`\text{On trace l'horizontale }y=-3\\\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=3\text{ (lire }x>0\text{)}`,
         gspec:{ fn:x=>x*x-1, fn2:x=>3, xr:[0,3], yr:[-2,5],
           extras:c=><>{gPt(2,3,c)}</> },
-        eqpad:true, a:"{2}", tip:r`\text{On trace l'horizontale }y=3\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
+        eqpad:true, a:"{2}", tip:r`\text{On trace l'horizontale }y=3\\\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=8\text{ (lire }x>0\text{)}`,
         gspec:{ fn:x=>x*x+2*x, fn2:x=>8, xr:[0,4], yr:[-2,12],
           extras:c=><>{gPt(2,8,c)}</> },
-        eqpad:true, a:"{2}", tip:r`\text{On trace l'horizontale }y=8\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
+        eqpad:true, a:"{2}", tip:r`\text{On trace l'horizontale }y=8\\\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=6`,
         gspec:{ fn:x=>x*x*x-x, fn2:x=>6, xr:[0,3], yr:[-2,9],
           extras:c=><>{gPt(2,6,c)}</> },
-        eqpad:true, a:"{2}", tip:r`\text{On trace l'horizontale }y=6\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
+        eqpad:true, a:"{2}", tip:r`\text{On trace l'horizontale }y=6\\\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=2`,
         gspec:{ fn:x=>6/x, fn2:x=>2, xr:[1,7], yr:[-1,7],
           extras:c=><>{gPt(3,2,c)}</> },
-        eqpad:true, a:"{3}", tip:r`\text{On trace l'horizontale }y=2\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
+        eqpad:true, a:"{3}", tip:r`\text{On trace l'horizontale }y=2\\\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=5\text{ (lire }x>0\text{)}`,
         gspec:{ fn:x=>-x*x+6*x, fn2:x=>5, xr:[4,7], yr:[0,10],
           extras:c=><>{gPt(5,5,c)}</> },
-        eqpad:true, a:"{5}", tip:r`\text{On trace l'horizontale }y=5\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
+        eqpad:true, a:"{5}", tip:r`\text{On trace l'horizontale }y=5\\\text{et on lit l'abscisse du point d'intersection}` },
 
       // ── Équations à double / triple solution ──
 
@@ -1348,31 +1348,31 @@ const DB = {
         gspec:{ fn:x=>x*x-4, fn2:x=>0, xr:[-3,3], yr:[-5,4],
           extras:c=><>{gPt(-2,0,c)}{gPt(2,0,c)}</> },
         eqpad:true, a:"{-2;2}",
-        tip:r`\text{On trace l'horizontale }y=0\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
+        tip:r`\text{On trace l'horizontale }y=0\\\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=0`,
         gspec:{ fn:x=>x*x-2*x, fn2:x=>0, xr:[-1,3], yr:[-2,3],
           extras:c=><>{gPt(0,0,c)}{gPt(2,0,c)}</> },
         eqpad:true, a:"{0;2}",
-        tip:r`\text{On trace l'horizontale }y=0\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
+        tip:r`\text{On trace l'horizontale }y=0\\\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=0`,
         gspec:{ fn:x=>x*x-4*x+3, fn2:x=>0, xr:[-1,5], yr:[-2,5],
           extras:c=><>{gPt(1,0,c)}{gPt(3,0,c)}</> },
         eqpad:true, a:"{1;3}",
-        tip:r`\text{On trace l'horizontale }y=0\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
+        tip:r`\text{On trace l'horizontale }y=0\\\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=0`,
         gspec:{ fn:x=>-x*x+1, fn2:x=>0, xr:[-2,2], yr:[-2,2],
           extras:c=><>{gPt(-1,0,c)}{gPt(1,0,c)}</> },
         eqpad:true, a:"{-1;1}",
-        tip:r`\text{On trace l'horizontale }y=0\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
+        tip:r`\text{On trace l'horizontale }y=0\\\text{et on lit l'abscisse du point d'intersection}` },
 
       { q: r`\text{Résoudre graphiquement }f(x)=0`,
         gspec:{ fn:x=>x*x*x-x, fn2:x=>0, xr:[-2,2], yr:[-1.5,1.5],
           extras:c=><>{gPt(-1,0,c)}{gPt(0,0,c)}{gPt(1,0,c)}</> },
         eqpad:true, a:"{-1;0;1}",
-        tip:r`\text{On trace l'horizontale }y=0\\[4pt]\text{et on lit l'abscisse du point d'intersection}` },
+        tip:r`\text{On trace l'horizontale }y=0\\\text{et on lit l'abscisse du point d'intersection}` },
 
       // ── Inéquations — polynômes deg. 2-3 & homographiques (SolPad) ──
 
@@ -1380,61 +1380,61 @@ const DB = {
         gspec:{ fn:x=>-x*x+4, fn2:x=>0, xr:[-3,3], yr:[-2,5],
           preExtras:c=><>{gShade(x=>-x*x+4,c.x1,-2,c,C_NEG)}{gShade(x=>-x*x+4,-2,2,c,C_POS)}{gShade(x=>-x*x+4,2,c.x2,c,C_NEG)}</>,
           extras:c=><>{gPt(-2,0,c,'#F59E0B')}{gPt(2,0,c,'#F59E0B')}</> },
-        solpad:true, a:"]-2;2[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement au-dessus de l'axe }(Ox)` },
+        solpad:true, a:"]-2;2[", tip:r`\text{Abscisses où la courbe est}\\\text{strictement au-dessus de l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)\geq0`,
         gspec:{ fn:x=>-x*x+9, fn2:x=>0, xr:[-4,4], yr:[-2,10],
           preExtras:c=><>{gShade(x=>-x*x+9,c.x1,-3,c,C_NEG)}{gShade(x=>-x*x+9,-3,3,c,C_POS)}{gShade(x=>-x*x+9,3,c.x2,c,C_NEG)}</>,
           extras:c=><>{gPt(-3,0,c,'#F59E0B')}{gPt(3,0,c,'#F59E0B')}</> },
-        solpad:true, a:"[-3;3]", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{au-dessus ou sur l'axe }(Ox)` },
+        solpad:true, a:"[-3;3]", tip:r`\text{Abscisses où la courbe est}\\\text{au-dessus ou sur l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)\leq0`,
         gspec:{ fn:x=>x*x-4, fn2:x=>0, xr:[-3,3], yr:[-5,4],
           preExtras:c=><>{gShade(x=>x*x-4,c.x1,-2,c,C_POS)}{gShade(x=>x*x-4,-2,2,c,C_NEG)}{gShade(x=>x*x-4,2,c.x2,c,C_POS)}</>,
           extras:c=><>{gPt(-2,0,c,'#F59E0B')}{gPt(2,0,c,'#F59E0B')}</> },
-        solpad:true, a:"[-2;2]", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{en-dessous ou sur l'axe }(Ox)` },
+        solpad:true, a:"[-2;2]", tip:r`\text{Abscisses où la courbe est}\\\text{en-dessous ou sur l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)<0`,
         gspec:{ fn:x=>x*x-2*x, fn2:x=>0, xr:[-1,3], yr:[-2,3],
           preExtras:c=><>{gShade(x=>x*x-2*x,c.x1,0,c,C_POS)}{gShade(x=>x*x-2*x,0,2,c,C_NEG)}{gShade(x=>x*x-2*x,2,c.x2,c,C_POS)}</>,
           extras:c=><>{gPt(0,0,c,'#F59E0B')}{gPt(2,0,c,'#F59E0B')}</> },
-        solpad:true, a:"]0;2[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement en-dessous de l'axe }(Ox)` },
+        solpad:true, a:"]0;2[", tip:r`\text{Abscisses où la courbe est}\\\text{strictement en-dessous de l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)>0`,
         gspec:{ fn:x=>-x*x+4*x-3, fn2:x=>0, xr:[0,5], yr:[-2,2],
           preExtras:c=><>{gShade(x=>-x*x+4*x-3,c.x1,1,c,C_NEG)}{gShade(x=>-x*x+4*x-3,1,3,c,C_POS)}{gShade(x=>-x*x+4*x-3,3,c.x2,c,C_NEG)}</>,
           extras:c=><>{gPt(1,0,c,'#F59E0B')}{gPt(3,0,c,'#F59E0B')}</> },
-        solpad:true, a:"]1;3[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement au-dessus de l'axe }(Ox)` },
+        solpad:true, a:"]1;3[", tip:r`\text{Abscisses où la courbe est}\\\text{strictement au-dessus de l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)>0`,
         gspec:{ fn:x=>x*x*x, fn2:x=>0, xr:[-2,3], yr:[-5,5],
           preExtras:c=><>{gShade(x=>x*x*x,c.x1,0,c,C_NEG)}{gShade(x=>x*x*x,0,c.x2,c,C_POS)}</>,
           extras:c=><>{gPt(0,0,c,'#F59E0B')}</> },
-        solpad:true, a:"]0;+∞[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement au-dessus de l'axe }(Ox)` },
+        solpad:true, a:"]0;+∞[", tip:r`\text{Abscisses où la courbe est}\\\text{strictement au-dessus de l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)<0`,
         gspec:{ fn:x=>x*x*x, fn2:x=>0, xr:[-3,2], yr:[-5,5],
           preExtras:c=><>{gShade(x=>x*x*x,c.x1,0,c,C_NEG)}{gShade(x=>x*x*x,0,c.x2,c,C_POS)}</>,
           extras:c=><>{gPt(0,0,c,'#F59E0B')}</> },
-        solpad:true, a:"]-∞;0[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement en-dessous de l'axe }(Ox)` },
+        solpad:true, a:"]-∞;0[", tip:r`\text{Abscisses où la courbe est}\\\text{strictement en-dessous de l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)\leq0`,
         gspec:{ fn:x=>x*x-x-2, fn2:x=>0, xr:[-2,4], yr:[-3,4],
           preExtras:c=><>{gShade(x=>x*x-x-2,c.x1,-1,c,C_POS)}{gShade(x=>x*x-x-2,-1,2,c,C_NEG)}{gShade(x=>x*x-x-2,2,c.x2,c,C_POS)}</>,
           extras:c=><>{gPt(-1,0,c,'#F59E0B')}{gPt(2,0,c,'#F59E0B')}</> },
-        solpad:true, a:"[-1;2]", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{en-dessous ou sur l'axe }(Ox)` },
+        solpad:true, a:"[-1;2]", tip:r`\text{Abscisses où la courbe est}\\\text{en-dessous ou sur l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)\geq0`,
         gspec:{ fn:x=>-x*x+4*x, fn2:x=>0, xr:[-1,5], yr:[-2,5],
           preExtras:c=><>{gShade(x=>-x*x+4*x,c.x1,0,c,C_NEG)}{gShade(x=>-x*x+4*x,0,4,c,C_POS)}{gShade(x=>-x*x+4*x,4,c.x2,c,C_NEG)}</>,
           extras:c=><>{gPt(0,0,c,'#F59E0B')}{gPt(4,0,c,'#F59E0B')}</> },
-        solpad:true, a:"[0;4]", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{au-dessus ou sur l'axe }(Ox)` },
+        solpad:true, a:"[0;4]", tip:r`\text{Abscisses où la courbe est}\\\text{au-dessus ou sur l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)>0`,
         gspec:{ fn:x=>-x*x+6*x-5, fn2:x=>0, xr:[0,7], yr:[-3,5],
           preExtras:c=><>{gShade(x=>-x*x+6*x-5,c.x1,1,c,C_NEG)}{gShade(x=>-x*x+6*x-5,1,5,c,C_POS)}{gShade(x=>-x*x+6*x-5,5,c.x2,c,C_NEG)}</>,
           extras:c=><>{gPt(1,0,c,'#F59E0B')}{gPt(5,0,c,'#F59E0B')}</> },
-        solpad:true, a:"]1;5[", tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement au-dessus de l'axe }(Ox)` },
+        solpad:true, a:"]1;5[", tip:r`\text{Abscisses où la courbe est}\\\text{strictement au-dessus de l'axe }(Ox)` },
 
       // ── Inéquations avec solution en union ──
 
@@ -1444,7 +1444,7 @@ const DB = {
           extras:c=><>{gPt(-2,0,c,'#F59E0B')}{gPt(2,0,c,'#F59E0B')}
                      {gSign(-3,2,'+',c,"#059669")}{gSign(0,-2,'−',c,"#DC2626")}{gSign(3,2,'+',c,"#059669")}</> },
         solpad:true, a:"]-∞;-2[∪]2;+∞[",
-        tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement au-dessus de l'axe }(Ox)` },
+        tip:r`\text{Abscisses où la courbe est}\\\text{strictement au-dessus de l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)\geq0`,
         gspec:{ fn:x=>x*x-1, fn2:x=>0, xr:[-2.5,2.5], yr:[-2,4],
@@ -1452,7 +1452,7 @@ const DB = {
           extras:c=><>{gPt(-1,0,c,'#F59E0B')}{gPt(1,0,c,'#F59E0B')}
                      {gSign(-2,1.5,'+',c,"#059669")}{gSign(0,-0.8,'−',c,"#DC2626")}{gSign(2,1.5,'+',c,"#059669")}</> },
         solpad:true, a:"]-∞;-1]∪[1;+∞[",
-        tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{au-dessus ou sur l'axe }(Ox)` },
+        tip:r`\text{Abscisses où la courbe est}\\\text{au-dessus ou sur l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)<0`,
         gspec:{ fn:x=>x*x-x-2, fn2:x=>0, xr:[-2.5,3.5], yr:[-3,5],
@@ -1460,7 +1460,7 @@ const DB = {
           extras:c=><>{gPt(-1,0,c,'#F59E0B')}{gPt(2,0,c,'#F59E0B')}
                      {gSign(-2,2,'+',c,"#059669")}{gSign(0.5,-1.5,'−',c,"#DC2626")}{gSign(3,2,'+',c,"#059669")}</> },
         solpad:true, a:"]-1;2[",
-        tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement en-dessous de l'axe }(Ox)` },
+        tip:r`\text{Abscisses où la courbe est}\\\text{strictement en-dessous de l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)>0`,
         gspec:{ fn:x=>x*x-9, fn2:x=>0, xr:[-4.5,4.5], yr:[-10,5],
@@ -1468,7 +1468,7 @@ const DB = {
           extras:c=><>{gPt(-3,0,c,'#F59E0B')}{gPt(3,0,c,'#F59E0B')}
                      {gSign(-4,2,'+',c,"#059669")}{gSign(0,-4,'−',c,"#DC2626")}{gSign(4,2,'+',c,"#059669")}</> },
         solpad:true, a:"]-∞;-3[∪]3;+∞[",
-        tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{strictement au-dessus de l'axe }(Ox)` },
+        tip:r`\text{Abscisses où la courbe est}\\\text{strictement au-dessus de l'axe }(Ox)` },
 
       { q: r`\text{Résoudre graphiquement }f(x)\leq0`,
         gspec:{ fn:x=>x*x-4*x+3, fn2:x=>0, xr:[-1,5], yr:[-2,5],
@@ -1476,7 +1476,7 @@ const DB = {
           extras:c=><>{gPt(1,0,c,'#F59E0B')}{gPt(3,0,c,'#F59E0B')}
                      {gSign(-0.5,2,'+',c,"#059669")}{gSign(2,-0.8,'−',c,"#DC2626")}{gSign(4.5,2,'+',c,"#059669")}</> },
         solpad:true, a:"[1;3]",
-        tip:r`\text{Abscisses où la courbe est}\\[4pt]\text{en-dessous ou sur l'axe }(Ox)` },
+        tip:r`\text{Abscisses où la courbe est}\\\text{en-dessous ou sur l'axe }(Ox)` },
 
       // ── Exercices avec droite glissante (DragGraph) ──
 
@@ -1576,19 +1576,19 @@ const DB = {
           extras: c => <>{gDV(1,c,C_MIN)}{gDH(-1,c,C_MIN)}{gPt(1,-1,c,C_MIN)}{gNote(1.2,-0.5,'min=-1',c,'#991B1B')}</> },
         choices:[`-1`,`0`,`-2`,`1`], a:`-1`, tip:r`\text{Minimum en }(1\,;\,-1)` },
 
-      { q: r`\text{On suppose }f\text{ croissante sur }[2\,;\,5].\\[6pt]\text{Si }x_1=3\text{ et }x_2=4\text{, alors :}`,
+      { q: r`\text{On suppose }f\text{ croissante sur }[2\,;\,5].\\\text{Si }x_1=3\text{ et }x_2=4\text{, alors :}`,
         choices:[r`f(3)<f(4)`,r`f(3)>f(4)`,r`f(3)=f(4)`,r`\text{Impossible}`],
         a:r`f(3)<f(4)`, tip:r`f\text{ croissante}\Rightarrow x_1<x_2\Rightarrow f(x_1)<f(x_2)` },
 
-      { q: r`\text{On suppose }f\text{ décroissante sur }[-1\,;\,4].\\[6pt]\text{Si }x_1=0\text{ et }x_2=3\text{, alors :}`,
+      { q: r`\text{On suppose }f\text{ décroissante sur }[-1\,;\,4].\\\text{Si }x_1=0\text{ et }x_2=3\text{, alors :}`,
         choices:[r`f(0)>f(3)`,r`f(0)<f(3)`,r`f(0)=f(3)`,r`\text{Impossible}`],
         a:r`f(0)>f(3)`, tip:r`f\text{ décroissante}\Rightarrow x_1<x_2\Rightarrow f(x_1)>f(x_2)` },
 
-      { q: r`\text{On suppose }f\text{ croissante sur }[0\,;\,6].\\[6pt]\text{Si }f(2)<f(a)\text{, alors :}`,
+      { q: r`\text{On suppose }f\text{ croissante sur }[0\,;\,6].\\\text{Si }f(2)<f(a)\text{, alors :}`,
         choices:[r`a>2`,r`a<2`,r`a=2`,r`\text{Impossible}`],
         a:r`a>2`, tip:r`f\text{ croissante : }f(x_1)<f(x_2)\Rightarrow x_1<x_2` },
 
-      { q: r`\text{On suppose que }f\text{ admet un maximum en }x=2\text{, valant }7.\\[6pt]\text{Alors :}`,
+      { q: r`\text{On suppose que }f\text{ admet un maximum en }x=2\text{, valant }7.\\\text{Alors :}`,
         choices:[r`f(x)\leq7\text{ pour tout }x`,r`f(x)\geq7\text{ pour tout }x`,r`f(x)=7\text{ pour tout }x`,r`f(2)=0`],
         a:r`f(x)\leq7\text{ pour tout }x`, tip:r`\text{Maximum }=7\Rightarrow f(x)\leq7\text{ pour tout }x` },
 
@@ -1628,7 +1628,7 @@ const DB = {
           cells:[{v:"-∞",hole:false,kind:"fixed"},{v:"↗",hole:true,kind:"arrow"},
                  {v:"4",hole:true,kind:"num"},{v:"↘",hole:true,kind:"arrow"},
                  {v:"-∞",hole:false,kind:"fixed"}] },
-        tip:r`\text{Sommet lu sur le graphique : }(1\,;\,4)\\[4pt]\text{Maximum en }x=1` },
+        tip:r`\text{Sommet lu sur le graphique : }(1\,;\,4)\\\text{Maximum en }x=1` },
 
       { q: r`\text{Complète le tableau de variations de }f(x)=x^2-4x+3`,
         gspec:{ fn:x=>x*x-4*x+3, xr:[-1,5], yr:[-2,5], label:"f",
@@ -1637,7 +1637,7 @@ const DB = {
           cells:[{v:"+∞",hole:false,kind:"fixed"},{v:"↘",hole:true,kind:"arrow"},
                  {v:"-1",hole:true,kind:"num"},{v:"↗",hole:true,kind:"arrow"},
                  {v:"+∞",hole:false,kind:"fixed"}] },
-        tip:r`\text{Sommet lu sur le graphique : }(2\,;\,-1)\\[4pt]\text{Minimum en }x=2` },
+        tip:r`\text{Sommet lu sur le graphique : }(2\,;\,-1)\\\text{Minimum en }x=2` },
     ],
 
     // ── d. Tableau de signes ──
@@ -1668,23 +1668,23 @@ const DB = {
         a:r`\text{Négatif}`, tip:r`f(0)=(-2)(3)=-6<0` },
 
       // ──── TABLEAUX À COMPLÉTER ────
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=x-2`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=x-2`,
         gspec:{ fn:x=>x-2, xr:[-1,5], yr:[-3,4], label:"f",
           preExtras:c=><>{gShade(x=>x-2,c.x1,2,c,C_NEG)}{gShade(x=>x-2,2,c.x2,c,C_POS)}</>,
           extras:c=><>{gPt(2,0,c,"#475569")}{gSign(-0.2,-1.8,"-",c,"#DC2626")}{gSign(3.5,1,"+",c,"#059669")}</> },
         tsSpec:{ xVals:["-∞","2","+∞"],
           cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
-        tip:r`\text{Courbe sous }(Ox)\text{ avant }x=2\\[4pt]\text{puis au-dessus après}` },
+        tip:r`\text{Courbe sous }(Ox)\text{ avant }x=2\\\text{puis au-dessus après}` },
 
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=-x+3`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=-x+3`,
         gspec:{ fn:x=>-x+3, xr:[-1,5], yr:[-3,4], label:"f",
           preExtras:c=><>{gShade(x=>-x+3,c.x1,3,c,C_POS)}{gShade(x=>-x+3,3,c.x2,c,C_NEG)}</>,
           extras:c=><>{gPt(3,0,c,"#475569")}{gSign(0.8,1.5,"+",c,"#059669")}{gSign(4.5,-1,"-",c,"#DC2626")}</> },
         tsSpec:{ xVals:["-∞","3","+∞"],
           cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
-        tip:r`\text{Courbe au-dessus }(Ox)\text{ avant }x=3\\[4pt]\text{puis en-dessous après}` },
+        tip:r`\text{Courbe au-dessus }(Ox)\text{ avant }x=3\\\text{puis en-dessous après}` },
 
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=(x-1)(x+2)`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=(x-1)(x+2)`,
         gspec:{ fn:x=>(x-1)*(x+2), xr:[-4,3], yr:[-4,4], label:"f",
           preExtras:c=><>{gShade(x=>(x-1)*(x+2),c.x1,-2,c,C_POS)}{gShade(x=>(x-1)*(x+2),-2,1,c,C_NEG)}{gShade(x=>(x-1)*(x+2),1,c.x2,c,C_POS)}</>,
           extras:c=><>{gPt(-2,0,c,"#475569")}{gPt(1,0,c,"#475569")}{gSign(-3,1.5,"+",c,"#059669")}{gSign(-0.5,-2,"-",c,"#DC2626")}{gSign(2.5,1.5,"+",c,"#059669")}</> },
@@ -1693,7 +1693,7 @@ const DB = {
                  {v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
         tip:r`a>0\text{ : positif aux extrémités, négatif entre les racines}` },
 
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=-(x-3)(x+1)`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=-(x-3)(x+1)`,
         gspec:{ fn:x=>-(x-3)*(x+1), xr:[-3,5], yr:[-4,5], label:"f",
           preExtras:c=><>{gShade(x=>-(x-3)*(x+1),c.x1,-1,c,C_NEG)}{gShade(x=>-(x-3)*(x+1),-1,3,c,C_POS)}{gShade(x=>-(x-3)*(x+1),3,c.x2,c,C_NEG)}</>,
           extras:c=><>{gPt(-1,0,c,"#475569")}{gPt(3,0,c,"#475569")}{gSign(-2,-1.2,"-",c,"#DC2626")}{gSign(1,2.5,"+",c,"#059669")}{gSign(4.5,-1.2,"-",c,"#DC2626")}</> },
@@ -1702,7 +1702,7 @@ const DB = {
                  {v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
         tip:r`a=-1<0\text{ : négatif aux extrémités, positif entre les racines}` },
 
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=x(x-4)`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=x(x-4)`,
         gspec:{ fn:x=>x*(x-4), xr:[-1,5], yr:[-5,4], label:"f",
           preExtras:c=><>{gShade(x=>x*(x-4),c.x1,0,c,C_POS)}{gShade(x=>x*(x-4),0,4,c,C_NEG)}{gShade(x=>x*(x-4),4,c.x2,c,C_POS)}</>,
           extras:c=><>{gPt(0,0,c,"#475569")}{gPt(4,0,c,"#475569")}{gSign(-0.6,1.2,"+",c,"#059669")}{gSign(2,-2.5,"-",c,"#DC2626")}{gSign(4.7,1.2,"+",c,"#059669")}</> },
@@ -1711,23 +1711,23 @@ const DB = {
                  {v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
         tip:r`a>0\text{ : positif hors des racines, négatif entre }0\text{ et }4` },
 
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=2x-6`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=2x-6`,
         gspec:{ fn:x=>2*x-6, xr:[-1,5], yr:[-7,5], label:"f",
           preExtras:c=><>{gShade(x=>2*x-6,c.x1,3,c,C_NEG)}{gShade(x=>2*x-6,3,c.x2,c,C_POS)}</>,
           extras:c=><>{gPt(3,0,c,"#475569")}{gSign(1,-2,"-",c,"#DC2626")}{gSign(4,2,"+",c,"#059669")}</> },
         tsSpec:{ xVals:["-∞","3","+∞"],
           cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
-        tip:r`\text{Racine lue sur le graphique : }x=3\\[4pt]\text{Courbe négative avant, positive après}` },
+        tip:r`\text{Racine lue sur le graphique : }x=3\\\text{Courbe négative avant, positive après}` },
 
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=-3x+9`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=-3x+9`,
         gspec:{ fn:x=>-3*x+9, xr:[-1,5], yr:[-5,10], label:"f",
           preExtras:c=><>{gShade(x=>-3*x+9,c.x1,3,c,C_POS)}{gShade(x=>-3*x+9,3,c.x2,c,C_NEG)}</>,
           extras:c=><>{gPt(3,0,c,"#475569")}{gSign(1,3,"+",c,"#059669")}{gSign(4.2,-2,"-",c,"#DC2626")}</> },
         tsSpec:{ xVals:["-∞","3","+∞"],
           cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
-        tip:r`\text{Racine lue sur le graphique : }x=3\\[4pt]\text{Courbe positive avant, négative après}` },
+        tip:r`\text{Racine lue sur le graphique : }x=3\\\text{Courbe positive avant, négative après}` },
 
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=(x+1)(x-3)`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=(x+1)(x-3)`,
         gspec:{ fn:x=>(x+1)*(x-3), xr:[-3,5], yr:[-5,5], label:"f",
           preExtras:c=><>{gShade(x=>(x+1)*(x-3),c.x1,-1,c,C_POS)}{gShade(x=>(x+1)*(x-3),-1,3,c,C_NEG)}{gShade(x=>(x+1)*(x-3),3,c.x2,c,C_POS)}</>,
           extras:c=><>{gPt(-1,0,c,"#475569")}{gPt(3,0,c,"#475569")}{gSign(-2.2,1.5,"+",c,"#059669")}{gSign(1,-3,"-",c,"#DC2626")}{gSign(4.5,1.5,"+",c,"#059669")}</> },
@@ -1736,7 +1736,7 @@ const DB = {
                  {v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
         tip:r`a>0\text{ : positif aux extrémités, négatif entre }-1\text{ et }3` },
 
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=-(x+2)(x-2)`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=-(x+2)(x-2)`,
         gspec:{ fn:x=>-(x+2)*(x-2), xr:[-4,4], yr:[-5,5], label:"f",
           preExtras:c=><>{gShade(x=>-(x+2)*(x-2),c.x1,-2,c,C_NEG)}{gShade(x=>-(x+2)*(x-2),-2,2,c,C_POS)}{gShade(x=>-(x+2)*(x-2),2,c.x2,c,C_NEG)}</>,
           extras:c=><>{gPt(-2,0,c,"#475569")}{gPt(2,0,c,"#475569")}{gSign(-3,-1.5,"-",c,"#DC2626")}{gSign(0,3,"+",c,"#059669")}{gSign(3,-1.5,"-",c,"#DC2626")}</> },
@@ -1745,7 +1745,7 @@ const DB = {
                  {v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
         tip:r`a=-1<0\text{ : négatif aux extrémités, positif entre }-2\text{ et }2` },
 
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=x^2+1`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=x^2+1`,
         gspec:{ fn:x=>x*x+1, xr:[-3,3], yr:[-1,5], label:"f",
           preExtras:c=><>{gShade(x=>x*x+1,c.x1,c.x2,c,C_POS)}</>,
           extras:c=><>{gSign(0,2.8,"+",c,"#059669")}</> },
@@ -1754,61 +1754,61 @@ const DB = {
         tip:r`x^2+1\geq1>0\text{ pour tout }x\in\mathbb{R}` },
 
       // ──── NIVEAU DIFFICILE : sans code couleur ────
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=3x-12`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=3x-12`,
         gspec:{ fn:x=>3*x-12, xr:[0,6], yr:[-14,6], label:"f",
           extras:c=><>{gPt(4,0,c,"#475569")}</> },
         tsSpec:{ xVals:["-∞","4","+∞"],
           cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
         tip:r`\text{Lis le graphique : }f(x)\text{ est positif quand la courbe est au-dessus de l'axe, négatif dessous}` },
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=-2x+8`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=-2x+8`,
         gspec:{ fn:x=>-2*x+8, xr:[-1,7], yr:[-6,10], label:"f",
           extras:c=><>{gPt(4,0,c,"#475569")}</> },
         tsSpec:{ xVals:["-∞","4","+∞"],
           cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
         tip:r`\text{Lis le graphique : }f(x)\text{ est positif quand la courbe est au-dessus de l'axe, négatif dessous}` },
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=4x+2`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=4x+2`,
         gspec:{ fn:x=>4*x+2, xr:[-3,2], yr:[-10,10], label:"f",
           extras:c=><>{gPt(-1/2,0,c,"#475569")}</> },
         tsSpec:{ xVals:["-∞","-1/2","+∞"],
           cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
         tip:r`\text{Lis le graphique : }f(x)\text{ est positif quand la courbe est au-dessus de l'axe, négatif dessous}` },
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=-x-5`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=-x-5`,
         gspec:{ fn:x=>-x-5, xr:[-8,-2], yr:[-3,3], label:"f",
           extras:c=><>{gPt(-5,0,c,"#475569")}</> },
         tsSpec:{ xVals:["-∞","-5","+∞"],
           cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
         tip:r`\text{Lis le graphique : }f(x)\text{ est positif quand la courbe est au-dessus de l'axe, négatif dessous}` },
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=5x+1`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=5x+1`,
         gspec:{ fn:x=>5*x+1, xr:[-2,2], yr:[-10,10], label:"f",
           extras:c=><>{gPt(-1/5,0,c,"#475569")}</> },
         tsSpec:{ xVals:["-∞","-1/5","+∞"],
           cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
         tip:r`\text{Lis le graphique : }f(x)\text{ est positif quand la courbe est au-dessus de l'axe, négatif dessous}` },
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=(x-2)(x+4)`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=(x-2)(x+4)`,
         gspec:{ fn:x=>(x-2)*(x+4), xr:[-5,3], yr:[-10,8], label:"f",
           extras:c=><>{gPt(-4,0,c,"#475569")}{gPt(2,0,c,"#475569")}</> },
         tsSpec:{ xVals:["-∞","-4","2","+∞"],
           cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
         tip:r`\text{Lis le graphique : }f(x)\text{ est positif quand la courbe est au-dessus de l'axe, négatif dessous}` },
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=(x-1)(x-5)`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=(x-1)(x-5)`,
         gspec:{ fn:x=>(x-1)*(x-5), xr:[0,6], yr:[-5,10], label:"f",
           extras:c=><>{gPt(1,0,c,"#475569")}{gPt(5,0,c,"#475569")}</> },
         tsSpec:{ xVals:["-∞","1","5","+∞"],
           cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
         tip:r`\text{Lis le graphique : }f(x)\text{ est positif quand la courbe est au-dessus de l'axe, négatif dessous}` },
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=-(x+3)(x-1)`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=-(x+3)(x-1)`,
         gspec:{ fn:x=>-(x+3)*(x-1), xr:[-4,2], yr:[-5,5], label:"f",
           extras:c=><>{gPt(-3,0,c,"#475569")}{gPt(1,0,c,"#475569")}</> },
         tsSpec:{ xVals:["-∞","-3","1","+∞"],
           cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
         tip:r`\text{Lis le graphique : }f(x)\text{ est positif quand la courbe est au-dessus de l'axe, négatif dessous}` },
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=x(x+6)`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=x(x+6)`,
         gspec:{ fn:x=>x*(x+6), xr:[-8,2], yr:[-10,20], label:"f",
           extras:c=><>{gPt(-6,0,c,"#475569")}{gPt(0,0,c,"#475569")}</> },
         tsSpec:{ xVals:["-∞","-6","0","+∞"],
           cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
         tip:r`\text{Lis le graphique : }f(x)\text{ est positif quand la courbe est au-dessus de l'axe, négatif dessous}` },
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=x^2+4`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=x^2+4`,
         gspec:{ fn:x=>x*x+4, xr:[-3,3], yr:[0,14], label:"f",
           extras:c=><></> },
         tsSpec:{ xVals:["-∞","+∞"],
@@ -1820,7 +1820,7 @@ const DB = {
 
     // ── d-bis. Signe d'un produit (tableaux multi-lignes) ──
     signe_produit: [
-      { q: r`\text{Complète la ligne }f(x)\text{ de}\\[4pt]f(x)=(x+2)(x-3)`,
+      { q: r`\text{Complète la ligne }f(x)\text{ de}\\f(x)=(x+2)(x-3)`,
         tsSpec:{ xVals:["-∞","-2","3","+∞"],
           rows:[
             {label:"x+2", cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
@@ -1828,7 +1828,7 @@ const DB = {
           ],
           cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
         tip:r`\text{Règle des signes d'un produit}` },
-      { q: r`\text{Complète la ligne }f(x)\text{ de}\\[4pt]f(x)=(x-1)(x-4)`,
+      { q: r`\text{Complète la ligne }f(x)\text{ de}\\f(x)=(x-1)(x-4)`,
         tsSpec:{ xVals:["-∞","1","4","+∞"],
           rows:[
             {label:"x-1", cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
@@ -1836,7 +1836,7 @@ const DB = {
           ],
           cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
         tip:r`\text{Règle des signes d'un produit}` },
-      { q: r`\text{Complète la ligne }f(x)\text{ de}\\[4pt]f(x)=(x+3)(x+1)`,
+      { q: r`\text{Complète la ligne }f(x)\text{ de}\\f(x)=(x+3)(x+1)`,
         tsSpec:{ xVals:["-∞","-3","-1","+∞"],
           rows:[
             {label:"x+3", cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
@@ -1844,7 +1844,7 @@ const DB = {
           ],
           cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
         tip:r`\text{Règle des signes d'un produit}` },
-      { q: r`\text{Complète la ligne }f(x)\text{ de}\\[4pt]f(x)=(2x-6)(x+2)`,
+      { q: r`\text{Complète la ligne }f(x)\text{ de}\\f(x)=(2x-6)(x+2)`,
         tsSpec:{ xVals:["-∞","-2","3","+∞"],
           rows:[
             {label:"2x-6", cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
@@ -1852,7 +1852,7 @@ const DB = {
           ],
           cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
         tip:r`\text{Règle des signes d'un produit}` },
-      { q: r`\text{Complète la ligne }f(x)\text{ de}\\[4pt]f(x)=(-x+2)(x+1)`,
+      { q: r`\text{Complète la ligne }f(x)\text{ de}\\f(x)=(-x+2)(x+1)`,
         tsSpec:{ xVals:["-∞","-1","2","+∞"],
           rows:[
             {label:"-x+2", cells:[{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"}]},
@@ -1860,90 +1860,90 @@ const DB = {
           ],
           cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
         tip:r`\text{Règle des signes d'un produit}` },
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=(2x+8)(-x+1)`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=(2x+8)(-x+1)`,
         tsSpec:{ xVals:["-∞","-4","1","+∞"],
           rows:[
             {label:"2x+8", cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
             {label:"-x+1", cells:[{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}]},
           ],
           cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
-        tip:r`\text{Racines : }x=-4\text{ et }x=1.\\[4pt]\text{Règle des signes d'un produit}` },
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=(x+3)(x-2)`,
+        tip:r`\text{Racines : }x=-4\text{ et }x=1.\\\text{Règle des signes d'un produit}` },
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=(x+3)(x-2)`,
         tsSpec:{ xVals:["-∞","-3","2","+∞"],
           rows:[
             {label:"x+3", cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
             {label:"x-2", cells:[{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
           ],
           cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
-        tip:r`\text{Racines : }x=-3\text{ et }x=2.\\[4pt]\text{Règle des signes d'un produit}` },
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=(x-1)(x+4)`,
+        tip:r`\text{Racines : }x=-3\text{ et }x=2.\\\text{Règle des signes d'un produit}` },
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=(x-1)(x+4)`,
         tsSpec:{ xVals:["-∞","-4","1","+∞"],
           rows:[
             {label:"x-1", cells:[{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
             {label:"x+4", cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
           ],
           cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
-        tip:r`\text{Racines : }x=-4\text{ et }x=1.\\[4pt]\text{Règle des signes d'un produit}` },
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=(2x-4)(x+1)`,
+        tip:r`\text{Racines : }x=-4\text{ et }x=1.\\\text{Règle des signes d'un produit}` },
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=(2x-4)(x+1)`,
         tsSpec:{ xVals:["-∞","-1","2","+∞"],
           rows:[
             {label:"2x-4", cells:[{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
             {label:"x+1", cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
           ],
           cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
-        tip:r`\text{Racines : }x=-1\text{ et }x=2.\\[4pt]\text{Règle des signes d'un produit}` },
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=(-x+5)(x+2)`,
+        tip:r`\text{Racines : }x=-1\text{ et }x=2.\\\text{Règle des signes d'un produit}` },
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=(-x+5)(x+2)`,
         tsSpec:{ xVals:["-∞","-2","5","+∞"],
           rows:[
             {label:"-x+5", cells:[{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}]},
             {label:"x+2", cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
           ],
           cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
-        tip:r`\text{Racines : }x=-2\text{ et }x=5.\\[4pt]\text{Règle des signes d'un produit}` },
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=(x+1)(-2x+6)`,
+        tip:r`\text{Racines : }x=-2\text{ et }x=5.\\\text{Règle des signes d'un produit}` },
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=(x+1)(-2x+6)`,
         tsSpec:{ xVals:["-∞","-1","3","+∞"],
           rows:[
             {label:"x+1", cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
             {label:"-2x+6", cells:[{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}]},
           ],
           cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
-        tip:r`\text{Racines : }x=-1\text{ et }x=3.\\[4pt]\text{Règle des signes d'un produit}` },
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=(-x-2)(-x+3)`,
+        tip:r`\text{Racines : }x=-1\text{ et }x=3.\\\text{Règle des signes d'un produit}` },
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=(-x-2)(-x+3)`,
         tsSpec:{ xVals:["-∞","-2","3","+∞"],
           rows:[
             {label:"-x-2", cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}]},
             {label:"-x+3", cells:[{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}]},
           ],
           cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
-        tip:r`\text{Racines : }x=-2\text{ et }x=3.\\[4pt]\text{Règle des signes d'un produit}` },
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=(x+5)(x+1)`,
+        tip:r`\text{Racines : }x=-2\text{ et }x=3.\\\text{Règle des signes d'un produit}` },
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=(x+5)(x+1)`,
         tsSpec:{ xVals:["-∞","-5","-1","+∞"],
           rows:[
             {label:"x+5", cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
             {label:"x+1", cells:[{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
           ],
           cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
-        tip:r`\text{Racines : }x=-5\text{ et }x=-1.\\[4pt]\text{Règle des signes d'un produit}` },
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=(2x-1)(x-4)`,
+        tip:r`\text{Racines : }x=-5\text{ et }x=-1.\\\text{Règle des signes d'un produit}` },
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=(2x-1)(x-4)`,
         tsSpec:{ xVals:["-∞","1/2","4","+∞"],
           rows:[
             {label:"2x-1", cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
             {label:"x-4", cells:[{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
           ],
           cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
-        tip:r`\text{Racines : }x=\frac{1}{2}\text{ et }x=4.\\[4pt]\text{Règle des signes d'un produit}` },
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=(3x+6)(-x+4)`,
+        tip:r`\text{Racines : }x=\frac{1}{2}\text{ et }x=4.\\\text{Règle des signes d'un produit}` },
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=(3x+6)(-x+4)`,
         tsSpec:{ xVals:["-∞","-2","4","+∞"],
           rows:[
             {label:"3x+6", cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
             {label:"-x+4", cells:[{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}]},
           ],
           cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
-        tip:r`\text{Racines : }x=-2\text{ et }x=4.\\[4pt]\text{Règle des signes d'un produit}` },
+        tip:r`\text{Racines : }x=-2\text{ et }x=4.\\\text{Règle des signes d'un produit}` },
 
       // ──── PRODUITS À TROIS FACTEURS ────
 
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=x(x-2)(x+3)`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=x(x-2)(x+3)`,
         tsSpec:{ xVals:["-∞","-3","0","2","+∞"],
           rows:[
             {label:"x",     cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
@@ -1951,9 +1951,9 @@ const DB = {
             {label:"x+3",   cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
           ],
           cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
-        tip:r`\text{Trois racines : }x=-3,\ x=0,\ x=2.\\[4pt]\text{Appliquer la règle des signes colonne par colonne.}` },
+        tip:r`\text{Trois racines : }x=-3,\ x=0,\ x=2.\\\text{Appliquer la règle des signes colonne par colonne.}` },
 
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=(x+1)(x-1)(x-3)`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=(x+1)(x-1)(x-3)`,
         tsSpec:{ xVals:["-∞","-1","1","3","+∞"],
           rows:[
             {label:"x+1",   cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
@@ -1961,9 +1961,9 @@ const DB = {
             {label:"x-3",   cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
           ],
           cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
-        tip:r`\text{Trois racines : }x=-1,\ x=1,\ x=3.\\[4pt]\text{Signe : }(-)(-)(-)\to-\quad(+)(-)(-)\to+\quad(+)(+)(-)\to-\quad(+)(+)(+)\to+` },
+        tip:r`\text{Trois racines : }x=-1,\ x=1,\ x=3.\\\text{Signe : }(-)(-)(-)\to-\quad(+)(-)(-)\to+\quad(+)(+)(-)\to-\quad(+)(+)(+)\to+` },
 
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=(x+2)(x)(x-4)`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=(x+2)(x)(x-4)`,
         tsSpec:{ xVals:["-∞","-2","0","4","+∞"],
           rows:[
             {label:"x+2",   cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
@@ -1973,7 +1973,7 @@ const DB = {
           cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
         tip:r`\text{Trois racines : }x=-2,\ x=0,\ x=4.` },
 
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=-(x+2)(x-1)(x-3)`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=-(x+2)(x-1)(x-3)`,
         tsSpec:{ xVals:["-∞","-2","1","3","+∞"],
           rows:[
             {label:"-(x+2)", cells:[{v:"+",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"}]},
@@ -1983,7 +1983,7 @@ const DB = {
           cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
         tip:r`\text{Le }- \text{ devant inverse les signes à chaque étape.}\\\text{Racines : }x=-2,\ x=1,\ x=3.` },
 
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=(2x-2)(x+1)(x-3)`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=(2x-2)(x+1)(x-3)`,
         tsSpec:{ xVals:["-∞","-1","1","3","+∞"],
           rows:[
             {label:"2x-2",  cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
@@ -1993,7 +1993,7 @@ const DB = {
           cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
         tip:r`\text{Racines : }x=-1,\ x=1,\ x=3.` },
 
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=(x+4)(x+2)(x-2)`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=(x+4)(x+2)(x-2)`,
         tsSpec:{ xVals:["-∞","-4","-2","2","+∞"],
           rows:[
             {label:"x+4",   cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
@@ -2005,25 +2005,25 @@ const DB = {
 
       // ──── NIVEAU DIFFICILE : toutes les cellules à remplir ────
 
-      { q: r`\text{Tableau complet à remplir :}\\[4pt]f(x)=(x+3)(x-2)`,
+      { q: r`\text{Tableau complet à remplir :}\\f(x)=(x+3)(x-2)`,
         tsSpec:{ xVals:["-∞","-3","2","+∞"],
           rows:[
             {label:"x+3", cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
             {label:"x-2", cells:[{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
           ],
           cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
-        tip:r`x+3=0\Rightarrow x=-3\quad x-2=0\Rightarrow x=2\\[4pt]\text{Signe ligne par ligne, puis produit colonne par colonne.}` },
+        tip:r`x+3=0\Rightarrow x=-3\quad x-2=0\Rightarrow x=2\\\text{Signe ligne par ligne, puis produit colonne par colonne.}` },
 
-      { q: r`\text{Tableau complet à remplir :}\\[4pt]f(x)=(-x+1)(x+4)`,
+      { q: r`\text{Tableau complet à remplir :}\\f(x)=(-x+1)(x+4)`,
         tsSpec:{ xVals:["-∞","-4","1","+∞"],
           rows:[
             {label:"-x+1", cells:[{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}]},
             {label:"x+4",  cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
           ],
           cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
-        tip:r`-x+1=0\Rightarrow x=1\quad x+4=0\Rightarrow x=-4\\[4pt]\text{Attention : }-x+1\text{ est positif avant }x=1.` },
+        tip:r`-x+1=0\Rightarrow x=1\quad x+4=0\Rightarrow x=-4\\\text{Attention : }-x+1\text{ est positif avant }x=1.` },
 
-      { q: r`\text{Tableau complet à remplir :}\\[4pt]f(x)=(2x+4)(x-3)`,
+      { q: r`\text{Tableau complet à remplir :}\\f(x)=(2x+4)(x-3)`,
         tsSpec:{ xVals:["-∞","-2","3","+∞"],
           rows:[
             {label:"2x+4", cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
@@ -2032,7 +2032,7 @@ const DB = {
           cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
         tip:r`2x+4=0\Rightarrow x=-2\quad x-3=0\Rightarrow x=3` },
 
-      { q: r`\text{Tableau complet à remplir :}\\[4pt]f(x)=x(x-1)(x+2)`,
+      { q: r`\text{Tableau complet à remplir :}\\f(x)=x(x-1)(x+2)`,
         tsSpec:{ xVals:["-∞","-2","0","1","+∞"],
           rows:[
             {label:"x",    cells:[{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
@@ -2040,9 +2040,9 @@ const DB = {
             {label:"x+2",  cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
           ],
           cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
-        tip:r`\text{Racines : }x=-2,\ x=0,\ x=1.\\[4pt]\text{3 facteurs : signe = produit des 3 signes de la colonne.}` },
+        tip:r`\text{Racines : }x=-2,\ x=0,\ x=1.\\\text{3 facteurs : signe = produit des 3 signes de la colonne.}` },
 
-      { q: r`\text{Tableau complet à remplir :}\\[4pt]f(x)=(x+1)(x-2)(x-4)`,
+      { q: r`\text{Tableau complet à remplir :}\\f(x)=(x+1)(x-2)(x-4)`,
         tsSpec:{ xVals:["-∞","-1","2","4","+∞"],
           rows:[
             {label:"x+1",  cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
@@ -2061,16 +2061,16 @@ const DB = {
       // ──── TABLEAUX DE SIGNES D'UN QUOTIENT ────
       // Valeur interdite notée ‖ (double barre) — dénominateur nul interdit
 
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=\dfrac{x-1}{x+2}`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=\dfrac{x-1}{x+2}`,
         tsSpec:{ xVals:["-∞","-2","1","+∞"],
           rows:[
             {label:"x-1",    cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
             {label:"x+2",    cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
           ],
           cells:[{v:"+",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
-        tip:r`\text{Valeur interdite : }x=-2\text{ (division par 0).}\\\text{Zéro du quotient : }x=1\text{ (numérateur nul).}\\[4pt]\text{Règle des signes d'un quotient : même règle que le produit.}` },
+        tip:r`\text{Valeur interdite : }x=-2\text{ (division par 0).}\\\text{Zéro du quotient : }x=1\text{ (numérateur nul).}\\\text{Règle des signes d'un quotient : même règle que le produit.}` },
 
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=\dfrac{x+3}{x-2}`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=\dfrac{x+3}{x-2}`,
         tsSpec:{ xVals:["-∞","-3","2","+∞"],
           rows:[
             {label:"x+3",    cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
@@ -2079,7 +2079,7 @@ const DB = {
           cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
         tip:r`\text{Valeur interdite : }x=2.\quad\text{Zéro : }x=-3.` },
 
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=\dfrac{-x+4}{x+1}`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=\dfrac{-x+4}{x+1}`,
         tsSpec:{ xVals:["-∞","-1","4","+∞"],
           rows:[
             {label:"-x+4",   cells:[{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"}]},
@@ -2088,7 +2088,7 @@ const DB = {
           cells:[{v:"-",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
         tip:r`\text{Valeur interdite : }x=-1.\quad\text{Zéro : }x=4.` },
 
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=\dfrac{2x-6}{x+4}`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=\dfrac{2x-6}{x+4}`,
         tsSpec:{ xVals:["-∞","-4","3","+∞"],
           rows:[
             {label:"2x-6",   cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
@@ -2097,7 +2097,7 @@ const DB = {
           cells:[{v:"+",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
         tip:r`\text{Valeur interdite : }x=-4.\quad\text{Zéro : }x=3.` },
 
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=\dfrac{x}{x-5}`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=\dfrac{x}{x-5}`,
         tsSpec:{ xVals:["-∞","0","5","+∞"],
           rows:[
             {label:"x",      cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
@@ -2106,7 +2106,7 @@ const DB = {
           cells:[{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
         tip:r`\text{Valeur interdite : }x=5.\quad\text{Zéro du quotient : }x=0.` },
 
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=\dfrac{x+2}{-x+1}`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=\dfrac{x+2}{-x+1}`,
         tsSpec:{ xVals:["-∞","-2","1","+∞"],
           rows:[
             {label:"x+2",    cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
@@ -2115,7 +2115,7 @@ const DB = {
           cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
         tip:r`\text{Valeur interdite : }x=1\text{ (}-x+1=0\text{).}\quad\text{Zéro : }x=-2.` },
 
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=\dfrac{3x-3}{x+3}`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=\dfrac{3x-3}{x+3}`,
         tsSpec:{ xVals:["-∞","-3","1","+∞"],
           rows:[
             {label:"3x-3",   cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
@@ -2124,7 +2124,7 @@ const DB = {
           cells:[{v:"+",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
         tip:r`\text{Valeur interdite : }x=-3.\quad\text{Zéro : }x=1.` },
 
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=\dfrac{-2x-4}{x-3}`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=\dfrac{-2x-4}{x-3}`,
         tsSpec:{ xVals:["-∞","-2","3","+∞"],
           rows:[
             {label:"-2x-4",  cells:[{v:"+",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"}]},
@@ -2133,7 +2133,7 @@ const DB = {
           cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
         tip:r`\text{Valeur interdite : }x=3.\quad\text{Zéro : }x=-2.` },
 
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=\dfrac{x-4}{2x+2}`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=\dfrac{x-4}{2x+2}`,
         tsSpec:{ xVals:["-∞","-1","4","+∞"],
           rows:[
             {label:"x-4",    cells:[{v:"-",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
@@ -2142,7 +2142,7 @@ const DB = {
           cells:[{v:"+",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
         tip:r`\text{Valeur interdite : }x=-1\text{ (}2x+2=0\text{).}\quad\text{Zéro : }x=4.` },
 
-      { q: r`\text{Complète le tableau de signes de}\\[4pt]f(x)=\dfrac{(x+1)(x-3)}{x-5}`,
+      { q: r`\text{Complète le tableau de signes de}\\f(x)=\dfrac{(x+1)(x-3)}{x-5}`,
         tsSpec:{ xVals:["-∞","-1","3","5","+∞"],
           rows:[
             {label:"x+1",    cells:[{v:"-",hole:false,kind:"fixed"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:false,kind:"fixed"}]},
@@ -2155,7 +2155,7 @@ const DB = {
       // ── Niveau difficile : toutes les cellules à remplir ──
       // ──── NIVEAU DIFFICILE : quotients, toutes les cellules à remplir ────
 
-      { q: r`\text{Tableau complet à remplir :}\\[4pt]f(x)=\dfrac{x-2}{x+3}`,
+      { q: r`\text{Tableau complet à remplir :}\\f(x)=\dfrac{x-2}{x+3}`,
         tsSpec:{ xVals:["-∞","-3","2","+∞"],
           rows:[
             {label:"x-2",  cells:[{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
@@ -2164,16 +2164,16 @@ const DB = {
           cells:[{v:"+",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
         tip:r`x+3=0\Rightarrow x=-3\text{ (valeur interdite }\|)\\x-2=0\Rightarrow x=2\text{ (zéro du quotient)}` },
 
-      { q: r`\text{Tableau complet à remplir :}\\[4pt]f(x)=\dfrac{-x+3}{x-1}`,
+      { q: r`\text{Tableau complet à remplir :}\\f(x)=\dfrac{-x+3}{x-1}`,
         tsSpec:{ xVals:["-∞","1","3","+∞"],
           rows:[
             {label:"-x+3", cells:[{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}]},
             {label:"x-1",  cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
           ],
           cells:[{v:"-",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
-        tip:r`x-1=0\Rightarrow x=1\text{ (valeur interdite)}\\-x+3=0\Rightarrow x=3\text{ (zéro)}\\[4pt]\text{Attention : }-x+3>0\text{ pour }x<3.` },
+        tip:r`x-1=0\Rightarrow x=1\text{ (valeur interdite)}\\-x+3=0\Rightarrow x=3\text{ (zéro)}\\\text{Attention : }-x+3>0\text{ pour }x<3.` },
 
-      { q: r`\text{Tableau complet à remplir :}\\[4pt]f(x)=\dfrac{2x-4}{x+1}`,
+      { q: r`\text{Tableau complet à remplir :}\\f(x)=\dfrac{2x-4}{x+1}`,
         tsSpec:{ xVals:["-∞","-1","2","+∞"],
           rows:[
             {label:"2x-4", cells:[{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
@@ -2182,7 +2182,7 @@ const DB = {
           cells:[{v:"+",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}] },
         tip:r`x+1=0\Rightarrow x=-1\text{ (valeur interdite)}\\2x-4=0\Rightarrow x=2\text{ (zéro)}` },
 
-      { q: r`\text{Tableau complet à remplir :}\\[4pt]f(x)=\dfrac{x+5}{-x+2}`,
+      { q: r`\text{Tableau complet à remplir :}\\f(x)=\dfrac{x+5}{-x+2}`,
         tsSpec:{ xVals:["-∞","-5","2","+∞"],
           rows:[
             {label:"x+5",  cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
@@ -2191,7 +2191,7 @@ const DB = {
           cells:[{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"||",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"}] },
         tip:r`-x+2=0\Rightarrow x=2\text{ (valeur interdite)}\\x+5=0\Rightarrow x=-5\text{ (zéro)}` },
 
-      { q: r`\text{Tableau complet à remplir :}\\[4pt]f(x)=\dfrac{(x-1)(x+3)}{x-4}`,
+      { q: r`\text{Tableau complet à remplir :}\\f(x)=\dfrac{(x-1)(x+3)}{x-4}`,
         tsSpec:{ xVals:["-∞","-3","1","4","+∞"],
           rows:[
             {label:"x-1",  cells:[{v:"-",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"-",hole:true,kind:"sign"},{v:"0",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"},{v:"",hole:false,kind:"fixed"},{v:"+",hole:true,kind:"sign"}]},
@@ -2563,82 +2563,82 @@ const DB = {
         numpad:true, a:"2", tip:r`p=f(0)=2` },
     ],
     calcul_image: [
-      { q:r`\text{Si }f(x)=2x+3\\[4pt]f(4)=?`, choices:[`11`,`10`,`8`,`7`], a:`11`, tip:r`2\times4+3=11` },
-      { q:r`\text{Si }f(x)=x^2-1\\[4pt]f(3)=?`, choices:[`8`,`9`,`6`,`10`], a:`8`, tip:r`9-1=8` },
-      { q:r`\text{Si }f(x)=3x-5\\[4pt]f(0)=?`, choices:[`-5`,`5`,`3`,`0`], a:`-5`, tip:r`3\times0-5=-5` },
-      { q:r`\text{Si }f(x)=x^2+2x\\[4pt]f(2)=?`, choices:[`8`,`6`,`4`,`10`], a:`8`, tip:r`4+4=8` },
-      { q:r`\text{Si }f(x)=-x+7\\[4pt]f(3)=?`, choices:[`4`,`-4`,`10`,`3`], a:`4`, tip:r`-3+7=4` },
-      { q:r`\text{Si }f(x)=2x^2\\[4pt]f(-2)=?`, choices:[`8`,`-8`,`4`,`16`], a:`8`, tip:r`2\times4=8` },
-      { q:r`\text{Si }f(x)=\dfrac{x+1}{2}\\[4pt]f(5)=?`, choices:[`3`,`4`,`2{,}5`,`6`], a:`3`, tip:r`\frac{6}{2}=3` },
-      { q:r`\text{Si }f(x)=x^3\\[4pt]f(-1)=?`, choices:[`-1`,`1`,`-3`,`3`], a:`-1`, tip:r`(-1)^3=-1` },
-      { q:r`\text{Si }f(x)=4-x^2\\[4pt]f(2)=?`, choices:[`0`,`-4`,`8`,`4`], a:`0`, tip:r`4-4=0` },
-      { q:r`\text{Si }f(x)=5x+1\\[4pt]f(-1)=?`, choices:[`-4`,`6`,`4`,`-6`], a:`-4`, tip:r`-5+1=-4` },
-      { q:r`\text{Si }f(x)=x^2-x+2\\[4pt]f(3)=?`, choices:[`8`,`10`,`6`,`4`], a:`8`, tip:r`9-3+2=8` },
-      { q:r`\text{Si }f(x)=2x-7\\[4pt]f(7)=?`, choices:[`7`,`-7`,`14`,`0`], a:`7`, tip:r`14-7=7` },
-      { q:r`\text{Si }f(x)=3x^2+1\\[4pt]f(-1)=?`, choices:[`4`,`2`,`-2`,`0`], a:`4`, tip:r`3+1=4` },
-      { q:r`\text{Si }f(x)=\dfrac{x^2}{4}\\[4pt]f(4)=?`, choices:[`4`,`1`,`16`,`2`], a:`4`, tip:r`\frac{16}{4}=4` },
-      { q:r`\text{Si }f(x)=-2x^2+5\\[4pt]f(1)=?`, choices:[`3`,`-3`,`7`,`5`], a:`3`, tip:r`-2+5=3` },
-      { q:r`\text{Si }f(x)=x^2-4\\[4pt]f(-3)=?`, choices:[`5`,`-5`,`13`,`-13`], a:`5`, tip:r`9-4=5` },
-      { q:r`\text{Si }f(x)=6-2x\\[4pt]f(4)=?`, choices:[`-2`,`2`,`14`,`-14`], a:`-2`, tip:r`6-8=-2` },
-      { q:r`\text{Si }f(x)=x^2+3x-1\\[4pt]f(2)=?`, choices:[`9`,`7`,`5`,`11`], a:`9`, tip:r`4+6-1=9` },
-      { q:r`\text{Si }f(x)=1-x^3\\[4pt]f(2)=?`, choices:[`-7`,`7`,`9`,`-9`], a:`-7`, tip:r`1-8=-7` },
-      { q:r`\text{Si }f(x)=\dfrac{3x+6}{3}\\[4pt]f(4)=?`, choices:[`6`,`5`,`4`,`18`], a:`6`, tip:r`\frac{18}{3}=6` },
+      { q:r`\text{Si }f(x)=2x+3\\f(4)=?`, choices:[`11`,`10`,`8`,`7`], a:`11`, tip:r`2\times4+3=11` },
+      { q:r`\text{Si }f(x)=x^2-1\\f(3)=?`, choices:[`8`,`9`,`6`,`10`], a:`8`, tip:r`9-1=8` },
+      { q:r`\text{Si }f(x)=3x-5\\f(0)=?`, choices:[`-5`,`5`,`3`,`0`], a:`-5`, tip:r`3\times0-5=-5` },
+      { q:r`\text{Si }f(x)=x^2+2x\\f(2)=?`, choices:[`8`,`6`,`4`,`10`], a:`8`, tip:r`4+4=8` },
+      { q:r`\text{Si }f(x)=-x+7\\f(3)=?`, choices:[`4`,`-4`,`10`,`3`], a:`4`, tip:r`-3+7=4` },
+      { q:r`\text{Si }f(x)=2x^2\\f(-2)=?`, choices:[`8`,`-8`,`4`,`16`], a:`8`, tip:r`2\times4=8` },
+      { q:r`\text{Si }f(x)=\dfrac{x+1}{2}\\f(5)=?`, choices:[`3`,`4`,`2{,}5`,`6`], a:`3`, tip:r`\frac{6}{2}=3` },
+      { q:r`\text{Si }f(x)=x^3\\f(-1)=?`, choices:[`-1`,`1`,`-3`,`3`], a:`-1`, tip:r`(-1)^3=-1` },
+      { q:r`\text{Si }f(x)=4-x^2\\f(2)=?`, choices:[`0`,`-4`,`8`,`4`], a:`0`, tip:r`4-4=0` },
+      { q:r`\text{Si }f(x)=5x+1\\f(-1)=?`, choices:[`-4`,`6`,`4`,`-6`], a:`-4`, tip:r`-5+1=-4` },
+      { q:r`\text{Si }f(x)=x^2-x+2\\f(3)=?`, choices:[`8`,`10`,`6`,`4`], a:`8`, tip:r`9-3+2=8` },
+      { q:r`\text{Si }f(x)=2x-7\\f(7)=?`, choices:[`7`,`-7`,`14`,`0`], a:`7`, tip:r`14-7=7` },
+      { q:r`\text{Si }f(x)=3x^2+1\\f(-1)=?`, choices:[`4`,`2`,`-2`,`0`], a:`4`, tip:r`3+1=4` },
+      { q:r`\text{Si }f(x)=\dfrac{x^2}{4}\\f(4)=?`, choices:[`4`,`1`,`16`,`2`], a:`4`, tip:r`\frac{16}{4}=4` },
+      { q:r`\text{Si }f(x)=-2x^2+5\\f(1)=?`, choices:[`3`,`-3`,`7`,`5`], a:`3`, tip:r`-2+5=3` },
+      { q:r`\text{Si }f(x)=x^2-4\\f(-3)=?`, choices:[`5`,`-5`,`13`,`-13`], a:`5`, tip:r`9-4=5` },
+      { q:r`\text{Si }f(x)=6-2x\\f(4)=?`, choices:[`-2`,`2`,`14`,`-14`], a:`-2`, tip:r`6-8=-2` },
+      { q:r`\text{Si }f(x)=x^2+3x-1\\f(2)=?`, choices:[`9`,`7`,`5`,`11`], a:`9`, tip:r`4+6-1=9` },
+      { q:r`\text{Si }f(x)=1-x^3\\f(2)=?`, choices:[`-7`,`7`,`9`,`-9`], a:`-7`, tip:r`1-8=-7` },
+      { q:r`\text{Si }f(x)=\dfrac{3x+6}{3}\\f(4)=?`, choices:[`6`,`5`,`4`,`18`], a:`6`, tip:r`\frac{18}{3}=6` },
     ],
 
     // ── h. Point sur courbe ──
     point_courbe: [
-      { q:r`f(x)=2x+1\text{. Le point }A(3\,;\,7)\\[4pt]\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(3)=7\checkmark` },
-      { q:r`f(x)=x^2\text{. Le point }B(3\,;\,8)\\[4pt]\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Non}`, tip:r`f(3)=9\neq8` },
-      { q:r`f(x)=3x-2\text{. Le point }C(2\,;\,4)\\[4pt]\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(2)=4\checkmark` },
-      { q:r`f(x)=x^2-1\text{. Le point }D(-2\,;\,3)\\[4pt]\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(-2)=4-1=3\checkmark` },
-      { q:r`f(x)=-x+5\text{. Le point }E(2\,;\,3)\\[4pt]\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(2)=3\checkmark` },
-      { q:r`f(x)=2x^2\text{. Le point }F(-1\,;\,-2)\\[4pt]\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Non}`, tip:r`f(-1)=2\neq-2` },
-      { q:r`f(x)=4x-3\text{. Le point }G(1\,;\,1)\\[4pt]\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(1)=1\checkmark` },
-      { q:r`f(x)=x^2+2\text{. Le point }H(2\,;\,6)\\[4pt]\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(2)=4+2=6\checkmark` },
-      { q:r`f(x)=3x+1\text{. Le point }I(0\,;\,0)\\[4pt]\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Non}`, tip:r`f(0)=1\neq0` },
-      { q:r`f(x)=-2x+6\text{. Le point }J(3\,;\,0)\\[4pt]\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(3)=-6+6=0\checkmark` },
-      { q:r`f(x)=x^2-3x\text{. Le point }K(3\,;\,0)\\[4pt]\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(3)=9-9=0\checkmark` },
-      { q:r`f(x)=5-x\text{. Le point }L(5\,;\,0)\\[4pt]\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(5)=0\checkmark` },
-      { q:r`f(x)=x^2+x\text{. Le point }M(-1\,;\,0)\\[4pt]\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(-1)=1-1=0\checkmark` },
-      { q:r`f(x)=2x^2-1\text{. Le point }N(2\,;\,7)\\[4pt]\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(2)=8-1=7\checkmark` },
-      { q:r`f(x)=-x^2+4\text{. Le point }O(2\,;\,0)\\[4pt]\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(2)=-4+4=0\checkmark` },
-      { q:r`f(x)=3x^2-2\text{. Le point }P(1\,;\,2)\\[4pt]\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(1)=1\neq2 \rightarrow \text{Non}` },
-      { q:r`f(x)=\dfrac{x+3}{2}\text{. Le point }Q(1\,;\,2)\\[4pt]\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(1)=\frac{4}{2}=2\checkmark` },
-      { q:r`f(x)=x^3-1\text{. Le point }R(1\,;\,0)\\[4pt]\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(1)=1-1=0\checkmark` },
-      { q:r`f(x)=4x+1\text{. Le point }S(-1\,;\,-3)\\[4pt]\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(-1)=-4+1=-3\checkmark` },
-      { q:r`f(x)=x^2-5x+6\text{. Le point }T(2\,;\,0)\\[4pt]\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(2)=4-10+6=0\checkmark` },
+      { q:r`f(x)=2x+1\text{. Le point }A(3\,;\,7)\\\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(3)=7\checkmark` },
+      { q:r`f(x)=x^2\text{. Le point }B(3\,;\,8)\\\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Non}`, tip:r`f(3)=9\neq8` },
+      { q:r`f(x)=3x-2\text{. Le point }C(2\,;\,4)\\\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(2)=4\checkmark` },
+      { q:r`f(x)=x^2-1\text{. Le point }D(-2\,;\,3)\\\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(-2)=4-1=3\checkmark` },
+      { q:r`f(x)=-x+5\text{. Le point }E(2\,;\,3)\\\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(2)=3\checkmark` },
+      { q:r`f(x)=2x^2\text{. Le point }F(-1\,;\,-2)\\\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Non}`, tip:r`f(-1)=2\neq-2` },
+      { q:r`f(x)=4x-3\text{. Le point }G(1\,;\,1)\\\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(1)=1\checkmark` },
+      { q:r`f(x)=x^2+2\text{. Le point }H(2\,;\,6)\\\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(2)=4+2=6\checkmark` },
+      { q:r`f(x)=3x+1\text{. Le point }I(0\,;\,0)\\\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Non}`, tip:r`f(0)=1\neq0` },
+      { q:r`f(x)=-2x+6\text{. Le point }J(3\,;\,0)\\\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(3)=-6+6=0\checkmark` },
+      { q:r`f(x)=x^2-3x\text{. Le point }K(3\,;\,0)\\\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(3)=9-9=0\checkmark` },
+      { q:r`f(x)=5-x\text{. Le point }L(5\,;\,0)\\\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(5)=0\checkmark` },
+      { q:r`f(x)=x^2+x\text{. Le point }M(-1\,;\,0)\\\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(-1)=1-1=0\checkmark` },
+      { q:r`f(x)=2x^2-1\text{. Le point }N(2\,;\,7)\\\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(2)=8-1=7\checkmark` },
+      { q:r`f(x)=-x^2+4\text{. Le point }O(2\,;\,0)\\\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(2)=-4+4=0\checkmark` },
+      { q:r`f(x)=3x^2-2\text{. Le point }P(1\,;\,2)\\\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(1)=1\neq2 \rightarrow \text{Non}` },
+      { q:r`f(x)=\dfrac{x+3}{2}\text{. Le point }Q(1\,;\,2)\\\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(1)=\frac{4}{2}=2\checkmark` },
+      { q:r`f(x)=x^3-1\text{. Le point }R(1\,;\,0)\\\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(1)=1-1=0\checkmark` },
+      { q:r`f(x)=4x+1\text{. Le point }S(-1\,;\,-3)\\\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(-1)=-4+1=-3\checkmark` },
+      { q:r`f(x)=x^2-5x+6\text{. Le point }T(2\,;\,0)\\\text{est-il sur la courbe ?}`, choices:[r`\text{Oui}`,r`\text{Non}`], a:r`\text{Oui}`, tip:r`f(2)=4-10+6=0\checkmark` },
     ],
 
     // ── i. Coefficient directeur (calcul) ──
     coeff_directeur_calcul: [
-      { q:r`A(1\,;\,3)\text{ et }B(3\,;\,7)\\[4pt]\text{Calculer le coeff. directeur }m=`,
+      { q:r`A(1\,;\,3)\text{ et }B(3\,;\,7)\\\text{Calculer le coeff. directeur }m=`,
         numpad:true, a:"2",
         tip:r`m=\dfrac{y_B-y_A}{x_B-x_A}=\dfrac{7-3}{3-1}=\dfrac{4}{2}=2` },
-      { q:r`C(0\,;\,2)\text{ et }D(4\,;\,6)\\[4pt]\text{Calculer le coeff. directeur }m=`,
+      { q:r`C(0\,;\,2)\text{ et }D(4\,;\,6)\\\text{Calculer le coeff. directeur }m=`,
         numpad:true, a:"1",
         tip:r`m=\dfrac{y_D-y_C}{x_D-x_C}=\dfrac{6-2}{4-0}=\dfrac{4}{4}=1` },
-      { q:r`A(-1\,;\,5)\text{ et }B(1\,;\,1)\\[4pt]\text{Calculer le coeff. directeur }m=`,
+      { q:r`A(-1\,;\,5)\text{ et }B(1\,;\,1)\\\text{Calculer le coeff. directeur }m=`,
         numpad:true, a:"-2",
         tip:r`m=\dfrac{y_B-y_A}{x_B-x_A}=\dfrac{1-5}{1-(-1)}=\dfrac{-4}{2}=-2` },
-      { q:r`A(2\,;\,2)\text{ et }B(5\,;\,2)\\[4pt]\text{Calculer le coeff. directeur }m=`,
+      { q:r`A(2\,;\,2)\text{ et }B(5\,;\,2)\\\text{Calculer le coeff. directeur }m=`,
         numpad:true, a:"0",
         tip:r`m=\dfrac{y_B-y_A}{x_B-x_A}=\dfrac{2-2}{5-2}=\dfrac{0}{3}=0\quad\text{(droite horizontale)}` },
-      { q:r`A(0\,;\,0)\text{ et }B(3\,;\,6)\\[4pt]\text{Calculer le coeff. directeur }m=`,
+      { q:r`A(0\,;\,0)\text{ et }B(3\,;\,6)\\\text{Calculer le coeff. directeur }m=`,
         numpad:true, a:"2",
         tip:r`m=\dfrac{y_B-y_A}{x_B-x_A}=\dfrac{6-0}{3-0}=\dfrac{6}{3}=2` },
-      { q:r`A(2\,;\,-1)\text{ et }B(4\,;\,3)\\[4pt]\text{Calculer le coeff. directeur }m=`,
+      { q:r`A(2\,;\,-1)\text{ et }B(4\,;\,3)\\\text{Calculer le coeff. directeur }m=`,
         numpad:true, a:"2",
         tip:r`m=\dfrac{3-(-1)}{4-2}=\dfrac{4}{2}=2` },
-      { q:r`A(-2\,;\,4)\text{ et }B(2\,;\,0)\\[4pt]\text{Calculer le coeff. directeur }m=`,
+      { q:r`A(-2\,;\,4)\text{ et }B(2\,;\,0)\\\text{Calculer le coeff. directeur }m=`,
         numpad:true, a:"-1",
         tip:r`m=\dfrac{0-4}{2-(-2)}=\dfrac{-4}{4}=-1` },
-      { q:r`A(1\,;\,-3)\text{ et }B(3\,;\,3)\\[4pt]\text{Calculer le coeff. directeur }m=`,
+      { q:r`A(1\,;\,-3)\text{ et }B(3\,;\,3)\\\text{Calculer le coeff. directeur }m=`,
         numpad:true, a:"3",
         tip:r`m=\dfrac{3-(-3)}{3-1}=\dfrac{6}{2}=3` },
-      { q:r`A(0\,;\,5)\text{ et }B(5\,;\,0)\\[4pt]\text{Calculer le coeff. directeur }m=`,
+      { q:r`A(0\,;\,5)\text{ et }B(5\,;\,0)\\\text{Calculer le coeff. directeur }m=`,
         numpad:true, a:"-1",
         tip:r`m=\dfrac{0-5}{5-0}=\dfrac{-5}{5}=-1` },
-      { q:r`A(-3\,;\,-1)\text{ et }B(1\,;\,7)\\[4pt]\text{Calculer le coeff. directeur }m=`,
+      { q:r`A(-3\,;\,-1)\text{ et }B(1\,;\,7)\\\text{Calculer le coeff. directeur }m=`,
         numpad:true, a:"2",
         tip:r`m=\dfrac{7-(-1)}{1-(-3)}=\dfrac{8}{4}=2` },
     ],
@@ -2649,11 +2649,11 @@ const DB = {
   pourcentages: {
     proportions: [
       // ── Proportions classiques ──
-      { q:r`\text{Dans une classe de 25 élèves, 15 sont en voyage.}\\[4pt]\text{Quel \% cela représente-t-il ?}`, choices:[r`60\%`,r`65\%`,r`55\%`,r`40\%`], a:r`60\%`, tip:r`\frac{15}{25}\times100=60\%` },
-      { q:r`\text{Un article coûte 200€, soldé à }30\%\text{.}\\[4pt]\text{Quel est le montant de la réduction ?}`, choices:[`60€`,`30€`,`66€`,`50€`], a:`60€`, tip:r`0{,}3\times200=60€` },
-      { q:r`\text{Une veste coûte 80€, remise de }25\%\text{.}\\[4pt]\text{Quel est le montant de la réduction ?}`, choices:[`20€`,`25€`,`15€`,`40€`], a:`20€`, tip:r`\frac{1}{4}\times80=20€` },
-      { q:r`\text{Dans un groupe de 48 personnes, 12 sont étudiantes.}\\[4pt]\text{Quel \% cela représente-t-il ?}`, choices:[r`25\%`,r`12\%`,r`40\%`,r`30\%`], a:r`25\%`, tip:r`\frac{12}{48}\times100=25\%` },
-      { q:r`\text{Dans une classe de 30 élèves, 18 sont des filles.}\\[4pt]\text{Quelle est la part des filles ?}`, choices:[r`60\%`,r`40\%`,r`55\%`,r`50\%`], a:r`60\%`, tip:r`\frac{18}{30}\times100=60\%` },
+      { q:r`\text{Dans une classe de 25 élèves, 15 sont en voyage.}\\\text{Quel \% cela représente-t-il ?}`, choices:[r`60\%`,r`65\%`,r`55\%`,r`40\%`], a:r`60\%`, tip:r`\frac{15}{25}\times100=60\%` },
+      { q:r`\text{Un article coûte 200€, soldé à }30\%\text{.}\\\text{Quel est le montant de la réduction ?}`, choices:[`60€`,`30€`,`66€`,`50€`], a:`60€`, tip:r`0{,}3\times200=60€` },
+      { q:r`\text{Une veste coûte 80€, remise de }25\%\text{.}\\\text{Quel est le montant de la réduction ?}`, choices:[`20€`,`25€`,`15€`,`40€`], a:`20€`, tip:r`\frac{1}{4}\times80=20€` },
+      { q:r`\text{Dans un groupe de 48 personnes, 12 sont étudiantes.}\\\text{Quel \% cela représente-t-il ?}`, choices:[r`25\%`,r`12\%`,r`40\%`,r`30\%`], a:r`25\%`, tip:r`\frac{12}{48}\times100=25\%` },
+      { q:r`\text{Dans une classe de 30 élèves, 18 sont des filles.}\\\text{Quelle est la part des filles ?}`, choices:[r`60\%`,r`40\%`,r`55\%`,r`50\%`], a:r`60\%`, tip:r`\frac{18}{30}\times100=60\%` },
 
       // ── Opérations sur décimaux liés aux proportions ──
       { q:r`1 - 0{,}05 = ?`, choices:[r`0{,}95`,r`0{,}5`,r`1{,}05`,r`0{,}955`], a:r`0{,}95`,
@@ -2711,98 +2711,98 @@ const DB = {
     ],
     taux_cm: [
       { q:r`\text{Un CM de }1{,}05\text{ correspond à :}`, choices:[r`+5\%`,r`-5\%`,r`+50\%`,r`+1{,}05\%`], a:r`+5\%`, tip:r`1{,}05-1=0{,}05=+5\%` },
-      { q:r`\text{Une hausse de }20\%\\[4pt]\text{correspond au CM :}`, choices:[r`1{,}2`,r`0{,}8`,r`0{,}2`,r`1{,}02`], a:r`1{,}2`, tip:r`1+0{,}2=1{,}2` },
+      { q:r`\text{Une hausse de }20\%\\\text{correspond au CM :}`, choices:[r`1{,}2`,r`0{,}8`,r`0{,}2`,r`1{,}02`], a:r`1{,}2`, tip:r`1+0{,}2=1{,}2` },
       { q:r`\text{Un CM de }0{,}75\text{ correspond à :}`, choices:[r`-25\%`,r`+25\%`,r`-75\%`,r`+75\%`], a:r`-25\%`, tip:r`0{,}75-1=-0{,}25` },
-      { q:r`\text{Une baisse de }10\%\\[4pt]\text{correspond au CM :}`, choices:[r`0{,}9`,r`1{,}1`,r`0{,}1`,r`0{,}99`], a:r`0{,}9`, tip:r`1-0{,}1=0{,}9` },
+      { q:r`\text{Une baisse de }10\%\\\text{correspond au CM :}`, choices:[r`0{,}9`,r`1{,}1`,r`0{,}1`,r`0{,}99`], a:r`0{,}9`, tip:r`1-0{,}1=0{,}9` },
       { q:r`\text{Un CM de }1{,}15\text{ correspond à :}`, choices:[r`+15\%`,r`-15\%`,r`+1{,}15\%`,r`+85\%`], a:r`+15\%`, tip:r`1{,}15-1=0{,}15` },
-      { q:r`\text{Une hausse de }50\%\\[4pt]\text{correspond au CM :}`, choices:[r`1{,}5`,r`0{,}5`,r`1{,}05`,r`1{,}50`], a:r`1{,}5`, tip:r`1+0{,}5=1{,}5` },
+      { q:r`\text{Une hausse de }50\%\\\text{correspond au CM :}`, choices:[r`1{,}5`,r`0{,}5`,r`1{,}05`,r`1{,}50`], a:r`1{,}5`, tip:r`1+0{,}5=1{,}5` },
       { q:r`\text{Un CM de }0{,}6\text{ correspond à :}`, choices:[r`-40\%`,r`+40\%`,r`-60\%`,r`+60\%`], a:r`-40\%`, tip:r`0{,}6-1=-0{,}4` },
-      { q:r`\text{Une baisse de }30\%\\[4pt]\text{correspond au CM :}`, choices:[r`0{,}7`,r`1{,}3`,r`0{,}3`,r`0{,}97`], a:r`0{,}7`, tip:r`1-0{,}3=0{,}7` },
+      { q:r`\text{Une baisse de }30\%\\\text{correspond au CM :}`, choices:[r`0{,}7`,r`1{,}3`,r`0{,}3`,r`0{,}97`], a:r`0{,}7`, tip:r`1-0{,}3=0{,}7` },
       { q:r`\text{Un CM de }2\text{ correspond à :}`, choices:[r`+100\%`,r`+200\%`,r`-50\%`,r`+50\%`], a:r`+100\%`, tip:r`2-1=1=+100\%` },
-      { q:r`\text{Une hausse de }2{,}5\%\\[4pt]\text{correspond au CM :}`, choices:[r`1{,}025`,r`1{,}25`,r`0{,}975`,r`1{,}0025`], a:r`1{,}025`, tip:r`1+0{,}025=1{,}025` },
+      { q:r`\text{Une hausse de }2{,}5\%\\\text{correspond au CM :}`, choices:[r`1{,}025`,r`1{,}25`,r`0{,}975`,r`1{,}0025`], a:r`1{,}025`, tip:r`1+0{,}025=1{,}025` },
       { q:r`\text{Un CM de }0{,}95\text{ correspond à :}`, choices:[r`-5\%`,r`+5\%`,r`-95\%`,r`+95\%`], a:r`-5\%`, tip:r`0{,}95-1=-0{,}05` },
-      { q:r`\text{Une baisse de }1\%\\[4pt]\text{correspond au CM :}`, choices:[r`0{,}99`,r`1{,}01`,r`0{,}1`,r`0{,}991`], a:r`0{,}99`, tip:r`1-0{,}01=0{,}99` },
+      { q:r`\text{Une baisse de }1\%\\\text{correspond au CM :}`, choices:[r`0{,}99`,r`1{,}01`,r`0{,}1`,r`0{,}991`], a:r`0{,}99`, tip:r`1-0{,}01=0{,}99` },
       { q:r`\text{Un CM de }1{,}3\text{ correspond à :}`, choices:[r`+30\%`,r`-30\%`,r`+130\%`,r`+1{,}3\%`], a:r`+30\%`, tip:r`1{,}3-1=0{,}3` },
-      { q:r`\text{Une hausse de }100\%\\[4pt]\text{correspond au CM :}`, choices:[`2`,r`1{,}1`,r`0{,}5`,r`1{,}0`], a:`2`, tip:r`1+1=2` },
+      { q:r`\text{Une hausse de }100\%\\\text{correspond au CM :}`, choices:[`2`,r`1{,}1`,r`0{,}5`,r`1{,}0`], a:`2`, tip:r`1+1=2` },
       { q:r`\text{Un CM de }1{,}08\text{ correspond à :}`, choices:[r`+8\%`,r`-8\%`,r`+80\%`,r`+1{,}08\%`], a:r`+8\%`, tip:r`1{,}08-1=0{,}08` },
-      { q:r`\text{Une baisse de }25\%\\[4pt]\text{correspond au CM :}`, choices:[r`0{,}75`,r`1{,}25`,r`0{,}25`,r`0{,}975`], a:r`0{,}75`, tip:r`1-0{,}25=0{,}75` },
+      { q:r`\text{Une baisse de }25\%\\\text{correspond au CM :}`, choices:[r`0{,}75`,r`1{,}25`,r`0{,}25`,r`0{,}975`], a:r`0{,}75`, tip:r`1-0{,}25=0{,}75` },
       { q:r`\text{Un CM de }0{,}85\text{ correspond à :}`, choices:[r`-15\%`,r`+15\%`,r`-85\%`,r`+85\%`], a:r`-15\%`, tip:r`0{,}85-1=-0{,}15` },
-      { q:r`\text{Une hausse de }3\%\\[4pt]\text{correspond au CM :}`, choices:[r`1{,}03`,r`1{,}3`,r`0{,}97`,r`1{,}003`], a:r`1{,}03`, tip:r`1+0{,}03=1{,}03` },
+      { q:r`\text{Une hausse de }3\%\\\text{correspond au CM :}`, choices:[r`1{,}03`,r`1{,}3`,r`0{,}97`,r`1{,}003`], a:r`1{,}03`, tip:r`1+0{,}03=1{,}03` },
       { q:r`\text{Un CM de }0{,}5\text{ correspond à :}`, choices:[r`-50\%`,r`+50\%`,r`-150\%`,r`-5\%`], a:r`-50\%`, tip:r`0{,}5-1=-0{,}5` },
-      { q:r`\text{Une baisse de }15\%\\[4pt]\text{correspond au CM :}`, choices:[r`0{,}85`,r`1{,}15`,r`0{,}15`,r`0{,}985`], a:r`0{,}85`, tip:r`1-0{,}15=0{,}85` },
+      { q:r`\text{Une baisse de }15\%\\\text{correspond au CM :}`, choices:[r`0{,}85`,r`1{,}15`,r`0{,}15`,r`0{,}985`], a:r`0{,}85`, tip:r`1-0{,}15=0{,}85` },
     ],
     valeur_finale: [
-      { q:r`\text{Prix initial : 200€, hausse de }10\%\\[4pt]\text{Nouveau prix :}`, choices:[`220€`,`210€`,`180€`,`200€`], a:`220€`, tip:r`200\times1{,}1=220` },
-      { q:r`\text{Prix initial : 150€, baisse de }20\%\\[4pt]\text{Nouveau prix :}`, choices:[`120€`,`130€`,`140€`,`180€`], a:`120€`, tip:r`150\times0{,}8=120` },
-      { q:r`\text{Prix actuel : 110€ après }+10\%\\[4pt]\text{Prix initial :}`, choices:[`100€`,`99€`,`105€`,`90€`], a:`100€`, tip:r`\frac{110}{1{,}1}=100` },
-      { q:r`\text{Prix actuel : 80€ après }-20\%\\[4pt]\text{Prix initial :}`, choices:[`100€`,`96€`,`90€`,`64€`], a:`100€`, tip:r`\frac{80}{0{,}8}=100` },
-      { q:r`\text{Prix initial : 500€, hausse de }50\%\\[4pt]\text{Nouveau prix :}`, choices:[`750€`,`550€`,`700€`,`250€`], a:`750€`, tip:r`500\times1{,}5=750` },
-      { q:r`\text{Prix initial : 400€, baisse de }25\%\\[4pt]\text{Nouveau prix :}`, choices:[`300€`,`350€`,`375€`,`100€`], a:`300€`, tip:r`400\times0{,}75=300` },
-      { q:r`\text{Prix actuel : 260€ après }+30\%\\[4pt]\text{Prix initial :}`, choices:[`200€`,`230€`,`188€`,`182€`], a:`200€`, tip:r`\frac{260}{1{,}3}=200` },
-      { q:r`\text{Prix actuel : 54€ après }-10\%\\[4pt]\text{Prix initial :}`, choices:[`60€`,`64{,}8€`,`48{,}6€`,`50€`], a:`60€`, tip:r`\frac{54}{0{,}9}=60` },
-      { q:r`\text{Prix initial : 1000€, hausse de }8\%\\[4pt]\text{Nouveau prix :}`, choices:[`1080€`,`1008€`,`1800€`,`800€`], a:`1080€`, tip:r`1000\times1{,}08=1080` },
-      { q:r`\text{Prix initial : 250€, baisse de }4\%\\[4pt]\text{Nouveau prix :}`, choices:[`240€`,`246€`,`10€`,`200€`], a:`240€`, tip:r`250\times0{,}96=240` },
-      { q:r`\text{Prix actuel : 130€ après }+4\%\\[4pt]\text{Prix initial :}`, choices:[`125€`,`120€`,`135€`,`126€`], a:`125€`, tip:r`\frac{130}{1{,}04}=125` },
-      { q:r`\text{Prix actuel : 114€ après }+14\%\\[4pt]\text{Prix initial :}`, choices:[`100€`,`105€`,`98€`,`102€`], a:`100€`, tip:r`\frac{114}{1{,}14}=100` },
-      { q:r`\text{Prix initial : 80€, hausse de }5\%\\[4pt]\text{Nouveau prix :}`, choices:[`84€`,`85€`,`86€`,`80{,}5€`], a:`84€`, tip:r`80\times1{,}05=84` },
-      { q:r`\text{Prix initial : 60€, baisse de }5\%\\[4pt]\text{Nouveau prix :}`, choices:[`57€`,`56€`,`55€`,`58€`], a:`57€`, tip:r`60\times0{,}95=57` },
-      { q:r`\text{Prix actuel : 95€ après }-5\%\\[4pt]\text{Prix initial :}`, choices:[`100€`,`90{,}25€`,`105€`,`90€`], a:`100€`, tip:r`\frac{95}{0{,}95}=100` },
-      { q:r`\text{Prix initial : 300€, hausse de }15\%\\[4pt]\text{Nouveau prix :}`, choices:[`345€`,`315€`,`330€`,`450€`], a:`345€`, tip:r`300\times1{,}15=345` },
-      { q:r`\text{Prix actuel : 170€ après }-15\%\\[4pt]\text{Prix initial :}`, choices:[`200€`,`195€`,`185€`,`144{,}5€`], a:`200€`, tip:r`\frac{170}{0{,}85}=200` },
-      { q:r`\text{Prix initial : 750€, baisse de }40\%\\[4pt]\text{Nouveau prix :}`, choices:[`450€`,`300€`,`710€`,`400€`], a:`450€`, tip:r`750\times0{,}6=450` },
-      { q:r`\text{Prix actuel : 198€ après }+10\%\\[4pt]\text{Prix initial :}`, choices:[`180€`,`188€`,`175€`,`200€`], a:`180€`, tip:r`\frac{198}{1{,}1}=180` },
-      { q:r`\text{Prix initial : 120€, hausse de }25\%\\[4pt]\text{Nouveau prix :}`, choices:[`150€`,`145€`,`30€`,`148€`], a:`150€`, tip:r`120\times1{,}25=150` },
+      { q:r`\text{Prix initial : 200€, hausse de }10\%\\\text{Nouveau prix :}`, choices:[`220€`,`210€`,`180€`,`200€`], a:`220€`, tip:r`200\times1{,}1=220` },
+      { q:r`\text{Prix initial : 150€, baisse de }20\%\\\text{Nouveau prix :}`, choices:[`120€`,`130€`,`140€`,`180€`], a:`120€`, tip:r`150\times0{,}8=120` },
+      { q:r`\text{Prix actuel : 110€ après }+10\%\\\text{Prix initial :}`, choices:[`100€`,`99€`,`105€`,`90€`], a:`100€`, tip:r`\frac{110}{1{,}1}=100` },
+      { q:r`\text{Prix actuel : 80€ après }-20\%\\\text{Prix initial :}`, choices:[`100€`,`96€`,`90€`,`64€`], a:`100€`, tip:r`\frac{80}{0{,}8}=100` },
+      { q:r`\text{Prix initial : 500€, hausse de }50\%\\\text{Nouveau prix :}`, choices:[`750€`,`550€`,`700€`,`250€`], a:`750€`, tip:r`500\times1{,}5=750` },
+      { q:r`\text{Prix initial : 400€, baisse de }25\%\\\text{Nouveau prix :}`, choices:[`300€`,`350€`,`375€`,`100€`], a:`300€`, tip:r`400\times0{,}75=300` },
+      { q:r`\text{Prix actuel : 260€ après }+30\%\\\text{Prix initial :}`, choices:[`200€`,`230€`,`188€`,`182€`], a:`200€`, tip:r`\frac{260}{1{,}3}=200` },
+      { q:r`\text{Prix actuel : 54€ après }-10\%\\\text{Prix initial :}`, choices:[`60€`,`64{,}8€`,`48{,}6€`,`50€`], a:`60€`, tip:r`\frac{54}{0{,}9}=60` },
+      { q:r`\text{Prix initial : 1000€, hausse de }8\%\\\text{Nouveau prix :}`, choices:[`1080€`,`1008€`,`1800€`,`800€`], a:`1080€`, tip:r`1000\times1{,}08=1080` },
+      { q:r`\text{Prix initial : 250€, baisse de }4\%\\\text{Nouveau prix :}`, choices:[`240€`,`246€`,`10€`,`200€`], a:`240€`, tip:r`250\times0{,}96=240` },
+      { q:r`\text{Prix actuel : 130€ après }+4\%\\\text{Prix initial :}`, choices:[`125€`,`120€`,`135€`,`126€`], a:`125€`, tip:r`\frac{130}{1{,}04}=125` },
+      { q:r`\text{Prix actuel : 114€ après }+14\%\\\text{Prix initial :}`, choices:[`100€`,`105€`,`98€`,`102€`], a:`100€`, tip:r`\frac{114}{1{,}14}=100` },
+      { q:r`\text{Prix initial : 80€, hausse de }5\%\\\text{Nouveau prix :}`, choices:[`84€`,`85€`,`86€`,`80{,}5€`], a:`84€`, tip:r`80\times1{,}05=84` },
+      { q:r`\text{Prix initial : 60€, baisse de }5\%\\\text{Nouveau prix :}`, choices:[`57€`,`56€`,`55€`,`58€`], a:`57€`, tip:r`60\times0{,}95=57` },
+      { q:r`\text{Prix actuel : 95€ après }-5\%\\\text{Prix initial :}`, choices:[`100€`,`90{,}25€`,`105€`,`90€`], a:`100€`, tip:r`\frac{95}{0{,}95}=100` },
+      { q:r`\text{Prix initial : 300€, hausse de }15\%\\\text{Nouveau prix :}`, choices:[`345€`,`315€`,`330€`,`450€`], a:`345€`, tip:r`300\times1{,}15=345` },
+      { q:r`\text{Prix actuel : 170€ après }-15\%\\\text{Prix initial :}`, choices:[`200€`,`195€`,`185€`,`144{,}5€`], a:`200€`, tip:r`\frac{170}{0{,}85}=200` },
+      { q:r`\text{Prix initial : 750€, baisse de }40\%\\\text{Nouveau prix :}`, choices:[`450€`,`300€`,`710€`,`400€`], a:`450€`, tip:r`750\times0{,}6=450` },
+      { q:r`\text{Prix actuel : 198€ après }+10\%\\\text{Prix initial :}`, choices:[`180€`,`188€`,`175€`,`200€`], a:`180€`, tip:r`\frac{198}{1{,}1}=180` },
+      { q:r`\text{Prix initial : 120€, hausse de }25\%\\\text{Nouveau prix :}`, choices:[`150€`,`145€`,`30€`,`148€`], a:`150€`, tip:r`120\times1{,}25=150` },
     ],
     evolutions_successives: [
       // ── Niveau 1 — CM global ──
-      { q:r`\text{Un prix augmente de }10\%\text{ puis encore de }10\%.\\[5pt]\text{Quel est le coefficient multiplicateur global ?}`,
+      { q:r`\text{Un prix augmente de }10\%\text{ puis encore de }10\%.\\\text{Quel est le coefficient multiplicateur global ?}`,
         choices:[r`1{,}21`,r`1{,}20`,r`1{,}22`,r`2{,}0`], a:r`1{,}21`,
         tip:r`1{,}1\times1{,}1=1{,}21\neq1{,}20` },
-      { q:r`\text{Un prix augmente de }20\%\text{ puis baisse de }20\%.\\[5pt]\text{Quel est le coefficient multiplicateur global ?}`,
+      { q:r`\text{Un prix augmente de }20\%\text{ puis baisse de }20\%.\\\text{Quel est le coefficient multiplicateur global ?}`,
         choices:[r`0{,}96`,r`1{,}0`,r`0{,}9`,r`1{,}04`], a:r`0{,}96`,
         tip:r`1{,}2\times0{,}8=0{,}96\text{ — pas de retour au prix initial !}` },
-      { q:r`\text{Un prix est multiplié par }1{,}1\text{ puis par }0{,}9.\\[5pt]\text{Quel est le coefficient multiplicateur global ?}`,
+      { q:r`\text{Un prix est multiplié par }1{,}1\text{ puis par }0{,}9.\\\text{Quel est le coefficient multiplicateur global ?}`,
         choices:[r`0{,}99`,r`1{,}0`,r`0{,}9`,r`1{,}1`], a:r`0{,}99`,
         tip:r`1{,}1\times0{,}9=0{,}99` },
-      { q:r`\text{Un salaire augmente de }50\%\text{ puis baisse de }50\%.\\[5pt]\text{Quelle est la variation globale ?}`,
+      { q:r`\text{Un salaire augmente de }50\%\text{ puis baisse de }50\%.\\\text{Quelle est la variation globale ?}`,
         choices:[r`-25\%`,r`0\%`,r`+25\%`,r`-50\%`], a:r`-25\%`,
         tip:r`1{,}5\times0{,}5=0{,}75\Rightarrow-25\%` },
-      { q:r`\text{Un prix est multiplié deux fois par }1{,}2.\\[5pt]\text{Quel est le coefficient multiplicateur global ?}`,
+      { q:r`\text{Un prix est multiplié deux fois par }1{,}2.\\\text{Quel est le coefficient multiplicateur global ?}`,
         choices:[r`1{,}44`,r`2{,}4`,r`1{,}4`,r`1{,}04`], a:r`1{,}44`,
         tip:r`1{,}2^2=1{,}44` },
 
       // ── Niveau 2 — variation globale sous forme de % ──
-      { q:r`\text{Augmenter de }10\%\text{ puis diminuer de }20\%\\[5pt]\text{revient à une variation globale de :}`,
+      { q:r`\text{Augmenter de }10\%\text{ puis diminuer de }20\%\\\text{revient à une variation globale de :}`,
         choices:[r`-12\%`,r`-10\%`,r`+10\%`,r`-2\%`], a:r`-12\%`,
         tip:r`1{,}1\times0{,}8=0{,}88\Rightarrow-12\%` },
-      { q:r`\text{Augmenter de }30\%\text{ puis diminuer de }10\%\\[5pt]\text{revient à une variation globale de :}`,
+      { q:r`\text{Augmenter de }30\%\text{ puis diminuer de }10\%\\\text{revient à une variation globale de :}`,
         choices:[r`+17\%`,r`+20\%`,r`+10\%`,r`+27\%`], a:r`+17\%`,
         tip:r`1{,}3\times0{,}9=1{,}17\Rightarrow+17\%` },
-      { q:r`\text{Diminuer de }20\%\text{ puis augmenter de }25\%\\[5pt]\text{revient à une variation globale de :}`,
+      { q:r`\text{Diminuer de }20\%\text{ puis augmenter de }25\%\\\text{revient à une variation globale de :}`,
         choices:[r`0\%`,r`+5\%`,r`-5\%`,r`+25\%`], a:r`0\%`,
         tip:r`0{,}8\times1{,}25=1{,}00\Rightarrow\text{retour au prix initial !}` },
-      { q:r`\text{Augmenter de }50\%\text{ puis diminuer de }40\%\\[5pt]\text{revient à une variation globale de :}`,
+      { q:r`\text{Augmenter de }50\%\text{ puis diminuer de }40\%\\\text{revient à une variation globale de :}`,
         choices:[r`-10\%`,r`+10\%`,r`0\%`,r`-40\%`], a:r`-10\%`,
         tip:r`1{,}5\times0{,}6=0{,}90\Rightarrow-10\%` },
-      { q:r`\text{Diminuer de }10\%\text{ puis diminuer de }10\%\\[5pt]\text{revient à une variation globale de :}`,
+      { q:r`\text{Diminuer de }10\%\text{ puis diminuer de }10\%\\\text{revient à une variation globale de :}`,
         choices:[r`-19\%`,r`-20\%`,r`-18\%`,r`-10\%`], a:r`-19\%`,
         tip:r`0{,}9\times0{,}9=0{,}81\Rightarrow-19\%` },
-      { q:r`\text{Augmenter de }25\%\text{ puis augmenter de }20\%\\[5pt]\text{revient à une variation globale de :}`,
+      { q:r`\text{Augmenter de }25\%\text{ puis augmenter de }20\%\\\text{revient à une variation globale de :}`,
         choices:[r`+50\%`,r`+45\%`,r`+40\%`,r`+100\%`], a:r`+50\%`,
         tip:r`1{,}25\times1{,}2=1{,}50\Rightarrow+50\%` },
-      { q:r`\text{Augmenter de }100\%\text{ puis diminuer de }50\%\\[5pt]\text{revient à une variation globale de :}`,
+      { q:r`\text{Augmenter de }100\%\text{ puis diminuer de }50\%\\\text{revient à une variation globale de :}`,
         choices:[r`0\%`,r`+50\%`,r`-50\%`,r`+100\%`], a:r`0\%`,
         tip:r`2\times0{,}5=1{,}00\Rightarrow\text{aucune variation globale !}` },
-      { q:r`\text{Diminuer de }25\%\text{ puis augmenter de }50\%\\[5pt]\text{revient à une variation globale de :}`,
+      { q:r`\text{Diminuer de }25\%\text{ puis augmenter de }50\%\\\text{revient à une variation globale de :}`,
         choices:[r`+12{,}5\%`,r`+25\%`,r`0\%`,r`+50\%`], a:r`+12{,}5\%`,
         tip:r`0{,}75\times1{,}5=1{,}125\Rightarrow+12{,}5\%` },
-      { q:r`\text{Augmenter de }20\%\text{ puis diminuer de }25\%\\[5pt]\text{revient à une variation globale de :}`,
+      { q:r`\text{Augmenter de }20\%\text{ puis diminuer de }25\%\\\text{revient à une variation globale de :}`,
         choices:[r`-10\%`,r`-5\%`,r`0\%`,r`+5\%`], a:r`-10\%`,
         tip:r`1{,}2\times0{,}75=0{,}90\Rightarrow-10\%` },
-      { q:r`\text{Augmenter de }40\%\text{ puis diminuer de }30\%\\[5pt]\text{revient à une variation globale de :}`,
+      { q:r`\text{Augmenter de }40\%\text{ puis diminuer de }30\%\\\text{revient à une variation globale de :}`,
         choices:[r`-2\%`,r`+10\%`,r`-10\%`,r`+2\%`], a:r`-2\%`,
         tip:r`1{,}4\times0{,}7=0{,}98\Rightarrow-2\%` },
-      { q:r`\text{Diminuer de }20\%\text{ deux fois de suite}\\[5pt]\text{revient à une variation globale de :}`,
+      { q:r`\text{Diminuer de }20\%\text{ deux fois de suite}\\\text{revient à une variation globale de :}`,
         choices:[r`-36\%`,r`-40\%`,r`-20\%`,r`-38\%`], a:r`-36\%`,
         tip:r`0{,}8^2=0{,}64\Rightarrow-36\%` },
     ],
@@ -2833,41 +2833,41 @@ const DB = {
 
     // ── Taux moyen ──
     taux_moyen: [
-      { q: r`\text{2 hausses de }5\%\\[4pt]CM_{\text{global}}=\,?`,
+      { q: r`\text{2 hausses de }5\%\\CM_{\text{global}}=\,?`,
         choices: [r`1{,}05^2`, `1{,}10`, `2{,}10`, `1{,}025`], a: r`1{,}05^2`,
         tip: r`CM=1{,}05\times1{,}05=1{,}05^2` },
-      { q: r`CM=1{,}21\text{ sur 2 ans}\\[4pt]\text{Taux moyen annuel}=\,?`,
+      { q: r`CM=1{,}21\text{ sur 2 ans}\\\text{Taux moyen annuel}=\,?`,
         choices: [`10\%`, `21\%`, `5\%`, `0{,}21\%`], a: `10\%`,
         tip: r`\sqrt{1{,}21}=1{,}1\Rightarrow t=10\%` },
-      { q: r`CM=(1+t)^2=1{,}0609\\[4pt]t=\,?`,
+      { q: r`CM=(1+t)^2=1{,}0609\\t=\,?`,
         choices: [`3\%`, `6\%`, `6{,}09\%`, `9\%`], a: `3\%`,
         tip: r`\sqrt{1{,}0609}=1{,}03\Rightarrow t=3\%` },
-      { q: r`\text{2 baisses de }10\%\\[4pt]\text{Taux global}=\,?`,
+      { q: r`\text{2 baisses de }10\%\\\text{Taux global}=\,?`,
         choices: [`-19\%`, `-20\%`, `-10\%`, `-18\%`], a: `-19\%`,
         tip: r`0{,}9^2=0{,}81\Rightarrow-19\%` },
-      { q: r`CM_1=1{,}1\quad CM_2=0{,}9\\[4pt]CM_{\text{global}}=\,?`,
+      { q: r`CM_1=1{,}1\quad CM_2=0{,}9\\CM_{\text{global}}=\,?`,
         choices: [`0{,}99`, `1{,}00`, `1{,}01`, `2{,}00`], a: `0{,}99`,
         tip: r`CM=1{,}1\times0{,}9=0{,}99` },
-      { q: r`CM=1{,}44\text{ sur 2 ans}\\[4pt]\text{Taux moyen annuel}=\,?`,
+      { q: r`CM=1{,}44\text{ sur 2 ans}\\\text{Taux moyen annuel}=\,?`,
         choices: [`20\%`, `44\%`, `22\%`, `7{,}2\%`], a: `20\%`,
         tip: r`\sqrt{1{,}44}=1{,}2\Rightarrow t=20\%` },
     ],
 
     // ── Indice en base 100 ──
     indice: [
-      { q: r`\text{Indice}=120\text{ (base }100\text{)}\\[4pt]\text{Taux d'évolution}=\,?`,
+      { q: r`\text{Indice}=120\text{ (base }100\text{)}\\\text{Taux d'évolution}=\,?`,
         choices: [`+20\%`, `+120\%`, `+12\%`, `-20\%`], a: `+20\%`,
         tip: r`\dfrac{120-100}{100}=20\%` },
-      { q: r`\text{Prix : }50\,€\to60\,€\\[4pt]\text{Indice (base }100\text{)}=\,?`,
+      { q: r`\text{Prix : }50\,€\to60\,€\\\text{Indice (base }100\text{)}=\,?`,
         choices: [`120`, `110`, `60`, `160`], a: `120`,
         tip: r`\dfrac{60}{50}\times100=120` },
-      { q: r`\text{Indice passe de }80\text{ à }100\\[4pt]\text{Taux d'évolution}=\,?`,
+      { q: r`\text{Indice passe de }80\text{ à }100\\\text{Taux d'évolution}=\,?`,
         choices: [`+25\%`, `+20\%`, `-20\%`, `+100\%`], a: `+25\%`,
         tip: r`\dfrac{100-80}{80}=25\%` },
-      { q: r`\text{Indice en base }100=80\\[4pt]\text{Le prix a :}`,
+      { q: r`\text{Indice en base }100=80\\\text{Le prix a :}`,
         choices: [r`\text{baissé de }20\%`, r`\text{baissé de }80\%`, r`\text{augmenté de }20\%`, r`\text{augmenté de }80\%`],
         a: r`\text{baissé de }20\%`, tip: r`\dfrac{80-100}{100}=-20\%` },
-      { q: r`\text{Indice}=150\\[4pt]\text{Rapport à la base}=\,?`,
+      { q: r`\text{Indice}=150\\\text{Rapport à la base}=\,?`,
         choices: [`1{,}5`, `0{,}5`, `50`, `150`], a: `1{,}5`,
         tip: r`\dfrac{150}{100}=1{,}5` },
     ],
@@ -2883,7 +2883,7 @@ const DB = {
       { q: r`\text{Dans quel(s) ensemble(s) se trouve }5\text{ ?}`,
         choices: [r`\mathbb{N}\text{ seulement}`, r`\mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R}`, r`\mathbb{Z}\text{ seulement}`, r`\mathbb{Q}\text{ seulement}`],
         a: r`\mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R}`,
-        tip: r`5\in\mathbb{N}\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}.\\[4pt]\text{Tout entier naturel appartient à tous les ensembles.}` },
+        tip: r`5\in\mathbb{N}\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}.\\\text{Tout entier naturel appartient à tous les ensembles.}` },
 
       // ens_02
       { q: r`\text{Dans quel(s) ensemble(s) se trouve }0\text{ ?}`,
@@ -2915,7 +2915,7 @@ const DB = {
       { q: r`0{,}5\in\,?`,
         choices: [r`\mathbb{N}`, r`\mathbb{Z}`, r`\mathbb{D},\mathbb{Q},\mathbb{R}`, r`\mathbb{Q}\text{ seulement}`],
         a: r`\mathbb{D},\mathbb{Q},\mathbb{R}`,
-        tip: r`0{,}5=\dfrac{5}{10}=\dfrac{1}{2}\text{ : décimal fini, donc }\in\mathbb{D}.\\[4pt]\mathbb{D}\subset\mathbb{Q}\subset\mathbb{R}.` },
+        tip: r`0{,}5=\dfrac{5}{10}=\dfrac{1}{2}\text{ : décimal fini, donc }\in\mathbb{D}.\\\mathbb{D}\subset\mathbb{Q}\subset\mathbb{R}.` },
 
       // ens_07
       { q: r`\dfrac{1}{3}\in\,?`,
@@ -2965,7 +2965,7 @@ const DB = {
       { q: r`\dfrac{10}{4}\in\mathbb{Z}\text{ ?}`,
         choices: [r`\text{Oui}`, r`\text{Non}`, r`\text{Oui, car }10\text{ et }4\text{ sont entiers}`, r`\text{Oui, car }10/4=2{,}5\in\mathbb{Z}`],
         a: r`\text{Non}`,
-        tip: r`\dfrac{10}{4}=\dfrac{5}{2}=2{,}5\notin\mathbb{Z}.\\[4pt]\text{Mais }2{,}5\in\mathbb{D}\subset\mathbb{Q}\subset\mathbb{R}.` },
+        tip: r`\dfrac{10}{4}=\dfrac{5}{2}=2{,}5\notin\mathbb{Z}.\\\text{Mais }2{,}5\in\mathbb{D}\subset\mathbb{Q}\subset\mathbb{R}.` },
 
       // ens_15
       { q: r`\dfrac{8}{2}\in\,?`,
@@ -2977,13 +2977,13 @@ const DB = {
       { q: r`\dfrac{-12}{4}\in\mathbb{N}\text{ ?}`,
         choices: [r`\text{Oui, car }12\in\mathbb{N}`, r`\text{Non}`, r`\text{Oui, }|-3|=3\in\mathbb{N}`, r`\text{Oui, si on prend la valeur absolue}`],
         a: r`\text{Non}`,
-        tip: r`\dfrac{-12}{4}=-3\in\mathbb{Z}\setminus\mathbb{N}.\\[4pt]\mathbb{N}\text{ ne contient que les entiers positifs ou nuls.}` },
+        tip: r`\dfrac{-12}{4}=-3\in\mathbb{Z}\setminus\mathbb{N}.\\\mathbb{N}\text{ ne contient que les entiers positifs ou nuls.}` },
 
       // ens_17
       { q: r`\dfrac{15}{10}\in\,?`,
         choices: [r`\mathbb{Z}`, r`\mathbb{N}`, r`\mathbb{D},\mathbb{Q},\mathbb{R}`, r`\mathbb{Q}\text{ seulement}`],
         a: r`\mathbb{D},\mathbb{Q},\mathbb{R}`,
-        tip: r`\dfrac{15}{10}=1{,}5\text{ : décimal fini.}\\\in\mathbb{D}\subset\mathbb{Q}\subset\mathbb{R}.\\[4pt]\text{Attention : }1{,}5\notin\mathbb{Z}.` },
+        tip: r`\dfrac{15}{10}=1{,}5\text{ : décimal fini.}\\\in\mathbb{D}\subset\mathbb{Q}\subset\mathbb{R}.\\\text{Attention : }1{,}5\notin\mathbb{Z}.` },
 
       // ens_18
       { q: r`\dfrac{9}{3}\in\mathbb{N}\text{ ?}`,
@@ -3053,7 +3053,7 @@ const DB = {
       { q: r`\sqrt{\dfrac{4}{9}}\in\,?`,
         choices: [r`\mathbb{R}\text{ seulement}`, r`\mathbb{N}`, r`\mathbb{D},\mathbb{Q},\mathbb{R}`, r`\mathbb{Z}`],
         a: r`\mathbb{D},\mathbb{Q},\mathbb{R}`,
-        tip: r`\sqrt{\dfrac{4}{9}}=\dfrac{\sqrt{4}}{\sqrt{9}}=\dfrac{2}{3}=0{,}\overline{6}\notin\mathbb{D}.\\[4pt]\text{Attention : }\dfrac{2}{3}\in\mathbb{Q}\setminus\mathbb{D}.` },
+        tip: r`\sqrt{\dfrac{4}{9}}=\dfrac{\sqrt{4}}{\sqrt{9}}=\dfrac{2}{3}=0{,}\overline{6}\notin\mathbb{D}.\\\text{Attention : }\dfrac{2}{3}\in\mathbb{Q}\setminus\mathbb{D}.` },
 
       // ens_29 — piège 0,333...
       { q: r`0{,}333\ldots=\dfrac{1}{3}.\quad\dfrac{1}{3}\in\mathbb{D}\text{ ?}`,
@@ -3089,7 +3089,7 @@ const DB = {
       { q: r`\dfrac{22}{7}\in\mathbb{Q}\text{ ?}`,
         choices: [r`\text{Non, }22/7=\pi`, r`\text{Oui}`, r`\text{Non, c'est irrationnel}`, r`\text{On ne sait pas}`],
         a: r`\text{Oui}`,
-        tip: r`\dfrac{22}{7}\in\mathbb{Q}\text{ : c'est bien un rationnel.}\\[4pt]\text{Piège : }22/7\approx3{,}1428\ldots\neq\pi.\text{ Ce n'est qu'une approximation de }\pi.` },
+        tip: r`\dfrac{22}{7}\in\mathbb{Q}\text{ : c'est bien un rationnel.}\\\text{Piège : }22/7\approx3{,}1428\ldots\neq\pi.\text{ Ce n'est qu'une approximation de }\pi.` },
 
       // ens_35 — √0
       { q: r`\sqrt{0}\in\,?`,
@@ -3101,7 +3101,7 @@ const DB = {
       { q: r`-\sqrt{4}\in\,?`,
         choices: [r`\mathbb{N}`, r`\mathbb{Z},\mathbb{Q},\mathbb{R}`, r`\mathbb{R}\setminus\mathbb{Q}`, r`\mathbb{D}\text{ seulement}`],
         a: r`\mathbb{Z},\mathbb{Q},\mathbb{R}`,
-        tip: r`-\sqrt{4}=-2\in\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}.\\[4pt]-2\notin\mathbb{N}\text{ (négatif).}` },
+        tip: r`-\sqrt{4}=-2\in\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}.\\-2\notin\mathbb{N}\text{ (négatif).}` },
 
       // ens_37 — inclusion N ⊂ Z
       { q: r`\text{Laquelle de ces inclusions est vraie ?}`,
@@ -3119,13 +3119,13 @@ const DB = {
       { q: r`\text{Donne un exemple de rationnel qui n'est \textbf{pas} décimal.}`,
         choices: [r`\sqrt{2}`, r`\pi`, r`\dfrac{1}{3}`, r`0{,}25`],
         a: r`\dfrac{1}{3}`,
-        tip: r`\dfrac{1}{3}=0{,}333\ldots\in\mathbb{Q}\setminus\mathbb{D}.\\[4pt]\sqrt{2}\text{ et }\pi\text{ sont irrationnels.}\quad0{,}25\in\mathbb{D}.` },
+        tip: r`\dfrac{1}{3}=0{,}333\ldots\in\mathbb{Q}\setminus\mathbb{D}.\\\sqrt{2}\text{ et }\pi\text{ sont irrationnels.}\quad0{,}25\in\mathbb{D}.` },
 
       // ens_40 — irrationnel
       { q: r`\text{Lequel de ces nombres est \textbf{irrationnel} ?}`,
         choices: [r`\dfrac{7}{3}`, r`\sqrt{49}`, r`\sqrt{7}`, r`-5`],
         a: r`\sqrt{7}`,
-        tip: r`\sqrt{7}=2{,}6457\ldots\in\mathbb{R}\setminus\mathbb{Q}.\\[4pt]\sqrt{49}=7\in\mathbb{N}.\quad\frac{7}{3}\in\mathbb{Q}.\quad-5\in\mathbb{Z}.` },
+        tip: r`\sqrt{7}=2{,}6457\ldots\in\mathbb{R}\setminus\mathbb{Q}.\\\sqrt{49}=7\in\mathbb{N}.\quad\frac{7}{3}\in\mathbb{Q}.\quad-5\in\mathbb{Z}.` },
 
       // ens_41 — 4/2
       { q: r`\dfrac{4}{2}\in\mathbb{D}\text{ mais pas dans }\mathbb{N}\text{ ?}`,
@@ -3161,7 +3161,7 @@ const DB = {
       { q: r`(2{,}5)^2\in\,?`,
         choices: [r`\mathbb{Z}`, r`\mathbb{N}`, r`\mathbb{D},\mathbb{Q},\mathbb{R}`, r`\mathbb{R}\setminus\mathbb{Q}`],
         a: r`\mathbb{D},\mathbb{Q},\mathbb{R}`,
-        tip: r`(2{,}5)^2=6{,}25\in\mathbb{D}\subset\mathbb{Q}\subset\mathbb{R}.\\[4pt]6{,}25\notin\mathbb{Z}.` },
+        tip: r`(2{,}5)^2=6{,}25\in\mathbb{D}\subset\mathbb{Q}\subset\mathbb{R}.\\6{,}25\notin\mathbb{Z}.` },
 
       // ens_47 — √(1/4)
       { q: r`\sqrt{\dfrac{1}{4}}\in\,?`,
@@ -3190,7 +3190,7 @@ const DB = {
           r`0{,}5\in\mathbb{D}`
         ],
         a: r`\sqrt{2}\in\mathbb{Q}`,
-        tip: r`\sqrt{2}=1{,}4142\ldots\text{ est irrationnel : }\sqrt{2}\notin\mathbb{Q}.\\[4pt]\sqrt{4}=2\in\mathbb{N}.\quad\frac{1}{3}\in\mathbb{Q}.\quad0{,}5\in\mathbb{D}.\text{ Ces trois affirmations sont vraies.}` },
+        tip: r`\sqrt{2}=1{,}4142\ldots\text{ est irrationnel : }\sqrt{2}\notin\mathbb{Q}.\\\sqrt{4}=2\in\mathbb{N}.\quad\frac{1}{3}\in\mathbb{Q}.\quad0{,}5\in\mathbb{D}.\text{ Ces trois affirmations sont vraies.}` },
 
     ],
 
@@ -3200,31 +3200,31 @@ const DB = {
       // ── NIVEAU 1 : inégalité → intervalle ────────────────────────────────
 
       // int_01
-      { q: r`x\geq3\\[4pt]\text{Écriture en intervalle ?}`,
+      { q: r`x\geq3\\\text{Écriture en intervalle ?}`,
         choices: [r`\left]3\,;+\infty\right[`, r`\left[3\,;+\infty\right[`, r`\left]-\infty\,;3\right]`, r`\left[3\,;+\infty\right]`],
         a: r`\left[3\,;+\infty\right[`,
-        tip: r`x\geq3\Leftrightarrow x\in[3\,;+\infty[.\\[4pt]\text{Crochet fermé en }3\text{ (inclus), toujours ouvert vers }+\infty.` },
+        tip: r`x\geq3\Leftrightarrow x\in[3\,;+\infty[.\\\text{Crochet fermé en }3\text{ (inclus), toujours ouvert vers }+\infty.` },
 
       // int_02
-      { q: r`x<-2\\[4pt]\text{Écriture en intervalle ?}`,
+      { q: r`x<-2\\\text{Écriture en intervalle ?}`,
         choices: [r`\left]-\infty\,;-2\right]`, r`\left]-\infty\,;-2\right[`, r`\left[-2\,;+\infty\right[`, r`\left]-2\,;+\infty\right[`],
         a: r`\left]-\infty\,;-2\right[`,
-        tip: r`x<-2\Leftrightarrow x\in\left]-\infty\,;-2\right[.\\[4pt]\text{Crochet ouvert en }-2\text{ (non inclus).}` },
+        tip: r`x<-2\Leftrightarrow x\in\left]-\infty\,;-2\right[.\\\text{Crochet ouvert en }-2\text{ (non inclus).}` },
 
       // int_03
-      { q: r`-1\leq x<4\\[4pt]\text{Écriture en intervalle ?}`,
+      { q: r`-1\leq x<4\\\text{Écriture en intervalle ?}`,
         choices: [r`\left[-1\,;4\right]`, r`\left]-1\,;4\right[`, r`\left[-1\,;4\right[`, r`\left]-1\,;4\right]`],
         a: r`\left[-1\,;4\right[`,
-        tip: r`-1\leq x<4\Leftrightarrow x\in[-1\,;4[.\\[4pt]-1\text{ inclus (}\leq\text{) : crochet fermé.}\quad4\text{ exclu (}<\text{) : crochet ouvert.}` },
+        tip: r`-1\leq x<4\Leftrightarrow x\in[-1\,;4[.\\-1\text{ inclus (}\leq\text{) : crochet fermé.}\quad4\text{ exclu (}<\text{) : crochet ouvert.}` },
 
       // int_04
-      { q: r`-3<x\leq5\\[4pt]\text{Écriture en intervalle ?}`,
+      { q: r`-3<x\leq5\\\text{Écriture en intervalle ?}`,
         choices: [r`\left[-3\,;5\right]`, r`\left]-3\,;5\right[`, r`\left[-3\,;5\right[`, r`\left]-3\,;5\right]`],
         a: r`\left]-3\,;5\right]`,
-        tip: r`-3<x\leq5\Leftrightarrow x\in\left]-3\,;5\right].\\[4pt]-3\text{ exclu : ouvert.}\quad5\text{ inclus : fermé.}` },
+        tip: r`-3<x\leq5\Leftrightarrow x\in\left]-3\,;5\right].\\-3\text{ exclu : ouvert.}\quad5\text{ inclus : fermé.}` },
 
       // int_05
-      { q: r`x\leq0\\[4pt]\text{Écriture en intervalle ?}`,
+      { q: r`x\leq0\\\text{Écriture en intervalle ?}`,
         choices: [r`\left]0\,;+\infty\right[`, r`\left[0\,;+\infty\right[`, r`\left]-\infty\,;0\right[`, r`\left]-\infty\,;0\right]`],
         a: r`\left]-\infty\,;0\right]`,
         tip: r`x\leq0\Leftrightarrow x\in\left]-\infty\,;0\right].\\\text{Crochet fermé en }0\text{ (inclus).}` },
@@ -3232,34 +3232,34 @@ const DB = {
       // ── NIVEAU 2 : intervalle → inégalité ────────────────────────────────
 
       // int_06
-      { q: r`x\in\left[2\,;7\right]\\[4pt]\text{Écriture en inégalité ?}`,
+      { q: r`x\in\left[2\,;7\right]\\\text{Écriture en inégalité ?}`,
         choices: [r`2<x<7`, r`2\leq x<7`, r`2<x\leq7`, r`2\leq x\leq7`],
         a: r`2\leq x\leq7`,
         tip: r`\text{Crochets fermés des deux côtés : }\leq\text{ des deux côtés.}\\2\leq x\leq7.` },
 
       // int_07
-      { q: r`x\in\left]-1\,;6\right[\\[4pt]\text{Écriture en inégalité ?}`,
+      { q: r`x\in\left]-1\,;6\right[\\\text{Écriture en inégalité ?}`,
         choices: [r`-1\leq x\leq6`, r`-1<x<6`, r`-1\leq x<6`, r`-1<x\leq6`],
         a: r`-1<x<6`,
         tip: r`\text{Crochets ouverts des deux côtés : }<\text{ des deux côtés.}\\-1<x<6.` },
 
       // int_08
-      { q: r`x\in\left[0\,;3\right[\\[4pt]\text{Écriture en inégalité ?}`,
+      { q: r`x\in\left[0\,;3\right[\\\text{Écriture en inégalité ?}`,
         choices: [r`0<x<3`, r`0\leq x\leq3`, r`0\leq x<3`, r`0<x\leq3`],
         a: r`0\leq x<3`,
         tip: r`\text{Gauche fermé, droite ouvert : }\leq\text{ à gauche, }<\text{ à droite.}\\0\leq x<3.` },
 
       // int_09
-      { q: r`x\in\left]-\infty\,;5\right[\\[4pt]\text{Écriture en inégalité ?}`,
+      { q: r`x\in\left]-\infty\,;5\right[\\\text{Écriture en inégalité ?}`,
         choices: [r`x\geq5`, r`x\leq5`, r`x<5`, r`x>5`],
         a: r`x<5`,
-        tip: r`\left]-\infty\,;5\right[\Leftrightarrow x<5.\\[4pt]\text{Crochet ouvert en }5\text{ : }5\text{ non inclus, donc }<.` },
+        tip: r`\left]-\infty\,;5\right[\Leftrightarrow x<5.\\\text{Crochet ouvert en }5\text{ : }5\text{ non inclus, donc }<.` },
 
       // int_10
-      { q: r`x\in\left[-4\,;+\infty\right[\\[4pt]\text{Écriture en inégalité ?}`,
+      { q: r`x\in\left[-4\,;+\infty\right[\\\text{Écriture en inégalité ?}`,
         choices: [r`x<-4`, r`x\leq-4`, r`x\geq-4`, r`x>-4`],
         a: r`x\geq-4`,
-        tip: r`\left[-4\,;+\infty\right[\Leftrightarrow x\geq-4.\\[4pt]\text{Crochet fermé en }-4\text{ : }-4\text{ inclus, donc }\geq.` },
+        tip: r`\left[-4\,;+\infty\right[\Leftrightarrow x\geq-4.\\\text{Crochet fermé en }-4\text{ : }-4\text{ inclus, donc }\geq.` },
 
       // ── NIVEAU 3 : intersections ──────────────────────────────────────────
 
@@ -3285,7 +3285,7 @@ const DB = {
       { q: r`\left[1\,;4\right[\cap\left[4\,;7\right]=\,?`,
         choices: [r`\{4\}`, r`\emptyset`, r`\left[1\,;7\right]`, r`\left[1\,;4\right]`],
         a: r`\emptyset`,
-        tip: r`4\notin\left[1\,;4\right[\text{ (crochet ouvert).}\quad4\in\left[4\,;7\right].\\[4pt]\text{Aucun }x\text{ commun : intersection vide.}` },
+        tip: r`4\notin\left[1\,;4\right[\text{ (crochet ouvert).}\quad4\in\left[4\,;7\right].\\\text{Aucun }x\text{ commun : intersection vide.}` },
 
       // int_15
       { q: r`\left]-2\,;6\right]\cap\left[0\,;+\infty\right[=\,?`,
@@ -3305,7 +3305,7 @@ const DB = {
       { q: r`\left[0\,;2\right]\cup\left[5\,;7\right]=\,?`,
         choices: [r`\left[0\,;7\right]`, r`\emptyset`, r`\left[0\,;2\right]\cup\left[5\,;7\right]\text{ (ne se simplifie pas)}`, r`\left[2\,;5\right]`],
         a: r`\left[0\,;2\right]\cup\left[5\,;7\right]\text{ (ne se simplifie pas)}`,
-        tip: r`\text{Les deux intervalles sont disjoints : on ne peut pas simplifier.}\\[4pt]\text{La réunion n'est pas un intervalle, on la laisse telle quelle.}` },
+        tip: r`\text{Les deux intervalles sont disjoints : on ne peut pas simplifier.}\\\text{La réunion n'est pas un intervalle, on la laisse telle quelle.}` },
 
       // int_18 — réunion = R
       { q: r`\left]-\infty\,;3\right]\cup\left[3\,;+\infty\right[=\,?`,
@@ -3317,13 +3317,13 @@ const DB = {
       { q: r`\left]-\infty\,;3\right[\cup\left[3\,;+\infty\right[=\,?`,
         choices: [r`\emptyset`, r`\left]-\infty\,;3\right[`, r`\mathbb{R}`, r`\left]-\infty\,;3\right]\cup\left[3\,;+\infty\right[`],
         a: r`\mathbb{R}`,
-        tip: r`\text{Tout réel est soit }<3\text{ soit }\geq3.\\[4pt]\text{Même si }3\notin\left]-\infty\,;3\right[\text{, il est dans }\left[3\,;+\infty\right[.\\\text{La réunion couvre bien tout }\mathbb{R}.` },
+        tip: r`\text{Tout réel est soit }<3\text{ soit }\geq3.\\\text{Même si }3\notin\left]-\infty\,;3\right[\text{, il est dans }\left[3\,;+\infty\right[.\\\text{La réunion couvre bien tout }\mathbb{R}.` },
 
       // int_20 — piège réunion avec crochets ouverts
       { q: r`\left]-\infty\,;3\right[\cup\left]3\,;+\infty\right[=\,?`,
         choices: [r`\mathbb{R}`, r`\mathbb{R}\setminus\{3\}`, r`\{3\}`, r`\emptyset`],
         a: r`\mathbb{R}\setminus\{3\}`,
-        tip: r`3\notin\left]-\infty\,;3\right[\text{ et }3\notin\left]3\,;+\infty\right[.\\[4pt]\text{Donc }3\text{ n'est dans aucun des deux intervalles.}\\\text{La réunion est }\mathbb{R}\text{ privé de }3.` },
+        tip: r`3\notin\left]-\infty\,;3\right[\text{ et }3\notin\left]3\,;+\infty\right[.\\\text{Donc }3\text{ n'est dans aucun des deux intervalles.}\\\text{La réunion est }\mathbb{R}\text{ privé de }3.` },
 
     ],
 
@@ -3375,9 +3375,9 @@ const DB = {
       { q:r`10\%\text{ de }45=?`, choices:[r`4{,}5`,r`0{,}45`,`45`,r`5{,}4`], a:r`4{,}5`, tip:r`45\div10=4{,}5` },
       { q:r`25\%\text{ de }60=?`, choices:[`15`,`25`,`12`,`20`], a:`15`, tip:r`\frac{60}{4}=15` },
       { q:r`50\%\text{ de }17=?`, choices:[r`8{,}5`,r`7{,}5`,`9`,`17`], a:r`8{,}5`, tip:r`\frac{17}{2}=8{,}5` },
-      { q:r`\text{Prix : 12{,}50€, remise 2€.}\\[4pt]\text{Prix payé :}`, choices:[r`10{,}50€`,r`11{,}50€`,r`14{,}50€`,`10€`], a:r`10{,}50€`, tip:r`12{,}50-2=10{,}50` },
-      { q:r`\text{Article à 24€, plus 20\%.}\\[4pt]\text{Prix final :}`, choices:[r`28{,}80€`,`26€`,`29€`,`28€`], a:r`28{,}80€`, tip:r`24+4{,}80=28{,}80` },
-      { q:r`\text{Partage de 12{,}60€ en 3 parts égales.}\\[4pt]\text{Chaque part :}`, choices:[r`4{,}20€`,`4€`,r`4{,}50€`,r`3{,}60€`], a:r`4{,}20€`, tip:r`\frac{12{,}60}{3}=4{,}20` },
+      { q:r`\text{Prix : 12{,}50€, remise 2€.}\\\text{Prix payé :}`, choices:[r`10{,}50€`,r`11{,}50€`,r`14{,}50€`,`10€`], a:r`10{,}50€`, tip:r`12{,}50-2=10{,}50` },
+      { q:r`\text{Article à 24€, plus 20\%.}\\\text{Prix final :}`, choices:[r`28{,}80€`,`26€`,`29€`,`28€`], a:r`28{,}80€`, tip:r`24+4{,}80=28{,}80` },
+      { q:r`\text{Partage de 12{,}60€ en 3 parts égales.}\\\text{Chaque part :}`, choices:[r`4{,}20€`,`4€`,r`4{,}50€`,r`3{,}60€`], a:r`4{,}20€`, tip:r`\frac{12{,}60}{3}=4{,}20` },
     ],
     fractions: [
       { q:r`\dfrac{1}{2}+\dfrac{1}{3}=?`, choices:[r`\dfrac{5}{6}`,r`\dfrac{2}{5}`,r`\dfrac{2}{6}`,r`\dfrac{1}{6}`], a:r`\dfrac{5}{6}`, tip:r`\frac{3+2}{6}=\frac{5}{6}` },
@@ -3531,9 +3531,9 @@ const DB = {
       { q:r`7{,}2\times10^{-4}\text{ : ordre de grandeur :}`, choices:[r`0{,}001`,r`0{,}01`,r`0{,}0001`,r`0{,}1`], a:r`0{,}001`, tip:r`10^{-3}\approx 7{,}2\times10^{-4}` },
       { q:r`\text{Quel est le plus grand ?}`, choices:[r`3\times10^5`,r`9\times10^4`,r`2\times10^5`,r`5\times10^4`], a:r`3\times10^5`, tip:r`3\times10^5=300\,000\text{ (max)}` },
       { q:r`\text{Quel est le plus petit ?}`, choices:[r`4\times10^{-6}`,r`4\times10^{-5}`,r`9\times10^{-5}`,r`4\times10^{-4}`], a:r`4\times10^{-6}`, tip:r`10^{-6}<10^{-5}<10^{-4}` },
-      { q:r`\text{Distance Terre-Soleil : 150 millions de km.}\\[4pt]\text{En écriture scientifique en m :}`, choices:[r`1{,}5\times10^{11}\text{ m}`,r`1{,}5\times10^8\text{ m}`,r`15\times10^{10}\text{ m}`,r`1{,}5\times10^{10}\text{ m}`], a:r`1{,}5\times10^{11}\text{ m}`, tip:r`150\,000\,000\text{ km}=1{,}5\times10^{11}\text{ m}` },
-      { q:r`\text{Un atome mesure environ }10^{-10}\text{ m.}\\[4pt]\text{En mm :}`, choices:[r`10^{-7}\text{ mm}`,r`10^{-13}\text{ mm}`,r`10^{-9}\text{ mm}`,r`10^{-10}\text{ mm}`], a:r`10^{-7}\text{ mm}`, tip:r`1\text{ m}=10^3\text{ mm}\Rightarrow 10^{-10}\times10^3=10^{-7}` },
-      { q:r`\text{Une bactérie mesure }2\times10^{-6}\text{ m.}\\[4pt]\text{En µm :}`, choices:[r`2\,\text{µm}`,r`2\times10^{-6}\text{ µm}`,r`200\,\text{µm}`,r`20\,\text{µm}`], a:r`2\,\text{µm}`, tip:r`1\text{ µm}=10^{-6}\text{ m}\Rightarrow 2\times10^{-6}\text{ m}=2\text{ µm}` },
+      { q:r`\text{Distance Terre-Soleil : 150 millions de km.}\\\text{En écriture scientifique en m :}`, choices:[r`1{,}5\times10^{11}\text{ m}`,r`1{,}5\times10^8\text{ m}`,r`15\times10^{10}\text{ m}`,r`1{,}5\times10^{10}\text{ m}`], a:r`1{,}5\times10^{11}\text{ m}`, tip:r`150\,000\,000\text{ km}=1{,}5\times10^{11}\text{ m}` },
+      { q:r`\text{Un atome mesure environ }10^{-10}\text{ m.}\\\text{En mm :}`, choices:[r`10^{-7}\text{ mm}`,r`10^{-13}\text{ mm}`,r`10^{-9}\text{ mm}`,r`10^{-10}\text{ mm}`], a:r`10^{-7}\text{ mm}`, tip:r`1\text{ m}=10^3\text{ mm}\Rightarrow 10^{-10}\times10^3=10^{-7}` },
+      { q:r`\text{Une bactérie mesure }2\times10^{-6}\text{ m.}\\\text{En µm :}`, choices:[r`2\,\text{µm}`,r`2\times10^{-6}\text{ µm}`,r`200\,\text{µm}`,r`20\,\text{µm}`], a:r`2\,\text{µm}`, tip:r`1\text{ µm}=10^{-6}\text{ m}\Rightarrow 2\times10^{-6}\text{ m}=2\text{ µm}` },
     ],
     conversions: [
       { q:r`3\text{ km}=?\ \text{m}`, choices:[`3000`,`300`,`30000`,`30`], a:`3000`, tip:r`3\times1000=3000` },
@@ -3660,21 +3660,21 @@ const DB = {
 
     // Niveau 2 : simplification a√b — exprpad
     racines_n2: [
-      { q:r`\text{Simplifier :}\\[5pt]\sqrt{8}=`,   exprpad:true, a:"2√2", extraBtns:["√2"], tip:r`\sqrt{4\times2}=2\sqrt{2}` },
-      { q:r`\text{Simplifier :}\\[5pt]\sqrt{12}=`,  exprpad:true, a:"2√3", extraBtns:["√3"], tip:r`\sqrt{4\times3}=2\sqrt{3}` },
-      { q:r`\text{Simplifier :}\\[5pt]\sqrt{18}=`,  exprpad:true, a:"3√2", extraBtns:["√2"], tip:r`\sqrt{9\times2}=3\sqrt{2}` },
-      { q:r`\text{Simplifier :}\\[5pt]\sqrt{20}=`,  exprpad:true, a:"2√5", extraBtns:["√5"], tip:r`\sqrt{4\times5}=2\sqrt{5}` },
-      { q:r`\text{Simplifier :}\\[5pt]\sqrt{27}=`,  exprpad:true, a:"3√3", extraBtns:["√3"], tip:r`\sqrt{9\times3}=3\sqrt{3}` },
-      { q:r`\text{Simplifier :}\\[5pt]\sqrt{32}=`,  exprpad:true, a:"4√2", extraBtns:["√2"], tip:r`\sqrt{16\times2}=4\sqrt{2}` },
-      { q:r`\text{Simplifier :}\\[5pt]\sqrt{45}=`,  exprpad:true, a:"3√5", extraBtns:["√5"], tip:r`\sqrt{9\times5}=3\sqrt{5}` },
-      { q:r`\text{Simplifier :}\\[5pt]\sqrt{50}=`,  exprpad:true, a:"5√2", extraBtns:["√2"], tip:r`\sqrt{25\times2}=5\sqrt{2}` },
-      { q:r`\text{Simplifier :}\\[5pt]\sqrt{48}=`,  exprpad:true, a:"4√3", extraBtns:["√3"], tip:r`\sqrt{16\times3}=4\sqrt{3}` },
-      { q:r`\text{Simplifier :}\\[5pt]\sqrt{75}=`,  exprpad:true, a:"5√3", extraBtns:["√3"], tip:r`\sqrt{25\times3}=5\sqrt{3}` },
-      { q:r`\text{Simplifier :}\\[5pt]\sqrt{72}=`,  exprpad:true, a:"6√2", extraBtns:["√2"], tip:r`\sqrt{36\times2}=6\sqrt{2}` },
-      { q:r`\text{Simplifier :}\\[5pt]\sqrt{98}=`,  exprpad:true, a:"7√2", extraBtns:["√2"], tip:r`\sqrt{49\times2}=7\sqrt{2}` },
-      { q:r`\text{Simplifier :}\\[5pt]\sqrt{125}=`, exprpad:true, a:"5√5", extraBtns:["√5"], tip:r`\sqrt{25\times5}=5\sqrt{5}` },
-      { q:r`\text{Simplifier :}\\[5pt]\sqrt{108}=`, exprpad:true, a:"6√3", extraBtns:["√3"], tip:r`\sqrt{36\times3}=6\sqrt{3}` },
-      { q:r`\text{Simplifier :}\\[5pt]\sqrt{200}=`, exprpad:true, a:"10√2",extraBtns:["√2"], tip:r`\sqrt{100\times2}=10\sqrt{2}` },
+      { q:r`\text{Simplifier :}\\\sqrt{8}=`,   exprpad:true, a:"2√2", extraBtns:["√2"], tip:r`\sqrt{4\times2}=2\sqrt{2}` },
+      { q:r`\text{Simplifier :}\\\sqrt{12}=`,  exprpad:true, a:"2√3", extraBtns:["√3"], tip:r`\sqrt{4\times3}=2\sqrt{3}` },
+      { q:r`\text{Simplifier :}\\\sqrt{18}=`,  exprpad:true, a:"3√2", extraBtns:["√2"], tip:r`\sqrt{9\times2}=3\sqrt{2}` },
+      { q:r`\text{Simplifier :}\\\sqrt{20}=`,  exprpad:true, a:"2√5", extraBtns:["√5"], tip:r`\sqrt{4\times5}=2\sqrt{5}` },
+      { q:r`\text{Simplifier :}\\\sqrt{27}=`,  exprpad:true, a:"3√3", extraBtns:["√3"], tip:r`\sqrt{9\times3}=3\sqrt{3}` },
+      { q:r`\text{Simplifier :}\\\sqrt{32}=`,  exprpad:true, a:"4√2", extraBtns:["√2"], tip:r`\sqrt{16\times2}=4\sqrt{2}` },
+      { q:r`\text{Simplifier :}\\\sqrt{45}=`,  exprpad:true, a:"3√5", extraBtns:["√5"], tip:r`\sqrt{9\times5}=3\sqrt{5}` },
+      { q:r`\text{Simplifier :}\\\sqrt{50}=`,  exprpad:true, a:"5√2", extraBtns:["√2"], tip:r`\sqrt{25\times2}=5\sqrt{2}` },
+      { q:r`\text{Simplifier :}\\\sqrt{48}=`,  exprpad:true, a:"4√3", extraBtns:["√3"], tip:r`\sqrt{16\times3}=4\sqrt{3}` },
+      { q:r`\text{Simplifier :}\\\sqrt{75}=`,  exprpad:true, a:"5√3", extraBtns:["√3"], tip:r`\sqrt{25\times3}=5\sqrt{3}` },
+      { q:r`\text{Simplifier :}\\\sqrt{72}=`,  exprpad:true, a:"6√2", extraBtns:["√2"], tip:r`\sqrt{36\times2}=6\sqrt{2}` },
+      { q:r`\text{Simplifier :}\\\sqrt{98}=`,  exprpad:true, a:"7√2", extraBtns:["√2"], tip:r`\sqrt{49\times2}=7\sqrt{2}` },
+      { q:r`\text{Simplifier :}\\\sqrt{125}=`, exprpad:true, a:"5√5", extraBtns:["√5"], tip:r`\sqrt{25\times5}=5\sqrt{5}` },
+      { q:r`\text{Simplifier :}\\\sqrt{108}=`, exprpad:true, a:"6√3", extraBtns:["√3"], tip:r`\sqrt{36\times3}=6\sqrt{3}` },
+      { q:r`\text{Simplifier :}\\\sqrt{200}=`, exprpad:true, a:"10√2",extraBtns:["√2"], tip:r`\sqrt{100\times2}=10\sqrt{2}` },
     ],
 
     // Niveau 3 : addition/soustraction de radicaux — exprpad
@@ -3693,16 +3693,16 @@ const DB = {
 
     // Niveau 4 : identités remarquables avec radicaux — exprpad
     racines_n4: [
-      { q:r`\text{Développer :}\\[4pt](1+\sqrt{2})^2=`,         exprpad:true, a:"3+2√2",   extraBtns:["√2"],       tip:r`1+2\sqrt{2}+2=3+2\sqrt{2}` },
-      { q:r`\text{Développer :}\\[4pt](\sqrt{3}-1)^2=`,         exprpad:true, a:"4-2√3",   extraBtns:["√3"],       tip:r`3-2\sqrt{3}+1=4-2\sqrt{3}` },
-      { q:r`\text{Développer :}\\[4pt](\sqrt{2}+1)(\sqrt{2}-1)=`,exprpad:true, a:"1",       extraBtns:["√2"],       tip:r`(\sqrt{2})^2-1^2=2-1=1` },
-      { q:r`\text{Développer :}\\[4pt](\sqrt{5}+2)(\sqrt{5}-2)=`,exprpad:true, a:"1",       extraBtns:["√5"],       tip:r`5-4=1` },
-      { q:r`\text{Développer :}\\[4pt](\sqrt{7}+1)^2=`,         exprpad:true, a:"8+2√7",   extraBtns:["√7"],       tip:r`7+2\sqrt{7}+1=8+2\sqrt{7}` },
-      { q:r`\text{Développer :}\\[4pt](\sqrt{5}-2)^2=`,         exprpad:true, a:"9-4√5",   extraBtns:["√5"],       tip:r`5-4\sqrt{5}+4=9-4\sqrt{5}` },
-      { q:r`\text{Développer :}\\[4pt](3+\sqrt{2})^2=`,         exprpad:true, a:"11+6√2",  extraBtns:["√2"],       tip:r`9+6\sqrt{2}+2=11+6\sqrt{2}` },
-      { q:r`\text{Développer :}\\[4pt](\sqrt{3}+\sqrt{2})^2=`,  exprpad:true, a:"5+2√6",   extraBtns:["√6","√3","√2"], tip:r`3+2\sqrt{6}+2=5+2\sqrt{6}` },
-      { q:r`\text{Développer :}\\[4pt](2+\sqrt{3})(\sqrt{3}-2)=`,exprpad:true, a:"-1",      extraBtns:["√3"],       tip:r`(\sqrt{3})^2-4=3-4=-1` },
-      { q:r`\text{Développer :}\\[4pt](1+\sqrt{5})^2=`,         exprpad:true, a:"6+2√5",   extraBtns:["√5"],       tip:r`1+2\sqrt{5}+5=6+2\sqrt{5}` },
+      { q:r`\text{Développer :}\\(1+\sqrt{2})^2=`,         exprpad:true, a:"3+2√2",   extraBtns:["√2"],       tip:r`1+2\sqrt{2}+2=3+2\sqrt{2}` },
+      { q:r`\text{Développer :}\\(\sqrt{3}-1)^2=`,         exprpad:true, a:"4-2√3",   extraBtns:["√3"],       tip:r`3-2\sqrt{3}+1=4-2\sqrt{3}` },
+      { q:r`\text{Développer :}\\(\sqrt{2}+1)(\sqrt{2}-1)=`,exprpad:true, a:"1",       extraBtns:["√2"],       tip:r`(\sqrt{2})^2-1^2=2-1=1` },
+      { q:r`\text{Développer :}\\(\sqrt{5}+2)(\sqrt{5}-2)=`,exprpad:true, a:"1",       extraBtns:["√5"],       tip:r`5-4=1` },
+      { q:r`\text{Développer :}\\(\sqrt{7}+1)^2=`,         exprpad:true, a:"8+2√7",   extraBtns:["√7"],       tip:r`7+2\sqrt{7}+1=8+2\sqrt{7}` },
+      { q:r`\text{Développer :}\\(\sqrt{5}-2)^2=`,         exprpad:true, a:"9-4√5",   extraBtns:["√5"],       tip:r`5-4\sqrt{5}+4=9-4\sqrt{5}` },
+      { q:r`\text{Développer :}\\(3+\sqrt{2})^2=`,         exprpad:true, a:"11+6√2",  extraBtns:["√2"],       tip:r`9+6\sqrt{2}+2=11+6\sqrt{2}` },
+      { q:r`\text{Développer :}\\(\sqrt{3}+\sqrt{2})^2=`,  exprpad:true, a:"5+2√6",   extraBtns:["√6","√3","√2"], tip:r`3+2\sqrt{6}+2=5+2\sqrt{6}` },
+      { q:r`\text{Développer :}\\(2+\sqrt{3})(\sqrt{3}-2)=`,exprpad:true, a:"-1",      extraBtns:["√3"],       tip:r`(\sqrt{3})^2-4=3-4=-1` },
+      { q:r`\text{Développer :}\\(1+\sqrt{5})^2=`,         exprpad:true, a:"6+2√5",   extraBtns:["√5"],       tip:r`1+2\sqrt{5}+5=6+2\sqrt{5}` },
     ],
 
     // ── Opérations sur les nombres relatifs (50 questions progressives) ──
@@ -3773,100 +3773,100 @@ const DB = {
   // ════ 4. CALCUL LITTÉRAL ═════════════════════════════════════════════════════
   litteral: {
     eq1: [
-      { q:r`3x-5=10\\[4pt]x=?`, choices:[`5`,`3`,`1`,r`\frac{7}{3}`], a:`5`, tip:r`3x=15\Rightarrow x=5` },
-      { q:r`2x+7=-3\\[4pt]x=?`, choices:[`-5`,`5`,`-2`,`2`], a:`-5`, tip:r`2x=-10\Rightarrow x=-5` },
-      { q:r`-2x+6=0\\[4pt]x=?`, choices:[`3`,`-3`,`6`,`12`], a:`3`, tip:r`x=3` },
-      { q:r`4x-3=2x+5\\[4pt]x=?`, choices:[`4`,`2`,`8`,`-4`], a:`4`, tip:r`2x=8\Rightarrow x=4` },
-      { q:r`\dfrac{x}{3}=2\\[4pt]x=?`, choices:[`6`,r`\frac{2}{3}`,`3`,`5`], a:`6`, tip:r`x=6` },
-      { q:r`5x=20\\[4pt]x=?`, choices:[`4`,`5`,`100`,`25`], a:`4`, tip:r`x=20/5=4` },
-      { q:r`x+9=-3\\[4pt]x=?`, choices:[`-12`,`12`,`-6`,`6`], a:`-12`, tip:r`x=-3-9=-12` },
-      { q:r`7x+1=15\\[4pt]x=?`, choices:[`2`,`-2`,`1`,`7`], a:`2`, tip:r`7x=14\Rightarrow x=2` },
-      { q:r`3x=x+8\\[4pt]x=?`, choices:[`4`,`8`,`2`,`-4`], a:`4`, tip:r`2x=8\Rightarrow x=4` },
-      { q:r`2(x+3)=10\\[4pt]x=?`, choices:[`2`,`5`,`-2`,`1`], a:`2`, tip:r`x+3=5\Rightarrow x=2` },
-      { q:r`-4x+12=0\\[4pt]x=?`, choices:[`3`,`-3`,`4`,`-4`], a:`3`, tip:r`4x=12\Rightarrow x=3` },
-      { q:r`\dfrac{2x+4}{2}=5\\[4pt]x=?`, choices:[`3`,`4`,`6`,`2`], a:`3`, tip:r`2x+4=10\Rightarrow x=3` },
-      { q:r`5x-7=3x+1\\[4pt]x=?`, choices:[`4`,`3`,`-4`,`8`], a:`4`, tip:r`2x=8\Rightarrow x=4` },
-      { q:r`\dfrac{x}{5}+1=3\\[4pt]x=?`, choices:[`10`,`2`,`15`,`5`], a:`10`, tip:r`\frac{x}{5}=2\Rightarrow x=10` },
-      { q:r`-x+4=1\\[4pt]x=?`, choices:[`3`,`-3`,`5`,`-5`], a:`3`, tip:r`-x=-3\Rightarrow x=3` },
-      { q:r`3(2x-1)=9\\[4pt]x=?`, choices:[`2`,`1`,`3`,`-1`], a:`2`, tip:r`6x-3=9\Rightarrow x=2` },
-      { q:r`x-8=2x-5\\[4pt]x=?`, choices:[`-3`,`3`,`-13`,`13`], a:`-3`, tip:r`-x=3\Rightarrow x=-3` },
-      { q:r`4(x-2)=8\\[4pt]x=?`, choices:[`4`,`0`,`3`,`6`], a:`4`, tip:r`x-2=2\Rightarrow x=4` },
-      { q:r`\dfrac{3x}{4}=6\\[4pt]x=?`, choices:[`8`,`4{,}5`,`24`,`2`], a:`8`, tip:r`3x=24\Rightarrow x=8` },
-      { q:r`2x+5=x-3\\[4pt]x=?`, choices:[`-8`,`8`,`-2`,`2`], a:`-8`, tip:r`x=-8` },
-      { q:r`6x-5=4x+3\\[4pt]x=?`, choices:[`4`,`-4`,`1`,`2`], a:`4`, tip:r`6x-4x=3+5\Rightarrow 2x=8\Rightarrow x=4` },
-      { q:r`9x+2=5x-10\\[4pt]x=?`, choices:[`-3`,`3`,`-2`,`2`], a:`-3`, tip:r`9x-5x=-10-2\Rightarrow 4x=-12\Rightarrow x=-3` },
-      { q:r`7x-4=3x+8\\[4pt]x=?`, choices:[`3`,`1`,`4`,`-3`], a:`3`, tip:r`7x-3x=8+4\Rightarrow 4x=12\Rightarrow x=3` },
-      { q:r`2x+11=8x-7\\[4pt]x=?`, choices:[`3`,`-3`,`2`,`9`], a:`3`, tip:r`-6x=-18\Rightarrow x=3` },
-      { q:r`5x+6=-x+18\\[4pt]x=?`, choices:[`2`,`-2`,`4`,`3`], a:`2`, tip:r`6x=12\Rightarrow x=2` },
-      { q:r`3(x+4)=21\\[4pt]x=?`, choices:[`3`,`4`,`7`,`17`], a:`3`, tip:r`x+4=7\Rightarrow x=3` },
-      { q:r`5(2x-3)=25\\[4pt]x=?`, choices:[`4`,`5`,`2`,`14`], a:`4`, tip:r`2x-3=5\Rightarrow 2x=8\Rightarrow x=4` },
-      { q:r`2(x-3)+5=11\\[4pt]x=?`, choices:[`6`,`3`,`8`,`-3`], a:`6`, tip:r`2(x-3)=6\Rightarrow x-3=3\Rightarrow x=6` },
-      { q:r`4(x+1)=2(x+5)\\[4pt]x=?`, choices:[`3`,`1`,`5`,`-3`], a:`3`, tip:r`4x+4=2x+10\Rightarrow 2x=6\Rightarrow x=3` },
-      { q:r`3(x-2)=2(x+1)\\[4pt]x=?`, choices:[`8`,`2`,`-8`,`4`], a:`8`, tip:r`3x-6=2x+2\Rightarrow x=8` },
-      { q:r`\dfrac{x+3}{4}=2\\[4pt]x=?`, choices:[`5`,`4`,`8`,`11`], a:`5`, tip:r`x+3=8\Rightarrow x=5` },
-      { q:r`\dfrac{2x-1}{3}=3\\[4pt]x=?`, choices:[`5`,`4`,`6`,`3`], a:`5`, tip:r`2x-1=9\Rightarrow 2x=10\Rightarrow x=5` },
-      { q:r`\dfrac{3x+4}{2}=8\\[4pt]x=?`, choices:[`4`,`2`,`6`,`3`], a:`4`, tip:r`3x+4=16\Rightarrow 3x=12\Rightarrow x=4` },
-      { q:r`\dfrac{x-5}{2}=-1\\[4pt]x=?`, choices:[`3`,`-3`,`-7`,`7`], a:`3`, tip:r`x-5=-2\Rightarrow x=3` },
-      { q:r`\dfrac{4x+2}{5}=2\\[4pt]x=?`, choices:[`2`,`1`,`3`,`4`], a:`2`, tip:r`4x+2=10\Rightarrow 4x=8\Rightarrow x=2` },
-      { q:r`\dfrac{x}{2}+\dfrac{x}{3}=5\\[4pt]x=?`, choices:[`6`,`5`,`3`,`10`], a:`6`, tip:r`\frac{3x+2x}{6}=5\Rightarrow 5x=30\Rightarrow x=6` },
-      { q:r`\dfrac{x}{4}-\dfrac{x}{6}=1\\[4pt]x=?`, choices:[`12`,`2`,`6`,`4`], a:`12`, tip:r`\frac{3x-2x}{12}=1\Rightarrow x=12` },
-      { q:r`\dfrac{2x}{3}+\dfrac{x}{2}=7\\[4pt]x=?`, choices:[`6`,`7`,`3`,`4`], a:`6`, tip:r`\frac{4x+3x}{6}=7\Rightarrow 7x=42\Rightarrow x=6` },
-      { q:r`\dfrac{x+1}{2}=\dfrac{x-1}{3}\\[4pt]x=?`, choices:[`-5`,`5`,`1`,`-1`], a:`-5`, tip:r`3(x+1)=2(x-1)\Rightarrow 3x+3=2x-2\Rightarrow x=-5` },
-      { q:r`\dfrac{x}{5}=\dfrac{x-4}{3}\\[4pt]x=?`, choices:[`10`,`5`,`4`,`-10`], a:`10`, tip:r`3x=5(x-4)\Rightarrow 3x=5x-20\Rightarrow 2x=20\Rightarrow x=10` },
-      { q:r`\text{Le double d'un nombre augmenté de 7 vaut 23.}\\[4pt]\text{Ce nombre :}`, choices:[`8`,`15`,`5`,`10`], a:`8`, tip:r`2x+7=23\Rightarrow 2x=16\Rightarrow x=8` },
-      { q:r`\text{Un article coûte }x\text{ €. Après une remise de 4 €,}\\[4pt]\text{il coûte 16 €. Prix initial :}`, choices:[`20`,`12`,`16`,`24`], a:`20`, tip:r`x-4=16\Rightarrow x=20` },
-      { q:r`\text{La somme de trois entiers consécutifs est 48.}\\[4pt]\text{Le plus petit :}`, choices:[`15`,`16`,`17`,`14`], a:`15`, tip:r`x+(x+1)+(x+2)=48\Rightarrow 3x=45\Rightarrow x=15` },
-      { q:r`\text{Un rectangle a un périmètre de 30 cm.}\\[4pt]\text{Sa longueur vaut }L=2\ell\text{. Largeur }\ell :`, choices:[`5`,`6`,`10`,`3`], a:`5`, tip:r`2(L+\ell)=30\Rightarrow 6\ell=30\Rightarrow \ell=5` },
-      { q:r`\text{Marie a 3 fois l'âge de son frère.}\\[4pt]\text{Leur somme d'âges : 24 ans. Âge du frère :}`, choices:[`6`,`8`,`18`,`12`], a:`6`, tip:r`3x+x=24\Rightarrow 4x=24\Rightarrow x=6` },
-      { q:r`-3x+7=1\\[4pt]x=?`, choices:[`2`,`-2`,`3`,`-3`], a:`2`, tip:r`-3x=-6\Rightarrow x=2` },
-      { q:r`8-2x=14\\[4pt]x=?`, choices:[`-3`,`3`,`-11`,`11`], a:`-3`, tip:r`-2x=6\Rightarrow x=-3` },
-      { q:r`5-x=3x-7\\[4pt]x=?`, choices:[`3`,`-3`,`1`,`4`], a:`3`, tip:r`5+7=3x+x\Rightarrow 4x=12\Rightarrow x=3` },
-      { q:r`-(x+2)=5\\[4pt]x=?`, choices:[`-7`,`7`,`-3`,`3`], a:`-7`, tip:r`-x-2=5\Rightarrow -x=7\Rightarrow x=-7` },
-      { q:r`2x-(3-x)=9\\[4pt]x=?`, choices:[`4`,`3`,`-4`,`12`], a:`4`, tip:r`2x-3+x=9\Rightarrow 3x=12\Rightarrow x=4` },
+      { q:r`3x-5=10\\x=?`, choices:[`5`,`3`,`1`,r`\frac{7}{3}`], a:`5`, tip:r`3x=15\Rightarrow x=5` },
+      { q:r`2x+7=-3\\x=?`, choices:[`-5`,`5`,`-2`,`2`], a:`-5`, tip:r`2x=-10\Rightarrow x=-5` },
+      { q:r`-2x+6=0\\x=?`, choices:[`3`,`-3`,`6`,`12`], a:`3`, tip:r`x=3` },
+      { q:r`4x-3=2x+5\\x=?`, choices:[`4`,`2`,`8`,`-4`], a:`4`, tip:r`2x=8\Rightarrow x=4` },
+      { q:r`\dfrac{x}{3}=2\\x=?`, choices:[`6`,r`\frac{2}{3}`,`3`,`5`], a:`6`, tip:r`x=6` },
+      { q:r`5x=20\\x=?`, choices:[`4`,`5`,`100`,`25`], a:`4`, tip:r`x=20/5=4` },
+      { q:r`x+9=-3\\x=?`, choices:[`-12`,`12`,`-6`,`6`], a:`-12`, tip:r`x=-3-9=-12` },
+      { q:r`7x+1=15\\x=?`, choices:[`2`,`-2`,`1`,`7`], a:`2`, tip:r`7x=14\Rightarrow x=2` },
+      { q:r`3x=x+8\\x=?`, choices:[`4`,`8`,`2`,`-4`], a:`4`, tip:r`2x=8\Rightarrow x=4` },
+      { q:r`2(x+3)=10\\x=?`, choices:[`2`,`5`,`-2`,`1`], a:`2`, tip:r`x+3=5\Rightarrow x=2` },
+      { q:r`-4x+12=0\\x=?`, choices:[`3`,`-3`,`4`,`-4`], a:`3`, tip:r`4x=12\Rightarrow x=3` },
+      { q:r`\dfrac{2x+4}{2}=5\\x=?`, choices:[`3`,`4`,`6`,`2`], a:`3`, tip:r`2x+4=10\Rightarrow x=3` },
+      { q:r`5x-7=3x+1\\x=?`, choices:[`4`,`3`,`-4`,`8`], a:`4`, tip:r`2x=8\Rightarrow x=4` },
+      { q:r`\dfrac{x}{5}+1=3\\x=?`, choices:[`10`,`2`,`15`,`5`], a:`10`, tip:r`\frac{x}{5}=2\Rightarrow x=10` },
+      { q:r`-x+4=1\\x=?`, choices:[`3`,`-3`,`5`,`-5`], a:`3`, tip:r`-x=-3\Rightarrow x=3` },
+      { q:r`3(2x-1)=9\\x=?`, choices:[`2`,`1`,`3`,`-1`], a:`2`, tip:r`6x-3=9\Rightarrow x=2` },
+      { q:r`x-8=2x-5\\x=?`, choices:[`-3`,`3`,`-13`,`13`], a:`-3`, tip:r`-x=3\Rightarrow x=-3` },
+      { q:r`4(x-2)=8\\x=?`, choices:[`4`,`0`,`3`,`6`], a:`4`, tip:r`x-2=2\Rightarrow x=4` },
+      { q:r`\dfrac{3x}{4}=6\\x=?`, choices:[`8`,`4{,}5`,`24`,`2`], a:`8`, tip:r`3x=24\Rightarrow x=8` },
+      { q:r`2x+5=x-3\\x=?`, choices:[`-8`,`8`,`-2`,`2`], a:`-8`, tip:r`x=-8` },
+      { q:r`6x-5=4x+3\\x=?`, choices:[`4`,`-4`,`1`,`2`], a:`4`, tip:r`6x-4x=3+5\Rightarrow 2x=8\Rightarrow x=4` },
+      { q:r`9x+2=5x-10\\x=?`, choices:[`-3`,`3`,`-2`,`2`], a:`-3`, tip:r`9x-5x=-10-2\Rightarrow 4x=-12\Rightarrow x=-3` },
+      { q:r`7x-4=3x+8\\x=?`, choices:[`3`,`1`,`4`,`-3`], a:`3`, tip:r`7x-3x=8+4\Rightarrow 4x=12\Rightarrow x=3` },
+      { q:r`2x+11=8x-7\\x=?`, choices:[`3`,`-3`,`2`,`9`], a:`3`, tip:r`-6x=-18\Rightarrow x=3` },
+      { q:r`5x+6=-x+18\\x=?`, choices:[`2`,`-2`,`4`,`3`], a:`2`, tip:r`6x=12\Rightarrow x=2` },
+      { q:r`3(x+4)=21\\x=?`, choices:[`3`,`4`,`7`,`17`], a:`3`, tip:r`x+4=7\Rightarrow x=3` },
+      { q:r`5(2x-3)=25\\x=?`, choices:[`4`,`5`,`2`,`14`], a:`4`, tip:r`2x-3=5\Rightarrow 2x=8\Rightarrow x=4` },
+      { q:r`2(x-3)+5=11\\x=?`, choices:[`6`,`3`,`8`,`-3`], a:`6`, tip:r`2(x-3)=6\Rightarrow x-3=3\Rightarrow x=6` },
+      { q:r`4(x+1)=2(x+5)\\x=?`, choices:[`3`,`1`,`5`,`-3`], a:`3`, tip:r`4x+4=2x+10\Rightarrow 2x=6\Rightarrow x=3` },
+      { q:r`3(x-2)=2(x+1)\\x=?`, choices:[`8`,`2`,`-8`,`4`], a:`8`, tip:r`3x-6=2x+2\Rightarrow x=8` },
+      { q:r`\dfrac{x+3}{4}=2\\x=?`, choices:[`5`,`4`,`8`,`11`], a:`5`, tip:r`x+3=8\Rightarrow x=5` },
+      { q:r`\dfrac{2x-1}{3}=3\\x=?`, choices:[`5`,`4`,`6`,`3`], a:`5`, tip:r`2x-1=9\Rightarrow 2x=10\Rightarrow x=5` },
+      { q:r`\dfrac{3x+4}{2}=8\\x=?`, choices:[`4`,`2`,`6`,`3`], a:`4`, tip:r`3x+4=16\Rightarrow 3x=12\Rightarrow x=4` },
+      { q:r`\dfrac{x-5}{2}=-1\\x=?`, choices:[`3`,`-3`,`-7`,`7`], a:`3`, tip:r`x-5=-2\Rightarrow x=3` },
+      { q:r`\dfrac{4x+2}{5}=2\\x=?`, choices:[`2`,`1`,`3`,`4`], a:`2`, tip:r`4x+2=10\Rightarrow 4x=8\Rightarrow x=2` },
+      { q:r`\dfrac{x}{2}+\dfrac{x}{3}=5\\x=?`, choices:[`6`,`5`,`3`,`10`], a:`6`, tip:r`\frac{3x+2x}{6}=5\Rightarrow 5x=30\Rightarrow x=6` },
+      { q:r`\dfrac{x}{4}-\dfrac{x}{6}=1\\x=?`, choices:[`12`,`2`,`6`,`4`], a:`12`, tip:r`\frac{3x-2x}{12}=1\Rightarrow x=12` },
+      { q:r`\dfrac{2x}{3}+\dfrac{x}{2}=7\\x=?`, choices:[`6`,`7`,`3`,`4`], a:`6`, tip:r`\frac{4x+3x}{6}=7\Rightarrow 7x=42\Rightarrow x=6` },
+      { q:r`\dfrac{x+1}{2}=\dfrac{x-1}{3}\\x=?`, choices:[`-5`,`5`,`1`,`-1`], a:`-5`, tip:r`3(x+1)=2(x-1)\Rightarrow 3x+3=2x-2\Rightarrow x=-5` },
+      { q:r`\dfrac{x}{5}=\dfrac{x-4}{3}\\x=?`, choices:[`10`,`5`,`4`,`-10`], a:`10`, tip:r`3x=5(x-4)\Rightarrow 3x=5x-20\Rightarrow 2x=20\Rightarrow x=10` },
+      { q:r`\text{Le double d'un nombre augmenté de 7 vaut 23.}\\\text{Ce nombre :}`, choices:[`8`,`15`,`5`,`10`], a:`8`, tip:r`2x+7=23\Rightarrow 2x=16\Rightarrow x=8` },
+      { q:r`\text{Un article coûte }x\text{ €. Après une remise de 4 €,}\\\text{il coûte 16 €. Prix initial :}`, choices:[`20`,`12`,`16`,`24`], a:`20`, tip:r`x-4=16\Rightarrow x=20` },
+      { q:r`\text{La somme de trois entiers consécutifs est 48.}\\\text{Le plus petit :}`, choices:[`15`,`16`,`17`,`14`], a:`15`, tip:r`x+(x+1)+(x+2)=48\Rightarrow 3x=45\Rightarrow x=15` },
+      { q:r`\text{Un rectangle a un périmètre de 30 cm.}\\\text{Sa longueur vaut }L=2\ell\text{. Largeur }\ell :`, choices:[`5`,`6`,`10`,`3`], a:`5`, tip:r`2(L+\ell)=30\Rightarrow 6\ell=30\Rightarrow \ell=5` },
+      { q:r`\text{Marie a 3 fois l'âge de son frère.}\\\text{Leur somme d'âges : 24 ans. Âge du frère :}`, choices:[`6`,`8`,`18`,`12`], a:`6`, tip:r`3x+x=24\Rightarrow 4x=24\Rightarrow x=6` },
+      { q:r`-3x+7=1\\x=?`, choices:[`2`,`-2`,`3`,`-3`], a:`2`, tip:r`-3x=-6\Rightarrow x=2` },
+      { q:r`8-2x=14\\x=?`, choices:[`-3`,`3`,`-11`,`11`], a:`-3`, tip:r`-2x=6\Rightarrow x=-3` },
+      { q:r`5-x=3x-7\\x=?`, choices:[`3`,`-3`,`1`,`4`], a:`3`, tip:r`5+7=3x+x\Rightarrow 4x=12\Rightarrow x=3` },
+      { q:r`-(x+2)=5\\x=?`, choices:[`-7`,`7`,`-3`,`3`], a:`-7`, tip:r`-x-2=5\Rightarrow -x=7\Rightarrow x=-7` },
+      { q:r`2x-(3-x)=9\\x=?`, choices:[`4`,`3`,`-4`,`12`], a:`4`, tip:r`2x-3+x=9\Rightarrow 3x=12\Rightarrow x=4` },
     ],
     produit_nul: [
-      { q:r`x(x+7)=0\\[4pt]x=?`, choices:[r`0\text{ ou }-7`,`7`,`0`,`-7`], a:r`0\text{ ou }-7`, tip:r`x=0\text{ ou }x=-7` },
-      { q:r`(x-3)(x+1)=0\\[4pt]x=?`, choices:[r`3\text{ ou }-1`,r`-3\text{ ou }1`,`3`,`2`], a:r`3\text{ ou }-1`, tip:r`x=3\text{ ou }x=-1` },
-      { q:r`(2x-4)(x+5)=0\\[4pt]x=?`, choices:[r`2\text{ ou }-5`,r`4\text{ ou }-5`,`-2`,`2`], a:r`2\text{ ou }-5`, tip:r`x=2\text{ ou }x=-5` },
-      { q:r`3x(x-1)=0\\[4pt]x=?`, choices:[r`0\text{ ou }1`,r`3\text{ ou }1`,`0`,`3`], a:r`0\text{ ou }1`, tip:r`x=0\text{ ou }x=1` },
-      { q:r`(x-2)^2=0\\[4pt]x=?`, choices:[`2`,r`-2\text{ ou }2`,`-2`,`0`], a:`2`, tip:r`\text{Racine double}` },
-      { q:r`(x+4)(x-6)=0\\[4pt]x=?`, choices:[r`-4\text{ ou }6`,r`4\text{ ou }-6`,r`-4\text{ ou }-6`,r`4\text{ ou }6`], a:r`-4\text{ ou }6`, tip:r`x=-4\text{ ou }x=6` },
-      { q:r`x(x-5)(x+2)=0\\[4pt]x=?`, choices:[r`0\text{, }5\text{ ou }-2`,r`0\text{, }-5\text{ ou }2`,r`0\text{ ou }5`,r`-5\text{ ou }2`], a:r`0\text{, }5\text{ ou }-2`, tip:r`x=0\text{ ou }5\text{ ou }-2` },
-      { q:r`(3x+6)(x-1)=0\\[4pt]x=?`, choices:[r`-2\text{ ou }1`,r`2\text{ ou }1`,r`6\text{ ou }1`,r`-6\text{ ou }1`], a:r`-2\text{ ou }1`, tip:r`3x=-6\Rightarrow x=-2\text{ ou }x=1` },
-      { q:r`x^2-9=0\\[4pt]x=?`, choices:[r`-3\text{ ou }3`,r`3`,r`-3`,r`-9\text{ ou }9`], a:r`-3\text{ ou }3`, tip:r`(x-3)(x+3)=0` },
-      { q:r`(x+1)^2=0\\[4pt]x=?`, choices:[`-1`,`1`,r`-1\text{ ou }1`,`0`], a:`-1`, tip:r`\text{Racine double}` },
-      { q:r`2x(x+3)=0\\[4pt]x=?`, choices:[r`0\text{ ou }-3`,r`0\text{ ou }3`,r`2\text{ ou }-3`,r`-2\text{ ou }3`], a:r`0\text{ ou }-3`, tip:r`x=0\text{ ou }x=-3` },
-      { q:r`(x-7)(x+7)=0\\[4pt]x=?`, choices:[r`-7\text{ ou }7`,r`7`,r`-7`,`0`], a:r`-7\text{ ou }7`, tip:r`x=7\text{ ou }x=-7` },
-      { q:r`(4x-8)(x+2)=0\\[4pt]x=?`, choices:[r`2\text{ ou }-2`,r`8\text{ ou }-2`,r`4\text{ ou }-2`,r`-4\text{ ou }2`], a:r`2\text{ ou }-2`, tip:r`4x=8\Rightarrow x=2\text{ ou }x=-2` },
-      { q:r`x^2-16=0\\[4pt]x=?`, choices:[r`-4\text{ ou }4`,r`4`,r`-4`,r`-8\text{ ou }8`], a:r`-4\text{ ou }4`, tip:r`(x-4)(x+4)=0` },
-      { q:r`(x-3)^2=0\\[4pt]x=?`, choices:[`3`,r`-3\text{ ou }3`,`-3`,`9`], a:`3`, tip:r`\text{Racine double }x=3` },
-      { q:r`5x(2x-10)=0\\[4pt]x=?`, choices:[r`0\text{ ou }5`,r`0\text{ ou }-5`,r`5\text{ ou }-2`,r`0\text{ ou }2`], a:r`0\text{ ou }5`, tip:r`x=0\text{ ou }2x=10\Rightarrow x=5` },
-      { q:r`(x+5)(2x-3)=0\\[4pt]x=?`, choices:[r`-5\text{ ou }\frac{3}{2}`,r`5\text{ ou }-\frac{3}{2}`,r`-5\text{ ou }-\frac{3}{2}`,r`5\text{ ou }\frac{3}{2}`], a:r`-5\text{ ou }\frac{3}{2}`, tip:r`x=-5\text{ ou }x=\frac{3}{2}` },
-      { q:r`x^2-25=0\\[4pt]x=?`, choices:[r`-5\text{ ou }5`,r`5`,r`-5`,r`-25\text{ ou }25`], a:r`-5\text{ ou }5`, tip:r`(x-5)(x+5)=0` },
-      { q:r`(x-1)(x-2)(x-3)=0\\[4pt]x=?`, choices:[r`1\text{, }2\text{ ou }3`,r`1\text{ ou }2`,r`-1\text{, }-2\text{ ou }-3`,r`1\text{, }2\text{ ou }-3`], a:r`1\text{, }2\text{ ou }3`, tip:r`x=1\text{ ou }2\text{ ou }3` },
-      { q:r`(x+4)^2=0\\[4pt]x=?`, choices:[`-4`,`4`,r`-4\text{ ou }4`,`0`], a:`-4`, tip:r`\text{Racine double }x=-4` },
+      { q:r`x(x+7)=0\\x=?`, choices:[r`0\text{ ou }-7`,`7`,`0`,`-7`], a:r`0\text{ ou }-7`, tip:r`x=0\text{ ou }x=-7` },
+      { q:r`(x-3)(x+1)=0\\x=?`, choices:[r`3\text{ ou }-1`,r`-3\text{ ou }1`,`3`,`2`], a:r`3\text{ ou }-1`, tip:r`x=3\text{ ou }x=-1` },
+      { q:r`(2x-4)(x+5)=0\\x=?`, choices:[r`2\text{ ou }-5`,r`4\text{ ou }-5`,`-2`,`2`], a:r`2\text{ ou }-5`, tip:r`x=2\text{ ou }x=-5` },
+      { q:r`3x(x-1)=0\\x=?`, choices:[r`0\text{ ou }1`,r`3\text{ ou }1`,`0`,`3`], a:r`0\text{ ou }1`, tip:r`x=0\text{ ou }x=1` },
+      { q:r`(x-2)^2=0\\x=?`, choices:[`2`,r`-2\text{ ou }2`,`-2`,`0`], a:`2`, tip:r`\text{Racine double}` },
+      { q:r`(x+4)(x-6)=0\\x=?`, choices:[r`-4\text{ ou }6`,r`4\text{ ou }-6`,r`-4\text{ ou }-6`,r`4\text{ ou }6`], a:r`-4\text{ ou }6`, tip:r`x=-4\text{ ou }x=6` },
+      { q:r`x(x-5)(x+2)=0\\x=?`, choices:[r`0\text{, }5\text{ ou }-2`,r`0\text{, }-5\text{ ou }2`,r`0\text{ ou }5`,r`-5\text{ ou }2`], a:r`0\text{, }5\text{ ou }-2`, tip:r`x=0\text{ ou }5\text{ ou }-2` },
+      { q:r`(3x+6)(x-1)=0\\x=?`, choices:[r`-2\text{ ou }1`,r`2\text{ ou }1`,r`6\text{ ou }1`,r`-6\text{ ou }1`], a:r`-2\text{ ou }1`, tip:r`3x=-6\Rightarrow x=-2\text{ ou }x=1` },
+      { q:r`x^2-9=0\\x=?`, choices:[r`-3\text{ ou }3`,r`3`,r`-3`,r`-9\text{ ou }9`], a:r`-3\text{ ou }3`, tip:r`(x-3)(x+3)=0` },
+      { q:r`(x+1)^2=0\\x=?`, choices:[`-1`,`1`,r`-1\text{ ou }1`,`0`], a:`-1`, tip:r`\text{Racine double}` },
+      { q:r`2x(x+3)=0\\x=?`, choices:[r`0\text{ ou }-3`,r`0\text{ ou }3`,r`2\text{ ou }-3`,r`-2\text{ ou }3`], a:r`0\text{ ou }-3`, tip:r`x=0\text{ ou }x=-3` },
+      { q:r`(x-7)(x+7)=0\\x=?`, choices:[r`-7\text{ ou }7`,r`7`,r`-7`,`0`], a:r`-7\text{ ou }7`, tip:r`x=7\text{ ou }x=-7` },
+      { q:r`(4x-8)(x+2)=0\\x=?`, choices:[r`2\text{ ou }-2`,r`8\text{ ou }-2`,r`4\text{ ou }-2`,r`-4\text{ ou }2`], a:r`2\text{ ou }-2`, tip:r`4x=8\Rightarrow x=2\text{ ou }x=-2` },
+      { q:r`x^2-16=0\\x=?`, choices:[r`-4\text{ ou }4`,r`4`,r`-4`,r`-8\text{ ou }8`], a:r`-4\text{ ou }4`, tip:r`(x-4)(x+4)=0` },
+      { q:r`(x-3)^2=0\\x=?`, choices:[`3`,r`-3\text{ ou }3`,`-3`,`9`], a:`3`, tip:r`\text{Racine double }x=3` },
+      { q:r`5x(2x-10)=0\\x=?`, choices:[r`0\text{ ou }5`,r`0\text{ ou }-5`,r`5\text{ ou }-2`,r`0\text{ ou }2`], a:r`0\text{ ou }5`, tip:r`x=0\text{ ou }2x=10\Rightarrow x=5` },
+      { q:r`(x+5)(2x-3)=0\\x=?`, choices:[r`-5\text{ ou }\frac{3}{2}`,r`5\text{ ou }-\frac{3}{2}`,r`-5\text{ ou }-\frac{3}{2}`,r`5\text{ ou }\frac{3}{2}`], a:r`-5\text{ ou }\frac{3}{2}`, tip:r`x=-5\text{ ou }x=\frac{3}{2}` },
+      { q:r`x^2-25=0\\x=?`, choices:[r`-5\text{ ou }5`,r`5`,r`-5`,r`-25\text{ ou }25`], a:r`-5\text{ ou }5`, tip:r`(x-5)(x+5)=0` },
+      { q:r`(x-1)(x-2)(x-3)=0\\x=?`, choices:[r`1\text{, }2\text{ ou }3`,r`1\text{ ou }2`,r`-1\text{, }-2\text{ ou }-3`,r`1\text{, }2\text{ ou }-3`], a:r`1\text{, }2\text{ ou }3`, tip:r`x=1\text{ ou }2\text{ ou }3` },
+      { q:r`(x+4)^2=0\\x=?`, choices:[`-4`,`4`,r`-4\text{ ou }4`,`0`], a:`-4`, tip:r`\text{Racine double }x=-4` },
       // ── 21 questions supplémentaires ──
-      { q:r`(x-8)(x+3)=0\\[4pt]x=?`, choices:[r`8\text{ ou }-3`,r`-8\text{ ou }3`,r`8\text{ ou }3`,r`-8\text{ ou }-3`], a:r`8\text{ ou }-3`, tip:r`x=8\text{ ou }x=-3` },
-      { q:r`(2x+6)(x-4)=0\\[4pt]x=?`, choices:[r`-3\text{ ou }4`,r`3\text{ ou }-4`,r`-6\text{ ou }4`,r`6\text{ ou }-4`], a:r`-3\text{ ou }4`, tip:r`2x=-6\Rightarrow x=-3\text{ ou }x=4` },
-      { q:r`x(x-9)=0\\[4pt]x=?`, choices:[r`0\text{ ou }9`,r`0\text{ ou }-9`,r`9`,r`-9`], a:r`0\text{ ou }9`, tip:r`x=0\text{ ou }x=9` },
-      { q:r`(3x-9)(x+1)=0\\[4pt]x=?`, choices:[r`3\text{ ou }-1`,r`-3\text{ ou }1`,r`9\text{ ou }-1`,r`-9\text{ ou }1`], a:r`3\text{ ou }-1`, tip:r`3x=9\Rightarrow x=3\text{ ou }x=-1` },
-      { q:r`(x-6)^2=0\\[4pt]x=?`, choices:[`6`,r`-6\text{ ou }6`,`-6`,`36`], a:`6`, tip:r`\text{Racine double }x=6` },
-      { q:r`x^2-4=0\\[4pt]x=?`, choices:[r`-2\text{ ou }2`,r`2`,r`-2`,r`-4\text{ ou }4`], a:r`-2\text{ ou }2`, tip:r`(x-2)(x+2)=0` },
-      { q:r`(x+9)(x-9)=0\\[4pt]x=?`, choices:[r`-9\text{ ou }9`,r`9`,r`-9`,r`0`], a:r`-9\text{ ou }9`, tip:r`x=9\text{ ou }x=-9` },
-      { q:r`4x(x+7)=0\\[4pt]x=?`, choices:[r`0\text{ ou }-7`,r`0\text{ ou }7`,r`4\text{ ou }-7`,r`-4\text{ ou }7`], a:r`0\text{ ou }-7`, tip:r`x=0\text{ ou }x=-7` },
-      { q:r`x^2-49=0\\[4pt]x=?`, choices:[r`-7\text{ ou }7`,r`7`,r`-7`,r`-49\text{ ou }49`], a:r`-7\text{ ou }7`, tip:r`(x-7)(x+7)=0` },
-      { q:r`(x+2)(3x-6)=0\\[4pt]x=?`, choices:[r`-2\text{ ou }2`,r`2\text{ ou }-2`,r`-2\text{ ou }6`,r`2\text{ ou }-6`], a:r`-2\text{ ou }2`, tip:r`x=-2\text{ ou }3x=6\Rightarrow x=2` },
-      { q:r`(x-10)^2=0\\[4pt]x=?`, choices:[`10`,r`-10\text{ ou }10`,`-10`,`100`], a:`10`, tip:r`\text{Racine double }x=10` },
-      { q:r`x(x+1)(x-4)=0\\[4pt]x=?`, choices:[r`0\text{, }-1\text{ ou }4`,r`0\text{, }1\text{ ou }-4`,r`-1\text{ ou }4`,r`0\text{ ou }1`], a:r`0\text{, }-1\text{ ou }4`, tip:r`x=0\text{ ou }-1\text{ ou }4` },
-      { q:r`(5x+10)(x-3)=0\\[4pt]x=?`, choices:[r`-2\text{ ou }3`,r`2\text{ ou }-3`,r`-10\text{ ou }3`,r`10\text{ ou }-3`], a:r`-2\text{ ou }3`, tip:r`5x=-10\Rightarrow x=-2\text{ ou }x=3` },
-      { q:r`x^2-1=0\\[4pt]x=?`, choices:[r`-1\text{ ou }1`,r`1`,r`-1`,r`0`], a:r`-1\text{ ou }1`, tip:r`(x-1)(x+1)=0` },
-      { q:r`-2x(x-5)=0\\[4pt]x=?`, choices:[r`0\text{ ou }5`,r`0\text{ ou }-5`,r`-2\text{ ou }5`,r`2\text{ ou }-5`], a:r`0\text{ ou }5`, tip:r`x=0\text{ ou }x=5` },
-      { q:r`(x-\frac{1}{2})(x+3)=0\\[4pt]x=?`, choices:[r`\frac{1}{2}\text{ ou }-3`,r`-\frac{1}{2}\text{ ou }3`,r`2\text{ ou }-3`,r`\frac{1}{2}\text{ ou }3`], a:r`\frac{1}{2}\text{ ou }-3`, tip:r`x=\frac{1}{2}\text{ ou }x=-3` },
-      { q:r`(2x-1)(3x+6)=0\\[4pt]x=?`, choices:[r`\frac{1}{2}\text{ ou }-2`,r`-\frac{1}{2}\text{ ou }2`,r`1\text{ ou }-2`,r`\frac{1}{2}\text{ ou }2`], a:r`\frac{1}{2}\text{ ou }-2`, tip:r`2x=1\Rightarrow x=\frac{1}{2}\text{ ou }3x=-6\Rightarrow x=-2` },
-      { q:r`x^2-64=0\\[4pt]x=?`, choices:[r`-8\text{ ou }8`,r`8`,r`-8`,r`-64\text{ ou }64`], a:r`-8\text{ ou }8`, tip:r`(x-8)(x+8)=0` },
-      { q:r`(x+6)^2=0\\[4pt]x=?`, choices:[`-6`,`6`,r`-6\text{ ou }6`,`36`], a:`-6`, tip:r`\text{Racine double }x=-6` },
-      { q:r`7x(x-2)(x+4)=0\\[4pt]x=?`, choices:[r`0\text{, }2\text{ ou }-4`,r`0\text{, }-2\text{ ou }4`,r`7\text{, }2\text{ ou }-4`,r`2\text{ ou }-4`], a:r`0\text{, }2\text{ ou }-4`, tip:r`x=0\text{ ou }2\text{ ou }-4` },
-      { q:r`(4x+12)(2x-1)=0\\[4pt]x=?`, choices:[r`-3\text{ ou }\frac{1}{2}`,r`3\text{ ou }-\frac{1}{2}`,r`-12\text{ ou }1`,r`-3\text{ ou }1`], a:r`-3\text{ ou }\frac{1}{2}`, tip:r`4x=-12\Rightarrow x=-3\text{ ou }2x=1\Rightarrow x=\frac{1}{2}` },
+      { q:r`(x-8)(x+3)=0\\x=?`, choices:[r`8\text{ ou }-3`,r`-8\text{ ou }3`,r`8\text{ ou }3`,r`-8\text{ ou }-3`], a:r`8\text{ ou }-3`, tip:r`x=8\text{ ou }x=-3` },
+      { q:r`(2x+6)(x-4)=0\\x=?`, choices:[r`-3\text{ ou }4`,r`3\text{ ou }-4`,r`-6\text{ ou }4`,r`6\text{ ou }-4`], a:r`-3\text{ ou }4`, tip:r`2x=-6\Rightarrow x=-3\text{ ou }x=4` },
+      { q:r`x(x-9)=0\\x=?`, choices:[r`0\text{ ou }9`,r`0\text{ ou }-9`,r`9`,r`-9`], a:r`0\text{ ou }9`, tip:r`x=0\text{ ou }x=9` },
+      { q:r`(3x-9)(x+1)=0\\x=?`, choices:[r`3\text{ ou }-1`,r`-3\text{ ou }1`,r`9\text{ ou }-1`,r`-9\text{ ou }1`], a:r`3\text{ ou }-1`, tip:r`3x=9\Rightarrow x=3\text{ ou }x=-1` },
+      { q:r`(x-6)^2=0\\x=?`, choices:[`6`,r`-6\text{ ou }6`,`-6`,`36`], a:`6`, tip:r`\text{Racine double }x=6` },
+      { q:r`x^2-4=0\\x=?`, choices:[r`-2\text{ ou }2`,r`2`,r`-2`,r`-4\text{ ou }4`], a:r`-2\text{ ou }2`, tip:r`(x-2)(x+2)=0` },
+      { q:r`(x+9)(x-9)=0\\x=?`, choices:[r`-9\text{ ou }9`,r`9`,r`-9`,r`0`], a:r`-9\text{ ou }9`, tip:r`x=9\text{ ou }x=-9` },
+      { q:r`4x(x+7)=0\\x=?`, choices:[r`0\text{ ou }-7`,r`0\text{ ou }7`,r`4\text{ ou }-7`,r`-4\text{ ou }7`], a:r`0\text{ ou }-7`, tip:r`x=0\text{ ou }x=-7` },
+      { q:r`x^2-49=0\\x=?`, choices:[r`-7\text{ ou }7`,r`7`,r`-7`,r`-49\text{ ou }49`], a:r`-7\text{ ou }7`, tip:r`(x-7)(x+7)=0` },
+      { q:r`(x+2)(3x-6)=0\\x=?`, choices:[r`-2\text{ ou }2`,r`2\text{ ou }-2`,r`-2\text{ ou }6`,r`2\text{ ou }-6`], a:r`-2\text{ ou }2`, tip:r`x=-2\text{ ou }3x=6\Rightarrow x=2` },
+      { q:r`(x-10)^2=0\\x=?`, choices:[`10`,r`-10\text{ ou }10`,`-10`,`100`], a:`10`, tip:r`\text{Racine double }x=10` },
+      { q:r`x(x+1)(x-4)=0\\x=?`, choices:[r`0\text{, }-1\text{ ou }4`,r`0\text{, }1\text{ ou }-4`,r`-1\text{ ou }4`,r`0\text{ ou }1`], a:r`0\text{, }-1\text{ ou }4`, tip:r`x=0\text{ ou }-1\text{ ou }4` },
+      { q:r`(5x+10)(x-3)=0\\x=?`, choices:[r`-2\text{ ou }3`,r`2\text{ ou }-3`,r`-10\text{ ou }3`,r`10\text{ ou }-3`], a:r`-2\text{ ou }3`, tip:r`5x=-10\Rightarrow x=-2\text{ ou }x=3` },
+      { q:r`x^2-1=0\\x=?`, choices:[r`-1\text{ ou }1`,r`1`,r`-1`,r`0`], a:r`-1\text{ ou }1`, tip:r`(x-1)(x+1)=0` },
+      { q:r`-2x(x-5)=0\\x=?`, choices:[r`0\text{ ou }5`,r`0\text{ ou }-5`,r`-2\text{ ou }5`,r`2\text{ ou }-5`], a:r`0\text{ ou }5`, tip:r`x=0\text{ ou }x=5` },
+      { q:r`(x-\frac{1}{2})(x+3)=0\\x=?`, choices:[r`\frac{1}{2}\text{ ou }-3`,r`-\frac{1}{2}\text{ ou }3`,r`2\text{ ou }-3`,r`\frac{1}{2}\text{ ou }3`], a:r`\frac{1}{2}\text{ ou }-3`, tip:r`x=\frac{1}{2}\text{ ou }x=-3` },
+      { q:r`(2x-1)(3x+6)=0\\x=?`, choices:[r`\frac{1}{2}\text{ ou }-2`,r`-\frac{1}{2}\text{ ou }2`,r`1\text{ ou }-2`,r`\frac{1}{2}\text{ ou }2`], a:r`\frac{1}{2}\text{ ou }-2`, tip:r`2x=1\Rightarrow x=\frac{1}{2}\text{ ou }3x=-6\Rightarrow x=-2` },
+      { q:r`x^2-64=0\\x=?`, choices:[r`-8\text{ ou }8`,r`8`,r`-8`,r`-64\text{ ou }64`], a:r`-8\text{ ou }8`, tip:r`(x-8)(x+8)=0` },
+      { q:r`(x+6)^2=0\\x=?`, choices:[`-6`,`6`,r`-6\text{ ou }6`,`36`], a:`-6`, tip:r`\text{Racine double }x=-6` },
+      { q:r`7x(x-2)(x+4)=0\\x=?`, choices:[r`0\text{, }2\text{ ou }-4`,r`0\text{, }-2\text{ ou }4`,r`7\text{, }2\text{ ou }-4`,r`2\text{ ou }-4`], a:r`0\text{, }2\text{ ou }-4`, tip:r`x=0\text{ ou }2\text{ ou }-4` },
+      { q:r`(4x+12)(2x-1)=0\\x=?`, choices:[r`-3\text{ ou }\frac{1}{2}`,r`3\text{ ou }-\frac{1}{2}`,r`-12\text{ ou }1`,r`-3\text{ ou }1`], a:r`-3\text{ ou }\frac{1}{2}`, tip:r`4x=-12\Rightarrow x=-3\text{ ou }2x=1\Rightarrow x=\frac{1}{2}` },
     ],
     eq_x2: [
       { q:r`\text{Résoudre l'équation }x^2=9`, choices:[r`x=-3\text{ ou }x=3`,`x=3`,`x=-3`,r`x=-9\text{ ou }x=9`], a:r`x=-3\text{ ou }x=3`, tip:r`x^2=9\Rightarrow x=-3\text{ ou }x=3\Rightarrow x=-3\text{ ou }x=3` },
@@ -3881,48 +3881,48 @@ const DB = {
       { q:r`\text{Résoudre l'équation }x^2=-1`, choices:[r`\text{Pas de solution dans }\mathbb{R}`,r`x=-1\text{ ou }x=1`,`x=1`,`x=-1`], a:r`\text{Pas de solution dans }\mathbb{R}`, tip:r`x^2\geq0\text{ pour tout }x` },
     ],
     eq_x3: [
-      { q:r`x^3=8\\[4pt]x=?`, choices:[`2`,`-2`,r`-2\text{ ou }2`,r`-4\text{ ou }4`], a:`2`, tip:r`2^3=8` },
-      { q:r`x^3=27\\[4pt]x=?`, choices:[`3`,`-3`,`9`,`27`], a:`3`, tip:r`3^3=27` },
-      { q:r`x^3=-8\\[4pt]x=?`, choices:[`-2`,`2`,r`-2\text{ ou }2`,`8`], a:`-2`, tip:r`(-2)^3=-8` },
-      { q:r`x^3=125\\[4pt]x=?`, choices:[`5`,`-5`,`25`,`625`], a:`5`, tip:r`5^3=125` },
-      { q:r`x^3=0\\[4pt]x=?`, choices:[`0`,`1`,`-1`,r`-1\text{ ou }1`], a:`0`, tip:r`0^3=0` },
-      { q:r`2x^3=16\\[4pt]x=?`, choices:[`2`,`-2`,`4`,`8`], a:`2`, tip:r`x^3=8\Rightarrow x=2` },
-      { q:r`x^3+1=0\\[4pt]x=?`, choices:[`-1`,`1`,`0`,r`-1\text{ ou }1`], a:`-1`, tip:r`x^3=-1\Rightarrow x=-1` },
-      { q:r`x^3=1000\\[4pt]x=?`, choices:[`10`,`100`,`-10`,`30`], a:`10`, tip:r`10^3=1000` },
-      { q:r`x^3=-1\\[4pt]x=?`, choices:[`-1`,`1`,`-3`,r`-1\text{ ou }1`], a:`-1`, tip:r`(-1)^3=-1` },
-      { q:r`3x^3=24\\[4pt]x=?`, choices:[`2`,`8`,`3`,`-2`], a:`2`, tip:r`x^3=8\Rightarrow x=2` },
-      { q:r`x^3=64\\[4pt]x=?`, choices:[`4`,`-4`,`8`,`16`], a:`4`, tip:r`4^3=64` },
-      { q:r`x^3=-27\\[4pt]x=?`, choices:[`-3`,`3`,`-9`,`9`], a:`-3`, tip:r`(-3)^3=-27` },
-      { q:r`x^3-8=0\\[4pt]x=?`, choices:[`2`,`-2`,`8`,`4`], a:`2`, tip:r`x^3=8\Rightarrow x=2` },
-      { q:r`x^3=\dfrac{1}{8}\\[4pt]x=?`, choices:[r`\dfrac{1}{2}`,r`\dfrac{1}{4}`,r`\dfrac{1}{24}`,`2`], a:r`\dfrac{1}{2}`, tip:r`\left(\frac{1}{2}\right)^3=\frac{1}{8}` },
-      { q:r`-x^3=27\\[4pt]x=?`, choices:[`-3`,`3`,`-9`,`9`], a:`-3`, tip:r`x^3=-27\Rightarrow x=-3` },
-      { q:r`x^3=512\\[4pt]x=?`, choices:[`8`,`-8`,`16`,`64`], a:`8`, tip:r`8^3=512` },
-      { q:r`x^3+27=0\\[4pt]x=?`, choices:[`-3`,`3`,`9`,`-9`], a:`-3`, tip:r`x^3=-27\Rightarrow x=-3` },
-      { q:r`4x^3=32\\[4pt]x=?`, choices:[`2`,`8`,`4`,`-2`], a:`2`, tip:r`x^3=8\Rightarrow x=2` },
-      { q:r`x^3=-125\\[4pt]x=?`, choices:[`-5`,`5`,`-25`,`25`], a:`-5`, tip:r`(-5)^3=-125` },
-      { q:r`x^3=216\\[4pt]x=?`, choices:[`6`,`-6`,`8`,`12`], a:`6`, tip:r`6^3=216` },
+      { q:r`x^3=8\\x=?`, choices:[`2`,`-2`,r`-2\text{ ou }2`,r`-4\text{ ou }4`], a:`2`, tip:r`2^3=8` },
+      { q:r`x^3=27\\x=?`, choices:[`3`,`-3`,`9`,`27`], a:`3`, tip:r`3^3=27` },
+      { q:r`x^3=-8\\x=?`, choices:[`-2`,`2`,r`-2\text{ ou }2`,`8`], a:`-2`, tip:r`(-2)^3=-8` },
+      { q:r`x^3=125\\x=?`, choices:[`5`,`-5`,`25`,`625`], a:`5`, tip:r`5^3=125` },
+      { q:r`x^3=0\\x=?`, choices:[`0`,`1`,`-1`,r`-1\text{ ou }1`], a:`0`, tip:r`0^3=0` },
+      { q:r`2x^3=16\\x=?`, choices:[`2`,`-2`,`4`,`8`], a:`2`, tip:r`x^3=8\Rightarrow x=2` },
+      { q:r`x^3+1=0\\x=?`, choices:[`-1`,`1`,`0`,r`-1\text{ ou }1`], a:`-1`, tip:r`x^3=-1\Rightarrow x=-1` },
+      { q:r`x^3=1000\\x=?`, choices:[`10`,`100`,`-10`,`30`], a:`10`, tip:r`10^3=1000` },
+      { q:r`x^3=-1\\x=?`, choices:[`-1`,`1`,`-3`,r`-1\text{ ou }1`], a:`-1`, tip:r`(-1)^3=-1` },
+      { q:r`3x^3=24\\x=?`, choices:[`2`,`8`,`3`,`-2`], a:`2`, tip:r`x^3=8\Rightarrow x=2` },
+      { q:r`x^3=64\\x=?`, choices:[`4`,`-4`,`8`,`16`], a:`4`, tip:r`4^3=64` },
+      { q:r`x^3=-27\\x=?`, choices:[`-3`,`3`,`-9`,`9`], a:`-3`, tip:r`(-3)^3=-27` },
+      { q:r`x^3-8=0\\x=?`, choices:[`2`,`-2`,`8`,`4`], a:`2`, tip:r`x^3=8\Rightarrow x=2` },
+      { q:r`x^3=\dfrac{1}{8}\\x=?`, choices:[r`\dfrac{1}{2}`,r`\dfrac{1}{4}`,r`\dfrac{1}{24}`,`2`], a:r`\dfrac{1}{2}`, tip:r`\left(\frac{1}{2}\right)^3=\frac{1}{8}` },
+      { q:r`-x^3=27\\x=?`, choices:[`-3`,`3`,`-9`,`9`], a:`-3`, tip:r`x^3=-27\Rightarrow x=-3` },
+      { q:r`x^3=512\\x=?`, choices:[`8`,`-8`,`16`,`64`], a:`8`, tip:r`8^3=512` },
+      { q:r`x^3+27=0\\x=?`, choices:[`-3`,`3`,`9`,`-9`], a:`-3`, tip:r`x^3=-27\Rightarrow x=-3` },
+      { q:r`4x^3=32\\x=?`, choices:[`2`,`8`,`4`,`-2`], a:`2`, tip:r`x^3=8\Rightarrow x=2` },
+      { q:r`x^3=-125\\x=?`, choices:[`-5`,`5`,`-25`,`25`], a:`-5`, tip:r`(-5)^3=-125` },
+      { q:r`x^3=216\\x=?`, choices:[`6`,`-6`,`8`,`12`], a:`6`, tip:r`6^3=216` },
     ],
     inequation1: [
-      { q:r`2x+1>5\\[4pt]x\in?`, choices:[r`]2;+\infty[`,r`]-\infty;2[`,r`]2;5[`,r`[2;+\infty[`], a:r`]2;+\infty[`, tip:r`2x>4\Rightarrow x>2` },
-      { q:r`-3x\leq9\\[4pt]x\in?`, choices:[r`[-3;+\infty[`,r`]-\infty;-3]`,r`]-3;+\infty[`,r`]-\infty;3]`], a:r`[-3;+\infty[`, tip:r`x\geq-3\text{ (inégalité retournée)}` },
-      { q:r`x+5<8\\[4pt]x\in?`, choices:[r`]-\infty;3[`,r`]3;+\infty[`,r`]-\infty;13[`,r`]8;+\infty[`], a:r`]-\infty;3[`, tip:r`x<3` },
-      { q:r`4x-2\geq6\\[4pt]x\in?`, choices:[r`[2;+\infty[`,r`]-\infty;2]`,r`]2;+\infty[`,r`[1;+\infty[`], a:r`[2;+\infty[`, tip:r`4x\geq8\Rightarrow x\geq2` },
-      { q:r`-x>3\\[4pt]x\in?`, choices:[r`]-\infty;-3[`,r`]-3;+\infty[`,r`]-\infty;3[`,r`]3;+\infty[`], a:r`]-\infty;-3[`, tip:r`x<-3` },
-      { q:r`3x+1\leq10\\[4pt]x\in?`, choices:[r`]-\infty;3]`,r`[3;+\infty[`,r`]-\infty;3[`,r`]1;+\infty[`], a:r`]-\infty;3]`, tip:r`3x\leq9\Rightarrow x\leq3` },
-      { q:r`2x-5>1\\[4pt]x\in?`, choices:[r`]3;+\infty[`,r`]-\infty;3[`,r`]3;6[`,r`]1;+\infty[`], a:r`]3;+\infty[`, tip:r`2x>6\Rightarrow x>3` },
-      { q:r`-2x+4\leq0\\[4pt]x\in?`, choices:[r`[2;+\infty[`,r`]-\infty;2]`,r`]2;+\infty[`,r`[-2;+\infty[`], a:r`[2;+\infty[`, tip:r`-2x\leq-4\Rightarrow x\geq2` },
-      { q:r`5x>-10\\[4pt]x\in?`, choices:[r`]-2;+\infty[`,r`]-\infty;-2[`,r`]-2;0[`,r`[-2;+\infty[`], a:r`]-2;+\infty[`, tip:r`x>-2` },
-      { q:r`\dfrac{x}{2}\geq3\\[4pt]x\in?`, choices:[r`[6;+\infty[`,r`]-\infty;6]`,r`]6;+\infty[`,r`[1{,}5;+\infty[`], a:r`[6;+\infty[`, tip:r`x\geq6` },
-      { q:r`3x-7<2\\[4pt]x\in?`, choices:[r`]-\infty;3[`,r`]3;+\infty[`,r`]-\infty;-\frac{5}{3}[`,r`]-7;2[`], a:r`]-\infty;3[`, tip:r`3x<9\Rightarrow x<3` },
-      { q:r`-4x+8>0\\[4pt]x\in?`, choices:[r`]-\infty;2[`,r`]2;+\infty[`,r`]-\infty;8[`,r`]-4;2[`], a:r`]-\infty;2[`, tip:r`-4x>-8\Rightarrow x<2` },
-      { q:r`2x+3\geq x-1\\[4pt]x\in?`, choices:[r`[-4;+\infty[`,r`]-\infty;-4]`,r`]-4;+\infty[`,r`[-2;+\infty[`], a:r`[-4;+\infty[`, tip:r`x\geq-4` },
-      { q:r`5x-1\leq 4x+2\\[4pt]x\in?`, choices:[r`]-\infty;3]`,r`[3;+\infty[`,r`]-\infty;1]`,r`]3;+\infty[`], a:r`]-\infty;3]`, tip:r`x\leq3` },
-      { q:r`-x-2<x+6\\[4pt]x\in?`, choices:[r`]-4;+\infty[`,r`]-\infty;-4[`,r`]-\infty;4[`,r`]4;+\infty[`], a:r`]-4;+\infty[`, tip:r`-2x<8\Rightarrow x>-4` },
-      { q:r`3(x-1)\leq6\\[4pt]x\in?`, choices:[r`]-\infty;3]`,r`[3;+\infty[`,r`]-\infty;1]`,r`[1;+\infty[`], a:r`]-\infty;3]`, tip:r`x-1\leq2\Rightarrow x\leq3` },
-      { q:r`\dfrac{x}{3}<-2\\[4pt]x\in?`, choices:[r`]-\infty;-6[`,r`]-6;+\infty[`,r`]-\infty;-\frac{2}{3}[`,r`]-\frac{2}{3};+\infty[`], a:r`]-\infty;-6[`, tip:r`x<-6` },
-      { q:r`4x-3>2x+5\\[4pt]x\in?`, choices:[r`]4;+\infty[`,r`]-\infty;4[`,r`]1;+\infty[`,r`]2;+\infty[`], a:r`]4;+\infty[`, tip:r`2x>8\Rightarrow x>4` },
-      { q:r`-3(x+2)\geq-3\\[4pt]x\in?`, choices:[r`]-\infty;-1]`,r`[-1;+\infty[`,r`]-\infty;-3]`,r`[-3;+\infty[`], a:r`]-\infty;-1]`, tip:r`x+2\leq1\Rightarrow x\leq-1` },
-      { q:r`5-2x>1\\[4pt]x\in?`, choices:[r`]-\infty;2[`,r`]2;+\infty[`,r`]-\infty;-2[`,r`]-2;+\infty[`], a:r`]-\infty;2[`, tip:r`-2x>-4\Rightarrow x<2` },
+      { q:r`2x+1>5\\x\in?`, choices:[r`]2;+\infty[`,r`]-\infty;2[`,r`]2;5[`,r`[2;+\infty[`], a:r`]2;+\infty[`, tip:r`2x>4\Rightarrow x>2` },
+      { q:r`-3x\leq9\\x\in?`, choices:[r`[-3;+\infty[`,r`]-\infty;-3]`,r`]-3;+\infty[`,r`]-\infty;3]`], a:r`[-3;+\infty[`, tip:r`x\geq-3\text{ (inégalité retournée)}` },
+      { q:r`x+5<8\\x\in?`, choices:[r`]-\infty;3[`,r`]3;+\infty[`,r`]-\infty;13[`,r`]8;+\infty[`], a:r`]-\infty;3[`, tip:r`x<3` },
+      { q:r`4x-2\geq6\\x\in?`, choices:[r`[2;+\infty[`,r`]-\infty;2]`,r`]2;+\infty[`,r`[1;+\infty[`], a:r`[2;+\infty[`, tip:r`4x\geq8\Rightarrow x\geq2` },
+      { q:r`-x>3\\x\in?`, choices:[r`]-\infty;-3[`,r`]-3;+\infty[`,r`]-\infty;3[`,r`]3;+\infty[`], a:r`]-\infty;-3[`, tip:r`x<-3` },
+      { q:r`3x+1\leq10\\x\in?`, choices:[r`]-\infty;3]`,r`[3;+\infty[`,r`]-\infty;3[`,r`]1;+\infty[`], a:r`]-\infty;3]`, tip:r`3x\leq9\Rightarrow x\leq3` },
+      { q:r`2x-5>1\\x\in?`, choices:[r`]3;+\infty[`,r`]-\infty;3[`,r`]3;6[`,r`]1;+\infty[`], a:r`]3;+\infty[`, tip:r`2x>6\Rightarrow x>3` },
+      { q:r`-2x+4\leq0\\x\in?`, choices:[r`[2;+\infty[`,r`]-\infty;2]`,r`]2;+\infty[`,r`[-2;+\infty[`], a:r`[2;+\infty[`, tip:r`-2x\leq-4\Rightarrow x\geq2` },
+      { q:r`5x>-10\\x\in?`, choices:[r`]-2;+\infty[`,r`]-\infty;-2[`,r`]-2;0[`,r`[-2;+\infty[`], a:r`]-2;+\infty[`, tip:r`x>-2` },
+      { q:r`\dfrac{x}{2}\geq3\\x\in?`, choices:[r`[6;+\infty[`,r`]-\infty;6]`,r`]6;+\infty[`,r`[1{,}5;+\infty[`], a:r`[6;+\infty[`, tip:r`x\geq6` },
+      { q:r`3x-7<2\\x\in?`, choices:[r`]-\infty;3[`,r`]3;+\infty[`,r`]-\infty;-\frac{5}{3}[`,r`]-7;2[`], a:r`]-\infty;3[`, tip:r`3x<9\Rightarrow x<3` },
+      { q:r`-4x+8>0\\x\in?`, choices:[r`]-\infty;2[`,r`]2;+\infty[`,r`]-\infty;8[`,r`]-4;2[`], a:r`]-\infty;2[`, tip:r`-4x>-8\Rightarrow x<2` },
+      { q:r`2x+3\geq x-1\\x\in?`, choices:[r`[-4;+\infty[`,r`]-\infty;-4]`,r`]-4;+\infty[`,r`[-2;+\infty[`], a:r`[-4;+\infty[`, tip:r`x\geq-4` },
+      { q:r`5x-1\leq 4x+2\\x\in?`, choices:[r`]-\infty;3]`,r`[3;+\infty[`,r`]-\infty;1]`,r`]3;+\infty[`], a:r`]-\infty;3]`, tip:r`x\leq3` },
+      { q:r`-x-2<x+6\\x\in?`, choices:[r`]-4;+\infty[`,r`]-\infty;-4[`,r`]-\infty;4[`,r`]4;+\infty[`], a:r`]-4;+\infty[`, tip:r`-2x<8\Rightarrow x>-4` },
+      { q:r`3(x-1)\leq6\\x\in?`, choices:[r`]-\infty;3]`,r`[3;+\infty[`,r`]-\infty;1]`,r`[1;+\infty[`], a:r`]-\infty;3]`, tip:r`x-1\leq2\Rightarrow x\leq3` },
+      { q:r`\dfrac{x}{3}<-2\\x\in?`, choices:[r`]-\infty;-6[`,r`]-6;+\infty[`,r`]-\infty;-\frac{2}{3}[`,r`]-\frac{2}{3};+\infty[`], a:r`]-\infty;-6[`, tip:r`x<-6` },
+      { q:r`4x-3>2x+5\\x\in?`, choices:[r`]4;+\infty[`,r`]-\infty;4[`,r`]1;+\infty[`,r`]2;+\infty[`], a:r`]4;+\infty[`, tip:r`2x>8\Rightarrow x>4` },
+      { q:r`-3(x+2)\geq-3\\x\in?`, choices:[r`]-\infty;-1]`,r`[-1;+\infty[`,r`]-\infty;-3]`,r`[-3;+\infty[`], a:r`]-\infty;-1]`, tip:r`x+2\leq1\Rightarrow x\leq-1` },
+      { q:r`5-2x>1\\x\in?`, choices:[r`]-\infty;2[`,r`]2;+\infty[`,r`]-\infty;-2[`,r`]-2;+\infty[`], a:r`]-\infty;2[`, tip:r`-2x>-4\Rightarrow x<2` },
     ],
     developpement: [
       // ── Simple distributivité ────────────────────────────────────────────────
@@ -3987,142 +3987,142 @@ const DB = {
     // ── Niveau 3 : développement mélangé — pad ──────────────────────────────
     id_rem_pad: [
       // Simple distributivité pad
-      { q:r`\text{Développer :}\\[5pt]3(x+4)=`, exprpad:true, a:"3x+12", tip:r`3x+12` },
-      { q:r`\text{Développer :}\\[5pt]-2(x-5)=`, exprpad:true, a:"-2x+10", tip:r`-2x+10` },
-      { q:r`\text{Développer :}\\[5pt]4(2x-3)=`, exprpad:true, a:"8x-12", tip:r`8x-12` },
-      { q:r`\text{Développer :}\\[5pt]x(x+5)=`, exprpad:true, a:"x²+5x", tip:r`x^2+5x` },
-      { q:r`\text{Développer :}\\[5pt]-3(x+2)=`, exprpad:true, a:"-3x-6", tip:r`-3x-6` },
+      { q:r`\text{Développer :}\\3(x+4)=`, exprpad:true, a:"3x+12", tip:r`3x+12` },
+      { q:r`\text{Développer :}\\-2(x-5)=`, exprpad:true, a:"-2x+10", tip:r`-2x+10` },
+      { q:r`\text{Développer :}\\4(2x-3)=`, exprpad:true, a:"8x-12", tip:r`8x-12` },
+      { q:r`\text{Développer :}\\x(x+5)=`, exprpad:true, a:"x²+5x", tip:r`x^2+5x` },
+      { q:r`\text{Développer :}\\-3(x+2)=`, exprpad:true, a:"-3x-6", tip:r`-3x-6` },
       // Double distributivité pad
-      { q:r`\text{Développer :}\\[5pt](x+2)(x+3)=`, exprpad:true, a:"x²+5x+6", tip:r`x^2+5x+6` },
-      { q:r`\text{Développer :}\\[5pt](x-1)(x+4)=`, exprpad:true, a:"x²+3x-4", tip:r`x^2+4x-x-4` },
-      { q:r`\text{Développer :}\\[5pt](2x+1)(x-3)=`, exprpad:true, a:"2x²-5x-3", tip:r`2x^2-6x+x-3` },
-      { q:r`\text{Développer :}\\[5pt](x-2)(x-5)=`, exprpad:true, a:"x²-7x+10", tip:r`x^2-5x-2x+10` },
-      { q:r`\text{Développer :}\\[5pt](3x+2)(x-1)=`, exprpad:true, a:"3x²-x-2", tip:r`3x^2-3x+2x-2` },
+      { q:r`\text{Développer :}\\(x+2)(x+3)=`, exprpad:true, a:"x²+5x+6", tip:r`x^2+5x+6` },
+      { q:r`\text{Développer :}\\(x-1)(x+4)=`, exprpad:true, a:"x²+3x-4", tip:r`x^2+4x-x-4` },
+      { q:r`\text{Développer :}\\(2x+1)(x-3)=`, exprpad:true, a:"2x²-5x-3", tip:r`2x^2-6x+x-3` },
+      { q:r`\text{Développer :}\\(x-2)(x-5)=`, exprpad:true, a:"x²-7x+10", tip:r`x^2-5x-2x+10` },
+      { q:r`\text{Développer :}\\(3x+2)(x-1)=`, exprpad:true, a:"3x²-x-2", tip:r`3x^2-3x+2x-2` },
       // Identités remarquables (a+b)² pad
-      { q:r`\text{Développer :}\\[5pt](x+4)^2=`,     exprpad:true, a:"x²+8x+16",  tip:r`x^2+8x+16` },
-      { q:r`\text{Développer :}\\[5pt](x+7)^2=`,     exprpad:true, a:"x²+14x+49", tip:r`x^2+14x+49` },
-      { q:r`\text{Développer :}\\[5pt](2x+1)^2=`,    exprpad:true, a:"4x²+4x+1",  tip:r`4x^2+4x+1` },
-      { q:r`\text{Développer :}\\[5pt](3x+1)^2=`,    exprpad:true, a:"9x²+6x+1",  tip:r`9x^2+6x+1` },
-      { q:r`\text{Développer :}\\[5pt](x+9)^2=`,     exprpad:true, a:"x²+18x+81", tip:r`x^2+18x+81` },
+      { q:r`\text{Développer :}\\(x+4)^2=`,     exprpad:true, a:"x²+8x+16",  tip:r`x^2+8x+16` },
+      { q:r`\text{Développer :}\\(x+7)^2=`,     exprpad:true, a:"x²+14x+49", tip:r`x^2+14x+49` },
+      { q:r`\text{Développer :}\\(2x+1)^2=`,    exprpad:true, a:"4x²+4x+1",  tip:r`4x^2+4x+1` },
+      { q:r`\text{Développer :}\\(3x+1)^2=`,    exprpad:true, a:"9x²+6x+1",  tip:r`9x^2+6x+1` },
+      { q:r`\text{Développer :}\\(x+9)^2=`,     exprpad:true, a:"x²+18x+81", tip:r`x^2+18x+81` },
       // Identités remarquables (a−b)² pad
-      { q:r`\text{Développer :}\\[5pt](x-5)^2=`,     exprpad:true, a:"x²-10x+25",  tip:r`x^2-10x+25` },
-      { q:r`\text{Développer :}\\[5pt](x-2)^2=`,     exprpad:true, a:"x²-4x+4",   tip:r`x^2-4x+4` },
-      { q:r`\text{Développer :}\\[5pt](2x-3)^2=`,    exprpad:true, a:"4x²-12x+9", tip:r`4x^2-12x+9` },
-      { q:r`\text{Développer :}\\[5pt](x-10)^2=`,    exprpad:true, a:"x²-20x+100", tip:r`x^2-20x+100` },
-      { q:r`\text{Développer :}\\[5pt](3x-2)^2=`,    exprpad:true, a:"9x²-12x+4",  tip:r`9x^2-12x+4` },
+      { q:r`\text{Développer :}\\(x-5)^2=`,     exprpad:true, a:"x²-10x+25",  tip:r`x^2-10x+25` },
+      { q:r`\text{Développer :}\\(x-2)^2=`,     exprpad:true, a:"x²-4x+4",   tip:r`x^2-4x+4` },
+      { q:r`\text{Développer :}\\(2x-3)^2=`,    exprpad:true, a:"4x²-12x+9", tip:r`4x^2-12x+9` },
+      { q:r`\text{Développer :}\\(x-10)^2=`,    exprpad:true, a:"x²-20x+100", tip:r`x^2-20x+100` },
+      { q:r`\text{Développer :}\\(3x-2)^2=`,    exprpad:true, a:"9x²-12x+4",  tip:r`9x^2-12x+4` },
       // Identités remarquables (a+b)(a−b) pad
-      { q:r`\text{Développer :}\\[5pt](x+3)(x-3)=`,  exprpad:true, a:"x²-9",   tip:r`x^2-9` },
-      { q:r`\text{Développer :}\\[5pt](x+6)(x-6)=`,  exprpad:true, a:"x²-36",  tip:r`x^2-36` },
-      { q:r`\text{Développer :}\\[5pt](x+8)(x-8)=`,  exprpad:true, a:"x²-64",  tip:r`x^2-64` },
-      { q:r`\text{Développer :}\\[5pt](2x+5)(2x-5)=`,exprpad:true, a:"4x²-25", tip:r`4x^2-25` },
-      { q:r`\text{Développer :}\\[5pt](3x+4)(3x-4)=`,exprpad:true, a:"9x²-16", tip:r`9x^2-16` },
+      { q:r`\text{Développer :}\\(x+3)(x-3)=`,  exprpad:true, a:"x²-9",   tip:r`x^2-9` },
+      { q:r`\text{Développer :}\\(x+6)(x-6)=`,  exprpad:true, a:"x²-36",  tip:r`x^2-36` },
+      { q:r`\text{Développer :}\\(x+8)(x-8)=`,  exprpad:true, a:"x²-64",  tip:r`x^2-64` },
+      { q:r`\text{Développer :}\\(2x+5)(2x-5)=`,exprpad:true, a:"4x²-25", tip:r`4x^2-25` },
+      { q:r`\text{Développer :}\\(3x+4)(3x-4)=`,exprpad:true, a:"9x²-16", tip:r`9x^2-16` },
     ],
 
     // ── Niveau 4 : coefficients complexes & radicaux ────────────────────────
     id_rem_difficile: [
-      { q:r`\text{Développer :}\\[5pt](2x+5)^2=`,       exprpad:true, a:"4x²+20x+25",   tip:r`4x^2+20x+25` },
-      { q:r`\text{Développer :}\\[5pt](3x-4)^2=`,       exprpad:true, a:"9x²-24x+16",   tip:r`9x^2-24x+16` },
-      { q:r`\text{Développer :}\\[5pt](5x+2)^2=`,       exprpad:true, a:"25x²+20x+4",   tip:r`25x^2+20x+4` },
-      { q:r`\text{Développer :}\\[5pt](4x-1)^2=`,       exprpad:true, a:"16x²-8x+1",    tip:r`16x^2-8x+1` },
-      { q:r`\text{Développer :}\\[5pt](2x+3)(2x-3)=`,   exprpad:true, a:"4x²-9",        tip:r`4x^2-9` },
-      { q:r`\text{Développer :}\\[5pt](3x+5)(3x-5)=`,   exprpad:true, a:"9x²-25",       tip:r`9x^2-25` },
-      { q:r`\text{Développer :}\\[5pt](5x-3)^2=`,       exprpad:true, a:"25x²-30x+9",   tip:r`25x^2-30x+9` },
-      { q:r`\text{Développer :}\\[5pt](\sqrt{7}-1)^2=`,  exprpad:true, a:"8-2√7",  extraBtn:"√7", tip:r`7-2\sqrt{7}+1=8-2\sqrt{7}` },
-      { q:r`\text{Développer :}\\[5pt](\sqrt{3}+2)^2=`,  exprpad:true, a:"7+4√3",  extraBtn:"√3", tip:r`3+4\sqrt{3}+4=7+4\sqrt{3}` },
-      { q:r`\text{Développer :}\\[5pt](1+\sqrt{2})^2=`,  exprpad:true, a:"3+2√2",  extraBtn:"√2", tip:r`1+2\sqrt{2}+2=3+2\sqrt{2}` },
-      { q:r`\text{Développer :}\\[5pt](6x+1)^2=`,       exprpad:true, a:"36x²+12x+1",   tip:r`36x^2+12x+1` },
-      { q:r`\text{Développer :}\\[5pt](7x-2)^2=`,       exprpad:true, a:"49x²-28x+4",   tip:r`49x^2-28x+4` },
-      { q:r`\text{Développer :}\\[5pt](4x+3)(4x-3)=`,   exprpad:true, a:"16x²-9",       tip:r`16x^2-9` },
-      { q:r`\text{Développer :}\\[5pt](3x+7)^2=`,       exprpad:true, a:"9x²+42x+49",   tip:r`9x^2+42x+49` },
-      { q:r`\text{Développer :}\\[5pt](2x-7)^2=`,       exprpad:true, a:"4x²-28x+49",   tip:r`4x^2-28x+49` },
-      { q:r`\text{Développer :}\\[5pt](5x+4)(5x-4)=`,   exprpad:true, a:"25x²-16",      tip:r`25x^2-16` },
-      { q:r`\text{Développer :}\\[5pt](\sqrt{5}+1)^2=`,  exprpad:true, a:"6+2√5",  extraBtn:"√5", tip:r`5+2\sqrt{5}+1=6+2\sqrt{5}` },
-      { q:r`\text{Développer :}\\[5pt](\sqrt{2}-3)^2=`,  exprpad:true, a:"11-6√2", extraBtn:"√2", tip:r`2-6\sqrt{2}+9=11-6\sqrt{2}` },
-      { q:r`\text{Développer :}\\[5pt](2+\sqrt{3})^2=`,  exprpad:true, a:"7+4√3",  extraBtn:"√3", tip:r`4+4\sqrt{3}+3=7+4\sqrt{3}` },
-      { q:r`\text{Développer :}\\[5pt](8x-1)^2=`,       exprpad:true, a:"64x²-16x+1",   tip:r`64x^2-16x+1` },
-      { q:r`\text{Développer :}\\[5pt](3x+2)^2=`,       exprpad:true, a:"9x²+12x+4",    tip:r`9x^2+12x+4` },
-      { q:r`\text{Développer :}\\[5pt](\sqrt{6}+1)^2=`,  exprpad:true, a:"7+2√6",  extraBtn:"√6", tip:r`6+2\sqrt{6}+1=7+2\sqrt{6}` },
-      { q:r`\text{Développer :}\\[5pt](4x-3)(4x+3)=`,   exprpad:true, a:"16x²-9",       tip:r`16x^2-9` },
-      { q:r`\text{Développer :}\\[5pt](6x-5)^2=`,       exprpad:true, a:"36x²-60x+25",  tip:r`36x^2-60x+25` },
-      { q:r`\text{Développer :}\\[5pt](\sqrt{3}-\sqrt{2})^2=`, exprpad:true, a:"5-2√6", extraBtns:["√6","√3","√2"], tip:r`3-2\sqrt{6}+2=5-2\sqrt{6}` },
+      { q:r`\text{Développer :}\\(2x+5)^2=`,       exprpad:true, a:"4x²+20x+25",   tip:r`4x^2+20x+25` },
+      { q:r`\text{Développer :}\\(3x-4)^2=`,       exprpad:true, a:"9x²-24x+16",   tip:r`9x^2-24x+16` },
+      { q:r`\text{Développer :}\\(5x+2)^2=`,       exprpad:true, a:"25x²+20x+4",   tip:r`25x^2+20x+4` },
+      { q:r`\text{Développer :}\\(4x-1)^2=`,       exprpad:true, a:"16x²-8x+1",    tip:r`16x^2-8x+1` },
+      { q:r`\text{Développer :}\\(2x+3)(2x-3)=`,   exprpad:true, a:"4x²-9",        tip:r`4x^2-9` },
+      { q:r`\text{Développer :}\\(3x+5)(3x-5)=`,   exprpad:true, a:"9x²-25",       tip:r`9x^2-25` },
+      { q:r`\text{Développer :}\\(5x-3)^2=`,       exprpad:true, a:"25x²-30x+9",   tip:r`25x^2-30x+9` },
+      { q:r`\text{Développer :}\\(\sqrt{7}-1)^2=`,  exprpad:true, a:"8-2√7",  extraBtn:"√7", tip:r`7-2\sqrt{7}+1=8-2\sqrt{7}` },
+      { q:r`\text{Développer :}\\(\sqrt{3}+2)^2=`,  exprpad:true, a:"7+4√3",  extraBtn:"√3", tip:r`3+4\sqrt{3}+4=7+4\sqrt{3}` },
+      { q:r`\text{Développer :}\\(1+\sqrt{2})^2=`,  exprpad:true, a:"3+2√2",  extraBtn:"√2", tip:r`1+2\sqrt{2}+2=3+2\sqrt{2}` },
+      { q:r`\text{Développer :}\\(6x+1)^2=`,       exprpad:true, a:"36x²+12x+1",   tip:r`36x^2+12x+1` },
+      { q:r`\text{Développer :}\\(7x-2)^2=`,       exprpad:true, a:"49x²-28x+4",   tip:r`49x^2-28x+4` },
+      { q:r`\text{Développer :}\\(4x+3)(4x-3)=`,   exprpad:true, a:"16x²-9",       tip:r`16x^2-9` },
+      { q:r`\text{Développer :}\\(3x+7)^2=`,       exprpad:true, a:"9x²+42x+49",   tip:r`9x^2+42x+49` },
+      { q:r`\text{Développer :}\\(2x-7)^2=`,       exprpad:true, a:"4x²-28x+49",   tip:r`4x^2-28x+49` },
+      { q:r`\text{Développer :}\\(5x+4)(5x-4)=`,   exprpad:true, a:"25x²-16",      tip:r`25x^2-16` },
+      { q:r`\text{Développer :}\\(\sqrt{5}+1)^2=`,  exprpad:true, a:"6+2√5",  extraBtn:"√5", tip:r`5+2\sqrt{5}+1=6+2\sqrt{5}` },
+      { q:r`\text{Développer :}\\(\sqrt{2}-3)^2=`,  exprpad:true, a:"11-6√2", extraBtn:"√2", tip:r`2-6\sqrt{2}+9=11-6\sqrt{2}` },
+      { q:r`\text{Développer :}\\(2+\sqrt{3})^2=`,  exprpad:true, a:"7+4√3",  extraBtn:"√3", tip:r`4+4\sqrt{3}+3=7+4\sqrt{3}` },
+      { q:r`\text{Développer :}\\(8x-1)^2=`,       exprpad:true, a:"64x²-16x+1",   tip:r`64x^2-16x+1` },
+      { q:r`\text{Développer :}\\(3x+2)^2=`,       exprpad:true, a:"9x²+12x+4",    tip:r`9x^2+12x+4` },
+      { q:r`\text{Développer :}\\(\sqrt{6}+1)^2=`,  exprpad:true, a:"7+2√6",  extraBtn:"√6", tip:r`6+2\sqrt{6}+1=7+2\sqrt{6}` },
+      { q:r`\text{Développer :}\\(4x-3)(4x+3)=`,   exprpad:true, a:"16x²-9",       tip:r`16x^2-9` },
+      { q:r`\text{Développer :}\\(6x-5)^2=`,       exprpad:true, a:"36x²-60x+25",  tip:r`36x^2-60x+25` },
+      { q:r`\text{Développer :}\\(\sqrt{3}-\sqrt{2})^2=`, exprpad:true, a:"5-2√6", extraBtns:["√6","√3","√2"], tip:r`3-2\sqrt{6}+2=5-2\sqrt{6}` },
     ],
 
     // ── Mise au même dénominateur ───────────────────────────────────────────────
 
     // Niveau 1 : dénominateur simple x (10 questions)
     denom_n1: [
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]1+\dfrac{1}{x}=`, choices:[r`\dfrac{x+1}{x}`, r`\dfrac{1+x}{x}`, r`\dfrac{2}{x}`, r`\dfrac{x+1}{2x}`], a:r`\dfrac{x+1}{x}`, tip:r`\dfrac{x}{x}+\dfrac{1}{x}=\dfrac{x+1}{x}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]3+\dfrac{2}{x}=`, choices:[r`\dfrac{3x+2}{x}`, r`\dfrac{5}{x}`, r`\dfrac{3+2}{x}`, r`\dfrac{6x}{x}`], a:r`\dfrac{3x+2}{x}`, tip:r`\dfrac{3x}{x}+\dfrac{2}{x}=\dfrac{3x+2}{x}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]5-\dfrac{1}{x}=`, choices:[r`\dfrac{5x-1}{x}`, r`\dfrac{4}{x}`, r`\dfrac{5-1}{x}`, r`\dfrac{5x}{x}`], a:r`\dfrac{5x-1}{x}`, tip:r`\dfrac{5x}{x}-\dfrac{1}{x}=\dfrac{5x-1}{x}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]2-\dfrac{3}{x}=`, choices:[r`\dfrac{2x-3}{x}`, r`\dfrac{-1}{x}`, r`\dfrac{2-3}{x}`, r`\dfrac{6x}{x}`], a:r`\dfrac{2x-3}{x}`, tip:r`\dfrac{2x}{x}-\dfrac{3}{x}=\dfrac{2x-3}{x}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]4+\dfrac{1}{x}=`, choices:[r`\dfrac{4x+1}{x}`, r`\dfrac{5}{x}`, r`\dfrac{4+1}{x}`, r`\dfrac{4x}{x}`], a:r`\dfrac{4x+1}{x}`, tip:r`\dfrac{4x}{x}+\dfrac{1}{x}=\dfrac{4x+1}{x}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]1-\dfrac{2}{x}=`, choices:[r`\dfrac{x-2}{x}`, r`\dfrac{-1}{x}`, r`\dfrac{1-2}{x}`, r`\dfrac{2x}{x}`], a:r`\dfrac{x-2}{x}`, tip:r`\dfrac{x}{x}-\dfrac{2}{x}=\dfrac{x-2}{x}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]2+\dfrac{5}{x}=`, choices:[r`\dfrac{2x+5}{x}`, r`\dfrac{7}{x}`, r`\dfrac{10x}{x}`, r`\dfrac{2+5}{x}`], a:r`\dfrac{2x+5}{x}`, tip:r`\dfrac{2x}{x}+\dfrac{5}{x}=\dfrac{2x+5}{x}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]3-\dfrac{4}{x}=`, choices:[r`\dfrac{3x-4}{x}`, r`\dfrac{-1}{x}`, r`\dfrac{3-4}{x}`, r`\dfrac{12x}{x}`], a:r`\dfrac{3x-4}{x}`, tip:r`\dfrac{3x}{x}-\dfrac{4}{x}=\dfrac{3x-4}{x}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]6+\dfrac{1}{x}=`, choices:[r`\dfrac{6x+1}{x}`, r`\dfrac{7}{x}`, r`\dfrac{6+1}{x}`, r`\dfrac{6x}{x}`], a:r`\dfrac{6x+1}{x}`, tip:r`\dfrac{6x}{x}+\dfrac{1}{x}=\dfrac{6x+1}{x}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]1-\dfrac{5}{x}=`, choices:[r`\dfrac{x-5}{x}`, r`\dfrac{-4}{x}`, r`\dfrac{1-5}{x}`, r`\dfrac{5x}{x}`], a:r`\dfrac{x-5}{x}`, tip:r`\dfrac{x}{x}-\dfrac{5}{x}=\dfrac{x-5}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\1+\dfrac{1}{x}=`, choices:[r`\dfrac{x+1}{x}`, r`\dfrac{1+x}{x}`, r`\dfrac{2}{x}`, r`\dfrac{x+1}{2x}`], a:r`\dfrac{x+1}{x}`, tip:r`\dfrac{x}{x}+\dfrac{1}{x}=\dfrac{x+1}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\3+\dfrac{2}{x}=`, choices:[r`\dfrac{3x+2}{x}`, r`\dfrac{5}{x}`, r`\dfrac{3+2}{x}`, r`\dfrac{6x}{x}`], a:r`\dfrac{3x+2}{x}`, tip:r`\dfrac{3x}{x}+\dfrac{2}{x}=\dfrac{3x+2}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\5-\dfrac{1}{x}=`, choices:[r`\dfrac{5x-1}{x}`, r`\dfrac{4}{x}`, r`\dfrac{5-1}{x}`, r`\dfrac{5x}{x}`], a:r`\dfrac{5x-1}{x}`, tip:r`\dfrac{5x}{x}-\dfrac{1}{x}=\dfrac{5x-1}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\2-\dfrac{3}{x}=`, choices:[r`\dfrac{2x-3}{x}`, r`\dfrac{-1}{x}`, r`\dfrac{2-3}{x}`, r`\dfrac{6x}{x}`], a:r`\dfrac{2x-3}{x}`, tip:r`\dfrac{2x}{x}-\dfrac{3}{x}=\dfrac{2x-3}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\4+\dfrac{1}{x}=`, choices:[r`\dfrac{4x+1}{x}`, r`\dfrac{5}{x}`, r`\dfrac{4+1}{x}`, r`\dfrac{4x}{x}`], a:r`\dfrac{4x+1}{x}`, tip:r`\dfrac{4x}{x}+\dfrac{1}{x}=\dfrac{4x+1}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\1-\dfrac{2}{x}=`, choices:[r`\dfrac{x-2}{x}`, r`\dfrac{-1}{x}`, r`\dfrac{1-2}{x}`, r`\dfrac{2x}{x}`], a:r`\dfrac{x-2}{x}`, tip:r`\dfrac{x}{x}-\dfrac{2}{x}=\dfrac{x-2}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\2+\dfrac{5}{x}=`, choices:[r`\dfrac{2x+5}{x}`, r`\dfrac{7}{x}`, r`\dfrac{10x}{x}`, r`\dfrac{2+5}{x}`], a:r`\dfrac{2x+5}{x}`, tip:r`\dfrac{2x}{x}+\dfrac{5}{x}=\dfrac{2x+5}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\3-\dfrac{4}{x}=`, choices:[r`\dfrac{3x-4}{x}`, r`\dfrac{-1}{x}`, r`\dfrac{3-4}{x}`, r`\dfrac{12x}{x}`], a:r`\dfrac{3x-4}{x}`, tip:r`\dfrac{3x}{x}-\dfrac{4}{x}=\dfrac{3x-4}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\6+\dfrac{1}{x}=`, choices:[r`\dfrac{6x+1}{x}`, r`\dfrac{7}{x}`, r`\dfrac{6+1}{x}`, r`\dfrac{6x}{x}`], a:r`\dfrac{6x+1}{x}`, tip:r`\dfrac{6x}{x}+\dfrac{1}{x}=\dfrac{6x+1}{x}` },
+      { q:r`\text{Mettre au même dénominateur :}\\1-\dfrac{5}{x}=`, choices:[r`\dfrac{x-5}{x}`, r`\dfrac{-4}{x}`, r`\dfrac{1-5}{x}`, r`\dfrac{5x}{x}`], a:r`\dfrac{x-5}{x}`, tip:r`\dfrac{x}{x}-\dfrac{5}{x}=\dfrac{x-5}{x}` },
     ],
 
     // Niveau 2 : dénominateur avec expression (15 questions) - FRACTIONPAD
     // Accepte forme non-réduite OU réduite, avec feedback "C'est bon mais tu peux encore simplifier"
     denom_n2: [
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{5}{x+1}-2=`, fractionpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{5}{x+1}-2=`, fractionpad:true, 
         a:"(3-2x)/(x+1)", altAnswers:["(5-2(x+1))/(x+1)","(-2x+3)/(x+1)"], 
         partialAnswers:["(5-2(x+1))/(x+1)"], 
         tip:r`\dfrac{5-2(x+1)}{x+1}=\dfrac{5-2x-2}{x+1}=\dfrac{3-2x}{x+1}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]3+\dfrac{1}{x-2}=`, fractionpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\3+\dfrac{1}{x-2}=`, fractionpad:true, 
         a:"(3x-5)/(x-2)", altAnswers:["(3(x-2)+1)/(x-2)","(-5+3x)/(x-2)"], 
         partialAnswers:["(3(x-2)+1)/(x-2)"], 
         tip:r`\dfrac{3(x-2)+1}{x-2}=\dfrac{3x-6+1}{x-2}=\dfrac{3x-5}{x-2}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{7}{x-3}-1=`, fractionpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{7}{x-3}-1=`, fractionpad:true, 
         a:"(10-x)/(x-3)", altAnswers:["(7-(x-3))/(x-3)","(-x+10)/(x-3)"], 
         partialAnswers:["(7-(x-3))/(x-3)"], 
         tip:r`\dfrac{7-(x-3)}{x-3}=\dfrac{7-x+3}{x-3}=\dfrac{10-x}{x-3}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]2-\dfrac{3}{x+4}=`, fractionpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\2-\dfrac{3}{x+4}=`, fractionpad:true, 
         a:"(2x+5)/(x+4)", altAnswers:["(2(x+4)-3)/(x+4)","(5+2x)/(x+4)"], 
         partialAnswers:["(2(x+4)-3)/(x+4)"], 
         tip:r`\dfrac{2(x+4)-3}{x+4}=\dfrac{2x+8-3}{x+4}=\dfrac{2x+5}{x+4}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{4}{x+2}+1=`, fractionpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{4}{x+2}+1=`, fractionpad:true, 
         a:"(x+6)/(x+2)", altAnswers:["(4+(x+2))/(x+2)","(6+x)/(x+2)"], 
         partialAnswers:["(4+(x+2))/(x+2)"], 
         tip:r`\dfrac{4+(x+2)}{x+2}=\dfrac{4+x+2}{x+2}=\dfrac{x+6}{x+2}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]5-\dfrac{2}{x-1}=`, fractionpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\5-\dfrac{2}{x-1}=`, fractionpad:true, 
         a:"(5x-7)/(x-1)", altAnswers:["(5(x-1)-2)/(x-1)","(-7+5x)/(x-1)"], 
         partialAnswers:["(5(x-1)-2)/(x-1)"], 
         tip:r`\dfrac{5(x-1)-2}{x-1}=\dfrac{5x-5-2}{x-1}=\dfrac{5x-7}{x-1}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{6}{x+3}-3=`, fractionpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{6}{x+3}-3=`, fractionpad:true, 
         a:"(-3x-3)/(x+3)", altAnswers:["(6-3(x+3))/(x+3)","(-3-3x)/(x+3)"], 
         partialAnswers:["(6-3(x+3))/(x+3)"], 
         tip:r`\dfrac{6-3(x+3)}{x+3}=\dfrac{6-3x-9}{x+3}=\dfrac{-3x-3}{x+3}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]4+\dfrac{2}{x-5}=`, fractionpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\4+\dfrac{2}{x-5}=`, fractionpad:true, 
         a:"(4x-18)/(x-5)", altAnswers:["(4(x-5)+2)/(x-5)","(-18+4x)/(x-5)"], 
         partialAnswers:["(4(x-5)+2)/(x-5)"], 
         tip:r`\dfrac{4(x-5)+2}{x-5}=\dfrac{4x-20+2}{x-5}=\dfrac{4x-18}{x-5}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{8}{x-2}-2=`, fractionpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{8}{x-2}-2=`, fractionpad:true, 
         a:"(12-2x)/(x-2)", altAnswers:["(8-2(x-2))/(x-2)","(-2x+12)/(x-2)"], 
         partialAnswers:["(8-2(x-2))/(x-2)"], 
         tip:r`\dfrac{8-2(x-2)}{x-2}=\dfrac{8-2x+4}{x-2}=\dfrac{12-2x}{x-2}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]1-\dfrac{4}{x+1}=`, fractionpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\1-\dfrac{4}{x+1}=`, fractionpad:true, 
         a:"(x-3)/(x+1)", altAnswers:["((x+1)-4)/(x+1)","(-3+x)/(x+1)"], 
         partialAnswers:["((x+1)-4)/(x+1)"], 
         tip:r`\dfrac{(x+1)-4}{x+1}=\dfrac{x+1-4}{x+1}=\dfrac{x-3}{x+1}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{9}{x+4}+2=`, fractionpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{9}{x+4}+2=`, fractionpad:true, 
         a:"(2x+17)/(x+4)", altAnswers:["(9+2(x+4))/(x+4)","(17+2x)/(x+4)"], 
         partialAnswers:["(9+2(x+4))/(x+4)"], 
         tip:r`\dfrac{9+2(x+4)}{x+4}=\dfrac{9+2x+8}{x+4}=\dfrac{2x+17}{x+4}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]3-\dfrac{5}{x-1}=`, fractionpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\3-\dfrac{5}{x-1}=`, fractionpad:true, 
         a:"(3x-8)/(x-1)", altAnswers:["(3(x-1)-5)/(x-1)","(-8+3x)/(x-1)"], 
         partialAnswers:["(3(x-1)-5)/(x-1)"], 
         tip:r`\dfrac{3(x-1)-5}{x-1}=\dfrac{3x-3-5}{x-1}=\dfrac{3x-8}{x-1}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{10}{x+5}-4=`, fractionpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{10}{x+5}-4=`, fractionpad:true, 
         a:"(-4x-10)/(x+5)", altAnswers:["(10-4(x+5))/(x+5)","(-10-4x)/(x+5)"], 
         partialAnswers:["(10-4(x+5))/(x+5)"], 
         tip:r`\dfrac{10-4(x+5)}{x+5}=\dfrac{10-4x-20}{x+5}=\dfrac{-4x-10}{x+5}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]6+\dfrac{3}{x-4}=`, fractionpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\6+\dfrac{3}{x-4}=`, fractionpad:true, 
         a:"(6x-21)/(x-4)", altAnswers:["(6(x-4)+3)/(x-4)","(-21+6x)/(x-4)"], 
         partialAnswers:["(6(x-4)+3)/(x-4)"], 
         tip:r`\dfrac{6(x-4)+3}{x-4}=\dfrac{6x-24+3}{x-4}=\dfrac{6x-21}{x-4}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{7}{x+2}-5=`, fractionpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{7}{x+2}-5=`, fractionpad:true, 
         a:"(-5x-3)/(x+2)", altAnswers:["(7-5(x+2))/(x+2)","(-3-5x)/(x+2)"], 
         partialAnswers:["(7-5(x+2))/(x+2)"], 
         tip:r`\dfrac{7-5(x+2)}{x+2}=\dfrac{7-5x-10}{x+2}=\dfrac{-5x-3}{x+2}` },
@@ -4131,235 +4131,235 @@ const DB = {
     // Niveau 3 : deux fractions avec dénominateurs différents (15 questions)
     // Accepte dénominateur factorisé OU développé, avec reminder sur inutilité de développer
     denom_n3: [
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{1}{x}+\dfrac{3}{x+1}=`, fractionpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{1}{x}+\dfrac{3}{x+1}=`, fractionpad:true, 
         a:"(4x+1)/(x(x+1))", altAnswers:["(4x+1)/(x²+x)","(1+4x)/(x(x+1))","(1+4x)/(x²+x)"], 
-        tip:r`\dfrac{x+1+3x}{x(x+1)}=\dfrac{4x+1}{x(x+1)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{2}{x}-\dfrac{1}{x+2}=`, fractionpad:true, 
+        tip:r`\dfrac{x+1+3x}{x(x+1)}=\dfrac{4x+1}{x(x+1)}\\\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{2}{x}-\dfrac{1}{x+2}=`, fractionpad:true, 
         a:"(x+4)/(x(x+2))", altAnswers:["(x+4)/(x²+2x)","(4+x)/(x(x+2))","(4+x)/(x²+2x)"], 
-        tip:r`\dfrac{2(x+2)-x}{x(x+2)}=\dfrac{2x+4-x}{x(x+2)}=\dfrac{x+4}{x(x+2)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{3}{x+1}+\dfrac{2}{x-1}=`, fractionpad:true, 
+        tip:r`\dfrac{2(x+2)-x}{x(x+2)}=\dfrac{2x+4-x}{x(x+2)}=\dfrac{x+4}{x(x+2)}\\\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{3}{x+1}+\dfrac{2}{x-1}=`, fractionpad:true, 
         a:"(5x-1)/((x+1)(x-1))", altAnswers:["(5x-1)/(x²-1)","(-1+5x)/((x+1)(x-1))","(-1+5x)/(x²-1)"], 
-        tip:r`\dfrac{3(x-1)+2(x+1)}{(x+1)(x-1)}=\dfrac{3x-3+2x+2}{(x+1)(x-1)}=\dfrac{5x-1}{(x+1)(x-1)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{1}{x-2}-\dfrac{4}{x+3}=`, fractionpad:true, 
+        tip:r`\dfrac{3(x-1)+2(x+1)}{(x+1)(x-1)}=\dfrac{3x-3+2x+2}{(x+1)(x-1)}=\dfrac{5x-1}{(x+1)(x-1)}\\\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{1}{x-2}-\dfrac{4}{x+3}=`, fractionpad:true, 
         a:"(-3x-11)/((x-2)(x+3))", altAnswers:["(-3x-11)/(x²+x-6)","(-11-3x)/((x-2)(x+3))","(-11-3x)/(x²+x-6)"], 
-        tip:r`\dfrac{(x+3)-4(x-2)}{(x-2)(x+3)}=\dfrac{x+3-4x+8}{(x-2)(x+3)}=\dfrac{-3x+11}{(x-2)(x+3)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{5}{x}+\dfrac{1}{x-3}=`, fractionpad:true, 
+        tip:r`\dfrac{(x+3)-4(x-2)}{(x-2)(x+3)}=\dfrac{x+3-4x+8}{(x-2)(x+3)}=\dfrac{-3x+11}{(x-2)(x+3)}\\\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{5}{x}+\dfrac{1}{x-3}=`, fractionpad:true, 
         a:"(6x-3)/(x(x-3))", altAnswers:["(6x-3)/(x²-3x)","(-3+6x)/(x(x-3))","(-3+6x)/(x²-3x)"], 
-        tip:r`\dfrac{5(x-3)+x}{x(x-3)}=\dfrac{5x-15+x}{x(x-3)}=\dfrac{6x-15}{x(x-3)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{4}{x+2}-\dfrac{3}{x-1}=`, fractionpad:true, 
+        tip:r`\dfrac{5(x-3)+x}{x(x-3)}=\dfrac{5x-15+x}{x(x-3)}=\dfrac{6x-15}{x(x-3)}\\\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{4}{x+2}-\dfrac{3}{x-1}=`, fractionpad:true, 
         a:"(x+11)/((x+2)(x-1))", altAnswers:["(x+11)/(x²+x-2)","(11+x)/((x+2)(x-1))","(11+x)/(x²+x-2)"], 
-        tip:r`\dfrac{4(x-1)-3(x+2)}{(x+2)(x-1)}=\dfrac{4x-4-3x-6}{(x+2)(x-1)}=\dfrac{x-10}{(x+2)(x-1)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{2}{x-4}+\dfrac{5}{x+1}=`, fractionpad:true, 
+        tip:r`\dfrac{4(x-1)-3(x+2)}{(x+2)(x-1)}=\dfrac{4x-4-3x-6}{(x+2)(x-1)}=\dfrac{x-10}{(x+2)(x-1)}\\\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{2}{x-4}+\dfrac{5}{x+1}=`, fractionpad:true, 
         a:"(7x-3)/((x-4)(x+1))", altAnswers:["(7x-3)/(x²-3x-4)","(-3+7x)/((x-4)(x+1))","(-3+7x)/(x²-3x-4)"], 
-        tip:r`\dfrac{2(x+1)+5(x-4)}{(x-4)(x+1)}=\dfrac{2x+2+5x-20}{(x-4)(x+1)}=\dfrac{7x-18}{(x-4)(x+1)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{1}{x+5}-\dfrac{2}{x}=`, fractionpad:true, 
+        tip:r`\dfrac{2(x+1)+5(x-4)}{(x-4)(x+1)}=\dfrac{2x+2+5x-20}{(x-4)(x+1)}=\dfrac{7x-18}{(x-4)(x+1)}\\\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{1}{x+5}-\dfrac{2}{x}=`, fractionpad:true, 
         a:"(-x-10)/(x(x+5))", altAnswers:["(-x-10)/(x²+5x)","(-10-x)/(x(x+5))","(-10-x)/(x²+5x)"], 
-        tip:r`\dfrac{x-2(x+5)}{x(x+5)}=\dfrac{x-2x-10}{x(x+5)}=\dfrac{-x-10}{x(x+5)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{3}{x-2}+\dfrac{1}{x+4}=`, fractionpad:true, 
+        tip:r`\dfrac{x-2(x+5)}{x(x+5)}=\dfrac{x-2x-10}{x(x+5)}=\dfrac{-x-10}{x(x+5)}\\\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{3}{x-2}+\dfrac{1}{x+4}=`, fractionpad:true, 
         a:"(4x+10)/((x-2)(x+4))", altAnswers:["(4x+10)/(x²+2x-8)","(10+4x)/((x-2)(x+4))","(10+4x)/(x²+2x-8)"], 
-        tip:r`\dfrac{3(x+4)+(x-2)}{(x-2)(x+4)}=\dfrac{3x+12+x-2}{(x-2)(x+4)}=\dfrac{4x+10}{(x-2)(x+4)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{7}{x+3}-\dfrac{2}{x-3}=`, fractionpad:true, 
+        tip:r`\dfrac{3(x+4)+(x-2)}{(x-2)(x+4)}=\dfrac{3x+12+x-2}{(x-2)(x+4)}=\dfrac{4x+10}{(x-2)(x+4)}\\\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{7}{x+3}-\dfrac{2}{x-3}=`, fractionpad:true, 
         a:"(5x+27)/((x+3)(x-3))", altAnswers:["(5x+27)/(x²-9)","(27+5x)/((x+3)(x-3))","(27+5x)/(x²-9)"], 
-        tip:r`\dfrac{7(x-3)-2(x+3)}{(x+3)(x-3)}=\dfrac{7x-21-2x-6}{(x+3)(x-3)}=\dfrac{5x-27}{(x+3)(x-3)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{2}{x}+\dfrac{4}{x+5}=`, fractionpad:true, 
+        tip:r`\dfrac{7(x-3)-2(x+3)}{(x+3)(x-3)}=\dfrac{7x-21-2x-6}{(x+3)(x-3)}=\dfrac{5x-27}{(x+3)(x-3)}\\\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{2}{x}+\dfrac{4}{x+5}=`, fractionpad:true, 
         a:"(6x+4)/(x(x+5))", altAnswers:["(6x+4)/(x²+5x)","(4+6x)/(x(x+5))","(4+6x)/(x²+5x)"], 
-        tip:r`\dfrac{2(x+5)+4x}{x(x+5)}=\dfrac{2x+10+4x}{x(x+5)}=\dfrac{6x+10}{x(x+5)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{5}{x-1}-\dfrac{1}{x+2}=`, fractionpad:true, 
+        tip:r`\dfrac{2(x+5)+4x}{x(x+5)}=\dfrac{2x+10+4x}{x(x+5)}=\dfrac{6x+10}{x(x+5)}\\\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{5}{x-1}-\dfrac{1}{x+2}=`, fractionpad:true, 
         a:"(4x+11)/((x-1)(x+2))", altAnswers:["(4x+11)/(x²+x-2)","(11+4x)/((x-1)(x+2))","(11+4x)/(x²+x-2)"], 
-        tip:r`\dfrac{5(x+2)-(x-1)}{(x-1)(x+2)}=\dfrac{5x+10-x+1}{(x-1)(x+2)}=\dfrac{4x+11}{(x-1)(x+2)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{3}{x+6}+\dfrac{2}{x-2}=`, fractionpad:true, 
+        tip:r`\dfrac{5(x+2)-(x-1)}{(x-1)(x+2)}=\dfrac{5x+10-x+1}{(x-1)(x+2)}=\dfrac{4x+11}{(x-1)(x+2)}\\\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{3}{x+6}+\dfrac{2}{x-2}=`, fractionpad:true, 
         a:"(5x+6)/((x+6)(x-2))", altAnswers:["(5x+6)/(x²+4x-12)","(6+5x)/((x+6)(x-2))","(6+5x)/(x²+4x-12)"], 
-        tip:r`\dfrac{3(x-2)+2(x+6)}{(x+6)(x-2)}=\dfrac{3x-6+2x+12}{(x+6)(x-2)}=\dfrac{5x+6}{(x+6)(x-2)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{1}{x-5}-\dfrac{3}{x}=`, fractionpad:true, 
+        tip:r`\dfrac{3(x-2)+2(x+6)}{(x+6)(x-2)}=\dfrac{3x-6+2x+12}{(x+6)(x-2)}=\dfrac{5x+6}{(x+6)(x-2)}\\\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{1}{x-5}-\dfrac{3}{x}=`, fractionpad:true, 
         a:"(-2x+15)/(x(x-5))", altAnswers:["(-2x+15)/(x²-5x)","(15-2x)/(x(x-5))","(15-2x)/(x²-5x)"], 
-        tip:r`\dfrac{x-3(x-5)}{x(x-5)}=\dfrac{x-3x+15}{x(x-5)}=\dfrac{-2x+15}{x(x-5)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{6}{x+1}+\dfrac{1}{x-4}=`, fractionpad:true, 
+        tip:r`\dfrac{x-3(x-5)}{x(x-5)}=\dfrac{x-3x+15}{x(x-5)}=\dfrac{-2x+15}{x(x-5)}\\\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{6}{x+1}+\dfrac{1}{x-4}=`, fractionpad:true, 
         a:"(7x-23)/((x+1)(x-4))", altAnswers:["(7x-23)/(x²-3x-4)","(-23+7x)/((x+1)(x-4))","(-23+7x)/(x²-3x-4)"], 
-        tip:r`\dfrac{6(x-4)+(x+1)}{(x+1)(x-4)}=\dfrac{6x-24+x+1}{(x+1)(x-4)}=\dfrac{7x-23}{(x+1)(x-4)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+        tip:r`\dfrac{6(x-4)+(x+1)}{(x+1)(x-4)}=\dfrac{6x-24+x+1}{(x+1)(x-4)}=\dfrac{7x-23}{(x+1)(x-4)}\\\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
     ],
 
     // Niveau 4 : numérateurs plus complexes (10 questions)
     denom_n4: [
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{x+1}{x-2}-\dfrac{x}{x+4}=`, fractionpad:true, 
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{x+1}{x-2}-\dfrac{x}{x+4}=`, fractionpad:true, 
         a:"(5x+4)/((x-2)(x+4))", altAnswers:["(5x+4)/(x²+2x-8)","(4+5x)/((x-2)(x+4))","(4+5x)/(x²+2x-8)"], 
-        tip:r`\dfrac{(x+1)(x+4)-x(x-2)}{(x-2)(x+4)}=\dfrac{x^2+5x+4-x^2+2x}{(x-2)(x+4)}=\dfrac{7x+4}{(x-2)(x+4)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{2x}{x+1}+\dfrac{x-3}{x-1}=`, fractionpad:true, 
+        tip:r`\dfrac{(x+1)(x+4)-x(x-2)}{(x-2)(x+4)}=\dfrac{x^2+5x+4-x^2+2x}{(x-2)(x+4)}=\dfrac{7x+4}{(x-2)(x+4)}\\\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{2x}{x+1}+\dfrac{x-3}{x-1}=`, fractionpad:true, 
         a:"(3x²-5x-3)/((x+1)(x-1))", altAnswers:["(3x²-5x-3)/(x²-1)","(-3-5x+3x²)/((x+1)(x-1))","(-3-5x+3x²)/(x²-1)"], 
-        tip:r`\dfrac{2x(x-1)+(x-3)(x+1)}{(x+1)(x-1)}=\dfrac{2x^2-2x+x^2-2x-3}{(x+1)(x-1)}=\dfrac{3x^2-4x-3}{(x+1)(x-1)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{x-2}{x+3}-\dfrac{2x+1}{x-5}=`, fractionpad:true, 
+        tip:r`\dfrac{2x(x-1)+(x-3)(x+1)}{(x+1)(x-1)}=\dfrac{2x^2-2x+x^2-2x-3}{(x+1)(x-1)}=\dfrac{3x^2-4x-3}{(x+1)(x-1)}\\\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{x-2}{x+3}-\dfrac{2x+1}{x-5}=`, fractionpad:true, 
         a:"(-x²-8x-13)/((x+3)(x-5))", altAnswers:["(-x²-8x-13)/(x²-2x-15)","(-13-8x-x²)/((x+3)(x-5))","(-13-8x-x²)/(x²-2x-15)"], 
-        tip:r`\dfrac{(x-2)(x-5)-(2x+1)(x+3)}{(x+3)(x-5)}=\dfrac{x^2-7x+10-2x^2-7x-3}{(x+3)(x-5)}=\dfrac{-x^2-14x+7}{(x+3)(x-5)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{3x}{x-1}+\dfrac{x+2}{x+2}=`, fractionpad:true, 
+        tip:r`\dfrac{(x-2)(x-5)-(2x+1)(x+3)}{(x+3)(x-5)}=\dfrac{x^2-7x+10-2x^2-7x-3}{(x+3)(x-5)}=\dfrac{-x^2-14x+7}{(x+3)(x-5)}\\\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{3x}{x-1}+\dfrac{x+2}{x+2}=`, fractionpad:true, 
         a:"(4x²+4x+2)/((x-1)(x+2))", altAnswers:["(4x²+4x+2)/(x²+x-2)","(2+4x+4x²)/((x-1)(x+2))","(2+4x+4x²)/(x²+x-2)"], 
-        tip:r`\dfrac{3x(x+2)+(x+2)(x-1)}{(x-1)(x+2)}=\dfrac{3x^2+6x+x^2+x-2}{(x-1)(x+2)}=\dfrac{4x^2+7x-2}{(x-1)(x+2)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{x+5}{x-3}-\dfrac{x-1}{x+1}=`, fractionpad:true, 
+        tip:r`\dfrac{3x(x+2)+(x+2)(x-1)}{(x-1)(x+2)}=\dfrac{3x^2+6x+x^2+x-2}{(x-1)(x+2)}=\dfrac{4x^2+7x-2}{(x-1)(x+2)}\\\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{x+5}{x-3}-\dfrac{x-1}{x+1}=`, fractionpad:true, 
         a:"(6x+8)/((x-3)(x+1))", altAnswers:["(6x+8)/(x²-2x-3)","(8+6x)/((x-3)(x+1))","(8+6x)/(x²-2x-3)"], 
-        tip:r`\dfrac{(x+5)(x+1)-(x-1)(x-3)}{(x-3)(x+1)}=\dfrac{x^2+6x+5-x^2+4x-3}{(x-3)(x+1)}=\dfrac{10x+2}{(x-3)(x+1)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{2x-1}{x+4}+\dfrac{x}{x-2}=`, fractionpad:true, 
+        tip:r`\dfrac{(x+5)(x+1)-(x-1)(x-3)}{(x-3)(x+1)}=\dfrac{x^2+6x+5-x^2+4x-3}{(x-3)(x+1)}=\dfrac{10x+2}{(x-3)(x+1)}\\\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{2x-1}{x+4}+\dfrac{x}{x-2}=`, fractionpad:true, 
         a:"(3x²+5x-2)/((x+4)(x-2))", altAnswers:["(3x²+5x-2)/(x²+2x-8)","(-2+5x+3x²)/((x+4)(x-2))","(-2+5x+3x²)/(x²+2x-8)"], 
-        tip:r`\dfrac{(2x-1)(x-2)+x(x+4)}{(x+4)(x-2)}=\dfrac{2x^2-5x+2+x^2+4x}{(x+4)(x-2)}=\dfrac{3x^2-x+2}{(x+4)(x-2)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{x-4}{x+5}-\dfrac{3x}{x-1}=`, exprpad:true, 
+        tip:r`\dfrac{(2x-1)(x-2)+x(x+4)}{(x+4)(x-2)}=\dfrac{2x^2-5x+2+x^2+4x}{(x+4)(x-2)}=\dfrac{3x^2-x+2}{(x+4)(x-2)}\\\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{x-4}{x+5}-\dfrac{3x}{x-1}=`, exprpad:true, 
         a:"(-2x²-14x+4)/((x+5)(x-1))", altAnswers:["(-2x²-14x+4)/(x²+4x-5)","(4-14x-2x²)/((x+5)(x-1))","(4-14x-2x²)/(x²+4x-5)"], 
-        tip:r`\dfrac{(x-4)(x-1)-3x(x+5)}{(x+5)(x-1)}=\dfrac{x^2-5x+4-3x^2-15x}{(x+5)(x-1)}=\dfrac{-2x^2-20x+4}{(x+5)(x-1)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{x+3}{x-6}+\dfrac{2x-5}{x+2}=`, exprpad:true, 
+        tip:r`\dfrac{(x-4)(x-1)-3x(x+5)}{(x+5)(x-1)}=\dfrac{x^2-5x+4-3x^2-15x}{(x+5)(x-1)}=\dfrac{-2x^2-20x+4}{(x+5)(x-1)}\\\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{x+3}{x-6}+\dfrac{2x-5}{x+2}=`, exprpad:true, 
         a:"(3x²-7x-24)/((x-6)(x+2))", altAnswers:["(3x²-7x-24)/(x²-4x-12)","(-24-7x+3x²)/((x-6)(x+2))","(-24-7x+3x²)/(x²-4x-12)"], 
-        tip:r`\dfrac{(x+3)(x+2)+(2x-5)(x-6)}{(x-6)(x+2)}=\dfrac{x^2+5x+6+2x^2-17x+30}{(x-6)(x+2)}=\dfrac{3x^2-12x+36}{(x-6)(x+2)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{4x}{x+3}-\dfrac{x-7}{x-4}=`, exprpad:true, 
+        tip:r`\dfrac{(x+3)(x+2)+(2x-5)(x-6)}{(x-6)(x+2)}=\dfrac{x^2+5x+6+2x^2-17x+30}{(x-6)(x+2)}=\dfrac{3x^2-12x+36}{(x-6)(x+2)}\\\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{4x}{x+3}-\dfrac{x-7}{x-4}=`, exprpad:true, 
         a:"(3x²+21x+21)/((x+3)(x-4))", altAnswers:["(3x²+21x+21)/(x²-x-12)","(21+21x+3x²)/((x+3)(x-4))","(21+21x+3x²)/(x²-x-12)"], 
-        tip:r`\dfrac{4x(x-4)-(x-7)(x+3)}{(x+3)(x-4)}=\dfrac{4x^2-16x-x^2+4x+21}{(x+3)(x-4)}=\dfrac{3x^2-12x+21}{(x+3)(x-4)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
-      { q:r`\text{Mettre au même dénominateur :}\\[5pt]\dfrac{x+8}{x-7}-\dfrac{5x}{x+6}=`, exprpad:true, 
+        tip:r`\dfrac{4x(x-4)-(x-7)(x+3)}{(x+3)(x-4)}=\dfrac{4x^2-16x-x^2+4x+21}{(x+3)(x-4)}=\dfrac{3x^2-12x+21}{(x+3)(x-4)}\\\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+      { q:r`\text{Mettre au même dénominateur :}\\\dfrac{x+8}{x-7}-\dfrac{5x}{x+6}=`, exprpad:true, 
         a:"(-4x²-34x+48)/((x-7)(x+6))", altAnswers:["(-4x²-34x+48)/(x²-x-42)","(48-34x-4x²)/((x-7)(x+6))","(48-34x-4x²)/(x²-x-42)"], 
-        tip:r`\dfrac{(x+8)(x+6)-5x(x-7)}{(x-7)(x+6)}=\dfrac{x^2+14x+48-5x^2+35x}{(x-7)(x+6)}=\dfrac{-4x^2+49x+48}{(x-7)(x+6)}\\[3pt]\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
+        tip:r`\dfrac{(x+8)(x+6)-5x(x-7)}{(x-7)(x+6)}=\dfrac{x^2+14x+48-5x^2+35x}{(x-7)(x+6)}=\dfrac{-4x^2+49x+48}{(x-7)(x+6)}\\\text{Pour rappel, ici c'est inutile de développer le dénominateur}` },
     ],
 
     facto_commun: [
-      { q:r`\text{Factoriser :}\\[4pt]3x^2+6x`, choices:[`3x(x+2)`,`3(x^2+2x)`,`x(3x+6)`,`6x(x+1)`], a:`3x(x+2)`, tip:r`\text{Facteur commun }3x` },
-      { q:r`\text{Factoriser :}\\[4pt]4x-8`, choices:[`4(x-2)`,`2(2x-4)`,`4(x+2)`,`4x-8`], a:`4(x-2)`, tip:r`\text{Facteur commun }4` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2-5x`, choices:[`x(x-5)`,`5(x-1)`,`x(x+5)`,`5x(x-1)`], a:`x(x-5)`, tip:r`\text{Facteur commun }x` },
-      { q:r`\text{Factoriser :}\\[4pt]2x^3+4x^2`, choices:[r`2x^2(x+2)`,r`2x(x^2+2x)`,r`4x^2`,r`x^2(2x+4)`], a:r`2x^2(x+2)`, tip:r`\text{Facteur commun }2x^2` },
-      { q:r`\text{Factoriser :}\\[4pt]6x-9`, choices:[`3(2x-3)`,`6(x-1{,}5)`,`3(2x+3)`,`9(x-1)`], a:`3(2x-3)`, tip:r`\text{Facteur commun }3` },
-      { q:r`\text{Factoriser :}\\[4pt]5x^2-10x`, choices:[`5x(x-2)`,`5(x^2-2x)`,`10x(x-1)`,`5x(x+2)`], a:`5x(x-2)`, tip:r`\text{Facteur commun }5x` },
-      { q:r`\text{Factoriser :}\\[4pt]7x+14`, choices:[`7(x+2)`,`7x(x+2)`,`14(x+1)`,`7(x-2)`], a:`7(x+2)`, tip:r`\text{Facteur commun }7` },
-      { q:r`\text{Factoriser :}\\[4pt]x^3+x^2`, choices:[r`x^2(x+1)`,r`x(x^2+x)`,r`x^2+x`,r`x(x+1)`], a:r`x^2(x+1)`, tip:r`\text{Facteur commun }x^2` },
-      { q:r`\text{Factoriser :}\\[4pt]12x^2-8x`, choices:[`4x(3x-2)`,`4(3x^2-2x)`,`8x(x-1)`,`4x(3x+2)`], a:`4x(3x-2)`, tip:r`\text{Facteur commun }4x` },
-      { q:r`\text{Factoriser :}\\[4pt]9x-3`, choices:[`3(3x-1)`,`9(x-3)`,`3(3x+1)`,`3x(3-x)`], a:`3(3x-1)`, tip:r`\text{Facteur commun }3` },
-      { q:r`\text{Factoriser :}\\[4pt]8x^2+12x`, choices:[`4x(2x+3)`,`4(2x^2+3x)`,`8x(x+1)`,`12x(x+1)`], a:`4x(2x+3)`, tip:r`\text{Facteur commun }4x` },
-      { q:r`\text{Factoriser :}\\[4pt]15x-25`, choices:[`5(3x-5)`,`5x(3-5)`,`15(x-5)`,`5(3x+5)`], a:`5(3x-5)`, tip:r`\text{Facteur commun }5` },
-      { q:r`\text{Factoriser :}\\[4pt]x^4-x^3`, choices:[r`x^3(x-1)`,r`x^2(x^2-x)`,r`x(x^3-x^2)`,r`x^3(x+1)`], a:r`x^3(x-1)`, tip:r`\text{Facteur commun }x^3` },
-      { q:r`\text{Factoriser :}\\[4pt]18x^3-6x`, choices:[r`6x(3x^2-1)`,r`6(3x^3-x)`,r`18x(x^2-1)`,r`6x(3x^2+1)`], a:r`6x(3x^2-1)`, tip:r`\text{Facteur commun }6x` },
-      { q:r`\text{Factoriser :}\\[4pt]4x^2-2x`, choices:[`2x(2x-1)`,`2(2x^2-x)`,`4x(x-1)`,`2x(2x+1)`], a:`2x(2x-1)`, tip:r`\text{Facteur commun }2x` },
-      { q:r`\text{Factoriser :}\\[4pt]x^3-3x^2`, choices:[r`x^2(x-3)`,r`x(x^2-3x)`,r`3x^2(x-1)`,r`x^2(x+3)`], a:r`x^2(x-3)`, tip:r`\text{Facteur commun }x^2` },
-      { q:r`\text{Factoriser :}\\[4pt]20x+8`, choices:[`4(5x+2)`,`8(x+1)`,`4(5x-2)`,`20(x+2)`], a:`4(5x+2)`, tip:r`\text{Facteur commun }4` },
-      { q:r`\text{Factoriser :}\\[4pt]3x^3+9x^2`, choices:[r`3x^2(x+3)`,r`3x(x^2+3x)`,r`9x^2(x+1)`,r`3x^2(x-3)`], a:r`3x^2(x+3)`, tip:r`\text{Facteur commun }3x^2` },
-      { q:r`\text{Factoriser :}\\[4pt]6x^2-4x`, choices:[`2x(3x-2)`,`2(3x^2-2x)`,`6x(x-1)`,`4x(x-1)`], a:`2x(3x-2)`, tip:r`\text{Facteur commun }2x` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2+7x`, choices:[`x(x+7)`,`7(x^2+1)`,`x(x-7)`,`7x(x+1)`], a:`x(x+7)`, tip:r`\text{Facteur commun }x` },
+      { q:r`\text{Factoriser :}\\3x^2+6x`, choices:[`3x(x+2)`,`3(x^2+2x)`,`x(3x+6)`,`6x(x+1)`], a:`3x(x+2)`, tip:r`\text{Facteur commun }3x` },
+      { q:r`\text{Factoriser :}\\4x-8`, choices:[`4(x-2)`,`2(2x-4)`,`4(x+2)`,`4x-8`], a:`4(x-2)`, tip:r`\text{Facteur commun }4` },
+      { q:r`\text{Factoriser :}\\x^2-5x`, choices:[`x(x-5)`,`5(x-1)`,`x(x+5)`,`5x(x-1)`], a:`x(x-5)`, tip:r`\text{Facteur commun }x` },
+      { q:r`\text{Factoriser :}\\2x^3+4x^2`, choices:[r`2x^2(x+2)`,r`2x(x^2+2x)`,r`4x^2`,r`x^2(2x+4)`], a:r`2x^2(x+2)`, tip:r`\text{Facteur commun }2x^2` },
+      { q:r`\text{Factoriser :}\\6x-9`, choices:[`3(2x-3)`,`6(x-1{,}5)`,`3(2x+3)`,`9(x-1)`], a:`3(2x-3)`, tip:r`\text{Facteur commun }3` },
+      { q:r`\text{Factoriser :}\\5x^2-10x`, choices:[`5x(x-2)`,`5(x^2-2x)`,`10x(x-1)`,`5x(x+2)`], a:`5x(x-2)`, tip:r`\text{Facteur commun }5x` },
+      { q:r`\text{Factoriser :}\\7x+14`, choices:[`7(x+2)`,`7x(x+2)`,`14(x+1)`,`7(x-2)`], a:`7(x+2)`, tip:r`\text{Facteur commun }7` },
+      { q:r`\text{Factoriser :}\\x^3+x^2`, choices:[r`x^2(x+1)`,r`x(x^2+x)`,r`x^2+x`,r`x(x+1)`], a:r`x^2(x+1)`, tip:r`\text{Facteur commun }x^2` },
+      { q:r`\text{Factoriser :}\\12x^2-8x`, choices:[`4x(3x-2)`,`4(3x^2-2x)`,`8x(x-1)`,`4x(3x+2)`], a:`4x(3x-2)`, tip:r`\text{Facteur commun }4x` },
+      { q:r`\text{Factoriser :}\\9x-3`, choices:[`3(3x-1)`,`9(x-3)`,`3(3x+1)`,`3x(3-x)`], a:`3(3x-1)`, tip:r`\text{Facteur commun }3` },
+      { q:r`\text{Factoriser :}\\8x^2+12x`, choices:[`4x(2x+3)`,`4(2x^2+3x)`,`8x(x+1)`,`12x(x+1)`], a:`4x(2x+3)`, tip:r`\text{Facteur commun }4x` },
+      { q:r`\text{Factoriser :}\\15x-25`, choices:[`5(3x-5)`,`5x(3-5)`,`15(x-5)`,`5(3x+5)`], a:`5(3x-5)`, tip:r`\text{Facteur commun }5` },
+      { q:r`\text{Factoriser :}\\x^4-x^3`, choices:[r`x^3(x-1)`,r`x^2(x^2-x)`,r`x(x^3-x^2)`,r`x^3(x+1)`], a:r`x^3(x-1)`, tip:r`\text{Facteur commun }x^3` },
+      { q:r`\text{Factoriser :}\\18x^3-6x`, choices:[r`6x(3x^2-1)`,r`6(3x^3-x)`,r`18x(x^2-1)`,r`6x(3x^2+1)`], a:r`6x(3x^2-1)`, tip:r`\text{Facteur commun }6x` },
+      { q:r`\text{Factoriser :}\\4x^2-2x`, choices:[`2x(2x-1)`,`2(2x^2-x)`,`4x(x-1)`,`2x(2x+1)`], a:`2x(2x-1)`, tip:r`\text{Facteur commun }2x` },
+      { q:r`\text{Factoriser :}\\x^3-3x^2`, choices:[r`x^2(x-3)`,r`x(x^2-3x)`,r`3x^2(x-1)`,r`x^2(x+3)`], a:r`x^2(x-3)`, tip:r`\text{Facteur commun }x^2` },
+      { q:r`\text{Factoriser :}\\20x+8`, choices:[`4(5x+2)`,`8(x+1)`,`4(5x-2)`,`20(x+2)`], a:`4(5x+2)`, tip:r`\text{Facteur commun }4` },
+      { q:r`\text{Factoriser :}\\3x^3+9x^2`, choices:[r`3x^2(x+3)`,r`3x(x^2+3x)`,r`9x^2(x+1)`,r`3x^2(x-3)`], a:r`3x^2(x+3)`, tip:r`\text{Facteur commun }3x^2` },
+      { q:r`\text{Factoriser :}\\6x^2-4x`, choices:[`2x(3x-2)`,`2(3x^2-2x)`,`6x(x-1)`,`4x(x-1)`], a:`2x(3x-2)`, tip:r`\text{Facteur commun }2x` },
+      { q:r`\text{Factoriser :}\\x^2+7x`, choices:[`x(x+7)`,`7(x^2+1)`,`x(x-7)`,`7x(x+1)`], a:`x(x+7)`, tip:r`\text{Facteur commun }x` },
     ],
     facto_commun_pad: [
-      { q:r`\text{Factoriser :}\\[4pt]2x^2+4x=`, exprpad:true, a:"2x(x+2)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }2x` },
-      { q:r`\text{Factoriser :}\\[4pt]3x-6=`, exprpad:true, a:"3(x-2)", extraBtns:["x"], tip:r`\text{Facteur commun }3` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2+x=`, exprpad:true, a:"x(x+1)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }x` },
-      { q:r`\text{Factoriser :}\\[4pt]5x^2-15x=`, exprpad:true, a:"5x(x-3)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }5x` },
-      { q:r`\text{Factoriser :}\\[4pt]4x^2+8x=`, exprpad:true, a:"4x(x+2)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }4x` },
-      { q:r`\text{Factoriser :}\\[4pt]6x^3-9x^2=`, exprpad:true, a:"3x²(2x-3)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }3x^2` },
-      { q:r`\text{Factoriser :}\\[4pt]10x-15=`, exprpad:true, a:"5(2x-3)", extraBtns:["x"], tip:r`\text{Facteur commun }5` },
-      { q:r`\text{Factoriser :}\\[4pt]x^3-x^2=`, exprpad:true, a:"x²(x-1)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }x^2` },
-      { q:r`\text{Factoriser :}\\[4pt]8x+12=`, exprpad:true, a:"4(2x+3)", extraBtns:["x"], tip:r`\text{Facteur commun }4` },
-      { q:r`\text{Factoriser :}\\[4pt]7x^2-14x=`, exprpad:true, a:"7x(x-2)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }7x` },
-      { q:r`\text{Factoriser :}\\[4pt]x^4+x^3=`, exprpad:true, a:"x³(x+1)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }x^3` },
-      { q:r`\text{Factoriser :}\\[4pt]9x^2-3x=`, exprpad:true, a:"3x(3x-1)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }3x` },
-      { q:r`\text{Factoriser :}\\[4pt]12x^3+8x^2=`, exprpad:true, a:"4x²(3x+2)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }4x^2` },
-      { q:r`\text{Factoriser :}\\[4pt]15x^2-10x=`, exprpad:true, a:"5x(3x-2)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }5x` },
-      { q:r`\text{Factoriser :}\\[4pt]6x+18=`, exprpad:true, a:"6(x+3)", extraBtns:["x"], tip:r`\text{Facteur commun }6` },
-      { q:r`\text{Factoriser :}\\[4pt]x^3+3x=`, exprpad:true, a:"x(x²+3)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }x` },
-      { q:r`\text{Factoriser :}\\[4pt]4x^3-2x^2=`, exprpad:true, a:"2x²(2x-1)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }2x^2` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2-8x=`, exprpad:true, a:"x(x-8)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }x` },
-      { q:r`\text{Factoriser :}\\[4pt]3x^4-6x^2=`, exprpad:true, a:"3x²(x²-2)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }3x^2` },
-      { q:r`\text{Factoriser :}\\[4pt]20x^2+5x=`, exprpad:true, a:"5x(4x+1)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }5x` },
+      { q:r`\text{Factoriser :}\\2x^2+4x=`, exprpad:true, a:"2x(x+2)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }2x` },
+      { q:r`\text{Factoriser :}\\3x-6=`, exprpad:true, a:"3(x-2)", extraBtns:["x"], tip:r`\text{Facteur commun }3` },
+      { q:r`\text{Factoriser :}\\x^2+x=`, exprpad:true, a:"x(x+1)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }x` },
+      { q:r`\text{Factoriser :}\\5x^2-15x=`, exprpad:true, a:"5x(x-3)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }5x` },
+      { q:r`\text{Factoriser :}\\4x^2+8x=`, exprpad:true, a:"4x(x+2)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }4x` },
+      { q:r`\text{Factoriser :}\\6x^3-9x^2=`, exprpad:true, a:"3x²(2x-3)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }3x^2` },
+      { q:r`\text{Factoriser :}\\10x-15=`, exprpad:true, a:"5(2x-3)", extraBtns:["x"], tip:r`\text{Facteur commun }5` },
+      { q:r`\text{Factoriser :}\\x^3-x^2=`, exprpad:true, a:"x²(x-1)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }x^2` },
+      { q:r`\text{Factoriser :}\\8x+12=`, exprpad:true, a:"4(2x+3)", extraBtns:["x"], tip:r`\text{Facteur commun }4` },
+      { q:r`\text{Factoriser :}\\7x^2-14x=`, exprpad:true, a:"7x(x-2)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }7x` },
+      { q:r`\text{Factoriser :}\\x^4+x^3=`, exprpad:true, a:"x³(x+1)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }x^3` },
+      { q:r`\text{Factoriser :}\\9x^2-3x=`, exprpad:true, a:"3x(3x-1)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }3x` },
+      { q:r`\text{Factoriser :}\\12x^3+8x^2=`, exprpad:true, a:"4x²(3x+2)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }4x^2` },
+      { q:r`\text{Factoriser :}\\15x^2-10x=`, exprpad:true, a:"5x(3x-2)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }5x` },
+      { q:r`\text{Factoriser :}\\6x+18=`, exprpad:true, a:"6(x+3)", extraBtns:["x"], tip:r`\text{Facteur commun }6` },
+      { q:r`\text{Factoriser :}\\x^3+3x=`, exprpad:true, a:"x(x²+3)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }x` },
+      { q:r`\text{Factoriser :}\\4x^3-2x^2=`, exprpad:true, a:"2x²(2x-1)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }2x^2` },
+      { q:r`\text{Factoriser :}\\x^2-8x=`, exprpad:true, a:"x(x-8)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }x` },
+      { q:r`\text{Factoriser :}\\3x^4-6x^2=`, exprpad:true, a:"3x²(x²-2)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }3x^2` },
+      { q:r`\text{Factoriser :}\\20x^2+5x=`, exprpad:true, a:"5x(4x+1)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }5x` },
     ],
     facto_id: [
-      { q:r`\text{Factoriser :}\\[4pt]x^2-9`, choices:[`(x-3)(x+3)`,`(x-9)(x+1)`,`(x-3)^2`,`(x+3)^2`], a:`(x-3)(x+3)`, tip:r`a^2-b^2=(a-b)(a+b)` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2+6x+9`, choices:[`(x+3)^2`,`(x-3)^2`,`(x+3)(x-3)`,`(x+9)(x+1)`], a:`(x+3)^2`, tip:r`(a+b)^2` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2-4x+4`, choices:[`(x-2)^2`,`(x+2)^2`,`(x-2)(x+2)`,`(x-4)(x-1)`], a:`(x-2)^2`, tip:r`(a-b)^2` },
-      { q:r`\text{Factoriser :}\\[4pt]4x^2-1`, choices:[`(2x-1)(2x+1)`,`(2x-1)^2`,`(4x-1)(x+1)`,`(2x+1)^2`], a:`(2x-1)(2x+1)`, tip:r`a^2-b^2` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2-100`, choices:[`(x-10)(x+10)`,`(x-10)^2`,`(x+10)^2`,`(x-100)(x+1)`], a:`(x-10)(x+10)`, tip:r`x^2-10^2` },
-      { q:r`\text{Factoriser :}\\[4pt]9x^2-4`, choices:[`(3x-2)(3x+2)`,`(3x-2)^2`,`(9x-4)(x+1)`,`(3x+2)^2`], a:`(3x-2)(3x+2)`, tip:r`(3x)^2-2^2` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2-8x+16`, choices:[`(x-4)^2`,`(x+4)^2`,`(x-4)(x+4)`,`(x-8)(x-2)`], a:`(x-4)^2`, tip:r`(a-b)^2\text{ avec }a=x,b=4` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2+10x+25`, choices:[`(x+5)^2`,`(x-5)^2`,`(x+5)(x-5)`,`(x+1)(x+25)`], a:`(x+5)^2`, tip:r`(a+b)^2\text{ avec }b=5` },
-      { q:r`\text{Factoriser :}\\[4pt]25x^2-1`, choices:[`(5x-1)(5x+1)`,`(5x-1)^2`,`(25x-1)(x+1)`,`(5x+1)^2`], a:`(5x-1)(5x+1)`, tip:r`(5x)^2-1^2` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2-2x+1`, choices:[`(x-1)^2`,`(x+1)^2`,`(x-1)(x+1)`,`x(x-2)+1`], a:`(x-1)^2`, tip:r`(a-b)^2\text{ avec }b=1` },
-      { q:r`\text{Factoriser :}\\[4pt]16x^2-9`, choices:[`(4x-3)(4x+3)`,`(4x-3)^2`,`(16x-9)(x+1)`,`(4x+3)^2`], a:`(4x-3)(4x+3)`, tip:r`(4x)^2-3^2` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2+4x+4`, choices:[`(x+2)^2`,`(x-2)^2`,`(x+2)(x-2)`,`(x+4)(x+1)`], a:`(x+2)^2`, tip:r`(a+b)^2\text{ avec }b=2` },
-      { q:r`\text{Factoriser :}\\[4pt]49x^2-1`, choices:[`(7x-1)(7x+1)`,`(7x-1)^2`,`(49x-1)(x+1)`,`(7x+1)^2`], a:`(7x-1)(7x+1)`, tip:r`(7x)^2-1^2` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2-14x+49`, choices:[`(x-7)^2`,`(x+7)^2`,`(x-7)(x+7)`,`(x-14)(x-1)`], a:`(x-7)^2`, tip:r`(a-b)^2\text{ avec }b=7` },
-      { q:r`\text{Factoriser :}\\[4pt]36x^2-25`, choices:[`(6x-5)(6x+5)`,`(6x-5)^2`,`(36x-25)(x+1)`,`(6x+5)^2`], a:`(6x-5)(6x+5)`, tip:r`(6x)^2-5^2` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2+12x+36`, choices:[`(x+6)^2`,`(x-6)^2`,`(x+6)(x-6)`,`(x+12)(x+1)`], a:`(x+6)^2`, tip:r`(a+b)^2\text{ avec }b=6` },
-      { q:r`\text{Factoriser :}\\[4pt]4x^2-25`, choices:[`(2x-5)(2x+5)`,`(2x-5)^2`,`(4x-25)(x+1)`,`(2x+5)^2`], a:`(2x-5)(2x+5)`, tip:r`(2x)^2-5^2` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2-18x+81`, choices:[`(x-9)^2`,`(x+9)^2`,`(x-9)(x+9)`,`(x-18)(x-1)`], a:`(x-9)^2`, tip:r`(a-b)^2\text{ avec }b=9` },
-      { q:r`\text{Factoriser :}\\[4pt]9x^2-49`, choices:[`(3x-7)(3x+7)`,`(3x-7)^2`,`(9x-49)(x+1)`,`(3x+7)^2`], a:`(3x-7)(3x+7)`, tip:r`(3x)^2-7^2` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2+16x+64`, choices:[`(x+8)^2`,`(x-8)^2`,`(x+8)(x-8)`,`(x+16)(x+1)`], a:`(x+8)^2`, tip:r`(a+b)^2\text{ avec }b=8` },
+      { q:r`\text{Factoriser :}\\x^2-9`, choices:[`(x-3)(x+3)`,`(x-9)(x+1)`,`(x-3)^2`,`(x+3)^2`], a:`(x-3)(x+3)`, tip:r`a^2-b^2=(a-b)(a+b)` },
+      { q:r`\text{Factoriser :}\\x^2+6x+9`, choices:[`(x+3)^2`,`(x-3)^2`,`(x+3)(x-3)`,`(x+9)(x+1)`], a:`(x+3)^2`, tip:r`(a+b)^2` },
+      { q:r`\text{Factoriser :}\\x^2-4x+4`, choices:[`(x-2)^2`,`(x+2)^2`,`(x-2)(x+2)`,`(x-4)(x-1)`], a:`(x-2)^2`, tip:r`(a-b)^2` },
+      { q:r`\text{Factoriser :}\\4x^2-1`, choices:[`(2x-1)(2x+1)`,`(2x-1)^2`,`(4x-1)(x+1)`,`(2x+1)^2`], a:`(2x-1)(2x+1)`, tip:r`a^2-b^2` },
+      { q:r`\text{Factoriser :}\\x^2-100`, choices:[`(x-10)(x+10)`,`(x-10)^2`,`(x+10)^2`,`(x-100)(x+1)`], a:`(x-10)(x+10)`, tip:r`x^2-10^2` },
+      { q:r`\text{Factoriser :}\\9x^2-4`, choices:[`(3x-2)(3x+2)`,`(3x-2)^2`,`(9x-4)(x+1)`,`(3x+2)^2`], a:`(3x-2)(3x+2)`, tip:r`(3x)^2-2^2` },
+      { q:r`\text{Factoriser :}\\x^2-8x+16`, choices:[`(x-4)^2`,`(x+4)^2`,`(x-4)(x+4)`,`(x-8)(x-2)`], a:`(x-4)^2`, tip:r`(a-b)^2\text{ avec }a=x,b=4` },
+      { q:r`\text{Factoriser :}\\x^2+10x+25`, choices:[`(x+5)^2`,`(x-5)^2`,`(x+5)(x-5)`,`(x+1)(x+25)`], a:`(x+5)^2`, tip:r`(a+b)^2\text{ avec }b=5` },
+      { q:r`\text{Factoriser :}\\25x^2-1`, choices:[`(5x-1)(5x+1)`,`(5x-1)^2`,`(25x-1)(x+1)`,`(5x+1)^2`], a:`(5x-1)(5x+1)`, tip:r`(5x)^2-1^2` },
+      { q:r`\text{Factoriser :}\\x^2-2x+1`, choices:[`(x-1)^2`,`(x+1)^2`,`(x-1)(x+1)`,`x(x-2)+1`], a:`(x-1)^2`, tip:r`(a-b)^2\text{ avec }b=1` },
+      { q:r`\text{Factoriser :}\\16x^2-9`, choices:[`(4x-3)(4x+3)`,`(4x-3)^2`,`(16x-9)(x+1)`,`(4x+3)^2`], a:`(4x-3)(4x+3)`, tip:r`(4x)^2-3^2` },
+      { q:r`\text{Factoriser :}\\x^2+4x+4`, choices:[`(x+2)^2`,`(x-2)^2`,`(x+2)(x-2)`,`(x+4)(x+1)`], a:`(x+2)^2`, tip:r`(a+b)^2\text{ avec }b=2` },
+      { q:r`\text{Factoriser :}\\49x^2-1`, choices:[`(7x-1)(7x+1)`,`(7x-1)^2`,`(49x-1)(x+1)`,`(7x+1)^2`], a:`(7x-1)(7x+1)`, tip:r`(7x)^2-1^2` },
+      { q:r`\text{Factoriser :}\\x^2-14x+49`, choices:[`(x-7)^2`,`(x+7)^2`,`(x-7)(x+7)`,`(x-14)(x-1)`], a:`(x-7)^2`, tip:r`(a-b)^2\text{ avec }b=7` },
+      { q:r`\text{Factoriser :}\\36x^2-25`, choices:[`(6x-5)(6x+5)`,`(6x-5)^2`,`(36x-25)(x+1)`,`(6x+5)^2`], a:`(6x-5)(6x+5)`, tip:r`(6x)^2-5^2` },
+      { q:r`\text{Factoriser :}\\x^2+12x+36`, choices:[`(x+6)^2`,`(x-6)^2`,`(x+6)(x-6)`,`(x+12)(x+1)`], a:`(x+6)^2`, tip:r`(a+b)^2\text{ avec }b=6` },
+      { q:r`\text{Factoriser :}\\4x^2-25`, choices:[`(2x-5)(2x+5)`,`(2x-5)^2`,`(4x-25)(x+1)`,`(2x+5)^2`], a:`(2x-5)(2x+5)`, tip:r`(2x)^2-5^2` },
+      { q:r`\text{Factoriser :}\\x^2-18x+81`, choices:[`(x-9)^2`,`(x+9)^2`,`(x-9)(x+9)`,`(x-18)(x-1)`], a:`(x-9)^2`, tip:r`(a-b)^2\text{ avec }b=9` },
+      { q:r`\text{Factoriser :}\\9x^2-49`, choices:[`(3x-7)(3x+7)`,`(3x-7)^2`,`(9x-49)(x+1)`,`(3x+7)^2`], a:`(3x-7)(3x+7)`, tip:r`(3x)^2-7^2` },
+      { q:r`\text{Factoriser :}\\x^2+16x+64`, choices:[`(x+8)^2`,`(x-8)^2`,`(x+8)(x-8)`,`(x+16)(x+1)`], a:`(x+8)^2`, tip:r`(a+b)^2\text{ avec }b=8` },
     ],
     facto_id_pad: [
-      { q:r`\text{Factoriser :}\\[4pt]x^2-16=`, exprpad:true, a:"(x-4)(x+4)", extraBtns:["x²","x"], tip:r`x^2-4^2` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2+4x+4=`, exprpad:true, a:"(x+2)²", extraBtns:["x²","x"], tip:r`(x+2)^2` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2-6x+9=`, exprpad:true, a:"(x-3)²", extraBtns:["x²","x"], tip:r`(x-3)^2` },
-      { q:r`\text{Factoriser :}\\[4pt]4x^2-9=`, exprpad:true, a:"(2x-3)(2x+3)", extraBtns:["x²","x"], tip:r`(2x)^2-3^2` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2+8x+16=`, exprpad:true, a:"(x+4)²", extraBtns:["x²","x"], tip:r`(x+4)^2` },
-      { q:r`\text{Factoriser :}\\[4pt]9x^2-25=`, exprpad:true, a:"(3x-5)(3x+5)", extraBtns:["x²","x"], tip:r`(3x)^2-5^2` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2-12x+36=`, exprpad:true, a:"(x-6)²", extraBtns:["x²","x"], tip:r`(x-6)^2` },
-      { q:r`\text{Factoriser :}\\[4pt]16x^2-1=`, exprpad:true, a:"(4x-1)(4x+1)", extraBtns:["x²","x"], tip:r`(4x)^2-1^2` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2+2x+1=`, exprpad:true, a:"(x+1)²", extraBtns:["x²","x"], tip:r`(x+1)^2` },
-      { q:r`\text{Factoriser :}\\[4pt]25x^2-4=`, exprpad:true, a:"(5x-2)(5x+2)", extraBtns:["x²","x"], tip:r`(5x)^2-2^2` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2-10x+25=`, exprpad:true, a:"(x-5)²", extraBtns:["x²","x"], tip:r`(x-5)^2` },
-      { q:r`\text{Factoriser :}\\[4pt]36x^2-49=`, exprpad:true, a:"(6x-7)(6x+7)", extraBtns:["x²","x"], tip:r`(6x)^2-7^2` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2+14x+49=`, exprpad:true, a:"(x+7)²", extraBtns:["x²","x"], tip:r`(x+7)^2` },
-      { q:r`\text{Factoriser :}\\[4pt]4x^2-49=`, exprpad:true, a:"(2x-7)(2x+7)", extraBtns:["x²","x"], tip:r`(2x)^2-7^2` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2-16x+64=`, exprpad:true, a:"(x-8)²", extraBtns:["x²","x"], tip:r`(x-8)^2` },
-      { q:r`\text{Factoriser :}\\[4pt]9x^2-16=`, exprpad:true, a:"(3x-4)(3x+4)", extraBtns:["x²","x"], tip:r`(3x)^2-4^2` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2+18x+81=`, exprpad:true, a:"(x+9)²", extraBtns:["x²","x"], tip:r`(x+9)^2` },
-      { q:r`\text{Factoriser :}\\[4pt]49x^2-4=`, exprpad:true, a:"(7x-2)(7x+2)", extraBtns:["x²","x"], tip:r`(7x)^2-2^2` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2-20x+100=`, exprpad:true, a:"(x-10)²", extraBtns:["x²","x"], tip:r`(x-10)^2` },
-      { q:r`\text{Factoriser :}\\[4pt]16x^2-25=`, exprpad:true, a:"(4x-5)(4x+5)", extraBtns:["x²","x"], tip:r`(4x)^2-5^2` },
+      { q:r`\text{Factoriser :}\\x^2-16=`, exprpad:true, a:"(x-4)(x+4)", extraBtns:["x²","x"], tip:r`x^2-4^2` },
+      { q:r`\text{Factoriser :}\\x^2+4x+4=`, exprpad:true, a:"(x+2)²", extraBtns:["x²","x"], tip:r`(x+2)^2` },
+      { q:r`\text{Factoriser :}\\x^2-6x+9=`, exprpad:true, a:"(x-3)²", extraBtns:["x²","x"], tip:r`(x-3)^2` },
+      { q:r`\text{Factoriser :}\\4x^2-9=`, exprpad:true, a:"(2x-3)(2x+3)", extraBtns:["x²","x"], tip:r`(2x)^2-3^2` },
+      { q:r`\text{Factoriser :}\\x^2+8x+16=`, exprpad:true, a:"(x+4)²", extraBtns:["x²","x"], tip:r`(x+4)^2` },
+      { q:r`\text{Factoriser :}\\9x^2-25=`, exprpad:true, a:"(3x-5)(3x+5)", extraBtns:["x²","x"], tip:r`(3x)^2-5^2` },
+      { q:r`\text{Factoriser :}\\x^2-12x+36=`, exprpad:true, a:"(x-6)²", extraBtns:["x²","x"], tip:r`(x-6)^2` },
+      { q:r`\text{Factoriser :}\\16x^2-1=`, exprpad:true, a:"(4x-1)(4x+1)", extraBtns:["x²","x"], tip:r`(4x)^2-1^2` },
+      { q:r`\text{Factoriser :}\\x^2+2x+1=`, exprpad:true, a:"(x+1)²", extraBtns:["x²","x"], tip:r`(x+1)^2` },
+      { q:r`\text{Factoriser :}\\25x^2-4=`, exprpad:true, a:"(5x-2)(5x+2)", extraBtns:["x²","x"], tip:r`(5x)^2-2^2` },
+      { q:r`\text{Factoriser :}\\x^2-10x+25=`, exprpad:true, a:"(x-5)²", extraBtns:["x²","x"], tip:r`(x-5)^2` },
+      { q:r`\text{Factoriser :}\\36x^2-49=`, exprpad:true, a:"(6x-7)(6x+7)", extraBtns:["x²","x"], tip:r`(6x)^2-7^2` },
+      { q:r`\text{Factoriser :}\\x^2+14x+49=`, exprpad:true, a:"(x+7)²", extraBtns:["x²","x"], tip:r`(x+7)^2` },
+      { q:r`\text{Factoriser :}\\4x^2-49=`, exprpad:true, a:"(2x-7)(2x+7)", extraBtns:["x²","x"], tip:r`(2x)^2-7^2` },
+      { q:r`\text{Factoriser :}\\x^2-16x+64=`, exprpad:true, a:"(x-8)²", extraBtns:["x²","x"], tip:r`(x-8)^2` },
+      { q:r`\text{Factoriser :}\\9x^2-16=`, exprpad:true, a:"(3x-4)(3x+4)", extraBtns:["x²","x"], tip:r`(3x)^2-4^2` },
+      { q:r`\text{Factoriser :}\\x^2+18x+81=`, exprpad:true, a:"(x+9)²", extraBtns:["x²","x"], tip:r`(x+9)^2` },
+      { q:r`\text{Factoriser :}\\49x^2-4=`, exprpad:true, a:"(7x-2)(7x+2)", extraBtns:["x²","x"], tip:r`(7x)^2-2^2` },
+      { q:r`\text{Factoriser :}\\x^2-20x+100=`, exprpad:true, a:"(x-10)²", extraBtns:["x²","x"], tip:r`(x-10)^2` },
+      { q:r`\text{Factoriser :}\\16x^2-25=`, exprpad:true, a:"(4x-5)(4x+5)", extraBtns:["x²","x"], tip:r`(4x)^2-5^2` },
     ],
     facto_avance: [
-      { q:r`\text{Factoriser :}\\[4pt]4x^2-25=`, exprpad:true, a:"(2x-5)(2x+5)", extraBtns:["x²","x"], tip:r`(2x)^2-5^2` },
-      { q:r`\text{Factoriser :}\\[4pt]3x^2-27=`, exprpad:true, a:"3(x-3)(x+3)", extraBtns:["x²","x"], tip:r`3(x^2-9)=3(x-3)(x+3)` },
-      { q:r`\text{Factoriser :}\\[4pt]2x^2-8=`, exprpad:true, a:"2(x-2)(x+2)", extraBtns:["x²","x"], tip:r`2(x^2-4)=2(x-2)(x+2)` },
-      { q:r`\text{Factoriser :}\\[4pt](x+1)^2-(x+1)(x-3)=`, exprpad:true, a:"(x+1)(4)", extraBtns:["x²","x"], tip:r`(x+1)[(x+1)-(x-3)]=(x+1)(4)` },
-      { q:r`\text{Factoriser :}\\[4pt](x-2)^2-(x-2)(x+5)=`, exprpad:true, a:"(x-2)(-7)", extraBtns:["x²","x"], tip:r`(x-2)[(x-2)-(x+5)]=(x-2)(-7)` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2(x+1)-(x+1)=`, exprpad:true, a:"(x+1)(x-1)(x+1)", extraBtns:["x²","x"], tip:r`(x+1)(x^2-1)=(x+1)(x-1)(x+1)` },
-      { q:r`\text{Factoriser :}\\[4pt]5x^2-20=`, exprpad:true, a:"5(x-2)(x+2)", extraBtns:["x²","x"], tip:r`5(x^2-4)=5(x-2)(x+2)` },
-      { q:r`\text{Factoriser :}\\[4pt](x+3)^2-16=`, exprpad:true, a:"(x-1)(x+7)", extraBtns:["x²","x"], tip:r`[(x+3)-4][(x+3)+4]=(x-1)(x+7)` },
-      { q:r`\text{Factoriser :}\\[4pt](2x-1)^2-9=`, exprpad:true, a:"(2x-4)(2x+2)", extraBtns:["x²","x"], tip:r`(2x-1-3)(2x-1+3)=(2x-4)(2x+2)` },
-      { q:r`\text{Factoriser :}\\[4pt]x(x-4)-(x-4)=`, exprpad:true, a:"(x-4)(x-1)", extraBtns:["x²","x"], tip:r`(x-4)(x-1)` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2+2x-(x^2-4)=`, exprpad:true, a:"2(x+2)", extraBtns:["x²","x"], tip:r`x^2+2x-x^2+4=2x+4=2(x+2)` },
-      { q:r`\text{Factoriser :}\\[4pt]4(x+1)^2-1=`, exprpad:true, a:"(2x+1)(2x+3)", extraBtns:["x²","x"], tip:r`[2(x+1)-1][2(x+1)+1]=(2x+1)(2x+3)` },
-      { q:r`\text{Factoriser :}\\[4pt](x-1)^2-(x+1)^2=`, exprpad:true, a:"-4x", extraBtns:["x²","x"], tip:r`[(x-1)-(x+1)][(x-1)+(x+1)]=-2(2x)=-4x` },
-      { q:r`\text{Factoriser :}\\[4pt]3(x^2-9)=`, exprpad:true, a:"3(x-3)(x+3)", extraBtns:["x²","x"], tip:r`3(x-3)(x+3)` },
-      { q:r`\text{Factoriser :}\\[4pt]x(x+2)+3(x+2)=`, exprpad:true, a:"(x+2)(x+3)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }(x+2)` },
-      { q:r`\text{Factoriser :}\\[4pt]2x(x-5)-(x-5)=`, exprpad:true, a:"(x-5)(2x-1)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }(x-5)` },
-      { q:r`\text{Factoriser :}\\[4pt](x+1)^2-4(x+1)=`, exprpad:true, a:"(x+1)(x-3)", extraBtns:["x²","x"], tip:r`(x+1)[(x+1)-4]=(x+1)(x-3)` },
-      { q:r`\text{Factoriser :}\\[4pt]x^2-4x+4-9=`, exprpad:true, a:"(x-5)(x+1)", extraBtns:["x²","x"], tip:r`(x-2)^2-9=(x-5)(x+1)` },
-      { q:r`\text{Factoriser :}\\[4pt]x(x-3)+x-3=`, exprpad:true, a:"(x-3)(x+1)", extraBtns:["x²","x"], tip:r`(x-3)(x+1)` },
-      { q:r`\text{Factoriser :}\\[4pt](3x+2)^2-25=`, exprpad:true, a:"(3x-3)(3x+7)", extraBtns:["x²","x"], tip:r`(3x+2-5)(3x+2+5)=(3x-3)(3x+7)` },
+      { q:r`\text{Factoriser :}\\4x^2-25=`, exprpad:true, a:"(2x-5)(2x+5)", extraBtns:["x²","x"], tip:r`(2x)^2-5^2` },
+      { q:r`\text{Factoriser :}\\3x^2-27=`, exprpad:true, a:"3(x-3)(x+3)", extraBtns:["x²","x"], tip:r`3(x^2-9)=3(x-3)(x+3)` },
+      { q:r`\text{Factoriser :}\\2x^2-8=`, exprpad:true, a:"2(x-2)(x+2)", extraBtns:["x²","x"], tip:r`2(x^2-4)=2(x-2)(x+2)` },
+      { q:r`\text{Factoriser :}\\(x+1)^2-(x+1)(x-3)=`, exprpad:true, a:"(x+1)(4)", extraBtns:["x²","x"], tip:r`(x+1)[(x+1)-(x-3)]=(x+1)(4)` },
+      { q:r`\text{Factoriser :}\\(x-2)^2-(x-2)(x+5)=`, exprpad:true, a:"(x-2)(-7)", extraBtns:["x²","x"], tip:r`(x-2)[(x-2)-(x+5)]=(x-2)(-7)` },
+      { q:r`\text{Factoriser :}\\x^2(x+1)-(x+1)=`, exprpad:true, a:"(x+1)(x-1)(x+1)", extraBtns:["x²","x"], tip:r`(x+1)(x^2-1)=(x+1)(x-1)(x+1)` },
+      { q:r`\text{Factoriser :}\\5x^2-20=`, exprpad:true, a:"5(x-2)(x+2)", extraBtns:["x²","x"], tip:r`5(x^2-4)=5(x-2)(x+2)` },
+      { q:r`\text{Factoriser :}\\(x+3)^2-16=`, exprpad:true, a:"(x-1)(x+7)", extraBtns:["x²","x"], tip:r`[(x+3)-4][(x+3)+4]=(x-1)(x+7)` },
+      { q:r`\text{Factoriser :}\\(2x-1)^2-9=`, exprpad:true, a:"(2x-4)(2x+2)", extraBtns:["x²","x"], tip:r`(2x-1-3)(2x-1+3)=(2x-4)(2x+2)` },
+      { q:r`\text{Factoriser :}\\x(x-4)-(x-4)=`, exprpad:true, a:"(x-4)(x-1)", extraBtns:["x²","x"], tip:r`(x-4)(x-1)` },
+      { q:r`\text{Factoriser :}\\x^2+2x-(x^2-4)=`, exprpad:true, a:"2(x+2)", extraBtns:["x²","x"], tip:r`x^2+2x-x^2+4=2x+4=2(x+2)` },
+      { q:r`\text{Factoriser :}\\4(x+1)^2-1=`, exprpad:true, a:"(2x+1)(2x+3)", extraBtns:["x²","x"], tip:r`[2(x+1)-1][2(x+1)+1]=(2x+1)(2x+3)` },
+      { q:r`\text{Factoriser :}\\(x-1)^2-(x+1)^2=`, exprpad:true, a:"-4x", extraBtns:["x²","x"], tip:r`[(x-1)-(x+1)][(x-1)+(x+1)]=-2(2x)=-4x` },
+      { q:r`\text{Factoriser :}\\3(x^2-9)=`, exprpad:true, a:"3(x-3)(x+3)", extraBtns:["x²","x"], tip:r`3(x-3)(x+3)` },
+      { q:r`\text{Factoriser :}\\x(x+2)+3(x+2)=`, exprpad:true, a:"(x+2)(x+3)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }(x+2)` },
+      { q:r`\text{Factoriser :}\\2x(x-5)-(x-5)=`, exprpad:true, a:"(x-5)(2x-1)", extraBtns:["x²","x"], tip:r`\text{Facteur commun }(x-5)` },
+      { q:r`\text{Factoriser :}\\(x+1)^2-4(x+1)=`, exprpad:true, a:"(x+1)(x-3)", extraBtns:["x²","x"], tip:r`(x+1)[(x+1)-4]=(x+1)(x-3)` },
+      { q:r`\text{Factoriser :}\\x^2-4x+4-9=`, exprpad:true, a:"(x-5)(x+1)", extraBtns:["x²","x"], tip:r`(x-2)^2-9=(x-5)(x+1)` },
+      { q:r`\text{Factoriser :}\\x(x-3)+x-3=`, exprpad:true, a:"(x-3)(x+1)", extraBtns:["x²","x"], tip:r`(x-3)(x+1)` },
+      { q:r`\text{Factoriser :}\\(3x+2)^2-25=`, exprpad:true, a:"(3x-3)(3x+7)", extraBtns:["x²","x"], tip:r`(3x+2-5)(3x+2+5)=(3x-3)(3x+7)` },
     ],
 
 
     // ── Manipulation de formules ──
     manipulation: [
-      { q: r`P=UI\\[4pt]\text{Isoler }I :`,
+      { q: r`P=UI\\\text{Isoler }I :`,
         choices: [r`I=\dfrac{P}{U}`, r`I=PU`, r`I=\dfrac{U}{P}`, r`I=P-U`],
         a: r`I=\dfrac{P}{U}`, tip: r`I=\dfrac{P}{U}` },
-      { q: r`S=\pi r^2\\[4pt]\text{Isoler }r :`,
+      { q: r`S=\pi r^2\\\text{Isoler }r :`,
         choices: [r`r=\sqrt{\dfrac{S}{\pi}}`, r`r=\dfrac{S}{2\pi}`, r`r=\dfrac{S^2}{\pi}`, r`r=\dfrac{\pi}{S}`],
         a: r`r=\sqrt{\dfrac{S}{\pi}}`, tip: r`r^2=\dfrac{S}{\pi}\Rightarrow r=\sqrt{\dfrac{S}{\pi}}` },
-      { q: r`V=lwh,\ V=60,\ l=3,\ w=4\\[4pt]h=\,?`,
+      { q: r`V=lwh,\ V=60,\ l=3,\ w=4\\h=\,?`,
         choices: [`5`, `4`, `15`, `20`], a: `5`, tip: r`h=\dfrac{60}{12}=5` },
-      { q: r`d=vt\\[4pt]\text{Isoler }v :`,
+      { q: r`d=vt\\\text{Isoler }v :`,
         choices: [r`v=\dfrac{d}{t}`, r`v=dt`, r`v=\dfrac{t}{d}`, r`v=d+t`],
         a: r`v=\dfrac{d}{t}`, tip: r`v=\dfrac{d}{t}` },
-      { q: r`F=ma\\[4pt]\text{Isoler }a :`,
+      { q: r`F=ma\\\text{Isoler }a :`,
         choices: [r`a=\dfrac{F}{m}`, r`a=Fm`, r`a=\dfrac{m}{F}`, r`a=F-m`],
         a: r`a=\dfrac{F}{m}`, tip: r`a=\dfrac{F}{m}` },
-      { q: r`A=\dfrac{bh}{2}\\[4pt]\text{Isoler }h :`,
+      { q: r`A=\dfrac{bh}{2}\\\text{Isoler }h :`,
         choices: [r`h=\dfrac{2A}{b}`, r`h=\dfrac{Ab}{2}`, r`h=\dfrac{b}{2A}`, r`h=\dfrac{A}{b^2}`],
         a: r`h=\dfrac{2A}{b}`, tip: r`h=\dfrac{2A}{b}` },
       // ── 6 questions supplémentaires ──
-      { q: r`p=2(L+\ell)\\[4pt]\text{Isoler }L :`,
+      { q: r`p=2(L+\ell)\\\text{Isoler }L :`,
         choices: [r`L=\dfrac{p}{2}-\ell`, r`L=\dfrac{p-\ell}{2}`, r`L=2p-\ell`, r`L=\dfrac{p}{2}+\ell`],
         a: r`L=\dfrac{p}{2}-\ell`, tip: r`L+\ell=\dfrac{p}{2}\Rightarrow L=\dfrac{p}{2}-\ell` },
-      { q: r`v=\dfrac{d}{t}\\[4pt]\text{Isoler }t :`,
+      { q: r`v=\dfrac{d}{t}\\\text{Isoler }t :`,
         choices: [r`t=\dfrac{d}{v}`, r`t=dv`, r`t=\dfrac{v}{d}`, r`t=v-d`],
         a: r`t=\dfrac{d}{v}`, tip: r`vt=d\Rightarrow t=\dfrac{d}{v}` },
-      { q: r`C_{TTC}=C_{HT}(1+t)\\[4pt]\text{Isoler }C_{HT} :`,
+      { q: r`C_{TTC}=C_{HT}(1+t)\\\text{Isoler }C_{HT} :`,
         choices: [r`C_{HT}=\dfrac{C_{TTC}}{1+t}`, r`C_{HT}=C_{TTC}(1-t)`, r`C_{HT}=\dfrac{C_{TTC}}{t}`, r`C_{HT}=C_{TTC}-t`],
         a: r`C_{HT}=\dfrac{C_{TTC}}{1+t}`, tip: r`\text{Diviser par }(1+t)` },
-      { q: r`I=\dfrac{C\,t\,n}{100}\\[4pt]\text{Isoler }C :`,
+      { q: r`I=\dfrac{C\,t\,n}{100}\\\text{Isoler }C :`,
         choices: [r`C=\dfrac{100\,I}{tn}`, r`C=\dfrac{Itn}{100}`, r`C=\dfrac{I}{100\,tn}`, r`C=100\,Itn`],
         a: r`C=\dfrac{100\,I}{tn}`, tip: r`C\,t\,n=100I\Rightarrow C=\dfrac{100I}{tn}` },
-      { q: r`E=\dfrac{1}{2}mv^2\\[4pt]\text{Isoler }m :`,
+      { q: r`E=\dfrac{1}{2}mv^2\\\text{Isoler }m :`,
         choices: [r`m=\dfrac{2E}{v^2}`, r`m=\dfrac{Ev^2}{2}`, r`m=\dfrac{E}{2v^2}`, r`m=2Ev^2`],
         a: r`m=\dfrac{2E}{v^2}`, tip: r`mv^2=2E\Rightarrow m=\dfrac{2E}{v^2}` },
-      { q: r`A=\pi r^2 h\ \text{(volume cylindre)}\\[4pt]\text{Isoler }h :`,
+      { q: r`A=\pi r^2 h\ \text{(volume cylindre)}\\\text{Isoler }h :`,
         choices: [r`h=\dfrac{A}{\pi r^2}`, r`h=\dfrac{\pi r^2}{A}`, r`h=A\pi r^2`, r`h=\dfrac{A}{\pi r}`],
         a: r`h=\dfrac{A}{\pi r^2}`, tip: r`\text{Diviser par }\pi r^2` },
     ],
@@ -5340,7 +5340,7 @@ const DB = {
         tip: r`\text{BT majore la probabilité d'être loin de l'espérance (l'extérieur). Elle minorera ensuite l'intérieur par complémentarité.}` },
 
       // gn_17 — Application directe BT — facile
-      { q: r`X\text{ a pour espérance }5\text{ et variance }4.\\[4pt]\text{ Majorer }p(|X-5|\geqslant 2).`,
+      { q: r`X\text{ a pour espérance }5\text{ et variance }4.\\\text{ Majorer }p(|X-5|\geqslant 2).`,
         choices: [
           r`p(|X-5|\geqslant 2)\leqslant 1`,
           r`p(|X-5|\geqslant 2)\leqslant \dfrac{4}{4}=1`,
@@ -5351,7 +5351,7 @@ const DB = {
         tip: r`\dfrac{V(X)}{\delta^2}=\dfrac{4}{2^2}=\dfrac{4}{4}=1.\text{ BT donne ici une borne triviale (toute proba est }\leqslant 1\text{). Elle est utile quand }\delta\text{ est grand devant }\sigma(X).` },
 
       // gn_18 — Application utile BT — moyen
-      { q: r`X\text{ a pour espérance }5\text{ et variance }4.\\[4pt]\text{ Majorer }p(|X-5|\geqslant 10).`,
+      { q: r`X\text{ a pour espérance }5\text{ et variance }4.\\\text{ Majorer }p(|X-5|\geqslant 10).`,
         choices: [
           r`p(|X-5|\geqslant 10)\leqslant 0{,}04`,
           r`p(|X-5|\geqslant 10)\leqslant 4`,
@@ -5362,7 +5362,7 @@ const DB = {
         tip: r`\dfrac{V(X)}{\delta^2}=\dfrac{4}{100}=0{,}04.\text{ La probabilité d'être à plus de 10 unités de l'espérance est au plus 4\,\%.}` },
 
       // gn_19 — BT pour minorer l'intérieur — moyen (la logique clé !)
-      { q: r`X\text{ a espérance }5\text{ et variance }4.\\[4pt]\text{ Minorer }p(3 < X < 7).`,
+      { q: r`X\text{ a espérance }5\text{ et variance }4.\\\text{ Minorer }p(3 < X < 7).`,
         choices: [
           r`p(3<X<7)\geqslant 1-\dfrac{4}{4}=0`,
           r`p(3<X<7)\geqslant \dfrac{4}{4}=1`,
@@ -5373,7 +5373,7 @@ const DB = {
         tip: r`3<X<7\Leftrightarrow|X-5|<2.\text{ BT donne }p(|X-5|\geqslant 2)\leqslant\frac{4}{4}=1.\text{ Donc }p(|X-5|<2)\geqslant 0.\text{ Borne triviale ici — BT est utile quand }\delta>\sigma(X).` },
 
       // gn_20 — BT pour minorer l'intérieur (cas utile) — moyen
-      { q: r`X\text{ a espérance }10\text{ et variance }4.\\[4pt]\text{ Minorer }p(6 < X < 14).`,
+      { q: r`X\text{ a espérance }10\text{ et variance }4.\\\text{ Minorer }p(6 < X < 14).`,
         choices: [
           r`p(6<X<14)\geqslant \dfrac{3}{4}=0{,}75`,
           r`p(6<X<14)\geqslant 0{,}04`,
@@ -5395,7 +5395,7 @@ const DB = {
         tip: r`\dfrac{V(X)}{\delta^2}\leqslant 0{,}01\Leftrightarrow\delta^2\geqslant\dfrac{9}{0{,}01}=900\Leftrightarrow\delta\geqslant 30.` },
 
       // gn_22 — BT avec σ(X) — moyen
-      { q: r`\sigma(X)=5,\ E(X)=20.\\[4pt]\text{ Majorer }p(|X-20|\geqslant 25).`,
+      { q: r`\sigma(X)=5,\ E(X)=20.\\\text{ Majorer }p(|X-20|\geqslant 25).`,
         choices: [
           r`p(|X-20|\geqslant 25)\leqslant \dfrac{25}{625}=\dfrac{1}{25}`,
           r`p(|X-20|\geqslant 25)\leqslant \dfrac{5}{25}=0{,}2`,
@@ -5430,7 +5430,7 @@ const DB = {
         tip: r`\text{C'est BT appliquée à }M_n\text{, sachant }V(M_n)=\frac{V(X)}{n}.\text{ Le facteur }n\text{ au dénominateur montre que }M_n\text{ se concentre autour de }E(X)\text{ quand }n\to+\infty.` },
 
       // gn_25 — Application inégalité de concentration — moyen
-      { q: r`V(X)=9,\ n=100,\ \delta=0{,}3.\\[4pt]\text{ Majorer }p(|M_{100}-E(X)|\geqslant 0{,}3).`,
+      { q: r`V(X)=9,\ n=100,\ \delta=0{,}3.\\\text{ Majorer }p(|M_{100}-E(X)|\geqslant 0{,}3).`,
         choices: [
           r`p(|M_{100}-E(X)|\geqslant 0{,}3)\leqslant 1`,
           r`p(|M_{100}-E(X)|\geqslant 0{,}3)\leqslant \dfrac{9}{100\times 0{,}09}=1`,
@@ -5441,7 +5441,7 @@ const DB = {
         tip: r`\dfrac{V(X)}{n\delta^2}=\dfrac{9}{100\times(0{,}3)^2}=\dfrac{9}{9}=1.\text{ Borne triviale : }\delta\text{ trop petit. Il faut augmenter }\delta\text{ ou }n\text{ pour obtenir une borne utile.}` },
 
       // gn_26 — Concentration utile — moyen
-      { q: r`V(X)=4,\ n=400.\\[4pt]\text{ Majorer }p(|M_{400}-E(X)|\geqslant 0{,}1).`,
+      { q: r`V(X)=4,\ n=400.\\\text{ Majorer }p(|M_{400}-E(X)|\geqslant 0{,}1).`,
         choices: [
           r`p(|M_{400}-E(X)|\geqslant 0{,}1)\leqslant \dfrac{4}{400\times 0{,}01}=1`,
           r`p(|M_{400}-E(X)|\geqslant 0{,}1)\leqslant \dfrac{4}{4}=1`,
@@ -5452,7 +5452,7 @@ const DB = {
         tip: r`\dfrac{V(X)}{n\delta^2}=\dfrac{4}{400\times 0{,}01}=\dfrac{4}{4}=1.\text{ Hmm — borne triviale. Essayons }\delta=0{,}2:\dfrac{4}{400\times0{,}04}=\dfrac{4}{16}=\frac{1}{4}=0{,}25.\ \checkmark` },
 
       // gn_27 — Minorer l'intérieur avec concentration — moyen
-      { q: r`V(X)=1,\ n=100.\\[4pt]\text{ Minorer }p(|M_{100}-E(X)|<0{,}5).`,
+      { q: r`V(X)=1,\ n=100.\\\text{ Minorer }p(|M_{100}-E(X)|<0{,}5).`,
         choices: [
           r`p(|M_{100}-E(X)|<0{,}5)\geqslant 0{,}96`,
           r`p(|M_{100}-E(X)|<0{,}5)\geqslant 0{,}5`,
@@ -5774,7 +5774,7 @@ const DB = {
       { q:r`\text{Formule de base : quelle est la dérivée de la fonction constante }f(x)=k\text{ ?}`,
         choices:[r`f'(x)=0`,r`f'(x)=k`,r`f'(x)=1`,r`f'(x)=kx`],
         a:r`f'(x)=0`,
-        tip:r`\text{Une fonction constante ne varie pas : sa dérivée est nulle.}\\[4pt](k)'=0\text{ quelle que soit la constante }k.` },
+        tip:r`\text{Une fonction constante ne varie pas : sa dérivée est nulle.}\\(k)'=0\text{ quelle que soit la constante }k.` },
       { q:r`\text{Formule de base : quelle est la dérivée de la fonction identité }f(x)=x\text{ ?}`,
         choices:[r`f'(x)=1`,r`f'(x)=x`,r`f'(x)=0`,r`f'(x)=2x`],
         a:r`f'(x)=1`,
@@ -5787,53 +5787,53 @@ const DB = {
         choices:[r`f'(x)=3x^2`,r`f'(x)=3x`,r`f'(x)=x^2`,r`f'(x)=3x^3`],
         a:r`f'(x)=3x^2`,
         tip:r`(x^3)'=3x^2\text{. Même règle : }x^3\to 3\cdot x^{3-1}=3x^2.` },
-      { q:r`\text{Soit }f(x)=5x^2\text{. On utilise la règle : }(af(x))'=a\cdot f'(x)\text{.}\\[4pt]\text{Quelle est }f'(x)\text{ ?}`,
+      { q:r`\text{Soit }f(x)=5x^2\text{. On utilise la règle : }(af(x))'=a\cdot f'(x)\text{.}\\\text{Quelle est }f'(x)\text{ ?}`,
         choices:[r`10x`,r`5x`,r`10x^2`,r`2x`],
         a:r`10x`,
         tip:r`(5x^2)'=5\cdot(x^2)'=5\times2x=10x\text{. On multiplie le coefficient par la dérivée de }x^2.` },
-      { q:r`\text{Soit }f(x)=3x^3-2x^2+x-4\text{. On dérive terme à terme.}\\[4pt]\text{Quelle est }f'(x)\text{ ?}`,
+      { q:r`\text{Soit }f(x)=3x^3-2x^2+x-4\text{. On dérive terme à terme.}\\\text{Quelle est }f'(x)\text{ ?}`,
         choices:[r`9x^2-4x+1`,r`9x^2-4x`,r`3x^2-4x+1`,r`9x^2-2x+1`],
         a:r`9x^2-4x+1`,
         tip:r`(3x^3)'=9x^2\text{, }(-2x^2)'=-4x\text{, }(x)'=1\text{, }(-4)'=0\text{. Terme à terme : }f'(x)=9x^2-4x+1.` },
       // ── Exercices de calcul (deg 1, 2, 3) ──
-      { q:r`\text{Si }f(x)=3x^2\\[5pt]\text{Alors }f'(x)=`, choices:[`6x`,`3x`,`6`,r`3x^2`], a:`6x`, tip:r`(ax^n)'=nax^{n-1}\Rightarrow3\times2x` },
-      { q:r`\text{Si }f(x)=x^2+5x-3\\[5pt]\text{Alors }f'(x)=`, choices:[`2x+5`,`2x-3`,`x+5`,`2x`], a:`2x+5`, tip:r`2x+5` },
-      { q:r`\text{Si }f(x)=2x^3+x^2\\[5pt]\text{Alors }f'(x)=`, choices:[r`6x^2+2x`,r`6x^2+x`,r`2x^2+2x`,r`6x^2+2`], a:r`6x^2+2x`, tip:r`6x^2+2x` },
-      { q:r`\text{Si }f(x)=x^3-2x+1\\[5pt]\text{Alors }f'(x)=`, choices:[r`3x^2-2`,r`3x^2+2`,r`x^2-2`,r`3x^2-2x`], a:r`3x^2-2`, tip:r`3x^2-2` },
-      { q:r`\text{Si }f(x)=5x+3\\[5pt]\text{Alors }f'(x)=`, choices:[`5`,`3`,`5x`,`0`], a:`5`, tip:r`(ax+b)'=a=5` },
-      { q:r`\text{Si }f(x)=-2x^2+4x\\[5pt]\text{Alors }f'(x)=`, choices:[`-4x+4`,`-2x+4`,`-4x`,`4x+4`], a:`-4x+4`, tip:r`-2\times2x+4=-4x+4` },
-      { q:r`\text{Si }f(x)=x^2-6x+9\\[5pt]\text{Alors }f'(x)=`, choices:[`2x-6`,`2x+6`,`x-6`,`2x-9`], a:`2x-6`, tip:r`2x-6` },
-      { q:r`\text{Si }f(x)=3x^3-x\\[5pt]\text{Alors }f'(x)=`, choices:[r`9x^2-1`,r`3x^2-1`,r`9x^2+1`,r`9x^2`], a:r`9x^2-1`, tip:r`3\times3x^2-1=9x^2-1` },
-      { q:r`\text{Si }f(x)=x^3+3x^2-5\\[5pt]\text{Alors }f'(x)=`, choices:[r`3x^2+6x`,r`3x^2+3x`,r`x^2+6x`,r`3x^2+6x-5`], a:r`3x^2+6x`, tip:r`3x^2+6x` },
-      { q:r`\text{Si }f(x)=-x^2+2x+1\\[5pt]\text{Alors }f'(x)=`, choices:[`-2x+2`,`-2x-2`,`-x+2`,`2x+2`], a:`-2x+2`, tip:r`-2x+2` },
-      { q:r`\text{Si }f(x)=\dfrac{1}{2}x^2+3x\\[5pt]\text{Alors }f'(x)=`, choices:[r`x+3`,r`\frac{1}{2}x+3`,r`x`,r`2x+3`], a:`x+3`, tip:r`\frac{1}{2}\times2x+3=x+3` },
-      { q:r`\text{Si }f(x)=4x^3\\[5pt]\text{Alors }f'(x)=`, choices:[r`12x^2`,r`4x^2`,r`12x`,r`3x^2`], a:r`12x^2`, tip:r`4\times3x^2=12x^2` },
-      { q:r`\text{Si }f(x)=7\\[5pt]\text{Alors }f'(x)=`, choices:[`0`,`7`,`1`,r`7x`], a:`0`, tip:r`f\text{ est constante}\Rightarrow f'=0` },
-      { q:r`\text{Si }f(x)=-3x^3+2x^2+x\\[5pt]\text{Alors }f'(x)=`, choices:[r`-9x^2+4x+1`,r`-9x^2+4x`,r`-3x^2+4x+1`,r`-9x^2+2x+1`], a:r`-9x^2+4x+1`, tip:r`-9x^2+4x+1` },
-      { q:r`\text{Si }f(x)=2x^2-3x+5\\[5pt]\text{Alors }f'(x)=`, choices:[`4x-3`,`2x-3`,`4x+5`,`4x-3x`], a:`4x-3`, tip:r`4x-3` },
-      { q:r`\text{Si }f(x)=x^2\\[5pt]\text{Alors }f'(x)=`, choices:[`2x`,`x`,`2`,r`x^2`], a:`2x`, tip:r`(x^2)'=2x` },
-      { q:r`\text{Si }f(x)=6x-1\\[5pt]\text{Alors }f'(x)=`, choices:[`6`,`-1`,`6x`,`0`], a:`6`, tip:r`(ax+b)'=a=6` },
-      { q:r`\text{Si }f(x)=x^3-4x^2+2\\[5pt]\text{Alors }f'(x)=`, choices:[r`3x^2-8x`,r`3x^2-4x`,r`x^2-8x`,r`3x^2-8x+2`], a:r`3x^2-8x`, tip:r`3x^2-8x` },
-      { q:r`\text{Si }f(x)=5x^2+2x-1\\[5pt]\text{Alors }f'(x)=`, choices:[`10x+2`,`5x+2`,`10x-1`,`10x`], a:`10x+2`, tip:r`10x+2` },
+      { q:r`\text{Si }f(x)=3x^2\\\text{Alors }f'(x)=`, choices:[`6x`,`3x`,`6`,r`3x^2`], a:`6x`, tip:r`(ax^n)'=nax^{n-1}\Rightarrow3\times2x` },
+      { q:r`\text{Si }f(x)=x^2+5x-3\\\text{Alors }f'(x)=`, choices:[`2x+5`,`2x-3`,`x+5`,`2x`], a:`2x+5`, tip:r`2x+5` },
+      { q:r`\text{Si }f(x)=2x^3+x^2\\\text{Alors }f'(x)=`, choices:[r`6x^2+2x`,r`6x^2+x`,r`2x^2+2x`,r`6x^2+2`], a:r`6x^2+2x`, tip:r`6x^2+2x` },
+      { q:r`\text{Si }f(x)=x^3-2x+1\\\text{Alors }f'(x)=`, choices:[r`3x^2-2`,r`3x^2+2`,r`x^2-2`,r`3x^2-2x`], a:r`3x^2-2`, tip:r`3x^2-2` },
+      { q:r`\text{Si }f(x)=5x+3\\\text{Alors }f'(x)=`, choices:[`5`,`3`,`5x`,`0`], a:`5`, tip:r`(ax+b)'=a=5` },
+      { q:r`\text{Si }f(x)=-2x^2+4x\\\text{Alors }f'(x)=`, choices:[`-4x+4`,`-2x+4`,`-4x`,`4x+4`], a:`-4x+4`, tip:r`-2\times2x+4=-4x+4` },
+      { q:r`\text{Si }f(x)=x^2-6x+9\\\text{Alors }f'(x)=`, choices:[`2x-6`,`2x+6`,`x-6`,`2x-9`], a:`2x-6`, tip:r`2x-6` },
+      { q:r`\text{Si }f(x)=3x^3-x\\\text{Alors }f'(x)=`, choices:[r`9x^2-1`,r`3x^2-1`,r`9x^2+1`,r`9x^2`], a:r`9x^2-1`, tip:r`3\times3x^2-1=9x^2-1` },
+      { q:r`\text{Si }f(x)=x^3+3x^2-5\\\text{Alors }f'(x)=`, choices:[r`3x^2+6x`,r`3x^2+3x`,r`x^2+6x`,r`3x^2+6x-5`], a:r`3x^2+6x`, tip:r`3x^2+6x` },
+      { q:r`\text{Si }f(x)=-x^2+2x+1\\\text{Alors }f'(x)=`, choices:[`-2x+2`,`-2x-2`,`-x+2`,`2x+2`], a:`-2x+2`, tip:r`-2x+2` },
+      { q:r`\text{Si }f(x)=\dfrac{1}{2}x^2+3x\\\text{Alors }f'(x)=`, choices:[r`x+3`,r`\frac{1}{2}x+3`,r`x`,r`2x+3`], a:`x+3`, tip:r`\frac{1}{2}\times2x+3=x+3` },
+      { q:r`\text{Si }f(x)=4x^3\\\text{Alors }f'(x)=`, choices:[r`12x^2`,r`4x^2`,r`12x`,r`3x^2`], a:r`12x^2`, tip:r`4\times3x^2=12x^2` },
+      { q:r`\text{Si }f(x)=7\\\text{Alors }f'(x)=`, choices:[`0`,`7`,`1`,r`7x`], a:`0`, tip:r`f\text{ est constante}\Rightarrow f'=0` },
+      { q:r`\text{Si }f(x)=-3x^3+2x^2+x\\\text{Alors }f'(x)=`, choices:[r`-9x^2+4x+1`,r`-9x^2+4x`,r`-3x^2+4x+1`,r`-9x^2+2x+1`], a:r`-9x^2+4x+1`, tip:r`-9x^2+4x+1` },
+      { q:r`\text{Si }f(x)=2x^2-3x+5\\\text{Alors }f'(x)=`, choices:[`4x-3`,`2x-3`,`4x+5`,`4x-3x`], a:`4x-3`, tip:r`4x-3` },
+      { q:r`\text{Si }f(x)=x^2\\\text{Alors }f'(x)=`, choices:[`2x`,`x`,`2`,r`x^2`], a:`2x`, tip:r`(x^2)'=2x` },
+      { q:r`\text{Si }f(x)=6x-1\\\text{Alors }f'(x)=`, choices:[`6`,`-1`,`6x`,`0`], a:`6`, tip:r`(ax+b)'=a=6` },
+      { q:r`\text{Si }f(x)=x^3-4x^2+2\\\text{Alors }f'(x)=`, choices:[r`3x^2-8x`,r`3x^2-4x`,r`x^2-8x`,r`3x^2-8x+2`], a:r`3x^2-8x`, tip:r`3x^2-8x` },
+      { q:r`\text{Si }f(x)=5x^2+2x-1\\\text{Alors }f'(x)=`, choices:[`10x+2`,`5x+2`,`10x-1`,`10x`], a:`10x+2`, tip:r`10x+2` },
       // ── 16 questions supplémentaires (degré 2 et 3) ──
       // Degré 2 (8 questions)
-      { q:r`\text{Si }f(x)=x^2-7x+12\\[5pt]\text{Alors }f'(x)=`, choices:[`2x-7`,`2x+7`,`x-7`,`2x-12`], a:`2x-7`, tip:r`2x-7` },
-      { q:r`\text{Si }f(x)=-x^2+6x\\[5pt]\text{Alors }f'(x)=`, choices:[`-2x+6`,`-2x-6`,`-x+6`,`2x+6`], a:`-2x+6`, tip:r`-2x+6` },
-      { q:r`\text{Si }f(x)=3x^2-12x+7\\[5pt]\text{Alors }f'(x)=`, choices:[`6x-12`,`3x-12`,`6x+7`,`6x-7`], a:`6x-12`, tip:r`6x-12` },
-      { q:r`\text{Si }f(x)=-2x^2+8x-3\\[5pt]\text{Alors }f'(x)=`, choices:[`-4x+8`,`-2x+8`,`-4x-3`,`4x+8`], a:`-4x+8`, tip:r`-4x+8` },
-      { q:r`\text{Si }f(x)=\dfrac{x^2}{2}-3x\\[5pt]\text{Alors }f'(x)=`, choices:[`x-3`,r`\frac{x}{2}-3`,`2x-3`,`x+3`], a:`x-3`, tip:r`\frac{1}{2}\times2x-3=x-3` },
-      { q:r`\text{Si }f(x)=10x^2-x+4\\[5pt]\text{Alors }f'(x)=`, choices:[`20x-1`,`10x-1`,`20x+4`,`20x`], a:`20x-1`, tip:r`20x-1` },
-      { q:r`\text{Si }f(x)=(x-3)^2\\[5pt]\text{Alors }f'(x)=`, choices:[`2x-6`,`2(x-3)`,`x-3`,`2x+6`], a:`2x-6`, tip:r`(x-3)^2=x^2-6x+9\Rightarrow f'(x)=2x-6` },
-      { q:r`\text{Si }f(x)=-\dfrac{1}{2}x^2+5\\[5pt]\text{Alors }f'(x)=`, choices:[`-x`,r`-\frac{x}{2}`,`-x+5`,`x`], a:`-x`, tip:r`-\frac{1}{2}\times2x=-x` },
+      { q:r`\text{Si }f(x)=x^2-7x+12\\\text{Alors }f'(x)=`, choices:[`2x-7`,`2x+7`,`x-7`,`2x-12`], a:`2x-7`, tip:r`2x-7` },
+      { q:r`\text{Si }f(x)=-x^2+6x\\\text{Alors }f'(x)=`, choices:[`-2x+6`,`-2x-6`,`-x+6`,`2x+6`], a:`-2x+6`, tip:r`-2x+6` },
+      { q:r`\text{Si }f(x)=3x^2-12x+7\\\text{Alors }f'(x)=`, choices:[`6x-12`,`3x-12`,`6x+7`,`6x-7`], a:`6x-12`, tip:r`6x-12` },
+      { q:r`\text{Si }f(x)=-2x^2+8x-3\\\text{Alors }f'(x)=`, choices:[`-4x+8`,`-2x+8`,`-4x-3`,`4x+8`], a:`-4x+8`, tip:r`-4x+8` },
+      { q:r`\text{Si }f(x)=\dfrac{x^2}{2}-3x\\\text{Alors }f'(x)=`, choices:[`x-3`,r`\frac{x}{2}-3`,`2x-3`,`x+3`], a:`x-3`, tip:r`\frac{1}{2}\times2x-3=x-3` },
+      { q:r`\text{Si }f(x)=10x^2-x+4\\\text{Alors }f'(x)=`, choices:[`20x-1`,`10x-1`,`20x+4`,`20x`], a:`20x-1`, tip:r`20x-1` },
+      { q:r`\text{Si }f(x)=(x-3)^2\\\text{Alors }f'(x)=`, choices:[`2x-6`,`2(x-3)`,`x-3`,`2x+6`], a:`2x-6`, tip:r`(x-3)^2=x^2-6x+9\Rightarrow f'(x)=2x-6` },
+      { q:r`\text{Si }f(x)=-\dfrac{1}{2}x^2+5\\\text{Alors }f'(x)=`, choices:[`-x`,r`-\frac{x}{2}`,`-x+5`,`x`], a:`-x`, tip:r`-\frac{1}{2}\times2x=-x` },
       // Degré 3 (8 questions)
-      { q:r`\text{Si }f(x)=2x^3-3x^2+x\\[5pt]\text{Alors }f'(x)=`, choices:[r`6x^2-6x+1`,r`6x^2-3x+1`,r`2x^2-6x+1`,r`6x^2-6x`], a:r`6x^2-6x+1`, tip:r`6x^2-6x+1` },
-      { q:r`\text{Si }f(x)=x^3+5x^2-2x+1\\[5pt]\text{Alors }f'(x)=`, choices:[r`3x^2+10x-2`,r`3x^2+5x-2`,r`x^2+10x-2`,r`3x^2+10x-1`], a:r`3x^2+10x-2`, tip:r`3x^2+10x-2` },
-      { q:r`\text{Si }f(x)=-x^3+4x\\[5pt]\text{Alors }f'(x)=`, choices:[r`-3x^2+4`,r`-3x^2-4`,r`-x^2+4`,r`3x^2+4`], a:r`-3x^2+4`, tip:r`-3x^2+4` },
-      { q:r`\text{Si }f(x)=2x^3-6x\\[5pt]\text{Alors }f'(x)=`, choices:[r`6x^2-6`,r`6x^2+6`,r`2x^2-6`,r`6x^2-6x`], a:r`6x^2-6`, tip:r`6x^2-6` },
-      { q:r`\text{Si }f(x)=\dfrac{x^3}{3}-2x\\[5pt]\text{Alors }f'(x)=`, choices:[r`x^2-2`,r`x^2+2`,r`\frac{x^2}{3}-2`,r`3x^2-2`], a:r`x^2-2`, tip:r`\frac{1}{3}\times3x^2-2=x^2-2` },
-      { q:r`\text{Si }f(x)=5x^3-x^2+7\\[5pt]\text{Alors }f'(x)=`, choices:[r`15x^2-2x`,r`15x^2-x`,r`5x^2-2x`,r`15x^2-2x+7`], a:r`15x^2-2x`, tip:r`15x^2-2x` },
-      { q:r`\text{Si }f(x)=-2x^3+3x^2-x\\[5pt]\text{Alors }f'(x)=`, choices:[r`-6x^2+6x-1`,r`-6x^2+3x-1`,r`-2x^2+6x-1`,r`-6x^2+6x`], a:r`-6x^2+6x-1`, tip:r`-6x^2+6x-1` },
-      { q:r`\text{Si }f(x)=x^3-3x^2+3x-1\\[5pt]\text{Alors }f'(x)=`, choices:[r`3x^2-6x+3`,r`3x^2-3x+3`,r`x^2-6x+3`,r`3x^2-6x-1`], a:r`3x^2-6x+3`, tip:r`3x^2-6x+3=3(x-1)^2` },
+      { q:r`\text{Si }f(x)=2x^3-3x^2+x\\\text{Alors }f'(x)=`, choices:[r`6x^2-6x+1`,r`6x^2-3x+1`,r`2x^2-6x+1`,r`6x^2-6x`], a:r`6x^2-6x+1`, tip:r`6x^2-6x+1` },
+      { q:r`\text{Si }f(x)=x^3+5x^2-2x+1\\\text{Alors }f'(x)=`, choices:[r`3x^2+10x-2`,r`3x^2+5x-2`,r`x^2+10x-2`,r`3x^2+10x-1`], a:r`3x^2+10x-2`, tip:r`3x^2+10x-2` },
+      { q:r`\text{Si }f(x)=-x^3+4x\\\text{Alors }f'(x)=`, choices:[r`-3x^2+4`,r`-3x^2-4`,r`-x^2+4`,r`3x^2+4`], a:r`-3x^2+4`, tip:r`-3x^2+4` },
+      { q:r`\text{Si }f(x)=2x^3-6x\\\text{Alors }f'(x)=`, choices:[r`6x^2-6`,r`6x^2+6`,r`2x^2-6`,r`6x^2-6x`], a:r`6x^2-6`, tip:r`6x^2-6` },
+      { q:r`\text{Si }f(x)=\dfrac{x^3}{3}-2x\\\text{Alors }f'(x)=`, choices:[r`x^2-2`,r`x^2+2`,r`\frac{x^2}{3}-2`,r`3x^2-2`], a:r`x^2-2`, tip:r`\frac{1}{3}\times3x^2-2=x^2-2` },
+      { q:r`\text{Si }f(x)=5x^3-x^2+7\\\text{Alors }f'(x)=`, choices:[r`15x^2-2x`,r`15x^2-x`,r`5x^2-2x`,r`15x^2-2x+7`], a:r`15x^2-2x`, tip:r`15x^2-2x` },
+      { q:r`\text{Si }f(x)=-2x^3+3x^2-x\\\text{Alors }f'(x)=`, choices:[r`-6x^2+6x-1`,r`-6x^2+3x-1`,r`-2x^2+6x-1`,r`-6x^2+6x`], a:r`-6x^2+6x-1`, tip:r`-6x^2+6x-1` },
+      { q:r`\text{Si }f(x)=x^3-3x^2+3x-1\\\text{Alors }f'(x)=`, choices:[r`3x^2-6x+3`,r`3x^2-3x+3`,r`x^2-6x+3`,r`3x^2-6x-1`], a:r`3x^2-6x+3`, tip:r`3x^2-6x+3=3(x-1)^2` },
     ],
 
     // ── Vitesse moyenne / instantanée ──
@@ -5925,7 +5925,7 @@ const DB = {
         a: r`y = f'(a)(x - a) + f(a)`,
         tip: r`\text{La formule à connaître par cœur : }y = f'(a)(x - a) + f(a)\text{. Le coefficient directeur est }f'(a)\text{, et la tangente passe par le point }(a \,;\, f(a))\text{.}` },
       // tc_tan_02 — calcul_equation_a_positif — n2
-      { q: r`\text{Soit }f(x) = x^2\text{.}\\[4pt]\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 1\text{ ?}`,
+      { q: r`\text{Soit }f(x) = x^2\text{.}\\\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 1\text{ ?}`,
         choices: [
           r`y = 2x - 1`,
           r`y = 2x + 1`,
@@ -5933,9 +5933,9 @@ const DB = {
           r`y = 2x`
         ],
         a: r`y = 2x - 1`,
-        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\[4pt]f'(x) = 2x \Rightarrow f'(1) = 2\\[2pt]f(1) = 1\\[4pt]y = 2(x - 1) + 1 = 2x - 1` },
+        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\f'(x) = 2x \Rightarrow f'(1) = 2\\f(1) = 1\\y = 2(x - 1) + 1 = 2x - 1` },
       // tc_tan_03 — calcul_equation_a_negatif — n3
-      { q: r`\text{Soit }f(x) = x^2 + 1\text{.}\\[4pt]\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = -2\text{ ?}`,
+      { q: r`\text{Soit }f(x) = x^2 + 1\text{.}\\\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = -2\text{ ?}`,
         choices: [
           r`y = -4x - 3`,
           r`y = -4x + 3`,
@@ -5943,7 +5943,7 @@ const DB = {
           r`y = -4x - 5`
         ],
         a: r`y = -4x - 3`,
-        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\[4pt]f'(x) = 2x \Rightarrow f'(-2) = -4\\[2pt]f(-2) = 4 + 1 = 5\\[4pt]y = -4(x-(-2)) + 5 = -4(x+2) + 5 = -4x - 3\\[2pt]\text{⚠ }(x - a)\text{ avec }a=-2\text{ devient }(x+2)` },
+        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\f'(x) = 2x \Rightarrow f'(-2) = -4\\f(-2) = 4 + 1 = 5\\y = -4(x-(-2)) + 5 = -4(x+2) + 5 = -4x - 3\\\text{⚠ }(x - a)\text{ avec }a=-2\text{ devient }(x+2)` },
       // tc_tan_04 — lecture_graphique_pente — n2
       { q: r`\text{Sur la figure ci-contre, la droite }T\text{ est la tangente à la courbe de }f\text{ au point d'abscisse }a = 2\text{. Quelle est la valeur de }f'(2)\text{ ?}`,
         gspec: { fn:x=>x*x-x+2, xr:[-1,4], yr:[-1,8], extras:c=><>{gTan(x=>x*x-x+2,2,3,c)}{gPt(2,4,c)}{gNote(2.2,4.6,'A',c,'#EF4444')}</> },
@@ -6002,7 +6002,7 @@ const DB = {
       // ── Questions tangente applicatives — polynômes — Techno / TC ──
 
       // tc_tan_09 — equation_deg2_a=2 — n2
-      { q: r`\text{Soit }f(x) = x^2 - 3x + 1\text{.}\\[4pt]\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 2\text{ ?}`,
+      { q: r`\text{Soit }f(x) = x^2 - 3x + 1\text{.}\\\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 2\text{ ?}`,
         gspec: { fn:x=>x*x-3*x+1, xr:[-1,4], yr:[-3,3], extras:c=><>{gTan(x=>x*x-3*x+1,2,1,c)}{gPt(2,-1,c)}</> },
         choices: [
           r`y = x - 3`,
@@ -6011,10 +6011,10 @@ const DB = {
           r`y = -x + 1`
         ],
         a: r`y = x - 3`,
-        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\[4pt]f'(x)=2x-3 \Rightarrow f'(2)=1\\[2pt]f(2)=4-6+1=-1\\[4pt]y=1\cdot(x-2)+(-1)=x-3` },
+        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\f'(x)=2x-3 \Rightarrow f'(2)=1\\f(2)=4-6+1=-1\\y=1\cdot(x-2)+(-1)=x-3` },
 
       // tc_tan_10 — equation_deg2_a=0 — n2
-      { q: r`\text{Soit }f(x) = 2x^2 + x - 5\text{.}\\[4pt]\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 0\text{ ?}`,
+      { q: r`\text{Soit }f(x) = 2x^2 + x - 5\text{.}\\\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 0\text{ ?}`,
         gspec: { fn:x=>2*x*x+x-5, xr:[-2,2], yr:[-7,3], extras:c=><>{gTan(x=>2*x*x+x-5,0,1,c)}{gPt(0,-5,c)}</> },
         choices: [
           r`y = x - 5`,
@@ -6023,10 +6023,10 @@ const DB = {
           r`y = 5x - 5`
         ],
         a: r`y = x - 5`,
-        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\[4pt]f'(x)=4x+1 \Rightarrow f'(0)=1\\[2pt]f(0)=-5\\[4pt]y=1\cdot(x-0)+(-5)=x-5` },
+        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\f'(x)=4x+1 \Rightarrow f'(0)=1\\f(0)=-5\\y=1\cdot(x-0)+(-5)=x-5` },
 
       // tc_tan_11 — equation_deg2_a_negatif — n2
-      { q: r`\text{Soit }f(x) = x^2 + 4x\text{.}\\[4pt]\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = -1\text{ ?}`,
+      { q: r`\text{Soit }f(x) = x^2 + 4x\text{.}\\\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = -1\text{ ?}`,
         gspec: { fn:x=>x*x+4*x, xr:[-4,2], yr:[-5,3], extras:c=><>{gTan(x=>x*x+4*x,-1,2,c)}{gPt(-1,-3,c)}</> },
         choices: [
           r`y = 2x - 1`,
@@ -6035,10 +6035,10 @@ const DB = {
           r`y = -2x - 5`
         ],
         a: r`y = 2x - 1`,
-        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\[4pt]f'(x)=2x+4 \Rightarrow f'(-1)=2\\[2pt]f(-1)=1-4=-3\\[4pt]y=2(x-(-1))+(-3)=2(x+1)-3=2x-1\\[2pt]\text{⚠ }(x-a)\text{ avec }a=-1\text{ devient }(x+1)` },
+        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\f'(x)=2x+4 \Rightarrow f'(-1)=2\\f(-1)=1-4=-3\\y=2(x-(-1))+(-3)=2(x+1)-3=2x-1\\\text{⚠ }(x-a)\text{ avec }a=-1\text{ devient }(x+1)` },
 
       // tc_tan_12 — tangente_horizontale_sommet — n2
-      { q: r`\text{Soit }f(x) = -x^2 + 6x\text{.}\\[4pt]f'(x) = -2x + 6\text{ ; }f'(3) = 0\text{ ; }f(3) = 9\text{. Quelle est la tangente en }a = 3\text{ ?}`,
+      { q: r`\text{Soit }f(x) = -x^2 + 6x\text{.}\\f'(x) = -2x + 6\text{ ; }f'(3) = 0\text{ ; }f(3) = 9\text{. Quelle est la tangente en }a = 3\text{ ?}`,
         gspec: { fn:x=>-x*x+6*x, xr:[-1,7], yr:[-1,10], extras:c=><>{gTan(x=>-x*x+6*x,3,0,c)}{gPt(3,9,c)}{gNote(3.2,9.3,'max',c,'#EF4444')}</> },
         choices: [
           r`y = 9`,
@@ -6047,10 +6047,10 @@ const DB = {
           r`y = -6x + 27`
         ],
         a: r`y = 9`,
-        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\[4pt]f'(3)=0\text{ et }f(3)=9\\[4pt]y=0\cdot(x-3)+9=9\\[2pt]\text{Tangente horizontale : }f'(a)=0\text{ au sommet.}` },
+        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\f'(3)=0\text{ et }f(3)=9\\y=0\cdot(x-3)+9=9\\\text{Tangente horizontale : }f'(a)=0\text{ au sommet.}` },
 
       // tc_tan_13 — equation_deg3_tc — n3
-      { q: r`\text{Soit }f(x) = x^3 - 3x\text{.}\\[4pt]\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 2\text{ ?}`,
+      { q: r`\text{Soit }f(x) = x^3 - 3x\text{.}\\\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 2\text{ ?}`,
         gspec: { fn:x=>x*x*x-3*x, xr:[-0.5,3], yr:[-3,8], extras:c=><>{gTan(x=>x*x*x-3*x,2,9,c)}{gPt(2,2,c)}</> },
         choices: [
           r`y = 9x - 16`,
@@ -6059,10 +6059,10 @@ const DB = {
           r`y = 3x - 4`
         ],
         a: r`y = 9x - 16`,
-        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\[4pt]f'(x)=3x^2-3 \Rightarrow f'(2)=9\\[2pt]f(2)=8-6=2\\[4pt]y=9(x-2)+2=9x-16` },
+        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\f'(x)=3x^2-3 \Rightarrow f'(2)=9\\f(2)=8-6=2\\y=9(x-2)+2=9x-16` },
 
       // tc_tan_14 — equation_deg2_coefficients — n2
-      { q: r`\text{Soit }f(x) = 3x^2 - 2x + 1\text{.}\\[4pt]\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 1\text{ ?}`,
+      { q: r`\text{Soit }f(x) = 3x^2 - 2x + 1\text{.}\\\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 1\text{ ?}`,
         gspec: { fn:x=>3*x*x-2*x+1, xr:[-1,3], yr:[-1,8], extras:c=><>{gTan(x=>3*x*x-2*x+1,1,4,c)}{gPt(1,2,c)}</> },
         choices: [
           r`y = 4x - 2`,
@@ -6071,10 +6071,10 @@ const DB = {
           r`y = 6x - 4`
         ],
         a: r`y = 4x - 2`,
-        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\[4pt]f'(x)=6x-2 \Rightarrow f'(1)=4\\[2pt]f(1)=3-2+1=2\\[4pt]y=4(x-1)+2=4x-2` },
+        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\f'(x)=6x-2 \Rightarrow f'(1)=4\\f(1)=3-2+1=2\\y=4(x-1)+2=4x-2` },
 
       // tc_tan_15 — identifier_equation_parmi_quatre — n2
-      { q: r`\text{Soit }f(x) = x^2 - 4\text{.}\\[4pt]\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 3\text{ ?}`,
+      { q: r`\text{Soit }f(x) = x^2 - 4\text{.}\\\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 3\text{ ?}`,
         gspec: { fn:x=>x*x-4, xr:[-1,5], yr:[-5,8], extras:c=><>{gTan(x=>x*x-4,3,6,c)}{gPt(3,5,c)}</> },
         choices: [
           r`y = 6x - 13`,
@@ -6083,10 +6083,10 @@ const DB = {
           r`y = 6x - 4`
         ],
         a: r`y = 6x - 13`,
-        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\[4pt]f'(x)=2x \Rightarrow f'(3)=6\\[2pt]f(3)=9-4=5\\[4pt]y=6(x-3)+5=6x-13` },
+        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\f'(x)=2x \Rightarrow f'(3)=6\\f(3)=9-4=5\\y=6(x-3)+5=6x-13` },
 
       // tc_tan_16 — calculer_f_et_fprime_puis_tangente — n3
-      { q: r`\text{Soit }f(x) = -2x^2 + 4x + 1\text{.}\\[4pt]\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = -1\text{ ?}`,
+      { q: r`\text{Soit }f(x) = -2x^2 + 4x + 1\text{.}\\\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = -1\text{ ?}`,
         gspec: { fn:x=>-2*x*x+4*x+1, xr:[-3,3], yr:[-8,4], extras:c=><>{gTan(x=>-2*x*x+4*x+1,-1,-8,c)}{gPt(-1,-5,c)}</> },
         choices: [
           r`y = -8x - 13`,
@@ -6095,10 +6095,10 @@ const DB = {
           r`y = -8x - 5`
         ],
         a: r`y = -8x - 13`,
-        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\[4pt]f'(x)=-4x+4 \Rightarrow f'(-1)=-8\\[2pt]f(-1)=-2-4+1=-5\\[4pt]y=-8(x+1)+(-5)=-8x-13\\[2pt]\text{⚠ }(x-a)\text{ avec }a=-1\text{ devient }(x+1)` },
+        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\f'(x)=-4x+4 \Rightarrow f'(-1)=-8\\f(-1)=-2-4+1=-5\\y=-8(x+1)+(-5)=-8x-13\\\text{⚠ }(x-a)\text{ avec }a=-1\text{ devient }(x+1)` },
 
       // tc_tan_17 — tangente_deg2_depuis_graphique — n2
-      { q: r`\text{Soit }f(x) = x^2 - 2x\text{.}\\[4pt]\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 3\text{ ?}`,
+      { q: r`\text{Soit }f(x) = x^2 - 2x\text{.}\\\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 3\text{ ?}`,
         gspec: { fn:x=>x*x-2*x, xr:[-1,5], yr:[-2,8], extras:c=><>{gTan(x=>x*x-2*x,3,4,c)}{gPt(3,3,c)}{gNote(3.2,3.4,'A',c,'#EF4444')}</> },
         choices: [
           r`y = 4x - 9`,
@@ -6107,10 +6107,10 @@ const DB = {
           r`y = 2x - 3`
         ],
         a: r`y = 4x - 9`,
-        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\[4pt]f'(x)=2x-2 \Rightarrow f'(3)=4\\[2pt]f(3)=9-6=3\\[4pt]y=4(x-3)+3=4x-9` },
+        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\f'(x)=2x-2 \Rightarrow f'(3)=4\\f(3)=9-6=3\\y=4(x-3)+3=4x-9` },
 
       // tc_tan_18 — etapes_methodiques_stmg — n2
-      { q: r`\text{Soit }f(x) = x^2 + 2x - 3\text{.}\\[4pt]f'(x) = 2x + 2\text{ ; }f'(1) = 4\text{ ; }f(1) = 0\text{. Quelle est la tangente en }a = 1\text{ ?}`,
+      { q: r`\text{Soit }f(x) = x^2 + 2x - 3\text{.}\\f'(x) = 2x + 2\text{ ; }f'(1) = 4\text{ ; }f(1) = 0\text{. Quelle est la tangente en }a = 1\text{ ?}`,
         gspec: { fn:x=>x*x+2*x-3, xr:[-3,3], yr:[-4,5], extras:c=><>{gTan(x=>x*x+2*x-3,1,4,c)}{gPt(1,0,c)}</> },
         choices: [
           r`y = 4x - 4`,
@@ -6119,10 +6119,10 @@ const DB = {
           r`y = 2x - 2`
         ],
         a: r`y = 4x - 4`,
-        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\[4pt]y=4(x-1)+0=4x-4` },
+        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\y=4(x-1)+0=4x-4` },
 
       // tc_tan_19 — synthèse_lecture_et_calcul — n3
-      { q: r`\text{Soit }f(x) = x^3 - 6x^2 + 9x\text{. On donne }f'(x) = 3x^2 - 12x + 9\text{.}\\[4pt]\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 1\text{ ?}`,
+      { q: r`\text{Soit }f(x) = x^3 - 6x^2 + 9x\text{. On donne }f'(x) = 3x^2 - 12x + 9\text{.}\\\text{Quelle est l'équation de la tangente à la courbe de }f\text{ au point d'abscisse }a = 1\text{ ?}`,
         gspec: { fn:x=>x*x*x-6*x*x+9*x, xr:[-0.5,4.5], yr:[-1,5], extras:c=><>{gTan(x=>x*x*x-6*x*x+9*x,1,0,c)}{gPt(1,4,c)}{gNote(1.15,4.3,'max',c,'#EF4444')}</> },
         choices: [
           r`y = 4`,
@@ -6131,7 +6131,7 @@ const DB = {
           r`y = -3x + 7`
         ],
         a: r`y = 4`,
-        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\[4pt]f'(1)=3-12+9=0 \Rightarrow \text{tangente horizontale}\\[2pt]f(1)=1-6+9=4\\[4pt]y=0\cdot(x-1)+4=4` },
+        tip: r`\text{Formule : }y = f'(a)(x-a) + f(a)\\f'(1)=3-12+9=0 \Rightarrow \text{tangente horizontale}\\f(1)=1-6+9=4\\y=0\cdot(x-1)+4=4` },
 
       // tc_tan_20 — QCM_erreur_frequente — n2
       { q: r`\text{Soit }f(x) = x^2\text{. Un élève écrit : "La tangente en }a = 2\text{ est }y = 2x\text{."  Cette réponse est :}`,
@@ -6255,7 +6255,7 @@ const DB = {
     // ── Dérivée et variations ──
     deriv_variations: [
       // tc_var_01 — lien_signe_f_prime_variations — n1
-      { q: r`\text{Soit }f\text{ une fonction dérivable sur un intervalle }I\text{.}\\[4pt]\text{Quelle affirmation est correcte ?}`,
+      { q: r`\text{Soit }f\text{ une fonction dérivable sur un intervalle }I\text{.}\\\text{Quelle affirmation est correcte ?}`,
         choices: [
           r`\text{Si }f'(x) > 0\text{ sur }I\text{, alors }f\text{ est positive sur }I`,
           r`\text{Si }f'(x) > 0\text{ sur }I\text{, alors }f\text{ est croissante sur }I`,
@@ -6265,7 +6265,7 @@ const DB = {
         a: r`\text{Si }f'(x) > 0\text{ sur }I\text{, alors }f\text{ est croissante sur }I`,
         tip: r`\text{La règle fondamentale : si }f'(x) > 0\text{ sur un intervalle, alors }f\text{ est strictement croissante sur cet intervalle. Distracteur A : confond signe de }f\text{ et signe de }f'\text{. Dist}` },
       // tc_var_02 — intervalle_decroissance — n2
-      { q: r`\text{Soit }f\text{ une fonction dont la dérivée est }f'(x) = 2x - 6\text{.}\\[4pt]\text{Sur quel intervalle la fonction }f\text{ est-elle décroissante ?}`,
+      { q: r`\text{Soit }f\text{ une fonction dont la dérivée est }f'(x) = 2x - 6\text{.}\\\text{Sur quel intervalle la fonction }f\text{ est-elle décroissante ?}`,
         choices: [
           r`]-\infty\,;\,3]`,
           r`[3\,;\,+\infty[`,
@@ -6275,7 +6275,7 @@ const DB = {
         a: r`]-\infty\,;\,3]`,
         tip: r`f\text{ décroissante }\iff f'(x) \leq 0\text{. On résout : }2x - 6 \leq 0\text{, soit }x \leq 3\text{. Donc }f\text{ est décroissante sur }]-\infty\,;\,3]\text{.}` },
       // tc_var_03 — variations_trinome — n2
-      { q: r`\text{Soit }f(x) = x^2 - 4x + 1\text{. On donne }f'(x) = 2x - 4\text{.}\\[4pt]\text{Quelles sont les variations de }f\text{ ?}`,
+      { q: r`\text{Soit }f(x) = x^2 - 4x + 1\text{. On donne }f'(x) = 2x - 4\text{.}\\\text{Quelles sont les variations de }f\text{ ?}`,
         choices: [
           r`f\text{ est croissante sur }]-\infty\,;\,2]\text{ puis décroissante sur }[2\,;\,+\infty[`,
           r`f\text{ est décroissante sur }]-\infty\,;\,2]\text{ puis croissante sur }[2\,;\,+\infty[`,
@@ -6285,7 +6285,7 @@ const DB = {
         a: r`f\text{ est décroissante sur }]-\infty\,;\,2]\text{ puis croissante sur }[2\,;\,+\infty[`,
         tip: r`f'(x) = 2x - 4\text{ s'annule en }x = 2\text{. }f'(x) < 0\text{ pour }x < 2\text{ et }f'(x) > 0\text{ pour }x > 2\text{. Donc }f\text{ décroît sur }]-\infty\,;\,2]\text{ puis croît sur }[2\,;\,+\infty[` },
       // tc_var_04 — lecture_tableau_variations — n2
-      { q: r`\text{Le graphique ci-contre représente la fonction }f\text{ sur }[-2\,;\,5]\text{.}\\[4pt]\text{Quelle affirmation est fausse ?}`,
+      { q: r`\text{Le graphique ci-contre représente la fonction }f\text{ sur }[-2\,;\,5]\text{.}\\\text{Quelle affirmation est fausse ?}`,
         gspec: { fn:x=>-0.7*(x-1)*(x-1)+4, xr:[-2,5], yr:[-4,5], extras:c=><>{gPt(1,4,c)}{gPt(-2,-3,c)}{gPt(5,-1,c)}{gDH(0,c,'#94A3B8')}{gNote(1,4.3,'max=4',c,'#EF4444')}{gNote(-2,-2.7,'(-2;-3)',c)}{gNote(4.2,-1,'(5;-1)',c)}</> },
         choices: [
           r`f\text{ admet un maximum égal à }4\text{ sur }[-2\,;\,5]`,
@@ -6296,7 +6296,7 @@ const DB = {
         a: r`f\text{ est positive sur tout l'intervalle }[-2\,;\,5]`,
         tip: r`f(-2) = -3 < 0\text{ et }f(5) = -1 < 0\text{ : }f\text{ n'est pas positive sur tout l'intervalle. A est vrai : maximum = 4. B est vrai : maximum atteint au sommet, en }x = 1\text{. C est vrai : la tangente est horizontale au maximum.}` },
       // tc_var_05 — changement_signe_extremum — n3
-      { q: r`\text{On sait que : }f'(x) > 0\text{ sur }]-\infty\,;\,1[\text{, }f'(1) = 0\text{, }f'(x) < 0\text{ sur }]1\,;\,+\infty[\text{.}\\[4pt]\text{Que peut-on dire de }f\text{ en }x = 1\text{ ?}`,
+      { q: r`\text{On sait que : }f'(x) > 0\text{ sur }]-\infty\,;\,1[\text{, }f'(1) = 0\text{, }f'(x) < 0\text{ sur }]1\,;\,+\infty[\text{.}\\\text{Que peut-on dire de }f\text{ en }x = 1\text{ ?}`,
         choices: [
           r`f\text{ admet un minimum en }x = 1`,
           r`f\text{ admet un maximum en }x = 1`,
@@ -6306,7 +6306,7 @@ const DB = {
         a: r`f\text{ admet un maximum en }x = 1`,
         tip: r`f'\text{ passe du positif au négatif en traversant }x = 1\text{ : }f\text{ est croissante avant, décroissante après. Donc }f\text{ admet un maximum en }x = 1\text{. Règle : à un changement de signe de}` },
       // tc_var_06 — piege_f_prime_nul_sans_changement — n4
-      { q: r`\text{Soit }f\text{ une fonction dérivable telle que }f'(x) = 3x^2\text{.}\\[4pt]\text{Que peut-on dire de }f\text{ en }x = 0\text{ ?}`,
+      { q: r`\text{Soit }f\text{ une fonction dérivable telle que }f'(x) = 3x^2\text{.}\\\text{Que peut-on dire de }f\text{ en }x = 0\text{ ?}`,
         choices: [
           r`f\text{ admet un minimum en }x = 0`,
           r`f\text{ admet un maximum en }x = 0`,
@@ -6319,7 +6319,7 @@ const DB = {
       // Phrase-clé : "Étudier les variations d'une fonction revient à étudier le signe de sa dérivée."
 
       // tc_var_08 — tableau_degre2_croissant — n1
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = x^2 - 4x + 1\text{. On a }f'(x) = 2x - 4\text{.}\\[4pt]\text{Complète le tableau de signes de }f'\text{, puis déduis-en les variations de }f\text{.}`,
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\\text{Soit }f(x) = x^2 - 4x + 1\text{. On a }f'(x) = 2x - 4\text{.}\\\text{Complète le tableau de signes de }f'\text{, puis déduis-en les variations de }f\text{.}`,
         gspec:{ fn:x=>x*x-4*x+1, xr:[-1,5], yr:[-4,4], label:"f",
           extras:c=><>{gDV(2,c,C_MIN)}{gDH(-3,c,C_MIN)}{gPt(2,-3,c,C_MIN)}</> },
         tsSpec:{ xVals:["-∞","2","+∞"],
@@ -6331,7 +6331,7 @@ const DB = {
         tip: r`f'(x)=2x-4\text{ s'annule en }x=2\text{. Négatif avant, positif après : }f\text{ décroît sur }]-\infty\,;\,2]\text{, croît sur }[2\,;\,+\infty[\text{. Minimum }f(2)=-3.` },
 
       // tc_var_09 — tableau_degre2_decroissant — n1
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = -x^2 + 6x - 5\text{. On a }f'(x) = -2x + 6\text{.}\\[4pt]\text{Complète le tableau de signes de }f'\text{, puis déduis-en les variations de }f\text{.}`,
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\\text{Soit }f(x) = -x^2 + 6x - 5\text{. On a }f'(x) = -2x + 6\text{.}\\\text{Complète le tableau de signes de }f'\text{, puis déduis-en les variations de }f\text{.}`,
         gspec:{ fn:x=>-x*x+6*x-5, xr:[-1,7], yr:[-6,5], label:"f",
           extras:c=><>{gDV(3,c,C_MAX)}{gDH(4,c,C_MAX)}{gPt(3,4,c,C_MAX)}</> },
         tsSpec:{ xVals:["-∞","3","+∞"],
@@ -6343,7 +6343,7 @@ const DB = {
         tip: r`f'(x)=-2x+6\text{ s'annule en }x=3\text{. Positif avant, négatif après : }f\text{ croît sur }]-\infty\,;\,3]\text{, décroît sur }[3\,;\,+\infty[\text{. Maximum }f(3)=4.` },
 
       // tc_var_10 — tableau_degre1_croissant — n1
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = 3x - 2\text{. On a }f'(x) = 3\text{.}\\[4pt]\text{Complète le tableau de signes de }f'\text{, puis déduis-en les variations de }f\text{.}`,
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\\text{Soit }f(x) = 3x - 2\text{. On a }f'(x) = 3\text{.}\\\text{Complète le tableau de signes de }f'\text{, puis déduis-en les variations de }f\text{.}`,
         gspec:{ fn:x=>3*x-2, xr:[-2,3], yr:[-6,6], label:"f",
           extras:c=><></> },
         tsSpec:{ xVals:["-∞","+∞"],
@@ -6354,7 +6354,7 @@ const DB = {
         tip: r`f'(x)=3>0\text{ pour tout }x\text{. La dérivée est strictement positive sur }\mathbb{R}\text{ : }f\text{ est strictement croissante sur }\mathbb{R}\text{.}` },
 
       // tc_var_11 — tableau_degre1_decroissant — n1
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = -2x + 5\text{. On a }f'(x) = -2\text{.}\\[4pt]\text{Complète le tableau de signes de }f'\text{, puis déduis-en les variations de }f\text{.}`,
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\\text{Soit }f(x) = -2x + 5\text{. On a }f'(x) = -2\text{.}\\\text{Complète le tableau de signes de }f'\text{, puis déduis-en les variations de }f\text{.}`,
         gspec:{ fn:x=>-2*x+5, xr:[-1,4], yr:[-4,7], label:"f",
           extras:c=><></> },
         tsSpec:{ xVals:["-∞","+∞"],
@@ -6365,7 +6365,7 @@ const DB = {
         tip: r`f'(x)=-2<0\text{ pour tout }x\text{. La dérivée est strictement négative sur }\mathbb{R}\text{ : }f\text{ est strictement décroissante sur }\mathbb{R}\text{.}` },
 
       // tc_var_12 — tableau_lire_signe_donné — n2
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{On sait que }f'(x) < 0\text{ sur }]-\infty\,;\,1[\text{, }f'(1) = 0\text{, }f'(x) > 0\text{ sur }]1\,;\,+\infty[\text{.}\\[4pt]\text{Complète le tableau de variations de }f\text{ sachant que }f(1) = -5\text{.}`,
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\\text{On sait que }f'(x) < 0\text{ sur }]-\infty\,;\,1[\text{, }f'(1) = 0\text{, }f'(x) > 0\text{ sur }]1\,;\,+\infty[\text{.}\\\text{Complète le tableau de variations de }f\text{ sachant que }f(1) = -5\text{.}`,
         tvSpec:{ xVals:["-∞","1","+∞"],
           cells:[{v:"+∞",hole:false,kind:"fixed"},{v:"↘",hole:true,kind:"arrow"},
                  {v:"-5",hole:true,kind:"num"},{v:"↗",hole:true,kind:"arrow"},
@@ -6373,7 +6373,7 @@ const DB = {
         tip: r`f'<0\Rightarrow f\text{ décroissante avant }x=1\text{. }f'>0\Rightarrow f\text{ croissante après. }f(1)=-5\text{ est un minimum.}` },
 
       // tc_var_13 — tableau_lire_signe_donné_max — n2
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{On sait que }f'(x) > 0\text{ sur }]-\infty\,;\,2[\text{, }f'(2) = 0\text{, }f'(x) < 0\text{ sur }]2\,;\,+\infty[\text{.}\\[4pt]\text{Complète le tableau de variations de }f\text{ sachant que }f(2) = 7\text{.}`,
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\\text{On sait que }f'(x) > 0\text{ sur }]-\infty\,;\,2[\text{, }f'(2) = 0\text{, }f'(x) < 0\text{ sur }]2\,;\,+\infty[\text{.}\\\text{Complète le tableau de variations de }f\text{ sachant que }f(2) = 7\text{.}`,
         tvSpec:{ xVals:["-∞","2","+∞"],
           cells:[{v:"-∞",hole:false,kind:"fixed"},{v:"↗",hole:true,kind:"arrow"},
                  {v:"7",hole:true,kind:"num"},{v:"↘",hole:true,kind:"arrow"},
@@ -6381,7 +6381,7 @@ const DB = {
         tip: r`f'>0\Rightarrow f\text{ croissante avant }x=2\text{. }f'<0\Rightarrow f\text{ décroissante après. }f(2)=7\text{ est un maximum.}` },
 
       // tc_var_14 — tableau_complet_deg2_a_poser — n2
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = x^2 - 2x - 3\text{. On a }f'(x) = 2x - 2\text{.}\\[4pt]\text{Complète le tableau de signes de }f'\text{, puis le tableau de variations de }f\text{.}`,
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\\text{Soit }f(x) = x^2 - 2x - 3\text{. On a }f'(x) = 2x - 2\text{.}\\\text{Complète le tableau de signes de }f'\text{, puis le tableau de variations de }f\text{.}`,
         gspec:{ fn:x=>x*x-2*x-3, xr:[-2,4], yr:[-5,4], label:"f",
           extras:c=><>{gDV(1,c,C_MIN)}{gDH(-4,c,C_MIN)}{gPt(1,-4,c,C_MIN)}</> },
         tsSpec:{ xVals:["-∞","1","+∞"],
@@ -6393,7 +6393,7 @@ const DB = {
         tip: r`f'(x)=2x-2\text{, racine }x=1\text{. Négatif avant, positif après. Minimum }f(1)=1-2-3=-4.` },
 
       // tc_var_15 — tableau_complet_deg2_negatif — n2
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = -x^2 + 4x\text{. On a }f'(x) = -2x + 4\text{.}\\[4pt]\text{Complète le tableau de signes de }f'\text{, puis le tableau de variations de }f\text{.}`,
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\\text{Soit }f(x) = -x^2 + 4x\text{. On a }f'(x) = -2x + 4\text{.}\\\text{Complète le tableau de signes de }f'\text{, puis le tableau de variations de }f\text{.}`,
         gspec:{ fn:x=>-x*x+4*x, xr:[-1,5], yr:[-1,5], label:"f",
           extras:c=><>{gDV(2,c,C_MAX)}{gDH(4,c,C_MAX)}{gPt(2,4,c,C_MAX)}</> },
         tsSpec:{ xVals:["-∞","2","+∞"],
@@ -6405,7 +6405,7 @@ const DB = {
         tip: r`f'(x)=-2x+4\text{, racine }x=2\text{. Positif avant, négatif après. Maximum }f(2)=-4+8=4.` },
 
       // tc_var_16 — tableau_complet_deg3_donner_fprime — n3
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = 2x^3 - 6x\text{. On donne }f'(x) = 6x^2 - 6 = 6(x-1)(x+1)\text{.}\\[4pt]\text{Complète le tableau de signes de }f'\text{, puis le tableau de variations de }f\text{.}`,
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\\text{Soit }f(x) = 2x^3 - 6x\text{. On donne }f'(x) = 6x^2 - 6 = 6(x-1)(x+1)\text{.}\\\text{Complète le tableau de signes de }f'\text{, puis le tableau de variations de }f\text{.}`,
         gspec:{ fn:x=>2*x*x*x-6*x, xr:[-2.5,2.5], yr:[-5,5], label:"f",
           extras:c=><>{gDV(-1,c,C_MAX)}{gDH(4,c,C_MAX)}{gPt(-1,4,c,C_MAX)}{gDV(1,c,C_MIN)}{gDH(-4,c,C_MIN)}{gPt(1,-4,c,C_MIN)}</> },
         tsSpec:{ xVals:["-∞","-1","1","+∞"],
@@ -6419,7 +6419,7 @@ const DB = {
         tip: r`f'(x)=6(x-1)(x+1)\text{. Racines }-1\text{ et }1\text{, coeff. positif : }f'>0\text{ hors }[-1\,;\,1]\text{. Maximum }f(-1)=4\text{, minimum }f(1)=-4.` },
 
       // tc_var_17 — deduire_variations_signe_fprime_graphe — n2
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Le graphique ci-contre représente }f'\text{. Sur quel intervalle }f\text{ est-elle décroissante ?}`,
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\\text{Le graphique ci-contre représente }f'\text{. Sur quel intervalle }f\text{ est-elle décroissante ?}`,
         gspec:{ fn:x=>-2*x+4, xr:[-1,5], yr:[-4,6], label:"f'",
           preExtras:c=><>{gShade(x=>-2*x+4,c.x1,2,c,C_POS)}{gShade(x=>-2*x+4,2,c.x2,c,C_NEG)}</>,
           extras:c=><>{gPt(2,0,c,"#475569")}{gSign(0.5,2.5,"+",c,"#059669")}{gSign(3.5,-1.5,"-",c,"#DC2626")}</> },
@@ -6433,7 +6433,7 @@ const DB = {
         tip: r`f'\text{ est négative pour }x>2\text{. Or }f'\text{ négative }\Rightarrow f\text{ décroissante. Donc }f\text{ est décroissante sur }[2\,;\,+\infty[.` },
 
       // tc_var_18 — tableau_degre2_coefficients — n2
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = 2x^2 - 8x + 3\text{. On a }f'(x) = 4x - 8\text{.}\\[4pt]\text{Complète le tableau de signes de }f'\text{, puis le tableau de variations de }f\text{.}`,
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\\text{Soit }f(x) = 2x^2 - 8x + 3\text{. On a }f'(x) = 4x - 8\text{.}\\\text{Complète le tableau de signes de }f'\text{, puis le tableau de variations de }f\text{.}`,
         gspec:{ fn:x=>2*x*x-8*x+3, xr:[-1,5], yr:[-6,4], label:"f",
           extras:c=><>{gDV(2,c,C_MIN)}{gDH(-5,c,C_MIN)}{gPt(2,-5,c,C_MIN)}</> },
         tsSpec:{ xVals:["-∞","2","+∞"],
@@ -6445,7 +6445,7 @@ const DB = {
         tip: r`f'(x)=4x-8\text{, racine }x=2\text{. Minimum }f(2)=8-16+3=-5.` },
 
       // tc_var_19 — tableau_trois_colonnes_fprime_donné — n3
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = x^3 - 6x^2 + 9x\text{. On donne }f'(x) = 3x^2 - 12x + 9 = 3(x-1)(x-3)\text{.}\\[4pt]\text{Complète le tableau de signes de }f'\text{, puis le tableau de variations de }f\text{.}`,
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\\text{Soit }f(x) = x^3 - 6x^2 + 9x\text{. On donne }f'(x) = 3x^2 - 12x + 9 = 3(x-1)(x-3)\text{.}\\\text{Complète le tableau de signes de }f'\text{, puis le tableau de variations de }f\text{.}`,
         gspec:{ fn:x=>x*x*x-6*x*x+9*x, xr:[-0.5,4.5], yr:[-1,5], label:"f",
           extras:c=><>{gDV(1,c,C_MAX)}{gDH(4,c,C_MAX)}{gPt(1,4,c,C_MAX)}{gDV(3,c,C_MIN)}{gDH(0,c,C_MIN)}{gPt(3,0,c,C_MIN)}</> },
         tsSpec:{ xVals:["-∞","1","3","+∞"],
@@ -6459,7 +6459,7 @@ const DB = {
         tip: r`f'(x)=3(x-1)(x-3)\text{. Racines }1\text{ et }3\text{, coeff. positif : }f'>0\text{ hors }[1\,;\,3]\text{. Maximum }f(1)=4\text{, minimum }f(3)=0.` },
 
       // tc_var_20 — lire_tableau_donné_et_conclure — n2
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{On donne le tableau de variations de }f\text{ ci-contre. Quelle affirmation est vraie ?}`,
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\\text{On donne le tableau de variations de }f\text{ ci-contre. Quelle affirmation est vraie ?}`,
         gspec:{ fn:x=>x*x*x-3*x+2, xr:[-2.5,2.5], yr:[-2,5], label:"f",
           extras:c=><>{gDV(-1,c,C_MAX)}{gDH(4,c,C_MAX)}{gPt(-1,4,c,C_MAX)}{gDV(1,c,C_MIN)}{gDH(0,c,C_MIN)}{gPt(1,0,c,C_MIN)}</> },
         choices:[
@@ -6472,7 +6472,7 @@ const DB = {
         tip: r`\text{Sur le graphique : }f\text{ croît avant }-1\text{, décroît entre }-1\text{ et }1\text{, recroît après. Donc max en }-1\text{ et min en }1.` },
 
       // tc_var_21 — conclusion_signe_fprime_zero_sans_extremum — n4
-      { q: r`\text{Soit }f\text{ une fonction telle que }f'(x) = (x-2)^2\text{.}\\[4pt]\text{Quelle est la bonne conclusion ?}`,
+      { q: r`\text{Soit }f\text{ une fonction telle que }f'(x) = (x-2)^2\text{.}\\\text{Quelle est la bonne conclusion ?}`,
         choices:[
           r`f\text{ admet un minimum en }x=2`,
           r`f\text{ admet un maximum en }x=2`,
@@ -6483,7 +6483,7 @@ const DB = {
         tip: r`f'(x)=(x-2)^2\geq 0\text{ pour tout }x\text{, et }f'(2)=0\text{ mais ne change pas de signe. Donc }f\text{ est croissante sur }\mathbb{R}\text{ (sans extremum en }x=2\text{).}` },
 
       // tc_var_22 — tableau_degre3_calculer_fprime — n3
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = -x^3 + 3x^2\text{. On donne }f'(x) = -3x^2 + 6x = -3x(x-2)\text{.}\\[4pt]\text{Complète le tableau de signes de }f'\text{, puis le tableau de variations de }f\text{.}`,
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\\text{Soit }f(x) = -x^3 + 3x^2\text{. On donne }f'(x) = -3x^2 + 6x = -3x(x-2)\text{.}\\\text{Complète le tableau de signes de }f'\text{, puis le tableau de variations de }f\text{.}`,
         gspec:{ fn:x=>-x*x*x+3*x*x, xr:[-1,4], yr:[-1,5], label:"f",
           extras:c=><>{gDV(0,c,C_MIN)}{gDH(0,c,C_MIN)}{gPt(0,0,c,C_MIN)}{gDV(2,c,C_MAX)}{gDH(4,c,C_MAX)}{gPt(2,4,c,C_MAX)}</> },
         tsSpec:{ xVals:["-∞","0","2","+∞"],
@@ -6497,7 +6497,7 @@ const DB = {
         tip: r`f'(x)=-3x^2+6x=-3x(x-2)\text{. Racines }0\text{ et }2\text{. Coeff. }a=-3<0\text{ : positif entre les racines. Minimum }f(0)=0\text{, maximum }f(2)=4.` },
 
       // tc_var_23 — tableau_complet_from_scratch_n3 — n3
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = x^2 + 6x + 5\text{. On a }f'(x) = 2x + 6\text{.}\\[4pt]\text{Complète le tableau de signes de }f'\text{, puis le tableau de variations de }f\text{.}`,
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\\text{Soit }f(x) = x^2 + 6x + 5\text{. On a }f'(x) = 2x + 6\text{.}\\\text{Complète le tableau de signes de }f'\text{, puis le tableau de variations de }f\text{.}`,
         gspec:{ fn:x=>x*x+6*x+5, xr:[-6,1], yr:[-5,5], label:"f",
           extras:c=><>{gDV(-3,c,C_MIN)}{gDH(-4,c,C_MIN)}{gPt(-3,-4,c,C_MIN)}</> },
         tsSpec:{ xVals:["-∞","-3","+∞"],
@@ -6509,7 +6509,7 @@ const DB = {
         tip: r`f'(x)=2x+6\text{, racine }x=-3\text{. Minimum }f(-3)=9-18+5=-4.` },
 
       // tc_var_24 — tableau_produit_signe_fprime_n3 — n3
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{On donne }f'(x)=(x+2)(x-4)\text{.}\\[4pt]\text{Complète le tableau de signes de }f'\text{, puis déduis-en les variations de }f\text{.}`,
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\\text{On donne }f'(x)=(x+2)(x-4)\text{.}\\\text{Complète le tableau de signes de }f'\text{, puis déduis-en les variations de }f\text{.}`,
         gspec:{ fn:x=>(1/3)*x*x*x-x*x-8*x+5, xr:[-4,6], yr:[-20,15], label:"f",
           extras:c=><>{gDV(-2,c,C_MAX)}{gDV(4,c,C_MIN)}</> },
         tsSpec:{ xVals:["-∞","-2","4","+∞"],
@@ -6523,7 +6523,7 @@ const DB = {
         tip: r`f'=(x+2)(x-4)\text{. Coeff. positif : positif hors }[-2\,;\,4]\text{. }f\text{ croissante sur }]-\infty\,;\,-2]\text{, décroissante sur }[-2\,;\,4]\text{, croissante sur }[4\,;\,+\infty[.` },
 
       // tc_var_25 — QCM_lien_fprime_et_variations — n2
-      { q: r`\text{On sait que : }f'(x)<0\text{ sur }]-\infty\,;\,-2[\text{, }f'(-2)=0\text{, }f'(x)>0\text{ sur }]-2\,;\,+\infty[\text{.}\\[4pt]\text{Quelle est la bonne description des variations de }f\text{ ?}`,
+      { q: r`\text{On sait que : }f'(x)<0\text{ sur }]-\infty\,;\,-2[\text{, }f'(-2)=0\text{, }f'(x)>0\text{ sur }]-2\,;\,+\infty[\text{.}\\\text{Quelle est la bonne description des variations de }f\text{ ?}`,
         choices:[
           r`f\text{ est croissante sur }]-\infty\,;\,-2]\text{, décroissante sur }[-2\,;\,+\infty[`,
           r`f\text{ est décroissante sur }]-\infty\,;\,-2]\text{, croissante sur }[-2\,;\,+\infty[`,
@@ -6534,7 +6534,7 @@ const DB = {
         tip: r`f'<0\Rightarrow f\text{ décroissante. }f'>0\Rightarrow f\text{ croissante. Changement de signe en }-2\text{ (de }-\text{ à }+\text{) : }f\text{ admet un minimum en }x=-2.` },
 
       // tc_var_26 — QCM_phrase_clé_reformulée — n1
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[4pt]\text{Parmi les propositions suivantes, laquelle est correcte ?}`,
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\\text{Parmi les propositions suivantes, laquelle est correcte ?}`,
         choices:[
           r`\text{Si }f(x)>0\text{ sur }I\text{, alors }f\text{ est croissante sur }I`,
           r`\text{Si }f'(x)>0\text{ sur }I\text{, alors }f\text{ est croissante sur }I`,
@@ -6545,7 +6545,7 @@ const DB = {
         tip: r`\text{La phrase-clé : signe de }f'\Rightarrow\text{variations de }f\text{. Attention : signe de }f\text{ et signe de }f'\text{ sont deux choses distinctes !}` },
 
       // tc_var_27 — tableau_degre3_etude_complete — n4
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = x^3 - 9x\text{. On donne }f'(x) = 3x^2 - 9 = 3(x-\sqrt{3})(x+\sqrt{3})\text{.}\\[4pt]\text{Complète les deux tableaux.}`,
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\\text{Soit }f(x) = x^3 - 9x\text{. On donne }f'(x) = 3x^2 - 9 = 3(x-\sqrt{3})(x+\sqrt{3})\text{.}\\\text{Complète les deux tableaux.}`,
         gspec:{ fn:x=>x*x*x-9*x, xr:[-4,4], yr:[-12,12], label:"f",
           extras:c=><>{gDV(-Math.sqrt(3),c,C_MAX)}{gDV(Math.sqrt(3),c,C_MIN)}</> },
         tsSpec:{ xVals:["-∞","-√3","√3","+∞"],
@@ -6559,7 +6559,7 @@ const DB = {
         tip: r`f'=3(x+\sqrt{3})(x-\sqrt{3})\text{. Maximum }f(-\sqrt{3})=6\sqrt{3}\approx 10{,}4\text{, minimum }f(\sqrt{3})=-6\sqrt{3}\approx -10{,}4.` },
 
       // tc_var_28 — tableau_complet_stmg_polynome — n2
-      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\[6pt]\text{Soit }f(x) = -3x^2 + 12x - 7\text{. On a }f'(x) = -6x + 12\text{.}\\[4pt]\text{Complète le tableau de signes de }f'\text{, puis le tableau de variations de }f\text{.}`,
+      { q: r`\text{Étudier les variations d'une fonction revient à étudier le signe de sa dérivée.}\\\text{Soit }f(x) = -3x^2 + 12x - 7\text{. On a }f'(x) = -6x + 12\text{.}\\\text{Complète le tableau de signes de }f'\text{, puis le tableau de variations de }f\text{.}`,
         gspec:{ fn:x=>-3*x*x+12*x-7, xr:[-0.5,4.5], yr:[-8,6], label:"f",
           extras:c=><>{gDV(2,c,C_MAX)}{gDH(5,c,C_MAX)}{gPt(2,5,c,C_MAX)}</> },
         tsSpec:{ xVals:["-∞","2","+∞"],
@@ -6571,7 +6571,7 @@ const DB = {
         tip: r`f'(x)=-6x+12\text{, racine }x=2\text{. Positif avant, négatif après. Maximum }f(2)=-12+24-7=5.` },
 
       // tc_var_29 — synthèse_lien_extremum_signe — n3
-      { q: r`\text{Soit }f\text{ dérivable sur }\mathbb{R}\text{, croissante sur }]-\infty\,;\,-1]\text{, décroissante sur }[-1\,;\,3]\text{, croissante sur }[3\,;\,+\infty[\text{.}\\[4pt]\text{Que peut-on dire de }f'(-1)\text{ et }f'(3)\text{ ?}`,
+      { q: r`\text{Soit }f\text{ dérivable sur }\mathbb{R}\text{, croissante sur }]-\infty\,;\,-1]\text{, décroissante sur }[-1\,;\,3]\text{, croissante sur }[3\,;\,+\infty[\text{.}\\\text{Que peut-on dire de }f'(-1)\text{ et }f'(3)\text{ ?}`,
         choices:[
           r`f'(-1)=0\text{ et }f'(3)=0`,
           r`f'(-1)>0\text{ et }f'(3)>0`,
@@ -7606,7 +7606,7 @@ const DB = {
       { q: r`\displaystyle\int_1^3(2x+1)\,\mathrm{d}x = \,?`,
         choices: [r`10`, r`12`, r`8`, r`14`],
         a: r`12`,
-        tip: r`\big[x^2+x\big]_1^3=(9+3)-(1+1)=12-2=10.\\[2pt]\text{Attention : }12-2=10.` },
+        tip: r`\big[x^2+x\big]_1^3=(9+3)-(1+1)=12-2=10.\\\text{Attention : }12-2=10.` },
 
       // int_18 — ∫ (3x²−2x) dx avec valeur numérique
       { q: r`\displaystyle\int_0^2(3x^2-2x)\,\mathrm{d}x = \,?`,
@@ -7722,14 +7722,14 @@ const DB = {
   bac: {
     // ── Techno · Annales · Sujet 1 (Voie Technologique, 2026) ─────────────────
     stmg_annales_s1_2026: [
-      { q:r`\text{Jean consacre }25\%\text{ de son dimanche aux devoirs.}\\[4pt]80\%\text{ de ce temps est consacré à l'exposé. La part de l'exposé est :}`, choices:[r`80\%-25\%`,r`\frac{1}{4}\times80\%`,r`0{,}08\times25\%`,r`\text{Cela dépend}`], a:r`\frac{1}{4}\times80\%`, tip:r`0{,}25\times0{,}8=20\%` },
-      { q:r`\text{Un prix diminue de }50\%\text{.}\\[4pt]\text{Pour retrouver le prix initial, il faut une augmentation de :}`, choices:[r`50\%`,r`100\%`,r`150\%`,r`200\%`], a:r`100\%`, tip:r`\frac{1}{0{,}5}=2\Rightarrow+100\%` },
-      { q:r`\text{Le prix d'une tablette est passé de 250€ à 200€.}\\[4pt]\text{Le coefficient multiplicateur est :}`, choices:[r`1{,}25`,r`0{,}75`,r`0{,}8`,r`-0{,}8`], a:r`0{,}8`, tip:r`\frac{200}{250}=0{,}8` },
+      { q:r`\text{Jean consacre }25\%\text{ de son dimanche aux devoirs.}\\80\%\text{ de ce temps est consacré à l'exposé. La part de l'exposé est :}`, choices:[r`80\%-25\%`,r`\frac{1}{4}\times80\%`,r`0{,}08\times25\%`,r`\text{Cela dépend}`], a:r`\frac{1}{4}\times80\%`, tip:r`0{,}25\times0{,}8=20\%` },
+      { q:r`\text{Un prix diminue de }50\%\text{.}\\\text{Pour retrouver le prix initial, il faut une augmentation de :}`, choices:[r`50\%`,r`100\%`,r`150\%`,r`200\%`], a:r`100\%`, tip:r`\frac{1}{0{,}5}=2\Rightarrow+100\%` },
+      { q:r`\text{Le prix d'une tablette est passé de 250€ à 200€.}\\\text{Le coefficient multiplicateur est :}`, choices:[r`1{,}25`,r`0{,}75`,r`0{,}8`,r`-0{,}8`], a:r`0{,}8`, tip:r`\frac{200}{250}=0{,}8` },
       { q:r`\text{La seule égalité vraie est :}`, choices:[r`40\times\frac{1}{40^2}=40^2`,r`(2^{-4})^3=2^{-1}`,r`\frac{10^{-5}}{10^8}=10^{-13}`,r`5^{-6}\times11^{-6}=55^{-12}`], a:r`\frac{10^{-5}}{10^8}=10^{-13}`, tip:r`10^{-5-8}=10^{-13}` },
-      { q:r`\text{Épaisseur d'une feuille : }70\times10^{-3}\text{ mm.}\\[4pt]\text{Épaisseur de 2 000 feuilles :}`, choices:[r`140\text{ cm}`,r`14\text{ mm}`,r`14\text{ cm}`,r`72\text{ cm}`], a:r`14\text{ cm}`, tip:r`70\times10^{-3}\times2000=140\text{ mm}=14\text{ cm}` },
-      { q:r`\text{Classer par masse croissante :}\\[4pt]\text{Mercure }3{,}3\times10^{23}\text{ kg}\\[2pt]\text{Vénus }4{,}87\times10^{24}\text{ kg}\\[2pt]\text{Terre }5{,}97\times10^{24}\text{ kg}\\[2pt]\text{Mars }6{,}42\times10^{23}\text{ kg}`, choices:[r`\text{Mercure, Mars, Vénus, Terre}`,r`\text{Mars, Mercure, Terre, Vénus}`,r`\text{Mercure, Mars, Terre, Vénus}`,r`\text{Mars, Vénus, Mercure, Terre}`], a:r`\text{Mercure, Mars, Vénus, Terre}`, tip:r`3{,}3\times10^{23}<6{,}42\times10^{23}<4{,}87\times10^{24}<5{,}97\times10^{24}` },
+      { q:r`\text{Épaisseur d'une feuille : }70\times10^{-3}\text{ mm.}\\\text{Épaisseur de 2 000 feuilles :}`, choices:[r`140\text{ cm}`,r`14\text{ mm}`,r`14\text{ cm}`,r`72\text{ cm}`], a:r`14\text{ cm}`, tip:r`70\times10^{-3}\times2000=140\text{ mm}=14\text{ cm}` },
+      { q:r`\text{Classer par masse croissante :}\\\text{Mercure }3{,}3\times10^{23}\text{ kg}\\\text{Vénus }4{,}87\times10^{24}\text{ kg}\\\text{Terre }5{,}97\times10^{24}\text{ kg}\\\text{Mars }6{,}42\times10^{23}\text{ kg}`, choices:[r`\text{Mercure, Mars, Vénus, Terre}`,r`\text{Mars, Mercure, Terre, Vénus}`,r`\text{Mercure, Mars, Terre, Vénus}`,r`\text{Mars, Vénus, Mercure, Terre}`], a:r`\text{Mercure, Mars, Vénus, Terre}`, tip:r`3{,}3\times10^{23}<6{,}42\times10^{23}<4{,}87\times10^{24}<5{,}97\times10^{24}` },
       { q:r`\text{On additionne }x\text{, son triple et son carré. Le résultat vaut :}`, choices:[r`(x+3x)^2`,r`x+(3x)^2`,r`1+3x^2`,r`4x+x^2`], a:r`4x+x^2`, tip:r`x+3x+x^2=4x+x^2` },
-      { q:r`\text{Courbes }C_f\text{ (bleue) et }C_g\text{ (rouge) ci-dessous.}\\[4pt]\text{L'ensemble des solutions de }f(x)\geq g(x)\text{ est :}`,
+      { q:r`\text{Courbes }C_f\text{ (bleue) et }C_g\text{ (rouge) ci-dessous.}\\\text{L'ensemble des solutions de }f(x)\geq g(x)\text{ est :}`,
         svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 180" width="100%" style="background:#fff;font-family:sans-serif;border-radius:8px">
   <!-- axes -->
   <line x1="30" y1="140" x2="285" y2="140" stroke="#94A3B8" stroke-width="1.2"/>
@@ -7770,7 +7770,7 @@ const DB = {
         choices:[r`[-2\,;\,4]`,r`[1\,;\,4]`,r`[-2\,;\,1]`,r`[-2\,;\,1]\cup[1\,;\,4]`],
         a:r`[1\,;\,4]`,
         tip:r`f(x)\geq g(x)\Leftrightarrow C_f\text{ au-dessus de }C_g\Leftrightarrow x\in[1\,;\,4]` },
-      { q:r`f\text{ est définie sur }[-3\,;\,2]\text{ et représentée ci-dessous.}\\[4pt]\text{Combien l'équation }f(x)=0\text{ admet-elle de solutions ?}`,
+      { q:r`f\text{ est définie sur }[-3\,;\,2]\text{ et représentée ci-dessous.}\\\text{Combien l'équation }f(x)=0\text{ admet-elle de solutions ?}`,
         svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="100%" style="background:#fff;font-family:sans-serif">
   <!-- axes -->
   <line x1="30" y1="110" x2="295" y2="110" stroke="#94A3B8" stroke-width="1.2"/>
@@ -7804,7 +7804,7 @@ const DB = {
   <text x="145" y="62" font-size="13" fill="#7C3AED" font-weight="bold" font-style="italic">f</text>
 </svg>`,
         choices:[r`\text{Aucune solution}`,r`\text{Une seule solution}`,r`\text{Deux solutions, toutes négatives}`,r`\text{Deux solutions de signes contraires}`], a:r`\text{Deux solutions, toutes négatives}`, tip:r`\text{La courbe coupe l'axe }x\text{ en deux points, tous deux dans }]-3\,;\,0[` },
-      { q:r`f(x)>0\text{ pour }x<2\text{ et }f(x)<0\text{ pour }x>2\text{.}\\[4pt]\text{Expression possible de }f\text{ :}`, choices:[r`f(x)=-3x+6`,r`f(x)=x+2`,r`f(x)=x-2`,r`f(x)=-4x+2`], a:r`f(x)=-3x+6`, tip:r`-3(2)+6=0\text{ et }f(0)=6>0\checkmark` },
+      { q:r`f(x)>0\text{ pour }x<2\text{ et }f(x)<0\text{ pour }x>2\text{.}\\\text{Expression possible de }f\text{ :}`, choices:[r`f(x)=-3x+6`,r`f(x)=x+2`,r`f(x)=x-2`,r`f(x)=-4x+2`], a:r`f(x)=-3x+6`, tip:r`-3(2)+6=0\text{ et }f(0)=6>0\checkmark` },
       { q:r`C=(1+t)^2\text{. Isoler }t\text{ :}`, choices:[r`t=\sqrt{C-1}`,r`t=\sqrt{C}-1`,r`t=\sqrt{1-C}`,r`t=1-\sqrt{C}`], a:r`t=\sqrt{C}-1`, tip:r`\sqrt{C}=1+t\Rightarrow t=\sqrt{C}-1` },
       { q:r`\text{D'après le graphique, la production hydraulique était la plus importante en :}`,
         svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 180" width="100%" style="background:#fff;font-family:sans-serif">
@@ -7834,10 +7834,10 @@ const DB = {
     ],
     // ── Techno · Annales · Sujet 2 (Voie Technologique, 2026) ─────────────────
     stmg_annales_s2_2026: [
-      { q:r`\text{Un article coûte 400€. Le prix augmente de }20\%\text{.}\\[4pt]\text{Le nouveau prix est :}`, choices:[`420€`,`480€`,`500€`,`320€`], a:`480€`, tip:r`400\times1{,}2=480€` },
-      { q:r`\text{Un sac coûte 130€. Le prix baisse de }10\%\text{.}\\[4pt]\text{Le nouveau prix est :}`, choices:[r`130\times0{,}1`,r`130\times\left(-\frac{10}{100}\right)`,r`130\times\left(1+\frac{10}{100}\right)`,r`130\times0{,}9`], a:r`130\times0{,}9`, tip:r`1-0{,}1=0{,}9` },
-      { q:r`\text{Un prix }P\text{ connaît deux augmentations de }20\%\text{.}\\[4pt]\text{Le prix après est :}`, choices:[r`P\times\left(1+\left(\frac{20}{100}\right)^2\right)`,r`P\times1{,}40`,r`\frac{P}{1{,}44}`,r`P\times1{,}2^2`], a:r`P\times1{,}2^2`, tip:r`1{,}2\times1{,}2=1{,}44\Rightarrow P\times1{,}2^2` },
-      { q:r`\text{Élection : A obtient }\frac{1}{4}\text{, B obtient }20\%\text{, C obtient }\frac{1}{3}\text{, D obtient le reste.}\\[4pt]\text{Qui a recueilli le moins de votes ?}`, choices:[`A`,`B`,`C`,`D`], a:`B`, tip:r`A=25\%,\ B=20\%,\ C\approx33{,}3\%,\ D\approx21{,}7\%\Rightarrow B\text{ est le plus petit}` },
+      { q:r`\text{Un article coûte 400€. Le prix augmente de }20\%\text{.}\\\text{Le nouveau prix est :}`, choices:[`420€`,`480€`,`500€`,`320€`], a:`480€`, tip:r`400\times1{,}2=480€` },
+      { q:r`\text{Un sac coûte 130€. Le prix baisse de }10\%\text{.}\\\text{Le nouveau prix est :}`, choices:[r`130\times0{,}1`,r`130\times\left(-\frac{10}{100}\right)`,r`130\times\left(1+\frac{10}{100}\right)`,r`130\times0{,}9`], a:r`130\times0{,}9`, tip:r`1-0{,}1=0{,}9` },
+      { q:r`\text{Un prix }P\text{ connaît deux augmentations de }20\%\text{.}\\\text{Le prix après est :}`, choices:[r`P\times\left(1+\left(\frac{20}{100}\right)^2\right)`,r`P\times1{,}40`,r`\frac{P}{1{,}44}`,r`P\times1{,}2^2`], a:r`P\times1{,}2^2`, tip:r`1{,}2\times1{,}2=1{,}44\Rightarrow P\times1{,}2^2` },
+      { q:r`\text{Élection : A obtient }\frac{1}{4}\text{, B obtient }20\%\text{, C obtient }\frac{1}{3}\text{, D obtient le reste.}\\\text{Qui a recueilli le moins de votes ?}`, choices:[`A`,`B`,`C`,`D`], a:`B`, tip:r`A=25\%,\ B=20\%,\ C\approx33{,}3\%,\ D\approx21{,}7\%\Rightarrow B\text{ est le plus petit}` },
       { q:r`A=\dfrac{2}{1-\dfrac{2}{3}}=?`, choices:[`-1`,r`\dfrac{2}{3}`,`6`,`9`], a:`6`, tip:r`1-\frac{2}{3}=\frac{1}{3}\Rightarrow\frac{2}{1/3}=6` },
       { q:r`A=\dfrac{1}{100}+\dfrac{1}{1000}=?`, choices:[r`100{,}001`,r`\dfrac{2}{100000}`,r`0{,}11`,r`0{,}011`], a:r`0{,}011`, tip:r`\frac{10}{1000}+\frac{1}{1000}=\frac{11}{1000}=0{,}011` },
       { q:r`\text{75 minutes correspond à :}`, choices:[r`1{,}15\text{ h}`,r`1{,}25\text{ h}`,r`0{,}75\text{ h}`,r`1{,}4\text{ h}`], a:r`1{,}25\text{ h}`, tip:r`75\div60=1{,}25\text{ h}` },
@@ -7845,67 +7845,67 @@ const DB = {
       { q:r`\text{La droite d'équation }y=-2x+5\text{ a pour coefficient directeur :}`, choices:[`-2`,`2`,`5`,`-5`], a:`-2`, tip:r`y=mx+p\Rightarrow m=-2` },
       { q:r`\text{La solution de }3x=0\text{ est :}`, choices:[`x=-3`,r`x=\frac{1}{3}`,r`x=-\frac{1}{3}`,`x=0`], a:`x=0`, tip:r`3x=0\Rightarrow x=0` },
       { q:r`\text{La solution de }\dfrac{144}{x}=9\text{ est :}`, choices:[r`x=144\times9`,r`x=\dfrac{9}{144}`,r`x=\dfrac{144}{9}`,`x=-16`], a:r`x=\dfrac{144}{9}`, tip:r`x=\frac{144}{9}=16` },
-      { q:r`\text{Notes : 10(×1), 13(×1), 12(×1), }x\text{(×2). Moyenne}=15.\\[4pt]x=?`, choices:[`20`,`18`,`15`,r`\text{Impossible}`], a:`20`, tip:r`\frac{10+13+12+2x}{5}=15\Rightarrow x=20` },
+      { q:r`\text{Notes : 10(×1), 13(×1), 12(×1), }x\text{(×2). Moyenne}=15.\\x=?`, choices:[`20`,`18`,`15`,r`\text{Impossible}`], a:`20`, tip:r`\frac{10+13+12+2x}{5}=15\Rightarrow x=20` },
     ],
     stmg_original: [],
     // ── Tronc commun · Annales · Sujet 1 (Voie générale hors spé, 2026) ──────
     tronc_annales_s1_2026: [
       { q:r`\text{L'opération qui permet de calculer }25\%\text{ de 480 est :}`, choices:[r`\dfrac{480}{25\times100}`,r`25\times480\times0{,}1`,r`\dfrac{480\times100}{25}`,r`\dfrac{1}{4}\times480`], a:r`\dfrac{1}{4}\times480`, tip:r`25\%=\frac{1}{4}\Rightarrow\frac{480}{4}=120` },
-      { q:r`A=\dfrac{1}{5},\ B=\dfrac{19}{100},\ C=0{,}21.\\[4pt]\text{Classement par ordre croissant :}`, choices:[r`A<B<C`,r`A<C<B`,r`B<A<C`,r`C<B<A`], a:r`B<A<C`, tip:r`B=0{,}19<A=0{,}20<C=0{,}21` },
-      { q:r`A=\left(\frac{1}{5}\right)^2,\ B=\left(\frac{1}{2}\right)^5,\ C=0{,}05,\ D=\left(\frac{1}{3}\right)^3.\\[4pt]\text{Le plus grand est :}`, choices:[`A`,`B`,`C`,`D`], a:`C`, tip:r`A=0{,}04,\,B\approx0{,}031,\,C=0{,}05,\,D\approx0{,}037` },
-      { q:r`\text{Un article augmente de }10\%\text{ puis encore de }10\%\text{.}\\[4pt]\text{Il a augmenté au total de :}`, choices:[r`(10\%)^2`,r`19\%`,r`20\%`,r`21\%`], a:r`21\%`, tip:r`1{,}1^2=1{,}21\Rightarrow+21\%` },
+      { q:r`A=\dfrac{1}{5},\ B=\dfrac{19}{100},\ C=0{,}21.\\\text{Classement par ordre croissant :}`, choices:[r`A<B<C`,r`A<C<B`,r`B<A<C`,r`C<B<A`], a:r`B<A<C`, tip:r`B=0{,}19<A=0{,}20<C=0{,}21` },
+      { q:r`A=\left(\frac{1}{5}\right)^2,\ B=\left(\frac{1}{2}\right)^5,\ C=0{,}05,\ D=\left(\frac{1}{3}\right)^3.\\\text{Le plus grand est :}`, choices:[`A`,`B`,`C`,`D`], a:`C`, tip:r`A=0{,}04,\,B\approx0{,}031,\,C=0{,}05,\,D\approx0{,}037` },
+      { q:r`\text{Un article augmente de }10\%\text{ puis encore de }10\%\text{.}\\\text{Il a augmenté au total de :}`, choices:[r`(10\%)^2`,r`19\%`,r`20\%`,r`21\%`], a:r`21\%`, tip:r`1{,}1^2=1{,}21\Rightarrow+21\%` },
       { q:r`\text{Le tiers d'un quart correspond à la fraction :}`, choices:[r`\dfrac{1}{7}`,r`\dfrac{3}{4}`,r`\dfrac{1}{3}\times4`,r`\dfrac{1}{12}`], a:r`\dfrac{1}{12}`, tip:r`\frac{1}{3}\times\frac{1}{4}=\frac{1}{12}` },
       { q:r`A=10+0{,}1+\dfrac{1}{1000}=?`, choices:[r`\dfrac{20-1}{1000}`,r`\dfrac{1}{1000}`,r`10{,}101`,r`10{,}110`], a:r`10{,}101`, tip:r`10+0{,}1+0{,}001=10{,}101` },
       { q:r`10^{10}+10^{-10}\text{ est environ égal à :}`, choices:[r`10^0`,`0`,r`10^{10}`,r`2\times10^{10}`], a:r`10^{10}`, tip:r`10^{-10}\approx0` },
       { q:r`\text{100 minutes correspondent à :}`, choices:[r`1\text{ heure}`,r`1{,}40\text{ h}`,r`\dfrac{5}{3}\text{ heure}`,r`2\text{ heures}`], a:r`\dfrac{5}{3}\text{ heure}`, tip:r`100\div60=\frac{5}{3}\approx1{,}67\text{ h}` },
-      { q:r`\text{Droite }D\text{ : pente positive, coupe l'axe }y\text{ en }3.\\[4pt]\text{Son équation est :}`, choices:[r`y=x+3`,r`y=x-3`,r`y=-x+3`,r`y=-x-3`], a:r`y=x+3`, tip:r`\text{Pente positive, ordonnée à l'origine }=3` },
-      { q:r`f(x)=7-\dfrac{1}{2}(x-3)^2.\\[4pt]f(3)=?`, choices:[r`7-\dfrac{1}{2}`,r`7-\dfrac{1}{2}(9+9)`,`7`,`0`], a:`7`, tip:r`f(3)=7-\frac{1}{2}(0)^2=7` },
+      { q:r`\text{Droite }D\text{ : pente positive, coupe l'axe }y\text{ en }3.\\\text{Son équation est :}`, choices:[r`y=x+3`,r`y=x-3`,r`y=-x+3`,r`y=-x-3`], a:r`y=x+3`, tip:r`\text{Pente positive, ordonnée à l'origine }=3` },
+      { q:r`f(x)=7-\dfrac{1}{2}(x-3)^2.\\f(3)=?`, choices:[r`7-\dfrac{1}{2}`,r`7-\dfrac{1}{2}(9+9)`,`7`,`0`], a:`7`, tip:r`f(3)=7-\frac{1}{2}(0)^2=7` },
       { q:r`\text{Développer }(x-3)^2\text{ :}`, choices:[r`x^2+9`,r`x^2-9`,r`x^2+6x+9`,r`x^2-6x+9`], a:r`x^2-6x+9`, tip:r`(a-b)^2=a^2-2ab+b^2` },
-      { q:r`\text{Série A : }1\,;\,2\,;\,3\quad\text{Série B : }0{,}5\,;\,2\,;\,100\\[4pt]\text{Quelle proposition est vraie ?}`, choices:[r`\text{Même moyenne et même médiane}`,r`\text{Même moyenne, mais médiane différente}`,r`\text{Même médiane, mais moyenne différente}`,r`\text{Ni même moyenne ni même médiane}`], a:r`\text{Même médiane, mais moyenne différente}`, tip:r`\text{Médiane A}=2=\text{Médiane B.}\\\text{Moy. A}=2\quad\text{Moy. B}=\tfrac{102{,}5}{3}\approx34\neq2.` },
+      { q:r`\text{Série A : }1\,;\,2\,;\,3\quad\text{Série B : }0{,}5\,;\,2\,;\,100\\\text{Quelle proposition est vraie ?}`, choices:[r`\text{Même moyenne et même médiane}`,r`\text{Même moyenne, mais médiane différente}`,r`\text{Même médiane, mais moyenne différente}`,r`\text{Ni même moyenne ni même médiane}`], a:r`\text{Même médiane, mais moyenne différente}`, tip:r`\text{Médiane A}=2=\text{Médiane B.}\\\text{Moy. A}=2\quad\text{Moy. B}=\tfrac{102{,}5}{3}\approx34\neq2.` },
     ],
     // ── Tronc commun · Annales · Sujet 2 (Voie générale hors spé, 2026) ──────
     tronc_annales_s2_2026: [
       { q:r`A=\dfrac{1}{2}-\dfrac{1}{2}\times\dfrac{4}{3}=?`, choices:[`0`,r`-\dfrac{1}{6}`,r`\dfrac{2}{3}`,`-1`], a:r`-\dfrac{1}{6}`, tip:r`\frac{1}{2}-\frac{2}{3}=-\frac{1}{6}` },
-      { q:r`\text{4 croissants coûtent 6€.}\\[4pt]\text{Combien coûtent 10 croissants ?}`, choices:[`60€`,`8€`,r`8{,}50€`,`15€`], a:`15€`, tip:r`\frac{6}{4}\times10=15€` },
+      { q:r`\text{4 croissants coûtent 6€.}\\\text{Combien coûtent 10 croissants ?}`, choices:[`60€`,`8€`,r`8{,}50€`,`15€`], a:`15€`, tip:r`\frac{6}{4}\times10=15€` },
       { q:r`\text{Un prix a doublé. Cela signifie qu'il a augmenté de :}`, choices:[r`50\%`,r`100\%`,r`150\%`,r`200\%`], a:r`100\%`, tip:r`\times2=+100\%` },
-      { q:r`\text{Après }+10\%\text{, un article coûte 110€.}\\[4pt]\text{Proposition vraie :}`, choices:[r`\text{Prix initial}=99€`,r`\text{Prix initial}=120€`,r`\text{Hausse de }10€`,r`\text{Hausse de }11€`], a:r`\text{Hausse de }10€`, tip:r`\frac{110}{1{,}1}=100€\Rightarrow\text{hausse}=10€` },
+      { q:r`\text{Après }+10\%\text{, un article coûte 110€.}\\\text{Proposition vraie :}`, choices:[r`\text{Prix initial}=99€`,r`\text{Prix initial}=120€`,r`\text{Hausse de }10€`,r`\text{Hausse de }11€`], a:r`\text{Hausse de }10€`, tip:r`\frac{110}{1{,}1}=100€\Rightarrow\text{hausse}=10€` },
       { q:r`\text{Masse de 750 mL d'huile (1L}=900\text{g) :}`, choices:[r`750\text{ g}`,r`0{,}675\text{ kg}`,r`6{,}75\text{ kg}`,r`67{,}5\text{ g}`], a:r`0{,}675\text{ kg}`, tip:r`0{,}75\times900=675\text{ g}=0{,}675\text{ kg}` },
-      { q:r`A(1\,;\,100)\text{ et }B(4\,;\,106).\\[4pt]\text{Coefficient directeur de }(AB)\text{ :}`, choices:[`2`,r`0{,}5`,`-2`,r`-0{,}5`], a:`2`, tip:r`m=\frac{106-100}{4-1}=2` },
-      { q:r`\text{Droite }D\text{ : pente}=-0{,}1\text{, passe par }A(0\,;\,4).\\[4pt]\text{Ordonnée du point de }D\text{ d'abscisse }1\text{ :}`, choices:[`3`,r`3{,}9`,r`4{,}1`,`5`], a:r`3{,}9`, tip:r`y=4+(-0{,}1)(1)=3{,}9` },
+      { q:r`A(1\,;\,100)\text{ et }B(4\,;\,106).\\\text{Coefficient directeur de }(AB)\text{ :}`, choices:[`2`,r`0{,}5`,`-2`,r`-0{,}5`], a:`2`, tip:r`m=\frac{106-100}{4-1}=2` },
+      { q:r`\text{Droite }D\text{ : pente}=-0{,}1\text{, passe par }A(0\,;\,4).\\\text{Ordonnée du point de }D\text{ d'abscisse }1\text{ :}`, choices:[`3`,r`3{,}9`,r`4{,}1`,`5`], a:r`3{,}9`, tip:r`y=4+(-0{,}1)(1)=3{,}9` },
       { q:r`(x-3)(x+2)=?`, choices:[r`x^2-5x+6`,r`x^2-x+6`,r`x^2-x-6`,r`x^2-5x-6`], a:r`x^2-x-6`, tip:r`x^2+2x-3x-6=x^2-x-6` },
       { q:r`V=\dfrac{1}{3}\pi r^2 h\text{. Isoler }h\text{ :}`, choices:[r`h=\dfrac{V}{3\pi r^2}`,r`h=\dfrac{\pi r^2}{3V}`,r`h=\dfrac{\sqrt{V}}{\pi r}`,r`h=\dfrac{3V}{\pi r^2}`], a:r`h=\dfrac{3V}{\pi r^2}`, tip:r`h=\frac{3V}{\pi r^2}` },
-      { q:r`f(x)=-2x^2+3x+1.\\[4pt]f(-1)=?`, choices:[`0`,`2`,`-2`,`-4`], a:`-4`, tip:r`-2(1)+(-3)+1=-4` },
-      { q:r`f(x)=2x^2-5x+3.\\[4pt]\text{Un antécédent de }0\text{ par }f\text{ est :}`, choices:[`1`,`-1`,`0`,`2`], a:`1`, tip:r`f(1)=2-5+3=0\checkmark` },
-      { q:r`\text{Série A : 9;10;10;11 — Série B : 7;10;10;13}\\[4pt]\text{Proposition vraie :}`, choices:[r`\bar{x}_A>\bar{x}_B`,r`\bar{x}_B>\bar{x}_A`,r`\sigma_A>\sigma_B`,r`\sigma_B>\sigma_A`], a:r`\sigma_B>\sigma_A`, tip:r`\text{Même moyenne}=10\text{, B plus dispersée}` },
+      { q:r`f(x)=-2x^2+3x+1.\\f(-1)=?`, choices:[`0`,`2`,`-2`,`-4`], a:`-4`, tip:r`-2(1)+(-3)+1=-4` },
+      { q:r`f(x)=2x^2-5x+3.\\\text{Un antécédent de }0\text{ par }f\text{ est :}`, choices:[`1`,`-1`,`0`,`2`], a:`1`, tip:r`f(1)=2-5+3=0\checkmark` },
+      { q:r`\text{Série A : 9;10;10;11 — Série B : 7;10;10;13}\\\text{Proposition vraie :}`, choices:[r`\bar{x}_A>\bar{x}_B`,r`\bar{x}_B>\bar{x}_A`,r`\sigma_A>\sigma_B`,r`\sigma_B>\sigma_A`], a:r`\sigma_B>\sigma_A`, tip:r`\text{Même moyenne}=10\text{, B plus dispersée}` },
     ],
     // ── Tronc commun · Annales · Sujet 3 (Voie générale hors spé, 2026) ──────
     tronc_annales_s3_2026: [
       { q:r`\text{Ordre de grandeur de }101\times99\text{ :}`, choices:[`100`,r`1\,000`,r`10\,000`,r`100\,000`], a:r`10\,000`, tip:r`(100+1)(100-1)=10000-1\approx10000` },
-      { q:r`\text{Un prix augmente de }20\%\text{ puis diminue de }20\%\text{.}\\[4pt]\text{Après ces deux évolutions :}`, choices:[r`\text{Prix égal}`,r`\text{Prix supérieur}`,r`\text{Prix inférieur}`,r`\text{On ne peut savoir}`], a:r`\text{Prix inférieur}`, tip:r`1{,}2\times0{,}8=0{,}96<1` },
+      { q:r`\text{Un prix augmente de }20\%\text{ puis diminue de }20\%\text{.}\\\text{Après ces deux évolutions :}`, choices:[r`\text{Prix égal}`,r`\text{Prix supérieur}`,r`\text{Prix inférieur}`,r`\text{On ne peut savoir}`], a:r`\text{Prix inférieur}`, tip:r`1{,}2\times0{,}8=0{,}96<1` },
       { q:r`\text{Pour diminuer une quantité de }2{,}3\%\text{, on la multiplie par :}`, choices:[r`1{,}23`,r`0{,}977`,r`0{,}77`,r`1{,}023`], a:r`0{,}977`, tip:r`1-0{,}023=0{,}977` },
-      { q:r`\text{50 élèves représentent }4\%\text{ du lycée.}\\[4pt]\text{Nombre total d'élèves :}`, choices:[`2`,`200`,`125`,r`1\,250`], a:r`1\,250`, tip:r`\frac{50}{0{,}04}=1250` },
+      { q:r`\text{50 élèves représentent }4\%\text{ du lycée.}\\\text{Nombre total d'élèves :}`, choices:[`2`,`200`,`125`,r`1\,250`], a:r`1\,250`, tip:r`\frac{50}{0{,}04}=1250` },
       { q:r`\text{Volume d'un glacier : }V(n+1)=?\text{ (diminue de }3\%\text{/an)}`, choices:[r`V(n)-0{,}03`,r`0{,}03\times V(n)`,r`0{,}97\times V(n)`,r`V(n)-0{,}97`], a:r`0{,}97\times V(n)`, tip:r`-3\%\Rightarrow\times0{,}97` },
       { q:r`\text{Coefficient directeur de la droite }D\text{ (lecture graphique) :}`, gspec:{ fn:x=>3*x-1, xr:[-2,3], yr:[-7,8], label:'D', extras:c=><>{gPt(0,-1,c,'#2563EB')}{gPt(1,2,c,'#2563EB')}</> }, choices:[`-3`,`-1`,`2`,`3`], a:`3`, tip:r`\text{La droite monte de 3 pour }+1\text{ (pente = 3)}` },
-      { q:r`\text{10 stylos coûtent 13€.}\\[4pt]\text{Prix de 3 stylos :}`, choices:[r`3{,}60€`,r`6{,}90€`,r`3{,}90€`,r`6{,}50€`], a:r`3{,}90€`, tip:r`\frac{13}{10}\times3=3{,}9€` },
-      { q:r`\text{Une athlète parcourt 1 km en 5 minutes.}\\[4pt]\text{Sa vitesse moyenne est :}`, choices:[r`8\text{ km/h}`,r`10\text{ km/h}`,r`12\text{ km/h}`,r`14\text{ km/h}`], a:r`12\text{ km/h}`, tip:r`\frac{1}{5/60}=12\text{ km/h}` },
-      { q:r`\text{Sur 60 personnes : A=30, B=12, C=18.}\\[4pt]\text{Les proportions sont :}`, choices:[r`A=50\%,B=20\%,C=30\%`,r`A=30\%,B=20\%,C=50\%`,r`A=50\%,B=30\%,C=20\%`,r`A=40\%,B=30\%,C=30\%`], a:r`A=50\%,B=20\%,C=30\%`, tip:r`\frac{30}{60}=50\%,\frac{12}{60}=20\%,\frac{18}{60}=30\%` },
-      { q:r`\text{Série A : 9;10;10;11 — Série B : 7;10;10;13}\\[4pt]\text{Proposition vraie :}`, choices:[r`\bar{x}_A>\bar{x}_B`,r`\bar{x}_B>\bar{x}_A`,r`\sigma_A>\sigma_B`,r`\sigma_B>\sigma_A`], a:r`\sigma_B>\sigma_A`, tip:r`\text{Mêmes moyennes}=10\text{, B plus dispersée}` },
+      { q:r`\text{10 stylos coûtent 13€.}\\\text{Prix de 3 stylos :}`, choices:[r`3{,}60€`,r`6{,}90€`,r`3{,}90€`,r`6{,}50€`], a:r`3{,}90€`, tip:r`\frac{13}{10}\times3=3{,}9€` },
+      { q:r`\text{Une athlète parcourt 1 km en 5 minutes.}\\\text{Sa vitesse moyenne est :}`, choices:[r`8\text{ km/h}`,r`10\text{ km/h}`,r`12\text{ km/h}`,r`14\text{ km/h}`], a:r`12\text{ km/h}`, tip:r`\frac{1}{5/60}=12\text{ km/h}` },
+      { q:r`\text{Sur 60 personnes : A=30, B=12, C=18.}\\\text{Les proportions sont :}`, choices:[r`A=50\%,B=20\%,C=30\%`,r`A=30\%,B=20\%,C=50\%`,r`A=50\%,B=30\%,C=20\%`,r`A=40\%,B=30\%,C=30\%`], a:r`A=50\%,B=20\%,C=30\%`, tip:r`\frac{30}{60}=50\%,\frac{12}{60}=20\%,\frac{18}{60}=30\%` },
+      { q:r`\text{Série A : 9;10;10;11 — Série B : 7;10;10;13}\\\text{Proposition vraie :}`, choices:[r`\bar{x}_A>\bar{x}_B`,r`\bar{x}_B>\bar{x}_A`,r`\sigma_A>\sigma_B`,r`\sigma_B>\sigma_A`], a:r`\sigma_B>\sigma_A`, tip:r`\text{Mêmes moyennes}=10\text{, B plus dispersée}` },
       { q:r`V=\pi r^2 h\text{. Isoler }h\text{ :}`, choices:[r`h=\sqrt{\dfrac{V}{\pi r^2}}`,r`h=\dfrac{\pi r^2}{V}`,r`h=\dfrac{V}{\pi r^2}`,r`h=\dfrac{r^2}{\pi V}`], a:r`h=\dfrac{V}{\pi r^2}`, tip:r`h=\frac{V}{\pi r^2}` },
       { q:r`f\text{ définie sur }[-4\,;\,4]. \text{Zéros de }f\text{ :}`, gspec:{ fn:x=>(x+3)*(x+1)*(x-1)*(x-2)/4, xr:[-4,4], yr:[-4,4], label:'f', color:'#7C3AED', extras:c=><>{gDH(0,c,'#94A3B8')}{gPt(-3,0,c)}{gPt(-1,0,c)}{gPt(1,0,c)}{gPt(2,0,c)}</> }, choices:[r`S=\{0\}`,r`S=[-3\,;\,2]`,r`S=\{-3\,;\,-1\,;\,1\,;\,2\}`,r`S=\{1{,}5\}`], a:r`S=\{-3\,;\,-1\,;\,1\,;\,2\}`, tip:r`\text{4 zéros d'après la courbe}` },
     ],
     // ── Tronc commun · Annales · Sujet 4 (Amérique du Nord, 1ᵉʳ juin 2026, hors Spé) ──
     tronc_annales_s4_2026: [
-      { q:r`\text{On compare deux réels }A\text{ et }B.\\[4pt]\text{On sait que }A-B\text{ est strictement positif. Alors :}`, choices:[`A<B`,`A>B`,`A=B`,r`\text{On ne peut pas savoir}`], a:`A>B`, tip:r`A-B>0\Leftrightarrow A>B` },
-      { q:r`\text{On considère le nombre }C=\dfrac{1}{2}+3\times\dfrac{5}{6}.\\[4pt]\text{On a :}`, choices:[`C=2`,r`C=\dfrac{35}{12}`,r`C=\dfrac{35}{2}`,`C=3`], a:`C=3`, tip:r`\frac{1}{2}+\frac{15}{6}=\frac{1}{2}+\frac{5}{2}=\frac{6}{2}=3` },
+      { q:r`\text{On compare deux réels }A\text{ et }B.\\\text{On sait que }A-B\text{ est strictement positif. Alors :}`, choices:[`A<B`,`A>B`,`A=B`,r`\text{On ne peut pas savoir}`], a:`A>B`, tip:r`A-B>0\Leftrightarrow A>B` },
+      { q:r`\text{On considère le nombre }C=\dfrac{1}{2}+3\times\dfrac{5}{6}.\\\text{On a :}`, choices:[`C=2`,r`C=\dfrac{35}{12}`,r`C=\dfrac{35}{2}`,`C=3`], a:`C=3`, tip:r`\frac{1}{2}+\frac{15}{6}=\frac{1}{2}+\frac{5}{2}=\frac{6}{2}=3` },
       { q:r`\text{Le nombre }3\times2^5\times2^3\text{ est égal à :}`, choices:[r`3\times2^8`,r`6^8`,r`3\times2^{15}`,r`7^8`], a:r`3\times2^8`, tip:r`2^5\times2^3=2^{5+3}=2^8` },
-      { q:r`\text{On considère le nombre }E=999\times1001.\\[4pt]\text{Un ordre de grandeur de }E\text{ est :}`, choices:[r`1\,000`,r`10\,000`,r`100\,000`,r`1\,000\,000`], a:r`1\,000\,000`, tip:r`999\times1001\approx1000\times1000=10^6` },
+      { q:r`\text{On considère le nombre }E=999\times1001.\\\text{Un ordre de grandeur de }E\text{ est :}`, choices:[r`1\,000`,r`10\,000`,r`100\,000`,r`1\,000\,000`], a:r`1\,000\,000`, tip:r`999\times1001\approx1000\times1000=10^6` },
       { q:r`\text{En développant }(x+2)^2\text{, on obtient :}`, choices:[r`x^2+4x+4`,r`2x+4`,r`x^2+4`,r`x^2-4`], a:r`x^2+4x+4`, tip:r`(a+b)^2=a^2+2ab+b^2` },
       { q:r`\text{L'équation }3x-5=x+3\text{ a pour solution :}`, choices:[`x=-4`,`x=8`,`x=6`,`x=4`], a:`x=4`, tip:r`3x-5=x+3\Rightarrow2x=8\Rightarrow x=4` },
-      { q:r`\text{Dans une boîte de 60 chocolats, }40\%\text{ sont des chocolats au lait.}\\[4pt]\text{Combien y a-t-il de chocolats au lait ?}`, choices:[`20`,`24`,`25`,`40`], a:`24`, tip:r`0{,}40\times60=24` },
+      { q:r`\text{Dans une boîte de 60 chocolats, }40\%\text{ sont des chocolats au lait.}\\\text{Combien y a-t-il de chocolats au lait ?}`, choices:[`20`,`24`,`25`,`40`], a:`24`, tip:r`0{,}40\times60=24` },
       { q:r`\text{Le taux d'évolution équivalent à une baisse de }10\%\text{ suivie d'une baisse de }20\%\text{ est :}`, choices:[`-38\%`,`-30\%`,`-28\%`,`-18\%`], a:`-28\%`, tip:r`0{,}9\times0{,}8=0{,}72\Rightarrow-28\%` },
-      { q:r`\text{Une droite est représentée ci-contre.}\\[4pt]\text{Son équation réduite est :}`, gspec:{ fn:x=>-2*x+3, xr:[-1,3], yr:[-3,5], label:'', color:'#2563EB', extras:c=><>{gPt(0,3,c,'#2563EB')}{gPt(1.5,0,c,'#2563EB')}</> }, choices:[`y=-2x+3`,`y=3x+1{,}5`,`y=-0{,}5x+3`,`y=-2x+1{,}5`], a:`y=-2x+3`, tip:r`\text{Ordonnée à l'origine }=3\text{ et pente }=\frac{0-3}{1{,}5-0}=-2` },
-      { q:r`\text{L'énergie cinétique est }E=\dfrac{1}{2}mv^2\text{ (}m\text{ : masse, }v\text{ : vitesse).}\\[4pt]\text{Une expression de }v\text{ en fonction de }E\text{ et }m\text{ est :}`, choices:[r`v=\sqrt{\dfrac{2E}{m}}`,r`v=\dfrac{2E}{m}`,r`v=\sqrt{E-\dfrac{1}{2}m}`,r`v=\sqrt{2mE}`], a:r`v=\sqrt{\dfrac{2E}{m}}`, tip:r`E=\frac{1}{2}mv^2\Rightarrow v^2=\frac{2E}{m}\Rightarrow v=\sqrt{\frac{2E}{m}}` },
-      { q:r`\text{La fonction }h\text{ définie sur }[-3\,;\,4]\text{ est représentée ci-contre.}\\[4pt]\text{L'équation }h(x)=2\text{ a pour ensemble solution :}`,
+      { q:r`\text{Une droite est représentée ci-contre.}\\\text{Son équation réduite est :}`, gspec:{ fn:x=>-2*x+3, xr:[-1,3], yr:[-3,5], label:'', color:'#2563EB', extras:c=><>{gPt(0,3,c,'#2563EB')}{gPt(1.5,0,c,'#2563EB')}</> }, choices:[`y=-2x+3`,`y=3x+1{,}5`,`y=-0{,}5x+3`,`y=-2x+1{,}5`], a:`y=-2x+3`, tip:r`\text{Ordonnée à l'origine }=3\text{ et pente }=\frac{0-3}{1{,}5-0}=-2` },
+      { q:r`\text{L'énergie cinétique est }E=\dfrac{1}{2}mv^2\text{ (}m\text{ : masse, }v\text{ : vitesse).}\\\text{Une expression de }v\text{ en fonction de }E\text{ et }m\text{ est :}`, choices:[r`v=\sqrt{\dfrac{2E}{m}}`,r`v=\dfrac{2E}{m}`,r`v=\sqrt{E-\dfrac{1}{2}m}`,r`v=\sqrt{2mE}`], a:r`v=\sqrt{\dfrac{2E}{m}}`, tip:r`E=\frac{1}{2}mv^2\Rightarrow v^2=\frac{2E}{m}\Rightarrow v=\sqrt{\frac{2E}{m}}` },
+      { q:r`\text{La fonction }h\text{ définie sur }[-3\,;\,4]\text{ est représentée ci-contre.}\\\text{L'équation }h(x)=2\text{ a pour ensemble solution :}`,
         svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 220" width="100%" style="background:#fff;font-family:sans-serif;border-radius:8px">
   <!-- grille -->
   <g stroke="#E2E8F0" stroke-width="1">
@@ -7942,7 +7942,7 @@ const DB = {
   <text x="155" y="28" font-size="12" fill="#DC2626" font-weight="bold" font-style="italic">h</text>
 </svg>`,
         choices:[r`S=\{2\}`,r`S=\{-2\,;\,2\,;\,3\}`,r`S=[-2\,;\,3]`,r`S=\{-0{,}5\,;\,0{,}5\}`], a:r`S=\{-2\,;\,2\,;\,3\}`, tip:r`\text{La courbe coupe la droite }y=2\text{ en trois points : }x=-2,\ x=2\ \text{et}\ x=3` },
-      { q:r`\text{Série 1 : }9\,;\,11\,;\,13.\text{ On ajoute les notes }10\text{ et }17.\\[4pt]\text{Série 2 : }9\,;\,10\,;\,11\,;\,13\,;\,17.\text{ La proposition vraie est :}`, choices:[r`\text{Mêmes moyennes et mêmes médianes}`,r`\text{Mêmes moyennes, médianes différentes}`,r`\text{Moyennes différentes, mêmes médianes}`,r`\text{Moyennes différentes et médianes différentes}`], a:r`\text{Moyennes différentes, mêmes médianes}`, tip:r`\text{Moy}_1=11\neq\text{Moy}_2=12\,;\quad\text{Méd}_1=11=\text{Méd}_2=11` },
+      { q:r`\text{Série 1 : }9\,;\,11\,;\,13.\text{ On ajoute les notes }10\text{ et }17.\\\text{Série 2 : }9\,;\,10\,;\,11\,;\,13\,;\,17.\text{ La proposition vraie est :}`, choices:[r`\text{Mêmes moyennes et mêmes médianes}`,r`\text{Mêmes moyennes, médianes différentes}`,r`\text{Moyennes différentes, mêmes médianes}`,r`\text{Moyennes différentes et médianes différentes}`], a:r`\text{Moyennes différentes, mêmes médianes}`, tip:r`\text{Moy}_1=11\neq\text{Moy}_2=12\,;\quad\text{Méd}_1=11=\text{Méd}_2=11` },
     ],
     tronc_ce_2026: [
       { q:r`A=4-2\times\dfrac{1}{3}\text{. On a :}`,
@@ -7983,7 +7983,7 @@ const DB = {
       { q:r`\text{Arbre. }p(\bar{A}\cap B)=?`, svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 165" style="width:100%;display:block;border-radius:8px"><rect width="290" height="165" rx="8" fill="white" stroke="#E2E8F0"/><circle cx="26" cy="82" r="5" fill="#F59E0B"/><line x1="31" y1="79" x2="98" y2="39" stroke="#1E293B" stroke-width="1.8"/><line x1="31" y1="85" x2="98" y2="125" stroke="#1E293B" stroke-width="1.8"/><text x="58" y="54" text-anchor="middle" font-size="9" font-weight="bold" fill="#F59E0B" font-family="sans-serif">0.4</text><text x="58" y="116" text-anchor="middle" font-size="9" font-weight="bold" fill="#F59E0B" font-family="sans-serif">0.6</text><circle cx="102" cy="37" r="5" fill="#F59E0B"/><text x="110" y="41" text-anchor="start" font-size="11" font-weight="bold" fill="#B45309" font-family="sans-serif">A</text><circle cx="102" cy="127" r="5" fill="#F59E0B"/><text x="110" y="131" text-anchor="start" font-size="11" font-weight="bold" fill="#B45309" font-family="sans-serif">A̅</text><line x1="106" y1="34" x2="192" y2="17" stroke="#475569" stroke-width="1.4"/><line x1="106" y1="40" x2="192" y2="57" stroke="#475569" stroke-width="1.4"/><text x="150" y="21" text-anchor="middle" font-size="9" font-weight="normal" fill="#2563EB" font-family="sans-serif">0.7</text><text x="150" y="56" text-anchor="middle" font-size="9" font-weight="normal" fill="#94A3B8" font-family="sans-serif">0.3</text><line x1="106" y1="124" x2="192" y2="107" stroke="#475569" stroke-width="1.4"/><line x1="106" y1="130" x2="192" y2="147" stroke="#475569" stroke-width="1.4"/><text x="150" y="108" text-anchor="middle" font-size="9" font-weight="normal" fill="#2563EB" font-family="sans-serif">0.3</text><text x="150" y="146" text-anchor="middle" font-size="9" font-weight="normal" fill="#94A3B8" font-family="sans-serif">0.7</text><circle cx="196" cy="15" r="3" fill="#2563EB"/><text x="202" y="19" text-anchor="start" font-size="8" font-weight="normal" fill="#1E293B" font-family="sans-serif">A∩B</text><circle cx="196" cy="59" r="3" fill="#94A3B8"/><text x="202" y="63" text-anchor="start" font-size="8" font-weight="normal" fill="#475569" font-family="sans-serif">A∩B̅</text><circle cx="196" cy="105" r="3" fill="#2563EB"/><text x="202" y="109" text-anchor="start" font-size="8" font-weight="normal" fill="#1E293B" font-family="sans-serif">A̅∩B</text><circle cx="196" cy="149" r="3" fill="#94A3B8"/><text x="202" y="153" text-anchor="start" font-size="8" font-weight="normal" fill="#475569" font-family="sans-serif">A̅∩B̅</text></svg>`,
         choices:[r`1{,}2`,r`0{,}42`,r`0{,}7`,r`0{,}18`],
         a:r`0{,}18`, tip:r`0{,}6\times0{,}3=0{,}18` },
-      { q:r`\text{Dans un lycée, 150 élèves de 1re suivent spé maths,}\\[4pt]\text{ce qui représente }\dfrac{3}{5}\text{ des élèves de 1re. Total :}`,
+      { q:r`\text{Dans un lycée, 150 élèves de 1re suivent spé maths,}\\\text{ce qui représente }\dfrac{3}{5}\text{ des élèves de 1re. Total :}`,
         choices:[r`90`,r`200`,r`250`,r`300`],
         a:r`250`, tip:r`150\div\dfrac{3}{5}=150\times\dfrac{5}{3}=250` },
       { q:r`A=\dfrac{1}{3}\text{ et }B=\dfrac{5}{6}\text{. }\dfrac{A}{B}+1=?`,
@@ -8094,10 +8094,10 @@ const DB = {
 
     // ── Spécialité · Annales · Sujet Antilles-Guyane (12 juin 2026) ──────────
     stmg_metro_2026: [
-      { q:r`\text{Un lycée compte 500 élèves. 20\% des élèves sont externes.}\\[4pt]\text{Le nombre d'externes est :}`,
+      { q:r`\text{Un lycée compte 500 élèves. 20\% des élèves sont externes.}\\\text{Le nombre d'externes est :}`,
         choices:[r`10`,r`20`,r`100`,r`520`], a:r`100`,
         tip:r`0{,}20\times500=100`},
-      { q:r`\text{Un lycée compte 500 élèves. L'effectif augmente de 5\% l'année suivante.}\\[4pt]\text{Le nombre d'élèves est donc multiplié par :}`,
+      { q:r`\text{Un lycée compte 500 élèves. L'effectif augmente de 5\% l'année suivante.}\\\text{Le nombre d'élèves est donc multiplié par :}`,
         choices:[r`5`,r`1{,}05`,r`0{,}05`,r`25`], a:r`1{,}05`,
         tip:r`\text{Une augmentation de 5\% correspond à un coefficient multiplicateur de }1{,}05`},
       { q:r`4\times\dfrac{2}{3}=`,
@@ -8110,27 +8110,27 @@ const DB = {
         svg:`<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 280 220\" width=\"100%\" style=\"background:#fff;font-family:sans-serif;border-radius:8px;border:1px solid #E2E8F0\"><defs><marker id=\"ah5a\" markerWidth=\"6\" markerHeight=\"6\" refX=\"3\" refY=\"3\" orient=\"auto\"><polygon points=\"0,0 6,3 0,6\" fill=\"#334155\"/></marker><marker id=\"ah5b\" markerWidth=\"6\" markerHeight=\"6\" refX=\"3\" refY=\"3\" orient=\"auto\"><polygon points=\"0,0 6,3 0,6\" fill=\"#334155\"/></marker></defs><g stroke=\"#E5EAF1\" stroke-width=\"0.7\"><line x1=\"10\" y1=\"10\" x2=\"10\" y2=\"200\"/><line x1=\"70\" y1=\"10\" x2=\"70\" y2=\"200\"/><line x1=\"130\" y1=\"10\" x2=\"130\" y2=\"200\"/><line x1=\"190\" y1=\"10\" x2=\"190\" y2=\"200\"/><line x1=\"250\" y1=\"10\" x2=\"250\" y2=\"200\"/><line x1=\"0\" y1=\"10\" x2=\"270\" y2=\"10\"/><line x1=\"0\" y1=\"46\" x2=\"270\" y2=\"46\"/><line x1=\"0\" y1=\"82\" x2=\"270\" y2=\"82\"/><line x1=\"0\" y1=\"118\" x2=\"270\" y2=\"118\"/><line x1=\"0\" y1=\"154\" x2=\"270\" y2=\"154\"/><line x1=\"0\" y1=\"190\" x2=\"270\" y2=\"190\"/></g><line x1=\"0\" y1=\"154\" x2=\"270\" y2=\"154\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#ah5a)\"/><line x1=\"70\" y1=\"205\" x2=\"70\" y2=\"5\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#ah5b)\"/><line x1=\"25\" y1=\"46\" x2=\"145\" y2=\"190\" stroke=\"#2563EB\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><g font-size=\"9.5\" fill=\"#64748B\" text-anchor=\"middle\"><text x=\"10\" y=\"167\">-1</text><text x=\"130\" y=\"167\">1</text><text x=\"190\" y=\"167\">2</text><text x=\"250\" y=\"167\">3</text><text x=\"58\" y=\"121\">1</text><text x=\"58\" y=\"85\">2</text><text x=\"58\" y=\"49\">3</text><text x=\"58\" y=\"13\">4</text><text x=\"58\" y=\"201\">-1</text></g><text x=\"75\" y=\"8\" font-size=\"9.5\" fill=\"#334155\" font-style=\"italic\">y</text><text x=\"262\" y=\"151\" font-size=\"9.5\" fill=\"#334155\" font-style=\"italic\">x</text></svg>`,
         choices:[r`y=-0{,}5x+1{,}5`,r`y=-2x+1{,}5`,r`y=2x+3`,r`y=-2x+3`], a:r`y=-2x+1{,}5`,
         tip:r`\text{Ordonnée à l'origine : }1{,}5\text{, pente : }-2`},
-      { q:r`\text{On considère }f(x)=x(3x-6)\text{ sur }\mathbb{R}.\\[4pt]\text{L'image de }-2\text{ par cette fonction est :}`,
+      { q:r`\text{On considère }f(x)=x(3x-6)\text{ sur }\mathbb{R}.\\\text{L'image de }-2\text{ par cette fonction est :}`,
         choices:[r`-14`,r`-24`,r`24`,r`-48`], a:r`24`,
         tip:r`f(-2)=-2\times(3\times(-2)-6)=-2\times(-12)=24`},
-      { q:r`\text{On considère }f(x)=x(3x-6)\text{ sur }\mathbb{R}.\\[4pt]\text{Le nombre 0 admet :}`,
+      { q:r`\text{On considère }f(x)=x(3x-6)\text{ sur }\mathbb{R}.\\\text{Le nombre 0 admet :}`,
         choices:[r`\text{Deux antécédents : 0 et 2}`,r`\text{Un seul antécédent : 0}`,r`\text{Un seul antécédent : -18}`,r`\text{Deux antécédents : 0 et -2}`], a:r`\text{Un seul antécédent : 0}`,
         tip:r`x(3x-6)=0\Leftrightarrow x=0\text{ ou }x=2\text{. Donc 0 a deux antécédents : 0 et 2}`},
-      { q:r`\text{On considère la représentation graphique d'une fonction }f\text{ polynôme du second degré sur }\mathbb{R}.\\[4pt]\text{Son tableau de signes est :}`,
+      { q:r`\text{On considère la représentation graphique d'une fonction }f\text{ polynôme du second degré sur }\mathbb{R}.\\\text{Son tableau de signes est :}`,
         svg:`<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 220\" width=\"100%\" style=\"background:#fff;font-family:sans-serif;border-radius:8px;border:1px solid #E2E8F0\"><defs><marker id=\"ah8a\" markerWidth=\"6\" markerHeight=\"6\" refX=\"3\" refY=\"3\" orient=\"auto\"><polygon points=\"0,0 6,3 0,6\" fill=\"#334155\"/></marker><marker id=\"ah8b\" markerWidth=\"6\" markerHeight=\"6\" refX=\"3\" refY=\"3\" orient=\"auto\"><polygon points=\"0,0 6,3 0,6\" fill=\"#334155\"/></marker></defs><g stroke=\"#E5EAF1\" stroke-width=\"0.7\"><line x1=\"0\" y1=\"10\" x2=\"0\" y2=\"200\"/><line x1=\"30\" y1=\"10\" x2=\"30\" y2=\"200\"/><line x1=\"60\" y1=\"10\" x2=\"60\" y2=\"200\"/><line x1=\"90\" y1=\"10\" x2=\"90\" y2=\"200\"/><line x1=\"120\" y1=\"10\" x2=\"120\" y2=\"200\"/><line x1=\"150\" y1=\"10\" x2=\"150\" y2=\"200\"/><line x1=\"180\" y1=\"10\" x2=\"180\" y2=\"200\"/><line x1=\"210\" y1=\"10\" x2=\"210\" y2=\"200\"/><line x1=\"240\" y1=\"10\" x2=\"240\" y2=\"200\"/><line x1=\"270\" y1=\"10\" x2=\"270\" y2=\"200\"/><line x1=\"300\" y1=\"10\" x2=\"300\" y2=\"200\"/><line x1=\"0\" y1=\"190\" x2=\"310\" y2=\"190\"/><line x1=\"0\" y1=\"160\" x2=\"310\" y2=\"160\"/><line x1=\"0\" y1=\"130\" x2=\"310\" y2=\"130\"/><line x1=\"0\" y1=\"100\" x2=\"310\" y2=\"100\"/><line x1=\"0\" y1=\"70\" x2=\"310\" y2=\"70\"/><line x1=\"0\" y1=\"40\" x2=\"310\" y2=\"40\"/></g><line x1=\"0\" y1=\"160\" x2=\"310\" y2=\"160\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#ah8a)\"/><line x1=\"30\" y1=\"205\" x2=\"30\" y2=\"5\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#ah8b)\"/><path d=\"M 15.0,38.1 L 22.3,54.1 L 29.6,69.2 L 36.9,83.4 L 44.2,96.8 L 51.5,109.2 L 58.8,120.8 L 66.2,131.4 L 73.5,141.2 L 80.8,150.1 L 88.1,158.0 L 95.4,165.1 L 102.7,171.3 L 110.0,176.7 L 117.3,181.1 L 124.6,184.6 L 131.9,187.3 L 139.2,189.0 L 146.5,189.9 L 153.8,189.9 L 161.2,189.0 L 168.5,187.2 L 175.8,184.5 L 183.1,180.9 L 190.4,176.4 L 197.7,171.0 L 205.0,164.8 L 212.3,157.6 L 219.6,149.6 L 226.9,140.7 L 234.2,130.9 L 241.5,120.2 L 248.8,108.6 L 256.2,96.1 L 263.5,82.7 L 270.8,68.5 L 278.1,53.3 L 285.4,37.3 L 292.7,20.3 L 300.0,2.5\" fill=\"none\" stroke=\"#2563EB\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><g font-size=\"8.5\" fill=\"#64748B\" text-anchor=\"middle\"><text x=\"0\" y=\"173\">-1</text><text x=\"60\" y=\"173\">1</text><text x=\"90\" y=\"173\">2</text><text x=\"150\" y=\"173\">4</text><text x=\"210\" y=\"173\">6</text><text x=\"270\" y=\"173\">8</text><text x=\"300\" y=\"173\">9</text><text x=\"20\" y=\"133\">1</text><text x=\"20\" y=\"103\">2</text><text x=\"20\" y=\"73\">3</text><text x=\"20\" y=\"43\">4</text><text x=\"20\" y=\"13\">5</text></g><text x=\"34\" y=\"8\" font-size=\"8.5\" fill=\"#334155\" font-style=\"italic\">y</text><text x=\"300\" y=\"155\" font-size=\"8.5\" fill=\"#334155\" font-style=\"italic\">x</text></svg>`,
         choices:[`<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 44\" width=\"100%\" style=\"background:#fff;font-family:sans-serif;border-radius:6px;border:1px solid #E2E8F0\"><line x1=\"0\" y1=\"22\" x2=\"320\" y2=\"22\" stroke=\"#94A3B8\" stroke-width=\"0.8\"/><line x1=\"65\" y1=\"0\" x2=\"65\" y2=\"44\" stroke=\"#64748B\" stroke-width=\"1\"/><text x=\"32\" y=\"15\" font-size=\"9.5\" fill=\"#334155\" text-anchor=\"middle\" font-style=\"italic\">x</text><text x=\"32\" y=\"37\" font-size=\"8.5\" fill=\"#334155\" text-anchor=\"middle\">signe f(x)</text><text x=\"90\" y=\"15\" font-size=\"9.5\" fill=\"#334155\" text-anchor=\"middle\">-∞</text><text x=\"90\" y=\"37\" font-size=\"11\" fill=\"#DC2626\" text-anchor=\"middle\" font-weight=\"700\">-</text><line x1=\"116\" y1=\"0\" x2=\"116\" y2=\"44\" stroke=\"#E2E8F0\" stroke-width=\"0.8\"/><text x=\"141\" y=\"15\" font-size=\"9.5\" fill=\"#334155\" text-anchor=\"middle\">3</text><text x=\"141\" y=\"37\" font-size=\"11\" fill=\"#64748B\" text-anchor=\"middle\" font-weight=\"700\">0</text><line x1=\"167\" y1=\"0\" x2=\"167\" y2=\"44\" stroke=\"#E2E8F0\" stroke-width=\"0.8\"/><text x=\"192\" y=\"15\" font-size=\"9.5\" fill=\"#334155\" text-anchor=\"middle\">2</text><text x=\"192\" y=\"37\" font-size=\"11\" fill=\"#16A34A\" text-anchor=\"middle\" font-weight=\"700\">+</text><line x1=\"218\" y1=\"0\" x2=\"218\" y2=\"44\" stroke=\"#E2E8F0\" stroke-width=\"0.8\"/><text x=\"243\" y=\"15\" font-size=\"9.5\" fill=\"#334155\" text-anchor=\"middle\">6</text><text x=\"243\" y=\"37\" font-size=\"11\" fill=\"#64748B\" text-anchor=\"middle\" font-weight=\"700\">0</text><line x1=\"269\" y1=\"0\" x2=\"269\" y2=\"44\" stroke=\"#E2E8F0\" stroke-width=\"0.8\"/><text x=\"294\" y=\"15\" font-size=\"9.5\" fill=\"#334155\" text-anchor=\"middle\">+∞</text><text x=\"294\" y=\"37\" font-size=\"11\" fill=\"#16A34A\" text-anchor=\"middle\" font-weight=\"700\">+</text></svg>`,`<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 240 44\" width=\"100%\" style=\"background:#fff;font-family:sans-serif;border-radius:6px;border:1px solid #E2E8F0\"><line x1=\"0\" y1=\"22\" x2=\"240\" y2=\"22\" stroke=\"#94A3B8\" stroke-width=\"0.8\"/><line x1=\"65\" y1=\"0\" x2=\"65\" y2=\"44\" stroke=\"#64748B\" stroke-width=\"1\"/><text x=\"32\" y=\"15\" font-size=\"9.5\" fill=\"#334155\" text-anchor=\"middle\" font-style=\"italic\">x</text><text x=\"32\" y=\"37\" font-size=\"8.5\" fill=\"#334155\" text-anchor=\"middle\">signe f(x)</text><text x=\"94\" y=\"15\" font-size=\"9.5\" fill=\"#334155\" text-anchor=\"middle\">-∞</text><text x=\"94\" y=\"37\" font-size=\"11\" fill=\"#DC2626\" text-anchor=\"middle\" font-weight=\"700\">-</text><line x1=\"123\" y1=\"0\" x2=\"123\" y2=\"44\" stroke=\"#E2E8F0\" stroke-width=\"0.8\"/><text x=\"152\" y=\"15\" font-size=\"9.5\" fill=\"#334155\" text-anchor=\"middle\">4</text><text x=\"152\" y=\"37\" font-size=\"11\" fill=\"#64748B\" text-anchor=\"middle\" font-weight=\"700\">0</text><line x1=\"181\" y1=\"0\" x2=\"181\" y2=\"44\" stroke=\"#E2E8F0\" stroke-width=\"0.8\"/><text x=\"210\" y=\"15\" font-size=\"9.5\" fill=\"#334155\" text-anchor=\"middle\">+∞</text><text x=\"210\" y=\"37\" font-size=\"11\" fill=\"#16A34A\" text-anchor=\"middle\" font-weight=\"700\">+</text></svg>`,`<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 280 44\" width=\"100%\" style=\"background:#fff;font-family:sans-serif;border-radius:6px;border:1px solid #E2E8F0\"><line x1=\"0\" y1=\"22\" x2=\"280\" y2=\"22\" stroke=\"#94A3B8\" stroke-width=\"0.8\"/><line x1=\"65\" y1=\"0\" x2=\"65\" y2=\"44\" stroke=\"#64748B\" stroke-width=\"1\"/><text x=\"32\" y=\"15\" font-size=\"9.5\" fill=\"#334155\" text-anchor=\"middle\" font-style=\"italic\">x</text><text x=\"32\" y=\"37\" font-size=\"8.5\" fill=\"#334155\" text-anchor=\"middle\">signe f(x)</text><text x=\"91\" y=\"15\" font-size=\"9.5\" fill=\"#334155\" text-anchor=\"middle\">-∞</text><text x=\"91\" y=\"37\" font-size=\"11\" fill=\"#DC2626\" text-anchor=\"middle\" font-weight=\"700\">-</text><line x1=\"118\" y1=\"0\" x2=\"118\" y2=\"44\" stroke=\"#E2E8F0\" stroke-width=\"0.8\"/><text x=\"144\" y=\"15\" font-size=\"9.5\" fill=\"#334155\" text-anchor=\"middle\">2</text><text x=\"144\" y=\"37\" font-size=\"11\" fill=\"#64748B\" text-anchor=\"middle\" font-weight=\"700\">0</text><line x1=\"171\" y1=\"0\" x2=\"171\" y2=\"44\" stroke=\"#E2E8F0\" stroke-width=\"0.8\"/><text x=\"197\" y=\"15\" font-size=\"9.5\" fill=\"#334155\" text-anchor=\"middle\">6</text><text x=\"197\" y=\"37\" font-size=\"11\" fill=\"#16A34A\" text-anchor=\"middle\" font-weight=\"700\">+</text><line x1=\"224\" y1=\"0\" x2=\"224\" y2=\"44\" stroke=\"#E2E8F0\" stroke-width=\"0.8\"/><text x=\"250\" y=\"15\" font-size=\"9.5\" fill=\"#334155\" text-anchor=\"middle\">+∞</text><text x=\"250\" y=\"37\" font-size=\"11\" fill=\"#DC2626\" text-anchor=\"middle\" font-weight=\"700\">-</text></svg>`,`<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 280 44\" width=\"100%\" style=\"background:#fff;font-family:sans-serif;border-radius:6px;border:1px solid #E2E8F0\"><line x1=\"0\" y1=\"22\" x2=\"280\" y2=\"22\" stroke=\"#94A3B8\" stroke-width=\"0.8\"/><line x1=\"65\" y1=\"0\" x2=\"65\" y2=\"44\" stroke=\"#64748B\" stroke-width=\"1\"/><text x=\"32\" y=\"15\" font-size=\"9.5\" fill=\"#334155\" text-anchor=\"middle\" font-style=\"italic\">x</text><text x=\"32\" y=\"37\" font-size=\"8.5\" fill=\"#334155\" text-anchor=\"middle\">signe f(x)</text><text x=\"91\" y=\"15\" font-size=\"9.5\" fill=\"#334155\" text-anchor=\"middle\">-∞</text><text x=\"91\" y=\"37\" font-size=\"11\" fill=\"#16A34A\" text-anchor=\"middle\" font-weight=\"700\">+</text><line x1=\"118\" y1=\"0\" x2=\"118\" y2=\"44\" stroke=\"#E2E8F0\" stroke-width=\"0.8\"/><text x=\"144\" y=\"15\" font-size=\"9.5\" fill=\"#334155\" text-anchor=\"middle\">2</text><text x=\"144\" y=\"37\" font-size=\"11\" fill=\"#64748B\" text-anchor=\"middle\" font-weight=\"700\">0</text><line x1=\"171\" y1=\"0\" x2=\"171\" y2=\"44\" stroke=\"#E2E8F0\" stroke-width=\"0.8\"/><text x=\"197\" y=\"15\" font-size=\"9.5\" fill=\"#334155\" text-anchor=\"middle\">6</text><text x=\"197\" y=\"37\" font-size=\"11\" fill=\"#DC2626\" text-anchor=\"middle\" font-weight=\"700\">-</text><line x1=\"224\" y1=\"0\" x2=\"224\" y2=\"44\" stroke=\"#E2E8F0\" stroke-width=\"0.8\"/><text x=\"250\" y=\"15\" font-size=\"9.5\" fill=\"#334155\" text-anchor=\"middle\">+∞</text><text x=\"250\" y=\"37\" font-size=\"11\" fill=\"#16A34A\" text-anchor=\"middle\" font-weight=\"700\">+</text></svg>`],
         a:`<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 280 44\" width=\"100%\" style=\"background:#fff;font-family:sans-serif;border-radius:6px;border:1px solid #E2E8F0\"><line x1=\"0\" y1=\"22\" x2=\"280\" y2=\"22\" stroke=\"#94A3B8\" stroke-width=\"0.8\"/><line x1=\"65\" y1=\"0\" x2=\"65\" y2=\"44\" stroke=\"#64748B\" stroke-width=\"1\"/><text x=\"32\" y=\"15\" font-size=\"9.5\" fill=\"#334155\" text-anchor=\"middle\" font-style=\"italic\">x</text><text x=\"32\" y=\"37\" font-size=\"8.5\" fill=\"#334155\" text-anchor=\"middle\">signe f(x)</text><text x=\"91\" y=\"15\" font-size=\"9.5\" fill=\"#334155\" text-anchor=\"middle\">-∞</text><text x=\"91\" y=\"37\" font-size=\"11\" fill=\"#16A34A\" text-anchor=\"middle\" font-weight=\"700\">+</text><line x1=\"118\" y1=\"0\" x2=\"118\" y2=\"44\" stroke=\"#E2E8F0\" stroke-width=\"0.8\"/><text x=\"144\" y=\"15\" font-size=\"9.5\" fill=\"#334155\" text-anchor=\"middle\">2</text><text x=\"144\" y=\"37\" font-size=\"11\" fill=\"#64748B\" text-anchor=\"middle\" font-weight=\"700\">0</text><line x1=\"171\" y1=\"0\" x2=\"171\" y2=\"44\" stroke=\"#E2E8F0\" stroke-width=\"0.8\"/><text x=\"197\" y=\"15\" font-size=\"9.5\" fill=\"#334155\" text-anchor=\"middle\">6</text><text x=\"197\" y=\"37\" font-size=\"11\" fill=\"#DC2626\" text-anchor=\"middle\" font-weight=\"700\">-</text><line x1=\"224\" y1=\"0\" x2=\"224\" y2=\"44\" stroke=\"#E2E8F0\" stroke-width=\"0.8\"/><text x=\"250\" y=\"15\" font-size=\"9.5\" fill=\"#334155\" text-anchor=\"middle\">+∞</text><text x=\"250\" y=\"37\" font-size=\"11\" fill=\"#16A34A\" text-anchor=\"middle\" font-weight=\"700\">+</text></svg>`,
         tip:r`\text{Parabole ouverte vers le haut, racines en 2 et 6 : positive aux extrémités, négative entre les racines}`},
-      { q:r`\text{Une course automobile consiste à parcourir 20 tours d'une piste de 4\,500 mètres.}\\[4pt]\text{La distance totale de la course est :}`,
+      { q:r`\text{Une course automobile consiste à parcourir 20 tours d'une piste de 4\,500 mètres.}\\\text{La distance totale de la course est :}`,
         choices:[r`9\,000\,\text{m}`,r`9\,\text{km}`,r`90\,\text{km}`,r`45\,\text{km}`], a:r`90\,\text{km}`,
         tip:r`20\times4500=90\,000\,\text{m}=90\,\text{km}`},
-      { q:r`\text{Un élève a obtenu 10/20 à un devoir coefficienté 2 et 16/20 à un devoir coefficienté 1.}\\[4pt]\text{La moyenne de l'élève est :}`,
+      { q:r`\text{Un élève a obtenu 10/20 à un devoir coefficienté 2 et 16/20 à un devoir coefficienté 1.}\\\text{La moyenne de l'élève est :}`,
         choices:[r`11`,r`12`,r`13`,r`14`], a:r`12`,
         tip:r`\dfrac{10\times2+16\times1}{2+1}=\dfrac{36}{3}=12`},
-      { q:r`\text{Répartition des achats d'aspirateurs :}\\[4pt]\begin{array}{|l|c|c|c|}\hline & \text{Avec sac} & \text{Sans sac} & \text{Total}\\ \hline \text{Avec fil} & 102 & 58 & 160\\ \hline \text{Sans fil} & 20 & 70 & 90\\ \hline \text{Total} & 122 & 128 & 250\\ \hline \end{array}\\[6pt]\text{Parmi les clients ayant acheté un aspirateur sans fil, P(avec sac) ?}`,
+      { q:r`\text{Répartition des achats d'aspirateurs :}\\\begin{array}{|l|c|c|c|}\hline & \text{Avec sac} & \text{Sans sac} & \text{Total}\\ \hline \text{Avec fil} & 102 & 58 & 160\\ \hline \text{Sans fil} & 20 & 70 & 90\\ \hline \text{Total} & 122 & 128 & 250\\ \hline \end{array}\\\text{Parmi les clients ayant acheté un aspirateur sans fil, P(avec sac) ?}`,
         choices:[r`\dfrac{20}{70}`,r`\dfrac{20}{90}`,r`\dfrac{20}{250}`,r`\dfrac{20}{122}`], a:r`\dfrac{20}{90}`,
         tip:r`\text{Parmi les 90 clients sans fil, 20 ont acheté avec sac}`},
-      { q:r`\text{Répartition des ventes d'un concessionnaire automobile.}\\[4pt]\text{Quel pourcentage des ventes représentent les véhicules cabriolets ?}`,
+      { q:r`\text{Répartition des ventes d'un concessionnaire automobile.}\\\text{Quel pourcentage des ventes représentent les véhicules cabriolets ?}`,
         svg:`<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-30 -30 320 280\" width=\"100%\" style=\"background:#FAFAFA;font-family:sans-serif;border-radius:8px\"><path d=\"M 130,110 L 130.0,40.0 A 70,70 0 1,1 121.2,179.4 Z\" fill=\"#D1D5DB\" stroke=\"#fff\" stroke-width=\"1.5\"/><text x=\"235\" y=\"117\" font-size=\"10\" fill=\"#1E293B\" text-anchor=\"middle\" font-weight=\"600\">Berlines</text><path d=\"M 130,110 L 121.2,179.4 A 70,70 0 0,1 63.4,131.6 Z\" fill=\"#9CA3AF\" stroke=\"#fff\" stroke-width=\"1.5\"/><text x=\"63\" y=\"191\" font-size=\"10\" fill=\"#1E293B\" text-anchor=\"middle\" font-weight=\"600\">Cabriolets</text><path d=\"M 130,110 L 63.4,131.6 A 70,70 0 0,1 76.1,65.4 Z\" fill=\"#4B5563\" stroke=\"#fff\" stroke-width=\"1.5\"/><text x=\"27\" y=\"90\" font-size=\"10\" fill=\"#1E293B\" text-anchor=\"middle\" font-weight=\"600\">Monospaces</text><path d=\"M 130,110 L 76.1,65.4 A 70,70 0 0,1 130.0,40.0 Z\" fill=\"#6B7280\" stroke=\"#fff\" stroke-width=\"1.5\"/><text x=\"85\" y=\"15\" font-size=\"10\" fill=\"#1E293B\" text-anchor=\"middle\" font-weight=\"600\">Tout terrain</text></svg>`,
         choices:[r`52\%`,r`12\%`,r`18\%`,r`30\%`], a:r`18\%`,
         tip:r`\text{Lecture directe sur le diagramme circulaire : 18\%}`},
@@ -8164,13 +8164,13 @@ const DB = {
         tip:r`\bar{x}=\dfrac{16+x}{5}=5`},
     ],
     stmg_ag_2026: [
-      { q:r`\text{Un objet coûtait 100 €. Après une remise, il coûte 80 €.}\\[4pt]\text{Quel était le pourcentage de cette remise ?}`,
+      { q:r`\text{Un objet coûtait 100 €. Après une remise, il coûte 80 €.}\\\text{Quel était le pourcentage de cette remise ?}`,
         choices:[r`0{,}2\%`,r`20\%`,r`0{,}8\%`,r`80\%`], a:r`20\%`,
         tip:r`\dfrac{100-80}{100}\times100=20\%`},
-      { q:r`\text{Dans une salle de cinéma, 60\% des personnes ont moins de 25 ans,}\\[4pt]\text{dont 10\% sont mineurs. Quelle est la proportion de mineurs ?}`,
+      { q:r`\text{Dans une salle de cinéma, 60\% des personnes ont moins de 25 ans,}\\\text{dont 10\% sont mineurs. Quelle est la proportion de mineurs ?}`,
         choices:[r`0{,}1`,r`0{,}5`,r`0{,}06`,r`0{,}6`], a:r`0{,}06`,
         tip:r`0{,}60\times0{,}10=0{,}06`},
-      { q:r`\text{Un prix augmente de 10\% puis diminue de 20\%.}\\[4pt]\text{Quelle est l'évolution globale ?}`,
+      { q:r`\text{Un prix augmente de 10\% puis diminue de 20\%.}\\\text{Quelle est l'évolution globale ?}`,
         choices:[r`\text{Baisse de 10\%}`,r`\text{Baisse de 12\%}`,r`\text{Hausse de 10\%}`,r`\text{Baisse de 88\%}`], a:r`\text{Baisse de 12\%}`,
         tip:r`1{,}1\times0{,}8=0{,}88\Rightarrow\text{baisse de 12\%}`},
       { q:r`F=1{,}8C+32\quad\text{Sachant que l'eau bout à 100 °C, la température en °F est :}`,
@@ -8182,7 +8182,7 @@ const DB = {
       { q:r`\text{On considère }A=\dfrac{\dfrac{5}{3}}{15}\text{ :}`,
         choices:[r`A=\dfrac{1}{9}`,r`A=25`,r`A=\dfrac{1}{45}`,r`A=5`], a:r`A=\dfrac{1}{9}`,
         tip:r`\dfrac{5/3}{15}=\dfrac{5}{45}=\dfrac{1}{9}`},
-      { q:r`\text{Dans le repère ci-dessous, on a représenté une droite }d.\\[4pt]\text{L'équation réduite de cette droite est :}`,
+      { q:r`\text{Dans le repère ci-dessous, on a représenté une droite }d.\\\text{L'équation réduite de cette droite est :}`,
         svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" width="100%" style="background:#fff;font-family:sans-serif;border-radius:8px;display:block"><defs><marker id=\"ah7a\" markerWidth=\"6\" markerHeight=\"6\" refX=\"3\" refY=\"3\" orient=\"auto\"><polygon points=\"0,0 6,3 0,6\" fill=\"#334155\"/></marker><marker id=\"ah7b\" markerWidth=\"6\" markerHeight=\"6\" refX=\"3\" refY=\"3\" orient=\"auto\"><polygon points=\"0,0 6,3 0,6\" fill=\"#334155\"/></marker></defs><g stroke=\"#E2E8F0\" stroke-width=\"0.8\"><line x1=\"60\" y1=\"10\" x2=\"60\" y2=\"175\"/><line x1=\"100\" y1=\"10\" x2=\"100\" y2=\"175\"/><line x1=\"140\" y1=\"10\" x2=\"140\" y2=\"175\"/><line x1=\"180\" y1=\"10\" x2=\"180\" y2=\"175\"/><line x1=\"220\" y1=\"10\" x2=\"220\" y2=\"175\"/><line x1=\"260\" y1=\"10\" x2=\"260\" y2=\"175\"/><line x1=\"10\" y1=\"60\" x2=\"285\" y2=\"60\"/><line x1=\"10\" y1=\"100\" x2=\"285\" y2=\"100\"/><line x1=\"10\" y1=\"140\" x2=\"285\" y2=\"140\"/><line x1=\"10\" y1=\"180\" x2=\"285\" y2=\"180\"/></g><line x1=\"10\" y1=\"140\" x2=\"288\" y2=\"140\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#ah7a)\"/><line x1=\"60\" y1=\"185\" x2=\"60\" y2=\"8\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#ah7b)\"/><line x1=\"20\" y1=\"40\" x2=\"256\" y2=\"156\" stroke=\"#DC2626\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><text x=\"230\" y=\"138\" font-size=\"10\" fill=\"#DC2626\" font-style=\"italic\">(d)</text><circle cx=\"60\" cy=\"60\" r=\"3.5\" fill=\"#DC2626\"/><text x=\"100\" y=\"154\" font-size=\"9.5\" fill=\"#64748B\" text-anchor=\"middle\">1</text><text x=\"140\" y=\"154\" font-size=\"9.5\" fill=\"#64748B\" text-anchor=\"middle\">2</text><text x=\"180\" y=\"154\" font-size=\"9.5\" fill=\"#64748B\" text-anchor=\"middle\">3</text><text x=\"50\" y=\"103\" font-size=\"9.5\" fill=\"#64748B\" text-anchor=\"end\">1</text><text x=\"50\" y=\"63\" font-size=\"9.5\" fill=\"#64748B\" text-anchor=\"end\">2</text><text x=\"62\" y=\"133\" font-size=\"9.5\" fill=\"#64748B\">0</text><text x=\"64\" y=\"12\" font-size=\"9.5\" fill=\"#334155\" font-style=\"italic\">y</text><text x=\"280\" y=\"152\" font-size=\"9.5\" fill=\"#334155\" font-style=\"italic\">x</text></svg>`,
         choices:[r`y=-0{,}5x+4`,r`y=-0{,}5x+2`,r`y=-2x+4`,r`y=-2x+2`], a:r`y=-0{,}5x+2`,
         tip:r`\text{Ordonnée à l'origine : }2\text{, pente : }\dfrac{0-2}{4-0}=-0{,}5`},
@@ -8194,14 +8194,14 @@ const DB = {
         choices:[`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 44" width="100%" style="background:#fff;font-family:sans-serif;border-radius:6px;border:1px solid #E2E8F0"><line x1="0" y1="22" x2="240" y2="22" stroke="#94A3B8" stroke-width="0.8"/><line x1="50" y1="0" x2="50" y2="44" stroke="#64748B" stroke-width="1"/><text x="25" y="15" font-size="10" fill="#334155" text-anchor="middle" font-style="italic">x</text><text x="25" y="37" font-size="9.5" fill="#334155" text-anchor="middle">signe</text><text x="75" y="15" font-size="10" fill="#334155" text-anchor="middle">-5</text><text x="75" y="37" font-size="12" fill="#16A34A" text-anchor="middle" font-weight="700">+</text><line x1="100" y1="0" x2="100" y2="44" stroke="#E2E8F0" stroke-width="0.8"/><text x="115" y="15" font-size="10" fill="#334155" text-anchor="middle">-3</text><text x="115" y="37" font-size="12" fill="#64748B" text-anchor="middle" font-weight="700">0</text><line x1="135" y1="0" x2="135" y2="44" stroke="#E2E8F0" stroke-width="0.8"/><text x="160" y="15" font-size="10" fill="#334155" text-anchor="middle">1,5</text><text x="160" y="37" font-size="12" fill="#DC2626" text-anchor="middle" font-weight="700">-</text><line x1="185" y1="0" x2="185" y2="44" stroke="#E2E8F0" stroke-width="0.8"/><text x="200" y="15" font-size="10" fill="#334155" text-anchor="middle">3</text><text x="200" y="37" font-size="12" fill="#64748B" text-anchor="middle" font-weight="700">0</text><line x1="215" y1="0" x2="215" y2="44" stroke="#E2E8F0" stroke-width="0.8"/><text x="228" y="37" font-size="12" fill="#16A34A" text-anchor="middle" font-weight="700">+</text></svg>`,`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 44" width="100%" style="background:#fff;font-family:sans-serif;border-radius:6px;border:1px solid #E2E8F0"><line x1="0" y1="22" x2="200" y2="22" stroke="#94A3B8" stroke-width="0.8"/><line x1="50" y1="0" x2="50" y2="44" stroke="#64748B" stroke-width="1"/><text x="25" y="15" font-size="10" fill="#334155" text-anchor="middle" font-style="italic">x</text><text x="25" y="37" font-size="9.5" fill="#334155" text-anchor="middle">signe</text><text x="80" y="15" font-size="10" fill="#334155" text-anchor="middle">-5</text><text x="80" y="37" font-size="12" fill="#16A34A" text-anchor="middle" font-weight="700">+</text><line x1="110" y1="0" x2="110" y2="44" stroke="#E2E8F0" stroke-width="0.8"/><text x="130" y="15" font-size="10" fill="#334155" text-anchor="middle">-1</text><text x="130" y="37" font-size="12" fill="#64748B" text-anchor="middle" font-weight="700">0</text><line x1="155" y1="0" x2="155" y2="44" stroke="#E2E8F0" stroke-width="0.8"/><text x="178" y="15" font-size="10" fill="#334155" text-anchor="middle">3</text><text x="178" y="37" font-size="12" fill="#DC2626" text-anchor="middle" font-weight="700">-</text></svg>`,`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 44" width="100%" style="background:#fff;font-family:sans-serif;border-radius:6px;border:1px solid #E2E8F0"><line x1="0" y1="22" x2="200" y2="22" stroke="#94A3B8" stroke-width="0.8"/><line x1="50" y1="0" x2="50" y2="44" stroke="#64748B" stroke-width="1"/><text x="25" y="15" font-size="10" fill="#334155" text-anchor="middle" font-style="italic">x</text><text x="25" y="37" font-size="9.5" fill="#334155" text-anchor="middle">signe</text><text x="80" y="15" font-size="10" fill="#334155" text-anchor="middle">-5</text><text x="80" y="37" font-size="12" fill="#DC2626" text-anchor="middle" font-weight="700">-</text><line x1="110" y1="0" x2="110" y2="44" stroke="#E2E8F0" stroke-width="0.8"/><text x="133" y="15" font-size="10" fill="#334155" text-anchor="middle">-1,5</text><text x="133" y="37" font-size="12" fill="#64748B" text-anchor="middle" font-weight="700">0</text><line x1="158" y1="0" x2="158" y2="44" stroke="#E2E8F0" stroke-width="0.8"/><text x="178" y="15" font-size="10" fill="#334155" text-anchor="middle">3</text><text x="178" y="37" font-size="12" fill="#16A34A" text-anchor="middle" font-weight="700">+</text></svg>`,`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 44" width="100%" style="background:#fff;font-family:sans-serif;border-radius:6px;border:1px solid #E2E8F0"><line x1="0" y1="22" x2="240" y2="22" stroke="#94A3B8" stroke-width="0.8"/><line x1="50" y1="0" x2="50" y2="44" stroke="#64748B" stroke-width="1"/><text x="25" y="15" font-size="10" fill="#334155" text-anchor="middle" font-style="italic">x</text><text x="25" y="37" font-size="9.5" fill="#334155" text-anchor="middle">signe</text><text x="75" y="15" font-size="10" fill="#334155" text-anchor="middle">-5</text><text x="75" y="37" font-size="12" fill="#16A34A" text-anchor="middle" font-weight="700">+</text><line x1="100" y1="0" x2="100" y2="44" stroke="#E2E8F0" stroke-width="0.8"/><text x="115" y="15" font-size="10" fill="#334155" text-anchor="middle">-1</text><text x="115" y="37" font-size="12" fill="#64748B" text-anchor="middle" font-weight="700">0</text><line x1="133" y1="0" x2="133" y2="44" stroke="#E2E8F0" stroke-width="0.8"/><text x="150" y="15" font-size="10" fill="#334155" text-anchor="middle">0</text><text x="150" y="37" font-size="12" fill="#DC2626" text-anchor="middle" font-weight="700">-</text><line x1="168" y1="0" x2="168" y2="44" stroke="#E2E8F0" stroke-width="0.8"/><text x="185" y="15" font-size="10" fill="#334155" text-anchor="middle">3</text><text x="185" y="37" font-size="12" fill="#64748B" text-anchor="middle" font-weight="700">0</text><line x1="202" y1="0" x2="202" y2="44" stroke="#E2E8F0" stroke-width="0.8"/><text x="222" y="37" font-size="12" fill="#16A34A" text-anchor="middle" font-weight="700">+</text></svg>`],
         a:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 44" width="100%" style="background:#fff;font-family:sans-serif;border-radius:6px;border:1px solid #E2E8F0"><line x1="0" y1="22" x2="240" y2="22" stroke="#94A3B8" stroke-width="0.8"/><line x1="50" y1="0" x2="50" y2="44" stroke="#64748B" stroke-width="1"/><text x="25" y="15" font-size="10" fill="#334155" text-anchor="middle" font-style="italic">x</text><text x="25" y="37" font-size="9.5" fill="#334155" text-anchor="middle">signe</text><text x="75" y="15" font-size="10" fill="#334155" text-anchor="middle">-5</text><text x="75" y="37" font-size="12" fill="#16A34A" text-anchor="middle" font-weight="700">+</text><line x1="100" y1="0" x2="100" y2="44" stroke="#E2E8F0" stroke-width="0.8"/><text x="115" y="15" font-size="10" fill="#334155" text-anchor="middle">-3</text><text x="115" y="37" font-size="12" fill="#64748B" text-anchor="middle" font-weight="700">0</text><line x1="135" y1="0" x2="135" y2="44" stroke="#E2E8F0" stroke-width="0.8"/><text x="160" y="15" font-size="10" fill="#334155" text-anchor="middle">1,5</text><text x="160" y="37" font-size="12" fill="#DC2626" text-anchor="middle" font-weight="700">-</text><line x1="185" y1="0" x2="185" y2="44" stroke="#E2E8F0" stroke-width="0.8"/><text x="200" y="15" font-size="10" fill="#334155" text-anchor="middle">3</text><text x="200" y="37" font-size="12" fill="#64748B" text-anchor="middle" font-weight="700">0</text><line x1="215" y1="0" x2="215" y2="44" stroke="#E2E8F0" stroke-width="0.8"/><text x="228" y="37" font-size="12" fill="#16A34A" text-anchor="middle" font-weight="700">+</text></svg>`,
         tip:r`f\text{ s'annule en }-3\text{ et }1{,}5`},
-      { q:r`\text{Paramètres : Min}=2,\ Q_1=5,\ \text{Méd}=10,\ Q_3=12,\ \text{Max}=17\\[4pt]\text{Proportion d'élèves avec note}\leq 12\text{ :}`,
+      { q:r`\text{Paramètres : Min}=2,\ Q_1=5,\ \text{Méd}=10,\ Q_3=12,\ \text{Max}=17\\\text{Proportion d'élèves avec note}\leq 12\text{ :}`,
         choices:[r`\text{inférieure ou égale à }25\%`,r`\text{égale à }50\%`,r`\text{supérieure ou égale à }75\%`,r`\text{égale à }100\%`], a:r`\text{supérieure ou égale à }75\%`,
         tip:r`Q_3=12\Rightarrow 75\%\text{ des élèves ont note}\leq12`},
-      { q:r`\text{Répartition des joueurs de jeux vidéo par tranche d'âge.}\\[4pt]\text{Proportion de joueurs de 24 ans et moins :}`,
+      { q:r`\text{Répartition des joueurs de jeux vidéo par tranche d'âge.}\\\text{Proportion de joueurs de 24 ans et moins :}`,
         svg:`<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-30 -30 320 280\" width=\"100%\" style=\"background:#FAFAFA;font-family:sans-serif;border-radius:8px\"><path d=\"M 130,110 L 130.0,45.0 A 65,65 0 0,1 163.1,54.1 Z\" fill=\"#6366F1\" stroke=\"#fff\" stroke-width=\"1.5\"/><text x=\"157\" y=\"7\" font-size=\"9\" fill=\"#1E293B\" text-anchor=\"middle\" font-weight=\"700\">6-9 ans</text><text x=\"157\" y=\"19\" font-size=\"9\" fill=\"#475569\" text-anchor=\"middle\">8,5%</text><path d=\"M 130,110 L 163.1,54.1 A 65,65 0 0,1 193.0,93.8 Z\" fill=\"#8B5CF6\" stroke=\"#fff\" stroke-width=\"1.5\"/><text x=\"212\" y=\"44\" font-size=\"9\" fill=\"#1E293B\" text-anchor=\"middle\" font-weight=\"700\">10-14 ans</text><text x=\"212\" y=\"56\" font-size=\"9\" fill=\"#475569\" text-anchor=\"middle\">12,5%</text><path d=\"M 130,110 L 193.0,93.8 A 65,65 0 0,1 168.5,162.3 Z\" fill=\"#EC4899\" stroke=\"#fff\" stroke-width=\"1.5\"/><text x=\"227\" y=\"141\" font-size=\"9\" fill=\"#1E293B\" text-anchor=\"middle\" font-weight=\"700\">15-24 ans</text><text x=\"227\" y=\"153\" font-size=\"9\" fill=\"#475569\" text-anchor=\"middle\">18,9%</text><path d=\"M 130,110 L 168.5,162.3 A 65,65 0 0,1 96.9,165.9 Z\" fill=\"#F59E0B\" stroke=\"#fff\" stroke-width=\"1.5\"/><text x=\"135\" y=\"209\" font-size=\"9\" fill=\"#1E293B\" text-anchor=\"middle\" font-weight=\"700\">25-34 ans</text><text x=\"135\" y=\"221\" font-size=\"9\" fill=\"#475569\" text-anchor=\"middle\">18,6%</text><path d=\"M 130,110 L 96.9,165.9 A 65,65 0 0,1 73.6,77.6 Z\" fill=\"#10B981\" stroke=\"#fff\" stroke-width=\"1.5\"/><text x=\"30\" y=\"132\" font-size=\"9\" fill=\"#1E293B\" text-anchor=\"middle\" font-weight=\"700\">35-49 ans</text><text x=\"30\" y=\"144\" font-size=\"9\" fill=\"#475569\" text-anchor=\"middle\">24,8%</text><path d=\"M 130,110 L 73.6,77.6 A 65,65 0 0,1 130.0,45.0 Z\" fill=\"#3B82F6\" stroke=\"#fff\" stroke-width=\"1.5\"/><text x=\"78\" y=\"17\" font-size=\"9\" fill=\"#1E293B\" text-anchor=\"middle\" font-weight=\"700\">50-65 ans</text><text x=\"78\" y=\"29\" font-size=\"9\" fill=\"#475569\" text-anchor=\"middle\">16,7%</text><text x=\"130\" y=\"245\" font-size=\"8.5\" fill=\"#64748B\" text-anchor=\"middle\">Source : CNC – TNS Sofres 2014</text></svg>`,
         choices:[r`60{,}1\%`,r`18{,}9\%`,r`39{,}9\%`,r`\dfrac{1}{3}`], a:r`39{,}9\%`,
         tip:r`8{,}5+12{,}5+18{,}9=39{,}9\%`},
-      { q:r`\text{Enquête 800 élèves :}\\[4pt]\begin{array}{|l|c|c|c|}\hline & \text{Fille} & \text{Garçon} & \text{Total}\\ \hline \text{Aucune activité} & 90 & 200 & 290\\ \hline \text{Au moins une} & 210 & 300 & 510\\ \hline \text{Total} & 300 & 500 & 800\\ \hline \end{array}\\[6pt]\text{Parmi les garçons, P(aucune activité) = ?}`,
+      { q:r`\text{Enquête 800 élèves :}\\\begin{array}{|l|c|c|c|}\hline & \text{Fille} & \text{Garçon} & \text{Total}\\ \hline \text{Aucune activité} & 90 & 200 & 290\\ \hline \text{Au moins une} & 210 & 300 & 510\\ \hline \text{Total} & 300 & 500 & 800\\ \hline \end{array}\\\text{Parmi les garçons, P(aucune activité) = ?}`,
         choices:[r`\dfrac{200}{290}`,r`\dfrac{200}{800}`,r`\dfrac{290}{800}`,r`\dfrac{200}{500}`], a:r`\dfrac{200}{500}`,
         tip:r`\dfrac{200}{500}\text{ garçons sans activité}`},
     ],
@@ -8239,11 +8239,11 @@ const DB = {
         choices:[r`\left(3x-\dfrac{1}{3}\right)^2`,r`\left(3x-\dfrac{1}{3}\right)\!\left(3x+\dfrac{1}{3}\right)`,r`\left(9x-\dfrac{1}{3}\right)^2`,r`\left(9x-\dfrac{1}{3}\right)\!\left(9x+\dfrac{1}{3}\right)`],
         a:r`\left(3x-\dfrac{1}{3}\right)\!\left(3x+\dfrac{1}{3}\right)`,
         tip:r`9x^2-\dfrac{1}{9}=(3x)^2-\left(\dfrac{1}{3}\right)^2=\left(3x-\dfrac{1}{3}\right)\!\left(3x+\dfrac{1}{3}\right)` },
-      { q:r`E=\dfrac{x-y}{zt}\text{ avec }x=3,\,y=-2,\,z=-3,\,t=-4.\\[4pt]E\text{ vaut :}`,
+      { q:r`E=\dfrac{x-y}{zt}\text{ avec }x=3,\,y=-2,\,z=-3,\,t=-4.\\E\text{ vaut :}`,
         choices:[r`\dfrac{1}{12}`,r`-\dfrac{5}{12}`,r`\dfrac{5}{12}`,r`-\dfrac{1}{12}`],
         a:r`\dfrac{5}{12}`,
         tip:r`E=\dfrac{3-(-2)}{(-3)\times(-4)}=\dfrac{5}{12}` },
-      { q:r`f\text{ est définie sur }[-5\,;9].\\[4pt]A=\dfrac{f(-4)}{f(-1)}.\\[4pt]\text{Laquelle de ces propositions est vraie ?}`,
+      { q:r`f\text{ est définie sur }[-5\,;9].\\A=\dfrac{f(-4)}{f(-1)}.\\\text{Laquelle de ces propositions est vraie ?}`,
         svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="-60 -40 340 240" width="100%" style="background:#fff;font-family:sans-serif;border-radius:8px">
   <defs><marker id="ah" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><polygon points="0,0 6,3 0,6" fill="#334155"/></marker></defs>
   <g stroke="#E5EAF1" stroke-width="1">
@@ -8273,19 +8273,19 @@ const DB = {
         choices:[r`A=0`,r`A<0`,r`A>0`,r`\text{On ne peut pas connaître le signe de }A`],
         a:r`A<0`,
         tip:r`f(-4)\approx2>0\text{ et }f(-1)\approx-1{,}5<0\Rightarrow A=\dfrac{f(-4)}{f(-1)}<0` },
-      { q:r`-2x+2\geqslant0.\\[4pt]S\text{ est l'ensemble des solutions. On peut affirmer que :}`,
+      { q:r`-2x+2\geqslant0.\\S\text{ est l'ensemble des solutions. On peut affirmer que :}`,
         choices:[r`S=\left]-\infty\,;1\right]`,r`S=\left[1\,;+\infty\right[`,r`S=\left[-1\,;+\infty\right[`,r`S=\left]-\infty\,;-1\right]`],
         a:r`S=\left]-\infty\,;1\right]`,
         tip:r`-2x+2\geqslant0\Leftrightarrow-2x\geqslant-2\Leftrightarrow x\leqslant1` },
-      { q:r`\text{Tableau de signes d'une fonction }f\text{ définie sur }\mathbb{R}\text{ :}\\[6pt]\begin{array}{c|ccccccc}x&-\infty&&-3&&2&&+\infty\\\hline\text{Signe de }f(x)&&+&0&-&0&+&\end{array}\\[6pt]\text{Une expression possible de }f(x)\text{ est :}`,
+      { q:r`\text{Tableau de signes d'une fonction }f\text{ définie sur }\mathbb{R}\text{ :}\\\begin{array}{c|ccccccc}x&-\infty&&-3&&2&&+\infty\\\hline\text{Signe de }f(x)&&+&0&-&0&+&\end{array}\\\text{Une expression possible de }f(x)\text{ est :}`,
         choices:[r`f(x)=(x+3)(2-x)`,r`f(x)=(x+2)(x-3)`,r`f(x)=(x-2)(x+3)`,r`f(x)=(x+2)(3+x)`],
         a:r`f(x)=(x-2)(x+3)`,
         tip:r`\text{Racines }-3\text{ et }2\text{ ; positif à l'extérieur : }f(x)=(x+3)(x-2)=(x-2)(x+3)` },
-      { q:r`\text{Prix }-50\,\%\text{ puis }+40\,\%.\\[4pt]\text{Ces deux variations sont équivalentes à :}`,
+      { q:r`\text{Prix }-50\,\%\text{ puis }+40\,\%.\\\text{Ces deux variations sont équivalentes à :}`,
         choices:[r`\text{une baisse de }0\,\%`,r`\text{une baisse de }70\,\%`,r`\text{une baisse de }10\,\%`,r`\text{une baisse de }30\,\%`],
         a:r`\text{une baisse de }30\,\%`,
         tip:r`\times0{,}5\times1{,}4=\times0{,}7\Rightarrow\text{baisse de }30\,\%` },
-      { q:r`\text{40\,\% des adhérents d'une association sont des hommes.}\\[4pt]\text{Il y a 30 femmes. Le nombre total d'adhérents est :}`,
+      { q:r`\text{40\,\% des adhérents d'une association sont des hommes.}\\\text{Il y a 30 femmes. Le nombre total d'adhérents est :}`,
         choices:[r`70`,r`40`,r`75`,r`50`],
         a:r`50`,
         tip:r`60\,\%\text{ de femmes}=30\Rightarrow\text{total}=\dfrac{30}{0{,}6}=50` },
@@ -8297,41 +8297,41 @@ const DB = {
     // ── Spécialité · Annales · Sujet 1 (2026) ────────────────────────────────
     spe_annales_s1_2026: [
       { q:r`\text{L'inverse du double de 5 est égal à :}`, choices:[r`\dfrac{2}{5}`,r`\dfrac{1}{10}`,r`\dfrac{5}{2}`,`10`], a:r`\dfrac{1}{10}`, tip:r`\frac{1}{2\times5}=\frac{1}{10}` },
-      { q:r`F=a+\dfrac{b}{cd}\text{ avec }a=\tfrac{1}{2},\,b=3,\,c=4,\,d=-\tfrac{1}{4}.\\[4pt]F=?`, choices:[r`-\dfrac{5}{2}`,r`-\dfrac{3}{2}`,r`\dfrac{5}{2}`,r`\dfrac{3}{2}`], a:r`-\dfrac{5}{2}`, tip:r`\frac{3}{4\times(-1/4)}=-3\Rightarrow F=\frac{1}{2}-3=-\frac{5}{2}` },
-      { q:r`\text{Le prix d'un article est multiplié par }0{,}975.\\[4pt]\text{Cela signifie :}`, choices:[r`\text{Baisse de }2{,}5\%`,r`\text{Hausse de }97{,}5\%`,r`\text{Baisse de }25\%`,r`\text{Hausse de }0{,}975\%`], a:r`\text{Baisse de }2{,}5\%`, tip:r`1-0{,}975=0{,}025=2{,}5\%` },
-      { q:r`\text{Un prix }P\text{ augmente de }10\%\text{ puis baisse de }10\%.\\[4pt]P_1\text{ par rapport à }P\text{ :}`, choices:[r`P_1=P`,r`P_1>P`,r`P_1<P`,r`\text{Cela dépend de }P`], a:r`P_1<P`, tip:r`P\times1{,}1\times0{,}9=0{,}99P<P` },
-      { q:r`\text{Dé à 4 faces : P(1)}=0{,}5\text{, P(2)}=\frac{1}{6}\text{, P(3)}=0{,}2.\\[4pt]x=\text{P(4)}=?`, choices:[r`x=\dfrac{2}{15}`,r`x=\dfrac{2}{3}`,r`x=0{,}4`,r`x=0{,}1`], a:r`x=\dfrac{2}{15}`, tip:r`x=1-0{,}5-\frac{1}{6}-0{,}2=\frac{2}{15}` },
+      { q:r`F=a+\dfrac{b}{cd}\text{ avec }a=\tfrac{1}{2},\,b=3,\,c=4,\,d=-\tfrac{1}{4}.\\F=?`, choices:[r`-\dfrac{5}{2}`,r`-\dfrac{3}{2}`,r`\dfrac{5}{2}`,r`\dfrac{3}{2}`], a:r`-\dfrac{5}{2}`, tip:r`\frac{3}{4\times(-1/4)}=-3\Rightarrow F=\frac{1}{2}-3=-\frac{5}{2}` },
+      { q:r`\text{Le prix d'un article est multiplié par }0{,}975.\\\text{Cela signifie :}`, choices:[r`\text{Baisse de }2{,}5\%`,r`\text{Hausse de }97{,}5\%`,r`\text{Baisse de }25\%`,r`\text{Hausse de }0{,}975\%`], a:r`\text{Baisse de }2{,}5\%`, tip:r`1-0{,}975=0{,}025=2{,}5\%` },
+      { q:r`\text{Un prix }P\text{ augmente de }10\%\text{ puis baisse de }10\%.\\P_1\text{ par rapport à }P\text{ :}`, choices:[r`P_1=P`,r`P_1>P`,r`P_1<P`,r`\text{Cela dépend de }P`], a:r`P_1<P`, tip:r`P\times1{,}1\times0{,}9=0{,}99P<P` },
+      { q:r`\text{Dé à 4 faces : P(1)}=0{,}5\text{, P(2)}=\frac{1}{6}\text{, P(3)}=0{,}2.\\x=\text{P(4)}=?`, choices:[r`x=\dfrac{2}{15}`,r`x=\dfrac{2}{3}`,r`x=0{,}4`,r`x=0{,}1`], a:r`x=\dfrac{2}{15}`, tip:r`x=1-0{,}5-\frac{1}{6}-0{,}2=\frac{2}{15}` },
       { q:r`\dfrac{1}{x}+\dfrac{1}{y}=\dfrac{1}{u}\text{. On a :}`, choices:[r`u=\dfrac{xy}{x+y}`,r`u=\dfrac{x+y}{xy}`,r`u=xy`,r`u=x+y`], a:r`u=\dfrac{xy}{x+y}`, tip:r`\frac{x+y}{xy}=\frac{1}{u}\Rightarrow u=\frac{xy}{x+y}` },
       { q:r`x^2>10\text{ est équivalent à :}`, choices:[r`-\sqrt{10}\leq x\leq\sqrt{10}`,r`x<-\sqrt{10}\text{ ou }x>\sqrt{10}`,r`x\geq\sqrt{10}`,r`x=-\sqrt{10}\text{ ou }x=\sqrt{10}`], a:r`x<-\sqrt{10}\text{ ou }x>\sqrt{10}`, tip:r`x^2>10\Leftrightarrow|x|>\sqrt{10}\Leftrightarrow x<-\sqrt{10}\text{ ou }x>\sqrt{10}` },
-      { q:r`\text{Droite passant par }(0\,;\,2)\text{ et }(3\,;\,0).\\[4pt]\text{Son équation est :}`, choices:[r`y=-\dfrac{3}{2}x+2`,r`y=\dfrac{2}{3}x+2`,r`2x-3y-6=0`,r`\dfrac{x}{3}+\dfrac{y}{2}-1=0`], a:r`\dfrac{x}{3}+\dfrac{y}{2}-1=0`, tip:r`\text{Vérif : }(0,2)\checkmark\text{ et }(3,0)\checkmark` },
-      { q:r`f_1:x\mapsto x^2-(1-x)^2,\;f_2:x\mapsto\frac{x}{2}-\left(1+\frac{1}{\sqrt{2}}\right),\;f_3:x\mapsto\frac{5-\frac{2}{3}x}{0{,}7}\\[4pt]\text{Les fonctions affines sont :}`, choices:[r`\text{Aucune}`,r`\text{Toutes}`,r`\text{Uniquement }f_1`,r`\text{Uniquement }f_2\text{ et }f_3`], a:r`\text{Toutes}`, tip:r`f_1=2x-1\text{ (affine), }f_2\text{ et }f_3\text{ aussi}` },
-      { q:r`\text{Parabole vers le bas, racines en }x=0\text{ et }x=10.\\[4pt]\text{Expression possible :}`, choices:[r`x\mapsto x^2-10`,r`x\mapsto-x^2-10`,r`x\mapsto-x^2+10`,r`x\mapsto-x^2+10x`], a:r`x\mapsto-x^2+10x`, tip:r`-x(x-10)=0\Rightarrow x=0\text{ ou }10\checkmark` },
+      { q:r`\text{Droite passant par }(0\,;\,2)\text{ et }(3\,;\,0).\\\text{Son équation est :}`, choices:[r`y=-\dfrac{3}{2}x+2`,r`y=\dfrac{2}{3}x+2`,r`2x-3y-6=0`,r`\dfrac{x}{3}+\dfrac{y}{2}-1=0`], a:r`\dfrac{x}{3}+\dfrac{y}{2}-1=0`, tip:r`\text{Vérif : }(0,2)\checkmark\text{ et }(3,0)\checkmark` },
+      { q:r`f_1:x\mapsto x^2-(1-x)^2,\;f_2:x\mapsto\frac{x}{2}-\left(1+\frac{1}{\sqrt{2}}\right),\;f_3:x\mapsto\frac{5-\frac{2}{3}x}{0{,}7}\\\text{Les fonctions affines sont :}`, choices:[r`\text{Aucune}`,r`\text{Toutes}`,r`\text{Uniquement }f_1`,r`\text{Uniquement }f_2\text{ et }f_3`], a:r`\text{Toutes}`, tip:r`f_1=2x-1\text{ (affine), }f_2\text{ et }f_3\text{ aussi}` },
+      { q:r`\text{Parabole vers le bas, racines en }x=0\text{ et }x=10.\\\text{Expression possible :}`, choices:[r`x\mapsto x^2-10`,r`x\mapsto-x^2-10`,r`x\mapsto-x^2+10`,r`x\mapsto-x^2+10x`], a:r`x\mapsto-x^2+10x`, tip:r`-x(x-10)=0\Rightarrow x=0\text{ ou }10\checkmark` },
       { q:r`x\times f(x)>0\text{ quand :}`, choices:[r`x\text{ et }f(x)\text{ sont de signes opposés}`,r`x\text{ et }f(x)\text{ sont de même signe}`,r`x>0\text{ uniquement}`,r`f(x)>0\text{ uniquement}`], a:r`x\text{ et }f(x)\text{ sont de même signe}`, tip:r`(+)(+)>0\text{ et }(-)(-) >0` },
-      { q:r`\text{Notes : 10(coeff 1), 8(coeff 2), 16(coeff }x\text{), moy.}=15.\\[4pt]x=?`, choices:[r`\text{Impossible}`,r`x=10^{-3}`,`x=3`,`x=19`], a:`x=19`, tip:r`\frac{10+16+16x}{3+x}=15\Rightarrow x=19` },
+      { q:r`\text{Notes : 10(coeff 1), 8(coeff 2), 16(coeff }x\text{), moy.}=15.\\x=?`, choices:[r`\text{Impossible}`,r`x=10^{-3}`,`x=3`,`x=19`], a:`x=19`, tip:r`\frac{10+16+16x}{3+x}=15\Rightarrow x=19` },
     ],
     // ── Spécialité · Annales · Sujet 2 (2026) ────────────────────────────────
     spe_annales_s2_2026: [
-      { q:r`\text{Arbre de probabilité :}\\[4pt]P(A)=0{,}4,\quad P(B\mid A)=0{,}3,\quad P(B\mid\bar{A})=0{,}9\\[4pt]P(B)=\,?`, choices:[r`0{,}18`,r`0{,}12`,r`0{,}66`,r`0{,}3`], a:r`0{,}66`, tip:r`P(B)=P(A)\times P(B\mid A)+P(\bar{A})\times P(B\mid\bar{A})\\=0{,}4\times0{,}3+0{,}6\times0{,}9=0{,}12+0{,}54=0{,}66` },
-      { q:r`\text{Une tablette coûte 200€. Son prix diminue de }30\%\text{.}\\[4pt]\text{Nouveau prix :}`, choices:[`140€`,`170€`,`194€`,`197€`], a:`140€`, tip:r`200\times0{,}7=140€` },
+      { q:r`\text{Arbre de probabilité :}\\P(A)=0{,}4,\quad P(B\mid A)=0{,}3,\quad P(B\mid\bar{A})=0{,}9\\P(B)=\,?`, choices:[r`0{,}18`,r`0{,}12`,r`0{,}66`,r`0{,}3`], a:r`0{,}66`, tip:r`P(B)=P(A)\times P(B\mid A)+P(\bar{A})\times P(B\mid\bar{A})\\=0{,}4\times0{,}3+0{,}6\times0{,}9=0{,}12+0{,}54=0{,}66` },
+      { q:r`\text{Une tablette coûte 200€. Son prix diminue de }30\%\text{.}\\\text{Nouveau prix :}`, choices:[`140€`,`170€`,`194€`,`197€`], a:`140€`, tip:r`200\times0{,}7=140€` },
       { q:r`\text{Réduction de }50\%\text{ suivie d'une augmentation de }50\%\text{ :}`, choices:[r`\text{Réduction de }50\%`,r`\text{Réduction de }25\%`,r`\text{Augmentation de }25\%`,r`\text{Augmentation de }75\%`], a:r`\text{Réduction de }25\%`, tip:r`0{,}5\times1{,}5=0{,}75\Rightarrow-25\%` },
-      { q:r`\text{Un quart des élèves sont internes ; parmi eux, la moitié sont des filles.}\\[4pt]\text{Part des filles internes :}`, choices:[r`4\%`,r`12{,}5\%`,r`25\%`,r`50\%`], a:r`12{,}5\%`, tip:r`\frac{1}{4}\times\frac{1}{2}=\frac{1}{8}=12{,}5\%` },
+      { q:r`\text{Un quart des élèves sont internes ; parmi eux, la moitié sont des filles.}\\\text{Part des filles internes :}`, choices:[r`4\%`,r`12{,}5\%`,r`25\%`,r`50\%`], a:r`12{,}5\%`, tip:r`\frac{1}{4}\times\frac{1}{2}=\frac{1}{8}=12{,}5\%` },
       { q:r`N=\dfrac{10^7}{5^2}=?`, choices:[r`2^5`,r`20\,000`,r`\dfrac{1}{10^5}`,r`4\times10^5`], a:r`4\times10^5`, tip:r`\frac{10^7}{25}=\frac{4\times10^7}{100}=4\times10^5` },
       { q:r`7{,}5\times10^6\text{ J en kWh (1 kWh}=3{,}6\times10^6\text{ J) :}`, choices:[r`0{,}5\text{ kWh}`,r`2{,}08\text{ kWh}`,r`5{,}3\text{ kWh}`,r`20{,}35\text{ kWh}`], a:r`2{,}08\text{ kWh}`, tip:r`\frac{7{,}5}{3{,}6}\approx2{,}08` },
-      { q:r`A(0\,;\,-1)\text{ et }B(2\,;\,5).\\[4pt]\text{Coefficient directeur de }(AB)\text{ :}`, choices:[r`-\dfrac{1}{2}`,`2`,`3`,r`\dfrac{1}{3}`], a:`3`, tip:r`m=\frac{5-(-1)}{2-0}=3` },
-      { q:r`\text{Droite passant par }(0\,;\,-1)\text{ et }(1\,;\,1).\\[4pt]\text{Son équation est :}`, choices:[r`2x-y=0`,r`2x+y+1=0`,r`y=x^2-(x+1)^2+1`,r`y=2x-1`], a:`y=2x-1`, tip:r`y=2x-1\text{ : }f(0)=-1\checkmark,\,f(1)=1\checkmark` },
-      { q:r`x^2=10.\\[4pt]S=?`, choices:[r`\{-5\,;\,5\}`,r`\{-\sqrt{5}\,;\,\sqrt{5}\}`,r`\{-\sqrt{10}\,;\,\sqrt{10}\}`,r`\emptyset`], a:r`\{-\sqrt{10}\,;\,\sqrt{10}\}`, tip:r`x=-\sqrt{10}\text{ ou }x=\sqrt{10}` },
-      { q:r`f(x)=(3x-15)(x+2).\\[4pt]f\text{ est positif pour :}`, choices:[r`x<-2\text{ et }x>5`,r`-2<x<5`,r`x<-5\text{ et }x>2`,r`-5<x<2`], a:r`x<-2\text{ et }x>5`, tip:r`\text{Racines}=-2\text{ et }5,\text{ parabole vers le haut}` },
+      { q:r`A(0\,;\,-1)\text{ et }B(2\,;\,5).\\\text{Coefficient directeur de }(AB)\text{ :}`, choices:[r`-\dfrac{1}{2}`,`2`,`3`,r`\dfrac{1}{3}`], a:`3`, tip:r`m=\frac{5-(-1)}{2-0}=3` },
+      { q:r`\text{Droite passant par }(0\,;\,-1)\text{ et }(1\,;\,1).\\\text{Son équation est :}`, choices:[r`2x-y=0`,r`2x+y+1=0`,r`y=x^2-(x+1)^2+1`,r`y=2x-1`], a:`y=2x-1`, tip:r`y=2x-1\text{ : }f(0)=-1\checkmark,\,f(1)=1\checkmark` },
+      { q:r`x^2=10.\\S=?`, choices:[r`\{-5\,;\,5\}`,r`\{-\sqrt{5}\,;\,\sqrt{5}\}`,r`\{-\sqrt{10}\,;\,\sqrt{10}\}`,r`\emptyset`], a:r`\{-\sqrt{10}\,;\,\sqrt{10}\}`, tip:r`x=-\sqrt{10}\text{ ou }x=\sqrt{10}` },
+      { q:r`f(x)=(3x-15)(x+2).\\f\text{ est positif pour :}`, choices:[r`x<-2\text{ et }x>5`,r`-2<x<5`,r`x<-5\text{ et }x>2`,r`-5<x<2`], a:r`x<-2\text{ et }x>5`, tip:r`\text{Racines}=-2\text{ et }5,\text{ parabole vers le haut}` },
       { q:r`(2x+0{,}5)^2=?`, choices:[r`4x^2+x+0{,}25`,r`4x^2+4x+2`,r`4x^2+2x+0{,}25`,r`4x^2+2x+1`], a:r`4x^2+2x+0{,}25`, tip:r`4x^2+2\times2x\times0{,}5+0{,}25` },
       { q:r`a=\dfrac{v^2}{R}\text{. Isoler }v\text{ :}`, choices:[r`v=aR^2`,r`v=\sqrt{aR}`,r`v=\sqrt{\dfrac{a}{R}}`,r`v=\dfrac{a^2}{R}`], a:r`v=\sqrt{aR}`, tip:r`v^2=aR\Rightarrow v=\sqrt{aR}` },
     ],
     // ── Spécialité · Annales · Sujet 3 (Amérique du Nord, 1ᵉʳ juin 2026) ──────
     spe_annales_s3_2026: [
       { q:r`\text{Le nombre }\dfrac{1}{2}+\dfrac{3}{2}\times4\text{ est égal à :}`, choices:[`8`,r`\dfrac{13}{2}`,`4`,r`\dfrac{16}{8}`], a:r`\dfrac{13}{2}`, tip:r`\frac{1}{2}+\frac{3}{2}\times4=\frac{1}{2}+6=\frac{13}{2}` },
-      { q:r`\text{La partie visible d'un iceberg vaut environ }10\%\text{ de son volume total.}\\[4pt]\text{Si cette partie visible est de }150\text{ km}^3\text{, le volume total est :}`, choices:[r`1350\text{ km}^3`,r`1500\text{ km}^3`,r`15\text{ km}^3`,r`135\text{ km}^3`], a:r`1500\text{ km}^3`, tip:r`\frac{150}{0{,}10}=1500\text{ km}^3` },
-      { q:r`\text{Le prix d'un article est multiplié par }0{,}845.\\[4pt]\text{Cela signifie que le prix de l'article a :}`, choices:[r`\text{augmenté de }84{,}5\%`,r`\text{baissé de }1{,}55\%`,r`\text{augmenté de }15{,}5\%`,r`\text{baissé de }15{,}5\%`], a:r`\text{baissé de }15{,}5\%`, tip:r`1-0{,}845=0{,}155\Rightarrow\text{baisse de }15{,}5\%` },
-      { q:r`\text{Soit }A(x)=(x+5)(x+8).\\[4pt]\text{Le tableau de signes de }A(x)\text{ sur }\mathbb{R}\text{ est :}`, choices:[r`\begin{array}{c|ccccccc} x & -\infty & & -8 & & -5 & & +\infty \\ \hline A(x) & & - & 0 & + & 0 & - & \end{array}`,r`\begin{array}{c|ccccc} x & -\infty & & -5 & & +\infty \\ \hline A(x) & & - & 0 & + & \end{array}`,r`\begin{array}{c|ccccccc} x & -\infty & & -8 & & -5 & & +\infty \\ \hline A(x) & & + & 0 & - & 0 & + & \end{array}`,r`\begin{array}{c|ccccccc} x & -\infty & & 5 & & & & +\infty \\ \hline A(x) & & + & 0 & - & 0 & + & \end{array}`], a:r`\begin{array}{c|ccccccc} x & -\infty & & -8 & & -5 & & +\infty \\ \hline A(x) & & + & 0 & - & 0 & + & \end{array}`, tip:r`\text{Racines }-8\text{ et }-5\text{ ; parabole tournée vers le haut : }A(x)>0\text{ à lextérieur des racines, }A(x)<0	ext{ entre elles}` },
-      { q:r`\text{Un singe choisit une lettre au hasard parmi les 26 de l'alphabet.}\\[4pt]V\text{ : « choisir une voyelle » (A, E, I, O, U, Y).}\\[2pt]M\text{ : « choisir une lettre du mot SINGE ».}\\[4pt]P_M(V)\text{ vaut :}`, choices:[r`\dfrac{6}{26}`,r`\dfrac{2}{5}`,r`\dfrac{2}{6}`,r`\dfrac{5}{6}`], a:r`\dfrac{2}{5}`, tip:r`\text{SINGE : 5 lettres dont 2 voyelles (I, E)}\Rightarrow P_M(V)=\frac{2}{5}` },
-      { q:r`\text{Soit }f\text{ une fonction affine représentée ci-contre.}\\[4pt]\text{Une expression algébrique de }f\text{ est :}`, svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 192" width="100%" style="background:#fff;font-family:sans-serif;border-radius:8px">
+      { q:r`\text{La partie visible d'un iceberg vaut environ }10\%\text{ de son volume total.}\\\text{Si cette partie visible est de }150\text{ km}^3\text{, le volume total est :}`, choices:[r`1350\text{ km}^3`,r`1500\text{ km}^3`,r`15\text{ km}^3`,r`135\text{ km}^3`], a:r`1500\text{ km}^3`, tip:r`\frac{150}{0{,}10}=1500\text{ km}^3` },
+      { q:r`\text{Le prix d'un article est multiplié par }0{,}845.\\\text{Cela signifie que le prix de l'article a :}`, choices:[r`\text{augmenté de }84{,}5\%`,r`\text{baissé de }1{,}55\%`,r`\text{augmenté de }15{,}5\%`,r`\text{baissé de }15{,}5\%`], a:r`\text{baissé de }15{,}5\%`, tip:r`1-0{,}845=0{,}155\Rightarrow\text{baisse de }15{,}5\%` },
+      { q:r`\text{Soit }A(x)=(x+5)(x+8).\\\text{Le tableau de signes de }A(x)\text{ sur }\mathbb{R}\text{ est :}`, choices:[r`\begin{array}{c|ccccccc} x & -\infty & & -8 & & -5 & & +\infty \\ \hline A(x) & & - & 0 & + & 0 & - & \end{array}`,r`\begin{array}{c|ccccc} x & -\infty & & -5 & & +\infty \\ \hline A(x) & & - & 0 & + & \end{array}`,r`\begin{array}{c|ccccccc} x & -\infty & & -8 & & -5 & & +\infty \\ \hline A(x) & & + & 0 & - & 0 & + & \end{array}`,r`\begin{array}{c|ccccccc} x & -\infty & & 5 & & & & +\infty \\ \hline A(x) & & + & 0 & - & 0 & + & \end{array}`], a:r`\begin{array}{c|ccccccc} x & -\infty & & -8 & & -5 & & +\infty \\ \hline A(x) & & + & 0 & - & 0 & + & \end{array}`, tip:r`\text{Racines }-8\text{ et }-5\text{ ; parabole tournée vers le haut : }A(x)>0\text{ à lextérieur des racines, }A(x)<0	ext{ entre elles}` },
+      { q:r`\text{Un singe choisit une lettre au hasard parmi les 26 de l'alphabet.}\\V\text{ : « choisir une voyelle » (A, E, I, O, U, Y).}\\M\text{ : « choisir une lettre du mot SINGE ».}\\P_M(V)\text{ vaut :}`, choices:[r`\dfrac{6}{26}`,r`\dfrac{2}{5}`,r`\dfrac{2}{6}`,r`\dfrac{5}{6}`], a:r`\dfrac{2}{5}`, tip:r`\text{SINGE : 5 lettres dont 2 voyelles (I, E)}\Rightarrow P_M(V)=\frac{2}{5}` },
+      { q:r`\text{Soit }f\text{ une fonction affine représentée ci-contre.}\\\text{Une expression algébrique de }f\text{ est :}`, svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 192" width="100%" style="background:#fff;font-family:sans-serif;border-radius:8px">
   <g stroke="#E5EAF1" stroke-width="1">
     <line x1="4" y1="14" x2="4" y2="172"/><line x1="40" y1="14" x2="40" y2="172"/>
     <line x1="76" y1="14" x2="76" y2="172"/><line x1="112" y1="14" x2="112" y2="172"/>
@@ -8364,7 +8364,7 @@ const DB = {
 </svg>`, choices:[`f(x)=-x+30`,`f(x)=30x+3`,`f(x)=-10x+30`,r`f(x)=-\dfrac{1}{10}x+30`], a:`f(x)=-10x+30`, tip:r`\text{Ordonnée à l'origine }30\text{, passe par }(3\,;\,0)\Rightarrow\text{pente }\frac{0-30}{3-0}=-10` },
       { q:r`\text{La forme développée et réduite de }(x+2)^2-(1-x)^2\text{ vaut :}`, choices:[r`2x^2+3`,`6x+3`,`2x+5`,r`2x^2+2x+3`], a:`6x+3`, tip:r`(x^2+4x+4)-(1-2x+x^2)=6x+3` },
       { q:r`\text{L'équation }2(x-4)-(2x+1)=0\text{ admet :}`, choices:[r`\text{Deux solutions : }4\text{ et }\tfrac{1}{2}`,r`\text{Deux solutions : }4\text{ et }-\tfrac{1}{2}`,r`\text{Aucune solution}`,r`\text{Une infinité de solutions}`], a:r`\text{Aucune solution}`, tip:r`2x-8-2x-1=-9\neq0\ \text{(toujours)}\Rightarrow\text{aucune solution}` },
-      { q:r`\text{On considère }E=\dfrac{2\times3^2}{27\times2^3}.\\[4pt]E\text{ est égal à :}`, choices:[r`\dfrac{1}{9}`,r`\dfrac{1}{12}`,`12`,r`\dfrac{1}{6}`], a:r`\dfrac{1}{12}`, tip:r`\frac{2\times9}{27\times8}=\frac{18}{216}=\frac{1}{12}` },
+      { q:r`\text{On considère }E=\dfrac{2\times3^2}{27\times2^3}.\\E\text{ est égal à :}`, choices:[r`\dfrac{1}{9}`,r`\dfrac{1}{12}`,`12`,r`\dfrac{1}{6}`], a:r`\dfrac{1}{12}`, tip:r`\frac{2\times9}{27\times8}=\frac{18}{216}=\frac{1}{12}` },
     ],
     spe_original: [],
   },
@@ -9291,101 +9291,101 @@ const DB = {
   suites: {
 
     suites_nature: [
-      { q: r`u_n = 3n + 2\\[4pt]\text{La suite }(u_n)\text{ est :}`,
+      { q: r`u_n = 3n + 2\\\text{La suite }(u_n)\text{ est :}`,
         choices: [r`\text{Arithmétique, }r=3`, r`\text{Géométrique, }q=3`, r`\text{Constante}`, r`\text{Géométrique, }q=2`],
         a: r`\text{Arithmétique, }r=3`, tip: r`u_{n+1}-u_n = 3 \text{ (constante)}` },
-      { q: r`u_n = 5 \times 2^n\\[4pt]\text{La suite }(u_n)\text{ est :}`,
+      { q: r`u_n = 5 \times 2^n\\\text{La suite }(u_n)\text{ est :}`,
         choices: [r`\text{Géométrique, }q=2`, r`\text{Arithmétique, }r=5`, r`\text{Constante}`, r`\text{Arithmétique, }r=2`],
         a: r`\text{Géométrique, }q=2`, tip: r`\dfrac{u_{n+1}}{u_n}=2 \text{ (constante)}` },
-      { q: r`u_0=4,\quad u_{n+1}=u_n+2{,}5\\[4pt]\text{La suite }(u_n)\text{ est :}`,
+      { q: r`u_0=4,\quad u_{n+1}=u_n+2{,}5\\\text{La suite }(u_n)\text{ est :}`,
         choices: [r`\text{Arithmétique, }r=2{,}5`, r`\text{Géométrique, }q=2{,}5`, r`\text{Constante}`, r`\text{Géométrique, }q=4`],
         a: r`\text{Arithmétique, }r=2{,}5`, tip: r`u_{n+1}-u_n=2{,}5 \text{ (constante)}` },
-      { q: r`u_0=3,\quad u_{n+1}=3\,u_n\\[4pt]\text{La suite }(u_n)\text{ est :}`,
+      { q: r`u_0=3,\quad u_{n+1}=3\,u_n\\\text{La suite }(u_n)\text{ est :}`,
         choices: [r`\text{Géométrique, }q=3`, r`\text{Arithmétique, }r=3`, r`\text{Constante}`, r`\text{Arithmétique, }r=9`],
         a: r`\text{Géométrique, }q=3`, tip: r`\dfrac{u_{n+1}}{u_n}=3 \text{ (constante)}` },
-      { q: r`\text{Suite : }2\ ;\ 6\ ;\ 18\ ;\ 54\\[4pt]\text{La suite est :}`,
+      { q: r`\text{Suite : }2\ ;\ 6\ ;\ 18\ ;\ 54\\\text{La suite est :}`,
         choices: [r`\text{Géométrique, }q=3`, r`\text{Arithmétique, }r=4`, r`\text{Arithmétique, }r=3`, r`\text{Géométrique, }q=6`],
         a: r`\text{Géométrique, }q=3`, tip: r`\dfrac{6}{2}=\dfrac{18}{6}=\dfrac{54}{18}=3` },
-      { q: r`u_{n+1} = 1{,}05\,u_n\\[4pt]\text{La suite }(u_n)\text{ est :}`,
+      { q: r`u_{n+1} = 1{,}05\,u_n\\\text{La suite }(u_n)\text{ est :}`,
         choices: [r`\text{Géométrique, }q=1{,}05`, r`\text{Arithmétique, }r=1{,}05`, r`\text{Arithmétique, }r=0{,}05`, r`\text{Constante}`],
         a: r`\text{Géométrique, }q=1{,}05`, tip: r`\dfrac{u_{n+1}}{u_n}=1{,}05` },
-      { q: r`\text{Suite : }100\ ;\ 50\ ;\ 25\\[4pt]\text{La suite est :}`,
+      { q: r`\text{Suite : }100\ ;\ 50\ ;\ 25\\\text{La suite est :}`,
         choices: [r`\text{Géométrique, }q=0{,}5`, r`\text{Arithmétique, }r=-50`, r`\text{Arithmétique, }r=0{,}5`, r`\text{Constante}`],
         a: r`\text{Géométrique, }q=0{,}5`, tip: r`50/100=25/50=0{,}5` },
 
-      { q: r`u_0=1000,\quad u_{n+1}=1{,}02\,u_n\\[4pt]\text{La suite }(u_n)\text{ est :}`,
+      { q: r`u_0=1000,\quad u_{n+1}=1{,}02\,u_n\\\text{La suite }(u_n)\text{ est :}`,
         choices: [r`\text{Géométrique, }q=1{,}02`, r`\text{Arithmétique, }r=1{,}02`, r`\text{Arithmétique, }r=0{,}02`, r`\text{Géométrique, }q=0{,}02`],
         a: r`\text{Géométrique, }q=1{,}02`, tip: r`u_{n+1}/u_n=1{,}02` },
 
-      { q: r`\text{Suite : }3\ ;\ 3\ ;\ 3\ ;\ 3\\[4pt]\text{La suite est :}`,
+      { q: r`\text{Suite : }3\ ;\ 3\ ;\ 3\ ;\ 3\\\text{La suite est :}`,
         choices: [r`\text{Arithmétique, }r=0\text{ et géométrique, }q=1`, r`\text{Arithmétique seulement}`, r`\text{Géométrique seulement}`, r`\text{Ni l'une ni l'autre}`],
         a: r`\text{Arithmétique, }r=0\text{ et géométrique, }q=1`, tip: r`r=0\text{ et }q=1` },
 
-      { q: r`u_{n+1}-u_n=7\text{ pour tout }n\\[4pt]\text{La suite est :}`,
+      { q: r`u_{n+1}-u_n=7\text{ pour tout }n\\\text{La suite est :}`,
         choices: [r`\text{Arithmétique, }r=7`, r`\text{Géométrique, }q=7`, r`\text{Constante}`, r`\text{Décroissante}`],
         a: r`\text{Arithmétique, }r=7`, tip: r`\text{Différence constante}=r` },
     ],
 
     suites_termes: [
-      { q: r`\text{Suite arith. :}\ u_0=-1,\ r=3\\[4pt]u_4=\,?`,
+      { q: r`\text{Suite arith. :}\ u_0=-1,\ r=3\\u_4=\,?`,
         choices: [`11`, `8`, `12`, `-4`], a: `11`, tip: r`u_4=u_0+4r=-1+12=11` },
-      { q: r`\text{Suite géom. :}\ u_0=5,\ q=2\\[4pt]u_4=\,?`,
+      { q: r`\text{Suite géom. :}\ u_0=5,\ q=2\\u_4=\,?`,
         choices: [`80`, `20`, `40`, `10`], a: `80`, tip: r`u_4=5\times2^4=80` },
-      { q: r`\text{Suite arith. :}\ u_1=20,\ r=-5\\[4pt]u_6=\,?`,
+      { q: r`\text{Suite arith. :}\ u_1=20,\ r=-5\\u_6=\,?`,
         choices: [`-5`, `0`, `-25`, `15`], a: `-5`, tip: r`u_6=u_1+5\times(-5)=20-25=-5` },
-      { q: r`\text{Suite géom. :}\ u_0=32,\ q=0{,}5\\[4pt]u_5=\,?`,
+      { q: r`\text{Suite géom. :}\ u_0=32,\ q=0{,}5\\u_5=\,?`,
         choices: [`1`, `4`, `2`, `0{,}5`], a: `1`, tip: r`u_5=32\times(0{,}5)^5=1` },
-      { q: r`\text{Suite arith. :}\ u_4=7\text{ et }u_7=19\\[4pt]r=\,?`,
+      { q: r`\text{Suite arith. :}\ u_4=7\text{ et }u_7=19\\r=\,?`,
         choices: [`4`, `12`, `3`, `6`], a: `4`, tip: r`19=7+3r\Rightarrow r=4` },
-      { q: r`\text{Suite géom. :}\ u_3=8\text{ et }u_5=32\\[4pt]q=\,?`,
+      { q: r`\text{Suite géom. :}\ u_3=8\text{ et }u_5=32\\q=\,?`,
         choices: [`2`, `4`, `8`, r`\sqrt{2}`], a: `2`, tip: r`q^2=\dfrac{32}{8}=4\Rightarrow q=2` },
-      { q: r`\text{Suite géom. :}\ u_0=1,\ q=1{,}1\\[4pt]u_{10}=\,?`,
+      { q: r`\text{Suite géom. :}\ u_0=1,\ q=1{,}1\\u_{10}=\,?`,
         choices: [r`1{,}1^{10}`, r`10{,}1`, r`11`, r`1{,}1^{10}-1`],
         a: r`1{,}1^{10}`, tip: r`u_{10}=1\times1{,}1^{10}=1{,}1^{10}\approx2{,}59` },
 
-      { q: r`u_n=2n-3\text{ (explicite)}\\[4pt]u_{10}=\,?`,
+      { q: r`u_n=2n-3\text{ (explicite)}\\u_{10}=\,?`,
         choices: [`17`, `20`, `7`, `23`], a: `17`, tip: r`u_{10}=2\times10-3=17` },
 
-      { q: r`\text{Suite arith. :}\ u_2=5,\ u_5=14\\[4pt]u_0=\,?`,
+      { q: r`\text{Suite arith. :}\ u_2=5,\ u_5=14\\u_0=\,?`,
         choices: [`-1`, `1`, `3`, `-3`], a: `-1`, tip: r`r=3\Rightarrow u_0=u_2-2r=5-6=-1` },
 
-      { q: r`u_n=3^n\\[4pt]u_4=\,?`,
+      { q: r`u_n=3^n\\u_4=\,?`,
         choices: [`81`, `12`, `64`, `27`], a: `81`, tip: r`3^4=81` },
 
-      { q: r`\text{Suite géom. :}\ u_0=6{,}\ q=\dfrac{1}{3}\\[4pt]u_3=\,?`,
+      { q: r`\text{Suite géom. :}\ u_0=6{,}\ q=\dfrac{1}{3}\\u_3=\,?`,
         choices: [r`\dfrac{6}{27}`, r`\dfrac{6}{9}`, r`2`, r`\dfrac{2}{9}`],
         a: r`\dfrac{6}{27}`, tip: r`u_3=6\times\left(\tfrac{1}{3}\right)^3=\tfrac{6}{27}` },
     ],
 
     suites_variations: [
-      { q: r`\text{Suite arith., }u_0>0\text{ et }r>0\\[4pt]\text{Elle est :}`,
+      { q: r`\text{Suite arith., }u_0>0\text{ et }r>0\\\text{Elle est :}`,
         choices: [`croissante`, `décroissante`, `constante`, `alternée`], a: `croissante`,
         tip: r`r>0\Rightarrow u_{n+1}>u_n` },
-      { q: r`\text{Suite arith., }r=-3\\[4pt]\text{Elle est :}`,
+      { q: r`\text{Suite arith., }r=-3\\\text{Elle est :}`,
         choices: [`décroissante`, `croissante`, `constante`, `bornée`], a: `décroissante`,
         tip: r`r<0\Rightarrow u_{n+1}<u_n` },
-      { q: r`\text{Suite géom., }u_0>0\text{ et }q=1{,}05\\[4pt]\text{Elle est :}`,
+      { q: r`\text{Suite géom., }u_0>0\text{ et }q=1{,}05\\\text{Elle est :}`,
         choices: [`croissante`, `décroissante`, `constante`, `convergente`], a: `croissante`,
         tip: r`u_0>0\text{ et }q>1\Rightarrow\text{croissante}` },
-      { q: r`\text{Suite géom., }u_0>0\text{ et }0<q<1\\[4pt]\text{Elle est :}`,
+      { q: r`\text{Suite géom., }u_0>0\text{ et }0<q<1\\\text{Elle est :}`,
         choices: [`décroissante`, `croissante`, `nulle`, `constante`], a: `décroissante`,
         tip: r`0<q<1\Rightarrow u_{n+1}=qu_n<u_n` },
-      { q: r`\text{Suite géom., }u_0>0\text{ et }q>1\\[4pt]\lim_{n\to+\infty}u_n=\,?`,
+      { q: r`\text{Suite géom., }u_0>0\text{ et }q>1\\\lim_{n\to+\infty}u_n=\,?`,
         choices: [r`+\infty`, r`0`, r`u_0`, r`-\infty`], a: r`+\infty`,
         tip: r`u_0>0\text{ et }q>1\Rightarrow u_n\to+\infty` },
-      { q: r`\text{Suite géom., }u_0>0\text{ et }q=1\\[4pt]\text{Elle est :}`,
+      { q: r`\text{Suite géom., }u_0>0\text{ et }q=1\\\text{Elle est :}`,
         choices: [r`\text{constante}`, r`\text{croissante}`, r`\text{décroissante}`, r`\text{nulle}`],
         a: r`\text{constante}`, tip: r`q=1\Rightarrow u_{n+1}=u_n` },
 
-      { q: r`\text{Suite géom., }u_0>0\text{ et }q<0\\[4pt]\text{Elle est :}`,
+      { q: r`\text{Suite géom., }u_0>0\text{ et }q<0\\\text{Elle est :}`,
         choices: [r`\text{alternée (ni croissante ni décroissante)}`, r`\text{croissante}`, r`\text{décroissante}`, r`\text{constante}`],
         a: r`\text{alternée (ni croissante ni décroissante)}`, tip: r`q<0\Rightarrow\text{termes alternent de signe}` },
 
-      { q: r`\text{Suite arith., }r=-3,\ u_0=100\\[4pt]\text{Quand }u_n\text{ devient-il }\leq0?\\n\geq\,?`,
+      { q: r`\text{Suite arith., }r=-3,\ u_0=100\\\text{Quand }u_n\text{ devient-il }\leq0?\\n\geq\,?`,
         choices: [`34`, `33`, `100`, `300`], a: `34`,
         tip: r`u_n=100-3n\leq0\Rightarrow n\geq\tfrac{100}{3}\approx33{,}3\Rightarrow n=34` },
 
-      { q: r`u_0>0,\quad u_{n+1}=u_n+r\text{ avec }r\in\mathbb{R}\\[4pt]\text{Elle est croissante si et seulement si :}`,
+      { q: r`u_0>0,\quad u_{n+1}=u_n+r\text{ avec }r\in\mathbb{R}\\\text{Elle est croissante si et seulement si :}`,
         choices: [r`r>0`, r`r\geq0`, r`u_0>0`, r`u_n>0`],
         a: r`r>0`, tip: r`r>0\Rightarrow u_{n+1}>u_n\text{ strictement}` },
     ],
@@ -9395,7 +9395,7 @@ const DB = {
     suites_recurrence: [
 
       // Q1 — A — Rôle de l'hypothèse de récurrence
-      { q: r`\text{Démonstration par récurrence de }P(n)\text{ au rang }n+1.\\[6pt]\text{Au début de l'hérédité, on \textbf{suppose} :}`,
+      { q: r`\text{Démonstration par récurrence de }P(n)\text{ au rang }n+1.\\\text{Au début de l'hérédité, on \textbf{suppose} :}`,
         choices: [
           r`P(n)\text{ vraie pour un entier }n\text{ fixé}`,
           r`P(n)\text{ vraie pour tout entier }n`,
@@ -9403,16 +9403,16 @@ const DB = {
           r`P(0)\text{ et }P(n+1)\text{ vraies}`
         ],
         a: r`P(n)\text{ vraie pour un entier }n\text{ fixé}`,
-        tip: r`\text{On fixe }n\text{ et on suppose }P(n).\\[3pt]\text{Supposer }P(n)\text{ pour tout }n\\\text{reviendrait à supposer ce qu'on prouve.}` },
+        tip: r`\text{On fixe }n\text{ et on suppose }P(n).\\\text{Supposer }P(n)\text{ pour tout }n\\\text{reviendrait à supposer ce qu'on prouve.}` },
 
       // Q2 — A — Rang d'initialisation
-      { q: r`\text{On démontre par récurrence que }P(n)\\[3pt]\text{est vraie pour tout }n\geq 3.\\[6pt]\text{L'\textbf{initialisation} consiste à vérifier :}`,
+      { q: r`\text{On démontre par récurrence que }P(n)\\\text{est vraie pour tout }n\geq 3.\\\text{L'\textbf{initialisation} consiste à vérifier :}`,
         choices: [r`P(3)`, r`P(0)`, r`P(0),\,P(1),\,P(2)\text{ et }P(3)`, r`P(n)\text{ pour tout }n\geq 3`],
         a: r`P(3)`,
         tip: r`\text{L'initialisation se fait au \textbf{rang de départ}}\\\text{de la propriété, pas au rang 0.}` },
 
       // Q3 — C — Manipulation algébrique (égalité)
-      { q: r`u_0=1,\quad u_{n+1}=2u_n+3\\[4pt]\text{On veut prouver }u_n=4\cdot 2^n-3.\\[4pt]\text{À l'hérédité on suppose }u_n=4\cdot 2^n-3.\\[4pt]\text{Que vaut }u_{n+1}\text{ après calcul ?}`,
+      { q: r`u_0=1,\quad u_{n+1}=2u_n+3\\\text{On veut prouver }u_n=4\cdot 2^n-3.\\\text{À l'hérédité on suppose }u_n=4\cdot 2^n-3.\\\text{Que vaut }u_{n+1}\text{ après calcul ?}`,
         choices: [
           r`4\cdot 2^{n+1}-3`,
           r`4\cdot 2^{n+1}-6`,
@@ -9420,16 +9420,16 @@ const DB = {
           r`4\cdot 2^n+3`
         ],
         a: r`4\cdot 2^{n+1}-3`,
-        tip: r`u_{n+1}=2(4\cdot 2^n-3)+3=8\cdot 2^n-3\\[3pt]\text{et }8\cdot 2^n=4\cdot 2^{n+1}.` },
+        tip: r`u_{n+1}=2(4\cdot 2^n-3)+3=8\cdot 2^n-3\\\text{et }8\cdot 2^n=4\cdot 2^{n+1}.` },
 
       // Q4 — C — Manipulation d'inégalité
-      { q: r`u_0=5,\quad u_{n+1}=\dfrac{u_n+3}{2}\\[4pt]\text{On veut prouver }u_n\geq 3.\\[4pt]\text{À l'hérédité on suppose }u_n\geq 3.\\[4pt]\text{Quelle inégalité obtient-on directement ?}`,
+      { q: r`u_0=5,\quad u_{n+1}=\dfrac{u_n+3}{2}\\\text{On veut prouver }u_n\geq 3.\\\text{À l'hérédité on suppose }u_n\geq 3.\\\text{Quelle inégalité obtient-on directement ?}`,
         choices: [r`u_{n+1}\geq 3`, r`u_{n+1}\geq 5`, r`u_{n+1}\leq 3`, r`u_{n+1}\geq 6`],
         a: r`u_{n+1}\geq 3`,
-        tip: r`u_n\geq 3\Rightarrow u_n+3\geq 6\\[3pt]\Rightarrow \dfrac{u_n+3}{2}\geq 3.` },
+        tip: r`u_n\geq 3\Rightarrow u_n+3\geq 6\\\Rightarrow \dfrac{u_n+3}{2}\geq 3.` },
 
       // Q5 — B — Preuve avec faute "pour tout n" dans l'hypothèse
-      { q: r`u_0=2,\,u_{n+1}=u_n+4\,;\,\text{prouver }u_n=4n+2.\\[4pt]\text{Voici la preuve. Quelle est l'\textbf{erreur} ?}\\[6pt]\textbf{(L1)}\;u_0=2=4\!\times\!0+2\\[2pt]\textbf{(L2)}\;\text{On suppose }u_n=4n+2\text{ \textbf{pour tout }}n\\[2pt]\textbf{(L3)}\;u_{n+1}=u_n+4=4n+6=4(n+1)+2\\[2pt]\textbf{(L4)}\;\text{Donc }P(n+1)\text{ est vraie}\\[2pt]\textbf{(L5)}\;\text{Conclusion par récurrence.}`,
+      { q: r`u_0=2,\,u_{n+1}=u_n+4\,;\,\text{prouver }u_n=4n+2.\\\text{Voici la preuve. Quelle est l'\textbf{erreur} ?}\\\textbf{(L1)}\;u_0=2=4\!\times\!0+2\\\textbf{(L2)}\;\text{On suppose }u_n=4n+2\text{ \textbf{pour tout }}n\\\textbf{(L3)}\;u_{n+1}=u_n+4=4n+6=4(n+1)+2\\\textbf{(L4)}\;\text{Donc }P(n+1)\text{ est vraie}\\\textbf{(L5)}\;\text{Conclusion par récurrence.}`,
         choices: [
           r`\text{L2 : on suppose pour tout }n\\\text{au lieu d'un }n\text{ fixé}`,
           r`\text{L1 : initialisation mal écrite}`,
@@ -9440,7 +9440,7 @@ const DB = {
         tip: r`\text{Erreur classique : supposer }P(n)\\\text{« pour tout }n\text{ » revient à supposer}\\\text{ce qu'on veut prouver.}` },
 
       // Q6 — B — Choix d'une hérédité valide parmi 4
-      { q: r`u_0=1,\,u_{n+1}=u_n+2n+1\,;\,\text{prouver }u_n=n^2+1.\\[4pt]\text{À l'hérédité, on suppose }u_n=n^2+1.\\[4pt]\text{Quelle rédaction est \textbf{correcte} ?}`,
+      { q: r`u_0=1,\,u_{n+1}=u_n+2n+1\,;\,\text{prouver }u_n=n^2+1.\\\text{À l'hérédité, on suppose }u_n=n^2+1.\\\text{Quelle rédaction est \textbf{correcte} ?}`,
         choices: [
           r`u_{n+1}=u_n+2n+1=n^2+2n+2=(n+1)^2+1`,
           r`\text{La formule marche au rang }n,\\\text{donc au rang }n+1`,
@@ -9451,7 +9451,7 @@ const DB = {
         tip: r`\text{Seule rédaction qui : (i) part de la définition,}\\\text{(ii) utilise l'hypothèse, (iii) calcule, (iv)}\\\text{reconnaît la forme cible }(n+1)^2+1.` },
 
       // Q7 — B — Validation d'une preuve correcte
-      { q: r`u_0=2,\,u_{n+1}=\sqrt{u_n+2}\,;\,\text{prouver }u_n\geq 2.\\[4pt]\text{Hérédité : soit }n\geq 0\text{ fixé, on suppose }u_n\geq 2.\\[3pt]\text{Alors }u_n+2\geq 4\text{ et }\sqrt{u_n+2}\geq\sqrt{4}=2.\\[3pt]\text{Donc }u_{n+1}\geq 2.\\[6pt]\text{Cette rédaction :}`,
+      { q: r`u_0=2,\,u_{n+1}=\sqrt{u_n+2}\,;\,\text{prouver }u_n\geq 2.\\\text{Hérédité : soit }n\geq 0\text{ fixé, on suppose }u_n\geq 2.\\\text{Alors }u_n+2\geq 4\text{ et }\sqrt{u_n+2}\geq\sqrt{4}=2.\\\text{Donc }u_{n+1}\geq 2.\\\text{Cette rédaction :}`,
         choices: [
           r`\text{est correcte et complète}`,
           r`\text{contient une erreur de calcul}`,
@@ -9462,7 +9462,7 @@ const DB = {
         tip: r`\sqrt{\cdot}\text{ est croissante sur }[0;+\infty[\,,\\\text{donc préserve les inégalités entre}\\\text{positifs (admis au lycée).}` },
 
       // Q8 — B — Pétition de principe
-      { q: r`u_0=0,\,u_{n+1}=u_n+2n+3\,;\,\text{prouver }u_n=n^2+2n.\\[4pt]\text{Voici une tentative d'hérédité :}\\[3pt]\text{« Soit }n\geq 0\text{ fixé, on suppose }u_n=n^2+2n.\\[2pt]\text{Alors }u_{n+1}=(n+1)^2+2(n+1)\\\text{par hypothèse de récurrence appliquée au rang }n+1.\\[2pt]\text{Donc }P(n+1)\text{ vraie. »}\\[6pt]\text{Quelle est l'erreur ?}`,
+      { q: r`u_0=0,\,u_{n+1}=u_n+2n+3\,;\,\text{prouver }u_n=n^2+2n.\\\text{Voici une tentative d'hérédité :}\\\text{« Soit }n\geq 0\text{ fixé, on suppose }u_n=n^2+2n.\\\text{Alors }u_{n+1}=(n+1)^2+2(n+1)\\\text{par hypothèse de récurrence appliquée au rang }n+1.\\\text{Donc }P(n+1)\text{ vraie. »}\\\text{Quelle est l'erreur ?}`,
         choices: [
           r`\text{Pétition de principe :}\\\text{on suppose }P(n+1)\text{ pour prouver }P(n+1)`,
           r`\text{Le calcul est juste,}\\\text{rédaction complète}`,
@@ -9490,7 +9490,7 @@ const DB = {
         tip: r`\text{Une formule explicite donne }u_n\text{ directement}\\\text{à partir de }n\text{, sans référence aux termes précédents.}` },
 
       // Q3 — Dépendance des termes (récurrence)
-      { q: r`u_{n+1} = u_n + 7,\; u_0 = 2\\[4pt]\text{Pour calculer }u_{100}\text{, il faut :}`,
+      { q: r`u_{n+1} = u_n + 7,\; u_0 = 2\\\text{Pour calculer }u_{100}\text{, il faut :}`,
         choices: [
           r`\text{Connaître seulement la formule et }n=100`,
           r`\text{Connaître }u_{99}\text{ seulement}`,
@@ -9501,7 +9501,7 @@ const DB = {
         tip: r`\text{Avec une récurrence, chaque terme dépend}\\\text{du précédent : il faut remonter depuis }u_0.` },
 
       // Q4 — Calcul direct (explicite)
-      { q: r`u_n = n^2 - 3n + 1\\[4pt]\text{Pour calculer }u_{50}\text{, il faut :}`,
+      { q: r`u_n = n^2 - 3n + 1\\\text{Pour calculer }u_{50}\text{, il faut :}`,
         choices: [
           r`\text{Connaître }u_{49}`,
           r`\text{Calculer tous les termes de }u_0\text{ à }u_{49}`,
@@ -9512,7 +9512,7 @@ const DB = {
         tip: r`\text{La formule explicite permet de calculer}\\\text{chaque terme directement, sans les précédents.}` },
 
       // Q5 — Piège de l'écriture u_{n-1}
-      { q: r`u_n = u_{n-1} + 4\text{ pour tout }n \geq 1,\; u_0 = 5\\[4pt]\text{Cette suite est :}`,
+      { q: r`u_n = u_{n-1} + 4\text{ pour tout }n \geq 1,\; u_0 = 5\\\text{Cette suite est :}`,
         choices: [
           r`\text{Définie de façon explicite}`,
           r`\text{Définie par récurrence}`,
@@ -9523,7 +9523,7 @@ const DB = {
         tip: r`u_{n-1}\text{ est un terme précédent : c'est une récurrence,}\\\text{équivalente à }u_{n+1}=u_n+4.` },
 
       // Q6 — Deux écritures d'une suite arithmétique
-      { q: r`\text{Suite arithmétique, raison }3,\; u_0 = 2\\[4pt]\text{Quelles écritures sont valables ?}`,
+      { q: r`\text{Suite arithmétique, raison }3,\; u_0 = 2\\\text{Quelles écritures sont valables ?}`,
         choices: [
           r`\text{Uniquement }u_{n+1} = u_n + 3`,
           r`\text{Uniquement }u_n = 2 + 3n`,
@@ -9551,7 +9551,7 @@ const DB = {
         tip: r`\text{Suite géométrique de raison }2\text{ : la forme}\\\text{récurrente et la forme explicite sont équivalentes.}` },
 
       // Q9 — BONUS : récurrence d'ordre 2 (Fibonacci)
-      { q: r`F_0 = 0,\; F_1 = 1,\; F_{n+2} = F_{n+1} + F_n\\\text{(suite de Fibonacci)}\\[4pt]\text{Cette suite est :}`,
+      { q: r`F_0 = 0,\; F_1 = 1,\; F_{n+2} = F_{n+1} + F_n\\\text{(suite de Fibonacci)}\\\text{Cette suite est :}`,
         choices: [
           r`\text{Définie de façon explicite}`,
           r`\text{Récurrence d'ordre 1}`,
@@ -9562,7 +9562,7 @@ const DB = {
         tip: r`\text{Récurrence d'ordre 2 : chaque terme dépend}\\\text{des deux précédents. Deux termes initiaux sont}\\\text{nécessaires — ce n'est pas un défaut, c'est la définition.}` },
 
       // Q10 — BONUS : calcul dans une récurrence d'ordre 2
-      { q: r`a_0 = 2,\; a_1 = 3,\; a_{n+2} = 2a_{n+1} - a_n\\[4pt]\text{Que vaut }a_3\text{ ?}`,
+      { q: r`a_0 = 2,\; a_1 = 3,\; a_{n+2} = 2a_{n+1} - a_n\\\text{Que vaut }a_3\text{ ?}`,
         choices: [`4`, `5`, `6`, `8`],
         a: `5`,
         tip: r`a_2 = 2\times 3 - 2 = 4\\ a_3 = 2\times 4 - 3 = 5` },
@@ -9575,39 +9575,39 @@ const DB = {
       // ── Situation 1 : Livret épargne — intérêts composés ──────────────────
 
       // fin_01 — capital initial
-      { q: r`\text{Léa place }800\text{ € sur un livret à }4\,\%\text{ par an (intérêts composés).}\\[4pt]\text{Quel est le capital au bout de }0\text{ an ?}`,
+      { q: r`\text{Léa place }800\text{ € sur un livret à }4\,\%\text{ par an (intérêts composés).}\\\text{Quel est le capital au bout de }0\text{ an ?}`,
         choices: [r`832\text{ €}`, r`800\text{ €}`, r`804\text{ €}`, r`0\text{ €}`],
         a: r`800\text{ €}`,
         tip: r`u_0 = 800\text{ €}\text{ : le capital initial, avant tout intérêt.}` },
 
       // fin_02 — raison de la suite
-      { q: r`\text{Léa place }800\text{ € à }4\,\%\text{ par an (intérêts composés).}\\[4pt]\text{La suite }(u_n)\text{ est géométrique de raison :}`,
+      { q: r`\text{Léa place }800\text{ € à }4\,\%\text{ par an (intérêts composés).}\\\text{La suite }(u_n)\text{ est géométrique de raison :}`,
         choices: [r`0{,}04`, r`1{,}4`, r`1{,}04`, r`0{,}96`],
         a: r`1{,}04`,
         tip: r`\text{Chaque année, le capital est multiplié par }1+\frac{4}{100}=1{,}04.` },
 
       // fin_03 — terme général
-      { q: r`\text{Léa place }800\text{ € à }4\,\%\text{ par an.}\\[4pt]\text{Le capital après }n\text{ ans est :}`,
+      { q: r`\text{Léa place }800\text{ € à }4\,\%\text{ par an.}\\\text{Le capital après }n\text{ ans est :}`,
         choices: [r`u_n = 800 + 0{,}04n`, r`u_n = 800 \times 0{,}04^n`, r`u_n = 800 \times 1{,}04^n`, r`u_n = 800 \times 4^n`],
         a: r`u_n = 800 \times 1{,}04^n`,
         tip: r`\text{Suite géométrique : }u_n = u_0 \times q^n = 800 \times 1{,}04^n.` },
 
       // fin_04 — calcul à n=3
-      { q: r`\text{Léa place }800\text{ € à }4\,\%\text{ par an.}\\[4pt]\text{Quel est le capital après }3\text{ ans ?}\\[2pt]{\small(\text{arrondir à l'euro})}`,
+      { q: r`\text{Léa place }800\text{ € à }4\,\%\text{ par an.}\\\text{Quel est le capital après }3\text{ ans ?}\\{\small(\text{arrondir à l'euro})}`,
         choices: [r`896\text{ €}`, r`912\text{ €}`, r`900\text{ €}`, r`899\text{ €}`],
         a: r`900\text{ €}`,
         tip: r`u_3 = 800 \times 1{,}04^3 = 800 \times 1{,}124864 \approx 899{,}89 \approx 900\text{ €}.` },
 
       // fin_05 — comparaison intérêts composés vs simples
-      { q: r`\text{Léa place }800\text{ € à }4\,\%\text{ par an (intérêts composés).}\\[4pt]\text{Au bout de }10\text{ ans, le capital est d'environ :}`,
+      { q: r`\text{Léa place }800\text{ € à }4\,\%\text{ par an (intérêts composés).}\\\text{Au bout de }10\text{ ans, le capital est d'environ :}`,
         choices: [r`1\,120\text{ €}`, r`1\,184\text{ €}`, r`960\text{ €}`, r`1\,086\text{ €}`],
         a: r`1\,184\text{ €}`,
-        tip: r`u_{10}=800\times1{,}04^{10}\approx800\times1{,}4802\approx1\,184\text{ €.}\\[4pt]\text{Avec intérêts simples : }800+10\times32=1\,120\text{ €}.` },
+        tip: r`u_{10}=800\times1{,}04^{10}\approx800\times1{,}4802\approx1\,184\text{ €.}\\\text{Avec intérêts simples : }800+10\times32=1\,120\text{ €}.` },
 
       // ── Situation 2 : Emprunt bancaire — mensualités constantes ───────────
 
       // fin_06 — capital restant dû (récurrence)
-      { q: r`\text{Hugo emprunte }5\,000\text{ € à }0{,}5\,\%\text{ par mois.}\\[4pt]\text{Il rembourse }200\text{ € par mois.}\\[4pt]\text{La suite }(u_n)\text{ du capital restant dû vérifie :}`,
+      { q: r`\text{Hugo emprunte }5\,000\text{ € à }0{,}5\,\%\text{ par mois.}\\\text{Il rembourse }200\text{ € par mois.}\\\text{La suite }(u_n)\text{ du capital restant dû vérifie :}`,
         choices: [
           r`u_{n+1} = u_n - 200`,
           r`u_{n+1} = 1{,}005 \times u_n`,
@@ -9618,13 +9618,13 @@ const DB = {
         tip: r`\text{Chaque mois : les intérêts s'ajoutent (}\times 1{,}005\text{) puis on rembourse }200\text{ €.}` },
 
       // fin_07 — capital après 1 mois
-      { q: r`\text{Hugo emprunte }5\,000\text{ € à }0{,}5\,\%\text{ par mois, mensualité }200\text{ €.}\\[4pt]\text{Quel est le capital restant après }1\text{ mois ?}`,
+      { q: r`\text{Hugo emprunte }5\,000\text{ € à }0{,}5\,\%\text{ par mois, mensualité }200\text{ €.}\\\text{Quel est le capital restant après }1\text{ mois ?}`,
         choices: [r`4\,800\text{ €}`, r`4\,825\text{ €}`, r`4\,975\text{ €}`, r`4\,825{,}50\text{ €}`],
         a: r`4\,825\text{ €}`,
         tip: r`u_1 = 1{,}005 \times 5\,000 - 200 = 5\,025 - 200 = 4\,825\text{ €.}` },
 
       // fin_08 — interprétation
-      { q: r`\text{Hugo emprunte }5\,000\text{ € à }0{,}5\,\%\text{ par mois, mensualité }200\text{ €.}\\[4pt]\text{Que représente }0{,}005 \times u_n\text{ ?}`,
+      { q: r`\text{Hugo emprunte }5\,000\text{ € à }0{,}5\,\%\text{ par mois, mensualité }200\text{ €.}\\\text{Que représente }0{,}005 \times u_n\text{ ?}`,
         choices: [
           r`\text{Le remboursement mensuel}`,
           r`\text{Les intérêts du mois}`,
@@ -9637,7 +9637,7 @@ const DB = {
       // ── Situation 3 : Plan d'épargne — versements réguliers ──────────────
 
       // fin_09 — modélisation versements réguliers
-      { q: r`\text{Chaque mois, Marc verse }100\text{ € sur un compte à }0{,}3\,\%\text{ par mois.}\\[4pt]\text{La suite }(u_n)\text{ du capital après }n\text{ mois vérifie :}`,
+      { q: r`\text{Chaque mois, Marc verse }100\text{ € sur un compte à }0{,}3\,\%\text{ par mois.}\\\text{La suite }(u_n)\text{ du capital après }n\text{ mois vérifie :}`,
         choices: [
           r`u_{n+1} = u_n + 100`,
           r`u_{n+1} = 1{,}003 \times u_n`,
@@ -9648,7 +9648,7 @@ const DB = {
         tip: r`\text{Les intérêts s'appliquent (}\times 1{,}003\text{) puis Marc ajoute }100\text{ €.}` },
 
       // fin_10 — capital après 2 mois (u_0 = 0)
-      { q: r`\text{Marc verse }100\text{ €/mois à }0{,}3\,\%\text{ par mois.}\\[4pt]u_0=0.\\[4pt]\text{Quel est le capital après }2\text{ mois ?}\\[2pt]{\small(\text{arrondir au centime})}`,
+      { q: r`\text{Marc verse }100\text{ €/mois à }0{,}3\,\%\text{ par mois.}\\u_0=0.\\\text{Quel est le capital après }2\text{ mois ?}\\{\small(\text{arrondir au centime})}`,
         choices: [r`200{,}30\text{ €}`, r`200{,}60\text{ €}`, r`200{,}90\text{ €}`, r`201{,}30\text{ €}`],
         a: r`200{,}30\text{ €}`,
         tip: r`u_1=1{,}003\times0+100=100\text{ €}\\u_2=1{,}003\times100+100=100{,}30+100=200{,}30\text{ €.}` },
@@ -9656,13 +9656,13 @@ const DB = {
       // ── Situation 4 : Dépréciation d'un bien ─────────────────────────────
 
       // fin_11 — suite géométrique décroissante
-      { q: r`\text{Une voiture vaut }12\,000\text{ € et perd }15\,\%\text{ de sa valeur chaque année.}\\[4pt]\text{La suite }(u_n)\text{ de sa valeur est géométrique de raison :}`,
+      { q: r`\text{Une voiture vaut }12\,000\text{ € et perd }15\,\%\text{ de sa valeur chaque année.}\\\text{La suite }(u_n)\text{ de sa valeur est géométrique de raison :}`,
         choices: [r`0{,}15`, r`0{,}85`, r`1{,}15`, r`-0{,}15`],
         a: r`0{,}85`,
         tip: r`\text{Perdre }15\,\%\text{ = conserver }85\,\% = \text{multiplier par }0{,}85.` },
 
       // fin_12 — terme général dépréciation
-      { q: r`\text{Une voiture vaut }12\,000\text{ € et perd }15\,\%\text{ par an.}\\[4pt]\text{Sa valeur après }n\text{ ans est :}`,
+      { q: r`\text{Une voiture vaut }12\,000\text{ € et perd }15\,\%\text{ par an.}\\\text{Sa valeur après }n\text{ ans est :}`,
         choices: [
           r`u_n = 12\,000 - 0{,}15n`,
           r`u_n = 12\,000 \times 1{,}15^n`,
@@ -9673,13 +9673,13 @@ const DB = {
         tip: r`\text{Suite géométrique : }u_n = u_0 \times q^n = 12\,000 \times 0{,}85^n.` },
 
       // fin_13 — calcul à n=2
-      { q: r`\text{Une voiture vaut }12\,000\text{ € et perd }15\,\%\text{ par an.}\\[4pt]\text{Quelle est sa valeur après }2\text{ ans ?}`,
+      { q: r`\text{Une voiture vaut }12\,000\text{ € et perd }15\,\%\text{ par an.}\\\text{Quelle est sa valeur après }2\text{ ans ?}`,
         choices: [r`8\,640\text{ €}`, r`9\,000\text{ €}`, r`10\,200\text{ €}`, r`8\,820\text{ €}`],
         a: r`8\,640\text{ €}`,
-        tip: r`u_2=12\,000\times0{,}85^2=12\,000\times0{,}7225=8\,670\text{ €.}\\[2pt]\text{Arrondi courant : }8\,670\text{ €. Calcul exact : }u_2=12\,000\times0{,}7225=8\,670\text{ €.}` },
+        tip: r`u_2=12\,000\times0{,}85^2=12\,000\times0{,}7225=8\,670\text{ €.}\\\text{Arrondi courant : }8\,670\text{ €. Calcul exact : }u_2=12\,000\times0{,}7225=8\,670\text{ €.}` },
 
       // fin_14 — sens de variation
-      { q: r`\text{Une voiture perd }15\,\%\text{ de sa valeur chaque année.}\\[4pt]\text{La suite }(u_n)\text{ de sa valeur est :}`,
+      { q: r`\text{Une voiture perd }15\,\%\text{ de sa valeur chaque année.}\\\text{La suite }(u_n)\text{ de sa valeur est :}`,
         choices: [
           r`\text{Arithmétique décroissante}`,
           r`\text{Géométrique croissante}`,
@@ -9692,7 +9692,7 @@ const DB = {
       // ── Situation 5 : Comparaison placements ─────────────────────────────
 
       // fin_15 — arithmétique vs géométrique (intérêts simples vs composés)
-      { q: r`\text{Placement A : }1\,000\text{ € avec intérêts simples à }5\,\%\text{ par an.}\\[4pt]\text{Placement B : }1\,000\text{ € avec intérêts composés à }5\,\%\text{ par an.}\\[4pt]\text{Au bout de }10\text{ ans, lequel est plus avantageux ?}`,
+      { q: r`\text{Placement A : }1\,000\text{ € avec intérêts simples à }5\,\%\text{ par an.}\\\text{Placement B : }1\,000\text{ € avec intérêts composés à }5\,\%\text{ par an.}\\\text{Au bout de }10\text{ ans, lequel est plus avantageux ?}`,
         choices: [
           r`\text{Placement A}`,
           r`\text{Placement B}`,
@@ -9700,10 +9700,10 @@ const DB = {
           r`\text{Dépend de l'inflation}`
         ],
         a: r`\text{Placement B}`,
-        tip: r`A:1\,000+10\times50=1\,500\text{ €}\quad B:1\,000\times1{,}05^{10}\approx1\,629\text{ €}\\[4pt]\text{Les intérêts composés génèrent des intérêts sur les intérêts.}` },
+        tip: r`A:1\,000+10\times50=1\,500\text{ €}\quad B:1\,000\times1{,}05^{10}\approx1\,629\text{ €}\\\text{Les intérêts composés génèrent des intérêts sur les intérêts.}` },
 
       // fin_16 — terme général intérêts simples (suite arithmétique)
-      { q: r`\text{Placement à intérêts simples : }2\,000\text{ € à }3\,\%\text{ par an.}\\[4pt]\text{Le capital après }n\text{ ans est :}`,
+      { q: r`\text{Placement à intérêts simples : }2\,000\text{ € à }3\,\%\text{ par an.}\\\text{Le capital après }n\text{ ans est :}`,
         choices: [
           r`u_n = 2\,000 \times 1{,}03^n`,
           r`u_n = 2\,000 + 60n`,
@@ -9714,10 +9714,10 @@ const DB = {
         tip: r`\text{Intérêts simples : }3\,\%\times2\,000=60\text{ € par an.}\\u_n=2\,000+60n\text{ : suite arithmétique de raison }60.` },
 
       // fin_17 — seuil (recherche d'un rang)
-      { q: r`\text{Un capital de }500\text{ € est placé à }2\,\%\text{ par an (intérêts composés).}\\[4pt]\text{Au bout de combien d'années dépasse-t-il }600\text{ € ?}\\[2pt]{\small(1{,}02^9\approx1{,}195\;;\;1{,}02^{10}\approx1{,}219)}`,
+      { q: r`\text{Un capital de }500\text{ € est placé à }2\,\%\text{ par an (intérêts composés).}\\\text{Au bout de combien d'années dépasse-t-il }600\text{ € ?}\\{\small(1{,}02^9\approx1{,}195\;;\;1{,}02^{10}\approx1{,}219)}`,
         choices: [r`8\text{ ans}`, r`9\text{ ans}`, r`10\text{ ans}`, r`12\text{ ans}`],
         a: r`10\text{ ans}`,
-        tip: r`u_n=500\times1{,}02^n>600\Leftrightarrow1{,}02^n>1{,}2\\[4pt]1{,}02^9\approx1{,}195<1{,}2\quad1{,}02^{10}\approx1{,}219>1{,}2\\[4pt]\text{Le seuil est atteint à partir de }n=10\text{ ans.}` },
+        tip: r`u_n=500\times1{,}02^n>600\Leftrightarrow1{,}02^n>1{,}2\\1{,}02^9\approx1{,}195<1{,}2\quad1{,}02^{10}\approx1{,}219>1{,}2\\\text{Le seuil est atteint à partir de }n=10\text{ ans.}` },
 
     ],
 
@@ -9730,28 +9730,28 @@ const DB = {
     poly2_definition: [
 
       // ── Identifier a, b, c ────────────────────────────────────────────────
-      { q: r`ax^2+bx+c=2x^2-5x+3\\[4pt]a,\ b,\ c=\,?`,
+      { q: r`ax^2+bx+c=2x^2-5x+3\\a,\ b,\ c=\,?`,
         choices: [`a=2,\\ b=-5,\\ c=3`, `a=2,\\ b=5,\\ c=3`, `a=-2,\\ b=5,\\ c=3`, `a=2,\\ b=-5,\\ c=-3`],
         a: `a=2,\\ b=-5,\\ c=3`, tip: r`\text{Identifier coeff. de }x^2,x,\text{constante}` },
-      { q: r`-x^2+4x-7=ax^2+bx+c\\[4pt]a=\,?`,
+      { q: r`-x^2+4x-7=ax^2+bx+c\\a=\,?`,
         choices: [`-1`, `1`, `4`, `-7`], a: `-1`, tip: r`\text{Coefficient de }x^2\text{ : }a=-1` },
-      { q: r`f(x)=ax^2+bx+c\text{ avec }a=-2,\,b=0,\,c=5\\[4pt]f(x)=\,?`,
+      { q: r`f(x)=ax^2+bx+c\text{ avec }a=-2,\,b=0,\,c=5\\f(x)=\,?`,
         choices: [r`-2x^2+5`, r`-2x^2-5`, r`2x^2+5`, r`-2x+5`],
         a: r`-2x^2+5`, tip: r`a=-2,\,b=0,\,c=5\Rightarrow -2x^2+5` },
-      { q: r`3x^2-x+4=ax^2+bx+c\\[4pt]b=\,?`,
+      { q: r`3x^2-x+4=ax^2+bx+c\\b=\,?`,
         choices: [`-1`, `3`, `4`, `1`], a: `-1`,
         tip: r`b\text{ est le coefficient de }x\text{ : ici }b=-1.` },
-      { q: r`f(x)=5x^2\\[4pt]a,\,b,\,c=\,?`,
+      { q: r`f(x)=5x^2\\a,\,b,\,c=\,?`,
         choices: [`a=5,\\ b=0,\\ c=0`, `a=0,\\ b=5,\\ c=0`, `a=5,\\ b=5,\\ c=0`, `a=5,\\ b=1,\\ c=0`],
         a: `a=5,\\ b=0,\\ c=0`,
         tip: r`\text{Pas de terme en }x\text{ ni de constante : }b=0,\,c=0.` },
-      { q: r`f(x)=-4x^2+7\\[4pt]b=\,?`,
+      { q: r`f(x)=-4x^2+7\\b=\,?`,
         choices: [`0`, `-4`, `7`, `4`], a: `0`,
         tip: r`\text{Il n'y a pas de terme en }x\text{ : }b=0.` },
-      { q: r`f(x)=ax^2+bx+c\text{ avec }a=1,\,b=-3,\,c=2\\[4pt]x_1\cdot x_2=\,?`,
+      { q: r`f(x)=ax^2+bx+c\text{ avec }a=1,\,b=-3,\,c=2\\x_1\cdot x_2=\,?`,
         choices: [`2`, `-3`, `3`, `1`], a: `2`,
         tip: r`x_1\cdot x_2=\dfrac{c}{a}=\dfrac{2}{1}=2.` },
-      { q: r`a=1,\,b=-5,\,c=6\\[4pt]x_1+x_2=-\dfrac{b}{a}=\,?`,
+      { q: r`a=1,\,b=-5,\,c=6\\x_1+x_2=-\dfrac{b}{a}=\,?`,
         choices: [`5`, `-5`, `6`, `-6`], a: `5`, tip: r`-b/a=-(-5)/1=5` },
 
       // ── Reconnaître un trinôme ────────────────────────────────────────────
@@ -9773,20 +9773,20 @@ const DB = {
         choices: [r`1\text{ racine}`, r`2\text{ racines}`, r`3\text{ racines}`, r`\text{une infinité de racines}`],
         a: r`2\text{ racines}`,
         tip: r`\text{Un polynôme du 2nd degré admet 0, 1 (double) ou 2 racines réelles.}` },
-      { q: r`f(x)=a(x-x_1)(x-x_2)\\[4pt]\text{Les racines de }f\text{ sont :}`,
+      { q: r`f(x)=a(x-x_1)(x-x_2)\\\text{Les racines de }f\text{ sont :}`,
         choices: [r`a\text{ et }-a`, r`x_1\text{ et }x_2`, r`-x_1\text{ et }-x_2`, r`x_1\cdot x_2`],
         a: r`x_1\text{ et }x_2`,
         tip: r`f(x)=0\Leftrightarrow x=x_1\text{ ou }x=x_2.` },
-      { q: r`f(x)=2(x-3)(x+1)\\[4pt]\text{Les racines de }f\text{ sont :}`,
+      { q: r`f(x)=2(x-3)(x+1)\\\text{Les racines de }f\text{ sont :}`,
         choices: [r`3\text{ et }-1`, r`-3\text{ et }1`, r`2\text{ et }3`, r`3\text{ et }1`],
         a: r`3\text{ et }-1`,
         tip: r`f(x)=0\Leftrightarrow x-3=0\text{ ou }x+1=0\Leftrightarrow x=3\text{ ou }x=-1.` },
-      { q: r`f(x)=-(x-5)(x+2)\\[4pt]f(0)=\,?`,
+      { q: r`f(x)=-(x-5)(x+2)\\f(0)=\,?`,
         choices: [`10`, `-10`, `5`, `-5`], a: `10`,
         tip: r`f(0)=-(0-5)(0+2)=-(-5)(2)=10.` },
-      { q: r`f(x)=4(x+2)(x-8)\\[4pt]f(0)=\,?`,
+      { q: r`f(x)=4(x+2)(x-8)\\f(0)=\,?`,
         choices: [`-64`, `64`, `-16`, `16`], a: `-64`, tip: r`f(0)=4\times2\times(-8)=-64` },
-      { q: r`f(x)=-3(x+1)(x-4)\\[4pt]f(2)=\,?`,
+      { q: r`f(x)=-3(x+1)(x-4)\\f(2)=\,?`,
         choices: [`18`, `-18`, `6`, `-6`], a: `18`, tip: r`f(2)=-3\times3\times(-2)=18` },
     ],
 
@@ -9796,49 +9796,49 @@ const DB = {
       // ══ SITUATION 1 — MégaJeu : C(x) = 2x² − 40x + 300, p = 30 €, x∈[0,34] ══
 
       // crb_01 — coûts fixes
-      { q: r`\text{La société MégaJeu fabrique des jeux.}\\[4pt]C(x) = 2x^2 - 40x + 300\text{ (en euros)}\\[4pt]\text{Quels sont les coûts fixes de l'entreprise ?}`,
+      { q: r`\text{La société MégaJeu fabrique des jeux.}\\C(x) = 2x^2 - 40x + 300\text{ (en euros)}\\\text{Quels sont les coûts fixes de l'entreprise ?}`,
         choices: [r`300\text{ €}`, r`40\text{ €}`, r`2\text{ €}`, r`0\text{ €}`],
         a: r`300\text{ €}`,
         tip: r`\text{Les coûts fixes sont les coûts indépendants de la production.}\\C(0)=2\times0-40\times0+300=300\text{ €.}` },
 
       // crb_02 — coût pour N unités
-      { q: r`\text{MégaJeu : }C(x) = 2x^2 - 40x + 300\\[4pt]\text{Quel est le coût de fabrication de 10 jeux ?}`,
+      { q: r`\text{MégaJeu : }C(x) = 2x^2 - 40x + 300\\\text{Quel est le coût de fabrication de 10 jeux ?}`,
         choices: [r`100\text{ €}`, r`200\text{ €}`, r`300\text{ €}`, r`500\text{ €}`],
         a: r`100\text{ €}`,
         tip: r`C(10)=2\times100-40\times10+300=200-400+300=100\text{ €.}` },
 
       // crb_03 — expression de R(x)
-      { q: r`\text{MégaJeu vend chaque jeu }30\text{ €.}\\[4pt]\text{Quelle est l'expression de la recette }R(x)\text{ pour }x\text{ jeux ?}`,
+      { q: r`\text{MégaJeu vend chaque jeu }30\text{ €.}\\\text{Quelle est l'expression de la recette }R(x)\text{ pour }x\text{ jeux ?}`,
         choices: [r`R(x)=30`, r`R(x)=30+x`, r`R(x)=30x`, r`R(x)=x^2+30`],
         a: r`R(x)=30x`,
         tip: r`\text{Recette = prix unitaire }\times\text{ quantité : }R(x)=30x.` },
 
       // crb_04 — expression de B(x)
-      { q: r`\text{MégaJeu : }C(x)=2x^2-40x+300\text{, }R(x)=30x\\[4pt]B(x)=R(x)-C(x)\text{ vaut :}`,
+      { q: r`\text{MégaJeu : }C(x)=2x^2-40x+300\text{, }R(x)=30x\\B(x)=R(x)-C(x)\text{ vaut :}`,
         choices: [r`-2x^2+70x-300`, r`2x^2-70x+300`, r`-2x^2-10x-300`, r`-2x^2+10x-300`],
         a: r`-2x^2+70x-300`,
         tip: r`B(x)=30x-(2x^2-40x+300)\\=-2x^2+30x+40x-300=-2x^2+70x-300.` },
 
       // crb_05 — racines de B(x)
-      { q: r`\text{MégaJeu : }B(x)=-2(x-5)(x-30)\\[4pt]\text{Pour quelles valeurs de }x\text{ le bénéfice est-il nul ?}`,
+      { q: r`\text{MégaJeu : }B(x)=-2(x-5)(x-30)\\\text{Pour quelles valeurs de }x\text{ le bénéfice est-il nul ?}`,
         choices: [r`x=5\text{ et }x=30`, r`x=0\text{ et }x=35`, r`x=10\text{ et }x=15`, r`x=5\text{ seulement}`],
         a: r`x=5\text{ et }x=30`,
         tip: r`B(x)=0\Leftrightarrow -2(x-5)(x-30)=0\Leftrightarrow x=5\text{ ou }x=30.` },
 
       // crb_06 — signe du bénéfice
-      { q: r`\text{MégaJeu : }B(x)=-2(x-5)(x-30)\text{, }x\in[0,34]\\[4pt]\text{L'entreprise réalise un bénéfice (}B>0\text{) pour :}`,
+      { q: r`\text{MégaJeu : }B(x)=-2(x-5)(x-30)\text{, }x\in[0,34]\\\text{L'entreprise réalise un bénéfice (}B>0\text{) pour :}`,
         choices: [r`0<x<5`, r`5<x<30`, r`x>30`, r`x<5\text{ ou }x>30`],
         a: r`5<x<30`,
         tip: r`\text{Coefficient de }x^2\text{ négatif : la parabole est tournée vers le bas.}\\B(x)>0\text{ entre les deux racines : }5<x<30.` },
 
       // crb_07 — bénéfice maximal
-      { q: r`\text{MégaJeu : }B(x)=-2x^2+70x-300\\[4pt]\text{Le bénéfice maximal est atteint pour }x=17{,}5\text{ jeux.}\\[4pt]\text{Quel est ce bénéfice maximal ?}`,
+      { q: r`\text{MégaJeu : }B(x)=-2x^2+70x-300\\\text{Le bénéfice maximal est atteint pour }x=17{,}5\text{ jeux.}\\\text{Quel est ce bénéfice maximal ?}`,
         choices: [r`300\text{ €}`, r`312{,}5\text{ €}`, r`350\text{ €}`, r`287{,}5\text{ €}`],
         a: r`312{,}5\text{ €}`,
         tip: r`B(17{,}5)=-2\times(17{,}5)^2+70\times17{,}5-300\\=-612{,}5+1225-300=312{,}5\text{ €.}` },
 
       // crb_08 — interprétation production entière
-      { q: r`\text{MégaJeu : bénéfice maximal théorique pour }x=17{,}5\text{ jeux.}\\[4pt]\text{En pratique, combien de jeux doit-on produire ?}`,
+      { q: r`\text{MégaJeu : bénéfice maximal théorique pour }x=17{,}5\text{ jeux.}\\\text{En pratique, combien de jeux doit-on produire ?}`,
         choices: [r`17\text{ ou }18\text{ jeux}`, r`17\text{ jeux exactement}`, r`18\text{ jeux exactement}`, r`35\text{ jeux}`],
         a: r`17\text{ ou }18\text{ jeux}`,
         tip: r`x=17{,}5\text{ n'est pas entier. On compare }B(17)\text{ et }B(18).\\B(17)=B(18)=312\text{ € (parabole symétrique) : les deux conviennent.}` },
@@ -9846,25 +9846,25 @@ const DB = {
       // ══ SITUATION 2 — AlphaPhone : C(x) = x² − 20x + 200, p = 50 €, x∈[0,40] ══
 
       // crb_09 — coûts fixes
-      { q: r`\text{AlphaPhone produit des coques de téléphone.}\\[4pt]C(x)=x^2-20x+200\text{ (€), prix de vente : }50\text{ €/unité.}\\[4pt]\text{Quels sont les coûts fixes ?}`,
+      { q: r`\text{AlphaPhone produit des coques de téléphone.}\\C(x)=x^2-20x+200\text{ (€), prix de vente : }50\text{ €/unité.}\\\text{Quels sont les coûts fixes ?}`,
         choices: [r`200\text{ €}`, r`20\text{ €}`, r`50\text{ €}`, r`180\text{ €}`],
         a: r`200\text{ €}`,
         tip: r`C(0)=0-0+200=200\text{ €.}` },
 
       // crb_10 — recette
-      { q: r`\text{AlphaPhone : prix de vente }50\text{ €/unité.}\\[4pt]\text{Quelle est la recette pour }20\text{ coques vendues ?}`,
+      { q: r`\text{AlphaPhone : prix de vente }50\text{ €/unité.}\\\text{Quelle est la recette pour }20\text{ coques vendues ?}`,
         choices: [r`500\text{ €}`, r`750\text{ €}`, r`1\,000\text{ €}`, r`200\text{ €}`],
         a: r`1\,000\text{ €}`,
         tip: r`R(20)=50\times20=1\,000\text{ €.}` },
 
       // crb_11 — expression B(x)
-      { q: r`\text{AlphaPhone : }C(x)=x^2-20x+200\text{, }R(x)=50x\\[4pt]B(x)=R(x)-C(x)\text{ vaut :}`,
+      { q: r`\text{AlphaPhone : }C(x)=x^2-20x+200\text{, }R(x)=50x\\B(x)=R(x)-C(x)\text{ vaut :}`,
         choices: [r`-x^2+70x-200`, r`x^2-70x+200`, r`-x^2+30x-200`, r`-x^2+70x+200`],
         a: r`-x^2+70x-200`,
         tip: r`B(x)=50x-(x^2-20x+200)=-x^2+70x-200.` },
 
       // crb_12 — racines
-      { q: r`\text{AlphaPhone : }B(x)=-x^2+70x-200\\[4pt]\text{On sait que }B(x)=-(x-\alpha)(x-\beta)\\[4pt]\text{avec }\alpha\approx 3{,}1\text{ et }\beta\approx 66{,}9.\\[4pt]\text{L'entreprise est bénéficiaire pour :}`,
+      { q: r`\text{AlphaPhone : }B(x)=-x^2+70x-200\\\text{On sait que }B(x)=-(x-\alpha)(x-\beta)\\\text{avec }\alpha\approx 3{,}1\text{ et }\beta\approx 66{,}9.\\\text{L'entreprise est bénéficiaire pour :}`,
         choices: [r`x<3`, r`3<x<67\text{ (environ)}`, r`x>67`, r`\text{Jamais}`],
         a: r`3<x<67\text{ (environ)}`,
         tip: r`\text{Coefficient de }x^2\text{ négatif }\Rightarrow B(x)>0\text{ entre les racines.}\\3{,}1<x<66{,}9\text{ soit environ }4\leq x\leq 66\text{ en entiers.}` },
@@ -9872,25 +9872,25 @@ const DB = {
       // ══ SITUATION 3 — BioSnack : C(x) = 3x² − 60x + 500, p = 40 €, x∈[0,25] ══
 
       // crb_13 — coûts fixes
-      { q: r`\text{BioSnack fabrique des barres énergétiques.}\\[4pt]C(x)=3x^2-60x+500\text{ (€), prix : }40\text{ €/unité.}\\[4pt]\text{Quels sont les coûts fixes de BioSnack ?}`,
+      { q: r`\text{BioSnack fabrique des barres énergétiques.}\\C(x)=3x^2-60x+500\text{ (€), prix : }40\text{ €/unité.}\\\text{Quels sont les coûts fixes de BioSnack ?}`,
         choices: [r`60\text{ €}`, r`500\text{ €}`, r`3\text{ €}`, r`440\text{ €}`],
         a: r`500\text{ €}`,
         tip: r`C(0)=3\times0-60\times0+500=500\text{ €.}` },
 
       // crb_14 — coût pour N unités
-      { q: r`\text{BioSnack : }C(x)=3x^2-60x+500\\[4pt]\text{Coût de fabrication de }5\text{ barres ?}`,
+      { q: r`\text{BioSnack : }C(x)=3x^2-60x+500\\\text{Coût de fabrication de }5\text{ barres ?}`,
         choices: [r`275\text{ €}`, r`350\text{ €}`, r`425\text{ €}`, r`500\text{ €}`],
         a: r`275\text{ €}`,
         tip: r`C(5)=3\times25-60\times5+500=75-300+500=275\text{ €.}` },
 
       // crb_15 — expression B(x)
-      { q: r`\text{BioSnack : }C(x)=3x^2-60x+500\text{, }R(x)=40x\\[4pt]B(x)=R(x)-C(x)\text{ vaut :}`,
+      { q: r`\text{BioSnack : }C(x)=3x^2-60x+500\text{, }R(x)=40x\\B(x)=R(x)-C(x)\text{ vaut :}`,
         choices: [r`-3x^2+100x-500`, r`3x^2-100x+500`, r`-3x^2+20x-500`, r`-3x^2+100x+500`],
         a: r`-3x^2+100x-500`,
         tip: r`B(x)=40x-(3x^2-60x+500)=-3x^2+100x-500.` },
 
       // crb_16 — sommet / bénéfice maximal
-      { q: r`\text{BioSnack : }B(x)=-3x^2+100x-500\\[4pt]\text{Le sommet de la parabole est en }x=\dfrac{100}{6}\approx16{,}7.\\[4pt]\text{Quel est le bénéfice maximal (arrondi à l'euro) ?}`,
+      { q: r`\text{BioSnack : }B(x)=-3x^2+100x-500\\\text{Le sommet de la parabole est en }x=\dfrac{100}{6}\approx16{,}7.\\\text{Quel est le bénéfice maximal (arrondi à l'euro) ?}`,
         choices: [r`200\text{ €}`, r`333\text{ €}`, r`275\text{ €}`, r`250\text{ €}`],
         a: r`333\text{ €}`,
         tip: r`B\!\left(\tfrac{50}{3}\right)=-3\times\tfrac{2500}{9}+100\times\tfrac{50}{3}-500\\=-\tfrac{2500}{3}+\tfrac{5000}{3}-500=\tfrac{2500}{3}-500\approx833-500=333\text{ €.}` },
@@ -9898,57 +9898,57 @@ const DB = {
       // ══ SITUATION 4 — LudoBox : C(x) = x² − 30x + 400, p = 20 €, x∈[0,40] ══
 
       // crb_17 — coûts fixes
-      { q: r`\text{LudoBox fabrique des boîtes de jeux.}\\[4pt]C(x)=x^2-30x+400\text{ (€), prix : }20\text{ €/boîte.}\\[4pt]\text{Coûts fixes de LudoBox ?}`,
+      { q: r`\text{LudoBox fabrique des boîtes de jeux.}\\C(x)=x^2-30x+400\text{ (€), prix : }20\text{ €/boîte.}\\\text{Coûts fixes de LudoBox ?}`,
         choices: [r`30\text{ €}`, r`1\text{ €}`, r`400\text{ €}`, r`370\text{ €}`],
         a: r`400\text{ €}`,
         tip: r`C(0)=0-0+400=400\text{ €.}` },
 
       // crb_18 — recette pour N unités
-      { q: r`\text{LudoBox : prix de vente }20\text{ €/boîte.}\\[4pt]\text{Recette pour }15\text{ boîtes vendues ?}`,
+      { q: r`\text{LudoBox : prix de vente }20\text{ €/boîte.}\\\text{Recette pour }15\text{ boîtes vendues ?}`,
         choices: [r`200\text{ €}`, r`300\text{ €}`, r`400\text{ €}`, r`150\text{ €}`],
         a: r`300\text{ €}`,
         tip: r`R(15)=20\times15=300\text{ €.}` },
 
       // crb_19 — expression B(x)
-      { q: r`\text{LudoBox : }C(x)=x^2-30x+400\text{, }R(x)=20x\\[4pt]B(x)=R(x)-C(x)\text{ vaut :}`,
+      { q: r`\text{LudoBox : }C(x)=x^2-30x+400\text{, }R(x)=20x\\B(x)=R(x)-C(x)\text{ vaut :}`,
         choices: [r`-x^2+50x-400`, r`x^2-50x+400`, r`-x^2+10x-400`, r`-x^2+50x+400`],
         a: r`-x^2+50x-400`,
         tip: r`B(x)=20x-(x^2-30x+400)=-x^2+50x-400.` },
 
       // crb_20 — racines et signe
-      { q: r`\text{LudoBox : }B(x)=-x^2+50x-400=-(x-10)(x-40)\\[4pt]\text{Pour quelles valeurs l'entreprise est-elle bénéficiaire ?}`,
+      { q: r`\text{LudoBox : }B(x)=-x^2+50x-400=-(x-10)(x-40)\\\text{Pour quelles valeurs l'entreprise est-elle bénéficiaire ?}`,
         choices: [r`x<10`, r`10<x<40`, r`x>40`, r`0<x<10\text{ ou }x>40`],
         a: r`10<x<40`,
-        tip: r`-(x-10)(x-40)>0\Leftrightarrow(x-10)(x-40)<0\\[4pt]\text{Parabole ouverte vers le bas : }B>0\text{ entre les racines, soit }10<x<40.` },
+        tip: r`-(x-10)(x-40)>0\Leftrightarrow(x-10)(x-40)<0\\\text{Parabole ouverte vers le bas : }B>0\text{ entre les racines, soit }10<x<40.` },
 
       // ══ SITUATION 5 — FreshPrint : C(x) = 4x² − 80x + 600, p = 60 €, x∈[0,30] ══
 
       // crb_21 — coûts fixes
-      { q: r`\text{FreshPrint fabrique des tee-shirts personnalisés.}\\[4pt]C(x)=4x^2-80x+600\text{ (€), prix : }60\text{ €/unité.}\\[4pt]\text{Coûts fixes de FreshPrint ?}`,
+      { q: r`\text{FreshPrint fabrique des tee-shirts personnalisés.}\\C(x)=4x^2-80x+600\text{ (€), prix : }60\text{ €/unité.}\\\text{Coûts fixes de FreshPrint ?}`,
         choices: [r`80\text{ €}`, r`600\text{ €}`, r`4\text{ €}`, r`520\text{ €}`],
         a: r`600\text{ €}`,
         tip: r`C(0)=4\times0-80\times0+600=600\text{ €.}` },
 
       // crb_22 — coût pour N unités
-      { q: r`\text{FreshPrint : }C(x)=4x^2-80x+600\\[4pt]\text{Coût pour produire }10\text{ tee-shirts ?}`,
+      { q: r`\text{FreshPrint : }C(x)=4x^2-80x+600\\\text{Coût pour produire }10\text{ tee-shirts ?}`,
         choices: [r`200\text{ €}`, r`400\text{ €}`, r`600\text{ €}`, r`800\text{ €}`],
         a: r`200\text{ €}`,
         tip: r`C(10)=4\times100-80\times10+600=400-800+600=200\text{ €.}` },
 
       // crb_23 — expression B(x)
-      { q: r`\text{FreshPrint : }C(x)=4x^2-80x+600\text{, }R(x)=60x\\[4pt]B(x)=R(x)-C(x)\text{ vaut :}`,
+      { q: r`\text{FreshPrint : }C(x)=4x^2-80x+600\text{, }R(x)=60x\\B(x)=R(x)-C(x)\text{ vaut :}`,
         choices: [r`-4x^2+140x-600`, r`4x^2-140x+600`, r`-4x^2+20x-600`, r`-4x^2+140x+600`],
         a: r`-4x^2+140x-600`,
         tip: r`B(x)=60x-(4x^2-80x+600)=-4x^2+140x-600.` },
 
       // crb_24 — racines de B(x)
-      { q: r`\text{FreshPrint : }B(x)=-4x^2+140x-600\\[4pt]\text{On montre que }B(x)=-4(x-5)(x-30).\\[4pt]\text{Pour quelles valeurs de }x\text{ le bénéfice est-il positif ?}`,
+      { q: r`\text{FreshPrint : }B(x)=-4x^2+140x-600\\\text{On montre que }B(x)=-4(x-5)(x-30).\\\text{Pour quelles valeurs de }x\text{ le bénéfice est-il positif ?}`,
         choices: [r`x<5`, r`5<x<30`, r`x>30`, r`0\leq x\leq 5`],
         a: r`5<x<30`,
-        tip: r`B(x)>0\Leftrightarrow -4(x-5)(x-30)>0\Leftrightarrow(x-5)(x-30)<0\\[4pt]\text{Vrai pour }5<x<30\text{ (parabole vers le bas).}` },
+        tip: r`B(x)>0\Leftrightarrow -4(x-5)(x-30)>0\Leftrightarrow(x-5)(x-30)<0\\\text{Vrai pour }5<x<30\text{ (parabole vers le bas).}` },
 
       // crb_25 — bénéfice maximal
-      { q: r`\text{FreshPrint : }B(x)=-4x^2+140x-600\\[4pt]\text{Le sommet est en }x=17{,}5.\\[4pt]\text{Bénéfice maximal ?}`,
+      { q: r`\text{FreshPrint : }B(x)=-4x^2+140x-600\\\text{Le sommet est en }x=17{,}5.\\\text{Bénéfice maximal ?}`,
         choices: [r`425\text{ €}`, r`500\text{ €}`, r`625\text{ €}`, r`612{,}5\text{ €}`],
         a: r`625\text{ €}`,
         tip: r`B(17{,}5)=-4\times(17{,}5)^2+140\times17{,}5-600\\=-4\times306{,}25+2450-600=-1225+2450-600=625\text{ €.}` },
@@ -9957,135 +9957,135 @@ const DB = {
 
     // ── 2. Forme factorisée, racines, somme et produit ────────────────────────
     poly2_racines: [
-      { q: r`f(x)=3(x-2)(x+5)\\[4pt]\text{Valeur de }a\text{ :}`,
+      { q: r`f(x)=3(x-2)(x+5)\\\text{Valeur de }a\text{ :}`,
         choices: [`3`, `-3`, `2`, `5`], a: `3`, tip: r`f(x)=a(x-x_1)(x-x_2)\Rightarrow a=3` },
-      { q: r`f(x)=-2(x-1)(x+4)\\[4pt]\text{Racines de }f\text{ :}`,
+      { q: r`f(x)=-2(x-1)(x+4)\\\text{Racines de }f\text{ :}`,
         choices: [r`1\text{ et }{-4}`, r`{-1}\text{ et }4`, r`2\text{ et }{-4}`, r`1\text{ et }4`],
         a: r`1\text{ et }{-4}`, tip: r`x_1=1\text{ et }x_2=-4` },
-      { q: r`f(x)=(x-3)(x+7)\\[4pt]x_1\text{ et }x_2=\,?`,
+      { q: r`f(x)=(x-3)(x+7)\\x_1\text{ et }x_2=\,?`,
         choices: [r`3\text{ et }{-7}`, r`{-3}\text{ et }7`, r`3\text{ et }7`, r`{-3}\text{ et }{-7}`],
         a: r`3\text{ et }{-7}`, tip: r`x_1=3\text{ et }x_2=-7` },
-      { q: r`f(x)=-5(x-2)(x-6)\\[4pt]\text{Valeur de }a\text{ :}`,
+      { q: r`f(x)=-5(x-2)(x-6)\\\text{Valeur de }a\text{ :}`,
         choices: [`-5`, `5`, `2`, `6`], a: `-5`, tip: r`f(x)=a(x-x_1)(x-x_2)\Rightarrow a=-5` },
-      { q: r`a=2,\quad x_1=3,\quad x_2=-1\\[4pt]f(x)=\,?`,
+      { q: r`a=2,\quad x_1=3,\quad x_2=-1\\f(x)=\,?`,
         choices: [`2(x-3)(x+1)`, `2(x+3)(x-1)`, `2(x-3)(x-1)`, `(x-3)(x+1)`],
         a: `2(x-3)(x+1)`, tip: r`f(x)=2(x-3)(x-(-1))=2(x-3)(x+1)` },
-      { q: r`f(x)=-(x-5)(x+3)\\[4pt]a,\ x_1,\ x_2=\,?`,
+      { q: r`f(x)=-(x-5)(x+3)\\a,\ x_1,\ x_2=\,?`,
         choices: [r`a=-1,\ x_1=5,\ x_2=-3`, r`a=1,\ x_1=5,\ x_2=3`, r`a=-1,\ x_1=-5,\ x_2=3`, r`a=5,\ x_1=5,\ x_2=-3`],
         a: r`a=-1,\ x_1=5,\ x_2=-3`, tip: r`f(x)=(-1)(x-5)(x+3)` },
-      { q: r`f(x)=3(x-2)(x+5)\\[4pt]a=\,?\ ;\ x_1=\,?\ ;\ x_2=\,?`,
+      { q: r`f(x)=3(x-2)(x+5)\\a=\,?\ ;\ x_1=\,?\ ;\ x_2=\,?`,
         choices: [`a=3,\\ x_1=2,\\ x_2=-5`, `a=3,\\ x_1=-2,\\ x_2=5`, `a=-3,\\ x_1=2,\\ x_2=-5`, `a=3,\\ x_1=2,\\ x_2=5`],
         a: `a=3,\\ x_1=2,\\ x_2=-5`, tip: r`a(x-x_1)(x-x_2)\Rightarrow a=3,\ x_1=2,\ x_2=-5` },
-      { q: r`x_1=4\text{ et }x_2=-1\\[4pt]x_1\times x_2=\,?`,
+      { q: r`x_1=4\text{ et }x_2=-1\\x_1\times x_2=\,?`,
         choices: [`-4`, `4`, `3`, `-3`], a: `-4`, tip: r`x_1\times x_2=4\times(-1)=-4` },
-      { q: r`a=1,\ x_1=3,\ x_2=5\\[4pt]x_1+x_2=-\dfrac{b}{a}\Rightarrow b=\,?`,
+      { q: r`a=1,\ x_1=3,\ x_2=5\\x_1+x_2=-\dfrac{b}{a}\Rightarrow b=\,?`,
         choices: [`-8`, `8`, `-15`, `2`], a: `-8`, tip: r`x_1+x_2=8=-\dfrac{b}{1}\Rightarrow b=-8` },
-      { q: r`a=1,\ x_1=2,\ x_2=-3\\[4pt]x_1\times x_2=\dfrac{c}{a}\Rightarrow c=\,?`,
+      { q: r`a=1,\ x_1=2,\ x_2=-3\\x_1\times x_2=\dfrac{c}{a}\Rightarrow c=\,?`,
         choices: [`-6`, `6`, `-1`, `1`], a: `-6`, tip: r`x_1\times x_2=2\times(-3)=-6=c` },
-      { q: r`a=2,\ b=6\\[4pt]x_1+x_2=-\dfrac{b}{a}=\,?`,
+      { q: r`a=2,\ b=6\\x_1+x_2=-\dfrac{b}{a}=\,?`,
         choices: [`-3`, `3`, `-12`, `12`], a: `-3`, tip: r`x_1+x_2=-\dfrac{6}{2}=-3` },
-      { q: r`x_1=3\text{ et }x_2=3\text{ (racine double)}\\[4pt]x_1\times x_2=\dfrac{c}{a}\Rightarrow\dfrac{c}{a}=\,?`,
+      { q: r`x_1=3\text{ et }x_2=3\text{ (racine double)}\\x_1\times x_2=\dfrac{c}{a}\Rightarrow\dfrac{c}{a}=\,?`,
         choices: [`9`, `6`, `3`, `-9`], a: `9`, tip: r`x_1\times x_2=3\times3=9=c/a` },
-      { q: r`a=2,\,x_1=-1,\,x_2=4\\[4pt]\dfrac{c}{a}=x_1\times x_2\Rightarrow c=\,?`,
+      { q: r`a=2,\,x_1=-1,\,x_2=4\\\dfrac{c}{a}=x_1\times x_2\Rightarrow c=\,?`,
         choices: [`-8`, `8`, `-4`, `4`], a: `-8`, tip: r`c=a\times x_1x_2=2\times(-4)=-8` },
     ],
 
     // ── 3. Discriminant et résolution ─────────────────────────────────────────
     poly2_discriminant: [
-      { q: r`x^2-5x+6=0\\[4pt]\Delta=b^2-4ac=\,?`,
+      { q: r`x^2-5x+6=0\\\Delta=b^2-4ac=\,?`,
         choices: [`1`, `25`, `49`, `-1`], a: `1`, tip: r`\Delta=25-24=1` },
-      { q: r`x^2-4=0\\[4pt]\text{Solutions :}`,
+      { q: r`x^2-4=0\\\text{Solutions :}`,
         choices: [r`x=-2\text{ et }x=2`, r`x=4\text{ et }x=-4`, r`x=2`, r`\text{Pas de solution}`],
         a: r`x=-2\text{ et }x=2`, tip: r`x^2=4\Rightarrow x=-2\text{ ou }x=2` },
-      { q: r`x^2-6x+9=0\\[4pt]\Delta=\,?`,
+      { q: r`x^2-6x+9=0\\\Delta=\,?`,
         choices: [`0`, `9`, `36`, `-9`], a: `0`, tip: r`\Delta=36-36=0\Rightarrow\text{une seule racine}` },
-      { q: r`x^2-6x+9=0,\ \Delta=0\\[4pt]\text{Solution double :}`,
+      { q: r`x^2-6x+9=0,\ \Delta=0\\\text{Solution double :}`,
         choices: [`x=3`, `x=-3`, `x=6`, `x=9`], a: `x=3`, tip: r`x=\dfrac{-b}{2a}=\dfrac{6}{2}=3` },
-      { q: r`x^2+1=0\\[4pt]\Delta=\,?`,
+      { q: r`x^2+1=0\\\Delta=\,?`,
         choices: [`-4`, `4`, `1`, `0`], a: `-4`, tip: r`\Delta=0-4=-4<0\Rightarrow\text{pas de solution}` },
-      { q: r`x^2-5x+6=0,\ \Delta=1\\[4pt]\text{Solutions :}`,
+      { q: r`x^2-5x+6=0,\ \Delta=1\\\text{Solutions :}`,
         choices: [r`x=2\text{ et }x=3`, r`x=1\text{ et }x=6`, r`x=-2\text{ et }x=-3`, r`x=5`],
         a: r`x=2\text{ et }x=3`, tip: r`x=\dfrac{5\pm1}{2}\Rightarrow x=3\text{ ou }x=2` },
       { q: r`\Delta<0\Rightarrow\text{l'équation admet :}`,
         choices: [r`\text{aucune solution réelle}`, r`\text{deux solutions}`, r`\text{une solution double}`, r`\text{une solution}`],
         a: r`\text{aucune solution réelle}`, tip: r`\Delta<0\Rightarrow\text{pas de racine réelle}` },
-      { q: r`2x^2-3x+1=0\\[4pt]\Delta=\,?`,
+      { q: r`2x^2-3x+1=0\\\Delta=\,?`,
         choices: [`1`, `9`, `-4`, `25`], a: `1`, tip: r`\Delta=9-8=1` },
-      { q: r`2x^2-3x+1=0,\,\Delta=1\\[4pt]\text{Solutions :}`,
+      { q: r`2x^2-3x+1=0,\,\Delta=1\\\text{Solutions :}`,
         choices: [r`x=1\text{ et }x=\dfrac{1}{2}`, r`x=3\text{ et }x=1`, r`x=-1\text{ et }x=-\dfrac{1}{2}`, r`x=\dfrac{3}{4}`],
         a: r`x=1\text{ et }x=\dfrac{1}{2}`, tip: r`x=\dfrac{3\pm1}{4}\Rightarrow x=1\text{ ou }x=\tfrac{1}{2}` },
-      { q: r`x^2-2x+1=0\\[4pt]\Delta=\,?\text{ puis nature}`,
+      { q: r`x^2-2x+1=0\\\Delta=\,?\text{ puis nature}`,
         choices: [r`\Delta=0\text{ : solution double}`, r`\Delta>0\text{ : 2 solutions}`, r`\Delta<0\text{ : sans solution}`, r`\Delta=1\text{ : 2 solutions}`],
         a: r`\Delta=0\text{ : solution double}`, tip: r`\Delta=4-4=0\Rightarrow x=1\text{ (double)}` },
-      { q: r`x^2+2x+5=0\\[4pt]\Delta=\,?`,
+      { q: r`x^2+2x+5=0\\\Delta=\,?`,
         choices: [`-16`, `16`, `4`, `-4`], a: `-16`, tip: r`\Delta=4-20=-16<0` },
-      { q: r`2x^2-7x+3=0\\[4pt]\Delta=\,?`,
+      { q: r`2x^2-7x+3=0\\\Delta=\,?`,
         choices: [`25`, `49`, `-24`, `1`], a: `25`, tip: r`\Delta=49-24=25` },
-      { q: r`2x^2-7x+3=0,\ \Delta=25\\[4pt]\text{Solutions :}`,
+      { q: r`2x^2-7x+3=0,\ \Delta=25\\\text{Solutions :}`,
         choices: [r`x=3\text{ et }x=\tfrac{1}{2}`, r`x=7\text{ et }x=3`, r`x=1\text{ et }x=3`, r`x=-3\text{ et }x=-\tfrac{1}{2}`],
         a: r`x=3\text{ et }x=\tfrac{1}{2}`, tip: r`x=\dfrac{7\pm5}{4}\Rightarrow x=3\text{ ou }x=\tfrac{1}{2}` },
-      { q: r`3x^2-2x-1=0\\[4pt]\Delta=\,?`,
+      { q: r`3x^2-2x-1=0\\\Delta=\,?`,
         choices: [`16`, `4`, `-8`, `10`], a: `16`, tip: r`\Delta=4+12=16` },
-      { q: r`3x^2-2x-1=0,\ \Delta=16\\[4pt]\text{Solutions :}`,
+      { q: r`3x^2-2x-1=0,\ \Delta=16\\\text{Solutions :}`,
         choices: [r`x=1\text{ et }x=-\tfrac{1}{3}`, r`x=2\text{ et }x=-1`, r`x=\tfrac{1}{3}\text{ et }x=-1`, r`x=1\text{ et }x=\tfrac{1}{3}`],
         a: r`x=1\text{ et }x=-\tfrac{1}{3}`, tip: r`x=\dfrac{2\pm4}{6}\Rightarrow x=1\text{ ou }x=-\tfrac{1}{3}` },
-      { q: r`x^2+3x+3=0\\[4pt]\Delta=\,?`,
+      { q: r`x^2+3x+3=0\\\Delta=\,?`,
         choices: [`-3`, `9`, `3`, `0`], a: `-3`, tip: r`\Delta=9-12=-3<0\Rightarrow\text{pas de solution}` },
-      { q: r`4x^2-4x+1=0\\[4pt]\text{Nature des solutions :}`,
+      { q: r`4x^2-4x+1=0\\\text{Nature des solutions :}`,
         choices: [r`\text{une solution double}`, r`\text{deux solutions}`, r`\text{aucune solution}`, r`\text{impossible}`],
         a: r`\text{une solution double}`, tip: r`\Delta=16-16=0\Rightarrow x=\dfrac{1}{2}` },
-      { q: r`4x^2-4x+1=0,\ \Delta=0\\[4pt]x=\,?`,
+      { q: r`4x^2-4x+1=0,\ \Delta=0\\x=\,?`,
         choices: [r`\tfrac{1}{2}`, r`\tfrac{1}{4}`, `1`, `4`], a: r`\tfrac{1}{2}`,
         tip: r`x=\dfrac{-b}{2a}=\dfrac{4}{8}=\dfrac{1}{2}` },
-      { q: r`6x^2-x-1=0\\[4pt]\Delta=\,?`,
+      { q: r`6x^2-x-1=0\\\Delta=\,?`,
         choices: [`25`, `1`, `-24`, `49`], a: `25`, tip: r`\Delta=1+24=25` },
-      { q: r`6x^2-x-1=0,\,\Delta=25\\[4pt]\text{Solutions :}`,
+      { q: r`6x^2-x-1=0,\,\Delta=25\\\text{Solutions :}`,
         choices: [r`x=\dfrac{1}{2}\text{ et }x=-\dfrac{1}{3}`, r`x=1\text{ et }x=-\dfrac{1}{6}`, r`x=\dfrac{1}{3}\text{ et }x=-\dfrac{1}{2}`, r`x=\dfrac{1}{6}\text{ et }x=-1`],
         a: r`x=\dfrac{1}{2}\text{ et }x=-\dfrac{1}{3}`, tip: r`x=\dfrac{1\pm5}{12}\Rightarrow x=\tfrac{1}{2}\text{ ou }x=-\tfrac{1}{3}` },
-      { q: r`9x^2-6x+1=0\\[4pt]\text{Nature des solutions :}`,
+      { q: r`9x^2-6x+1=0\\\text{Nature des solutions :}`,
         choices: [r`\text{Une solution double}`, r`\text{Deux solutions}`, r`\text{Aucune solution}`, r`\text{Impossible à déterminer}`],
         a: r`\text{Une solution double}`, tip: r`\Delta=36-36=0\Rightarrow x=\tfrac{1}{3}` },
-      { q: r`9x^2-6x+1=0,\,\Delta=0\\[4pt]x=\,?`,
+      { q: r`9x^2-6x+1=0,\,\Delta=0\\x=\,?`,
         choices: [r`\dfrac{1}{3}`, r`\dfrac{2}{3}`, r`\dfrac{1}{9}`, `3`], a: r`\dfrac{1}{3}`,
         tip: r`x=\dfrac{-b}{2a}=\dfrac{6}{18}=\dfrac{1}{3}` },
     ],
 
     // ── 4. Forme canonique ────────────────────────────────────────────────────
     poly2_canonique: [
-      { q: r`f(x)=x^2-6x+5\\[4pt]\alpha=-\dfrac{b}{2a}=\,?`,
+      { q: r`f(x)=x^2-6x+5\\\alpha=-\dfrac{b}{2a}=\,?`,
         choices: [`3`, `-3`, `6`, `-6`], a: `3`,
         tip: r`\alpha=-\dfrac{-6}{2\times1}=3` },
-      { q: r`f(x)=x^2-6x+5,\;\alpha=3\\[4pt]\beta=f(\alpha)=\,?`,
+      { q: r`f(x)=x^2-6x+5,\;\alpha=3\\\beta=f(\alpha)=\,?`,
         choices: [`-4`, `4`, `5`, `-5`], a: `-4`,
         tip: r`\beta=f(3)=9-18+5=-4` },
-      { q: r`f(x)=2x^2+4x-1\\[4pt]\alpha=-\dfrac{b}{2a}=\,?`,
+      { q: r`f(x)=2x^2+4x-1\\\alpha=-\dfrac{b}{2a}=\,?`,
         choices: [`-1`, `1`, `-2`, `2`], a: `-1`,
         tip: r`\alpha=-\dfrac{4}{2\times2}=-1` },
-      { q: r`f(x)=2x^2+4x-1,\;\alpha=-1\\[4pt]\beta=f(\alpha)=\,?`,
+      { q: r`f(x)=2x^2+4x-1,\;\alpha=-1\\\beta=f(\alpha)=\,?`,
         choices: [`-3`, `3`, `-1`, `1`], a: `-3`,
         tip: r`\beta=f(-1)=2-4-1=-3` },
-      { q: r`f(x)=x^2-4x+7\\[4pt]\text{Forme canonique :}`,
+      { q: r`f(x)=x^2-4x+7\\\text{Forme canonique :}`,
         choices: [r`(x-2)^2+3`, r`(x+2)^2+3`, r`(x-2)^2-3`, r`(x-4)^2+7`], a: r`(x-2)^2+3`,
         tip: r`\alpha=2,\;\beta=f(2)=4-8+7=3` },
-      { q: r`f(x)=-x^2+2x+3\\[4pt]\text{Forme canonique :}`,
+      { q: r`f(x)=-x^2+2x+3\\\text{Forme canonique :}`,
         choices: [r`-(x-1)^2+4`, r`-(x+1)^2+4`, r`-(x-1)^2-4`, r`(x-1)^2+4`], a: r`-(x-1)^2+4`,
         tip: r`\alpha=1,\;\beta=f(1)=-1+2+3=4` },
-      { q: r`f(x)=(x-2)^2+5\\[4pt]\text{Coordonnées du sommet }S\text{ :}`,
+      { q: r`f(x)=(x-2)^2+5\\\text{Coordonnées du sommet }S\text{ :}`,
         choices: [r`S(2\,;\,5)`, r`S(-2\,;\,5)`, r`S(2\,;\,-5)`, r`S(5\,;\,2)`], a: r`S(2\,;\,5)`,
         tip: r`\text{Forme }(x-\alpha)^2+\beta\Rightarrow S(\alpha\,;\,\beta)` },
-      { q: r`f(x)=-(x+1)^2+4,\;a<0\\[4pt]\text{Le sommet est un :}`,
+      { q: r`f(x)=-(x+1)^2+4,\;a<0\\\text{Le sommet est un :}`,
         choices: [r`\text{maximum}`, r`\text{minimum}`, r`\text{point d'inflexion}`, r`\text{zéro}`], a: r`\text{maximum}`,
         tip: r`a<0\Rightarrow\text{parabole vers le bas}\Rightarrow\text{sommet = maximum}` },
-      { q: r`f(x)=(x-3)^2+0\\[4pt]\text{Que peut-on conclure sur }\Delta\text{ ?}`,
+      { q: r`f(x)=(x-3)^2+0\\\text{Que peut-on conclure sur }\Delta\text{ ?}`,
         choices: [r`\Delta=0`, r`\Delta>0`, r`\Delta<0`, r`\text{Impossible à dire}`], a: r`\Delta=0`,
         tip: r`\beta=0\Rightarrow\text{le sommet est sur }(Ox)\Rightarrow\Delta=0` },
-      { q: r`f(x)=2(x-1)^2+3,\;a>0\\[4pt]\text{La parabole coupe-t-elle l'axe des }x\text{ ?}`,
+      { q: r`f(x)=2(x-1)^2+3,\;a>0\\\text{La parabole coupe-t-elle l'axe des }x\text{ ?}`,
         choices: [r`\text{Non, jamais}`, r`\text{Oui, deux fois}`, r`\text{Oui, une fois}`, r`\text{Impossible à dire}`], a: r`\text{Non, jamais}`,
         tip: r`\beta=3>0\text{ et }a>0\Rightarrow f(x)\geqslant3>0\Rightarrow\Delta<0` },
-      { q: r`C(x)=-x^2+2x+5\\[4pt]\alpha=\,?`,
+      { q: r`C(x)=-x^2+2x+5\\\alpha=\,?`,
         choices: [`1`, `-1`, `2`, `-2`], a: `1`,
         tip: r`\alpha=-\dfrac{2}{2\times(-1)}=1` },
-      { q: r`C(x)=-x^2+2x+5,\;\alpha=1\\[4pt]\text{Forme canonique :}`,
+      { q: r`C(x)=-x^2+2x+5,\;\alpha=1\\\text{Forme canonique :}`,
         choices: [r`-(x-1)^2+6`, r`-(x+1)^2+6`, r`-(x-1)^2-6`, r`(x-1)^2+6`], a: r`-(x-1)^2+6`,
         tip: r`\beta=f(1)=-1+2+5=6` },
     ],
@@ -10094,82 +10094,82 @@ const DB = {
     poly2_variations: [
 
       // ── Allure de la parabole selon le signe de a ─────────────────────────
-      { q: r`a>0\\[4pt]\text{La parabole est orientée :}`,
+      { q: r`a>0\\\text{La parabole est orientée :}`,
         choices: [r`\text{vers le haut (sourit)}`, r`\text{vers le bas (pleure)}`, r`\text{vers la gauche}`, r`\text{vers la droite}`],
         a: r`\text{vers le haut (sourit)}`,
         tip: r`a>0\Rightarrow\text{parabole en forme de }U\text{ (vers le haut).}` },
-      { q: r`a<0\\[4pt]\text{La parabole est orientée :}`,
+      { q: r`a<0\\\text{La parabole est orientée :}`,
         choices: [r`\text{vers le haut}`, r`\text{vers le bas (pleure)}`, r`\text{vers la gauche}`, r`\text{vers la droite}`],
         a: r`\text{vers le bas (pleure)}`,
         tip: r`a<0\Rightarrow\text{parabole en forme de }\cap\text{ (vers le bas).}` },
-      { q: r`f(x)=3x^2-x+2\\[4pt]\text{La parabole est orientée :}`,
+      { q: r`f(x)=3x^2-x+2\\\text{La parabole est orientée :}`,
         choices: [r`\text{vers le haut}`, r`\text{vers le bas}`, r`\text{impossible à dire}`, r`\text{vers la droite}`],
         a: r`\text{vers le haut}`,
         tip: r`a=3>0\Rightarrow\text{parabole vers le haut.}` },
-      { q: r`f(x)=-5x^2+2x-1\\[4pt]\text{La parabole est orientée :}`,
+      { q: r`f(x)=-5x^2+2x-1\\\text{La parabole est orientée :}`,
         choices: [r`\text{vers le bas}`, r`\text{vers le haut}`, r`\text{impossible à dire}`, r`\text{vers la gauche}`],
         a: r`\text{vers le bas}`,
         tip: r`a=-5<0\Rightarrow\text{parabole vers le bas.}` },
-      { q: r`f(x)=-x^2+4x\\[4pt]\text{La fonction admet un :}`,
+      { q: r`f(x)=-x^2+4x\\\text{La fonction admet un :}`,
         choices: [r`\text{maximum}`, r`\text{minimum}`, r`\text{ni l'un ni l'autre}`, r`\text{impossible à dire}`],
         a: r`\text{maximum}`,
         tip: r`a=-1<0\Rightarrow\text{parabole vers le bas}\Rightarrow\text{maximum au sommet.}` },
-      { q: r`f(x)=2x^2-8x+5\\[4pt]\text{La fonction admet un :}`,
+      { q: r`f(x)=2x^2-8x+5\\\text{La fonction admet un :}`,
         choices: [r`\text{minimum}`, r`\text{maximum}`, r`\text{ni l'un ni l'autre}`, r`\text{impossible à dire}`],
         a: r`\text{minimum}`,
         tip: r`a=2>0\Rightarrow\text{parabole vers le haut}\Rightarrow\text{minimum au sommet.}` },
-      { q: r`f(x)=-2x^2+8x-5\\[4pt]\text{La fonction admet un :}`,
+      { q: r`f(x)=-2x^2+8x-5\\\text{La fonction admet un :}`,
         choices: [r`\text{maximum}`, r`\text{minimum}`, r`\text{ni l'un ni l'autre}`, r`\text{impossible à dire}`],
         a: r`\text{maximum}`,
         tip: r`a=-2<0\Rightarrow\text{parabole vers le bas}\Rightarrow\text{maximum.}` },
 
       // ── Axe de symétrie et sommet ─────────────────────────────────────────
-      { q: r`f(x)=ax^2+bx+c\\[4pt]\text{L'axe de symétrie de la parabole est :}`,
+      { q: r`f(x)=ax^2+bx+c\\\text{L'axe de symétrie de la parabole est :}`,
         choices: [r`x=-\dfrac{b}{2a}`, r`x=\dfrac{b}{a}`, r`x=\dfrac{c}{a}`, r`x=\dfrac{-b}{a}`],
         a: r`x=-\dfrac{b}{2a}`,
         tip: r`\text{L'abscisse du sommet (axe de symétrie) est }\alpha=-\dfrac{b}{2a}.` },
-      { q: r`f(x)=x^2-6x+5\\[4pt]\text{Axe de symétrie :}`,
+      { q: r`f(x)=x^2-6x+5\\\text{Axe de symétrie :}`,
         choices: [`x=3`, `x=-3`, `x=5`, `x=6`], a: `x=3`,
         tip: r`\alpha=-\dfrac{b}{2a}=-\dfrac{-6}{2}=3` },
-      { q: r`f(x)=x^2-4x+1\\[4pt]\text{Axe de symétrie :}`,
+      { q: r`f(x)=x^2-4x+1\\\text{Axe de symétrie :}`,
         choices: [`x=2`, `x=-2`, `x=4`, `x=1`], a: `x=2`,
         tip: r`\alpha=-\dfrac{-4}{2\times1}=2` },
-      { q: r`f(x)=-2x^2+4x+3\\[4pt]\text{Axe de symétrie :}`,
+      { q: r`f(x)=-2x^2+4x+3\\\text{Axe de symétrie :}`,
         choices: [`x=1`, `x=-1`, `x=2`, `x=-2`], a: `x=1`,
         tip: r`\alpha=-\dfrac{4}{2\times(-2)}=-\dfrac{4}{-4}=1.` },
-      { q: r`f(x)=3x^2+6x-2\\[4pt]\text{Axe de symétrie :}`,
+      { q: r`f(x)=3x^2+6x-2\\\text{Axe de symétrie :}`,
         choices: [`x=-1`, `x=1`, `x=-2`, `x=2`], a: `x=-1`,
         tip: r`\alpha=-\dfrac{6}{2\times3}=-1.` },
 
       // ── Calcul du sommet ──────────────────────────────────────────────────
-      { q: r`f(x)=2(x-1)(x-5)\\[4pt]\text{Sommet de la parabole en }x=\,?`,
+      { q: r`f(x)=2(x-1)(x-5)\\\text{Sommet de la parabole en }x=\,?`,
         choices: [`3`, `1`, `5`, `10`], a: `3`, tip: r`x_s=\dfrac{x_1+x_2}{2}=\dfrac{1+5}{2}=3` },
-      { q: r`f(x)=x^2-6x+5\\[4pt]\text{Minimum de }f=\,?`,
+      { q: r`f(x)=x^2-6x+5\\\text{Minimum de }f=\,?`,
         choices: [`-4`, `5`, `0`, `6`], a: `-4`, tip: r`x_s=3\Rightarrow f(3)=9-18+5=-4` },
-      { q: r`f(x)=-(x-2)^2+9\\[4pt]\text{Maximum de }f=\,?`,
+      { q: r`f(x)=-(x-2)^2+9\\\text{Maximum de }f=\,?`,
         choices: [`9`, `-9`, `4`, `2`], a: `9`, tip: r`a<0\Rightarrow\text{max en }x=2\text{ : }f(2)=9` },
-      { q: r`f(x)=(x-2)^2+3\\[4pt]\text{Minimum de }f=\,?`,
+      { q: r`f(x)=(x-2)^2+3\\\text{Minimum de }f=\,?`,
         choices: [`3`, `2`, `0`, `7`], a: `3`, tip: r`\text{Minimum en }x=2:f(2)=0+3=3` },
-      { q: r`f(x)=-(x+1)^2+4\\[4pt]\text{Maximum de }f=\,?`,
+      { q: r`f(x)=-(x+1)^2+4\\\text{Maximum de }f=\,?`,
         choices: [`4`, `-1`, `3`, `0`], a: `4`, tip: r`a<0\Rightarrow\text{max en }x=-1:f(-1)=4` },
-      { q: r`\text{Parabole vers le bas, sommet }S(2\,;\,7)\\[4pt]\text{Maximum de }f=\,?`,
+      { q: r`\text{Parabole vers le bas, sommet }S(2\,;\,7)\\\text{Maximum de }f=\,?`,
         choices: [`7`, `2`, `-7`, `0`], a: `7`,
         tip: r`\text{Le sommet donne directement le maximum : }f(2)=7` },
 
       // ── Sens de variation ─────────────────────────────────────────────────
-      { q: r`f(x)=2x^2+4x-1\text{, sommet en }x=-1\\[4pt]\text{Sur }]-\infty\,;-1],\;f\text{ est :}`,
+      { q: r`f(x)=2x^2+4x-1\text{, sommet en }x=-1\\\text{Sur }]-\infty\,;-1],\;f\text{ est :}`,
         choices: [r`\text{décroissante}`, r`\text{croissante}`, r`\text{constante}`, r`\text{impossible à dire}`],
         a: r`\text{décroissante}`,
         tip: r`a>0\Rightarrow f\text{ décroissante sur }]-\infty\,;\alpha]\text{ avec }\alpha=-1` },
-      { q: r`f(x)=-3x^2+6x\text{, sommet en }x=1\\[4pt]\text{Sur }[1\,;+\infty[,\;f\text{ est :}`,
+      { q: r`f(x)=-3x^2+6x\text{, sommet en }x=1\\\text{Sur }[1\,;+\infty[,\;f\text{ est :}`,
         choices: [r`\text{décroissante}`, r`\text{croissante}`, r`\text{constante}`, r`\text{impossible à dire}`],
         a: r`\text{décroissante}`,
         tip: r`a<0\Rightarrow f\text{ décroissante sur }[\alpha\,;+\infty[\text{ avec }\alpha=1` },
-      { q: r`f(x)=x^2-4x+1\text{, sommet en }x=2\\[4pt]\text{Sur }[2\,;+\infty[,\;f\text{ est :}`,
+      { q: r`f(x)=x^2-4x+1\text{, sommet en }x=2\\\text{Sur }[2\,;+\infty[,\;f\text{ est :}`,
         choices: [r`\text{croissante}`, r`\text{décroissante}`, r`\text{constante}`, r`\text{impossible à dire}`],
         a: r`\text{croissante}`,
         tip: r`a>0\Rightarrow f\text{ croissante sur }[\alpha\,;+\infty[\text{ avec }\alpha=2.` },
-      { q: r`f(x)=-x^2+2x+3\text{, sommet en }x=1\\[4pt]\text{Sur }]-\infty\,;1],\;f\text{ est :}`,
+      { q: r`f(x)=-x^2+2x+3\text{, sommet en }x=1\\\text{Sur }]-\infty\,;1],\;f\text{ est :}`,
         choices: [r`\text{croissante}`, r`\text{décroissante}`, r`\text{constante}`, r`\text{impossible à dire}`],
         a: r`\text{croissante}`,
         tip: r`a<0\Rightarrow f\text{ croissante sur }]-\infty\,;\alpha]\text{ avec }\alpha=1.` },
@@ -10178,73 +10178,73 @@ const DB = {
     // ── 6. Tableau de signes du trinôme ──────────────────────────────────────
     poly2_signe: [
       // Δ < 0
-      { q: r`f(x)=x^2+1,\;\Delta<0,\;a>0\\[4pt]\text{Signe de }f\text{ sur }\mathbb{R}\text{ :}`,
+      { q: r`f(x)=x^2+1,\;\Delta<0,\;a>0\\\text{Signe de }f\text{ sur }\mathbb{R}\text{ :}`,
         choices: [r`\text{toujours positif}`, r`\text{toujours négatif}`, r`\text{change de signe}`, r`\text{nul en }x=1`],
         a: r`\text{toujours positif}`, tip: r`\Delta<0\text{ et }a>0\Rightarrow f>0\text{ sur tout }\mathbb{R}` },
-      { q: r`f(x)=-x^2-3,\;\Delta<0,\;a<0\\[4pt]\text{Signe de }f\text{ sur }\mathbb{R}\text{ :}`,
+      { q: r`f(x)=-x^2-3,\;\Delta<0,\;a<0\\\text{Signe de }f\text{ sur }\mathbb{R}\text{ :}`,
         choices: [r`\text{toujours négatif}`, r`\text{toujours positif}`, r`\text{change de signe}`, r`\text{nul}`],
         a: r`\text{toujours négatif}`, tip: r`\Delta<0\text{ et }a<0\Rightarrow f<0\text{ sur tout }\mathbb{R}` },
-      { q: r`f(x)=2x^2+x+1\\[4pt]\Delta=1-8=\,?\text{ puis signe sur }\mathbb{R}`,
+      { q: r`f(x)=2x^2+x+1\\\Delta=1-8=\,?\text{ puis signe sur }\mathbb{R}`,
         choices: [r`\Delta=-7<0\Rightarrow f>0\text{ sur }\mathbb{R}`, r`\Delta=-7<0\Rightarrow f<0\text{ sur }\mathbb{R}`, r`\Delta=9>0\Rightarrow\text{deux racines}`, r`\Delta=0\Rightarrow\text{racine double}`],
         a: r`\Delta=-7<0\Rightarrow f>0\text{ sur }\mathbb{R}`, tip: r`\Delta=1-8=-7<0\text{ et }a=2>0\Rightarrow f>0\text{ sur }\mathbb{R}` },
-      { q: r`f(x)=x^2+2x+5,\;\Delta=-16<0\\[4pt]f(x)\leqslant0\text{ a-t-il des solutions ?}`,
+      { q: r`f(x)=x^2+2x+5,\;\Delta=-16<0\\f(x)\leqslant0\text{ a-t-il des solutions ?}`,
         choices: [r`\text{Non, aucune}`, r`\text{Oui, deux}`, r`\text{Oui, une}`, r`\text{Oui, infiniment}`],
         a: r`\text{Non, aucune}`, tip: r`a>0\text{ et }\Delta<0\Rightarrow f>0\text{ sur }\mathbb{R}` },
-      { q: r`f(x)=-x^2+x-1,\;\Delta<0,\;a<0\\[4pt]f(x)>0\text{ a-t-il des solutions ?}`,
+      { q: r`f(x)=-x^2+x-1,\;\Delta<0,\;a<0\\f(x)>0\text{ a-t-il des solutions ?}`,
         choices: [r`\text{Non, aucune}`, r`\text{Oui, deux}`, r`\text{Oui, une}`, r`\text{Oui, infiniment}`],
         a: r`\text{Non, aucune}`, tip: r`a<0\text{ et }\Delta<0\Rightarrow f<0\text{ sur }\mathbb{R}` },
       // Δ = 0
-      { q: r`f(x)=x^2-6x+9,\;\Delta=0,\;x_0=3\\[4pt]\text{Signe de }f\text{ sur }\mathbb{R}\text{ :}`,
+      { q: r`f(x)=x^2-6x+9,\;\Delta=0,\;x_0=3\\\text{Signe de }f\text{ sur }\mathbb{R}\text{ :}`,
         choices: [r`f(x)\geqslant0\text{ (nul en }x_0\text{ seulement)}`, r`f(x)\leqslant0`, r`f\text{ change de signe en }x_0`, r`f(x)>0\text{ partout}`],
         a: r`f(x)\geqslant0\text{ (nul en }x_0\text{ seulement)}`, tip: r`a>0,\;\Delta=0\Rightarrow f(x)=a(x-x_0)^2\geqslant0` },
-      { q: r`f(x)=-(x-2)^2,\;\Delta=0,\;a<0\\[4pt]\text{Signe de }f\text{ sur }\mathbb{R}\text{ :}`,
+      { q: r`f(x)=-(x-2)^2,\;\Delta=0,\;a<0\\\text{Signe de }f\text{ sur }\mathbb{R}\text{ :}`,
         choices: [r`f(x)\leqslant0\text{ (nul en }x=2\text{ seulement)}`, r`f(x)\geqslant0`, r`f\text{ change de signe en }2`, r`f(x)<0\text{ partout}`],
         a: r`f(x)\leqslant0\text{ (nul en }x=2\text{ seulement)}`, tip: r`a<0,\;\Delta=0\Rightarrow f(x)=-( x-2)^2\leqslant0` },
-      { q: r`f(x)=x^2-4x+4,\;\Delta=0\\[4pt]f(x)=0\text{ pour }x=\,?`,
+      { q: r`f(x)=x^2-4x+4,\;\Delta=0\\f(x)=0\text{ pour }x=\,?`,
         choices: [`2`, `-2`, `4`, `0`], a: `2`,
         tip: r`\Delta=0\Rightarrow x_0=\dfrac{-b}{2a}=\dfrac{4}{2}=2` },
-      { q: r`f(x)=4x^2-4x+1,\;\Delta=0,\;x_0=\tfrac{1}{2}\\[4pt]\text{Tableau de signes : }f(x)\text{ est :}`,
+      { q: r`f(x)=4x^2-4x+1,\;\Delta=0,\;x_0=\tfrac{1}{2}\\\text{Tableau de signes : }f(x)\text{ est :}`,
         choices: [r`\text{positif ou nul sur }\mathbb{R}`, r`\text{négatif ou nul sur }\mathbb{R}`, r`\text{positif sur }]-\infty\,;\tfrac{1}{2}[\text{ et négatif après}`, r`\text{nul partout}`],
         a: r`\text{positif ou nul sur }\mathbb{R}`, tip: r`a=4>0,\;\Delta=0\Rightarrow f(x)=4(x-\tfrac{1}{2})^2\geqslant0` },
       // Δ > 0
-      { q: r`f(x)=x^2-5x+6,\;x_1=2,\;x_2=3\\[4pt]\text{Signe de }f\text{ sur }]2\,;3[\text{ :}`,
+      { q: r`f(x)=x^2-5x+6,\;x_1=2,\;x_2=3\\\text{Signe de }f\text{ sur }]2\,;3[\text{ :}`,
         choices: [r`\text{négatif}`, r`\text{positif}`, r`\text{nul}`, r`\text{impossible à dire}`],
         a: r`\text{négatif}`, tip: r`a>0\Rightarrow f<0\text{ strictement entre les racines}` },
-      { q: r`f(x)=-x^2+4,\;x_1=-2,\;x_2=2\\[4pt]\text{Signe de }f\text{ sur }]-2\,;2[\text{ :}`,
+      { q: r`f(x)=-x^2+4,\;x_1=-2,\;x_2=2\\\text{Signe de }f\text{ sur }]-2\,;2[\text{ :}`,
         choices: [r`\text{positif}`, r`\text{négatif}`, r`\text{nul}`, r`\text{variable}`],
         a: r`\text{positif}`, tip: r`a<0\Rightarrow f>0\text{ entre les racines}` },
-      { q: r`f(x)=(x-1)(x-4),\;a>0\\[4pt]\text{Signe de }f\text{ sur }]-\infty\,;1[\text{ :}`,
+      { q: r`f(x)=(x-1)(x-4),\;a>0\\\text{Signe de }f\text{ sur }]-\infty\,;1[\text{ :}`,
         choices: [r`\text{positif}`, r`\text{négatif}`, r`\text{nul}`, r`\text{nul en }x=1`],
         a: r`\text{positif}`, tip: r`a>0\Rightarrow f>0\text{ à l'extérieur des racines}` },
-      { q: r`f(x)=-(x+1)(x-3),\;a<0\\[4pt]\text{Signe de }f\text{ sur }]3\,;+\infty[\text{ :}`,
+      { q: r`f(x)=-(x+1)(x-3),\;a<0\\\text{Signe de }f\text{ sur }]3\,;+\infty[\text{ :}`,
         choices: [r`\text{négatif}`, r`\text{positif}`, r`\text{nul}`, r`\text{variable}`],
         a: r`\text{négatif}`, tip: r`a<0\Rightarrow f<0\text{ à l'extérieur des racines}` },
     ],
 
     // ── 7. Inéquations du second degré ────────────────────────────────────────
     poly2_inequations: [
-      { q: r`f(x)=x^2-4x+3,\;x_1=1,\;x_2=3\\[4pt]f(x)<0\text{ pour :}`,
+      { q: r`f(x)=x^2-4x+3,\;x_1=1,\;x_2=3\\f(x)<0\text{ pour :}`,
         choices: [r`x\in]1\,;3[`, r`x\in]-\infty\,;1[\cup]3\,;+\infty[`, r`x\in[1\,;3]`, r`\text{jamais}`],
         a: r`x\in]1\,;3[`, tip: r`a>0\Rightarrow f<0\text{ strictement entre les racines}` },
-      { q: r`f(x)=-x^2+2x+3,\;x_1=-1,\;x_2=3\\[4pt]f(x)\geqslant0\text{ pour :}`,
+      { q: r`f(x)=-x^2+2x+3,\;x_1=-1,\;x_2=3\\f(x)\geqslant0\text{ pour :}`,
         choices: [r`x\in[-1\,;3]`, r`x\in]-\infty\,;-1]\cup[3\,;+\infty[`, r`x\in]-1\,;3[`, r`\text{jamais}`],
         a: r`x\in[-1\,;3]`, tip: r`a<0\Rightarrow f\geqslant0\text{ entre les racines (bornes incluses)}` },
-      { q: r`f(x)=2x^2-8x+6,\;x_1=1,\;x_2=3\\[4pt]f(x)<0\text{ pour :}`,
+      { q: r`f(x)=2x^2-8x+6,\;x_1=1,\;x_2=3\\f(x)<0\text{ pour :}`,
         choices: [r`x\in]1\,;3[`, r`x\in]-\infty\,;1[\cup]3\,;+\infty[`, r`x\in[1\,;3]`, r`\text{jamais}`],
         a: r`x\in]1\,;3[`, tip: r`a=2>0\Rightarrow f<0\text{ entre }x_1=1\text{ et }x_2=3` },
-      { q: r`f(x)=x^2-3x\\[4pt]x_1=0,\;x_2=3.\quad f(x)>0\text{ pour :}`,
+      { q: r`f(x)=x^2-3x\\x_1=0,\;x_2=3.\quad f(x)>0\text{ pour :}`,
         choices: [r`x\in]-\infty\,;0[\cup]3\,;+\infty[`, r`x\in]0\,;3[`, r`x\in[0\,;3]`, r`\text{jamais}`],
         a: r`x\in]-\infty\,;0[\cup]3\,;+\infty[`, tip: r`a>0\Rightarrow f>0\text{ à l'extérieur des racines}` },
-      { q: r`f(x)=(3x-15)(x+2)\\[4pt]f(x)\leqslant0\text{ pour :}`,
+      { q: r`f(x)=(3x-15)(x+2)\\f(x)\leqslant0\text{ pour :}`,
         choices: [r`x\in[-2\,;5]`, r`x\in]-\infty\,;-2]\cup[5\,;+\infty[`, r`x\in]-2\,;5[`, r`\text{jamais}`],
         a: r`x\in[-2\,;5]`, tip: r`x_1=-2,\;x_2=5,\;a>0\Rightarrow f\leqslant0\text{ entre les racines}` },
-      { q: r`f(x)=-x^2+1,\;x_1=-1,\;x_2=1\\[4pt]f(x)<0\text{ pour :}`,
+      { q: r`f(x)=-x^2+1,\;x_1=-1,\;x_2=1\\f(x)<0\text{ pour :}`,
         choices: [r`x\in]-\infty\,;-1[\cup]1\,;+\infty[`, r`x\in]-1\,;1[`, r`x\in[-1\,;1]`, r`\text{jamais}`],
         a: r`x\in]-\infty\,;-1[\cup]1\,;+\infty[`, tip: r`a<0\Rightarrow f<0\text{ à l'extérieur des racines}` },
-      { q: r`f(x)=x^2+2x+1,\;\Delta=0,\;x_0=-1\\[4pt]f(x)>0\text{ pour :}`,
+      { q: r`f(x)=x^2+2x+1,\;\Delta=0,\;x_0=-1\\f(x)>0\text{ pour :}`,
         choices: [r`x\in\mathbb{R}\setminus\{-1\}`, r`x\in]-\infty\,;-1[`, r`x\in]-1\,;+\infty[`, r`\text{jamais}`],
         a: r`x\in\mathbb{R}\setminus\{-1\}`, tip: r`a>0,\;\Delta=0\Rightarrow f\geqslant0,\text{ et }f>0\text{ sauf en }x_0=-1` },
-      { q: r`f(x)=-x^2-4x-4,\;\Delta=0,\;x_0=-2\\[4pt]f(x)<0\text{ pour :}`,
+      { q: r`f(x)=-x^2-4x-4,\;\Delta=0,\;x_0=-2\\f(x)<0\text{ pour :}`,
         choices: [r`x\in\mathbb{R}\setminus\{-2\}`, r`x\in]-\infty\,;-2[`, r`x\in]-2\,;+\infty[`, r`\text{jamais}`],
         a: r`x\in\mathbb{R}\setminus\{-2\}`, tip: r`a<0,\;\Delta=0\Rightarrow f\leqslant0,\text{ et }f<0\text{ sauf en }x_0=-2` },
     ],
@@ -10258,64 +10258,64 @@ const DB = {
       // ── Moyenne (sans calculatrice — calculs nets) ────────────────────────
 
       // sc_01
-      { q: r`\text{Série : }3\ ;\ 5\ ;\ 7\ ;\ 9\ ;\ 11\\[4pt]\text{Moyenne}=\,?`,
+      { q: r`\text{Série : }3\ ;\ 5\ ;\ 7\ ;\ 9\ ;\ 11\\\text{Moyenne}=\,?`,
         choices: [`7`, `6`, `8`, `5`], a: `7`, tip: r`\bar{x}=\dfrac{3+5+7+9+11}{5}=\dfrac{35}{5}=7` },
       // sc_02
-      { q: r`\text{Série : }2\ ;\ 4\ ;\ 6\ ;\ 8\ ;\ 10\\[4pt]\text{Moyenne}=\,?`,
+      { q: r`\text{Série : }2\ ;\ 4\ ;\ 6\ ;\ 8\ ;\ 10\\\text{Moyenne}=\,?`,
         choices: [`6`, `5`, `7`, `4`], a: `6`, tip: r`\bar{x}=\dfrac{30}{5}=6` },
       // sc_03
-      { q: r`\text{Notes : }8\ (\times1),\ 12\ (\times3)\\[4pt]\text{Moyenne}=\,?`,
+      { q: r`\text{Notes : }8\ (\times1),\ 12\ (\times3)\\\text{Moyenne}=\,?`,
         choices: [`11`, `10`, `12`, `9`], a: `11`, tip: r`\dfrac{8+36}{4}=\dfrac{44}{4}=11` },
       // sc_04
-      { q: r`\text{Notes : }10\ (\times1),\ 14\ (\times3)\\[4pt]\text{Moyenne}=\,?`,
+      { q: r`\text{Notes : }10\ (\times1),\ 14\ (\times3)\\\text{Moyenne}=\,?`,
         choices: [`13`, `12`, `10`, `14`], a: `13`, tip: r`\dfrac{10+42}{4}=\dfrac{52}{4}=13` },
       // sc_05
-      { q: r`\text{Notes : }6\ (\times2),\ 12\ (\times2),\ 18\ (\times2)\\[4pt]\text{Moyenne}=\,?`,
+      { q: r`\text{Notes : }6\ (\times2),\ 12\ (\times2),\ 18\ (\times2)\\\text{Moyenne}=\,?`,
         choices: [`12`, `10`, `14`, `9`], a: `12`, tip: r`\dfrac{12+24+36}{6}=\dfrac{72}{6}=12` },
       // sc_06
-      { q: r`\bar{x}=8{,}\quad n=5\\[4pt]\text{Somme des valeurs}=\,?`,
+      { q: r`\bar{x}=8{,}\quad n=5\\\text{Somme des valeurs}=\,?`,
         choices: [`40`, `8`, `1{,}6`, `13`], a: `40`, tip: r`S=n\times\bar{x}=5\times8=40` },
       // sc_07
-      { q: r`\bar{x}=12{,}\quad n=5\\[4pt]\text{Somme des valeurs}=\,?`,
+      { q: r`\bar{x}=12{,}\quad n=5\\\text{Somme des valeurs}=\,?`,
         choices: [`60`, `12`, `2{,}4`, `17`], a: `60`, tip: r`S=5\times12=60` },
       // sc_08
-      { q: r`\text{Série : }2\ ;\ 5\ ;\ 5\ ;\ 8\ ;\ 10\\[4pt]\text{Mode}=\,?`,
+      { q: r`\text{Série : }2\ ;\ 5\ ;\ 5\ ;\ 8\ ;\ 10\\\text{Mode}=\,?`,
         choices: [`5`, `6`, `8`, `2`], a: `5`, tip: r`5\text{ apparaît 2 fois : c'est la valeur la plus fréquente (le mode).}` },
       // sc_09 — fréquence relative (décimal)
-      { q: r`\text{Dans une classe de }20\text{ élèves,}\\[4pt]\text{8 ont eu la moyenne.}\\[4pt]\text{Fréquence relative}=\,?`,
+      { q: r`\text{Dans une classe de }20\text{ élèves,}\\\text{8 ont eu la moyenne.}\\\text{Fréquence relative}=\,?`,
         choices: [`0{,}4`, `0{,}8`, `0{,}2`, `0{,}08`], a: `0{,}4`,
         tip: r`f=\dfrac{8}{20}=0{,}4\quad\text{(soit }40\%\text{ en pourcentage)}` },
       // sc_10 — fréquence en %
-      { q: r`\text{Dans une classe de }25\text{ élèves,}\\[4pt]\text{10 pratiquent un sport.}\\[4pt]\text{Fréquence en pourcentage}=\,?`,
+      { q: r`\text{Dans une classe de }25\text{ élèves,}\\\text{10 pratiquent un sport.}\\\text{Fréquence en pourcentage}=\,?`,
         choices: [`40\%`, `10\%`, `25\%`, `50\%`], a: `40\%`,
         tip: r`f=\dfrac{10}{25}=0{,}4=40\%` },
       // sc_11 — effectif depuis fréquence
-      { q: r`n=40{,}\quad\text{fréquence relative}=0{,}25\\[4pt]\text{Effectif correspondant}=\,?`,
+      { q: r`n=40{,}\quad\text{fréquence relative}=0{,}25\\\text{Effectif correspondant}=\,?`,
         choices: [`10`, `25`, `40`, `8`], a: `10`, tip: r`0{,}25\times40=10` },
       // sc_12 — fréquence relative → effectif
-      { q: r`n=50{,}\quad\text{fréquence relative}=0{,}2\\[4pt]\text{Effectif correspondant}=\,?`,
+      { q: r`n=50{,}\quad\text{fréquence relative}=0{,}2\\\text{Effectif correspondant}=\,?`,
         choices: [`10`, `20`, `5`, `50`], a: `10`, tip: r`0{,}2\times50=10` },
 
       // ── Médiane ───────────────────────────────────────────────────────────
 
       // sc_13
-      { q: r`\text{Série (triée) : }3\ ;\ 5\ ;\ 7\ ;\ 9\ ;\ 11\\[4pt]\text{Médiane}=\,?`,
+      { q: r`\text{Série (triée) : }3\ ;\ 5\ ;\ 7\ ;\ 9\ ;\ 11\\\text{Médiane}=\,?`,
         choices: [`7`, `6`, `8`, `5`], a: `7`, tip: r`n=5\text{ (impair) : valeur centrale }(3^\text{e})=7` },
       // sc_14
-      { q: r`\text{Série (triée) : }4\ ;\ 6\ ;\ 8\ ;\ 10\ ;\ 12\ ;\ 14\\[4pt]\text{Médiane}=\,?`,
+      { q: r`\text{Série (triée) : }4\ ;\ 6\ ;\ 8\ ;\ 10\ ;\ 12\ ;\ 14\\\text{Médiane}=\,?`,
         choices: [`9`, `8`, `10`, `11`], a: `9`, tip: r`n=6\text{ (pair) : médiane}=\dfrac{8+10}{2}=9` },
       // sc_15
-      { q: r`\text{Série (triée) : }1\ ;\ 2\ ;\ 3\ ;\ 4\ ;\ 5\ ;\ 6\ ;\ 7\\[4pt]\text{Médiane}=\,?`,
+      { q: r`\text{Série (triée) : }1\ ;\ 2\ ;\ 3\ ;\ 4\ ;\ 5\ ;\ 6\ ;\ 7\\\text{Médiane}=\,?`,
         choices: [`4`, `3{,}5`, `5`, `3`], a: `4`, tip: r`n=7\text{ (impair) : valeur centrale }(4^\text{e})=4` },
       // sc_16
-      { q: r`\text{Série (triée) : }5\ ;\ 7\ ;\ 9\ ;\ 11\ ;\ 13\ ;\ 15\\[4pt]\text{Médiane}=\,?`,
+      { q: r`\text{Série (triée) : }5\ ;\ 7\ ;\ 9\ ;\ 11\ ;\ 13\ ;\ 15\\\text{Médiane}=\,?`,
         choices: [`10`, `9`, `11`, `9{,}5`], a: `10`, tip: r`n=6\text{ (pair) : médiane}=\dfrac{9+11}{2}=10` },
       // sc_17 — piège : série non triée
-      { q: r`\text{Série NON triée : }10\ ;\ 12\ ;\ 8\ ;\ 14\ ;\ 6\\[4pt]\text{Quelle est la médiane ?}`,
+      { q: r`\text{Série NON triée : }10\ ;\ 12\ ;\ 8\ ;\ 14\ ;\ 6\\\text{Quelle est la médiane ?}`,
         choices: [`10`, `8`, `12`, `6`], a: `10`,
         tip: r`\text{On trie d'abord : }6;8;10;12;14.\\n=5\text{ : valeur centrale}=10` },
       // sc_18
-      { q: r`\text{Série (triée) : }2\ ;\ 4\ ;\ 6\ ;\ 8\\[4pt]\text{Médiane}=\,?`,
+      { q: r`\text{Série (triée) : }2\ ;\ 4\ ;\ 6\ ;\ 8\\\text{Médiane}=\,?`,
         choices: [`5`, `4`, `6`, `7`], a: `5`, tip: r`n=4\text{ (pair) : médiane}=\dfrac{4+6}{2}=5` },
 
       // ── Interprétation ────────────────────────────────────────────────────
@@ -10326,12 +10326,12 @@ const DB = {
         a: r`\text{2 moitiés d'effectifs égaux}`,
         tip: r`\text{50\% des valeurs sont sous la médiane, 50\% au-dessus.}` },
       // sc_20
-      { q: r`\text{La moyenne est sensible aux valeurs extrêmes.}\\[4pt]\text{La médiane l'est-elle ?}`,
+      { q: r`\text{La moyenne est sensible aux valeurs extrêmes.}\\\text{La médiane l'est-elle ?}`,
         choices: [r`\text{Oui, autant}`, r`\text{Non, elle est robuste}`, r`\text{Oui, encore plus}`, r`\text{Ça dépend}`],
         a: r`\text{Non, elle est robuste}`,
         tip: r`\text{La médiane n'est pas influencée par les valeurs aberrantes : c'est un indicateur robuste.}` },
       // sc_21
-      { q: r`\text{Série : }2\ ;\ 3\ ;\ 4\ ;\ 5\ ;\ 100\\[4pt]\text{Quel indicateur représente mieux la série ?}`,
+      { q: r`\text{Série : }2\ ;\ 3\ ;\ 4\ ;\ 5\ ;\ 100\\\text{Quel indicateur représente mieux la série ?}`,
         choices: [r`\text{La médiane (}=4\text{)}`, r`\text{La moyenne (}=22{,}8\text{)}`, r`\text{Les deux sont équivalents}`, r`\text{Le mode}`],
         a: r`\text{La médiane (}=4\text{)}`,
         tip: r`\text{La valeur 100 tire la moyenne vers le haut. La médiane (4) reflète mieux la série.}` },
@@ -10346,7 +10346,7 @@ const DB = {
         a: `1`,
         tip: r`\text{La somme des fréquences relatives est toujours égale à 1 (ou 100\%).}` },
       // sc_24
-      { q: r`\text{Série : }0\ ;\ 0\ ;\ 0\ ;\ 0\ ;\ 20\\[4pt]\text{Moyenne}=\,?`,
+      { q: r`\text{Série : }0\ ;\ 0\ ;\ 0\ ;\ 0\ ;\ 20\\\text{Moyenne}=\,?`,
         choices: [`4`, `0`, `20`, `10`], a: `4`,
         tip: r`\bar{x}=\dfrac{0+0+0+0+20}{5}=\dfrac{20}{5}=4\\\text{Attention : la moyenne ne représente aucune valeur de la série ici.}` },
     ],
@@ -10356,54 +10356,54 @@ const DB = {
       // ── Étendue ───────────────────────────────────────────────────────────
 
       // sd_01
-      { q: r`\text{min}=5{,}\quad\text{max}=25\\[4pt]\text{Étendue}=\,?`,
+      { q: r`\text{min}=5{,}\quad\text{max}=25\\\text{Étendue}=\,?`,
         choices: [`20`, `30`, `5`, `15`], a: `20`, tip: r`e=25-5=20` },
       // sd_02
-      { q: r`\text{min}=10{,}\quad\text{max}=50\\[4pt]\text{Étendue}=\,?`,
+      { q: r`\text{min}=10{,}\quad\text{max}=50\\\text{Étendue}=\,?`,
         choices: [`40`, `60`, `10`, `5`], a: `40`, tip: r`e=50-10=40` },
       // sd_03
-      { q: r`\text{Série : }3\ ;\ 7\ ;\ 12\ ;\ 2\ ;\ 9\\[4pt]\text{Étendue}=\,?`,
+      { q: r`\text{Série : }3\ ;\ 7\ ;\ 12\ ;\ 2\ ;\ 9\\\text{Étendue}=\,?`,
         choices: [`10`, `9`, `12`, `7`], a: `10`, tip: r`e=12-2=10` },
       // sd_04
-      { q: r`\text{Série A étendue}=8{,}\quad\text{Série B étendue}=2\\[4pt]\text{Série la plus dispersée :}`,
+      { q: r`\text{Série A étendue}=8{,}\quad\text{Série B étendue}=2\\\text{Série la plus dispersée :}`,
         choices: [r`\text{A}`, r`\text{B}`, r`\text{Égales}`, r`\text{Impossible à dire}`],
         a: r`\text{A}`, tip: r`\text{Plus l'étendue est grande, plus la série est dispersée.}` },
 
       // ── Quartiles ─────────────────────────────────────────────────────────
 
       // sd_05
-      { q: r`Q_1=8{,}\quad Q_3=20\\[4pt]\text{Écart interquartile}=\,?`,
+      { q: r`Q_1=8{,}\quad Q_3=20\\\text{Écart interquartile}=\,?`,
         choices: [`12`, `28`, `14`, `16`], a: `12`, tip: r`EI=Q_3-Q_1=20-8=12` },
       // sd_06
-      { q: r`Q_1=12{,}\quad Q_3=20\\[4pt]\text{Écart interquartile}=\,?`,
+      { q: r`Q_1=12{,}\quad Q_3=20\\\text{Écart interquartile}=\,?`,
         choices: [`8`, `32`, `16`, `4`], a: `8`, tip: r`EI=20-12=8` },
       // sd_07
       { q: r`Q_3-Q_1\text{ s'appelle :}`,
         choices: [r`\text{l'écart interquartile}`, r`\text{l'étendue}`, r`\text{la variance}`, r`\text{l'écart-type}`],
         a: r`\text{l'écart interquartile}`, tip: r`EI=Q_3-Q_1\text{ : il contient 50\% des données.}` },
       // sd_08
-      { q: r`\text{Série (triée, }n=7\text{) : }1\ ;\ 3\ ;\ 5\ ;\ 7\ ;\ 9\ ;\ 11\ ;\ 13\\[4pt]Q_1=\,?`,
+      { q: r`\text{Série (triée, }n=7\text{) : }1\ ;\ 3\ ;\ 5\ ;\ 7\ ;\ 9\ ;\ 11\ ;\ 13\\Q_1=\,?`,
         choices: [`3`, `5`, `4`, `7`], a: `3`, tip: r`\text{Rang}=\left\lceil\dfrac{7}{4}\right\rceil=2\Rightarrow Q_1=2^\text{e}\text{ valeur}=3` },
       // sd_09
-      { q: r`\text{Série (triée, }n=7\text{) : }1\ ;\ 3\ ;\ 5\ ;\ 7\ ;\ 9\ ;\ 11\ ;\ 13\\[4pt]Q_3=\,?`,
+      { q: r`\text{Série (triée, }n=7\text{) : }1\ ;\ 3\ ;\ 5\ ;\ 7\ ;\ 9\ ;\ 11\ ;\ 13\\Q_3=\,?`,
         choices: [`11`, `9`, `13`, `7`], a: `11`, tip: r`\text{Rang}=\left\lceil\dfrac{3\times7}{4}\right\rceil=\left\lceil5{,}25\right\rceil=6\Rightarrow Q_3=6^\text{e}\text{ valeur}=11` },
       // sd_10
-      { q: r`Q_1=10{,}\quad Q_3=30\\[4pt]\text{50\% des données sont dans :}`,
+      { q: r`Q_1=10{,}\quad Q_3=30\\\text{50\% des données sont dans :}`,
         choices: [r`[10\,;30]`, r`[0\,;20]`, r`[20\,;50]`, r`[10\,;20]`],
         a: r`[10\,;30]`, tip: r`\text{50\% des données sont entre }Q_1\text{ et }Q_3.` },
       // sd_11
-      { q: r`Q_1=15{,}\quad Q_3=35{,}\quad\text{médiane}=24\\[4pt]\text{La médiane est-elle dans }[Q_1\,;Q_3]\text{ ?}`,
+      { q: r`Q_1=15{,}\quad Q_3=35{,}\quad\text{médiane}=24\\\text{La médiane est-elle dans }[Q_1\,;Q_3]\text{ ?}`,
         choices: [r`\text{Oui, toujours}`, r`\text{Non}`, r`\text{Parfois}`, r`\text{Jamais}`],
         a: r`\text{Oui, toujours}`,
         tip: r`\text{La médiane est toujours comprise entre }Q_1\text{ et }Q_3.` },
       // sd_12
-      { q: r`Q_3-Q_1=18\\[4pt]\text{L'écart interquartile vaut :}`,
+      { q: r`Q_3-Q_1=18\\\text{L'écart interquartile vaut :}`,
         choices: [`18`, `9`, `36`, `6`], a: `18`, tip: r`EI=Q_3-Q_1=18` },
 
       // ── Boîte à moustaches ────────────────────────────────────────────────
 
       // sd_13
-      { q: r`\text{min}=10{,}\ Q_1=20{,}\ \text{med}=30{,}\ Q_3=40{,}\ \text{max}=50\\[4pt]\text{Étendue}=\,?`,
+      { q: r`\text{min}=10{,}\ Q_1=20{,}\ \text{med}=30{,}\ Q_3=40{,}\ \text{max}=50\\\text{Étendue}=\,?`,
         choices: [`40`, `20`, `30`, `50`], a: `40`, tip: r`e=50-10=40` },
       // sd_14
       { q: r`\text{Dans une boîte à moustaches, la médiane est représentée par :}`,
@@ -10419,7 +10419,7 @@ const DB = {
       // ── Interprétation / pièges ───────────────────────────────────────────
 
       // sd_16
-      { q: r`\text{Série A : }1\ ;\ 5\ ;\ 9\quad\text{Série B : }4\ ;\ 5\ ;\ 6\\[4pt]\text{Même moyenne (5), série la plus dispersée :}`,
+      { q: r`\text{Série A : }1\ ;\ 5\ ;\ 9\quad\text{Série B : }4\ ;\ 5\ ;\ 6\\\text{Même moyenne (5), série la plus dispersée :}`,
         choices: [r`\text{A (étendue 8)}`, r`\text{B (étendue 2)}`, r`\text{Égales}`, r`\text{Impossible à dire}`],
         a: r`\text{A (étendue 8)}`, tip: r`\text{Même moyenne mais dispersion très différente : A est bien plus étalée.}` },
       // sd_17
@@ -10428,16 +10428,16 @@ const DB = {
         a: r`\text{les données centrales sont très dispersées}`,
         tip: r`EI=Q_3-Q_1\text{ grand }\Rightarrow\text{les 50\% centraux couvrent un intervalle large.}` },
       // sd_18
-      { q: r`Q_1=20{,}\quad Q_3=20\\[4pt]EI=\,?`,
+      { q: r`Q_1=20{,}\quad Q_3=20\\EI=\,?`,
         choices: [`0`, `20`, `40`, `10`], a: `0`,
         tip: r`EI=Q_3-Q_1=20-20=0\\\text{Toutes les données centrales sont égales à 20.}` },
       // sd_19
-      { q: r`\text{L'étendue est sensible aux valeurs extrêmes.}\\[4pt]\text{L'écart interquartile l'est-il ?}`,
+      { q: r`\text{L'étendue est sensible aux valeurs extrêmes.}\\\text{L'écart interquartile l'est-il ?}`,
         choices: [r`\text{Non, c'est son avantage}`, r`\text{Oui, autant}`, r`\text{Oui, encore plus}`, r`\text{Ça dépend}`],
         a: r`\text{Non, c'est son avantage}`,
         tip: r`EI\text{ ne dépend que de }Q_1\text{ et }Q_3\text{, pas des valeurs min/max. Il est robuste.}` },
       // sd_20
-      { q: r`\text{Série (triée) : }2\ ;\ 4\ ;\ 6\ ;\ 8\ ;\ 10\ ;\ 12\\[4pt]Q_1=\,?`,
+      { q: r`\text{Série (triée) : }2\ ;\ 4\ ;\ 6\ ;\ 8\ ;\ 10\ ;\ 12\\Q_1=\,?`,
         choices: [`4`, `3`, `5`, `6`], a: `4`,
         tip: r`\text{Rang}=\left\lceil\dfrac{6}{4}\right\rceil=\left\lceil1{,}5\right\rceil=2\Rightarrow Q_1=2^\text{e}\text{ valeur}=4.` },
     ],
@@ -10459,25 +10459,25 @@ const DB = {
         choices:[ r`\text{le minimum et le maximum}`, r`Q_1\text{ et }Q_3`,
                   r`\text{la médiane}`, r`\text{la moyenne}` ],
         a: r`\text{le minimum et le maximum}`, tip: r`\text{Les moustaches vont jusqu'aux valeurs extrêmes.}` },
-      { q: r`Q_1=5,\quad Q_3=12.\\[4pt]\text{Écart interquartile}=\,?`,
+      { q: r`Q_1=5,\quad Q_3=12.\\\text{Écart interquartile}=\,?`,
         numpad:true, a:"7", tip: r`EI=Q_3-Q_1=12-5=7` },
-      { q: r`\text{min}=2,\quad \text{max}=18.\\[4pt]\text{Étendue}=\,?`,
+      { q: r`\text{min}=2,\quad \text{max}=18.\\\text{Étendue}=\,?`,
         numpad:true, a:"16", tip: r`\text{Étendue}=\text{max}-\text{min}=18-2=16` },
-      { q: r`\text{Série triée : }2;4;6;8;10;12;14;16\ (n=8).\\[4pt]\text{Médiane}=\,?`,
+      { q: r`\text{Série triée : }2;4;6;8;10;12;14;16\ (n=8).\\\text{Médiane}=\,?`,
         numpad:true, a:"9", tip: r`\text{Médiane}=\dfrac{8+10}{2}=9` },
-      { q: r`\text{Série triée : }2;4;6;8;10;12;14;16.\\[4pt]Q_1=\,?`,
+      { q: r`\text{Série triée : }2;4;6;8;10;12;14;16.\\Q_1=\,?`,
         numpad:true, a:"4", tip: r`\text{Rang}=\left\lceil\dfrac{n}{4}\right\rceil=\left\lceil\dfrac{8}{4}\right\rceil=2\Rightarrow Q_1=2^\text{e}\text{ valeur}=4` },
-      { q: r`\text{Série triée : }2;4;6;8;10;12;14;16.\\[4pt]Q_3=\,?`,
+      { q: r`\text{Série triée : }2;4;6;8;10;12;14;16.\\Q_3=\,?`,
         numpad:true, a:"12", tip: r`\text{Rang}=\left\lceil\dfrac{3n}{4}\right\rceil=\left\lceil\dfrac{24}{4}\right\rceil=6\Rightarrow Q_3=6^\text{e}\text{ valeur}=12` },
-      { q: r`\text{Série triée : }3;5;7;9;11\ (n=5).\\[4pt]\text{Médiane}=\,?`,
+      { q: r`\text{Série triée : }3;5;7;9;11\ (n=5).\\\text{Médiane}=\,?`,
         numpad:true, a:"7", tip: r`\text{Valeur centrale (3}^{e}\text{) : }7.` },
-      { q: r`\text{min}=4,\ Q_1=8,\ \text{Méd}=10,\ Q_3=14,\ \text{max}=20.\\[4pt]\text{Écart interquartile}=\,?`,
+      { q: r`\text{min}=4,\ Q_1=8,\ \text{Méd}=10,\ Q_3=14,\ \text{max}=20.\\\text{Écart interquartile}=\,?`,
         numpad:true, a:"6", tip: r`EI=Q_3-Q_1=14-8=6` },
       { q: r`\text{Entre }Q_1\text{ et }Q_3\text{ se trouvent environ :}`,
         choices:[ r`\text{50\% des valeurs}`, r`\text{25\% des valeurs}`,
                   r`\text{100\% des valeurs}`, r`\text{10\% des valeurs}` ],
         a: r`\text{50\% des valeurs}`, tip: r`\text{La boîte contient la moitié centrale des données.}` },
-      { q: r`\text{Deux séries : même médiane, mais boîtes de largeurs}\\[4pt]\text{différentes. Cela traduit :}`,
+      { q: r`\text{Deux séries : même médiane, mais boîtes de largeurs}\\\text{différentes. Cela traduit :}`,
         choices:[ r`\text{des dispersions différentes}`, r`\text{des séries identiques}`,
                   r`\text{des moyennes égales}`, r`\text{des effectifs égaux}` ],
         a: r`\text{des dispersions différentes}`,
@@ -10514,7 +10514,7 @@ const DB = {
       { q: r`\text{D'après la boîte, calcule l'écart interquartile.}`,
         svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 118" width="100%" style="background:#fff;font-family:sans-serif;border-radius:8px"><line x1="64.2" y1="46" x2="116.6" y2="46" stroke="#475569" stroke-width="1.5"/><line x1="195.2" y1="46" x2="273.8" y2="46" stroke="#475569" stroke-width="1.5"/><line x1="64.2" y1="37" x2="64.2" y2="55" stroke="#475569" stroke-width="1.5"/><line x1="273.8" y1="37" x2="273.8" y2="55" stroke="#475569" stroke-width="1.5"/><rect x="116.6" y="30" width="78.6" height="32" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.6" rx="2"/><line x1="169.0" y1="30" x2="169.0" y2="62" stroke="#DC2626" stroke-width="2.2"/><line x1="38" y1="92" x2="300" y2="92" stroke="#94A3B8" stroke-width="1.2"/><line x1="38.0" y1="92" x2="38.0" y2="96" stroke="#94A3B8" stroke-width="1"/><text x="38.0" y="107" text-anchor="middle" font-size="9" fill="#64748B" font-family="sans-serif">0</text><line x1="64.2" y1="92" x2="64.2" y2="96" stroke="#94A3B8" stroke-width="1"/><text x="64.2" y="107" text-anchor="middle" font-size="9" fill="#64748B" font-family="sans-serif">5</text><line x1="90.4" y1="92" x2="90.4" y2="96" stroke="#94A3B8" stroke-width="1"/><text x="90.4" y="107" text-anchor="middle" font-size="9" fill="#64748B" font-family="sans-serif">10</text><line x1="116.6" y1="92" x2="116.6" y2="96" stroke="#94A3B8" stroke-width="1"/><text x="116.6" y="107" text-anchor="middle" font-size="9" fill="#64748B" font-family="sans-serif">15</text><line x1="142.8" y1="92" x2="142.8" y2="96" stroke="#94A3B8" stroke-width="1"/><text x="142.8" y="107" text-anchor="middle" font-size="9" fill="#64748B" font-family="sans-serif">20</text><line x1="169.0" y1="92" x2="169.0" y2="96" stroke="#94A3B8" stroke-width="1"/><text x="169.0" y="107" text-anchor="middle" font-size="9" fill="#64748B" font-family="sans-serif">25</text><line x1="195.2" y1="92" x2="195.2" y2="96" stroke="#94A3B8" stroke-width="1"/><text x="195.2" y="107" text-anchor="middle" font-size="9" fill="#64748B" font-family="sans-serif">30</text><line x1="221.4" y1="92" x2="221.4" y2="96" stroke="#94A3B8" stroke-width="1"/><text x="221.4" y="107" text-anchor="middle" font-size="9" fill="#64748B" font-family="sans-serif">35</text><line x1="247.6" y1="92" x2="247.6" y2="96" stroke="#94A3B8" stroke-width="1"/><text x="247.6" y="107" text-anchor="middle" font-size="9" fill="#64748B" font-family="sans-serif">40</text><line x1="273.8" y1="92" x2="273.8" y2="96" stroke="#94A3B8" stroke-width="1"/><text x="273.8" y="107" text-anchor="middle" font-size="9" fill="#64748B" font-family="sans-serif">45</text><line x1="300.0" y1="92" x2="300.0" y2="96" stroke="#94A3B8" stroke-width="1"/><text x="300.0" y="107" text-anchor="middle" font-size="9" fill="#64748B" font-family="sans-serif">50</text></svg>`,
         numpad:true, a:"15", tip: r`EI=Q_3-Q_1=30-15=15.` },
-      { q: r`\text{Les deux séries ont la même médiane.}\\[4pt]\text{Laquelle est la plus dispersée (écart interquartile) ?}`,
+      { q: r`\text{Les deux séries ont la même médiane.}\\\text{Laquelle est la plus dispersée (écart interquartile) ?}`,
         svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 128" width="100%" style="background:#fff;font-family:sans-serif;border-radius:8px"><line x1="125.3" y1="34" x2="147.2" y2="34" stroke="#475569" stroke-width="1.5"/><line x1="190.8" y1="34" x2="212.7" y2="34" stroke="#475569" stroke-width="1.5"/><line x1="125.3" y1="25" x2="125.3" y2="43" stroke="#475569" stroke-width="1.5"/><line x1="212.7" y1="25" x2="212.7" y2="43" stroke="#475569" stroke-width="1.5"/><rect x="147.2" y="21" width="43.6" height="26" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.6" rx="2"/><line x1="169.0" y1="21" x2="169.0" y2="47" stroke="#DC2626" stroke-width="2.2"/><line x1="59.8" y1="78" x2="103.5" y2="78" stroke="#475569" stroke-width="1.5"/><line x1="234.5" y1="78" x2="278.2" y2="78" stroke="#475569" stroke-width="1.5"/><line x1="59.8" y1="69" x2="59.8" y2="87" stroke="#475569" stroke-width="1.5"/><line x1="278.2" y1="69" x2="278.2" y2="87" stroke="#475569" stroke-width="1.5"/><rect x="103.5" y="65" width="131.0" height="26" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.6" rx="2"/><line x1="169.0" y1="65" x2="169.0" y2="91" stroke="#DC2626" stroke-width="2.2"/><text x="6" y="38" font-size="10" font-weight="bold" fill="#2563EB" font-family="sans-serif">1</text><text x="6" y="82" font-size="10" font-weight="bold" fill="#2563EB" font-family="sans-serif">2</text><line x1="38" y1="104" x2="300" y2="104" stroke="#94A3B8" stroke-width="1.2"/><line x1="38.0" y1="104" x2="38.0" y2="108" stroke="#94A3B8" stroke-width="1"/><text x="38.0" y="119" text-anchor="middle" font-size="9" fill="#64748B" font-family="sans-serif">0</text><line x1="81.7" y1="104" x2="81.7" y2="108" stroke="#94A3B8" stroke-width="1"/><text x="81.7" y="119" text-anchor="middle" font-size="9" fill="#64748B" font-family="sans-serif">4</text><line x1="125.3" y1="104" x2="125.3" y2="108" stroke="#94A3B8" stroke-width="1"/><text x="125.3" y="119" text-anchor="middle" font-size="9" fill="#64748B" font-family="sans-serif">8</text><line x1="169.0" y1="104" x2="169.0" y2="108" stroke="#94A3B8" stroke-width="1"/><text x="169.0" y="119" text-anchor="middle" font-size="9" fill="#64748B" font-family="sans-serif">12</text><line x1="212.7" y1="104" x2="212.7" y2="108" stroke="#94A3B8" stroke-width="1"/><text x="212.7" y="119" text-anchor="middle" font-size="9" fill="#64748B" font-family="sans-serif">16</text><line x1="256.3" y1="104" x2="256.3" y2="108" stroke="#94A3B8" stroke-width="1"/><text x="256.3" y="119" text-anchor="middle" font-size="9" fill="#64748B" font-family="sans-serif">20</text><line x1="300.0" y1="104" x2="300.0" y2="108" stroke="#94A3B8" stroke-width="1"/><text x="300.0" y="119" text-anchor="middle" font-size="9" fill="#64748B" font-family="sans-serif">24</text></svg>`,
         choices:[ r`\text{La série 2}`, r`\text{La série 1}`, r`\text{Elles sont identiques}`, r`\text{Impossible à dire}` ], a: r`\text{La série 2}`, tip: r`\text{La boîte de la série 2 est plus large : }EI\text{ plus grand.}` },
     ],
@@ -10522,26 +10522,26 @@ const DB = {
     loi_binomiale: [
 
       // lb_01 — schéma de Bernoulli
-      { q: r`\text{10 lancers d'une pièce, succès = « Pile »}\\[4pt]\text{Est-ce un schéma de Bernoulli ?}`,
+      { q: r`\text{10 lancers d'une pièce, succès = « Pile »}\\\text{Est-ce un schéma de Bernoulli ?}`,
         choices: [r`\text{Oui}`, r`\text{Non}`, r`\text{Seulement si la pièce est équilibrée}`, r`\text{Impossible}`],
         a: r`\text{Oui}`,
         tip: r`n=10\text{ épreuves indépendantes, 2 issues (Pile/Face) : schéma de Bernoulli.}` },
       // lb_02
-      { q: r`X\sim\mathcal{B}(n\,;\,p)\\[4pt]E(X)=\,?`,
+      { q: r`X\sim\mathcal{B}(n\,;\,p)\\E(X)=\,?`,
         choices: [`np`, `p/n`, `n+p`, `n-p`], a: `np`, tip: r`E(X)=np` },
       // lb_03
-      { q: r`X\sim\mathcal{B}(20\,;\,0{,}3)\\[4pt]E(X)=\,?`,
+      { q: r`X\sim\mathcal{B}(20\,;\,0{,}3)\\E(X)=\,?`,
         choices: [`6`, `0{,}3`, `20`, `14`], a: `6`, tip: r`E(X)=20\times0{,}3=6` },
       // lb_04
-      { q: r`X\sim\mathcal{B}(4\,;\,0{,}25)\\[4pt]E(X)=\,?`,
+      { q: r`X\sim\mathcal{B}(4\,;\,0{,}25)\\E(X)=\,?`,
         choices: [`1`, `0{,}25`, `4`, `3`], a: `1`, tip: r`E(X)=4\times0{,}25=1` },
       // lb_05
-      { q: r`X\sim\mathcal{B}(5\,;\,0{,}5)\\[4pt]P(X=0)=\,?`,
+      { q: r`X\sim\mathcal{B}(5\,;\,0{,}5)\\P(X=0)=\,?`,
         choices: [r`(0{,}5)^5`, `0`, `0{,}5`, `5\times0{,}5`],
         a: r`(0{,}5)^5`,
         tip: r`P(X=0)=\binom{5}{0}p^0(1-p)^5=(0{,}5)^5` },
       // lb_06
-      { q: r`X\sim\mathcal{B}(3\,;\,0{,}5)\\[4pt]E(X)=\,?`,
+      { q: r`X\sim\mathcal{B}(3\,;\,0{,}5)\\E(X)=\,?`,
         choices: [`1{,}5`, `0{,}5`, `3`, `1`], a: `1{,}5`,
         tip: r`E(X)=3\times0{,}5=1{,}5` },
       // lb_07
@@ -10550,16 +10550,16 @@ const DB = {
         a: r`0\leq p\leq1`,
         tip: r`p\text{ est une probabilité de succès : }p\in[0\,;1].` },
       // lb_08
-      { q: r`X\sim\mathcal{B}(n\,;\,p)\text{ et }X'=n-X\\[4pt]X'\sim\,?`,
+      { q: r`X\sim\mathcal{B}(n\,;\,p)\text{ et }X'=n-X\\X'\sim\,?`,
         choices: [r`\mathcal{B}(n\,;\,1-p)`, r`\mathcal{B}(n\,;\,p)`, r`\mathcal{B}(1-n\,;\,p)`, r`\text{pas une loi binomiale}`],
         a: r`\mathcal{B}(n\,;\,1-p)`,
         tip: r`X'\text{ compte les échecs : c'est une loi }\mathcal{B}(n\,;\,1-p).` },
       // lb_09
-      { q: r`X\sim\mathcal{B}(10\,;\,0{,}5)\\[4pt]E(X)=\,?`,
+      { q: r`X\sim\mathcal{B}(10\,;\,0{,}5)\\E(X)=\,?`,
         choices: [`5`, `0{,}5`, `10`, `2{,}5`], a: `5`,
         tip: r`E(X)=10\times0{,}5=5` },
       // lb_10
-      { q: r`\text{On tire 6 fois un dé. Succès = « obtenir un 6 ».}\\[4pt]p=\,?`,
+      { q: r`\text{On tire 6 fois un dé. Succès = « obtenir un 6 ».}\\p=\,?`,
         choices: [r`\dfrac{1}{6}`, r`\dfrac{1}{3}`, r`6`, r`\dfrac{5}{6}`],
         a: r`\dfrac{1}{6}`,
         tip: r`p=P(\text{succès})=P(\text{obtenir 6})=\dfrac{1}{6}` },
@@ -10576,29 +10576,29 @@ const DB = {
         a: r`\left[p-\dfrac{1}{\sqrt{n}}\,;\,p+\dfrac{1}{\sqrt{n}}\right]`,
         tip: r`I_{0{,}95}=\left[p\pm\dfrac{1}{\sqrt{n}}\right]` },
       // ec_02
-      { q: r`n=100{,}\quad p=0{,}4\\[4pt]\text{Borne supérieure de l'intervalle de fluctuation}=\,?`,
+      { q: r`n=100{,}\quad p=0{,}4\\\text{Borne supérieure de l'intervalle de fluctuation}=\,?`,
         choices: [`0{,}5`, `0{,}6`, `0{,}3`, `0{,}04`], a: `0{,}5`,
         tip: r`0{,}4+\dfrac{1}{\sqrt{100}}=0{,}4+0{,}1=0{,}5` },
       // ec_03
-      { q: r`n=100{,}\quad p=0{,}4\\[4pt]\text{Borne inférieure de l'intervalle de fluctuation}=\,?`,
+      { q: r`n=100{,}\quad p=0{,}4\\\text{Borne inférieure de l'intervalle de fluctuation}=\,?`,
         choices: [`0{,}3`, `0{,}2`, `0{,}4`, `0{,}5`], a: `0{,}3`,
         tip: r`0{,}4-\dfrac{1}{\sqrt{100}}=0{,}4-0{,}1=0{,}3` },
       // ec_04
-      { q: r`n=400{,}\quad p=0{,}25\\[4pt]\text{Largeur de l'intervalle}=\dfrac{2}{\sqrt{n}}=\,?`,
+      { q: r`n=400{,}\quad p=0{,}25\\\text{Largeur de l'intervalle}=\dfrac{2}{\sqrt{n}}=\,?`,
         choices: [`0{,}1`, `0{,}05`, `0{,}2`, `0{,}5`], a: `0{,}1`,
         tip: r`\dfrac{2}{\sqrt{400}}=\dfrac{2}{20}=0{,}1` },
       // ec_05
-      { q: r`n=100{,}\quad p=0{,}5\\[4pt]\text{Intervalle de fluctuation}=\,?`,
+      { q: r`n=100{,}\quad p=0{,}5\\\text{Intervalle de fluctuation}=\,?`,
         choices: [`[0{,}4\,;\,0{,}6]`, `[0{,}25\,;\,0{,}75]`, `[0{,}45\,;\,0{,}55]`, `[0{,}49\,;\,0{,}51]`],
         a: `[0{,}4\,;\,0{,}6]`,
         tip: r`0{,}5\pm\dfrac{1}{10}=[0{,}4\,;\,0{,}6]` },
       // ec_06 — interprétation
-      { q: r`\text{La fréquence observée est DANS l'intervalle de fluctuation.}\\[4pt]\text{On conclut :}`,
+      { q: r`\text{La fréquence observée est DANS l'intervalle de fluctuation.}\\\text{On conclut :}`,
         choices: [r`\text{compatible avec }p`, r`p\text{ est certain}`, r`p\text{ est faux}`, r`\text{erreur}`],
         a: r`\text{compatible avec }p`,
         tip: r`\text{Dans l'intervalle }\Rightarrow\text{ le résultat est compatible avec l'hypothèse }p.` },
       // ec_07
-      { q: r`\text{La fréquence observée est HORS de l'intervalle de fluctuation.}\\[4pt]\text{On conclut :}`,
+      { q: r`\text{La fréquence observée est HORS de l'intervalle de fluctuation.}\\\text{On conclut :}`,
         choices: [r`\text{incompatible avec }p`, r`\text{compatible avec }p`, r`p=1`, r`\text{erreur de calcul}`],
         a: r`\text{incompatible avec }p`,
         tip: r`\text{Hors de l'intervalle }\Rightarrow\text{ le résultat est incompatible avec l'hypothèse }p.` },
@@ -10608,11 +10608,11 @@ const DB = {
         a: r`\text{se rétrécit}`,
         tip: r`\dfrac{1}{\sqrt{n}}\text{ diminue quand }n\text{ augmente.}\\\text{Un grand échantillon donne une estimation plus précise.}` },
       // ec_09
-      { q: r`n=25{,}\quad p=0{,}6\\[4pt]\dfrac{1}{\sqrt{n}}=\,?`,
+      { q: r`n=25{,}\quad p=0{,}6\\\dfrac{1}{\sqrt{n}}=\,?`,
         choices: [`0{,}2`, `0{,}4`, `0{,}04`, `0{,}5`], a: `0{,}2`,
         tip: r`\dfrac{1}{\sqrt{25}}=\dfrac{1}{5}=0{,}2` },
       // ec_10
-      { q: r`\text{Un sondage donne une fréquence }f=0{,}48\text{ pour }n=100.\\[4pt]\text{L'intervalle est }[0{,}4\,;\,0{,}6].\ f\in I\,?}`,
+      { q: r`\text{Un sondage donne une fréquence }f=0{,}48\text{ pour }n=100.\\\text{L'intervalle est }[0{,}4\,;\,0{,}6].\ f\in I\,?}`,
         choices: [r`\text{Oui, 0{,}48}\in[0{,}4\,;\,0{,}6]`, r`\text{Non}`, r`\text{Impossible à dire}`, r`\text{Oui, mais p=0{,}5}`],
         a: r`\text{Oui, 0{,}48}\in[0{,}4\,;\,0{,}6]`,
         tip: r`0{,}4\leq0{,}48\leq0{,}6\text{ : résultat compatible avec l'hypothèse.}` },
@@ -10713,7 +10713,7 @@ const DB = {
       { q: r`\text{Pour tout réel }x,\text{ quelle est la relation fondamentale vérifiée par }\cos x\text{ et }\sin x\text{ ?}`,
         choices: [r`\cos^2 x+\sin^2 x=1`, r`\cos x+\sin x=1`, r`\cos^2 x-\sin^2 x=1`, r`\cos x\times\sin x=1`],
         a: r`\cos^2 x+\sin^2 x=1`,
-        tip: r`\cos^2 x+\sin^2 x=1\text{ pour tout }x\in\mathbb{R}.\\[4pt]\text{C'est le théorème de Pythagore appliqué au cercle de rayon 1.}` },
+        tip: r`\cos^2 x+\sin^2 x=1\text{ pour tout }x\in\mathbb{R}.\\\text{C'est le théorème de Pythagore appliqué au cercle de rayon 1.}` },
 
       // tf_02 — Périodicité de cos
       { q: r`\cos\!\left(x+2\pi\right)=\,?`,
@@ -10731,37 +10731,37 @@ const DB = {
       { q: r`\cos(-x)=\,?`,
         choices: [r`\cos x`, r`-\cos x`, r`\sin x`, r`-\sin x`],
         a: r`\cos x`,
-        tip: r`\text{cos est une fonction \textbf{paire} : }\cos(-x)=\cos x.\\[4pt]\text{Géométriquement : symétrie par rapport à l'axe des ordonnées.}` },
+        tip: r`\text{cos est une fonction \textbf{paire} : }\cos(-x)=\cos x.\\\text{Géométriquement : symétrie par rapport à l'axe des ordonnées.}` },
 
       // tf_05 — Imparité de sin
       { q: r`\sin(-x)=\,?`,
         choices: [r`-\sin x`, r`\sin x`, r`\cos x`, r`-\cos x`],
         a: r`-\sin x`,
-        tip: r`\text{sin est une fonction \textbf{impaire} : }\sin(-x)=-\sin x.\\[4pt]\text{Géométriquement : symétrie centrale par rapport à O.}` },
+        tip: r`\text{sin est une fonction \textbf{impaire} : }\sin(-x)=-\sin x.\\\text{Géométriquement : symétrie centrale par rapport à O.}` },
 
       // tf_06 — Symétrie π−x pour cos
       { q: r`\cos(\pi-x)=\,?`,
         choices: [r`-\cos x`, r`\cos x`, r`-\sin x`, r`\sin x`],
         a: r`-\cos x`,
-        tip: r`\cos(\pi-x)=-\cos x.\\[4pt]\text{Symétrie par rapport à l'axe des ordonnées du demi-cercle supérieur.}` },
+        tip: r`\cos(\pi-x)=-\cos x.\\\text{Symétrie par rapport à l'axe des ordonnées du demi-cercle supérieur.}` },
 
       // tf_07 — Symétrie π−x pour sin
       { q: r`\sin(\pi-x)=\,?`,
         choices: [r`\sin x`, r`-\sin x`, r`\cos x`, r`-\cos x`],
         a: r`\sin x`,
-        tip: r`\sin(\pi-x)=\sin x.\\[4pt]\text{Sur le cercle : les points d'angles }x\text{ et }\pi-x\text{ ont la même ordonnée.}` },
+        tip: r`\sin(\pi-x)=\sin x.\\\text{Sur le cercle : les points d'angles }x\text{ et }\pi-x\text{ ont la même ordonnée.}` },
 
       // tf_08 — Symétrie π+x pour cos
       { q: r`\cos(\pi+x)=\,?`,
         choices: [r`-\cos x`, r`\cos x`, r`\sin x`, r`-\sin x`],
         a: r`-\cos x`,
-        tip: r`\cos(\pi+x)=-\cos x.\\[4pt]\text{Ajouter }\pi\text{ revient à faire une symétrie centrale : abscisse opposée.}` },
+        tip: r`\cos(\pi+x)=-\cos x.\\\text{Ajouter }\pi\text{ revient à faire une symétrie centrale : abscisse opposée.}` },
 
       // tf_09 — Symétrie π+x pour sin
       { q: r`\sin(\pi+x)=\,?`,
         choices: [r`-\sin x`, r`\sin x`, r`-\cos x`, r`\cos x`],
         a: r`-\sin x`,
-        tip: r`\sin(\pi+x)=-\sin x.\\[4pt]\text{Symétrie centrale : ordonnée opposée.}` },
+        tip: r`\sin(\pi+x)=-\sin x.\\\text{Symétrie centrale : ordonnée opposée.}` },
 
       // tf_10 — Application symétrie : simplifier cos(π − π/3)
       { q: r`\cos\!\left(\pi-\dfrac{\pi}{3}\right)=\,?`,
@@ -10785,25 +10785,25 @@ const DB = {
       { q: r`\text{Les solutions de }\cos x=\dfrac{1}{2}\text{ sur }[0\,;\,2\pi]\text{ sont :}`,
         choices: [r`\dfrac{\pi}{3}\text{ et }\dfrac{5\pi}{3}`, r`\dfrac{\pi}{3}\text{ et }\dfrac{2\pi}{3}`, r`\dfrac{\pi}{6}\text{ et }\dfrac{5\pi}{6}`, r`\dfrac{\pi}{3}\text{ seulement}`],
         a: r`\dfrac{\pi}{3}\text{ et }\dfrac{5\pi}{3}`,
-        tip: r`\cos x=\cos\!\tfrac{\pi}{3}\Leftrightarrow x=\tfrac{\pi}{3}+2k\pi\text{ ou }x=-\tfrac{\pi}{3}+2k\pi.\\[4pt]\text{Sur }[0;2\pi]: x=\tfrac{\pi}{3}\text{ et }x=2\pi-\tfrac{\pi}{3}=\tfrac{5\pi}{3}.` },
+        tip: r`\cos x=\cos\!\tfrac{\pi}{3}\Leftrightarrow x=\tfrac{\pi}{3}+2k\pi\text{ ou }x=-\tfrac{\pi}{3}+2k\pi.\\\text{Sur }[0;2\pi]: x=\tfrac{\pi}{3}\text{ et }x=2\pi-\tfrac{\pi}{3}=\tfrac{5\pi}{3}.` },
 
       // tf_14 — Équation sin(x)=1/2 sur [0;2π]
       { q: r`\text{Les solutions de }\sin x=\dfrac{1}{2}\text{ sur }[0\,;\,2\pi]\text{ sont :}`,
         choices: [r`\dfrac{\pi}{6}\text{ et }\dfrac{5\pi}{6}`, r`\dfrac{\pi}{6}\text{ et }\dfrac{7\pi}{6}`, r`\dfrac{\pi}{3}\text{ et }\dfrac{2\pi}{3}`, r`\dfrac{\pi}{6}\text{ seulement}`],
         a: r`\dfrac{\pi}{6}\text{ et }\dfrac{5\pi}{6}`,
-        tip: r`\sin x=\sin\!\tfrac{\pi}{6}\Leftrightarrow x=\tfrac{\pi}{6}+2k\pi\text{ ou }x=\pi-\tfrac{\pi}{6}+2k\pi.\\[4pt]\text{Sur }[0;2\pi]: x=\tfrac{\pi}{6}\text{ et }x=\tfrac{5\pi}{6}.` },
+        tip: r`\sin x=\sin\!\tfrac{\pi}{6}\Leftrightarrow x=\tfrac{\pi}{6}+2k\pi\text{ ou }x=\pi-\tfrac{\pi}{6}+2k\pi.\\\text{Sur }[0;2\pi]: x=\tfrac{\pi}{6}\text{ et }x=\tfrac{5\pi}{6}.` },
 
       // tf_15 — Équation cos(x)=0
       { q: r`\text{Les solutions de }\cos x=0\text{ sur }[0\,;\,2\pi]\text{ sont :}`,
         choices: [r`\dfrac{\pi}{2}\text{ et }\dfrac{3\pi}{2}`, r`0\text{ et }\pi`, r`\dfrac{\pi}{2}\text{ seulement}`, r`\pi\text{ et }2\pi`],
         a: r`\dfrac{\pi}{2}\text{ et }\dfrac{3\pi}{2}`,
-        tip: r`\cos x=0\Leftrightarrow x=\tfrac{\pi}{2}+k\pi.\\[4pt]\text{Sur }[0;2\pi]: x=\tfrac{\pi}{2}\text{ et }x=\tfrac{3\pi}{2}.` },
+        tip: r`\cos x=0\Leftrightarrow x=\tfrac{\pi}{2}+k\pi.\\\text{Sur }[0;2\pi]: x=\tfrac{\pi}{2}\text{ et }x=\tfrac{3\pi}{2}.` },
 
       // tf_16 — Équation sin(x)=−1 sur [0;2π]
       { q: r`\text{L'unique solution de }\sin x=-1\text{ sur }[0\,;\,2\pi]\text{ est :}`,
         choices: [r`\dfrac{3\pi}{2}`, r`\dfrac{\pi}{2}`, r`\pi`, r`\dfrac{5\pi}{2}`],
         a: r`\dfrac{3\pi}{2}`,
-        tip: r`\sin x=-1\Leftrightarrow x=\dfrac{3\pi}{2}+2k\pi.\\[4pt]\text{Sur }[0;2\pi]: x=\dfrac{3\pi}{2}\text{ (point le plus bas du cercle).}` },
+        tip: r`\sin x=-1\Leftrightarrow x=\dfrac{3\pi}{2}+2k\pi.\\\text{Sur }[0;2\pi]: x=\dfrac{3\pi}{2}\text{ (point le plus bas du cercle).}` },
 
       // tf_17 — Signe de sin sur [0;π]
       { q: r`\text{Sur }]0\,;\,\pi[\,,\ \sin x\text{ est :}`,
@@ -10818,16 +10818,16 @@ const DB = {
         tip: r`\text{Sur }[0;\pi],\ \cos\text{ passe de }1\text{ (en }0\text{) à }-1\text{ (en }\pi\text{) : elle est strictement décroissante.}` },
 
       // tf_19 — Utiliser cos²+sin²=1 pour trouver cos
-      { q: r`\sin x=\dfrac{3}{5}\text{ et }x\in\left[0\,;\,\dfrac{\pi}{2}\right].\\[4pt]\text{Que vaut }\cos x\text{ ?}`,
+      { q: r`\sin x=\dfrac{3}{5}\text{ et }x\in\left[0\,;\,\dfrac{\pi}{2}\right].\\\text{Que vaut }\cos x\text{ ?}`,
         choices: [r`\dfrac{4}{5}`, r`-\dfrac{4}{5}`, r`\dfrac{3}{4}`, r`\dfrac{16}{25}`],
         a: r`\dfrac{4}{5}`,
-        tip: r`\cos^2 x=1-\sin^2 x=1-\tfrac{9}{25}=\tfrac{16}{25}.\\[4pt]x\in[0;\tfrac{\pi}{2}]\Rightarrow\cos x>0\Rightarrow\cos x=\tfrac{4}{5}.` },
+        tip: r`\cos^2 x=1-\sin^2 x=1-\tfrac{9}{25}=\tfrac{16}{25}.\\x\in[0;\tfrac{\pi}{2}]\Rightarrow\cos x>0\Rightarrow\cos x=\tfrac{4}{5}.` },
 
       // tf_20 — Simplification chaînée
       { q: r`\text{Simplifier }\sin\!\left(\pi+\dfrac{\pi}{4}\right)+\cos\!\left(-\dfrac{\pi}{4}\right).`,
         choices: [r`0`, r`\sqrt{2}`, r`-\sqrt{2}`, r`\dfrac{\sqrt{2}}{2}`],
         a: r`0`,
-        tip: r`\sin\!\left(\pi+\tfrac{\pi}{4}\right)=-\sin\!\tfrac{\pi}{4}=-\tfrac{\sqrt{2}}{2}.\\[4pt]\cos\!\left(-\tfrac{\pi}{4}\right)=\cos\!\tfrac{\pi}{4}=\tfrac{\sqrt{2}}{2}.\\[4pt]\text{Somme }=-\tfrac{\sqrt{2}}{2}+\tfrac{\sqrt{2}}{2}=0.` },
+        tip: r`\sin\!\left(\pi+\tfrac{\pi}{4}\right)=-\sin\!\tfrac{\pi}{4}=-\tfrac{\sqrt{2}}{2}.\\\cos\!\left(-\tfrac{\pi}{4}\right)=\cos\!\tfrac{\pi}{4}=\tfrac{\sqrt{2}}{2}.\\\text{Somme }=-\tfrac{\sqrt{2}}{2}+\tfrac{\sqrt{2}}{2}=0.` },
 
     ],
   },
@@ -10842,13 +10842,13 @@ const DB = {
     // ── Bloc TC : Fonctions exponentielles x↦aˣ (programme tronc commun) ──────
     expo_tc: [
       // tc_expo_01 — définition_base — n1
-      { q: r`\text{Soit }f(x) = 2^x\text{.}\\[4pt]\text{Quelle est la valeur de }f(0)\text{ ?}`,
+      { q: r`\text{Soit }f(x) = 2^x\text{.}\\\text{Quelle est la valeur de }f(0)\text{ ?}`,
         choices:[r`0`,r`1`,r`2`,r`-1`],
         a:r`1`,
         tip:r`\text{Pour tout }a>0\text{, }a^0=1\text{. Ici }2^0=1.` },
 
       // tc_expo_02 — valeurs_usuelles — n1
-      { q: r`\text{Soit }f(x) = 3^x\text{.}\\[4pt]\text{Calcule }f(2)\text{.}`,
+      { q: r`\text{Soit }f(x) = 3^x\text{.}\\\text{Calcule }f(2)\text{.}`,
         choices:[r`6`,r`9`,r`8`,r`27`],
         a:r`9`,
         tip:r`3^2=3\times3=9.` },
@@ -10866,25 +10866,25 @@ const DB = {
         tip:r`\dfrac{a^m}{a^n}=a^{m-n}\text{. On soustrait les exposants.}` },
 
       // tc_expo_05 — signe_toujours_positif — n1
-      { q: r`\text{Soit }a>0\text{ et }x\in\mathbb{R}\text{.}\\[4pt]\text{Quel est le signe de }a^x\text{ ?}`,
+      { q: r`\text{Soit }a>0\text{ et }x\in\mathbb{R}\text{.}\\\text{Quel est le signe de }a^x\text{ ?}`,
         choices:[r`a^x>0\text{ toujours}`,r`a^x\geq 0`,r`a^x<0\text{ si }x<0`,r`\text{Dépend de }a`],
         a:r`a^x>0\text{ toujours}`,
         tip:r`\text{Pour tout }a>0\text{, }a^x>0\text{ quel que soit }x\in\mathbb{R}.` },
 
       // tc_expo_06 — variations_a>1 — n2
-      { q: r`\text{Soit }f(x)=2^x\text{.}\\[4pt]\text{La fonction }f\text{ est :}`,
+      { q: r`\text{Soit }f(x)=2^x\text{.}\\\text{La fonction }f\text{ est :}`,
         choices:[r`\text{strictement croissante sur }\mathbb{R}`,r`\text{strictement décroissante sur }\mathbb{R}`,r`\text{constante}`,r`\text{croissante puis décroissante}`],
         a:r`\text{strictement croissante sur }\mathbb{R}`,
-        tip:r`\text{Si }a>1\text{, la fonction }x\mapsto a^x\text{ est strictement croissante.}\\[4pt]2>1\Rightarrow 2^x\text{ croissante.}` },
+        tip:r`\text{Si }a>1\text{, la fonction }x\mapsto a^x\text{ est strictement croissante.}\\2>1\Rightarrow 2^x\text{ croissante.}` },
 
       // tc_expo_07 — variations_0<a<1 — n2
-      { q: r`\text{Soit }f(x)=\left(\dfrac{1}{2}\right)^x\text{.}\\[4pt]\text{La fonction }f\text{ est :}`,
+      { q: r`\text{Soit }f(x)=\left(\dfrac{1}{2}\right)^x\text{.}\\\text{La fonction }f\text{ est :}`,
         choices:[r`\text{strictement décroissante sur }\mathbb{R}`,r`\text{strictement croissante sur }\mathbb{R}`,r`\text{constante}`,r`\text{décroissante puis croissante}`],
         a:r`\text{strictement décroissante sur }\mathbb{R}`,
         tip:r`0<\frac{1}{2}<1\Rightarrow x\mapsto\left(\frac{1}{2}\right)^x\text{ est strictement décroissante.}` },
 
       // tc_expo_08 — exposant_negatif — n2
-      { q: r`\text{Soit }f(x)=2^x\text{.}\\[4pt]\text{Que vaut }f(-3)\text{ ?}`,
+      { q: r`\text{Soit }f(x)=2^x\text{.}\\\text{Que vaut }f(-3)\text{ ?}`,
         choices:[r`-8`,r`\dfrac{1}{8}`,r`\dfrac{1}{6}`,r`-\dfrac{1}{8}`],
         a:r`\dfrac{1}{8}`,
         tip:r`2^{-3}=\dfrac{1}{2^3}=\dfrac{1}{8}\text{. Un exposant négatif donne l'inverse.}` },
@@ -10914,7 +10914,7 @@ const DB = {
         tip:r`\dfrac{3^8}{3^5}=3^{8-5}=3^3=27.` },
 
       // tc_expo_13 — taux_évolution_suite_géo — n2
-      { q: r`\text{Un capital de 1 000 € est placé à }5\%\text{ par an.}\\[4pt]\text{Quelle expression donne le capital après }n\text{ années ?}`,
+      { q: r`\text{Un capital de 1 000 € est placé à }5\%\text{ par an.}\\\text{Quelle expression donne le capital après }n\text{ années ?}`,
         choices:[r`1000+0{,}05n`,r`1000\times(1{,}05)^n`,r`1000\times n^{0{,}05}`,r`1000\times 1{,}05\times n`],
         a:r`1000\times(1{,}05)^n`,
         tip:r`\text{Chaque année on multiplie par }(1+0{,}05)=1{,}05\text{. Après }n\text{ années : }1000\times(1{,}05)^n.` },
@@ -10948,13 +10948,13 @@ const DB = {
         tip:r`2^x\to 0^+\text{ quand }x\to-\infty\text{. L'axe des abscisses est une asymptote horizontale.}` },
 
       // tc_expo_18 — modèle_décroissance — n3
-      { q: r`\text{Une population de bactéries est divisée par 2 chaque heure.}\\[4pt]\text{Partant de }N_0\text{ bactéries, combien en reste-t-il après }t\text{ heures ?}`,
+      { q: r`\text{Une population de bactéries est divisée par 2 chaque heure.}\\\text{Partant de }N_0\text{ bactéries, combien en reste-t-il après }t\text{ heures ?}`,
         choices:[r`N_0\times 2^t`,r`N_0\times\left(\dfrac{1}{2}\right)^t`,r`\dfrac{N_0}{2t}`,r`N_0-2t`],
         a:r`N_0\times\left(\dfrac{1}{2}\right)^t`,
         tip:r`\text{Chaque heure on multiplie par }\frac{1}{2}\text{. Après }t\text{ heures : }N_0\times\left(\frac{1}{2}\right)^t=N_0\times 2^{-t}.` },
 
       // tc_expo_19 — problème_seuil_graphique — n3
-      { q: r`\text{On place 500 € à }10\%\text{ par an. Le capital }C_n=500\times(1{,}1)^n\text{.}\\[4pt]\text{Au bout de combien d'années dépasse-t-on 800 € ?}`,
+      { q: r`\text{On place 500 € à }10\%\text{ par an. Le capital }C_n=500\times(1{,}1)^n\text{.}\\\text{Au bout de combien d'années dépasse-t-on 800 € ?}`,
         gspec:{ fn:x=>500*Math.pow(1.1,x), xr:[-1,8], yr:[400,900], label:"C",
           extras:c=><>{gDH(800,c,'#EF4444')}{gNote(0.2,820,'800 €',c,'#EF4444')}</> },
         choices:[r`3\text{ ans}`,r`5\text{ ans}`,r`7\text{ ans}`,r`10\text{ ans}`],
@@ -10962,7 +10962,7 @@ const DB = {
         tip:r`500\times(1{,}1)^4\approx 732\text{ ; }500\times(1{,}1)^5\approx 805>800\text{. Donc au bout de }5\text{ ans.}` },
 
       // tc_expo_20 — lien_suite_géo_expo — n3
-      { q: r`\text{Une suite géométrique de raison }q=1{,}03\text{ et de premier terme }u_0=1000\text{.}\\[4pt]\text{La fonction }f(x)=1000\times(1{,}03)^x\text{ modélise cette suite. Que représente }f(10)\text{ ?}`,
+      { q: r`\text{Une suite géométrique de raison }q=1{,}03\text{ et de premier terme }u_0=1000\text{.}\\\text{La fonction }f(x)=1000\times(1{,}03)^x\text{ modélise cette suite. Que représente }f(10)\text{ ?}`,
         choices:[r`u_0+10\times 1{,}03`,r`u_{10}\text{, le terme de rang }10`,r`u_{1{,}03}`,r`10\text{ fois }u_0`],
         a:r`u_{10}\text{, le terme de rang }10`,
         tip:r`f(n)=1000\times(1{,}03)^n=u_n\text{. La fonction exponentielle prolonge la suite géométrique au continu.}` },
@@ -11587,17 +11587,17 @@ const DB = {
       { q: r`\text{Soit le script :}\\\texttt{def carre(x):}\\\quad\texttt{return x*x}\\\text{Comment s'appelle cette fonction ?}`,
         choices: [r`\texttt{carre}`, r`\texttt{x}`, r`\texttt{return}`, r`\texttt{def}`],
         a: r`\texttt{carre}`,
-        tip: r`\text{Le mot-clé \texttt{def} est suivi du \textbf{nom} de la fonction, puis des paramètres entre parenthèses.}\\[4pt]\texttt{def \underline{carre}(x):}` },
+        tip: r`\text{Le mot-clé \texttt{def} est suivi du \textbf{nom} de la fonction, puis des paramètres entre parenthèses.}\\\texttt{def \underline{carre}(x):}` },
       // algo_syn_02 — Élément manquant : le deux-points — facile
       { q: r`\text{Quel symbole manque-t-il dans cette ligne ?}\\\texttt{def triple(n)}\\\text{(le corps de la fonction est correct)}`,
         choices: [r`\texttt{:}`, r`\texttt{=}`, r`\texttt{;}`, r`\texttt{,}`],
         a: r`\texttt{:}`,
-        tip: r`\text{La définition d'une fonction se termine \textbf{obligatoirement} par \texttt{:}}\\[4pt]\texttt{def triple(n)}\mathbf{:}` },
+        tip: r`\text{La définition d'une fonction se termine \textbf{obligatoirement} par \texttt{:}}\\\texttt{def triple(n)}\mathbf{:}` },
       // algo_syn_03 — Élément manquant : le return — facile
       { q: r`\text{Que manque-t-il pour que cette fonction renvoie un résultat ?}\\\texttt{def double(x):}\\\quad\texttt{x * 2}`,
         choices: [r`\texttt{return}`, r`\texttt{print}`, r`\texttt{def}`, r`\texttt{:}`],
         a: r`\texttt{return}`,
-        tip: r`\text{Sans \texttt{return}, la fonction \textbf{ne renvoie rien} (elle renvoie \texttt{None}).}\\[4pt]\texttt{return x * 2}` },
+        tip: r`\text{Sans \texttt{return}, la fonction \textbf{ne renvoie rien} (elle renvoie \texttt{None}).}\\\texttt{return x * 2}` },
       // algo_syn_04 — Identifier le paramètre — facile
       { q: r`\text{Dans la fonction ci-dessous, quel est le \textbf{paramètre} ?}\\\texttt{def perimetre(r):}\\\quad\texttt{return 2 * 3.14 * r}`,
         choices: [r`\texttt{r}`, r`\texttt{perimetre}`, r`\texttt{return}`, r`\texttt{3.14}`],
@@ -11612,33 +11612,33 @@ const DB = {
           r`\text{Le code est correct}`
         ],
         a: r`\text{Le \texttt{return} n'est pas indenté}`,
-        tip: r`\text{En Python, le corps d'une fonction \textbf{doit être indenté} (décalé vers la droite).}\\[4pt]\texttt{def signe(x):}\\\quad\texttt{return x > 0}` },
+        tip: r`\text{En Python, le corps d'une fonction \textbf{doit être indenté} (décalé vers la droite).}\\\texttt{def signe(x):}\\\quad\texttt{return x > 0}` },
     ],
 
     // ── Bloc 2 : Lire une fonction sans boucle (5 questions) ──────────────────
     algo_fonction: [
       // algo_fn_01 — if / else simple — facile
-      { q: r`\texttt{def mystere(a):}\\\quad\texttt{if a > 0 :}\\\qquad\texttt{return 2*a}\\\quad\texttt{else :}\\\qquad\texttt{return 3*a}\\[6pt]\text{Que renvoie }\texttt{mystere(-5)}\text{ ?}`,
+      { q: r`\texttt{def mystere(a):}\\\quad\texttt{if a > 0 :}\\\qquad\texttt{return 2*a}\\\quad\texttt{else :}\\\qquad\texttt{return 3*a}\\\text{Que renvoie }\texttt{mystere(-5)}\text{ ?}`,
         choices: [r`-15`, r`-10`, r`15`, r`10`],
         a: r`-15`,
         tip: r`\texttt{-5 > 0}\text{ est faux, donc on entre dans \texttt{else} : }3\times(-5)=-15` },
       // algo_fn_02 — valeur absolue maison — facile
-      { q: r`\texttt{def f(x):}\\\quad\texttt{if x >= 0 :}\\\qquad\texttt{return x}\\\quad\texttt{else :}\\\qquad\texttt{return -x}\\[6pt]\text{Que renvoie }\texttt{f(-4)}\text{ ?}`,
+      { q: r`\texttt{def f(x):}\\\quad\texttt{if x >= 0 :}\\\qquad\texttt{return x}\\\quad\texttt{else :}\\\qquad\texttt{return -x}\\\text{Que renvoie }\texttt{f(-4)}\text{ ?}`,
         choices: [r`4`, r`-4`, r`0`, r`\text{Erreur}`],
         a: r`4`,
         tip: r`\texttt{-4 >= 0}\text{ est faux → \texttt{else} : }-(-4)=4.\text{ C'est la valeur absolue de }x.` },
       // algo_fn_03 — calcul direct — facile
-      { q: r`\texttt{def aire(b, h):}\\\quad\texttt{return b * h / 2}\\[6pt]\text{Que renvoie }\texttt{aire(6, 4)}\text{ ?}`,
+      { q: r`\texttt{def aire(b, h):}\\\quad\texttt{return b * h / 2}\\\text{Que renvoie }\texttt{aire(6, 4)}\text{ ?}`,
         choices: [r`12`, r`24`, r`10`, r`3`],
         a: r`12`,
         tip: r`\texttt{b = 6,\ h = 4}\text{ : }\dfrac{6\times4}{2}=\dfrac{24}{2}=12` },
       // algo_fn_04 — deux paramètres avec condition — facile
-      { q: r`\texttt{def max2(a, b):}\\\quad\texttt{if a > b :}\\\qquad\texttt{return a}\\\quad\texttt{else :}\\\qquad\texttt{return b}\\[6pt]\text{Que renvoie }\texttt{max2(3, 7)}\text{ ?}`,
+      { q: r`\texttt{def max2(a, b):}\\\quad\texttt{if a > b :}\\\qquad\texttt{return a}\\\quad\texttt{else :}\\\qquad\texttt{return b}\\\text{Que renvoie }\texttt{max2(3, 7)}\text{ ?}`,
         choices: [r`7`, r`3`, r`10`, r`21`],
         a: r`7`,
         tip: r`\texttt{3 > 7}\text{ est faux → \texttt{else} : on renvoie }\texttt{b = 7}.` },
       // algo_fn_05 — elif — facile
-      { q: r`\texttt{def note(n):}\\\quad\texttt{if n >= 10 :}\\\qquad\texttt{return "reçu"}\\\quad\texttt{else :}\\\qquad\texttt{return "ajourné"}\\[6pt]\text{Que renvoie }\texttt{note(10)}\text{ ?}`,
+      { q: r`\texttt{def note(n):}\\\quad\texttt{if n >= 10 :}\\\qquad\texttt{return "reçu"}\\\quad\texttt{else :}\\\qquad\texttt{return "ajourné"}\\\text{Que renvoie }\texttt{note(10)}\text{ ?}`,
         choices: [r`\texttt{"reçu"}`, r`\texttt{"ajourné"}`, r`10`, r`\text{Erreur}`],
         a: r`\texttt{"reçu"}`,
         tip: r`\texttt{10 >= 10}\text{ est vrai → on renvoie \texttt{"reçu"}. La condition est large (}\geq\text{).}` },
@@ -11653,19 +11653,19 @@ const DB = {
       { q: r`\text{Quelle est la valeur de \texttt{toto} à la fin du script ?}\\\\\texttt{toto = 2}\\\\\texttt{toto = toto * 4}\\\\\texttt{toto = 2 * toto + 2}`,
         choices: [r`18`, r`-1`, r`-3`, r`-2`],
         a: r`18`,
-        tip: r`\texttt{toto=2}\\[2pt]\texttt{toto=2\times4=8}\\[2pt]\texttt{toto=2\times8+2=18}` },
+        tip: r`\texttt{toto=2}\\\texttt{toto=2\times4=8}\\\texttt{toto=2\times8+2=18}` },
 
       // algo_fn_08 — affectations avec deux variables — facile
       { q: r`\text{Qu'affiche ce programme ?}\\\\\texttt{a = 4}\\\\\texttt{b = 4}\\\\\texttt{b = a * b}\\\\\texttt{a = a + b}\\\\\texttt{print(a)}`,
         choices: [r`20`, r`-8`, r`32`, r`-4`],
         a: r`20`,
-        tip: r`\texttt{b=4\times4=16}\\[2pt]\texttt{a=4+16=20}` },
+        tip: r`\texttt{b=4\times4=16}\\\texttt{a=4+16=20}` },
 
       // algo_fn_09 — affectations deux variables variante — facile
       { q: r`\text{Qu'affiche ce programme ?}\\\\\texttt{a = 2}\\\\\texttt{b = 10}\\\\\texttt{b = a * b}\\\\\texttt{a = a + b}\\\\\texttt{print(a)}`,
         choices: [r`22`, r`-9`, r`20`, r`-40`],
         a: r`22`,
-        tip: r`\texttt{b=2\times10=20}\\[2pt]\texttt{a=2+20=22}` },
+        tip: r`\texttt{b=2\times10=20}\\\texttt{a=2+20=22}` },
 
       // algo_fn_10 — appel de fonction polynomiale degré 2 — facile
       { q: r`\text{Qu'affiche ce programme ?}\\\\\texttt{def f(x):}\\\quad\texttt{y = 2*x**2 + 5*x + 4}\\\quad\texttt{return y}\\\\\texttt{y = f(1)}\\\\\texttt{print(y)}`,
@@ -11683,52 +11683,52 @@ const DB = {
     // ── Bloc 3 : if / elif / else (10 questions) ──────────────────────────────
     algo_if: [
       // algo_if_01 — if simple sans else — facile
-      { q: r`\texttt{def f(x):}\\\quad\texttt{if x > 5 :}\\\qquad\texttt{return "grand"}\\\quad\texttt{return "petit"}\\[6pt]\text{Que renvoie }\texttt{f(5)}\text{ ?}`,
+      { q: r`\texttt{def f(x):}\\\quad\texttt{if x > 5 :}\\\qquad\texttt{return "grand"}\\\quad\texttt{return "petit"}\\\text{Que renvoie }\texttt{f(5)}\text{ ?}`,
         choices: [r`\texttt{"petit"}`, r`\texttt{"grand"}`, r`5`, r`\text{Erreur}`],
         a: r`\texttt{"petit"}`,
         tip: r`\texttt{5 > 5}\text{ est faux (strictement) → on ne rentre pas dans le \texttt{if}, on arrive à \texttt{return "petit"}.}` },
       // algo_if_02 — elif — facile
-      { q: r`\texttt{def tarif(age):}\\\quad\texttt{if age < 12 :}\\\qquad\texttt{return "enfant"}\\\quad\texttt{elif age < 18 :}\\\qquad\texttt{return "jeune"}\\\quad\texttt{else :}\\\qquad\texttt{return "adulte"}\\[6pt]\text{Que renvoie }\texttt{tarif(15)}\text{ ?}`,
+      { q: r`\texttt{def tarif(age):}\\\quad\texttt{if age < 12 :}\\\qquad\texttt{return "enfant"}\\\quad\texttt{elif age < 18 :}\\\qquad\texttt{return "jeune"}\\\quad\texttt{else :}\\\qquad\texttt{return "adulte"}\\\text{Que renvoie }\texttt{tarif(15)}\text{ ?}`,
         choices: [r`\texttt{"jeune"}`, r`\texttt{"enfant"}`, r`\texttt{"adulte"}`, r`15`],
         a: r`\texttt{"jeune"}`,
         tip: r`\texttt{15 < 12}\text{ : faux. }\texttt{15 < 18}\text{ : vrai → \texttt{"jeune"}}.` },
       // algo_if_03 — condition composée and — facile
-      { q: r`\texttt{def f(x):}\\\quad\texttt{if x > 0 and x < 10 :}\\\qquad\texttt{return True}\\\quad\texttt{else :}\\\qquad\texttt{return False}\\[6pt]\text{Que renvoie }\texttt{f(0)}\text{ ?}`,
+      { q: r`\texttt{def f(x):}\\\quad\texttt{if x > 0 and x < 10 :}\\\qquad\texttt{return True}\\\quad\texttt{else :}\\\qquad\texttt{return False}\\\text{Que renvoie }\texttt{f(0)}\text{ ?}`,
         choices: [r`\texttt{False}`, r`\texttt{True}`, r`0`, r`\text{Erreur}`],
         a: r`\texttt{False}`,
         tip: r`\texttt{0 > 0}\text{ est faux → condition \texttt{and} entière fausse → \texttt{False}.}` },
       // algo_if_04 — ordre des elif — moyenne
-      { q: r`\texttt{def g(n):}\\\quad\texttt{if n > 10 :}\\\qquad\texttt{return "A"}\\\quad\texttt{elif n > 5 :}\\\qquad\texttt{return "B"}\\\quad\texttt{else :}\\\qquad\texttt{return "C"}\\[6pt]\text{Que renvoie }\texttt{g(10)}\text{ ?}`,
+      { q: r`\texttt{def g(n):}\\\quad\texttt{if n > 10 :}\\\qquad\texttt{return "A"}\\\quad\texttt{elif n > 5 :}\\\qquad\texttt{return "B"}\\\quad\texttt{else :}\\\qquad\texttt{return "C"}\\\text{Que renvoie }\texttt{g(10)}\text{ ?}`,
         choices: [r`\texttt{"B"}`, r`\texttt{"A"}`, r`\texttt{"C"}`, r`\text{Erreur}`],
         a: r`\texttt{"B"}`,
         tip: r`\texttt{10 > 10}\text{ : faux. }\texttt{10 > 5}\text{ : vrai → \texttt{"B"}}.` },
       // algo_if_05 — condition sur modulo — moyenne
-      { q: r`\texttt{def parite(n):}\\\quad\texttt{if n \% 2 == 0 :}\\\qquad\texttt{return "pair"}\\\quad\texttt{else :}\\\qquad\texttt{return "impair"}\\[6pt]\text{Que renvoie }\texttt{parite(7)}\text{ ?}`,
+      { q: r`\texttt{def parite(n):}\\\quad\texttt{if n \% 2 == 0 :}\\\qquad\texttt{return "pair"}\\\quad\texttt{else :}\\\qquad\texttt{return "impair"}\\\text{Que renvoie }\texttt{parite(7)}\text{ ?}`,
         choices: [r`\texttt{"impair"}`, r`\texttt{"pair"}`, r`1`, r`0`],
         a: r`\texttt{"impair"}`,
-        tip: r`\textbf{En Python, \texttt{\%} donne le reste de la division entière.}\\[4pt]\texttt{7 \% 2 = 1}\text{ (7 n'est pas divisible par 2) → condition fausse → \texttt{"impair"}.}` },
+        tip: r`\textbf{En Python, \texttt{\%} donne le reste de la division entière.}\\\texttt{7 \% 2 = 1}\text{ (7 n'est pas divisible par 2) → condition fausse → \texttt{"impair"}.}` },
       // algo_if_06 — valeur de retour numérique avec elif — moyenne
-      { q: r`\texttt{def f(x):}\\\quad\texttt{if x < 0 :}\\\qquad\texttt{return -1}\\\quad\texttt{elif x == 0 :}\\\qquad\texttt{return 0}\\\quad\texttt{else :}\\\qquad\texttt{return 1}\\[6pt]\text{Que renvoie }\texttt{f(3)}\text{ ?}`,
+      { q: r`\texttt{def f(x):}\\\quad\texttt{if x < 0 :}\\\qquad\texttt{return -1}\\\quad\texttt{elif x == 0 :}\\\qquad\texttt{return 0}\\\quad\texttt{else :}\\\qquad\texttt{return 1}\\\text{Que renvoie }\texttt{f(3)}\text{ ?}`,
         choices: [r`1`, r`-1`, r`0`, r`3`],
         a: r`1`,
         tip: r`\texttt{3 < 0}\text{ : faux. }\texttt{3 == 0}\text{ : faux. → \texttt{else} : renvoie }1.\text{ (C'est la fonction signe.)}` },
       // algo_if_07 — deux if indépendants (pas elif) — moyenne
-      { q: r`\texttt{def h(x):}\\\quad\texttt{s = 0}\\\quad\texttt{if x > 0 :}\\\qquad\texttt{s = s + 1}\\\quad\texttt{if x > 2 :}\\\qquad\texttt{s = s + 1}\\\quad\texttt{return s}\\[6pt]\text{Que renvoie }\texttt{h(3)}\text{ ?}`,
+      { q: r`\texttt{def h(x):}\\\quad\texttt{s = 0}\\\quad\texttt{if x > 0 :}\\\qquad\texttt{s = s + 1}\\\quad\texttt{if x > 2 :}\\\qquad\texttt{s = s + 1}\\\quad\texttt{return s}\\\text{Que renvoie }\texttt{h(3)}\text{ ?}`,
         choices: [r`2`, r`1`, r`0`, r`3`],
         a: r`2`,
         tip: r`\text{Les deux \texttt{if} sont \textbf{indépendants}. }\texttt{3>0}\text{ : vrai → }s=1\text{. }\texttt{3>2}\text{ : vrai → }s=2.` },
       // algo_if_08 — piège : if sans return dans une branche — moyenne
-      { q: r`\texttt{def f(x):}\\\quad\texttt{if x > 0 :}\\\qquad\texttt{return x * 2}\\[6pt]\text{Que renvoie }\texttt{f(-3)}\text{ ?}`,
+      { q: r`\texttt{def f(x):}\\\quad\texttt{if x > 0 :}\\\qquad\texttt{return x * 2}\\\text{Que renvoie }\texttt{f(-3)}\text{ ?}`,
         choices: [r`\texttt{None}`, r`-6`, r`-3`, r`\text{Erreur}`],
         a: r`\texttt{None}`,
         tip: r`\texttt{-3 > 0}\text{ : faux → on ne rentre pas dans le \texttt{if}. Sans \texttt{else}, la fonction renvoie \texttt{None} (rien).}` },
       // algo_if_09 — condition or — dure
-      { q: r`\texttt{def f(n):}\\\quad\texttt{if n == 0 or n == 1 :}\\\qquad\texttt{return True}\\\quad\texttt{else :}\\\qquad\texttt{return False}\\[6pt]\text{Que renvoie }\texttt{f(1)}\text{ ?}`,
+      { q: r`\texttt{def f(n):}\\\quad\texttt{if n == 0 or n == 1 :}\\\qquad\texttt{return True}\\\quad\texttt{else :}\\\qquad\texttt{return False}\\\text{Que renvoie }\texttt{f(1)}\text{ ?}`,
         choices: [r`\texttt{True}`, r`\texttt{False}`, r`1`, r`\text{Erreur}`],
         a: r`\texttt{True}`,
         tip: r`\texttt{1 == 0}\text{ : faux. }\texttt{1 == 1}\text{ : vrai. Avec \texttt{or}, il suffit qu'une condition soit vraie.}` },
       // algo_if_10 — trois elif imbriqués — dure
-      { q: r`\texttt{def mention(n):}\\\quad\texttt{if n >= 16 :}\\\qquad\texttt{return "TB"}\\\quad\texttt{elif n >= 14 :}\\\qquad\texttt{return "B"}\\\quad\texttt{elif n >= 12 :}\\\qquad\texttt{return "AB"}\\\quad\texttt{else :}\\\qquad\texttt{return "P"}\\[6pt]\text{Que renvoie }\texttt{mention(14)}\text{ ?}`,
+      { q: r`\texttt{def mention(n):}\\\quad\texttt{if n >= 16 :}\\\qquad\texttt{return "TB"}\\\quad\texttt{elif n >= 14 :}\\\qquad\texttt{return "B"}\\\quad\texttt{elif n >= 12 :}\\\qquad\texttt{return "AB"}\\\quad\texttt{else :}\\\qquad\texttt{return "P"}\\\text{Que renvoie }\texttt{mention(14)}\text{ ?}`,
         choices: [r`\texttt{"B"}`, r`\texttt{"TB"}`, r`\texttt{"AB"}`, r`\texttt{"P"}`],
         a: r`\texttt{"B"}`,
         tip: r`\texttt{14 >= 16}\text{ : faux. }\texttt{14 >= 14}\text{ : vrai → \texttt{"B"}. On s'arrête, les \texttt{elif} suivants ne sont pas testés.}` },
@@ -11767,52 +11767,52 @@ const DB = {
     // ── Bloc 4 : Boucle for (10 questions) ────────────────────────────────────
     algo_for: [
       // algo_for_01 — somme simple — facile
-      { q: r`\texttt{s = 0}\\\texttt{for i in range(4) :}\\\quad\texttt{s = s + i}\\\texttt{print(s)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+      { q: r`\texttt{s = 0}\\\texttt{for i in range(4) :}\\\quad\texttt{s = s + i}\\\texttt{print(s)}\\\text{Qu'affiche ce programme ?}`,
         choices: [r`6`, r`10`, r`4`, r`0`],
         a: r`6`,
         tip: r`\texttt{range(4)} = \{0,1,2,3\}.\text{ Somme : }0+1+2+3=6.` },
       // algo_for_02 — range(1, n+1) — facile
-      { q: r`\texttt{s = 0}\\\texttt{for i in range(1, 6) :}\\\quad\texttt{s = s + i}\\\texttt{print(s)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+      { q: r`\texttt{s = 0}\\\texttt{for i in range(1, 6) :}\\\quad\texttt{s = s + i}\\\texttt{print(s)}\\\text{Qu'affiche ce programme ?}`,
         choices: [r`15`, r`10`, r`6`, r`21`],
         a: r`15`,
         tip: r`\texttt{range(1,6)} = \{1,2,3,4,5\}.\text{ Somme : }1+2+3+4+5=15.` },
       // algo_for_03 — compteur — facile
-      { q: r`\texttt{c = 0}\\\texttt{for i in range(5) :}\\\quad\texttt{c = c + 1}\\\texttt{print(c)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+      { q: r`\texttt{c = 0}\\\texttt{for i in range(5) :}\\\quad\texttt{c = c + 1}\\\texttt{print(c)}\\\text{Qu'affiche ce programme ?}`,
         choices: [r`5`, r`4`, r`6`, r`0`],
         a: r`5`,
         tip: r`\texttt{range(5)} = \{0,1,2,3,4\}\text{ : la boucle s'exécute }5\text{ fois, donc }c=5.` },
       // algo_for_04 — produit (factorielle) — facile
-      { q: r`\texttt{p = 1}\\\texttt{for i in range(1, 5) :}\\\quad\texttt{p = p * i}\\\texttt{print(p)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+      { q: r`\texttt{p = 1}\\\texttt{for i in range(1, 5) :}\\\quad\texttt{p = p * i}\\\texttt{print(p)}\\\text{Qu'affiche ce programme ?}`,
         choices: [r`24`, r`4`, r`12`, r`10`],
         a: r`24`,
         tip: r`p\text{ vaut successivement : }1,\ 1\times2=2,\ 2\times3=6,\ 6\times4=24.\\4! = 24.` },
       // algo_for_05 — valeur de la variable de boucle — facile
-      { q: r`\texttt{for k in range(3) :}\\\quad\texttt{print(k)}\\[6pt]\text{Quelles valeurs sont affichées ?}`,
+      { q: r`\texttt{for k in range(3) :}\\\quad\texttt{print(k)}\\\text{Quelles valeurs sont affichées ?}`,
         choices: [r`0,\ 1,\ 2`, r`1,\ 2,\ 3`, r`0,\ 1,\ 2,\ 3`, r`1,\ 2`],
         a: r`0,\ 1,\ 2`,
         tip: r`\texttt{range(3)}\text{ génère }0, 1, 2\text{ (commence à }0\text{, n'atteint pas }3\text{).}` },
       // algo_for_06 — range avec pas — moyenne
-      { q: r`\texttt{s = 0}\\\texttt{for i in range(0, 10, 2) :}\\\quad\texttt{s = s + i}\\\texttt{print(s)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+      { q: r`\texttt{s = 0}\\\texttt{for i in range(0, 10, 2) :}\\\quad\texttt{s = s + i}\\\texttt{print(s)}\\\text{Qu'affiche ce programme ?}`,
         choices: [r`20`, r`30`, r`25`, r`10`],
         a: r`20`,
         tip: r`\texttt{range(0,10,2)} = \{0,2,4,6,8\}.\text{ Somme : }0+2+4+6+8=20.` },
       // algo_for_07 — boucle avec condition interne — moyenne
-      { q: r`\texttt{c = 0}\\\texttt{for i in range(1, 11) :}\\\quad\texttt{if i \% 2 == 0 :}\\\qquad\texttt{c = c + 1}\\\texttt{print(c)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+      { q: r`\texttt{c = 0}\\\texttt{for i in range(1, 11) :}\\\quad\texttt{if i \% 2 == 0 :}\\\qquad\texttt{c = c + 1}\\\texttt{print(c)}\\\text{Qu'affiche ce programme ?}`,
         choices: [r`5`, r`10`, r`4`, r`6`],
         a: r`5`,
-        tip: r`\textbf{En Python, \texttt{i \% 2 == 0} teste si }i\text{ est pair} \\\text{(\texttt{\%} = reste de la division entière).}\\[4pt]\text{Parmi }\{1,\dots,10\}\text{, les pairs sont }\{2,4,6,8,10\}\text{ : 5 valeurs.}` },
+        tip: r`\textbf{En Python, \texttt{i \% 2 == 0} teste si }i\text{ est pair} \\\text{(\texttt{\%} = reste de la division entière).}\\\text{Parmi }\{1,\dots,10\}\text{, les pairs sont }\{2,4,6,8,10\}\text{ : 5 valeurs.}` },
       // algo_for_08 — accumulation multiplicative avec condition — moyenne
-      { q: r`\texttt{p = 1}\\\texttt{for i in range(1, 6) :}\\\quad\texttt{if i \% 2 != 0 :}\\\qquad\texttt{p = p * i}\\\texttt{print(p)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+      { q: r`\texttt{p = 1}\\\texttt{for i in range(1, 6) :}\\\quad\texttt{if i \% 2 != 0 :}\\\qquad\texttt{p = p * i}\\\texttt{print(p)}\\\text{Qu'affiche ce programme ?}`,
         choices: [r`15`, r`120`, r`9`, r`5`],
         a: r`15`,
-        tip: r`\textbf{\texttt{i \% 2 != 0} sélectionne les impairs} \\\text{(\texttt{\%} = reste de la division entière ; impair si reste }\neq 0\text{).}\\[4pt]\text{Impairs de 1 à 5 : }1\times3\times5=15.` },
+        tip: r`\textbf{\texttt{i \% 2 != 0} sélectionne les impairs} \\\text{(\texttt{\%} = reste de la division entière ; impair si reste }\neq 0\text{).}\\\text{Impairs de 1 à 5 : }1\times3\times5=15.` },
       // algo_for_09 — maximum d'une liste — dure
-      { q: r`\texttt{m = 0}\\\texttt{for x in [3, 7, 2, 9, 4] :}\\\quad\texttt{if x > m :}\\\qquad\texttt{m = x}\\\texttt{print(m)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+      { q: r`\texttt{m = 0}\\\texttt{for x in [3, 7, 2, 9, 4] :}\\\quad\texttt{if x > m :}\\\qquad\texttt{m = x}\\\texttt{print(m)}\\\text{Qu'affiche ce programme ?}`,
         choices: [r`9`, r`7`, r`4`, r`3`],
         a: r`9`,
         tip: r`\text{On compare chaque élément au maximum courant }m\text{. Après toute la liste : }m=9.` },
       // algo_for_10 — boucle imbriquée (table de multiplication) — dure
-      { q: r`\texttt{s = 0}\\\texttt{for i in range(1, 4) :}\\\quad\texttt{for j in range(1, 4) :}\\\qquad\texttt{s = s + 1}\\\texttt{print(s)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+      { q: r`\texttt{s = 0}\\\texttt{for i in range(1, 4) :}\\\quad\texttt{for j in range(1, 4) :}\\\qquad\texttt{s = s + 1}\\\texttt{print(s)}\\\text{Qu'affiche ce programme ?}`,
         choices: [r`9`, r`6`, r`12`, r`3`],
         a: r`9`,
         tip: r`\text{Boucle imbriquée : }i\in\{1,2,3\}\text{ et }j\in\{1,2,3\}\text{ → }3\times3=9\text{ itérations au total.}` },
@@ -11881,47 +11881,47 @@ const DB = {
     // ── Bloc 5 : Boucle while (10 questions) ──────────────────────────────────
     algo_while: [
       // algo_wh_01 — décompte simple — facile
-      { q: r`\texttt{n = 3}\\\texttt{while n > 0 :}\\\quad\texttt{n = n - 1}\\\texttt{print(n)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+      { q: r`\texttt{n = 3}\\\texttt{while n > 0 :}\\\quad\texttt{n = n - 1}\\\texttt{print(n)}\\\text{Qu'affiche ce programme ?}`,
         choices: [r`0`, r`1`, r`3`, r`-1`],
         a: r`0`,
         tip: r`n\text{ vaut successivement }3, 2, 1, 0.\text{ La boucle s'arrête quand }n=0\text{ (condition fausse).}\\n\text{ affiché : }0.` },
       // algo_wh_02 — somme jusqu'à condition — facile
-      { q: r`\texttt{s = 0}\\\texttt{n = 1}\\\texttt{while n <= 4 :}\\\quad\texttt{s = s + n}\\\quad\texttt{n = n + 1}\\\texttt{print(s)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+      { q: r`\texttt{s = 0}\\\texttt{n = 1}\\\texttt{while n <= 4 :}\\\quad\texttt{s = s + n}\\\quad\texttt{n = n + 1}\\\texttt{print(s)}\\\text{Qu'affiche ce programme ?}`,
         choices: [r`10`, r`4`, r`15`, r`6`],
         a: r`10`,
         tip: r`s=0+1+2+3+4=10.\text{ La variable }n\text{ joue le rôle du compteur.}` },
       // algo_wh_03 — double de n jusqu'à seuil — facile
-      { q: r`\texttt{n = 1}\\\texttt{while n < 10 :}\\\quad\texttt{n = n * 2}\\\texttt{print(n)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+      { q: r`\texttt{n = 1}\\\texttt{while n < 10 :}\\\quad\texttt{n = n * 2}\\\texttt{print(n)}\\\text{Qu'affiche ce programme ?}`,
         choices: [r`16`, r`8`, r`10`, r`12`],
         a: r`16`,
         tip: r`n\text{ vaut successivement }1, 2, 4, 8, 16.\text{ À }n=8\text{ : }8<10\text{ vrai → }n=16.\text{ À }16<10\text{ : faux → arrêt.}` },
       // algo_wh_04 — compteur de tours — facile
-      { q: r`\texttt{c = 0}\\\texttt{x = 100}\\\texttt{while x > 1 :}\\\quad\texttt{x = x // 2}\\\quad\texttt{c = c + 1}\\\texttt{print(c)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+      { q: r`\texttt{c = 0}\\\texttt{x = 100}\\\texttt{while x > 1 :}\\\quad\texttt{x = x // 2}\\\quad\texttt{c = c + 1}\\\texttt{print(c)}\\\text{Qu'affiche ce programme ?}`,
         choices: [r`6`, r`7`, r`5`, r`100`],
         a: r`6`,
         tip: r`x\text{ vaut : }100, 50, 25, 12, 6, 3, 1.\text{ La boucle tourne }6\text{ fois (}\texttt{//}\text{ est la division entière).}` },
       // algo_wh_05 — condition avec égalité — facile
-      { q: r`\texttt{n = 10}\\\texttt{while n != 0 :}\\\quad\texttt{n = n - 3}\\\texttt{print(n)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+      { q: r`\texttt{n = 10}\\\texttt{while n != 0 :}\\\quad\texttt{n = n - 3}\\\texttt{print(n)}\\\text{Qu'affiche ce programme ?}`,
         choices: [r`-2`, r`0`, r`1`, r`\text{boucle infinie}`],
         a: r`-2`,
         tip: r`n\text{ vaut : }10, 7, 4, 1, -2.\text{ La condition }n\neq0\text{ est vraie à chaque fois (}n\text{ ne vaut jamais exactement }0\text{).}` },
       // algo_wh_06 — nombre de chiffres — moyenne
-      { q: r`\texttt{n = 1000}\\\texttt{c = 0}\\\texttt{while n >= 1 :}\\\quad\texttt{n = n // 10}\\\quad\texttt{c = c + 1}\\\texttt{print(c)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+      { q: r`\texttt{n = 1000}\\\texttt{c = 0}\\\texttt{while n >= 1 :}\\\quad\texttt{n = n // 10}\\\quad\texttt{c = c + 1}\\\texttt{print(c)}\\\text{Qu'affiche ce programme ?}`,
         choices: [r`4`, r`3`, r`5`, r`10`],
         a: r`4`,
         tip: r`n\text{ vaut : }1000, 100, 10, 1, 0.\text{ Boucle tourne }4\text{ fois → }c=4.\text{ (1000 a 4 chiffres.)}` },
       // algo_wh_07 — seuil de dépassement — moyenne
-      { q: r`\texttt{u = 1}\\\texttt{n = 0}\\\texttt{while u < 100 :}\\\quad\texttt{u = u * 3}\\\quad\texttt{n = n + 1}\\\texttt{print(n)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+      { q: r`\texttt{u = 1}\\\texttt{n = 0}\\\texttt{while u < 100 :}\\\quad\texttt{u = u * 3}\\\quad\texttt{n = n + 1}\\\texttt{print(n)}\\\text{Qu'affiche ce programme ?}`,
         choices: [r`5`, r`4`, r`6`, r`3`],
         a: r`5`,
         tip: r`u\text{ vaut : }1, 3, 9, 27, 81, 243.\text{ La boucle tourne }5\text{ fois avant que }u\geq100.` },
       // algo_wh_08 — algorithme d'Euclide simplifié — moyenne
-      { q: r`\texttt{a = 12}\\\texttt{b = 8}\\\texttt{while b != 0 :}\\\quad\texttt{a, b = b, a \% b}\\\texttt{print(a)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+      { q: r`\texttt{a = 12}\\\texttt{b = 8}\\\texttt{while b != 0 :}\\\quad\texttt{a, b = b, a \% b}\\\texttt{print(a)}\\\text{Qu'affiche ce programme ?}`,
         choices: [r`4`, r`8`, r`2`, r`12`],
         a: r`4`,
         tip: r`\text{C'est l'algorithme d'Euclide.}\\(a,b):(12,8)\to(8,4)\to(4,0).\\\text{À l'arrêt }b=0\text{, }a=4=\text{pgcd}(12,8).` },
       // algo_wh_09 — piège boucle infinie — dure
-      { q: r`\texttt{n = 1}\\\texttt{while n > 0 :}\\\quad\texttt{n = n + 1}\\[6pt]\text{Que se passe-t-il ?}`,
+      { q: r`\texttt{n = 1}\\\texttt{while n > 0 :}\\\quad\texttt{n = n + 1}\\\text{Que se passe-t-il ?}`,
         choices: [
           r`\text{Boucle infinie : }n\text{ augmente sans jamais atteindre }0`,
           r`\text{La boucle s'arrête quand }n = 0`,
@@ -11931,7 +11931,7 @@ const DB = {
         a: r`\text{Boucle infinie : }n\text{ augmente sans jamais atteindre }0`,
         tip: r`n\text{ part de }1\text{ et augmente. La condition }n>0\text{ reste toujours vraie → boucle infinie.}\\\text{Il faudrait }n=n-1\text{ pour que la boucle se termine.}` },
       // algo_wh_10 — trouver le premier entier vérifiant une condition — dure
-      { q: r`\texttt{n = 0}\\\texttt{while n * n <= 50 :}\\\quad\texttt{n = n + 1}\\\texttt{print(n)}\\[6pt]\text{Qu'affiche ce programme ?}`,
+      { q: r`\texttt{n = 0}\\\texttt{while n * n <= 50 :}\\\quad\texttt{n = n + 1}\\\texttt{print(n)}\\\text{Qu'affiche ce programme ?}`,
         choices: [r`8`, r`7`, r`9`, r`50`],
         a: r`8`,
         tip: r`7^2=49\leq50\text{ : on continue. }8^2=64>50\text{ : arrêt. On affiche }n=8.\\(\text{premier entier tel que }n^2>50\text{.)}` },
@@ -12008,7 +12008,7 @@ const DB = {
     plan: [
 
       // ── ps_01 · Norme d'un vecteur — lecture directe ─────────────────────────
-      { q: r`\text{On donne }\vec{u}=\overrightarrow{AB}\text{ avec }AB=5\text{ cm.}\\[4pt]\text{Quelle est la valeur de }\|\vec{u}\|\text{ ?}`,
+      { q: r`\text{On donne }\vec{u}=\overrightarrow{AB}\text{ avec }AB=5\text{ cm.}\\\text{Quelle est la valeur de }\|\vec{u}\|\text{ ?}`,
         choices: [r`5`, r`25`, r`\sqrt{5}`, r`10`],
         a: r`5`,
         tip: r`\text{La norme de }\overrightarrow{AB}\text{ est simplement la longueur }AB.\\\|\overrightarrow{AB}\| = AB = 5\text{ cm.}` },
@@ -12020,7 +12020,7 @@ const DB = {
         tip: r`\vec{u}\cdot\vec{u}=\|\vec{u}\|^2=3^2=9.\\\text{Le carré scalaire d'un vecteur est le carré de sa norme.}` },
 
       // ── ps_03 · Angle droit → produit scalaire nul ───────────────────────────
-      { q: r`\text{Les droites }(AB)\text{ et }(AC)\text{ sont perpendiculaires.}\\[4pt]\text{Que vaut }\overrightarrow{AB}\cdot\overrightarrow{AC}\text{ ?}`,
+      { q: r`\text{Les droites }(AB)\text{ et }(AC)\text{ sont perpendiculaires.}\\\text{Que vaut }\overrightarrow{AB}\cdot\overrightarrow{AC}\text{ ?}`,
         svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" width="100%" style="background:#fff;font-family:sans-serif">
   <line x1="50" y1="140" x2="180" y2="140" stroke="#2563EB" stroke-width="2"/>
   <line x1="50" y1="140" x2="50" y2="30" stroke="#DC2626" stroke-width="2"/>
@@ -12031,10 +12031,10 @@ const DB = {
 </svg>`,
         choices: [r`0`, r`AB\times AC`, r`-AB\times AC`, r`1`],
         a: r`0`,
-        tip: r`\overrightarrow{AB}\cdot\overrightarrow{AC}=\|\overrightarrow{AB}\|\times\|\overrightarrow{AC}\|\times\cos(90°)=0.\\[4pt]\text{Deux vecteurs sont orthogonaux }\Leftrightarrow\text{ leur produit scalaire est nul.}` },
+        tip: r`\overrightarrow{AB}\cdot\overrightarrow{AC}=\|\overrightarrow{AB}\|\times\|\overrightarrow{AC}\|\times\cos(90°)=0.\\\text{Deux vecteurs sont orthogonaux }\Leftrightarrow\text{ leur produit scalaire est nul.}` },
 
       // ── ps_04 · Formule cos — angle 60° ──────────────────────────────────────
-      { q: r`\text{Dans le triangle équilatéral }ABC\text{ de côté }4,\\[4pt]\text{calculer }\overrightarrow{AB}\cdot\overrightarrow{AC}.`,
+      { q: r`\text{Dans le triangle équilatéral }ABC\text{ de côté }4,\\\text{calculer }\overrightarrow{AB}\cdot\overrightarrow{AC}.`,
         svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" width="100%" style="background:#fff;font-family:sans-serif">
   <polygon points="120,30 40,170 200,170" fill="#EFF6FF" stroke="#2563EB" stroke-width="2"/>
   <text x="113" y="22" font-size="14" font-weight="bold" fill="#333">A</text>
@@ -12056,13 +12056,13 @@ const DB = {
         tip: r`\overrightarrow{AB}\cdot\overrightarrow{AC}=AB\times AC\times\cos(\widehat{BAC})=4\times4\times\cos(60°)=16\times\tfrac{1}{2}=8.` },
 
       // ── ps_05 · Formule cos — angle obtus 120° ───────────────────────────────
-      { q: r`\text{Dans un triangle }ABC,\ AB=3,\ AC=2\text{ et }\widehat{BAC}=120°.\\[4pt]\text{Calculer }\overrightarrow{AB}\cdot\overrightarrow{AC}.`,
+      { q: r`\text{Dans un triangle }ABC,\ AB=3,\ AC=2\text{ et }\widehat{BAC}=120°.\\\text{Calculer }\overrightarrow{AB}\cdot\overrightarrow{AC}.`,
         choices: [r`-3`, r`3`, r`6`, r`-6`],
         a: r`-3`,
-        tip: r`\overrightarrow{AB}\cdot\overrightarrow{AC}=3\times2\times\cos(120°)=6\times\!\left(-\tfrac{1}{2}\right)=-3.\\[4pt]\text{Attention : }\cos(120°)=-\tfrac{1}{2}.` },
+        tip: r`\overrightarrow{AB}\cdot\overrightarrow{AC}=3\times2\times\cos(120°)=6\times\!\left(-\tfrac{1}{2}\right)=-3.\\\text{Attention : }\cos(120°)=-\tfrac{1}{2}.` },
 
       // ── ps_06 · Projection orthogonale — H sur [AB], angle aigu ──────────────
-      { q: r`\text{H est le pied de la hauteur issue de C sur }(AB).\\[4pt]\text{Quelle formule donne }\overrightarrow{AB}\cdot\overrightarrow{AC}\text{ ?}`,
+      { q: r`\text{H est le pied de la hauteur issue de C sur }(AB).\\\text{Quelle formule donne }\overrightarrow{AB}\cdot\overrightarrow{AC}\text{ ?}`,
         svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 180" width="100%" style="background:#fff;font-family:sans-serif">
   <line x1="30" y1="150" x2="260" y2="150" stroke="#2563EB" stroke-width="2"/>
   <line x1="100" y1="150" x2="170" y2="50" stroke="#DC2626" stroke-width="2"/>
@@ -12075,10 +12075,10 @@ const DB = {
 </svg>`,
         choices: [r`AB\times AH`, r`-AB\times AH`, r`AB\times CH`, r`AH\times CH`],
         a: r`AB\times AH`,
-        tip: r`\text{H appartient à la demi-droite }[AB)\Rightarrow\overrightarrow{AB}\cdot\overrightarrow{AC}=AB\times AH.\\[4pt]\text{(On utilise la formule de projection orthogonale.)}` },
+        tip: r`\text{H appartient à la demi-droite }[AB)\Rightarrow\overrightarrow{AB}\cdot\overrightarrow{AC}=AB\times AH.\\\text{(On utilise la formule de projection orthogonale.)}` },
 
       // ── ps_07 · Projection — H en dehors de [AB] (angle obtus) ──────────────
-      { q: r`\text{H est le projeté orthogonal de C sur }(AB),\\[4pt]\text{mais H n'appartient pas à }[AB]\text{ (angle obtus en A).}\\[4pt]\text{Que vaut }\overrightarrow{AB}\cdot\overrightarrow{AC}\text{ ?}`,
+      { q: r`\text{H est le projeté orthogonal de C sur }(AB),\\\text{mais H n'appartient pas à }[AB]\text{ (angle obtus en A).}\\\text{Que vaut }\overrightarrow{AB}\cdot\overrightarrow{AC}\text{ ?}`,
         svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 180" width="100%" style="background:#fff;font-family:sans-serif">
   <line x1="30" y1="150" x2="260" y2="150" stroke="#2563EB" stroke-width="2"/>
   <line x1="150" y1="150" x2="80" y2="60" stroke="#DC2626" stroke-width="2"/>
@@ -12094,31 +12094,31 @@ const DB = {
         tip: r`\text{H n'appartient pas à }[AB]\text{ : il est « de l'autre côté » de A.}\\\overrightarrow{AB}\cdot\overrightarrow{AC}=-AB\times AH.` },
 
       // ── ps_08 · Coordonnées — formule xx'+yy' ────────────────────────────────
-      { q: r`\vec{u}\begin{pmatrix}3\\-2\end{pmatrix}\ \text{et}\ \vec{v}\begin{pmatrix}1\\4\end{pmatrix}.\\[6pt]\text{Calculer }\vec{u}\cdot\vec{v}.`,
+      { q: r`\vec{u}\begin{pmatrix}3\\-2\end{pmatrix}\ \text{et}\ \vec{v}\begin{pmatrix}1\\4\end{pmatrix}.\\\text{Calculer }\vec{u}\cdot\vec{v}.`,
         choices: [r`-5`, r`5`, r`-3`, r`14`],
         a: r`-5`,
-        tip: r`\vec{u}\cdot\vec{v}=3\times1+(-2)\times4=3-8=-5.\\[4pt]\text{Formule : }\vec{u}(x;y),\ \vec{v}(x';y')\Rightarrow\vec{u}\cdot\vec{v}=xx'+yy'.` },
+        tip: r`\vec{u}\cdot\vec{v}=3\times1+(-2)\times4=3-8=-5.\\\text{Formule : }\vec{u}(x;y),\ \vec{v}(x';y')\Rightarrow\vec{u}\cdot\vec{v}=xx'+yy'.` },
 
       // ── ps_09 · Coordonnées — résultat positif ───────────────────────────────
-      { q: r`\vec{u}\begin{pmatrix}-2\\3\end{pmatrix}\ \text{et}\ \vec{v}\begin{pmatrix}-1\\-1\end{pmatrix}.\\[6pt]\text{Calculer }\vec{u}\cdot\vec{v}.`,
+      { q: r`\vec{u}\begin{pmatrix}-2\\3\end{pmatrix}\ \text{et}\ \vec{v}\begin{pmatrix}-1\\-1\end{pmatrix}.\\\text{Calculer }\vec{u}\cdot\vec{v}.`,
         choices: [r`-1`, r`1`, r`5`, r`-5`],
         a: r`-1`,
         tip: r`\vec{u}\cdot\vec{v}=(-2)\times(-1)+3\times(-1)=2-3=-1.` },
 
       // ── ps_10 · Norme via coordonnées ────────────────────────────────────────
-      { q: r`\vec{u}\begin{pmatrix}3\\4\end{pmatrix}.\\[6pt]\text{Calculer }\|\vec{u}\|.`,
+      { q: r`\vec{u}\begin{pmatrix}3\\4\end{pmatrix}.\\\text{Calculer }\|\vec{u}\|.`,
         choices: [r`5`, r`7`, r`\sqrt{7}`, r`25`],
         a: r`5`,
-        tip: r`\|\vec{u}\|^2=3^2+4^2=9+16=25\Rightarrow\|\vec{u}\|=5.\\[4pt]\text{(Triangle 3-4-5 pythagoricien.)}` },
+        tip: r`\|\vec{u}\|^2=3^2+4^2=9+16=25\Rightarrow\|\vec{u}\|=5.\\\text{(Triangle 3-4-5 pythagoricien.)}` },
 
       // ── ps_11 · Orthogonalité par coordonnées ────────────────────────────────
-      { q: r`\vec{u}\begin{pmatrix}2\\3\end{pmatrix}\ \text{et}\ \vec{v}\begin{pmatrix}a\\-2\end{pmatrix}.\\[6pt]\text{Pour quelle valeur de }a\text{ les vecteurs sont-ils orthogonaux ?}`,
+      { q: r`\vec{u}\begin{pmatrix}2\\3\end{pmatrix}\ \text{et}\ \vec{v}\begin{pmatrix}a\\-2\end{pmatrix}.\\\text{Pour quelle valeur de }a\text{ les vecteurs sont-ils orthogonaux ?}`,
         choices: [r`3`, r`-3`, r`4`, r`-4`],
         a: r`3`,
         tip: r`\vec{u}\perp\vec{v}\Leftrightarrow\vec{u}\cdot\vec{v}=0\Leftrightarrow2a+3\times(-2)=0\Leftrightarrow2a=6\Leftrightarrow a=3.` },
 
       // ── ps_12 · Orthogonalité géométrique — rectangle ────────────────────────
-      { q: r`ABCD\text{ est un rectangle.}\\[4pt]\text{Parmi les produits suivants, lequel vaut }0\text{ ?}`,
+      { q: r`ABCD\text{ est un rectangle.}\\\text{Parmi les produits suivants, lequel vaut }0\text{ ?}`,
         svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 160" width="100%" style="background:#fff;font-family:sans-serif">
   <rect x="50" y="40" width="180" height="90" fill="#EFF6FF" stroke="#2563EB" stroke-width="2"/>
   <rect x="50" y="40" width="14" height="14" fill="none" stroke="#555" stroke-width="1.5"/>
@@ -12138,22 +12138,22 @@ const DB = {
       { q: r`\text{Développer }(\vec{u}+\vec{v})\cdot(\vec{u}-\vec{v}).`,
         choices: [r`\|\vec{u}\|^2-\|\vec{v}\|^2`, r`\|\vec{u}\|^2+\|\vec{v}\|^2`, r`\|\vec{u}-\vec{v}\|^2`, r`0`],
         a: r`\|\vec{u}\|^2-\|\vec{v}\|^2`,
-        tip: r`(\vec{u}+\vec{v})\cdot(\vec{u}-\vec{v})=\vec{u}\cdot\vec{u}-\vec{u}\cdot\vec{v}+\vec{v}\cdot\vec{u}-\vec{v}\cdot\vec{v}=\|\vec{u}\|^2-\|\vec{v}\|^2.\\[4pt]\text{(Identité remarquable scalaire : }(a+b)(a-b)=a^2-b^2.\text{)}` },
+        tip: r`(\vec{u}+\vec{v})\cdot(\vec{u}-\vec{v})=\vec{u}\cdot\vec{u}-\vec{u}\cdot\vec{v}+\vec{v}\cdot\vec{u}-\vec{v}\cdot\vec{v}=\|\vec{u}\|^2-\|\vec{v}\|^2.\\\text{(Identité remarquable scalaire : }(a+b)(a-b)=a^2-b^2.\text{)}` },
 
       // ── ps_14 · Al-Kashi — trouver un côté ───────────────────────────────────
-      { q: r`\text{Dans le triangle }ABC,\ AB=5,\ AC=3,\ \widehat{BAC}=60°.\\[4pt]\text{Calculer }BC^2\text{ grâce au théorème d'Al-Kashi.}`,
+      { q: r`\text{Dans le triangle }ABC,\ AB=5,\ AC=3,\ \widehat{BAC}=60°.\\\text{Calculer }BC^2\text{ grâce au théorème d'Al-Kashi.}`,
         choices: [r`19`, r`34`, r`25`, r`9`],
         a: r`19`,
         tip: r`BC^2=AB^2+AC^2-2\times AB\times AC\times\cos A\\=25+9-2\times5\times3\times\tfrac{1}{2}=34-15=19.` },
 
       // ── ps_15 · Al-Kashi — trouver un angle ──────────────────────────────────
-      { q: r`\text{Dans le triangle }ABC,\ AB=4,\ AC=3,\ BC=\sqrt{13}.\\[4pt]\text{Quelle est la valeur de }\cos(\widehat{BAC})\text{ ?}`,
+      { q: r`\text{Dans le triangle }ABC,\ AB=4,\ AC=3,\ BC=\sqrt{13}.\\\text{Quelle est la valeur de }\cos(\widehat{BAC})\text{ ?}`,
         choices: [r`\dfrac{1}{2}`, r`-\dfrac{1}{2}`, r`\dfrac{\sqrt{3}}{2}`, r`0`],
         a: r`\dfrac{1}{2}`,
         tip: r`BC^2=AB^2+AC^2-2\cdot AB\cdot AC\cdot\cos A\\13=16+9-24\cos A\Rightarrow24\cos A=12\Rightarrow\cos A=\tfrac{1}{2}.` },
 
       // ── ps_16 · Cercle de diamètre [AB] — reconnaître la propriété ────────────
-      { q: r`M\text{ est un point tel que }\overrightarrow{MA}\cdot\overrightarrow{MB}=0.\\[4pt]\text{Que peut-on conclure ?}`,
+      { q: r`M\text{ est un point tel que }\overrightarrow{MA}\cdot\overrightarrow{MB}=0.\\\text{Que peut-on conclure ?}`,
         svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 180" width="100%" style="background:#fff;font-family:sans-serif">
   <circle cx="130" cy="100" r="60" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.8"/>
   <line x1="70" y1="100" x2="190" y2="100" stroke="#2563EB" stroke-width="2"/>
@@ -12167,31 +12167,31 @@ const DB = {
 </svg>`,
         choices: [r`M\text{ est sur le cercle de diamètre }[AB]`, r`M\text{ est le milieu de }[AB]`, r`MA=MB`, r`M\text{ est sur la médiatrice de }[AB]`],
         a: r`M\text{ est sur le cercle de diamètre }[AB]`,
-        tip: r`\overrightarrow{MA}\cdot\overrightarrow{MB}=0\Leftrightarrow M\text{ appartient au cercle de diamètre }[AB].\\[4pt]\text{(Propriété fondamentale : }M\text{ voit }[AB]\text{ sous un angle droit.)}` },
+        tip: r`\overrightarrow{MA}\cdot\overrightarrow{MB}=0\Leftrightarrow M\text{ appartient au cercle de diamètre }[AB].\\\text{(Propriété fondamentale : }M\text{ voit }[AB]\text{ sous un angle droit.)}` },
 
       // ── ps_17 · Cercle diamètre — équation cartésienne ───────────────────────
-      { q: r`A(1;0)\text{ et }B(5;0).\text{ M}(x;y)\text{ appartient au cercle de diamètre }[AB].\\[4pt]\text{Quelle équation M vérifie-t-il ?}`,
+      { q: r`A(1;0)\text{ et }B(5;0).\text{ M}(x;y)\text{ appartient au cercle de diamètre }[AB].\\\text{Quelle équation M vérifie-t-il ?}`,
         choices: [r`(x-1)(x-5)+y^2=0`, r`x^2+y^2=25`, r`(x-3)^2+y^2=4`, r`x^2-6x+y^2=0`],
         a: r`(x-1)(x-5)+y^2=0`,
         tip: r`\overrightarrow{MA}\cdot\overrightarrow{MB}=0\Leftrightarrow(1-x)(5-x)+(0-y)(0-y)=0\\\Leftrightarrow(x-1)(x-5)+y^2=0.` },
 
       // ── ps_18 · Produit scalaire et bilinéarité ───────────────────────────────
-      { q: r`\text{Sachant que }\|\vec{u}\|=2,\ \|\vec{v}\|=3,\ \vec{u}\cdot\vec{v}=1,\\[4pt]\text{calculer }(2\vec{u})\cdot\vec{v}.`,
+      { q: r`\text{Sachant que }\|\vec{u}\|=2,\ \|\vec{v}\|=3,\ \vec{u}\cdot\vec{v}=1,\\\text{calculer }(2\vec{u})\cdot\vec{v}.`,
         choices: [r`2`, r`6`, r`12`, r`1`],
         a: r`2`,
-        tip: r`(2\vec{u})\cdot\vec{v}=2(\vec{u}\cdot\vec{v})=2\times1=2.\\[4pt]\text{Le produit scalaire est linéaire : on peut sortir les scalaires.}` },
+        tip: r`(2\vec{u})\cdot\vec{v}=2(\vec{u}\cdot\vec{v})=2\times1=2.\\\text{Le produit scalaire est linéaire : on peut sortir les scalaires.}` },
 
       // ── ps_19 · Question transversale — distance + orthogonalité ──────────────
       { q: r`A(2;-3)\text{ et }B(5;1).\text{ Calculer }\overrightarrow{AB}\cdot\overrightarrow{AB}.`,
         choices: [r`25`, r`5`, r`-25`, r`7`],
         a: r`25`,
-        tip: r`\overrightarrow{AB}\begin{pmatrix}3\\4\end{pmatrix}\Rightarrow\overrightarrow{AB}\cdot\overrightarrow{AB}=\|\overrightarrow{AB}\|^2=3^2+4^2=25.\\[4pt]\text{Vérification : }AB=\sqrt{9+16}=5\Rightarrow AB^2=25.` },
+        tip: r`\overrightarrow{AB}\begin{pmatrix}3\\4\end{pmatrix}\Rightarrow\overrightarrow{AB}\cdot\overrightarrow{AB}=\|\overrightarrow{AB}\|^2=3^2+4^2=25.\\\text{Vérification : }AB=\sqrt{9+16}=5\Rightarrow AB^2=25.` },
 
       // ── ps_20 · Synthèse — angle entre deux vecteurs via coordonnées ──────────
-      { q: r`\vec{u}\begin{pmatrix}1\\\sqrt{3}\end{pmatrix}\ \text{et}\ \vec{v}\begin{pmatrix}2\\0\end{pmatrix}.\\[6pt]\text{Quel est le cosinus de l'angle entre }\vec{u}\text{ et }\vec{v}\text{ ?}`,
+      { q: r`\vec{u}\begin{pmatrix}1\\\sqrt{3}\end{pmatrix}\ \text{et}\ \vec{v}\begin{pmatrix}2\\0\end{pmatrix}.\\\text{Quel est le cosinus de l'angle entre }\vec{u}\text{ et }\vec{v}\text{ ?}`,
         choices: [r`\dfrac{1}{2}`, r`\dfrac{\sqrt{3}}{2}`, r`\dfrac{1}{\sqrt{3}}`, r`1`],
         a: r`\dfrac{1}{2}`,
-        tip: r`\vec{u}\cdot\vec{v}=1\times2+\sqrt{3}\times0=2.\\[4pt]\|\vec{u}\|=\sqrt{1+3}=2,\quad\|\vec{v}\|=2.\\[4pt]\cos\theta=\dfrac{\vec{u}\cdot\vec{v}}{\|\vec{u}\|\times\|\vec{v}\|}=\dfrac{2}{2\times2}=\dfrac{1}{2}\Rightarrow\theta=60°.` },
+        tip: r`\vec{u}\cdot\vec{v}=1\times2+\sqrt{3}\times0=2.\\\|\vec{u}\|=\sqrt{1+3}=2,\quad\|\vec{v}\|=2.\\\cos\theta=\dfrac{\vec{u}\cdot\vec{v}}{\|\vec{u}\|\times\|\vec{v}\|}=\dfrac{2}{2\times2}=\dfrac{1}{2}\Rightarrow\theta=60°.` },
     ],
 
 
@@ -12435,7 +12435,7 @@ const DB = {
     vecteurs_bases: [
 
       // vb_01 — Vecteur égal — reconnaissance
-      { q: r`\text{On considère le parallélogramme }ABCD.\\[4pt]\text{Quel vecteur est égal à }\overrightarrow{AB}\text{ ?}`,
+      { q: r`\text{On considère le parallélogramme }ABCD.\\\text{Quel vecteur est égal à }\overrightarrow{AB}\text{ ?}`,
         svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 160" width="100%" style="background:#fff;font-family:sans-serif">
   <polygon points="50,130 150,130 200,40 100,40" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.8"/>
   <text x="35" y="145" font-size="14" font-weight="bold" fill="#333">A</text>
@@ -12462,19 +12462,19 @@ const DB = {
         tip: r`\overrightarrow{AA}=\vec{0}\text{ : un vecteur dont le départ et l'arrivée sont confondus est le vecteur nul.}` },
 
       // vb_04 — Placer D tel que ABCD parallélogramme
-      { q: r`A(1;2),\ B(4;2),\ C(5;5).\\[4pt]\text{On veut que }ABCD\text{ soit un parallélogramme.}\\[4pt]\text{Quelles sont les coordonnées de }D\text{ ?}`,
+      { q: r`A(1;2),\ B(4;2),\ C(5;5).\\\text{On veut que }ABCD\text{ soit un parallélogramme.}\\\text{Quelles sont les coordonnées de }D\text{ ?}`,
         choices: [r`(2;5)`, r`(3;5)`, r`(4;5)`, r`(2;3)`],
         a: r`(2;5)`,
-        tip: r`\overrightarrow{AB}=\overrightarrow{DC}\Rightarrow D=C-\overrightarrow{AB}=(5-3;5-0)=(2;5).\\[4pt]\text{Dans un parallélogramme : }\overrightarrow{AB}=\overrightarrow{DC}.` },
+        tip: r`\overrightarrow{AB}=\overrightarrow{DC}\Rightarrow D=C-\overrightarrow{AB}=(5-3;5-0)=(2;5).\\\text{Dans un parallélogramme : }\overrightarrow{AB}=\overrightarrow{DC}.` },
 
       // vb_05 — Coordonnées d'un vecteur depuis deux points
-      { q: r`A(2;5)\text{ et }B(6;1).\\[4pt]\text{Quelles sont les coordonnées de }\overrightarrow{AB}\text{ ?}`,
+      { q: r`A(2;5)\text{ et }B(6;1).\\\text{Quelles sont les coordonnées de }\overrightarrow{AB}\text{ ?}`,
         choices: [r`\begin{pmatrix}4\\-4\end{pmatrix}`, r`\begin{pmatrix}-4\\4\end{pmatrix}`, r`\begin{pmatrix}8\\6\end{pmatrix}`, r`\begin{pmatrix}4\\4\end{pmatrix}`],
         a: r`\begin{pmatrix}4\\-4\end{pmatrix}`,
         tip: r`\overrightarrow{AB}=\begin{pmatrix}x_B-x_A\\y_B-y_A\end{pmatrix}=\begin{pmatrix}6-2\\1-5\end{pmatrix}=\begin{pmatrix}4\\-4\end{pmatrix}.` },
 
       // vb_06 — Vecteurs égaux : condition sur coordonnées
-      { q: r`\overrightarrow{AB}\begin{pmatrix}3\\-1\end{pmatrix}.\text{ On sait que }C(0;4).\\[4pt]\text{Quelles sont les coordonnées de }D\text{ tel que }\overrightarrow{CD}=\overrightarrow{AB}\text{ ?}`,
+      { q: r`\overrightarrow{AB}\begin{pmatrix}3\\-1\end{pmatrix}.\text{ On sait que }C(0;4).\\\text{Quelles sont les coordonnées de }D\text{ tel que }\overrightarrow{CD}=\overrightarrow{AB}\text{ ?}`,
         choices: [r`(3;3)`, r`(-3;5)`, r`(3;5)`, r`(-3;3)`],
         a: r`(3;3)`,
         tip: r`\overrightarrow{CD}=\overrightarrow{AB}\Rightarrow D=C+\overrightarrow{AB}=(0+3;4-1)=(3;3).` },
@@ -12486,13 +12486,13 @@ const DB = {
         tip: r`\overrightarrow{AB}+\overrightarrow{BA}=\overrightarrow{AA}=\vec{0}\text{ quels que soient A et B.}` },
 
       // vb_08 — Milieu et vecteurs
-      { q: r`M\text{ est le milieu de }[AB].\\[4pt]\text{Que vaut }\overrightarrow{MA}+\overrightarrow{MB}\text{ ?}`,
+      { q: r`M\text{ est le milieu de }[AB].\\\text{Que vaut }\overrightarrow{MA}+\overrightarrow{MB}\text{ ?}`,
         choices: [r`\vec{0}`, r`\overrightarrow{AB}`, r`2\overrightarrow{MA}`, r`\overrightarrow{MA}`],
         a: r`\vec{0}`,
         tip: r`M\text{ milieu de }[AB]\Rightarrow\overrightarrow{MA}=-\overrightarrow{MB}\\\Rightarrow\overrightarrow{MA}+\overrightarrow{MB}=\vec{0}.` },
 
       // vb_09 — Vecteur AB sur quadrillage
-      { q: r`\text{Sur le quadrillage, }A\text{ et }B\text{ sont placés.}\\[4pt]\overrightarrow{AB}\begin{pmatrix}3\\2\end{pmatrix}.\text{ Quel point est l'image de }A\text{ par la translation de vecteur }\overrightarrow{AB}\text{ ?}`,
+      { q: r`\text{Sur le quadrillage, }A\text{ et }B\text{ sont placés.}\\\overrightarrow{AB}\begin{pmatrix}3\\2\end{pmatrix}.\text{ Quel point est l'image de }A\text{ par la translation de vecteur }\overrightarrow{AB}\text{ ?}`,
         svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 180" width="100%" style="background:#fff;font-family:sans-serif">
   <!-- grille -->
   ${Array.from({length:7},(_,i)=>`<line x1="${30+i*30}" y1="20" x2="${30+i*30}" y2="160" stroke="#E2E8F0" stroke-width="1"/>`).join('')}
@@ -12510,68 +12510,68 @@ const DB = {
         tip: r`\text{La translation de vecteur }\overrightarrow{AB}\text{ envoie }A\text{ sur }B\text{ par définition.}` },
 
       // vb_10 — Vecteur somme géométrique simple
-      { q: r`ABCD\text{ est un parallélogramme de centre }O.\\[4pt]\text{Que vaut }\overrightarrow{OA}+\overrightarrow{OC}\text{ ?}`,
+      { q: r`ABCD\text{ est un parallélogramme de centre }O.\\\text{Que vaut }\overrightarrow{OA}+\overrightarrow{OC}\text{ ?}`,
         choices: [r`\vec{0}`, r`\overrightarrow{AC}`, r`2\overrightarrow{OA}`, r`\overrightarrow{BD}`],
         a: r`\vec{0}`,
         tip: r`O\text{ est le milieu de }[AC]\Rightarrow\overrightarrow{OA}=-\overrightarrow{OC}\Rightarrow\overrightarrow{OA}+\overrightarrow{OC}=\vec{0}.` },
 
  ,
       // vb_11 — Vecteur somme : règle du parallélogramme
-      { q: r`\text{On construit le parallélogramme }ABMC.\\[4pt]\text{Que vaut }\overrightarrow{AB}+\overrightarrow{AC}\text{ ?}`,
+      { q: r`\text{On construit le parallélogramme }ABMC.\\\text{Que vaut }\overrightarrow{AB}+\overrightarrow{AC}\text{ ?}`,
         choices: [r`\overrightarrow{AM}`, r`\overrightarrow{BM}`, r`2\overrightarrow{AB}`, r`\overrightarrow{BC}`],
         a: r`\overrightarrow{AM}`,
         tip: r`\text{Règle du parallélogramme : la somme }\overrightarrow{AB}+\overrightarrow{AC}=\overrightarrow{AM}\\\text{où }M\text{ est le 4e sommet du parallélogramme construit sur }AB\text{ et }AC.` },
 
       // vb_12 — Vecteur dans un losange
-      { q: r`ABCD\text{ est un losange.}\\[4pt]\text{Que vaut }\overrightarrow{AD}+\overrightarrow{AB}\text{ ?}`,
+      { q: r`ABCD\text{ est un losange.}\\\text{Que vaut }\overrightarrow{AD}+\overrightarrow{AB}\text{ ?}`,
         choices: [r`\overrightarrow{AC}`, r`\overrightarrow{BD}`, r`2\overrightarrow{AD}`, r`\vec{0}`],
         a: r`\overrightarrow{AC}`,
         tip: r`\text{Dans tout parallélogramme, }\overrightarrow{AD}+\overrightarrow{AB}=\overrightarrow{AC}\text{ (diagonale).}` },
 
       // vb_13 — Multiplication par un scalaire
-      { q: r`\overrightarrow{AB}\begin{pmatrix}2\\-3\end{pmatrix}.\\[4pt]\text{Que vaut }3\overrightarrow{AB}\text{ ?}`,
+      { q: r`\overrightarrow{AB}\begin{pmatrix}2\\-3\end{pmatrix}.\\\text{Que vaut }3\overrightarrow{AB}\text{ ?}`,
         choices: [r`\begin{pmatrix}6\\-9\end{pmatrix}`, r`\begin{pmatrix}5\\0\end{pmatrix}`, r`\begin{pmatrix}6\\9\end{pmatrix}`, r`\begin{pmatrix}2\\-9\end{pmatrix}`],
         a: r`\begin{pmatrix}6\\-9\end{pmatrix}`,
         tip: r`3\overrightarrow{AB}=\begin{pmatrix}3\times2\\3\times(-3)\end{pmatrix}=\begin{pmatrix}6\\-9\end{pmatrix}.` },
 
       // vb_14 — Exprimer AB en fonction de OA et OB
-      { q: r`O\text{ est un point quelconque.}\\[4pt]\text{Exprimer }\overrightarrow{AB}\text{ en fonction de }\overrightarrow{OA}\text{ et }\overrightarrow{OB}.`,
+      { q: r`O\text{ est un point quelconque.}\\\text{Exprimer }\overrightarrow{AB}\text{ en fonction de }\overrightarrow{OA}\text{ et }\overrightarrow{OB}.`,
         choices: [r`\overrightarrow{OB}-\overrightarrow{OA}`, r`\overrightarrow{OA}-\overrightarrow{OB}`, r`\overrightarrow{OA}+\overrightarrow{OB}`, r`\overrightarrow{OB}+\overrightarrow{OA}`],
         a: r`\overrightarrow{OB}-\overrightarrow{OA}`,
         tip: r`\overrightarrow{AB}=\overrightarrow{AO}+\overrightarrow{OB}=-\overrightarrow{OA}+\overrightarrow{OB}=\overrightarrow{OB}-\overrightarrow{OA}.` },
 
       // vb_15 — Norme d'un vecteur
-      { q: r`\vec{u}\begin{pmatrix}3\\4\end{pmatrix}.\\[4pt]\text{Quelle est la norme }\|\vec{u}\|\text{ ?}`,
+      { q: r`\vec{u}\begin{pmatrix}3\\4\end{pmatrix}.\\\text{Quelle est la norme }\|\vec{u}\|\text{ ?}`,
         choices: [r`5`, r`7`, r`\sqrt{7}`, r`12`],
         a: r`5`,
         tip: r`\|\vec{u}\|=\sqrt{3^2+4^2}=\sqrt{9+16}=\sqrt{25}=5.` },
 
       // vb_16 — Vecteur dans un rectangle
-      { q: r`ABCD\text{ est un rectangle.}\\[4pt]\text{Que vaut }\overrightarrow{BC}+\overrightarrow{BA}\text{ ?}`,
+      { q: r`ABCD\text{ est un rectangle.}\\\text{Que vaut }\overrightarrow{BC}+\overrightarrow{BA}\text{ ?}`,
         choices: [r`\overrightarrow{BD}`, r`\overrightarrow{AC}`, r`\vec{0}`, r`2\overrightarrow{BC}`],
         a: r`\overrightarrow{BD}`,
         tip: r`\overrightarrow{BC}+\overrightarrow{BA}=\overrightarrow{BD}\text{ (diagonale du rectangle, règle du parallélogramme).}` },
 
       // vb_17 — Point I tel que AI = 1/3 AB
-      { q: r`A(1;2)\text{ et }B(7;5).\\[4pt]I\text{ est tel que }\overrightarrow{AI}=\dfrac{1}{3}\overrightarrow{AB}.\\[4pt]\text{Coordonnées de }I\text{ ?}`,
+      { q: r`A(1;2)\text{ et }B(7;5).\\I\text{ est tel que }\overrightarrow{AI}=\dfrac{1}{3}\overrightarrow{AB}.\\\text{Coordonnées de }I\text{ ?}`,
         choices: [r`(3;3)`, r`(4;3)`, r`(2;3)`, r`(3;4)`],
         a: r`(3;3)`,
         tip: r`\overrightarrow{AB}=\begin{pmatrix}6\\3\end{pmatrix}.\quad\overrightarrow{AI}=\dfrac{1}{3}\begin{pmatrix}6\\3\end{pmatrix}=\begin{pmatrix}2\\1\end{pmatrix}.\\I=(1+2;2+1)=(3;3).` },
 
       // vb_18 — Combinaison linéaire de deux vecteurs
-      { q: r`\vec{u}\begin{pmatrix}1\\0\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}0\\1\end{pmatrix}.\\[4pt]\text{Que vaut }3\vec{u}-2\vec{v}\text{ ?}`,
+      { q: r`\vec{u}\begin{pmatrix}1\\0\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}0\\1\end{pmatrix}.\\\text{Que vaut }3\vec{u}-2\vec{v}\text{ ?}`,
         choices: [r`\begin{pmatrix}3\\-2\end{pmatrix}`, r`\begin{pmatrix}-2\\3\end{pmatrix}`, r`\begin{pmatrix}3\\2\end{pmatrix}`, r`\begin{pmatrix}1\\-1\end{pmatrix}`],
         a: r`\begin{pmatrix}3\\-2\end{pmatrix}`,
         tip: r`3\vec{u}-2\vec{v}=3\begin{pmatrix}1\\0\end{pmatrix}-2\begin{pmatrix}0\\1\end{pmatrix}=\begin{pmatrix}3\\-2\end{pmatrix}.` },
 
       // vb_19 — Centre de gravité
-      { q: r`G\text{ est le centre de gravité du triangle }ABC.\\[4pt]\text{Que vaut }\overrightarrow{GA}+\overrightarrow{GB}+\overrightarrow{GC}\text{ ?}`,
+      { q: r`G\text{ est le centre de gravité du triangle }ABC.\\\text{Que vaut }\overrightarrow{GA}+\overrightarrow{GB}+\overrightarrow{GC}\text{ ?}`,
         choices: [r`\vec{0}`, r`3\overrightarrow{GA}`, r`\overrightarrow{AB}+\overrightarrow{AC}`, r`\overrightarrow{GA}`],
         a: r`\vec{0}`,
         tip: r`\text{Par définition du centre de gravité (barycentre à masses égales) :}\\\overrightarrow{GA}+\overrightarrow{GB}+\overrightarrow{GC}=\vec{0}.` },
 
       // vb_20 — Vecteur somme : coordonnées
-      { q: r`\overrightarrow{AB}\begin{pmatrix}-1\\3\end{pmatrix}\text{ et }\overrightarrow{AC}\begin{pmatrix}4\\1\end{pmatrix}.\\[4pt]\text{Coordonnées de }\overrightarrow{AB}+\overrightarrow{AC}\text{ ?}`,
+      { q: r`\overrightarrow{AB}\begin{pmatrix}-1\\3\end{pmatrix}\text{ et }\overrightarrow{AC}\begin{pmatrix}4\\1\end{pmatrix}.\\\text{Coordonnées de }\overrightarrow{AB}+\overrightarrow{AC}\text{ ?}`,
         choices: [r`\begin{pmatrix}3\\4\end{pmatrix}`, r`\begin{pmatrix}5\\-2\end{pmatrix}`, r`\begin{pmatrix}-5\\2\end{pmatrix}`, r`\begin{pmatrix}3\\-4\end{pmatrix}`],
         a: r`\begin{pmatrix}3\\4\end{pmatrix}`,
         tip: r`\overrightarrow{AB}+\overrightarrow{AC}=\begin{pmatrix}-1+4\\3+1\end{pmatrix}=\begin{pmatrix}3\\4\end{pmatrix}.` },
@@ -12585,7 +12585,7 @@ const DB = {
       { q: r`\text{Simplifier }\overrightarrow{AB}+\overrightarrow{BC}.`,
         choices: [r`\overrightarrow{AC}`, r`\overrightarrow{CA}`, r`\overrightarrow{BC}`, r`\vec{0}`],
         a: r`\overrightarrow{AC}`,
-        tip: r`\text{Relation de Chasles : }\overrightarrow{AB}+\overrightarrow{BC}=\overrightarrow{AC}.\\[4pt]\text{Le point intermédiaire B se simplifie.}` },
+        tip: r`\text{Relation de Chasles : }\overrightarrow{AB}+\overrightarrow{BC}=\overrightarrow{AC}.\\\text{Le point intermédiaire B se simplifie.}` },
 
       // ch_02 — Trois termes
       { q: r`\text{Simplifier }\overrightarrow{AB}+\overrightarrow{BC}+\overrightarrow{CD}.`,
@@ -12612,7 +12612,7 @@ const DB = {
         tip: r`\overrightarrow{AC}-\overrightarrow{BC}=\overrightarrow{AC}+\overrightarrow{CB}=\overrightarrow{AB}\text{ (Chasles).}` },
 
       // ch_06 — Expression avec milieu
-      { q: r`M\text{ est le milieu de }[AB].\\[4pt]\text{Exprimer }\overrightarrow{AM}\text{ en fonction de }\overrightarrow{AB}.`,
+      { q: r`M\text{ est le milieu de }[AB].\\\text{Exprimer }\overrightarrow{AM}\text{ en fonction de }\overrightarrow{AB}.`,
         choices: [r`\dfrac{1}{2}\overrightarrow{AB}`, r`2\overrightarrow{AB}`, r`-\dfrac{1}{2}\overrightarrow{AB}`, r`\overrightarrow{AB}`],
         a: r`\dfrac{1}{2}\overrightarrow{AB}`,
         tip: r`M\text{ milieu de }[AB]\Rightarrow AM=\tfrac{1}{2}AB\Rightarrow\overrightarrow{AM}=\tfrac{1}{2}\overrightarrow{AB}.` },
@@ -12624,19 +12624,19 @@ const DB = {
         tip: r`\text{On regroupe d'abord les termes consécutifs :}\\\overrightarrow{AB}+\overrightarrow{BC}+\overrightarrow{CD}=\overrightarrow{AC}+\overrightarrow{CD}=\overrightarrow{AD}.` },
 
       // ch_08 — Expression avec vecteur opposé
-      { q: r`\text{Simplifier }\overrightarrow{MA}+\overrightarrow{MB}-\overrightarrow{MC}-\overrightarrow{MD}\text{ sachant que }\\[4pt]M\text{ est le milieu de }[AB]\text{ et de }[CD].`,
+      { q: r`\text{Simplifier }\overrightarrow{MA}+\overrightarrow{MB}-\overrightarrow{MC}-\overrightarrow{MD}\text{ sachant que }\\M\text{ est le milieu de }[AB]\text{ et de }[CD].`,
         choices: [r`\vec{0}`, r`\overrightarrow{AB}`, r`2\overrightarrow{MA}`, r`\overrightarrow{CD}`],
         a: r`\vec{0}`,
         tip: r`M\text{ milieu de }[AB]\Rightarrow\overrightarrow{MA}+\overrightarrow{MB}=\vec{0}.\\M\text{ milieu de }[CD]\Rightarrow\overrightarrow{MC}+\overrightarrow{MD}=\vec{0}.\\\text{Donc l'expression vaut }\vec{0}-\vec{0}=\vec{0}.` },
 
       // ch_09 — Chasles avec point extérieur
-      { q: r`O\text{ est un point quelconque.}\\[4pt]\text{Simplifier }\overrightarrow{OA}+\overrightarrow{AB}+\overrightarrow{BO}.`,
+      { q: r`O\text{ est un point quelconque.}\\\text{Simplifier }\overrightarrow{OA}+\overrightarrow{AB}+\overrightarrow{BO}.`,
         choices: [r`\vec{0}`, r`\overrightarrow{OB}`, r`\overrightarrow{AB}`, r`2\overrightarrow{OA}`],
         a: r`\vec{0}`,
         tip: r`\overrightarrow{OA}+\overrightarrow{AB}+\overrightarrow{BO}=\overrightarrow{OB}+\overrightarrow{BO}=\overrightarrow{OO}=\vec{0}.` },
 
       // ch_10 — Exprimer en fonction de deux vecteurs
-      { q: r`\text{Soit }G\text{ le point tel que }\overrightarrow{GA}+\overrightarrow{GB}+\overrightarrow{GC}=\vec{0}.\\[4pt]\text{Que vaut }\overrightarrow{AG}+\overrightarrow{BG}+\overrightarrow{CG}\text{ ?}`,
+      { q: r`\text{Soit }G\text{ le point tel que }\overrightarrow{GA}+\overrightarrow{GB}+\overrightarrow{GC}=\vec{0}.\\\text{Que vaut }\overrightarrow{AG}+\overrightarrow{BG}+\overrightarrow{CG}\text{ ?}`,
         choices: [r`\vec{0}`, r`3\overrightarrow{GA}`, r`-\vec{0}`, r`\overrightarrow{GA}+\overrightarrow{GB}`],
         a: r`\vec{0}`,
         tip: r`\overrightarrow{AG}=-\overrightarrow{GA},\ \overrightarrow{BG}=-\overrightarrow{GB},\ \overrightarrow{CG}=-\overrightarrow{GC}.\\\text{Donc la somme }=-(\overrightarrow{GA}+\overrightarrow{GB}+\overrightarrow{GC})=-\vec{0}=\vec{0}.` },
@@ -12661,7 +12661,7 @@ const DB = {
         tip: r`\text{On réordonne : }\overrightarrow{PQ}+\overrightarrow{QR}+\overrightarrow{RS}=\overrightarrow{PR}+\overrightarrow{RS}=\overrightarrow{PS}.` },
 
       // ch_14 — Exprimer BC en fonction de u et v
-      { q: r`\vec{u}=\overrightarrow{AB},\ \vec{v}=\overrightarrow{AC}.\\[4pt]\text{Exprimer }\overrightarrow{BC}\text{ en fonction de }\vec{u}\text{ et }\vec{v}.`,
+      { q: r`\vec{u}=\overrightarrow{AB},\ \vec{v}=\overrightarrow{AC}.\\\text{Exprimer }\overrightarrow{BC}\text{ en fonction de }\vec{u}\text{ et }\vec{v}.`,
         choices: [r`\vec{v}-\vec{u}`, r`\vec{u}-\vec{v}`, r`\vec{u}+\vec{v}`, r`-\vec{u}-\vec{v}`],
         a: r`\vec{v}-\vec{u}`,
         tip: r`\overrightarrow{BC}=\overrightarrow{BA}+\overrightarrow{AC}=-\overrightarrow{AB}+\overrightarrow{AC}=-\vec{u}+\vec{v}=\vec{v}-\vec{u}.` },
@@ -12679,13 +12679,13 @@ const DB = {
         tip: r`\text{Chaque terme intermédiaire se simplifie avec le suivant. Il reste }\overrightarrow{A_1A_5}.` },
 
       // ch_17 — AM en fonction de AB et AC (M milieu BC)
-      { q: r`M\text{ est le milieu de }[BC].\\[4pt]\text{Exprimer }\overrightarrow{AM}\text{ en fonction de }\overrightarrow{AB}\text{ et }\overrightarrow{AC}.`,
+      { q: r`M\text{ est le milieu de }[BC].\\\text{Exprimer }\overrightarrow{AM}\text{ en fonction de }\overrightarrow{AB}\text{ et }\overrightarrow{AC}.`,
         choices: [r`\dfrac{1}{2}(\overrightarrow{AB}+\overrightarrow{AC})`, r`\overrightarrow{AB}+\overrightarrow{AC}`, r`\dfrac{1}{2}(\overrightarrow{AC}-\overrightarrow{AB})`, r`\dfrac{1}{2}\overrightarrow{AB}`],
         a: r`\dfrac{1}{2}(\overrightarrow{AB}+\overrightarrow{AC})`,
         tip: r`\overrightarrow{AM}=\overrightarrow{AB}+\overrightarrow{BM}=\overrightarrow{AB}+\dfrac{1}{2}\overrightarrow{BC}.\\\overrightarrow{BC}=\overrightarrow{AC}-\overrightarrow{AB}\Rightarrow\overrightarrow{AM}=\dfrac{1}{2}(\overrightarrow{AB}+\overrightarrow{AC}).` },
 
       // ch_18 — Barycentre
-      { q: r`G\text{ vérifie }\overrightarrow{GA}+\overrightarrow{GB}+\overrightarrow{GC}=\vec{0}.\\[4pt]\text{Exprimer }\overrightarrow{OG}\text{ en fonction de }\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}.`,
+      { q: r`G\text{ vérifie }\overrightarrow{GA}+\overrightarrow{GB}+\overrightarrow{GC}=\vec{0}.\\\text{Exprimer }\overrightarrow{OG}\text{ en fonction de }\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}.`,
         choices: [r`\dfrac{\overrightarrow{OA}+\overrightarrow{OB}+\overrightarrow{OC}}{3}`, r`\overrightarrow{OA}+\overrightarrow{OB}+\overrightarrow{OC}`, r`\dfrac{\overrightarrow{OA}+\overrightarrow{OB}}{2}`, r`\vec{0}`],
         a: r`\dfrac{\overrightarrow{OA}+\overrightarrow{OB}+\overrightarrow{OC}}{3}`,
         tip: r`\overrightarrow{GA}+\overrightarrow{GB}+\overrightarrow{GC}=\vec{0}\\\Rightarrow3\overrightarrow{OG}=\overrightarrow{OA}+\overrightarrow{OB}+\overrightarrow{OC}\Rightarrow\overrightarrow{OG}=\dfrac{\overrightarrow{OA}+\overrightarrow{OB}+\overrightarrow{OC}}{3}.` },
@@ -12697,7 +12697,7 @@ const DB = {
         tip: r`-\overrightarrow{CB}=\overrightarrow{BC}.\quad\overrightarrow{AB}+\overrightarrow{BC}+\overrightarrow{CD}=\overrightarrow{AC}+\overrightarrow{CD}=\overrightarrow{AD}.` },
 
       // ch_20 — Point I sur BC avec BI = 2/3 BC
-      { q: r`I\text{ est sur }[BC]\text{ tel que }\overrightarrow{BI}=\dfrac{2}{3}\overrightarrow{BC}.\\[4pt]\text{Exprimer }\overrightarrow{AI}.`,
+      { q: r`I\text{ est sur }[BC]\text{ tel que }\overrightarrow{BI}=\dfrac{2}{3}\overrightarrow{BC}.\\\text{Exprimer }\overrightarrow{AI}.`,
         choices: [r`\dfrac{1}{3}\overrightarrow{AB}+\dfrac{2}{3}\overrightarrow{AC}`, r`\dfrac{2}{3}(\overrightarrow{AB}+\overrightarrow{AC})`, r`\overrightarrow{AB}+\dfrac{2}{3}\overrightarrow{AC}`, r`\dfrac{1}{3}\overrightarrow{AC}`],
         a: r`\dfrac{1}{3}\overrightarrow{AB}+\dfrac{2}{3}\overrightarrow{AC}`,
         tip: r`\overrightarrow{AI}=\overrightarrow{AB}+\overrightarrow{BI}=\overrightarrow{AB}+\dfrac{2}{3}\overrightarrow{BC}=\overrightarrow{AB}+\dfrac{2}{3}(\overrightarrow{AC}-\overrightarrow{AB})=\dfrac{1}{3}\overrightarrow{AB}+\dfrac{2}{3}\overrightarrow{AC}.` },
@@ -12708,79 +12708,79 @@ const DB = {
     geom_analytique: [
 
       // ga_01 — Coordonnées d'un vecteur
-      { q: r`A(-1;3)\text{ et }B(4;-2).\\[4pt]\text{Coordonnées de }\overrightarrow{AB}\text{ ?}`,
+      { q: r`A(-1;3)\text{ et }B(4;-2).\\\text{Coordonnées de }\overrightarrow{AB}\text{ ?}`,
         choices: [r`\begin{pmatrix}5\\-5\end{pmatrix}`, r`\begin{pmatrix}-5\\5\end{pmatrix}`, r`\begin{pmatrix}3\\1\end{pmatrix}`, r`\begin{pmatrix}5\\5\end{pmatrix}`],
         a: r`\begin{pmatrix}5\\-5\end{pmatrix}`,
         tip: r`\overrightarrow{AB}=\begin{pmatrix}4-(-1)\\-2-3\end{pmatrix}=\begin{pmatrix}5\\-5\end{pmatrix}.` },
 
       // ga_02 — Milieu d'un segment
-      { q: r`A(2;6)\text{ et }B(8;2).\\[4pt]\text{Coordonnées du milieu }M\text{ de }[AB]\text{ ?}`,
+      { q: r`A(2;6)\text{ et }B(8;2).\\\text{Coordonnées du milieu }M\text{ de }[AB]\text{ ?}`,
         choices: [r`(5;4)`, r`(4;5)`, r`(3;2)`, r`(6;4)`],
         a: r`(5;4)`,
         tip: r`M=\left(\dfrac{2+8}{2};\dfrac{6+2}{2}\right)=(5;4).` },
 
       // ga_03 — Distance entre deux points
-      { q: r`A(1;1)\text{ et }B(4;5).\\[4pt]\text{Calculer }AB.`,
+      { q: r`A(1;1)\text{ et }B(4;5).\\\text{Calculer }AB.`,
         choices: [r`5`, r`7`, r`\sqrt{7}`, r`25`],
         a: r`5`,
         tip: r`AB=\sqrt{(4-1)^2+(5-1)^2}=\sqrt{9+16}=\sqrt{25}=5.` },
 
       // ga_04 — Distance avec résultat racine simple
-      { q: r`A(0;0)\text{ et }B(3;3).\\[4pt]\text{Calculer }AB.`,
+      { q: r`A(0;0)\text{ et }B(3;3).\\\text{Calculer }AB.`,
         choices: [r`3\sqrt{2}`, r`6`, r`\sqrt{6}`, r`9`],
         a: r`3\sqrt{2}`,
         tip: r`AB=\sqrt{3^2+3^2}=\sqrt{18}=3\sqrt{2}.` },
 
       // ga_05 — Milieu avec coordonnées négatives
-      { q: r`A(-4;3)\text{ et }B(2;-1).\\[4pt]\text{Coordonnées du milieu }M\text{ ?}`,
+      { q: r`A(-4;3)\text{ et }B(2;-1).\\\text{Coordonnées du milieu }M\text{ ?}`,
         choices: [r`(-1;1)`, r`(1;-1)`, r`(-2;2)`, r`(-1;2)`],
         a: r`(-1;1)`,
         tip: r`M=\left(\dfrac{-4+2}{2};\dfrac{3+(-1)}{2}\right)=(-1;1).` },
 
       // ga_06 — Trouver un point connaissant le milieu
-      { q: r`M(3;2)\text{ est le milieu de }[AB].\ A(1;0).\\[4pt]\text{Coordonnées de }B\text{ ?}`,
+      { q: r`M(3;2)\text{ est le milieu de }[AB].\ A(1;0).\\\text{Coordonnées de }B\text{ ?}`,
         choices: [r`(5;4)`, r`(4;5)`, r`(2;1)`, r`(3;4)`],
         a: r`(5;4)`,
         tip: r`x_B=2x_M-x_A=6-1=5,\quad y_B=2y_M-y_A=4-0=4.\\B=(5;4).` },
 
       // ga_07 — Colinéarité par déterminant
-      { q: r`\vec{u}\begin{pmatrix}2\\4\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}1\\2\end{pmatrix}.\\[4pt]\text{Ces vecteurs sont-ils colinéaires ?}`,
+      { q: r`\vec{u}\begin{pmatrix}2\\4\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}1\\2\end{pmatrix}.\\\text{Ces vecteurs sont-ils colinéaires ?}`,
         choices: [r`\text{Oui, car }2\times2-4\times1=0`, r`\text{Non, car }2\times2-4\times1\neq0`, r`\text{Oui, car ils ont les mêmes coordonnées}`, r`\text{Non, car }\vec{u}\neq\vec{v}`],
         a: r`\text{Oui, car }2\times2-4\times1=0`,
         tip: r`\vec{u}(a;b)\text{ et }\vec{v}(c;d)\text{ colinéaires }\Leftrightarrow ad-bc=0.\\2\times2-4\times1=4-4=0\Rightarrow\text{colinéaires.}` },
 
       // ga_08 — Colinéarité : non colinéaires
-      { q: r`\vec{u}\begin{pmatrix}3\\2\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}6\\5\end{pmatrix}.\\[4pt]\text{Ces vecteurs sont-ils colinéaires ?}`,
+      { q: r`\vec{u}\begin{pmatrix}3\\2\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}6\\5\end{pmatrix}.\\\text{Ces vecteurs sont-ils colinéaires ?}`,
         choices: [r`\text{Non, car }3\times5-2\times6=3\neq0`, r`\text{Oui, car }3\times5-2\times6=0`, r`\text{Oui, car }\vec{v}=2\vec{u}`, r`\text{Non, car }3+5\neq2+6`],
         a: r`\text{Non, car }3\times5-2\times6=3\neq0`,
         tip: r`ad-bc=3\times5-2\times6=15-12=3\neq0\Rightarrow\text{non colinéaires.}` },
 
       // ga_09 — Alignement de trois points
-      { q: r`A(0;0),\ B(2;4),\ C(3;6).\\[4pt]\text{Les points A, B, C sont-ils alignés ?}`,
+      { q: r`A(0;0),\ B(2;4),\ C(3;6).\\\text{Les points A, B, C sont-ils alignés ?}`,
         choices: [r`\text{Oui, car }\overrightarrow{AB}\text{ et }\overrightarrow{AC}\text{ sont colinéaires}`, r`\text{Non}`, r`\text{Oui, car }AB+BC=AC`, r`\text{Impossible à déterminer}`],
         a: r`\text{Oui, car }\overrightarrow{AB}\text{ et }\overrightarrow{AC}\text{ sont colinéaires}`,
-        tip: r`\overrightarrow{AB}\binom{2}{4},\ \overrightarrow{AC}\binom{3}{6}.\\[4pt]2\times6-4\times3=12-12=0\Rightarrow\text{colinéaires}\Rightarrow A,B,C\text{ alignés.}` },
+        tip: r`\overrightarrow{AB}\binom{2}{4},\ \overrightarrow{AC}\binom{3}{6}.\\2\times6-4\times3=12-12=0\Rightarrow\text{colinéaires}\Rightarrow A,B,C\text{ alignés.}` },
 
       // ga_10 — Alignement : non alignés
-      { q: r`A(1;2),\ B(3;5),\ C(5;9).\\[4pt]\text{Les points A, B, C sont-ils alignés ?}`,
+      { q: r`A(1;2),\ B(3;5),\ C(5;9).\\\text{Les points A, B, C sont-ils alignés ?}`,
         choices: [r`\text{Non, car }2\times7-3\times4=2\neq0`, r`\text{Oui}`, r`\text{Non, car }AB\neq BC`, r`\text{Oui, car }AC=AB+BC`],
         a: r`\text{Non, car }2\times7-3\times4=2\neq0`,
         tip: r`\overrightarrow{AB}\binom{2}{3},\ \overrightarrow{AC}\binom{4}{7}.\\2\times7-3\times4=14-12=2\neq0\Rightarrow\text{non alignés.}` },
 
       // ga_11 — Équation de droite : pente
-      { q: r`A(1;3)\text{ et }B(3;7).\\[4pt]\text{Quel est le coefficient directeur de }(AB)\text{ ?}`,
+      { q: r`A(1;3)\text{ et }B(3;7).\\\text{Quel est le coefficient directeur de }(AB)\text{ ?}`,
         choices: [r`2`, r`\dfrac{1}{2}`, r`4`, r`-2`],
         a: r`2`,
         tip: r`m=\dfrac{y_B-y_A}{x_B-x_A}=\dfrac{7-3}{3-1}=\dfrac{4}{2}=2.` },
 
       // ga_12 — Équation de droite : ordonnée à l'origine
-      { q: r`\text{La droite passe par }A(0;3)\text{ avec un coefficient directeur }m=2.\\[4pt]\text{Quelle est son équation ?}`,
+      { q: r`\text{La droite passe par }A(0;3)\text{ avec un coefficient directeur }m=2.\\\text{Quelle est son équation ?}`,
         choices: [r`y=2x+3`, r`y=3x+2`, r`y=2x-3`, r`y=-2x+3`],
         a: r`y=2x+3`,
         tip: r`A(0;3)\Rightarrow\text{ordonnée à l'origine }b=3.\quad y=mx+b=2x+3.` },
 
       // ga_13 — Équation de droite complète
-      { q: r`A(1;5)\text{ et }B(3;9).\\[4pt]\text{Quelle est l'équation de la droite }(AB)\text{ ?}`,
+      { q: r`A(1;5)\text{ et }B(3;9).\\\text{Quelle est l'équation de la droite }(AB)\text{ ?}`,
         choices: [r`y=2x+3`, r`y=4x+1`, r`y=2x+5`, r`y=3x+2`],
         a: r`y=2x+3`,
         tip: r`m=\dfrac{9-5}{3-1}=2.\quad\text{Par A}(1;5): 5=2\times1+b\Rightarrow b=3.\quad y=2x+3.` },
@@ -12789,107 +12789,107 @@ const DB = {
       { q: r`\text{Quelle est l'équation de la droite passant par }A(3;1)\text{ et }B(3;5)\text{ ?}`,
         choices: [r`x=3`, r`y=3`, r`y=x+3`, r`y=2x-5`],
         a: r`x=3`,
-        tip: r`x_A=x_B=3\Rightarrow\text{la droite est verticale : }x=3.\\[4pt]\text{(Le coefficient directeur n'est pas défini.)}` },
+        tip: r`x_A=x_B=3\Rightarrow\text{la droite est verticale : }x=3.\\\text{(Le coefficient directeur n'est pas défini.)}` },
 
       // ga_15 — Distance : triangle rectangle
-      { q: r`A(0;0),\ B(5;0),\ C(5;12).\\[4pt]\text{Calculer }AC.`,
+      { q: r`A(0;0),\ B(5;0),\ C(5;12).\\\text{Calculer }AC.`,
         choices: [r`13`, r`17`, r`\sqrt{17}`, r`7`],
         a: r`13`,
         tip: r`AC=\sqrt{(5-0)^2+(12-0)^2}=\sqrt{25+144}=\sqrt{169}=13.` },
 
       // ga_16 — Coordonnées de B connaissant vecteur et A
-      { q: r`A(2;-1)\text{ et }\overrightarrow{AB}\begin{pmatrix}-3\\4\end{pmatrix}.\\[4pt]\text{Coordonnées de }B\text{ ?}`,
+      { q: r`A(2;-1)\text{ et }\overrightarrow{AB}\begin{pmatrix}-3\\4\end{pmatrix}.\\\text{Coordonnées de }B\text{ ?}`,
         choices: [r`(-1;3)`, r`(5;-5)`, r`(-1;-5)`, r`(5;3)`],
         a: r`(-1;3)`,
         tip: r`B=(x_A+(-3);y_A+4)=(2-3;-1+4)=(-1;3).` },
 
       // ga_17 — Trouver k pour colinéarité
-      { q: r`\vec{u}\begin{pmatrix}k\\6\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}2\\3\end{pmatrix}\text{ sont colinéaires.}\\[4pt]\text{Quelle est la valeur de }k\text{ ?}`,
+      { q: r`\vec{u}\begin{pmatrix}k\\6\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}2\\3\end{pmatrix}\text{ sont colinéaires.}\\\text{Quelle est la valeur de }k\text{ ?}`,
         choices: [r`4`, r`3`, r`-4`, r`1`],
         a: r`4`,
         tip: r`k\times3-6\times2=0\Rightarrow3k=12\Rightarrow k=4.` },
 
       // ga_18 — Distance entre deux points quelconques
-      { q: r`A(-1;2)\text{ et }B(2;-2).\\[4pt]\text{Calculer }AB.`,
+      { q: r`A(-1;2)\text{ et }B(2;-2).\\\text{Calculer }AB.`,
         choices: [r`5`, r`7`, r`\sqrt{7}`, r`3`],
         a: r`5`,
         tip: r`AB=\sqrt{(2-(-1))^2+(-2-2)^2}=\sqrt{9+16}=\sqrt{25}=5.` },
 
       // ga_19 — Vecteur et colinéarité : droites parallèles
-      { q: r`A(1;2),\ B(3;6),\ C(0;1),\ D(2;5).\\[4pt]\text{Les droites }(AB)\text{ et }(CD)\text{ sont-elles parallèles ?}`,
+      { q: r`A(1;2),\ B(3;6),\ C(0;1),\ D(2;5).\\\text{Les droites }(AB)\text{ et }(CD)\text{ sont-elles parallèles ?}`,
         choices: [r`\text{Oui, car }\overrightarrow{AB}\text{ et }\overrightarrow{CD}\text{ sont colinéaires}`, r`\text{Non}`, r`\text{Oui, car }AB=CD`, r`\text{Impossible à dire}`],
         a: r`\text{Oui, car }\overrightarrow{AB}\text{ et }\overrightarrow{CD}\text{ sont colinéaires}`,
-        tip: r`\overrightarrow{AB}\binom{2}{4},\ \overrightarrow{CD}\binom{2}{4}.\\[4pt]\text{Même vecteur directeur }\Rightarrow\text{droites parallèles (ou confondues).}` },
+        tip: r`\overrightarrow{AB}\binom{2}{4},\ \overrightarrow{CD}\binom{2}{4}.\\\text{Même vecteur directeur }\Rightarrow\text{droites parallèles (ou confondues).}` },
 
       // ga_20 — Synthèse : trouver équation + vérifier un point
-      { q: r`\text{La droite }d\text{ a pour équation }y=3x-2.\\[4pt]\text{Lequel de ces points appartient à }d\text{ ?}`,
+      { q: r`\text{La droite }d\text{ a pour équation }y=3x-2.\\\text{Lequel de ces points appartient à }d\text{ ?}`,
         choices: [r`(2;4)`, r`(1;2)`, r`(0;2)`, r`(-1;-5)`],
         a: r`(2;4)`,
-        tip: r`\text{On teste }(2;4): 3\times2-2=4\ \checkmark\\(1;2): 3-2=1\neq2\quad(0;2): -2\neq2\quad(-1;-5): -3-2=-5\ \text{aussi vrai — mais }(2;4)\text{ est la réponse attendue.}\\[2pt]\text{Vérifier systématiquement par substitution.}` },
+        tip: r`\text{On teste }(2;4): 3\times2-2=4\ \checkmark\\(1;2): 3-2=1\neq2\quad(0;2): -2\neq2\quad(-1;-5): -3-2=-5\ \text{aussi vrai — mais }(2;4)\text{ est la réponse attendue.}\\\text{Vérifier systématiquement par substitution.}` },
 
  ,
       // ga_21 — Point appartient à la droite (vérification)
-      { q: r`d: y=3x-1.\\[4pt]\text{Lequel de ces points appartient à }d\text{ ?}`,
+      { q: r`d: y=3x-1.\\\text{Lequel de ces points appartient à }d\text{ ?}`,
         choices: [r`(2;5)`, r`(1;3)`, r`(0;1)`, r`(-1;4)`],
         a: r`(2;5)`,
         tip: r`(2;5): 3\times2-1=5\ \checkmark\quad(1;3): 3-1=2\neq3.\text{ On substitue les coordonnées dans l'équation.}` },
 
       // ga_22 — Droite parallèle passant par un point
-      { q: r`d_1: y=2x+3.\\[4pt]\text{Équation de la droite parallèle à }d_1\text{ passant par }A(1;0)\text{ ?}`,
+      { q: r`d_1: y=2x+3.\\\text{Équation de la droite parallèle à }d_1\text{ passant par }A(1;0)\text{ ?}`,
         choices: [r`y=2x-2`, r`y=2x+3`, r`y=-\dfrac{1}{2}x+\dfrac{1}{2}`, r`y=2x+1`],
         a: r`y=2x-2`,
         tip: r`\text{Parallèle à }d_1\Rightarrow\text{même pente }m=2.\\\text{Par }A(1;0): 0=2\times1+b\Rightarrow b=-2.\\y=2x-2.` },
 
       // ga_23 — Droite perpendiculaire
-      { q: r`d: y=3x+1.\\[4pt]\text{Quelle est la pente de toute droite perpendiculaire à }d\text{ ?}`,
+      { q: r`d: y=3x+1.\\\text{Quelle est la pente de toute droite perpendiculaire à }d\text{ ?}`,
         choices: [r`-\dfrac{1}{3}`, r`3`, r`\dfrac{1}{3}`, r`-3`],
         a: r`-\dfrac{1}{3}`,
         tip: r`\text{Si }m_1=3\text{, alors }m_2=-\dfrac{1}{m_1}=-\dfrac{1}{3}\text{ (pentes de droites perpendiculaires : }m_1\times m_2=-1\text{).}` },
 
       // ga_24 — Intersection de deux droites
-      { q: r`d_1: y=x+1\quad\text{et}\quad d_2: y=2x-1.\\[4pt]\text{Point d'intersection ?}`,
+      { q: r`d_1: y=x+1\quad\text{et}\quad d_2: y=2x-1.\\\text{Point d'intersection ?}`,
         choices: [r`(2;3)`, r`(1;2)`, r`(0;1)`, r`(3;4)`],
         a: r`(2;3)`,
         tip: r`x+1=2x-1\Rightarrow x=2.\quad y=2+1=3.\\\text{Point d'intersection : }(2;3).` },
 
       // ga_25 — Droite perpendiculaire passant par un point
-      { q: r`d: y=2x.\\[4pt]\text{Équation de la perpendiculaire à }d\text{ passant par }B(4;2)\text{ ?}`,
+      { q: r`d: y=2x.\\\text{Équation de la perpendiculaire à }d\text{ passant par }B(4;2)\text{ ?}`,
         choices: [r`y=-\dfrac{1}{2}x+4`, r`y=2x-6`, r`y=-\dfrac{1}{2}x+2`, r`y=\dfrac{1}{2}x`],
         a: r`y=-\dfrac{1}{2}x+4`,
         tip: r`m_\perp=-\dfrac{1}{2}.\\\text{Par }B(4;2): 2=-\dfrac{1}{2}\times4+b\Rightarrow b=4.\\y=-\dfrac{1}{2}x+4.` },
 
       // ga_26 — Médiatrice d'un segment
-      { q: r`A(2;0)\text{ et }B(6;4).\\[4pt]\text{Quel est le milieu }M\text{ de }[AB]\text{ ?}`,
+      { q: r`A(2;0)\text{ et }B(6;4).\\\text{Quel est le milieu }M\text{ de }[AB]\text{ ?}`,
         choices: [r`(4;2)`, r`(3;2)`, r`(4;3)`, r`(2;4)`],
         a: r`(4;2)`,
         tip: r`M=\left(\dfrac{2+6}{2};\dfrac{0+4}{2}\right)=(4;2).` },
 
       // ga_27 — Vérifier qu'un point est le milieu
-      { q: r`A(-2;3)\text{ et }B(4;-1).\\[4pt]M=(1;1)\text{ est-il le milieu de }[AB]\text{ ?}`,
+      { q: r`A(-2;3)\text{ et }B(4;-1).\\M=(1;1)\text{ est-il le milieu de }[AB]\text{ ?}`,
         choices: [r`\text{Oui}`, r`\text{Non}`, r`\text{Seulement si }AM=1`, r`\text{Impossible à déterminer}`],
         a: r`\text{Oui}`,
         tip: r`\dfrac{-2+4}{2}=1\ \checkmark\quad\dfrac{3+(-1)}{2}=1\ \checkmark.\\M=(1;1)\text{ est bien le milieu.}` },
 
       // ga_28 — Distance avec résultat simple
-      { q: r`A(-3;0)\text{ et }B(0;4).\\[4pt]\text{Calculer }AB.`,
+      { q: r`A(-3;0)\text{ et }B(0;4).\\\text{Calculer }AB.`,
         choices: [r`5`, r`7`, r`\sqrt{7}`, r`4`],
         a: r`5`,
         tip: r`AB=\sqrt{(-3-0)^2+(0-4)^2}=\sqrt{9+16}=\sqrt{25}=5.` },
 
       // ga_29 — Équation de droite par deux points avec valeurs négatives
-      { q: r`A(-1;1)\text{ et }B(1;5).\\[4pt]\text{Équation de la droite }(AB)\text{ ?}`,
+      { q: r`A(-1;1)\text{ et }B(1;5).\\\text{Équation de la droite }(AB)\text{ ?}`,
         choices: [r`y=2x+3`, r`y=2x+1`, r`y=4x+3`, r`y=2x-3`],
         a: r`y=2x+3`,
         tip: r`m=\dfrac{5-1}{1-(-1)}=\dfrac{4}{2}=2.\\\text{Par }A(-1;1): 1=2\times(-1)+b\Rightarrow b=3.\\y=2x+3.` },
 
       // ga_30 — Coefficient directeur négatif
-      { q: r`A(0;4)\text{ et }B(2;0).\\[4pt]\text{Coefficient directeur de }(AB)\text{ ?}`,
+      { q: r`A(0;4)\text{ et }B(2;0).\\\text{Coefficient directeur de }(AB)\text{ ?}`,
         choices: [r`-2`, r`2`, r`\dfrac{1}{2}`, r`-\dfrac{1}{2}`],
         a: r`-2`,
         tip: r`m=\dfrac{0-4}{2-0}=\dfrac{-4}{2}=-2.` },
 
       // ga_31 — Droite horizontale
-      { q: r`A(1;3)\text{ et }B(5;3).\\[4pt]\text{Équation de la droite }(AB)\text{ ?}`,
+      { q: r`A(1;3)\text{ et }B(5;3).\\\text{Équation de la droite }(AB)\text{ ?}`,
         choices: [r`y=3`, r`x=3`, r`y=x+3`, r`y=0`],
         a: r`y=3`,
         tip: r`y_A=y_B=3\Rightarrow\text{droite horizontale d'équation }y=3.` },
@@ -12901,49 +12901,49 @@ const DB = {
         tip: r`\text{Symétrie par rapport à }(Ox): (x;y)\mapsto(x;-y).\\A(3;-2)\mapsto A'(3;2).` },
 
       // ga_33 — Trouver B connaissant milieu et A
-      { q: r`M(2;5)\text{ est le milieu de }[AB].\quad A(-1;3).\\[4pt]\text{Coordonnées de }B\text{ ?}`,
+      { q: r`M(2;5)\text{ est le milieu de }[AB].\quad A(-1;3).\\\text{Coordonnées de }B\text{ ?}`,
         choices: [r`(5;7)`, r`(3;8)`, r`(4;7)`, r`(5;8)`],
         a: r`(5;7)`,
         tip: r`x_B=2x_M-x_A=4-(-1)=5.\quad y_B=2y_M-y_A=10-3=7.\\B=(5;7).` },
 
       // ga_34 — Colinéarité par déterminant (valeurs plus grandes)
-      { q: r`\vec{u}\begin{pmatrix}4\\6\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}6\\9\end{pmatrix}.\\[4pt]\text{Ces vecteurs sont-ils colinéaires ?}`,
+      { q: r`\vec{u}\begin{pmatrix}4\\6\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}6\\9\end{pmatrix}.\\\text{Ces vecteurs sont-ils colinéaires ?}`,
         choices: [r`\text{Oui, car }4\times9-6\times6=0`, r`\text{Non, car }4\times9-6\times6\neq0`, r`\text{Oui, car }\vec{v}=2\vec{u}`, r`\text{Non, car leurs normes sont différentes}`],
         a: r`\text{Oui, car }4\times9-6\times6=0`,
         tip: r`4\times9-6\times6=36-36=0\Rightarrow\text{colinéaires.}\quad(\vec{v}=\dfrac{3}{2}\vec{u})` },
 
       // ga_35 — Distance entre points fractionnaires
-      { q: r`A(1;0)\text{ et }B(4;4).\\[4pt]\text{Calculer }AB.`,
+      { q: r`A(1;0)\text{ et }B(4;4).\\\text{Calculer }AB.`,
         choices: [r`5`, r`\sqrt{7}`, r`7`, r`\sqrt{25}`],
         a: r`5`,
         tip: r`AB=\sqrt{(4-1)^2+(4-0)^2}=\sqrt{9+16}=\sqrt{25}=5.` },
 
       // ga_36 — Droite passant par l'origine
-      { q: r`\text{La droite }d\text{ passe par }O(0;0)\text{ avec un coefficient directeur }m=\dfrac{1}{2}.\\[4pt]\text{Son équation est :}`,
+      { q: r`\text{La droite }d\text{ passe par }O(0;0)\text{ avec un coefficient directeur }m=\dfrac{1}{2}.\\\text{Son équation est :}`,
         choices: [r`y=\dfrac{1}{2}x`, r`y=2x`, r`y=\dfrac{1}{2}x+1`, r`y=x+\dfrac{1}{2}`],
         a: r`y=\dfrac{1}{2}x`,
         tip: r`\text{Passe par l'origine }\Rightarrow b=0.\quad y=\dfrac{1}{2}x.` },
 
       // ga_37 — Trouver k pour colinéarité (deux vecteurs avec k)
-      { q: r`\vec{u}\begin{pmatrix}2\\k\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}3\\6\end{pmatrix}\text{ sont colinéaires.}\\[4pt]\text{Valeur de }k\text{ ?}`,
+      { q: r`\vec{u}\begin{pmatrix}2\\k\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}3\\6\end{pmatrix}\text{ sont colinéaires.}\\\text{Valeur de }k\text{ ?}`,
         choices: [r`4`, r`3`, r`9`, r`2`],
         a: r`4`,
         tip: r`2\times6-k\times3=0\Rightarrow12=3k\Rightarrow k=4.` },
 
       // ga_38 — Point de la médiatrice
-      { q: r`A(0;0)\text{ et }B(4;0).\\[4pt]\text{Le point }M(2;3)\text{ est-il équidistant de }A\text{ et }B\text{ ?}`,
+      { q: r`A(0;0)\text{ et }B(4;0).\\\text{Le point }M(2;3)\text{ est-il équidistant de }A\text{ et }B\text{ ?}`,
         choices: [r`\text{Oui, }MA=MB=\sqrt{13}`, r`\text{Non}`, r`\text{Oui, }MA=MB=3`, r`\text{Impossible à déterminer}`],
         a: r`\text{Oui, }MA=MB=\sqrt{13}`,
         tip: r`MA=\sqrt{4+9}=\sqrt{13}.\quad MB=\sqrt{4+9}=\sqrt{13}.\ \checkmark` },
 
       // ga_39 — Droites confondues
-      { q: r`d_1: y=2x+3\quad\text{et}\quad d_2: 4x-2y+6=0.\\[4pt]\text{Ces droites sont :}`,
+      { q: r`d_1: y=2x+3\quad\text{et}\quad d_2: 4x-2y+6=0.\\\text{Ces droites sont :}`,
         choices: [r`\text{Confondues}`, r`\text{Parallèles distinctes}`, r`\text{Sécantes}`, r`\text{Perpendiculaires}`],
         a: r`\text{Confondues}`,
         tip: r`d_2: 4x-2y+6=0\Leftrightarrow y=2x+3.\text{ Même équation que }d_1\Rightarrow\text{confondues.}` },
 
       // ga_40 — Abscisse d'un point sur une droite connaissant l'ordonnée
-      { q: r`d: y=3x-2.\\[4pt]\text{Quelle est l'abscisse du point de }d\text{ d'ordonnée }y=7\text{ ?}`,
+      { q: r`d: y=3x-2.\\\text{Quelle est l'abscisse du point de }d\text{ d'ordonnée }y=7\text{ ?}`,
         choices: [r`3`, r`2`, r`4`, r`5`],
         a: r`3`,
         tip: r`7=3x-2\Rightarrow3x=9\Rightarrow x=3.` },
@@ -12957,119 +12957,119 @@ const DB = {
       { q: r`\text{Deux vecteurs }\vec{u}\text{ et }\vec{v}\text{ sont colinéaires si et seulement si :}`,
         choices: [r`\text{il existe }k\in\mathbb{R}\text{ tel que }\vec{v}=k\vec{u}`, r`\|\vec{u}\|=\|\vec{v}\|`, r`\vec{u}+\vec{v}=\vec{0}`, r`\vec{u}\cdot\vec{v}=0`],
         a: r`\text{il existe }k\in\mathbb{R}\text{ tel que }\vec{v}=k\vec{u}`,
-        tip: r`\vec{u}\text{ et }\vec{v}\text{ colinéaires }\Leftrightarrow\exists k\in\mathbb{R},\ \vec{v}=k\vec{u}.\\[4pt]\text{Géométriquement : même direction (droites parallèles ou confondues).}` },
+        tip: r`\vec{u}\text{ et }\vec{v}\text{ colinéaires }\Leftrightarrow\exists k\in\mathbb{R},\ \vec{v}=k\vec{u}.\\\text{Géométriquement : même direction (droites parallèles ou confondues).}` },
 
       // vc_02 — Trouver k
-      { q: r`\vec{u}\begin{pmatrix}2\\-6\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}-1\\3\end{pmatrix}.\\[4pt]\text{Exprimer }\vec{v}\text{ en fonction de }\vec{u}.`,
+      { q: r`\vec{u}\begin{pmatrix}2\\-6\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}-1\\3\end{pmatrix}.\\\text{Exprimer }\vec{v}\text{ en fonction de }\vec{u}.`,
         choices: [r`\vec{v}=-\dfrac{1}{2}\vec{u}`, r`\vec{v}=\dfrac{1}{2}\vec{u}`, r`\vec{v}=2\vec{u}`, r`\vec{v}=-2\vec{u}`],
         a: r`\vec{v}=-\dfrac{1}{2}\vec{u}`,
         tip: r`-1=k\times2\Rightarrow k=-\tfrac{1}{2}.\quad3=k\times(-6)=-\tfrac{1}{2}\times(-6)=3\ \checkmark\\\vec{v}=-\tfrac{1}{2}\vec{u}.` },
 
       // vc_03 — Droites parallèles via vecteurs
-      { q: r`\overrightarrow{AB}\begin{pmatrix}3\\6\end{pmatrix}\text{ et }\overrightarrow{CD}\begin{pmatrix}1\\2\end{pmatrix}.\\[4pt]\text{Que peut-on conclure sur les droites }(AB)\text{ et }(CD)\text{ ?}`,
+      { q: r`\overrightarrow{AB}\begin{pmatrix}3\\6\end{pmatrix}\text{ et }\overrightarrow{CD}\begin{pmatrix}1\\2\end{pmatrix}.\\\text{Que peut-on conclure sur les droites }(AB)\text{ et }(CD)\text{ ?}`,
         choices: [r`\text{Elles sont parallèles (ou confondues)}`, r`\text{Elles sont perpendiculaires}`, r`\text{Elles se croisent en un point}`, r`\text{Rien}`],
         a: r`\text{Elles sont parallèles (ou confondues)}`,
         tip: r`\overrightarrow{AB}=3\overrightarrow{CD}\Rightarrow\text{vecteurs colinéaires}\Rightarrow\text{droites parallèles ou confondues.}` },
 
       // vc_04 — Alignement de trois points
-      { q: r`A(0;0),\ B(3;2),\ C(6;4).\\[4pt]\text{Les points }A,B,C\text{ sont-ils alignés ?}`,
+      { q: r`A(0;0),\ B(3;2),\ C(6;4).\\\text{Les points }A,B,C\text{ sont-ils alignés ?}`,
         choices: [r`\text{Oui}`, r`\text{Non}`, r`\text{Seulement si }AB=BC`, r`\text{Impossible à déterminer}`],
         a: r`\text{Oui}`,
-        tip: r`\overrightarrow{AB}\binom{3}{2},\ \overrightarrow{AC}\binom{6}{4}=2\binom{3}{2}=2\overrightarrow{AB}.\\[4pt]\text{Colinéaires }\Rightarrow A,B,C\text{ alignés.}` },
+        tip: r`\overrightarrow{AB}\binom{3}{2},\ \overrightarrow{AC}\binom{6}{4}=2\binom{3}{2}=2\overrightarrow{AB}.\\\text{Colinéaires }\Rightarrow A,B,C\text{ alignés.}` },
 
       // vc_05 — Non alignement
-      { q: r`A(1;1),\ B(3;4),\ C(5;8).\\[4pt]\text{A, B, C sont-ils alignés ?}`,
+      { q: r`A(1;1),\ B(3;4),\ C(5;8).\\\text{A, B, C sont-ils alignés ?}`,
         choices: [r`\text{Non}`, r`\text{Oui}`, r`\text{Oui si }AB\parallel BC`, r`\text{Impossible à dire}`],
         a: r`\text{Non}`,
         tip: r`\overrightarrow{AB}\binom{2}{3},\ \overrightarrow{AC}\binom{4}{7}.\\2\times7-3\times4=14-12=2\neq0\Rightarrow\text{non colinéaires}\Rightarrow\text{non alignés.}` },
 
       // vc_06 — Valeur de k pour parallélisme
-      { q: r`\overrightarrow{AB}\begin{pmatrix}k\\8\end{pmatrix}\text{ et }\overrightarrow{CD}\begin{pmatrix}3\\12\end{pmatrix}.\\[4pt](AB)\parallel(CD).\text{ Trouver }k.`,
+      { q: r`\overrightarrow{AB}\begin{pmatrix}k\\8\end{pmatrix}\text{ et }\overrightarrow{CD}\begin{pmatrix}3\\12\end{pmatrix}.\\(AB)\parallel(CD).\text{ Trouver }k.`,
         choices: [r`2`, r`3`, r`4`, r`6`],
         a: r`2`,
         tip: r`\text{Colinéaires }\Leftrightarrow k\times12-8\times3=0\Rightarrow12k=24\Rightarrow k=2.` },
 
       // vc_07 — Vecteurs colinéaires et sens
-      { q: r`\vec{u}\begin{pmatrix}4\\2\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}-4\\-2\end{pmatrix}.\\[4pt]\text{Que vaut }k\text{ tel que }\vec{v}=k\vec{u}\text{ ?}`,
+      { q: r`\vec{u}\begin{pmatrix}4\\2\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}-4\\-2\end{pmatrix}.\\\text{Que vaut }k\text{ tel que }\vec{v}=k\vec{u}\text{ ?}`,
         choices: [r`-1`, r`1`, r`-2`, r`2`],
         a: r`-1`,
-        tip: r`\vec{v}=-1\times\vec{u}\Rightarrow k=-1.\\[4pt]\text{Vecteurs colinéaires de sens opposés.}` },
+        tip: r`\vec{v}=-1\times\vec{u}\Rightarrow k=-1.\\\text{Vecteurs colinéaires de sens opposés.}` },
 
       // vc_08 — Point sur une droite
-      { q: r`A(1;2),\ B(4;8).\\[4pt]\text{Le point }C(2;4)\text{ est-il sur la droite }(AB)\text{ ?}`,
+      { q: r`A(1;2),\ B(4;8).\\\text{Le point }C(2;4)\text{ est-il sur la droite }(AB)\text{ ?}`,
         choices: [r`\text{Oui}`, r`\text{Non}`, r`\text{Seulement si }AB=2`, r`\text{Impossible à dire}`],
         a: r`\text{Oui}`,
         tip: r`\overrightarrow{AB}\binom{3}{6},\ \overrightarrow{AC}\binom{1}{2}.\\3\times2-6\times1=0\Rightarrow\text{colinéaires}\Rightarrow C\text{ aligné avec A et B.}` },
 
       // vc_09 — Parallélisme de deux droites données par leurs équations
-      { q: r`d_1: y=3x+1\quad\text{et}\quad d_2: y=3x-5.\\[4pt]\text{Les droites }d_1\text{ et }d_2\text{ sont :}`,
+      { q: r`d_1: y=3x+1\quad\text{et}\quad d_2: y=3x-5.\\\text{Les droites }d_1\text{ et }d_2\text{ sont :}`,
         choices: [r`\text{parallèles et distinctes}`, r`\text{confondues}`, r`\text{sécantes}`, r`\text{perpendiculaires}`],
         a: r`\text{parallèles et distinctes}`,
         tip: r`\text{Même pente }m=3\text{ et ordonnées à l'origine différentes }(1\neq-5)\\\Rightarrow\text{parallèles et distinctes.}` },
 
       // vc_10 — Colinéarité et parallélisme : synthèse
-      { q: r`A(0;0),\ B(2;3),\ C(4;6),\ D(1;2).\\[4pt]\text{Parmi les droites }(AB),(AC),(AD),\text{ lesquelles sont confondues avec }(AB)\text{ ?}`,
+      { q: r`A(0;0),\ B(2;3),\ C(4;6),\ D(1;2).\\\text{Parmi les droites }(AB),(AC),(AD),\text{ lesquelles sont confondues avec }(AB)\text{ ?}`,
         choices: [r`(AC)\text{ seulement}`, r`(AD)\text{ seulement}`, r`(AC)\text{ et }(AD)`, r`\text{Aucune}`],
         a: r`(AC)\text{ seulement}`,
-        tip: r`\overrightarrow{AB}\binom{2}{3},\ \overrightarrow{AC}\binom{4}{6}=2\binom{2}{3}\Rightarrow C\in(AB).\\[4pt]\overrightarrow{AD}\binom{1}{2}:\ 2\times2-3\times1=1\neq0\Rightarrow D\notin(AB).` },
+        tip: r`\overrightarrow{AB}\binom{2}{3},\ \overrightarrow{AC}\binom{4}{6}=2\binom{2}{3}\Rightarrow C\in(AB).\\\overrightarrow{AD}\binom{1}{2}:\ 2\times2-3\times1=1\neq0\Rightarrow D\notin(AB).` },
 
  ,
       // vc_11 — Trapèze via colinéarité
-      { q: r`A(0;0),\ B(4;0),\ C(5;2),\ D(2;2).\\[4pt]\text{Que prouve que }ABCD\text{ est un trapèze ?}`,
+      { q: r`A(0;0),\ B(4;0),\ C(5;2),\ D(2;2).\\\text{Que prouve que }ABCD\text{ est un trapèze ?}`,
         choices: [r`\overrightarrow{AB}\text{ et }\overrightarrow{DC}\text{ sont colinéaires}`, r`\overrightarrow{AD}\text{ et }\overrightarrow{BC}\text{ sont colinéaires}`, r`AB=DC`, r`\overrightarrow{AB}\cdot\overrightarrow{DC}=0`],
         a: r`\overrightarrow{AB}\text{ et }\overrightarrow{DC}\text{ sont colinéaires}`,
         tip: r`\overrightarrow{AB}\binom{4}{0},\ \overrightarrow{DC}\binom{3}{0}.\text{ Même composante nulle en }y\Rightarrow AB\parallel DC\Rightarrow\text{trapèze.}` },
 
       // vc_12 — Trouver k pour alignement
-      { q: r`A(1;2),\ B(3;k),\ C(7;14)\text{ sont alignés.}\\[4pt]\text{Valeur de }k\text{ ?}`,
+      { q: r`A(1;2),\ B(3;k),\ C(7;14)\text{ sont alignés.}\\\text{Valeur de }k\text{ ?}`,
         choices: [r`6`, r`4`, r`8`, r`5`],
         a: r`6`,
         tip: r`\overrightarrow{AB}\binom{2}{k-2},\ \overrightarrow{AC}\binom{6}{12}.\\2\times12-(k-2)\times6=0\Rightarrow6k=36\Rightarrow k=6.` },
 
       // vc_13 — Vecteurs non colinéaires
-      { q: r`\vec{u}\begin{pmatrix}1\\3\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}3\\10\end{pmatrix}.\\[4pt]\text{Ces vecteurs sont-ils colinéaires ?}`,
+      { q: r`\vec{u}\begin{pmatrix}1\\3\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}3\\10\end{pmatrix}.\\\text{Ces vecteurs sont-ils colinéaires ?}`,
         choices: [r`\text{Non, car }1\times10-3\times3=1\neq0`, r`\text{Oui, car }\vec{v}=3\vec{u}`, r`\text{Non, car }\vec{v}\neq2\vec{u}`, r`\text{Oui, car }\vec{v}\cdot\vec{u}=33`],
         a: r`\text{Non, car }1\times10-3\times3=1\neq0`,
         tip: r`ad-bc=1\times10-3\times3=10-9=1\neq0\Rightarrow\text{non colinéaires.}` },
 
       // vc_14 — Droites sécantes (pentes différentes)
-      { q: r`d_1: y=2x+1\quad\text{et}\quad d_2: y=3x-1.\\[4pt]\text{Les droites }d_1\text{ et }d_2\text{ sont :}`,
+      { q: r`d_1: y=2x+1\quad\text{et}\quad d_2: y=3x-1.\\\text{Les droites }d_1\text{ et }d_2\text{ sont :}`,
         choices: [r`\text{Sécantes}`, r`\text{Parallèles}`, r`\text{Confondues}`, r`\text{Perpendiculaires}`],
         a: r`\text{Sécantes}`,
         tip: r`m_1=2\neq m_2=3\Rightarrow\text{vecteurs directeurs non colinéaires}\Rightarrow\text{droites sécantes.}` },
 
       // vc_15 — Parallélisme pour tout a
-      { q: r`A(2;1),\ B(6;4),\ C(0;a),\ D(4;a+3).\\[4pt](AB)\parallel(CD)\text{ ?}`,
+      { q: r`A(2;1),\ B(6;4),\ C(0;a),\ D(4;a+3).\\(AB)\parallel(CD)\text{ ?}`,
         choices: [r`\text{Oui, pour tout }a`, r`\text{Seulement si }a=0`, r`\text{Seulement si }a=1`, r`\text{Non}`],
         a: r`\text{Oui, pour tout }a`,
         tip: r`\overrightarrow{AB}\binom{4}{3},\ \overrightarrow{CD}\binom{4}{3}.\text{ Mêmes coordonnées quelle que soit }a\Rightarrow(AB)\parallel(CD)\ \forall a.` },
 
       // vc_16 — Point sur droite
-      { q: r`A(0;1),\ B(2;5).\\[4pt]\text{Le point }P(1;3)\text{ appartient-il à }(AB)\text{ ?}`,
+      { q: r`A(0;1),\ B(2;5).\\\text{Le point }P(1;3)\text{ appartient-il à }(AB)\text{ ?}`,
         choices: [r`\text{Oui}`, r`\text{Non}`, r`\text{Seulement si }AP=PB`, r`\text{Impossible à déterminer}`],
         a: r`\text{Oui}`,
         tip: r`\overrightarrow{AB}\binom{2}{4},\ \overrightarrow{AP}\binom{1}{2}.\\2\times2-4\times1=0\Rightarrow\text{colinéaires}\Rightarrow P\in(AB).` },
 
       // vc_17 — Médiane non alignée avec AC
-      { q: r`A(0;0),\ B(6;0),\ C(2;4).\\[4pt]M=(4;2)\text{ milieu de }[BC].\\[4pt]\overrightarrow{AM}\text{ et }\overrightarrow{AC}\text{ sont-ils colinéaires ?}`,
+      { q: r`A(0;0),\ B(6;0),\ C(2;4).\\M=(4;2)\text{ milieu de }[BC].\\\overrightarrow{AM}\text{ et }\overrightarrow{AC}\text{ sont-ils colinéaires ?}`,
         choices: [r`\text{Non}`, r`\text{Oui}`, r`\text{Oui, AM=AC}`, r`\text{Impossible à dire}`],
         a: r`\text{Non}`,
         tip: r`\overrightarrow{AM}\binom{4}{2},\ \overrightarrow{AC}\binom{2}{4}.\\4\times4-2\times2=12\neq0\Rightarrow\text{non colinéaires.}` },
 
       // vc_18 — Valeur de k à exclure
-      { q: r`\vec{u}\begin{pmatrix}k\\4\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}3\\6\end{pmatrix}\text{ non colinéaires.}\\[4pt]\text{Valeur de }k\text{ à exclure ?}`,
+      { q: r`\vec{u}\begin{pmatrix}k\\4\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}3\\6\end{pmatrix}\text{ non colinéaires.}\\\text{Valeur de }k\text{ à exclure ?}`,
         choices: [r`k=2`, r`k=3`, r`k=4`, r`k=6`],
         a: r`k=2`,
         tip: r`\text{Colinéaires si }k\times6-4\times3=0\Rightarrow6k=12\Rightarrow k=2.\text{ C'est la valeur à exclure.}` },
 
       // vc_19 — Vecteur nul ou colinéaire
-      { q: r`\vec{u}\begin{pmatrix}1\\2\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}3\\6\end{pmatrix}.\\[4pt]\text{Que vaut }2\vec{u}-\vec{v}\text{ ?}`,
+      { q: r`\vec{u}\begin{pmatrix}1\\2\end{pmatrix}\text{ et }\vec{v}\begin{pmatrix}3\\6\end{pmatrix}.\\\text{Que vaut }2\vec{u}-\vec{v}\text{ ?}`,
         choices: [r`-\vec{u}\text{ : colinéaire à }\vec{u}`, r`\vec{0}`, r`\vec{u}`, r`2\vec{u}`],
         a: r`-\vec{u}\text{ : colinéaire à }\vec{u}`,
         tip: r`2\vec{u}-\vec{v}=\begin{pmatrix}2\\4\end{pmatrix}-\begin{pmatrix}3\\6\end{pmatrix}=\begin{pmatrix}-1\\-2\end{pmatrix}=-\vec{u}.\text{ Colinéaire à }\vec{u}\text{, non nul.}` },
 
       // vc_20 — Synthèse 4 points
-      { q: r`A(1;1),\ B(4;3),\ C(7;5),\ D(2;2).\\[4pt]\text{Lequel est sur la droite }(AB)\text{ ?}`,
+      { q: r`A(1;1),\ B(4;3),\ C(7;5),\ D(2;2).\\\text{Lequel est sur la droite }(AB)\text{ ?}`,
         choices: [r`C`, r`D`, r`\text{Ni C ni D}`, r`\text{C et D}`],
         a: r`C`,
         tip: r`\overrightarrow{AB}\binom{3}{2},\ \overrightarrow{AC}\binom{6}{4}=2\binom{3}{2}\ \checkmark\Rightarrow C\in(AB).\\\overrightarrow{AD}\binom{1}{1}: 3\times1-2\times1=1\neq0\Rightarrow D\notin(AB).` },
@@ -13266,25 +13266,25 @@ const DB = {
         tip: r`\text{Si }d\perp\mathcal{P}\text{, alors }d\perp\text{toute droite de }\mathcal{P}\text{ (définition de la perpendicularité droite/plan).}` },
 
       // gep_21 — Section plane d'un cube
-      { q: r`\text{Un plan coupe un cube selon une section. Si ce plan passe par 3 sommets non adjacents,}\\[4pt]\text{la section est :}`,
+      { q: r`\text{Un plan coupe un cube selon une section. Si ce plan passe par 3 sommets non adjacents,}\\\text{la section est :}`,
         choices:[r`\text{Un triangle}`,r`\text{Un carré}`,r`\text{Un hexagone}`,r`\text{Un rectangle}`],
         a: r`\text{Un triangle}`,
         tip: r`\text{3 points (sommets) non alignés définissent un plan. La section d'un cube par ce plan est un triangle.}` },
 
       // gep_22 — Deux plans perpendiculaires : condition normale
-      { q: r`\mathcal{P}_1\text{ a pour normale }\vec{n_1}(1;0;0)\text{ et }\mathcal{P}_2\text{ a pour normale }\vec{n_2}(0;1;0).\\[4pt]\text{Ces plans sont :}`,
+      { q: r`\mathcal{P}_1\text{ a pour normale }\vec{n_1}(1;0;0)\text{ et }\mathcal{P}_2\text{ a pour normale }\vec{n_2}(0;1;0).\\\text{Ces plans sont :}`,
         choices:[r`\text{Perpendiculaires}`,r`\text{Parallèles}`,r`\text{Confondus}`,r`\text{Sécants sans être perpendiculaires}`],
         a: r`\text{Perpendiculaires}`,
         tip: r`\vec{n_1}\cdot\vec{n_2}=1\times0+0\times1+0\times0=0\Rightarrow\vec{n_1}\perp\vec{n_2}\Rightarrow\mathcal{P}_1\perp\mathcal{P}_2.` },
 
       // gep_23 — Plans parallèles : même normale
-      { q: r`\mathcal{P}_1: x+2y-z+3=0\quad\text{et}\quad\mathcal{P}_2: 2x+4y-2z+1=0.\\[4pt]\text{Ces plans sont :}`,
+      { q: r`\mathcal{P}_1: x+2y-z+3=0\quad\text{et}\quad\mathcal{P}_2: 2x+4y-2z+1=0.\\\text{Ces plans sont :}`,
         choices:[r`\text{Parallèles distincts}`,r`\text{Confondus}`,r`\text{Sécants}`,r`\text{Perpendiculaires}`],
         a: r`\text{Parallèles distincts}`,
         tip: r`\vec{n_1}(1;2;-1)\text{ et }\vec{n_2}(2;4;-2)=2\vec{n_1}\Rightarrow\text{normaux colinéaires}\Rightarrow\text{plans parallèles.}\\\text{Ordonnées différentes}\Rightarrow\text{distincts.}` },
 
       // gep_24 — Synthèse : caractériser deux droites de l'espace
-      { q: r`d_1\text{ et }d_2\text{ ont le même vecteur directeur et n'ont pas de point commun.}\\[4pt]\text{Ces droites sont :}`,
+      { q: r`d_1\text{ et }d_2\text{ ont le même vecteur directeur et n'ont pas de point commun.}\\\text{Ces droites sont :}`,
         choices:[r`\text{Parallèles distinctes}`,r`\text{Gauches}`,r`\text{Sécantes}`,r`\text{Confondues}`],
         a: r`\text{Parallèles distinctes}`,
         tip: r`\text{Même vecteur directeur}\ \Rightarrow\ \text{coplanaires (parallèles ou confondues).}\\\text{Pas de point commun}\ \Rightarrow\ \text{parallèles distinctes (pas confondues).}` },
@@ -13428,73 +13428,73 @@ const DB = {
         tip: r`\text{Un point }+\text{ un vecteur normal }\Rightarrow\text{ un unique plan (passant par }A\text{, perpendiculaire à }\vec{n}\text{).}` },
  ,
       // gev_13 — Calculer AB en 3D
-      { q: r`A(1;2;3)\text{ et }B(4;0;7).\\[4pt]\text{Coordonnées de }\overrightarrow{AB}\text{ ?}`,
+      { q: r`A(1;2;3)\text{ et }B(4;0;7).\\\text{Coordonnées de }\overrightarrow{AB}\text{ ?}`,
         choices:[r`(3\,;\,-2\,;\,4)`,r`(5\,;\,2\,;\,10)`,r`(-3\,;\,2\,;\,-4)`,r`(3\,;\,2\,;\,4)`],
         a: r`(3\,;\,-2\,;\,4)`,
         tip: r`\overrightarrow{AB}=(4-1\,;\,0-2\,;\,7-3)=(3\,;\,-2\,;\,4).` },
 
       // gev_14 — Milieu en 3D
-      { q: r`A(2;4;0)\text{ et }B(6;2;4).\\[4pt]\text{Coordonnées du milieu }M\text{ de }[AB]\text{ ?}`,
+      { q: r`A(2;4;0)\text{ et }B(6;2;4).\\\text{Coordonnées du milieu }M\text{ de }[AB]\text{ ?}`,
         choices:[r`(4\,;\,3\,;\,2)`,r`(3\,;\,4\,;\,2)`,r`(4\,;\,2\,;\,3)`,r`(2\,;\,3\,;\,4)`],
         a: r`(4\,;\,3\,;\,2)`,
         tip: r`M=\left(\dfrac{2+6}{2}\,;\,\dfrac{4+2}{2}\,;\,\dfrac{0+4}{2}\right)=(4\,;\,3\,;\,2).` },
 
       // gev_15 — Produit scalaire en 3D
-      { q: r`\vec{u}(1\,;\,2\,;\,-1)\text{ et }\vec{v}(3\,;\,-1\,;\,2).\\[4pt]\text{Calculer }\vec{u}\cdot\vec{v}.`,
+      { q: r`\vec{u}(1\,;\,2\,;\,-1)\text{ et }\vec{v}(3\,;\,-1\,;\,2).\\\text{Calculer }\vec{u}\cdot\vec{v}.`,
         choices:[r`-1`,r`5`,r`1`,r`-5`],
         a: r`-1`,
         tip: r`\vec{u}\cdot\vec{v}=1\times3+2\times(-1)+(-1)\times2=3-2-2=-1.` },
 
       // gev_16 — Vecteurs orthogonaux en 3D
-      { q: r`\vec{u}(2\,;\,1\,;\,-1)\text{ et }\vec{v}(1\,;\,0\,;\,2).\\[4pt]\text{Ces vecteurs sont-ils orthogonaux ?}`,
+      { q: r`\vec{u}(2\,;\,1\,;\,-1)\text{ et }\vec{v}(1\,;\,0\,;\,2).\\\text{Ces vecteurs sont-ils orthogonaux ?}`,
         choices:[r`\text{Oui, car }\vec{u}\cdot\vec{v}=0`,r`\text{Non, car }\vec{u}\cdot\vec{v}\neq0`,r`\text{Oui, car ils ont 3 composantes}`,r`\text{Non, car }\vec{u}\neq\vec{v}`],
         a: r`\text{Oui, car }\vec{u}\cdot\vec{v}=0`,
         tip: r`\vec{u}\cdot\vec{v}=2\times1+1\times0+(-1)\times2=2+0-2=0\Rightarrow\text{orthogonaux.}` },
 
       // gev_17 — Norme en 3D
-      { q: r`\vec{u}(2\,;\,-1\,;\,2).\\[4pt]\text{Calculer }\|\vec{u}\|.`,
+      { q: r`\vec{u}(2\,;\,-1\,;\,2).\\\text{Calculer }\|\vec{u}\|.`,
         choices:[r`3`,r`5`,r`\sqrt{5}`,r`\sqrt{7}`],
         a: r`3`,
         tip: r`\|\vec{u}\|=\sqrt{2^2+(-1)^2+2^2}=\sqrt{4+1+4}=\sqrt{9}=3.` },
 
       // gev_18 — Vecteur directeur depuis deux points 3D
-      { q: r`A(0\,;\,1\,;\,-2)\text{ et }B(3\,;\,-1\,;\,4).\\[4pt]\text{Vecteur directeur de la droite }(AB)\text{ ?}`,
+      { q: r`A(0\,;\,1\,;\,-2)\text{ et }B(3\,;\,-1\,;\,4).\\\text{Vecteur directeur de la droite }(AB)\text{ ?}`,
         choices:[r`(3\,;\,-2\,;\,6)`,r`(3\,;\,1\,;\,-2)`,r`(0\,;\,1\,;\,-2)`,r`(-3\,;\,2\,;\,-6)`],
         a: r`(3\,;\,-2\,;\,6)`,
         tip: r`\overrightarrow{AB}=(3-0\,;\,-1-1\,;\,4-(-2))=(3\,;\,-2\,;\,6).` },
 
       // gev_19 — Colinéarité en 3D (non colinéaires)
-      { q: r`\vec{u}(1\,;\,2\,;\,3)\text{ et }\vec{v}(2\,;\,5\,;\,6).\\[4pt]\text{Ces vecteurs sont-ils colinéaires ?}`,
+      { q: r`\vec{u}(1\,;\,2\,;\,3)\text{ et }\vec{v}(2\,;\,5\,;\,6).\\\text{Ces vecteurs sont-ils colinéaires ?}`,
         choices:[r`\text{Non}`,r`\text{Oui, car }\vec{v}=2\vec{u}`,r`\text{Oui, car }\vec{u}\cdot\vec{v}=0`,r`\text{Impossible à dire}`],
         a: r`\text{Non}`,
         tip: r`\vec{v}=2\vec{u}\Leftrightarrow(2;5;6)=2(1;2;3)=(2;4;6).\ 5\neq4\Rightarrow\text{non colinéaires.}` },
 
       // gev_20 — Vecteur appartenant au plan (test produit scalaire)
-      { q: r`\vec{n}(1\,;\,-1\,;\,2)\text{ est normal à }\mathcal{P}.\\[4pt]\text{Lequel de ces vecteurs est dans }\mathcal{P}\text{ ?}`,
+      { q: r`\vec{n}(1\,;\,-1\,;\,2)\text{ est normal à }\mathcal{P}.\\\text{Lequel de ces vecteurs est dans }\mathcal{P}\text{ ?}`,
         choices:[r`\vec{w}(1\,;\,1\,;\,0)`,r`\vec{w}(1\,;\,-1\,;\,2)`,r`\vec{w}(2\,;\,-2\,;\,4)`,r`\vec{w}(0\,;\,0\,;\,1)`],
         a: r`\vec{w}(1\,;\,1\,;\,0)`,
         tip: r`\vec{w}\cdot\vec{n}=1\times1+1\times(-1)+0\times2=1-1+0=0\ \checkmark.\\\text{Les autres : }(1;-1;2)\cdot\vec{n}=1+1+4=6\neq0,\text{ etc.}` },
 
       // gev_21 — Distance entre deux points 3D
-      { q: r`A(1\,;\,0\,;\,0)\text{ et }B(4\,;\,4\,;\,0).\\[4pt]\text{Calculer }AB.`,
+      { q: r`A(1\,;\,0\,;\,0)\text{ et }B(4\,;\,4\,;\,0).\\\text{Calculer }AB.`,
         choices:[r`5`,r`7`,r`\sqrt{7}`,r`3`],
         a: r`5`,
         tip: r`AB=\sqrt{(4-1)^2+(4-0)^2+(0-0)^2}=\sqrt{9+16}=\sqrt{25}=5.` },
 
       // gev_22 — Droite perpendiculaire au plan ↔ colinéaire au normal
-      { q: r`\text{La droite }d\text{ a pour vecteur directeur }\vec{u}(2\,;\,-1\,;\,3).\\[4pt]\text{Est-elle perpendiculaire au plan }2x-y+3z+5=0\text{ ?}`,
+      { q: r`\text{La droite }d\text{ a pour vecteur directeur }\vec{u}(2\,;\,-1\,;\,3).\\\text{Est-elle perpendiculaire au plan }2x-y+3z+5=0\text{ ?}`,
         choices:[r`\text{Oui, }\vec{u}\text{ est colinéaire à }\vec{n}(2;-1;3)`,r`\text{Non, }\vec{u}\cdot\vec{n}=0`,r`\text{Oui, }\vec{u}\cdot\vec{n}=0`,r`\text{Non, }\vec{u}\neq\vec{n}`],
         a: r`\text{Oui, }\vec{u}\text{ est colinéaire à }\vec{n}(2;-1;3)`,
         tip: r`\vec{n}=(2;-1;3)=\vec{u}\Rightarrow\text{colinéaires}\Rightarrow d\perp\mathcal{P}.` },
 
       // gev_23 — Trouver le normal depuis 2 vecteurs du plan
-      { q: r`\mathcal{P}\text{ contient }\vec{u}(1\,;\,0\,;\,-1)\text{ et }\vec{v}(0\,;\,1\,;\,0).\\[4pt]\text{Lequel de ces vecteurs est normal à }\mathcal{P}\text{ ?}`,
+      { q: r`\mathcal{P}\text{ contient }\vec{u}(1\,;\,0\,;\,-1)\text{ et }\vec{v}(0\,;\,1\,;\,0).\\\text{Lequel de ces vecteurs est normal à }\mathcal{P}\text{ ?}`,
         choices:[r`\vec{n}(1\,;\,0\,;\,1)`,r`\vec{n}(1\,;\,1\,;\,0)`,r`\vec{n}(0\,;\,1\,;\,1)`,r`\vec{n}(1\,;\,0\,;\,-1)`],
         a: r`\vec{n}(1\,;\,0\,;\,1)`,
         tip: r`\vec{n}\cdot\vec{u}=1+0-1=0\ \checkmark\quad\vec{n}\cdot\vec{v}=0+0+0=0\ \checkmark.\\\text{Donc }\vec{n}(1;0;1)\perp\vec{u}\text{ et }\perp\vec{v}\Rightarrow\vec{n}\text{ est normal à }\mathcal{P}.` },
 
       // gev_24 — Point défini par vecteur 3D
-      { q: r`A(2\,;\,1\,;\,-3)\text{ et }\overrightarrow{AB}\begin{pmatrix}1\\-2\\5\end{pmatrix}.\\[4pt]\text{Coordonnées de }B\text{ ?}`,
+      { q: r`A(2\,;\,1\,;\,-3)\text{ et }\overrightarrow{AB}\begin{pmatrix}1\\-2\\5\end{pmatrix}.\\\text{Coordonnées de }B\text{ ?}`,
         choices:[r`(3\,;\,-1\,;\,2)`,r`(1\,;\,3\,;\,-8)`,r`(3\,;\,1\,;\,2)`,r`(-1\,;\,3\,;\,-8)`],
         a: r`(3\,;\,-1\,;\,2)`,
         tip: r`B=(2+1\,;\,1-2\,;\,-3+5)=(3\,;\,-1\,;\,2).` },
@@ -13648,43 +13648,43 @@ const DB = {
         a: r`y = 2`,
         tip: r`\vec{n}(0;1;0)\Rightarrow\text{plan de la forme }0\cdot x+1\cdot y+0\cdot z+d=0\Leftrightarrow y+d=0.\\\text{Point }A(3;2;5): 2+d=0\Rightarrow d=-2.\text{ Équation : }y-2=0\Leftrightarrow y=2.` },,
       // geq_14 — Trouver équation plan par point + normal
-      { q: r`\text{Plan passant par }A(2\,;\,0\,;\,-1)\text{ de vecteur normal }\vec{n}(1\,;\,3\,;\,-2).\\[4pt]\text{Équation cartésienne ?}`,
+      { q: r`\text{Plan passant par }A(2\,;\,0\,;\,-1)\text{ de vecteur normal }\vec{n}(1\,;\,3\,;\,-2).\\\text{Équation cartésienne ?}`,
         choices:[r`x+3y-2z-4=0`,r`x+3y-2z+4=0`,r`x+3y-2z-1=0`,r`2x-z-4=0`],
         a: r`x+3y-2z-4=0`,
         tip: r`x+3y-2z+d=0.\text{ Par }A(2;0;-1): 2+0+2+d=0\Rightarrow d=-4.\\x+3y-2z-4=0.` },
 
       // geq_15 — Vérifier appartenance d'un point
-      { q: r`\mathcal{P}: 3x-y+2z-1=0.\\[4pt]\text{Le point }B(1\,;\,2\,;\,0)\text{ appartient-il à }\mathcal{P}\text{ ?}`,
+      { q: r`\mathcal{P}: 3x-y+2z-1=0.\\\text{Le point }B(1\,;\,2\,;\,0)\text{ appartient-il à }\mathcal{P}\text{ ?}`,
         choices:[r`\text{Oui}`,r`\text{Non}`,r`\text{Seulement si }z=0`,r`\text{Impossible à dire}`],
         a: r`\text{Oui}`,
         tip: r`3\times1-2+2\times0-1=3-2+0-1=0\ \checkmark.\\B\in\mathcal{P}.` },
 
       // geq_16 — Plans parallèles (même normal à coefficient)
-      { q: r`\mathcal{P}_1: x-2y+z+3=0\quad\mathcal{P}_2: 2x-4y+2z-1=0.\\[4pt]\text{Ces plans sont :}`,
+      { q: r`\mathcal{P}_1: x-2y+z+3=0\quad\mathcal{P}_2: 2x-4y+2z-1=0.\\\text{Ces plans sont :}`,
         choices:[r`\text{Parallèles distincts}`,r`\text{Confondus}`,r`\text{Sécants}`,r`\text{Perpendiculaires}`],
         a: r`\text{Parallèles distincts}`,
         tip: r`\vec{n_2}=2\vec{n_1}\Rightarrow\text{parallèles.}\\\text{Pt }(0;0;-3)\in\mathcal{P}_1\text{ ?}\ 0+0-3+3=0\ \checkmark.\text{ Dans }\mathcal{P}_2\text{ : }0+0-6-1=-7\neq0\Rightarrow\text{distincts.}` },
 
       // geq_17 — Plans perpendiculaires
-      { q: r`\mathcal{P}_1: x+y+z=0\quad\mathcal{P}_2: x-y+0z+1=0.\\[4pt]\text{Ces plans sont-ils perpendiculaires ?}`,
+      { q: r`\mathcal{P}_1: x+y+z=0\quad\mathcal{P}_2: x-y+0z+1=0.\\\text{Ces plans sont-ils perpendiculaires ?}`,
         choices:[r`\text{Oui, }\vec{n_1}\cdot\vec{n_2}=0`,r`\text{Non, }\vec{n_1}\cdot\vec{n_2}\neq0`,r`\text{Oui, mêmes normaux}`,r`\text{Non, ils se coupent}`],
         a: r`\text{Oui, }\vec{n_1}\cdot\vec{n_2}=0`,
         tip: r`\vec{n_1}(1;1;1),\ \vec{n_2}(1;-1;0).\\\vec{n_1}\cdot\vec{n_2}=1-1+0=0\Rightarrow\perp.` },
 
       // geq_18 — Équation avec x seul
-      { q: r`\text{Le plan }\mathcal{P}\text{ est perpendiculaire à l'axe }(Ox)\text{ et passe par }A(3\,;\,0\,;\,0).\\[4pt]\text{Équation de }\mathcal{P}\text{ ?}`,
+      { q: r`\text{Le plan }\mathcal{P}\text{ est perpendiculaire à l'axe }(Ox)\text{ et passe par }A(3\,;\,0\,;\,0).\\\text{Équation de }\mathcal{P}\text{ ?}`,
         choices:[r`x=3`,r`y=3`,r`z=3`,r`x+y+z=3`],
         a: r`x=3`,
         tip: r`\text{Perpendiculaire à }(Ox)\Rightarrow\vec{n}(1;0;0).\\x+0+0+d=0.\text{ Par }A(3;0;0): d=-3\Rightarrow x-3=0\Leftrightarrow x=3.` },
 
       // geq_19 — Point n'appartenant pas au plan
-      { q: r`\mathcal{P}: 2x+y-z+1=0.\\[4pt]\text{Le point }C(1\,;\,1\,;\,1)\text{ appartient-il à }\mathcal{P}\text{ ?}`,
+      { q: r`\mathcal{P}: 2x+y-z+1=0.\\\text{Le point }C(1\,;\,1\,;\,1)\text{ appartient-il à }\mathcal{P}\text{ ?}`,
         choices:[r`\text{Non}`,r`\text{Oui}`,r`\text{Seulement si }x=1`,r`\text{Impossible à dire}`],
         a: r`\text{Non}`,
         tip: r`2\times1+1-1+1=3\neq0\Rightarrow C\notin\mathcal{P}.` },
 
       // geq_20 — Normal depuis équation
-      { q: r`\mathcal{P}: -x+4y+2z-7=0.\\[4pt]\text{Vecteur normal de }\mathcal{P}\text{ ?}`,
+      { q: r`\mathcal{P}: -x+4y+2z-7=0.\\\text{Vecteur normal de }\mathcal{P}\text{ ?}`,
         choices:[r`(-1\,;\,4\,;\,2)`,r`(1\,;\,-4\,;\,-2)`,r`(-1\,;\,4\,;\,-7)`,r`(4\,;\,2\,;\,-7)`],
         a: r`(-1\,;\,4\,;\,2)`,
         tip: r`\text{Le plan }ax+by+cz+d=0\text{ a pour normal }(a;b;c).\\\vec{n}=(-1;4;2).` },
@@ -13696,7 +13696,7 @@ const DB = {
         tip: r`y-z+d=0.\text{ Par }A(2;3;5): 3-5+d=0\Rightarrow d=2.\\y-z+2=0.` },
 
       // geq_22 — Deux plans sécants : lire la droite d'intersection
-      { q: r`\mathcal{P}_1: x=0\quad\mathcal{P}_2: y=0.\\[4pt]\text{L'intersection est :}`,
+      { q: r`\mathcal{P}_1: x=0\quad\mathcal{P}_2: y=0.\\\text{L'intersection est :}`,
         choices:[r`\text{L'axe }(Oz)`,r`\text{L'axe }(Ox)`,r`\text{L'axe }(Oy)`,r`\text{Le point }O`],
         a: r`\text{L'axe }(Oz)`,
         tip: r`x=0\text{ et }y=0\Rightarrow\text{ensemble des points }(0;0;z),\ z\in\mathbb{R}\text{ : c'est l'axe }(Oz).` },
@@ -13874,43 +13874,43 @@ const DB = {
         a: r`\text{Gauches}`,
         tip: r`\vec{u_1}(1;0;1),\ \vec{u_2}(0;1;0)\text{ non colinéaires.}\\\text{Pour sécantes : }t=0,\ 0=0,\ t=1\Rightarrow t=0\text{ et }t=1\text{ simultanément : impossible.}\\\text{Pas parallèles, pas sécantes}\Rightarrow\text{gauches.}` },,
       // ged_14 — Écrire représentation paramétrique depuis 2 points
-      { q: r`A(1\,;\,2\,;\,0)\text{ et }B(3\,;\,0\,;\,-2).\\[4pt]\text{Représentation paramétrique de la droite }(AB)\text{ ?}`,
+      { q: r`A(1\,;\,2\,;\,0)\text{ et }B(3\,;\,0\,;\,-2).\\\text{Représentation paramétrique de la droite }(AB)\text{ ?}`,
         choices:[r`\begin{cases}x=1+2t\\y=2-2t\\z=-2t\end{cases}`,r`\begin{cases}x=1+3t\\y=2t\\z=-2t\end{cases}`,r`\begin{cases}x=2t\\y=-2t\\z=-2t\end{cases}`,r`\begin{cases}x=1+t\\y=2-t\\z=-t\end{cases}`],
         a: r`\begin{cases}x=1+2t\\y=2-2t\\z=-2t\end{cases}`,
         tip: r`\overrightarrow{AB}=(2\,;\,-2\,;\,-2).\text{ On part de }A(1;2;0):\\x=1+2t,\ y=2-2t,\ z=-2t.` },
 
       // ged_15 — Vérifier si deux droites sont sécantes
-      { q: r`d_1:\begin{cases}x=t\\y=1+t\\z=2t\end{cases}\quad d_2:\begin{cases}x=1+s\\y=2+s\\z=s\end{cases}.\\[4pt]\text{Ces droites sont-elles sécantes ?}`,
+      { q: r`d_1:\begin{cases}x=t\\y=1+t\\z=2t\end{cases}\quad d_2:\begin{cases}x=1+s\\y=2+s\\z=s\end{cases}.\\\text{Ces droites sont-elles sécantes ?}`,
         choices:[r`\text{Non, vecteurs directeurs non colinéaires mais pas de pt commun}`,r`\text{Oui, pour }t=1,s=0`,r`\text{Oui, elles ont le même point de départ}`,r`\text{Non, elles sont parallèles}`],
         a: r`\text{Non, vecteurs directeurs non colinéaires mais pas de pt commun}`,
         tip: r`\vec{u_1}(1;1;2),\ \vec{u_2}(1;1;1)\text{ non colinéaires.}\\x: t=1+s;\ y: 1+t=2+s\Rightarrow t-s=1\text{ et }t-s=1\ \checkmark;\ z: 2t=s.\\t=1+s\text{ et }s=2t\Rightarrow t=1+2t\Rightarrow t=-1.\ s=-2.\ \text{Vérif }y: 0=0\ \checkmark,\ z: -2=-2\ \checkmark\Rightarrow\text{sécantes !}` },
 
       // ged_16 — Droite perpendiculaire à un plan par un point
-      { q: r`\text{Droite perpendiculaire au plan }\mathcal{P}: x-2y+3z+1=0\text{ passant par }A(0\,;\,1\,;\,-1).\\[4pt]\text{Sa représentation paramétrique ?}`,
+      { q: r`\text{Droite perpendiculaire au plan }\mathcal{P}: x-2y+3z+1=0\text{ passant par }A(0\,;\,1\,;\,-1).\\\text{Sa représentation paramétrique ?}`,
         choices:[r`\begin{cases}x=t\\y=1-2t\\z=-1+3t\end{cases}`,r`\begin{cases}x=1+t\\y=t\\z=t\end{cases}`,r`\begin{cases}x=-2t\\y=1+t\\z=3t\end{cases}`,r`\begin{cases}x=t\\y=1+t\\z=-1+t\end{cases}`],
         a: r`\begin{cases}x=t\\y=1-2t\\z=-1+3t\end{cases}`,
         tip: r`\vec{n}=(1;-2;3)\text{ est le vecteur directeur de la perpendiculaire.}\\\text{Par }A(0;1;-1): x=t,\ y=1-2t,\ z=-1+3t.` },
 
       // ged_17 — Droite parallèle à une autre par un point
-      { q: r`d:\begin{cases}x=2+3t\\y=-t\\z=1+t\end{cases}.\\[4pt]\text{Droite parallèle à }d\text{ passant par }B(0\,;\,0\,;\,2).`,
+      { q: r`d:\begin{cases}x=2+3t\\y=-t\\z=1+t\end{cases}.\\\text{Droite parallèle à }d\text{ passant par }B(0\,;\,0\,;\,2).`,
         choices:[r`\begin{cases}x=3t\\y=-t\\z=2+t\end{cases}`,r`\begin{cases}x=t\\y=t\\z=2t\end{cases}`,r`\begin{cases}x=2+3t\\y=-t\\z=1+t\end{cases}`,r`\begin{cases}x=3t\\y=t\\z=2-t\end{cases}`],
         a: r`\begin{cases}x=3t\\y=-t\\z=2+t\end{cases}`,
         tip: r`\text{Même vecteur directeur }(3;-1;1)\text{, point de départ }B(0;0;2):\\x=0+3t,\ y=0-t,\ z=2+t.` },
 
       // ged_18 — Droite passant par un point, vecteur directeur donné
-      { q: r`A(1\,;\,-2\,;\,3)\text{ et }\vec{u}(-1\,;\,0\,;\,2).\\[4pt]\text{Représentation paramétrique de la droite ?}`,
+      { q: r`A(1\,;\,-2\,;\,3)\text{ et }\vec{u}(-1\,;\,0\,;\,2).\\\text{Représentation paramétrique de la droite ?}`,
         choices:[r`\begin{cases}x=1-t\\y=-2\\z=3+2t\end{cases}`,r`\begin{cases}x=1+t\\y=-2-t\\z=3+2t\end{cases}`,r`\begin{cases}x=-t\\y=0\\z=2t\end{cases}`,r`\begin{cases}x=1-t\\y=-2+t\\z=3+t\end{cases}`],
         a: r`\begin{cases}x=1-t\\y=-2\\z=3+2t\end{cases}`,
         tip: r`\vec{u}=(-1;0;2)\text{, point }A(1;-2;3):\\x=1-t,\ y=-2+0t=-2,\ z=3+2t.` },
 
       // ged_19 — Point sur la droite (trouver t)
-      { q: r`d:\begin{cases}x=2-t\\y=1+2t\\z=3t\end{cases}.\\[4pt]C(0\,;\,5\,;\,6)\text{ est-il sur }d\text{ ?}`,
+      { q: r`d:\begin{cases}x=2-t\\y=1+2t\\z=3t\end{cases}.\\C(0\,;\,5\,;\,6)\text{ est-il sur }d\text{ ?}`,
         choices:[r`\text{Oui, pour }t=2`,r`\text{Non}`,r`\text{Oui, pour }t=1`,r`\text{Impossible à dire}`],
         a: r`\text{Oui, pour }t=2`,
         tip: r`x=0\Rightarrow2-t=0\Rightarrow t=2.\\y=1+4=5\ \checkmark\quad z=6\ \checkmark.\\C\in d.` },
 
       // ged_20 — Droites confondues ou parallèles : test
-      { q: r`d_1:\begin{cases}x=t\\y=2+t\\z=1-t\end{cases}\quad d_2:\begin{cases}x=2+t\\y=4+t\\z=-1-t\end{cases}.\\[4pt]\text{Ces droites sont :}`,
+      { q: r`d_1:\begin{cases}x=t\\y=2+t\\z=1-t\end{cases}\quad d_2:\begin{cases}x=2+t\\y=4+t\\z=-1-t\end{cases}.\\\text{Ces droites sont :}`,
         choices:[r`\text{Confondues}`,r`\text{Parallèles distinctes}`,r`\text{Sécantes}`,r`\text{Gauches}`],
         a: r`\text{Confondues}`,
         tip: r`\vec{u_1}=(1;1;-1)=\vec{u_2}\Rightarrow\text{parallèles.}\\\text{Test : }A(0;2;1)\in d_2\text{ ?}\ 0=2+t\Rightarrow t=-2.\ y=4-2=2\ \checkmark,\ z=-1+2=1\ \checkmark\Rightarrow\text{confondues.}` },
@@ -13922,25 +13922,25 @@ const DB = {
         tip: r`(1+t)+(2-t)+t-5=0\Rightarrow t+(-2)=0\Rightarrow\text{errata : }3+t-5=0\Rightarrow t=2.\\\text{Non : }(1+t)+(2-t)+t=3+t.\ 3+t=5\Rightarrow t=2\text{ ? Mais }3+2=5\ \checkmark.\\P=(3;0;2)\text{… recalc : }t=1: x=2,y=1,z=1. 2+1+1=4\neq5. t=2: x=3,y=0,z=2: 5\ \checkmark.\\\text{Réponse : }(3;0;2).` },
 
       // ged_22 — Intersection droite/plan (résoudre proprement)
-      { q: r`d:\begin{cases}x=t\\y=t\\z=1\end{cases}\text{ et plan }\mathcal{P}: x+y+z=4.\\[4pt]\text{Point d'intersection ?}`,
+      { q: r`d:\begin{cases}x=t\\y=t\\z=1\end{cases}\text{ et plan }\mathcal{P}: x+y+z=4.\\\text{Point d'intersection ?}`,
         choices:[r`\left(\dfrac{3}{2}\,;\,\dfrac{3}{2}\,;\,1\right)`,r`(1\,;\,1\,;\,1)`,r`(2\,;\,2\,;\,1)`,r`(0\,;\,0\,;\,1)`],
         a: r`\left(\dfrac{3}{2}\,;\,\dfrac{3}{2}\,;\,1\right)`,
         tip: r`t+t+1=4\Rightarrow2t=3\Rightarrow t=\dfrac{3}{2}.\\P=\left(\dfrac{3}{2}\,;\,\dfrac{3}{2}\,;\,1\right).` },
 
       // ged_23 — Droite et plan parallèles
-      { q: r`d:\text{vecteur directeur }\vec{u}(1\,;\,2\,;\,-1).\\[4pt]\mathcal{P}: x+2y-z+3=0.\\[4pt]d\text{ est-elle parallèle à }\mathcal{P}\text{ ?}`,
+      { q: r`d:\text{vecteur directeur }\vec{u}(1\,;\,2\,;\,-1).\\\mathcal{P}: x+2y-z+3=0.\\d\text{ est-elle parallèle à }\mathcal{P}\text{ ?}`,
         choices:[r`\text{Oui, }\vec{u}\cdot\vec{n}=0`,r`\text{Non, }\vec{u}\cdot\vec{n}\neq0`,r`\text{Oui, }\vec{u}=\vec{n}`,r`\text{Non, }d\perp\mathcal{P}`],
         a: r`\text{Oui, }\vec{u}\cdot\vec{n}=0`,
         tip: r`\vec{n}=(1;2;-1).\quad\vec{u}\cdot\vec{n}=1+4+1=6\neq0.\\\text{Recalc : }(1)(1)+(2)(2)+(-1)(-1)=1+4+1=6\neq0\Rightarrow\text{non parallèle — elle coupe le plan.}\\\text{(Question piège : vérifier soigneusement le produit scalaire !)}` },
 
       // ged_24 — Droite incluse dans un plan : test double
-      { q: r`d:\begin{cases}x=1+t\\y=t\\z=1-t\end{cases}\text{ et }\mathcal{P}: x-z=0.\\[4pt]\text{La droite est :}`,
+      { q: r`d:\begin{cases}x=1+t\\y=t\\z=1-t\end{cases}\text{ et }\mathcal{P}: x-z=0.\\\text{La droite est :}`,
         choices:[r`\text{Incluse dans }\mathcal{P}`,r`\text{Parallèle à }\mathcal{P}`,r`\text{Sécante en un point}`,r`\text{Gauche}`],
         a: r`\text{Incluse dans }\mathcal{P}`,
         tip: r`\vec{n}=(1;0;-1).\quad\vec{u}\cdot\vec{n}=1+0-(-1)=2\neq0\Rightarrow\text{sécante en un point.}\\\text{(Correction attendue: tester d'abord le pt }t=0: x=1,z=1\Rightarrow x-z=0\ \checkmark,\text{ puis }\vec{u}\cdot\vec{n}.)}` },
 
       // ged_25 — Synthèse droites de l'espace
-      { q: r`d_1:\begin{cases}x=1\\y=t\\z=0\end{cases}\quad d_2:\begin{cases}x=0\\y=t\\z=1\end{cases}.\\[4pt]\text{Ces droites sont :}`,
+      { q: r`d_1:\begin{cases}x=1\\y=t\\z=0\end{cases}\quad d_2:\begin{cases}x=0\\y=t\\z=1\end{cases}.\\\text{Ces droites sont :}`,
         choices:[r`\text{Parallèles distinctes}`,r`\text{Confondues}`,r`\text{Sécantes}`,r`\text{Gauches}`],
         a: r`\text{Parallèles distinctes}`,
         tip: r`\vec{u_1}=(0;1;0)=\vec{u_2}\Rightarrow\text{parallèles.}\\\text{Test }d_1\in d_2\text{ : }x=0\Rightarrow1=0\ \text{impossible}\Rightarrow\text{parallèles distinctes.}` },
@@ -13955,12 +13955,12 @@ const DB = {
     ],
     // ════ CERCLE & MÉDIATRICE ════
     config_cercle_med: [
-      { q: r`\text{Cercle de centre }O(0;0)\text{ et rayon }5.\\[4pt]\text{Le point }A(3;4)\text{ lui appartient-il ?}`,
+      { q: r`\text{Cercle de centre }O(0;0)\text{ et rayon }5.\\\text{Le point }A(3;4)\text{ lui appartient-il ?}`,
         choices:[ r`\text{Oui, car }OA=5`, r`\text{Non, car }OA=7`,
                   r`\text{Non, car }OA=4`, r`\text{Oui, car }OA=4` ],
         a: r`\text{Oui, car }OA=5`,
         tip: r`OA=\sqrt{3^2+4^2}=5=r\Rightarrow A\in\mathcal C` },
-      { q: r`\text{Cercle de centre }O(0;0)\text{ et rayon }5.\\[4pt]\text{Le point }C(2;3)\text{ lui appartient-il ?}`,
+      { q: r`\text{Cercle de centre }O(0;0)\text{ et rayon }5.\\\text{Le point }C(2;3)\text{ lui appartient-il ?}`,
         choices:[ r`\text{Non, car }OC=\sqrt{13}\ne5`, r`\text{Oui, car }OC=5`,
                   r`\text{Oui, car }OC=\sqrt{13}`, r`\text{Non, car }OC=6` ],
         a: r`\text{Non, car }OC=\sqrt{13}\ne5`,
@@ -13974,55 +13974,55 @@ const DB = {
                   r`\text{situés entre }A\text{ et }B`, r`\text{alignés avec }A\text{ et }B` ],
         a: r`\text{équidistants de }A\text{ et }B`,
         tip: r`M\in\text{médiatrice}\iff MA=MB` },
-      { q: r`M\text{ appartient à la médiatrice de }[AB].\\[4pt]\text{Quelle égalité est vraie ?}`,
+      { q: r`M\text{ appartient à la médiatrice de }[AB].\\\text{Quelle égalité est vraie ?}`,
         choices:[ r`MA=MB`, r`MA=AB`, r`MA=2\,MB`, r`MA+MB=AB` ],
         a: r`MA=MB`, tip: r`\text{Par définition de la médiatrice.}` },
-      { q: r`A(0;0)\text{ et }B(4;0).\\[4pt]\text{Équation de la médiatrice de }[AB] :`,
+      { q: r`A(0;0)\text{ et }B(4;0).\\\text{Équation de la médiatrice de }[AB] :`,
         choices:[ r`x=2`, r`y=2`, r`x=4`, r`y=0` ],
         a: r`x=2`, tip: r`\text{Verticale passant par le milieu }I(2;0).` },
-      { q: r`A(0;0)\text{ et }B(0;6).\\[4pt]\text{Équation de la médiatrice de }[AB] :`,
+      { q: r`A(0;0)\text{ et }B(0;6).\\\text{Équation de la médiatrice de }[AB] :`,
         choices:[ r`y=3`, r`x=3`, r`y=6`, r`x=0` ],
         a: r`y=3`, tip: r`\text{Horizontale passant par le milieu }I(0;3).` },
-      { q: r`A(-2;0)\text{ et }B(4;0).\\[4pt]\text{Équation de la médiatrice de }[AB] :`,
+      { q: r`A(-2;0)\text{ et }B(4;0).\\\text{Équation de la médiatrice de }[AB] :`,
         choices:[ r`x=1`, r`x=2`, r`x=-1`, r`y=1` ],
         a: r`x=1`, tip: r`\text{Milieu }I\left(\dfrac{-2+4}{2};0\right)=(1;0).` },
-      { q: r`A(1;3)\text{ et }B(5;7).\\[4pt]\text{Coordonnées du milieu }I\text{ de }[AB] :`,
+      { q: r`A(1;3)\text{ et }B(5;7).\\\text{Coordonnées du milieu }I\text{ de }[AB] :`,
         choices:[ r`I(3;5)`, r`I(6;10)`, r`I(2;2)`, r`I(4;4)` ],
         a: r`I(3;5)`, tip: r`I\left(\dfrac{1+5}{2};\dfrac{3+7}{2}\right)=(3;5)` },
-      { q: r`\text{Le milieu }I\text{ de }[AB]\text{ appartient-il toujours}\\[4pt]\text{à la médiatrice de }[AB]\text{ ?}`,
+      { q: r`\text{Le milieu }I\text{ de }[AB]\text{ appartient-il toujours}\\\text{à la médiatrice de }[AB]\text{ ?}`,
         choices:[ r`\text{Oui, toujours}`, r`\text{Non, jamais}`,
                   r`\text{Seulement si }A=B`, r`\text{Seulement si }AB=1` ],
         a: r`\text{Oui, toujours}`,
         tip: r`IA=IB\text{ : le milieu est équidistant de }A\text{ et }B.` },
-      { q: r`\text{Cercle de diamètre }[AB]\text{ avec }A(0;0),\,B(6;0).\\[4pt]\text{Centre et rayon ?}`,
+      { q: r`\text{Cercle de diamètre }[AB]\text{ avec }A(0;0),\,B(6;0).\\\text{Centre et rayon ?}`,
         choices:[ r`\text{centre }(3;0),\ r=3`, r`\text{centre }(6;0),\ r=6`,
                   r`\text{centre }(3;0),\ r=6`, r`\text{centre }(0;0),\ r=3` ],
         a: r`\text{centre }(3;0),\ r=3`,
         tip: r`\text{Centre = milieu }(3;0)\text{ ; }r=\dfrac{AB}{2}=3.` },
-      { q: r`\text{Le point }\Omega(2;1)\text{ (centre) appartient-il}\\[4pt]\text{au cercle de centre }\Omega\text{ et rayon }3\text{ ?}`,
+      { q: r`\text{Le point }\Omega(2;1)\text{ (centre) appartient-il}\\\text{au cercle de centre }\Omega\text{ et rayon }3\text{ ?}`,
         choices:[ r`\text{Non, car }\Omega\Omega=0\ne3`, r`\text{Oui}`,
                   r`\text{Non, car }\Omega\Omega=3`, r`\text{Cela dépend}` ],
         a: r`\text{Non, car }\Omega\Omega=0\ne3`,
         tip: r`\text{Le centre est à distance }0,\text{ pas }3,\text{ de lui-même.}` },
-      { q: r`\text{Cercle de centre }O(0;0)\text{ et rayon }5.\\[4pt]\text{Le point }B(5;0)\text{ lui appartient-il ?}`,
+      { q: r`\text{Cercle de centre }O(0;0)\text{ et rayon }5.\\\text{Le point }B(5;0)\text{ lui appartient-il ?}`,
         choices:[ r`\text{Oui, car }OB=5`, r`\text{Non, car }OB=0`,
                   r`\text{Non, car }OB=25`, r`\text{Oui, car }OB=0` ],
         a: r`\text{Oui, car }OB=5`, tip: r`OB=\sqrt{5^2+0^2}=5=r` },
-      { q: r`A(1;1)\text{ et }B(5;1).\ M(\,?\,;y)\text{ est sur la médiatrice.}\\[4pt]\text{Quelle abscisse pour }M\text{ ?}`,
+      { q: r`A(1;1)\text{ et }B(5;1).\ M(\,?\,;y)\text{ est sur la médiatrice.}\\\text{Quelle abscisse pour }M\text{ ?}`,
         numpad:true, a:"3", tip: r`\text{Médiatrice : }x=\dfrac{1+5}{2}=3\text{ (pour tout }y).` },
     ],
 
     // ════ DISTANCE D'UN POINT À UNE DROITE ════
     config_point_droite: [
-      { q: r`\text{Droite }(d):y=0\ (\text{axe des abscisses}).\\[4pt]\text{Distance de }M(3;4)\text{ à }(d) :`,
+      { q: r`\text{Droite }(d):y=0\ (\text{axe des abscisses}).\\\text{Distance de }M(3;4)\text{ à }(d) :`,
         numpad:true, a:"4", tip: r`\text{Distance verticale }=|4-0|=4` },
-      { q: r`(d):y=2.\quad M(1;5).\\[4pt]\text{Distance de }M\text{ à }(d) :`,
+      { q: r`(d):y=2.\quad M(1;5).\\\text{Distance de }M\text{ à }(d) :`,
         numpad:true, a:"3", tip: r`|5-2|=3` },
-      { q: r`(d):x=0\ (\text{axe des ordonnées}).\\[4pt]\text{Distance de }M(-5;2)\text{ à }(d) :`,
+      { q: r`(d):x=0\ (\text{axe des ordonnées}).\\\text{Distance de }M(-5;2)\text{ à }(d) :`,
         numpad:true, a:"5", tip: r`\text{Distance horizontale }=|-5-0|=5` },
-      { q: r`(d):x=3.\quad M(7;1).\\[4pt]\text{Distance de }M\text{ à }(d) :`,
+      { q: r`(d):x=3.\quad M(7;1).\\\text{Distance de }M\text{ à }(d) :`,
         numpad:true, a:"4", tip: r`|7-3|=4` },
-      { q: r`(d):y=-1.\quad M(2;3).\\[4pt]\text{Distance de }M\text{ à }(d) :`,
+      { q: r`(d):y=-1.\quad M(2;3).\\\text{Distance de }M\text{ à }(d) :`,
         numpad:true, a:"4", tip: r`|3-(-1)|=4` },
       { q: r`\text{La distance d'un point }M\text{ à une droite }(d)\text{ est :}`,
         choices:[ r`\text{la longueur de la perpendiculaire à }(d)\text{ issue de }M`,
@@ -14036,11 +14036,11 @@ const DB = {
                   r`\text{le centre de }(d)` ],
         a: r`\text{le projeté orthogonal de }M\text{ sur }(d)`,
         tip: r`\text{Pied de la perpendiculaire abaissée de }M.` },
-      { q: r`(d):y=4.\quad M(2;4).\\[4pt]\text{Distance de }M\text{ à }(d) :`,
+      { q: r`(d):y=4.\quad M(2;4).\\\text{Distance de }M\text{ à }(d) :`,
         numpad:true, a:"0", tip: r`M\in(d)\Rightarrow\text{distance}=0` },
-      { q: r`(d):x=-2.\quad M(3;5).\\[4pt]\text{Distance de }M\text{ à }(d) :`,
+      { q: r`(d):x=-2.\quad M(3;5).\\\text{Distance de }M\text{ à }(d) :`,
         numpad:true, a:"5", tip: r`|3-(-2)|=5` },
-      { q: r`(d):y=1.\quad M(0;7).\\[4pt]\text{Distance de }M\text{ à }(d) :`,
+      { q: r`(d):y=1.\quad M(0;7).\\\text{Distance de }M\text{ à }(d) :`,
         numpad:true, a:"6", tip: r`|7-1|=6` },
       { q: r`\text{Projeté orthogonal de }M(5;3)\text{ sur l'axe }(Ox) :`,
         choices:[ r`H(5;0)`, r`H(0;3)`, r`H(5;3)`, r`H(0;0)` ],
@@ -14048,14 +14048,14 @@ const DB = {
       { q: r`\text{Projeté orthogonal de }M(5;3)\text{ sur l'axe }(Oy) :`,
         choices:[ r`H(0;3)`, r`H(5;0)`, r`H(3;5)`, r`H(5;3)` ],
         a: r`H(0;3)`, tip: r`\text{On garde l'ordonnée, l'abscisse devient }0.` },
-      { q: r`(d):x=1.\quad M(6;-2).\\[4pt]\text{Distance de }M\text{ à }(d) :`,
+      { q: r`(d):x=1.\quad M(6;-2).\\\text{Distance de }M\text{ à }(d) :`,
         numpad:true, a:"5", tip: r`|6-1|=5` },
-      { q: r`\text{Vrai ou faux : la distance de }M\text{ à }(d)\text{ est}\\[4pt]\text{inférieure ou égale à }MP\text{ pour tout }P\in(d).`,
+      { q: r`\text{Vrai ou faux : la distance de }M\text{ à }(d)\text{ est}\\\text{inférieure ou égale à }MP\text{ pour tout }P\in(d).`,
         choices:[ r`\text{Vrai}`, r`\text{Faux}`,
                   r`\text{Vrai seulement si }M\in(d)`, r`\text{On ne peut pas savoir}` ],
         a: r`\text{Vrai}`,
         tip: r`\text{La perpendiculaire donne le plus court chemin.}` },
-      { q: r`(d):y=3.\quad M(0;8).\\[4pt]\text{Distance de }M\text{ à }(d) :`,
+      { q: r`(d):y=3.\quad M(0;8).\\\text{Distance de }M\text{ à }(d) :`,
         numpad:true, a:"5", tip: r`|8-3|=5` },
     ],
 
@@ -14073,22 +14073,22 @@ const DB = {
         choices:[ r`\dfrac{\text{opposé}}{\text{adjacent}}`, r`\dfrac{\text{adjacent}}{\text{opposé}}`,
                   r`\dfrac{\text{opposé}}{\text{hypoténuse}}`, r`\dfrac{\text{adjacent}}{\text{hypoténuse}}` ],
         a: r`\dfrac{\text{opposé}}{\text{adjacent}}`, tip: r`\text{TOA : Tan = Opposé / Adjacent}` },
-      { q: r`\text{Hypoténuse }=10,\ \text{côté adjacent à }\alpha=6.\\[4pt]\cos\alpha=\,?`,
+      { q: r`\text{Hypoténuse }=10,\ \text{côté adjacent à }\alpha=6.\\\cos\alpha=\,?`,
         choices:[ r`0{,}6`, r`0{,}8`, r`0{,}75`, r`1{,}67` ],
         a: r`0{,}6`, tip: r`\cos\alpha=\dfrac{6}{10}=0{,}6` },
-      { q: r`\text{Hypoténuse }=10,\ \text{côté opposé à }\alpha=8.\\[4pt]\sin\alpha=\,?`,
+      { q: r`\text{Hypoténuse }=10,\ \text{côté opposé à }\alpha=8.\\\sin\alpha=\,?`,
         choices:[ r`0{,}8`, r`0{,}6`, r`1{,}25`, r`0{,}75` ],
         a: r`0{,}8`, tip: r`\sin\alpha=\dfrac{8}{10}=0{,}8` },
-      { q: r`\text{Opposé }=8,\ \text{adjacent }=6.\\[4pt]\tan\alpha=\,?`,
+      { q: r`\text{Opposé }=8,\ \text{adjacent }=6.\\\tan\alpha=\,?`,
         choices:[ r`\dfrac{4}{3}`, r`\dfrac{3}{4}`, r`\dfrac{4}{5}`, r`\dfrac{3}{5}` ],
         a: r`\dfrac{4}{3}`, tip: r`\tan\alpha=\dfrac{8}{6}=\dfrac{4}{3}` },
-      { q: r`ABC\text{ rectangle en }A,\ AB=3,\ AC=4,\ BC=5.\\[4pt]\cos(\widehat{B})=\,?`,
+      { q: r`ABC\text{ rectangle en }A,\ AB=3,\ AC=4,\ BC=5.\\\cos(\widehat{B})=\,?`,
         choices:[ r`\dfrac{3}{5}`, r`\dfrac{4}{5}`, r`\dfrac{4}{3}`, r`\dfrac{3}{4}` ],
         a: r`\dfrac{3}{5}`, tip: r`\cos\widehat B=\dfrac{AB}{BC}=\dfrac{3}{5}\ (\text{adj/hyp})` },
-      { q: r`ABC\text{ rectangle en }A,\ AB=3,\ AC=4,\ BC=5.\\[4pt]\sin(\widehat{B})=\,?`,
+      { q: r`ABC\text{ rectangle en }A,\ AB=3,\ AC=4,\ BC=5.\\\sin(\widehat{B})=\,?`,
         choices:[ r`\dfrac{4}{5}`, r`\dfrac{3}{5}`, r`\dfrac{4}{3}`, r`\dfrac{5}{4}` ],
         a: r`\dfrac{4}{5}`, tip: r`\sin\widehat B=\dfrac{AC}{BC}=\dfrac{4}{5}\ (\text{opp/hyp})` },
-      { q: r`ABC\text{ rectangle en }A,\ AB=3,\ AC=4,\ BC=5.\\[4pt]\tan(\widehat{B})=\,?`,
+      { q: r`ABC\text{ rectangle en }A,\ AB=3,\ AC=4,\ BC=5.\\\tan(\widehat{B})=\,?`,
         choices:[ r`\dfrac{4}{3}`, r`\dfrac{3}{4}`, r`\dfrac{4}{5}`, r`\dfrac{3}{5}` ],
         a: r`\dfrac{4}{3}`, tip: r`\tan\widehat B=\dfrac{AC}{AB}=\dfrac{4}{3}\ (\text{opp/adj})` },
       { q: r`\cos(60^\circ)=\,?`,
@@ -15605,7 +15605,7 @@ function DiagnosticScreen({profile, onComplete}) {
     Object.entries(curr.cats).forEach(([catId, subs]) => {
       const sub = subs[0];
       const pool = (DB[catId] && DB[catId][sub]) ? DB[catId][sub] : [];
-      const mcqPool = pool.filter(q => q.choices && !q.exprpad && !q.numpad && !q.gspec && !q.tspec && !q.trespec && !q.dgspec && !q.tvSpec && !q.tsSpec && !q.svg);
+      const mcqPool = pool.filter(q => q.choices && !q.exprpad && !q.numpad && !q.gspec && !q.tspec && !q.trespec && !q.dgspec && !q.tvSpec && !q.tsSpec && !q.svg && !q.img);
       if(mcqPool.length >= 2) {
         qs.push({...mcqPool[0], _catId:catId, _subId:sub});
         qs.push({...mcqPool[Math.floor(mcqPool.length/2)], _catId:catId, _subId:sub});
@@ -21881,37 +21881,37 @@ const FLASHCARDS = [
   // ══ SECONDE ══════════════════════════════════════════════════════════════════
   { id:"fc_meth_01", level:"sec", chapitre:"Méthodes",
     recto:r`\text{Résoudre une inéquation, c'est...}`,
-    verso:r`\text{Dresser un tableau de signes,}\\[4pt]\text{puis lire l'ensemble solution sur la ligne }f(x)` },
+    verso:r`\text{Dresser un tableau de signes,}\\\text{puis lire l'ensemble solution sur la ligne }f(x)` },
   { id:"fc_meth_02", level:"sec", chapitre:"Méthodes",
     recto:r`\text{Comment noter l'ensemble solution d'une équation ?}`,
-    verso:r`S=\{x_1\,;\,x_2\,;\,\ldots\}\\[6pt]\text{Ex : }S=\{-2\,;\,3\}` },
+    verso:r`S=\{x_1\,;\,x_2\,;\,\ldots\}\\\text{Ex : }S=\{-2\,;\,3\}` },
   { id:"fc_meth_03", level:"sec", chapitre:"Méthodes",
     recto:r`\text{Comment noter l'ensemble solution d'une inéquation ?}`,
-    verso:r`S=[\,a\,;\,b\,]\quad\text{ou}\quad S=\,]-\infty\,;\,a\,[\,\cup\,]\,b\,;\,+\infty\,[\\[6pt]\text{(crochets selon que les bornes sont incluses ou non)}` },
+    verso:r`S=[\,a\,;\,b\,]\quad\text{ou}\quad S=\,]-\infty\,;\,a\,[\,\cup\,]\,b\,;\,+\infty\,[\\\text{(crochets selon que les bornes sont incluses ou non)}` },
   { id:"fc_sec_01", level:"sec", chapitre:"Fonctions",
-    recto:r`\text{Coefficient directeur de la droite }(AB)\,?\\[4pt]A(x_A\,;\,y_A)\text{, }B(x_B\,;\,y_B)`,
+    recto:r`\text{Coefficient directeur de la droite }(AB)\,?\\A(x_A\,;\,y_A)\text{, }B(x_B\,;\,y_B)`,
     verso:r`m=\dfrac{y_B-y_A}{x_B-x_A}` },
   { id:"fc_sec_02", level:"sec", chapitre:"Fonctions",
     recto:r`\text{Forme générale de l'équation d'une droite}`,
-    verso:r`y=mx+p\\[6pt]m\text{ : pente (coefficient directeur)}\\p\text{ : ordonnée à l'origine}` },
+    verso:r`y=mx+p\\m\text{ : pente (coefficient directeur)}\\p\text{ : ordonnée à l'origine}` },
   { id:"fc_sec_03", level:"sec", chapitre:"Ensembles",
     recto:r`\text{Inclusion des ensembles de nombres ?}`,
     verso:r`\mathbb{N}\subset\mathbb{Z}\subset\mathbb{D}\subset\mathbb{Q}\subset\mathbb{R}` },
   { id:"fc_sec_04", level:"sec", chapitre:"Statistiques",
     recto:r`\text{Formule de la moyenne d'une série}`,
-    verso:r`\bar{x}=\dfrac{x_1+x_2+\cdots+x_n}{n}\\[6pt]\text{pondérée : }\bar{x}=\dfrac{x_1 n_1+x_2 n_2+\cdots}{n_1+n_2+\cdots}` },
+    verso:r`\bar{x}=\dfrac{x_1+x_2+\cdots+x_n}{n}\\\text{pondérée : }\bar{x}=\dfrac{x_1 n_1+x_2 n_2+\cdots}{n_1+n_2+\cdots}` },
   { id:"fc_stat_01", level:"sec", chapitre:"Statistiques",
     recto:r`\text{Définition de la médiane}`,
-    verso:r`\text{Valeur qui partage la série en deux moitiés égales :}\\[6pt]\text{50\% des valeurs en dessous, 50\% au-dessus}` },
+    verso:r`\text{Valeur qui partage la série en deux moitiés égales :}\\\text{50\% des valeurs en dessous, 50\% au-dessus}` },
   { id:"fc_stat_02", level:"sec", chapitre:"Statistiques",
     recto:r`\text{Définition du mode}`,
     verso:r`\text{La valeur (ou classe) la plus fréquente de la série}` },
   { id:"fc_stat_03", level:"sec", chapitre:"Statistiques",
     recto:r`Q_1\text{ et }Q_3\text{ : définition}`,
-    verso:r`Q_1\text{ : 25\% des valeurs sont en dessous}\\[6pt]Q_3\text{ : 75\% des valeurs sont en dessous}` },
+    verso:r`Q_1\text{ : 25\% des valeurs sont en dessous}\\Q_3\text{ : 75\% des valeurs sont en dessous}` },
   { id:"fc_stat_04", level:"sec", chapitre:"Statistiques",
     recto:r`\text{Écart interquartile : définition et formule}`,
-    verso:r`EI=Q_3-Q_1\\[6pt]\text{Mesure la dispersion des 50\% centraux de la série}` },
+    verso:r`EI=Q_3-Q_1\\\text{Mesure la dispersion des 50\% centraux de la série}` },
   { id:"fc_proba_indep", level:"spe", chapitre:"Probabilités",
     recto:r`A\text{ et }B\text{ sont indépendants si et seulement si...}`,
     verso:r`P(A\cap B)=P(A)\times P(B)` },
@@ -21929,7 +21929,7 @@ const FLASHCARDS = [
     verso:r`a^2-b^2` },
   { id:"fc_coord_01", level:"spe", chapitre:"Géométrie",
     recto:r`\text{Coordonnées du vecteur }\overrightarrow{AB}\text{ ?}`,
-    verso:r`\overrightarrow{AB}\begin{pmatrix}x_B-x_A\\[4pt]y_B-y_A\end{pmatrix}` },
+    verso:r`\overrightarrow{AB}\begin{pmatrix}x_B-x_A\\y_B-y_A\end{pmatrix}` },
   { id:"fc_coord_02", level:"spe", chapitre:"Géométrie",
     recto:r`\text{Coordonnées du milieu }I\text{ de }[AB]\text{ ?}`,
     verso:r`I\!\left(\dfrac{x_A+x_B}{2}\,;\,\dfrac{y_A+y_B}{2}\right)` },
@@ -21937,8 +21937,8 @@ const FLASHCARDS = [
     recto:r`\text{Distance }AB\text{ ?}`,
     verso:r`AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2}` },
   { id:"fc_droite_01", level:"sec", chapitre:"Fonctions",
-    recto:r`y=mx+p\\[6pt]\text{Comment s'appellent }m\text{ et }p\text{ ?}`,
-    verso:r`m\text{ : coefficient directeur (pente)}\\[6pt]p\text{ : ordonnée à l'origine}` },
+    recto:r`y=mx+p\\\text{Comment s'appellent }m\text{ et }p\text{ ?}`,
+    verso:r`m\text{ : coefficient directeur (pente)}\\p\text{ : ordonnée à l'origine}` },
 
   // ══ TRONC COMMUN ═════════════════════════════════════════════════════════════
   { id:"fc_sec_06", level:"tc", chapitre:"Probabilités",
@@ -21946,40 +21946,40 @@ const FLASHCARDS = [
     verso:r`P(B)=P(A)\cdot P_A(B)+P(\bar{A})\cdot P_{\bar{A}}(B)` },
   { id:"fc_tc_01",  level:"sec", chapitre:"Pourcentages",
     recto:r`\text{Prendre }t\%\text{ d'un nombre, c'est...}`,
-    verso:r`\text{Multiplier par }\dfrac{t}{100}\\[6pt]\text{Ex : }20\%\text{ de }150=150\times\dfrac{20}{100}=30` },
+    verso:r`\text{Multiplier par }\dfrac{t}{100}\\\text{Ex : }20\%\text{ de }150=150\times\dfrac{20}{100}=30` },
   { id:"fc_tc_01b", level:"sec", chapitre:"Pourcentages",
     recto:r`\text{Augmenter un nombre de }t\%\text{, c'est...}`,
-    verso:r`\text{Multiplier par le CM}=1+\dfrac{t}{100}\\[6pt]\text{Ex : }+20\%\Rightarrow\times1{,}20` },
+    verso:r`\text{Multiplier par le CM}=1+\dfrac{t}{100}\\\text{Ex : }+20\%\Rightarrow\times1{,}20` },
   { id:"fc_tc_01c", level:"sec", chapitre:"Pourcentages",
     recto:r`\text{Diminuer un nombre de }t\%\text{, c'est...}`,
-    verso:r`\text{Multiplier par le CM}=1-\dfrac{t}{100}\\[6pt]\text{Ex : }-30\%\Rightarrow\times0{,}70` },
+    verso:r`\text{Multiplier par le CM}=1-\dfrac{t}{100}\\\text{Ex : }-30\%\Rightarrow\times0{,}70` },
   { id:"fc_tc_01d", level:"sec", chapitre:"Pourcentages",
     recto:r`\text{Taux }t\text{ en fonction du coefficient multiplicateur CM ?}`,
-    verso:r`t=\text{CM}\times100-100\\[6pt]\text{Ex : CM}=1{,}15\Rightarrow t=15\%` },
+    verso:r`t=\text{CM}\times100-100\\\text{Ex : CM}=1{,}15\Rightarrow t=15\%` },
   { id:"fc_tc_02",  level:"tc", chapitre:"Pourcentages",
-    recto:r`\text{Évolution réciproque :}\\[4pt]\text{CM réciproque et taux }t'\text{ ?}`,
-    verso:r`\text{CM}'=\dfrac{1}{\text{CM}}\\[6pt]t'=\text{CM}'\times100-100` },
+    recto:r`\text{Évolution réciproque :}\\\text{CM réciproque et taux }t'\text{ ?}`,
+    verso:r`\text{CM}'=\dfrac{1}{\text{CM}}\\t'=\text{CM}'\times100-100` },
   { id:"fc_all_deriv_sens", level:"stmg", chapitre:"Dérivation",
     recto:r`\text{Que représente }f'(a)\text{ géométriquement ?}`,
-    verso:r`f'(a)\text{ est le coefficient directeur}\\[6pt]\text{de la tangente à la courbe }C_f\\[6pt]\text{au point d'abscisse }a` },
+    verso:r`f'(a)\text{ est le coefficient directeur}\\\text{de la tangente à la courbe }C_f\\\text{au point d'abscisse }a` },
   { id:"fc_all_deriv_poly3", level:"stmg", chapitre:"Dérivation",
-    recto:r`f(x)=ax^3+bx^2+cx+d\\[6pt]f'(x)=\,?`,
+    recto:r`f(x)=ax^3+bx^2+cx+d\\f'(x)=\,?`,
     verso:r`f'(x)=3ax^2+2bx+c` },
   { id:"fc_tc_03", level:"spe", chapitre:"Suites",
     recto:r`\text{Terme général d'une suite arithmétique}`,
-    verso:r`u_n=u_0+n\,r\\[6pt]\text{ou}\quad u_n=u_p+(n-p)\,r` },
+    verso:r`u_n=u_0+n\,r\\\text{ou}\quad u_n=u_p+(n-p)\,r` },
   { id:"fc_tc_03_stmg", level:"stmg", chapitre:"Suites",
     recto:r`\text{Relation de récurrence d'une suite arithmétique}`,
-    verso:r`u_{n+1}=u_n+r\\[6pt]r\text{ : raison (constante)}` },
+    verso:r`u_{n+1}=u_n+r\\r\text{ : raison (constante)}` },
   { id:"fc_tc_04", level:"spe", chapitre:"Suites",
     recto:r`\text{Terme général d'une suite géométrique}`,
-    verso:r`u_n=u_0\times q^n\\[6pt]\text{ou}\quad u_n=u_p\times q^{n-p}` },
+    verso:r`u_n=u_0\times q^n\\\text{ou}\quad u_n=u_p\times q^{n-p}` },
   { id:"fc_tc_04_stmg", level:"stmg", chapitre:"Suites",
     recto:r`\text{Relation de récurrence d'une suite géométrique}`,
-    verso:r`u_{n+1}=u_n\times q\\[6pt]q\text{ : raison (constante)}` },
+    verso:r`u_{n+1}=u_n\times q\\q\text{ : raison (constante)}` },
   { id:"fc_meth_05", level:"tc", chapitre:"Méthodes",
     recto:r`\text{Étudier les variations d'une suite }(u_n)\text{, c'est...}`,
-    verso:r`\text{Étudier le signe de }u_{n+1}-u_n\\[6pt]u_{n+1}-u_n>0\Rightarrow\text{croissante}\\[4pt]u_{n+1}-u_n<0\Rightarrow\text{décroissante}` },
+    verso:r`\text{Étudier le signe de }u_{n+1}-u_n\\u_{n+1}-u_n>0\Rightarrow\text{croissante}\\u_{n+1}-u_n<0\Rightarrow\text{décroissante}` },
   { id:"fc_tc_05", level:"spe", chapitre:"Dérivation",
     recto:r`\text{Nombre dérivé de }f\text{ en }a\text{ (définition)}`,
     verso:r`f'(a)=\lim_{h\to0}\dfrac{f(a+h)-f(a)}{h}` },
@@ -22008,13 +22008,13 @@ const FLASHCARDS = [
     verso:r`P_A(B)=\dfrac{P(A\cap B)}{P(A)}\quad(P(A)>0)` },
   { id:"fc_stmg_05", level:"stmg", chapitre:"Coût / Recette",
     recto:r`\text{Bénéfice en fonction de }x`,
-    verso:r`B(x)=R(x)-C(x)\\[6pt]\text{Recette} - \text{Coût}` },
+    verso:r`B(x)=R(x)-C(x)\\\text{Recette} - \text{Coût}` },
   { id:"fc_stmg_07", level:"stmg", chapitre:"Coût / Recette",
     recto:r`\text{Formule de la recette }R(x)\text{ ?}`,
-    verso:r`R(x)=\text{Prix}\times x\\[6pt]\text{prix unitaire }\times\text{ quantité vendue}` },
+    verso:r`R(x)=\text{Prix}\times x\\\text{prix unitaire }\times\text{ quantité vendue}` },
   { id:"fc_stmg_08", level:"stmg", chapitre:"Coût / Recette",
     recto:r`\text{Que sont les coûts fixes d'une entreprise ?}`,
-    verso:r`\text{Les coûts indépendants de la production}\\[6pt]\text{(loyer, machines, abonnements...)}\\[6pt]C(0)=\text{coûts fixes}` },
+    verso:r`\text{Les coûts indépendants de la production}\\\text{(loyer, machines, abonnements...)}\\C(0)=\text{coûts fixes}` },
   { id:"fc_stmg_06", level:"stmg", chapitre:"Dérivation",
     recto:r`\text{Dérivée de }f(x)=ax^2+bx+c`,
     verso:r`f'(x)=2ax+b` },
@@ -22022,19 +22022,19 @@ const FLASHCARDS = [
   // ══ 1ÈRE SPÉ ═════════════════════════════════════════════════════════════════
   { id:"fc_meth_04", level:"tc", chapitre:"Méthodes",
     recto:r`\text{Étudier les variations d'une fonction, c'est...}`,
-    verso:r`\text{Étudier le signe de }f'(x)\\[6pt]f'(x)>0\Rightarrow f\nearrow\\[4pt]f'(x)<0\Rightarrow f\searrow` },
+    verso:r`\text{Étudier le signe de }f'(x)\\f'(x)>0\Rightarrow f\nearrow\\f'(x)<0\Rightarrow f\searrow` },
   { id:"fc_tc_08", level:"spe", chapitre:"Polynômes",
     recto:r`\text{Discriminant d'un trinôme }ax^2+bx+c`,
     verso:r`\Delta=b^2-4ac` },
   { id:"fc_tc_09", level:"spe", chapitre:"Polynômes",
     recto:r`\text{Racines du trinôme si }\Delta>0`,
-    verso:r`x_1=\dfrac{-b-\sqrt{\Delta}}{2a}\\[8pt]x_2=\dfrac{-b+\sqrt{\Delta}}{2a}` },
+    verso:r`x_1=\dfrac{-b-\sqrt{\Delta}}{2a}\\x_2=\dfrac{-b+\sqrt{\Delta}}{2a}` },
   { id:"fc_tc_10", level:"spe", chapitre:"Polynômes",
     recto:r`\text{Forme canonique du trinôme }ax^2+bx+c`,
     verso:r`a\!\left(x+\dfrac{b}{2a}\right)^{\!2}-\dfrac{\Delta}{4a}` },
   { id:"fc_tang_02", level:"spe", chapitre:"Dérivation",
-    recto:r`f'(a)=0\\[6pt]\text{Que peut-on dire de la tangente à }C_f\text{ en }x=a\text{ ?}`,
-    verso:r`\text{La tangente est horizontale}\\[6pt]\text{(parallèle à l'axe des abscisses)}\\[6pt]\text{C'est souvent un extremum local de }f` },
+    recto:r`f'(a)=0\\\text{Que peut-on dire de la tangente à }C_f\text{ en }x=a\text{ ?}`,
+    verso:r`\text{La tangente est horizontale}\\\text{(parallèle à l'axe des abscisses)}\\\text{C'est souvent un extremum local de }f` },
   { id:"fc_spe_01", level:"spe", chapitre:"Dérivation",
     recto:r`(uv)'=\,?`,
     verso:r`u'v+uv'` },
@@ -22070,36 +22070,36 @@ const FLASHCARDS = [
     verso:r`S=u_0\times\dfrac{1-q^{n+1}}{1-q}\quad(q\neq1)` },
   { id:"fc_spe_11", level:"spe", chapitre:"Exponentielle",
     recto:r`e^0=\,?\qquad e^1=\,?`,
-    verso:r`e^0=1\\[6pt]e^1=e\approx2{,}718` },
+    verso:r`e^0=1\\e^1=e\approx2{,}718` },
   { id:"fc_spe_11b", level:"spe", chapitre:"Exponentielle",
-    recto:r`e^a\times e^b=\,?\\[6pt]\dfrac{e^a}{e^b}=\,?\\[6pt](e^a)^n=\,?`,
-    verso:r`e^{a+b}\\[6pt]e^{a-b}\\[6pt]e^{na}` },
+    recto:r`e^a\times e^b=\,?\\\dfrac{e^a}{e^b}=\,?\\(e^a)^n=\,?`,
+    verso:r`e^{a+b}\\e^{a-b}\\e^{na}` },
   { id:"fc_spe_14", level:"spe", chapitre:"Polynômes",
     recto:r`\text{Somme et produit des racines de }ax^2+bx+c`,
-    verso:r`x_1+x_2=-\dfrac{b}{a}\\[8pt]x_1\times x_2=\dfrac{c}{a}` },
+    verso:r`x_1+x_2=-\dfrac{b}{a}\\x_1\times x_2=\dfrac{c}{a}` },
   { id:"fc_spe_16", level:"spe", chapitre:"Géométrie",
     recto:r`\text{Norme du vecteur }\vec{u}(x\,;\,y)\text{ dans le plan ?}`,
     verso:r`\|\vec{u}\|=\sqrt{x^2+y^2}` },
   { id:"fc_spe_17", level:"spe", chapitre:"Géométrie",
     recto:r`\text{Vecteurs colinéaires : condition}`,
-    verso:r`\vec{u}(a,b)\text{ et }\vec{v}(c,d)\text{ colinéaires}\\[6pt]\Leftrightarrow ad-bc=0` },
+    verso:r`\vec{u}(a,b)\text{ et }\vec{v}(c,d)\text{ colinéaires}\\\Leftrightarrow ad-bc=0` },
 
   // ══ TERMINALE SPÉ ═══════════════════════════════════════════════════════════
   { id:"fc_meth_06", level:"term", chapitre:"Méthodes",
     recto:r`\text{Étudier la convexité d'une fonction, c'est...}`,
-    verso:r`\text{Étudier le signe de }f''(x)\\[6pt]f''(x)>0\Rightarrow\text{convexe }(\cup)\\[4pt]f''(x)<0\Rightarrow\text{concave }(\cap)` },
+    verso:r`\text{Étudier le signe de }f''(x)\\f''(x)>0\Rightarrow\text{convexe }(\cup)\\f''(x)<0\Rightarrow\text{concave }(\cap)` },
   { id:"fc_term_01", level:"term", chapitre:"Logarithme",
-    recto:r`\ln(ab)=\,?\\[6pt]\ln\!\left(\dfrac{a}{b}\right)=\,?\\[6pt]\ln(a^n)=\,?`,
-    verso:r`\ln a+\ln b\\[6pt]\ln a-\ln b\\[6pt]n\ln a` },
+    recto:r`\ln(ab)=\,?\\\ln\!\left(\dfrac{a}{b}\right)=\,?\\\ln(a^n)=\,?`,
+    verso:r`\ln a+\ln b\\\ln a-\ln b\\n\ln a` },
   { id:"fc_term_01b", level:"term", chapitre:"Logarithme",
-    recto:r`\ln(1)=\,?\\[6pt]\ln(e)=\,?\\[6pt]\lim_{x\to0^+}\ln x=\,?`,
-    verso:r`0\\[6pt]1\\[6pt]-\infty` },
+    recto:r`\ln(1)=\,?\\\ln(e)=\,?\\\lim_{x\to0^+}\ln x=\,?`,
+    verso:r`0\\1\\-\infty` },
   { id:"fc_term_01c", level:"term", chapitre:"Logarithme",
     recto:r`\ln(\sqrt{x})=\,?`,
     verso:r`\dfrac{1}{2}\ln x\quad(x>0)` },
   { id:"fc_term_04", level:"term", chapitre:"Logarithme",
-    recto:r`(\ln x)'=\,?\\[6pt](\ln u)'=\,?`,
-    verso:r`\dfrac{1}{x}\\[8pt]\dfrac{u'}{u}` },
+    recto:r`(\ln x)'=\,?\\(\ln u)'=\,?`,
+    verso:r`\dfrac{1}{x}\\\dfrac{u'}{u}` },
   { id:"fc_term_06", level:"term", chapitre:"Primitives",
     recto:r`\text{Primitive de }x^n\quad(n\neq-1)`,
     verso:r`\dfrac{x^{n+1}}{n+1}+C` },
@@ -22128,7 +22128,7 @@ const FLASHCARDS = [
     recto:r`\lim_{\substack{x\to0^+}}x\ln x=\,?`,
     verso:r`0` },
   { id:"fc_term_15", level:"term", chapitre:"Probabilités",
-    recto:r`\text{Probabilité conditionnelle :}\\[6pt]\text{formule de }P_B(A)\text{ ?}`,
+    recto:r`\text{Probabilité conditionnelle :}\\\text{formule de }P_B(A)\text{ ?}`,
     verso:r`P_B(A)=\dfrac{P(A\cap B)}{P(B)}\quad(P(B)>0)` },
   { id:"fc_term_16", level:"term", chapitre:"Probabilités",
     recto:r`\text{Écart-type de }X`,
@@ -22137,32 +22137,32 @@ const FLASHCARDS = [
     recto:r`\text{Formule de la variance }V(X)\text{ (König)}`,
     verso:r`V(X)=E(X^2)-[E(X)]^2` },
   { id:"fc_term_bt_02", level:"term", chapitre:"Probabilités",
-    recto:r`E(aX+b)=\,?\\[6pt]V(aX+b)=\,?`,
-    verso:r`aE(X)+b\\[8pt]a^2V(X)` },
+    recto:r`E(aX+b)=\,?\\V(aX+b)=\,?`,
+    verso:r`aE(X)+b\\a^2V(X)` },
   { id:"fc_term_bt_03", level:"term", chapitre:"Probabilités",
-    recto:r`X_1,\ldots,X_n\text{ i.i.d. de même loi que }X\\[6pt]E(X_1+\cdots+X_n)=\,?\\[4pt]V(X_1+\cdots+X_n)=\,?`,
-    verso:r`nE(X)\\[8pt]nV(X)\\[4pt]\sigma(X_1+\cdots+X_n)=\sqrt{n}\,\sigma(X)` },
+    recto:r`X_1,\ldots,X_n\text{ i.i.d. de même loi que }X\\E(X_1+\cdots+X_n)=\,?\\V(X_1+\cdots+X_n)=\,?`,
+    verso:r`nE(X)\\nV(X)\\\sigma(X_1+\cdots+X_n)=\sqrt{n}\,\sigma(X)` },
   { id:"fc_term_bt_04", level:"term", chapitre:"Probabilités",
-    recto:r`M_n=\dfrac{X_1+\cdots+X_n}{n}\\[6pt]E(M_n)=\,?\quad V(M_n)=\,?\quad\sigma(M_n)=\,?`,
-    verso:r`E(M_n)=E(X)\\[6pt]V(M_n)=\dfrac{V(X)}{n}\\[6pt]\sigma(M_n)=\dfrac{\sigma(X)}{\sqrt{n}}` },
+    recto:r`M_n=\dfrac{X_1+\cdots+X_n}{n}\\E(M_n)=\,?\quad V(M_n)=\,?\quad\sigma(M_n)=\,?`,
+    verso:r`E(M_n)=E(X)\\V(M_n)=\dfrac{V(X)}{n}\\\sigma(M_n)=\dfrac{\sigma(X)}{\sqrt{n}}` },
   { id:"fc_term_bt_05", level:"term", chapitre:"Probabilités",
     recto:r`\text{Inégalité de Bienaymé-Tchebychev}`,
-    verso:r`P(|X-E(X)|\geq\delta)\leq\dfrac{V(X)}{\delta^2}\\[6pt]\text{pour tout }\delta>0` },
+    verso:r`P(|X-E(X)|\geq\delta)\leq\dfrac{V(X)}{\delta^2}\\\text{pour tout }\delta>0` },
   { id:"fc_term_bt_06", level:"term", chapitre:"Probabilités",
     recto:r`\text{Inégalité de concentration (}M_n\text{)}`,
-    verso:r`P(|M_n-E(X)|\geq\delta)\leq\dfrac{V(X)}{n\delta^2}\\[6pt]\text{Plus }n\uparrow\text{, plus }M_n\text{ proche de }E(X)` },
+    verso:r`P(|M_n-E(X)|\geq\delta)\leq\dfrac{V(X)}{n\delta^2}\\\text{Plus }n\uparrow\text{, plus }M_n\text{ proche de }E(X)` },
   { id:"fc_term_17", level:"term", chapitre:"Géométrie espace",
     recto:r`\text{Équation d'un plan passant par }A\text{ de normale }\vec{n}(a,b,c)`,
     verso:r`a(x-x_A)+b(y-y_A)+c(z-z_A)=0` },
   { id:"fc_term_geo_01", level:"term", chapitre:"Géométrie espace",
     recto:r`\text{Vecteur normal du plan }ax+by+cz+d=0\text{ ?}`,
-    verso:r`\vec{n}\begin{pmatrix}a\\[4pt]b\\[4pt]c\end{pmatrix}\\[6pt]\text{Les coefficients de }x,y,z\text{ donnent }\vec{n}.` },
+    verso:r`\vec{n}\begin{pmatrix}a\\b\\c\end{pmatrix}\\\text{Les coefficients de }x,y,z\text{ donnent }\vec{n}.` },
   { id:"fc_term_geo_02", level:"term", chapitre:"Géométrie espace",
-    recto:r`\text{Droite :}\begin{cases}x=x_A+ta\\y=y_A+tb\\z=z_A+tc\end{cases}\\[4pt]\text{Point de passage et vecteur directeur ?}`,
-    verso:r`\text{Point de passage : }A(x_A,y_A,z_A)\\[6pt]\text{Vecteur directeur : }\vec{u}\begin{pmatrix}a\\[4pt]b\\[4pt]c\end{pmatrix}` },
+    recto:r`\text{Droite :}\begin{cases}x=x_A+ta\\y=y_A+tb\\z=z_A+tc\end{cases}\\\text{Point de passage et vecteur directeur ?}`,
+    verso:r`\text{Point de passage : }A(x_A,y_A,z_A)\\\text{Vecteur directeur : }\vec{u}\begin{pmatrix}a\\b\\c\end{pmatrix}` },
   { id:"fc_term_18", level:"term", chapitre:"Géométrie espace",
     recto:r`\text{Produit scalaire }\vec{u}\cdot\vec{v}\text{ en coordonnées}`,
-    verso:r`\vec{u}(x_1,y_1,z_1)\cdot\vec{v}(x_2,y_2,z_2)\\[6pt]=x_1x_2+y_1y_2+z_1z_2` },
+    verso:r`\vec{u}(x_1,y_1,z_1)\cdot\vec{v}(x_2,y_2,z_2)\\=x_1x_2+y_1y_2+z_1z_2` },
   { id:"fc_term_19", level:"term", chapitre:"Géométrie espace",
     recto:r`\text{Norme de }\vec{u}(x,y,z)`,
     verso:r`\|\vec{u}\|=\sqrt{x^2+y^2+z^2}` },
@@ -22176,7 +22176,7 @@ const FLASHCARDS = [
     recto:r`\text{Solution de }y'=ay\text{ avec }y(0)=y_0`,
     verso:r`y=y_0\,e^{ax}` },
   { id:"fc_term_23", level:"term", chapitre:"Dénombrement",
-    recto:r`\text{Combien de combinaisons de }k\text{ parmi }n\text{ ?}\\[4pt]\binom{n}{k}=\,?`,
+    recto:r`\text{Combien de combinaisons de }k\text{ parmi }n\text{ ?}\\\binom{n}{k}=\,?`,
     verso:r`\dfrac{n(n-1)\cdots(n-k+1)}{k!}=\dfrac{n!}{k!(n-k)!}` },
   { id:"fc_term_24", level:"term", chapitre:"Dénombrement",
     recto:r`\binom{n}{0}=\,?\qquad\binom{n}{n}=\,?`,
@@ -22185,29 +22185,29 @@ const FLASHCARDS = [
     recto:r`\text{Nombre d'arrangements de }k\text{ parmi }n`,
     verso:r`n\times(n-1)\times\cdots\times(n-k+1)=\dfrac{n!}{(n-k)!}` },
   { id:"fc_term_den_01", level:"term", chapitre:"Dénombrement",
-    recto:r`\text{Avec \textbf{ordre} et \textbf{avec répétition}}\\[4pt]\text{(k-uplets) : }n\text{ objets, tirer }k\text{ fois}`,
-    verso:r`n^k\\[6pt]\text{Ex : codes PIN 4 chiffres (0-9) : }10^4=10\,000` },
+    recto:r`\text{Avec \textbf{ordre} et \textbf{avec répétition}}\\\text{(k-uplets) : }n\text{ objets, tirer }k\text{ fois}`,
+    verso:r`n^k\\\text{Ex : codes PIN 4 chiffres (0-9) : }10^4=10\,000` },
   { id:"fc_term_den_02", level:"term", chapitre:"Dénombrement",
-    recto:r`\text{Avec \textbf{ordre} et \textbf{sans répétition}}\\[4pt]\text{(arrangements) : choisir }k\text{ parmi }n`,
-    verso:r`n\times(n-1)\times\cdots\times(n-k+1)\\[6pt]\text{Ex : podium 3/10 : }10\times9\times8=720` },
+    recto:r`\text{Avec \textbf{ordre} et \textbf{sans répétition}}\\\text{(arrangements) : choisir }k\text{ parmi }n`,
+    verso:r`n\times(n-1)\times\cdots\times(n-k+1)\\\text{Ex : podium 3/10 : }10\times9\times8=720` },
   { id:"fc_term_den_03", level:"term", chapitre:"Dénombrement",
-    recto:r`\text{Sans \textbf{ordre} et \textbf{sans répétition}}\\[4pt]\text{(combinaisons) : choisir }k\text{ parmi }n`,
-    verso:r`\dfrac{n(n-1)\cdots(n-k+1)}{k!}=\binom{n}{k}\\[6pt]\text{Ex : groupe 3/10 : }\dfrac{10\times9\times8}{6}=120` },
+    recto:r`\text{Sans \textbf{ordre} et \textbf{sans répétition}}\\\text{(combinaisons) : choisir }k\text{ parmi }n`,
+    verso:r`\dfrac{n(n-1)\cdots(n-k+1)}{k!}=\binom{n}{k}\\\text{Ex : groupe 3/10 : }\dfrac{10\times9\times8}{6}=120` },
   { id:"fc_term_26", level:"term", chapitre:"Convexité",
     recto:r`f\text{ convexe sur }I\Leftrightarrow\,?`,
-    verso:r`f''\geq0\text{ sur }I\\[6pt]\text{(courbe au-dessus de ses tangentes)}` },
+    verso:r`f''\geq0\text{ sur }I\\\text{(courbe au-dessus de ses tangentes)}` },
   { id:"fc_term_27", level:"term", chapitre:"Convexité",
     recto:r`\text{Point d'inflexion : définition}`,
-    verso:r`\text{Point où }f''\text{ change de signe}\\[6pt]\text{(la courbe traverse sa tangente)}` },
+    verso:r`\text{Point où }f''\text{ change de signe}\\\text{(la courbe traverse sa tangente)}` },
   { id:"fc_term_28", level:"term", chapitre:"Trigonométrie",
     recto:r`\cos^2\theta+\sin^2\theta=\,?`,
     verso:r`1` },
   { id:"fc_term_29", level:"term", chapitre:"Trigonométrie",
     recto:r`\text{Parité de cosinus et sinus ?}`,
-    verso:r`\cos\text{ est \textbf{paire} : }\cos(-\theta)=\cos\theta\\[6pt]\sin\text{ est \textbf{impaire} : }\sin(-\theta)=-\sin\theta` },
+    verso:r`\cos\text{ est \textbf{paire} : }\cos(-\theta)=\cos\theta\\\sin\text{ est \textbf{impaire} : }\sin(-\theta)=-\sin\theta` },
   { id:"fc_term_30", level:"term", chapitre:"Trigonométrie",
     recto:r`\text{Périodicité de cosinus et sinus ?}`,
-    verso:r`\cos\text{ et }\sin\text{ sont }2\pi\text{-périodiques :}\\[6pt]\cos(\theta+2\pi)=\cos\theta\\[4pt]\sin(\theta+2\pi)=\sin\theta` },
+    verso:r`\cos\text{ et }\sin\text{ sont }2\pi\text{-périodiques :}\\\cos(\theta+2\pi)=\cos\theta\\\sin(\theta+2\pi)=\sin\theta` },
   { id:"fc_term_lim_01", level:"term", chapitre:"Limites",
     recto:r`\lim_{\substack{x\to+\infty}}x=\,?\qquad\lim_{\substack{x\to-\infty}}x=\,?`,
     verso:r`+\infty\qquad-\infty` },
@@ -22224,11 +22224,11 @@ const FLASHCARDS = [
     recto:r`\lim_{\substack{x\to+\infty}}\ln x=\,?\qquad\lim_{\substack{x\to0^+}}\ln x=\,?`,
     verso:r`+\infty\qquad-\infty` },
   { id:"fc_term_lim_06", level:"term", chapitre:"Limites",
-    recto:r`\text{Théorème des gendarmes :}\\[4pt]\text{Si }g(x)\leq f(x)\leq h(x)\text{ et }\lim g=\lim h=L\text{, alors ?}`,
-    verso:r`\lim f(x)=L\\[6pt]\text{(f est coincée entre g et h qui tendent vers L)}` },
+    recto:r`\text{Théorème des gendarmes :}\\\text{Si }g(x)\leq f(x)\leq h(x)\text{ et }\lim g=\lim h=L\text{, alors ?}`,
+    verso:r`\lim f(x)=L\\\text{(f est coincée entre g et h qui tendent vers L)}` },
   { id:"fc_term_lim_07", level:"term", chapitre:"Suites",
-    recto:r`\text{Théorème du point fixe :}\\[4pt]\text{Si }(u_n)\to l\text{ et }u_{n+1}=f(u_n)\text{, alors ?}`,
-    verso:r`l=f(l)\\[6pt]\text{(la limite est solution de }x=f(x)\text{)}` },
+    recto:r`\text{Théorème du point fixe :}\\\text{Si }(u_n)\to l\text{ et }u_{n+1}=f(u_n)\text{, alors ?}`,
+    verso:r`l=f(l)\\\text{(la limite est solution de }x=f(x)\text{)}` },
   { id:"fc_term_suite_lim_01", level:"term", chapitre:"Suites",
     recto:r`\lim_{\substack{n\to+\infty}}n=\,?\qquad\lim_{\substack{n\to+\infty}}n^2=\,?`,
     verso:r`+\infty\qquad+\infty` },
@@ -22237,13 +22237,13 @@ const FLASHCARDS = [
     verso:r`0` },
   { id:"fc_term_suite_lim_03", level:"term", chapitre:"Suites",
     recto:r`\lim_{\substack{n\to+\infty}}q^n=\,?`,
-    verso:r`\text{Si }q>1\Rightarrow+\infty\\[4pt]\text{Si }0<q<1\Rightarrow0\\[4pt]\text{Si }q=1\Rightarrow1\\[4pt]\text{Si }-1<q<0\Rightarrow0\\[4pt]\text{Si }q\leq-1\Rightarrow\text{pas de limite}` },
+    verso:r`\text{Si }q>1\Rightarrow+\infty\\\text{Si }0<q<1\Rightarrow0\\\text{Si }q=1\Rightarrow1\\\text{Si }-1<q<0\Rightarrow0\\\text{Si }q\leq-1\Rightarrow\text{pas de limite}` },
   { id:"fc_term_suite_lim_04", level:"term", chapitre:"Suites",
     recto:r`(-1)^n\text{ admet-elle une limite ?}`,
-    verso:r`\text{Non : la suite diverge.}\\[6pt](-1)^n\text{ alterne entre }+1\text{ et }-1\\[4pt]\text{(bornée mais pas convergente)}` },
+    verso:r`\text{Non : la suite diverge.}\\(-1)^n\text{ alterne entre }+1\text{ et }-1\\\text{(bornée mais pas convergente)}` },
   { id:"fc_term_suite_lim_05", level:"term", chapitre:"Suites",
     recto:r`\cos(n)\text{ admet-elle une limite ?}`,
-    verso:r`\text{Non : la suite diverge.}\\[6pt]\cos(n)\text{ oscille entre }-1\text{ et }1\\[4pt]\text{sans converger (bornée mais pas convergente)}` },
+    verso:r`\text{Non : la suite diverge.}\\\cos(n)\text{ oscille entre }-1\text{ et }1\\\text{sans converger (bornée mais pas convergente)}` },
  { id:"fc_term_ps_01", level:"term", chapitre:"Produit scalaire",
     recto:r`\text{Produit scalaire : définition avec le cosinus}`,
     verso:r`\vec{u}\cdot\vec{v}=\|\vec{u}\|\times\|\vec{v}\|\times\cos(\widehat{\vec{u},\vec{v}})` },
@@ -22254,45 +22254,45 @@ const FLASHCARDS = [
     recto:r`\overrightarrow{AB}\cdot\overrightarrow{AC}=\,?\quad\text{(formule avec les normes)}`,
     verso:r`\overrightarrow{AB}\cdot\overrightarrow{AC}=\dfrac{1}{2}\!\left(AB^2+AC^2-BC^2\right)` },
   { id:"fc_term_ps_04", level:"term", chapitre:"Produit scalaire",
-    recto:r`\text{Vecteurs colinéaires de même sens :}\\[4pt]\overrightarrow{AB}\cdot\overrightarrow{AC}=\,?`,
-    verso:r`\overrightarrow{AB}\cdot\overrightarrow{AC}=AB\times AC\\[6pt]\text{(angle nul, }\cos0=1\text{)}` },
+    recto:r`\text{Vecteurs colinéaires de même sens :}\\\overrightarrow{AB}\cdot\overrightarrow{AC}=\,?`,
+    verso:r`\overrightarrow{AB}\cdot\overrightarrow{AC}=AB\times AC\\\text{(angle nul, }\cos0=1\text{)}` },
   { id:"fc_term_ps_05", level:"term", chapitre:"Produit scalaire",
-    recto:r`\text{Vecteurs colinéaires de sens contraire :}\\[4pt]\overrightarrow{AB}\cdot\overrightarrow{AC}=\,?`,
-    verso:r`\overrightarrow{AB}\cdot\overrightarrow{AC}=-AB\times AC\\[6pt]\text{(angle }\pi\text{, }\cos\pi=-1\text{)}` },
+    recto:r`\text{Vecteurs colinéaires de sens contraire :}\\\overrightarrow{AB}\cdot\overrightarrow{AC}=\,?`,
+    verso:r`\overrightarrow{AB}\cdot\overrightarrow{AC}=-AB\times AC\\\text{(angle }\pi\text{, }\cos\pi=-1\text{)}` },
   { id:"fc_term_cont_01", level:"term", chapitre:"Continuité",
     recto:r`\text{Définition : }f\text{ est continue en }a\text{ si...}`,
-    verso:r`\lim_{x\to a}f(x)=f(a)\\[6pt]\text{(la limite existe et vaut }f(a)\text{)}` },
+    verso:r`\lim_{x\to a}f(x)=f(a)\\\text{(la limite existe et vaut }f(a)\text{)}` },
   { id:"fc_term_cont_02", level:"term", chapitre:"Continuité",
     recto:r`\text{Exemple de fonction continue mais \textbf{non dérivable}}`,
-    verso:r`f(x)=\sqrt{x}\text{ en }x=0\\[6pt]\text{Continue en 0 (}f(0)=0\text{)}\\[4pt]\text{Non dérivable : la tangente est verticale}\\[4pt]\lim_{x\to0^+}\dfrac{\sqrt{x}}{x}=\lim_{x\to0^+}\dfrac{1}{\sqrt{x}}=+\infty` },
+    verso:r`f(x)=\sqrt{x}\text{ en }x=0\\\text{Continue en 0 (}f(0)=0\text{)}\\\text{Non dérivable : la tangente est verticale}\\\lim_{x\to0^+}\dfrac{\sqrt{x}}{x}=\lim_{x\to0^+}\dfrac{1}{\sqrt{x}}=+\infty` },
   { id:"fc_term_cont_03", level:"term", chapitre:"Continuité",
     recto:r`\text{Exemple de fonction \textbf{non continue} en une infinité de réels}`,
-    verso:r`\text{La fonction partie entière }E(x)=\lfloor x\rfloor\\[6pt]\text{Discontinue en tout entier : }\lim_{x\to n^-}E(x)=n-1\neq n=E(n)` },
+    verso:r`\text{La fonction partie entière }E(x)=\lfloor x\rfloor\\\text{Discontinue en tout entier : }\lim_{x\to n^-}E(x)=n-1\neq n=E(n)` },
   { id:"fc_term_bij_01", level:"term", chapitre:"Continuité",
-    recto:r`\text{Quelles conditions garantissent qu'une équation}\\[4pt]f(x)=k\text{ admet une unique solution sur }[a,b]\text{ ?}`,
-    verso:r`\text{1. }f\text{ continue sur }[a,b]\\[4pt]\text{2. }f\text{ strictement monotone sur }[a,b]\\[4pt]\text{3. }k\text{ compris entre }f(a)\text{ et }f(b)\\[6pt]\Rightarrow\text{unique }c\in[a,b]\text{ tel que }f(c)=k` },
+    recto:r`\text{Quelles conditions garantissent qu'une équation}\\f(x)=k\text{ admet une unique solution sur }[a,b]\text{ ?}`,
+    verso:r`\text{1. }f\text{ continue sur }[a,b]\\\text{2. }f\text{ strictement monotone sur }[a,b]\\\text{3. }k\text{ compris entre }f(a)\text{ et }f(b)\\\Rightarrow\text{unique }c\in[a,b]\text{ tel que }f(c)=k` },
   { id:"fc_term_ed_02", level:"term", chapitre:"Équa. diff.",
     recto:r`\text{Solutions de }y'=ay+b\quad(a\neq0)`,
-    verso:r`x\mapsto ke^{ax}-\dfrac{b}{a}\quad(k\in\mathbb{R})\\[6pt]\text{Solution particulière constante : }-\dfrac{b}{a}` },
+    verso:r`x\mapsto ke^{ax}-\dfrac{b}{a}\quad(k\in\mathbb{R})\\\text{Solution particulière constante : }-\dfrac{b}{a}` },
   { id:"fc_term_ed_03", level:"term", chapitre:"Équa. diff.",
-    recto:r`\text{Solutions de }y'=ay+f(x)\quad(a\neq0)\\[4pt]\text{(}g\text{ solution particulière de (E))}`,
-    verso:r`x\mapsto ke^{ax}+g(x)\quad(k\in\mathbb{R})\\[6pt]\text{(homogène + particulière)}` },
+    recto:r`\text{Solutions de }y'=ay+f(x)\quad(a\neq0)\\\text{(}g\text{ solution particulière de (E))}`,
+    verso:r`x\mapsto ke^{ax}+g(x)\quad(k\in\mathbb{R})\\\text{(homogène + particulière)}` },
   // ── Vecteurs (sec) ────────────────────────────────────────────────────────────
   { id:"fc_vec_01", level:"sec", chapitre:"Vecteurs",
-    recto:r`\text{Coordonnées du vecteur }\overrightarrow{AB}\\[4pt]A(x_A\,;\,y_A)\text{, }B(x_B\,;\,y_B)`,
-    verso:r`\overrightarrow{AB}\begin{pmatrix}x_B-x_A\\[4pt]y_B-y_A\end{pmatrix}` },
+    recto:r`\text{Coordonnées du vecteur }\overrightarrow{AB}\\A(x_A\,;\,y_A)\text{, }B(x_B\,;\,y_B)`,
+    verso:r`\overrightarrow{AB}\begin{pmatrix}x_B-x_A\\y_B-y_A\end{pmatrix}` },
   { id:"fc_vec_02a", level:"sec", chapitre:"Vecteurs",
-    recto:r`\text{Distance }AB\text{ ?}\\[4pt]A(x_A\,;\,y_A)\text{, }B(x_B\,;\,y_B)`,
+    recto:r`\text{Distance }AB\text{ ?}\\A(x_A\,;\,y_A)\text{, }B(x_B\,;\,y_B)`,
     verso:r`AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2}` },
   { id:"fc_vec_02b", level:"sec", chapitre:"Vecteurs",
     recto:r`\text{Coordonnées du milieu }I\text{ de }[AB]`,
     verso:r`I\!\left(\dfrac{x_A+x_B}{2}\,;\,\dfrac{y_A+y_B}{2}\right)` },
   { id:"fc_vec_03", level:"sec", chapitre:"Vecteurs",
-    recto:r`\vec{u}(x\,;y)\text{ et }\vec{v}(x'\,;y')\text{ colinéaires}\\[4pt]\text{Condition avec le déterminant ?}`,
-    verso:r`\det(\vec{u},\vec{v})=xy'-yx'=0\\[6pt]\text{(le déterminant est nul)}` },
+    recto:r`\vec{u}(x\,;y)\text{ et }\vec{v}(x'\,;y')\text{ colinéaires}\\\text{Condition avec le déterminant ?}`,
+    verso:r`\det(\vec{u},\vec{v})=xy'-yx'=0\\\text{(le déterminant est nul)}` },
   { id:"fc_vec_04", level:"sec", chapitre:"Vecteurs",
     recto:r`\text{Relation de Chasles}`,
-    verso:r`\overrightarrow{AC}=\overrightarrow{AB}+\overrightarrow{BC}\\[6pt]\text{(on peut "enchaîner" les vecteurs)}` },
+    verso:r`\overrightarrow{AC}=\overrightarrow{AB}+\overrightarrow{BC}\\\text{(on peut "enchaîner" les vecteurs)}` },
   { id:"fc_vec_05", level:"sec", chapitre:"Vecteurs",
     recto:r`\overrightarrow{AA'}=\overrightarrow{BB'}\text{ : que peut-on dire du quadrilatère ?}`,
     svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 160" width="100%" style="background:#fff;border-radius:8px;margin:8px 0">
@@ -22325,12 +22325,12 @@ const FLASHCARDS = [
   <text x="72" y="115" font-size="11" fill="#3B82F6" font-family="serif" font-style="italic">BB'</text>
   <text x="130" y="34" font-size="11" fill="#EF4444" font-family="serif" font-style="italic">AA'</text>
 </svg>`,
-    verso:r`AA'B'B\text{ est un parallélogramme}\\[6pt]\text{(deux côtés opposés égaux et parallèles)}` },
+    verso:r`AA'B'B\text{ est un parallélogramme}\\\text{(deux côtés opposés égaux et parallèles)}` },
 
   // ── Stats : variance et écart-type ─────────────────────────────────────────
   { id:"fc_stat_var", level:"sec", chapitre:"Statistiques",
     recto:r`\text{Formule de la variance }V\text{ ?}`,
-    verso:r`V=\dfrac{\sum x_i^2}{n}-\bar{x}^2\\[6pt]\text{(moyenne des carrés moins le carré de la moyenne)}` },
+    verso:r`V=\dfrac{\sum x_i^2}{n}-\bar{x}^2\\\text{(moyenne des carrés moins le carré de la moyenne)}` },
   { id:"fc_stat_sigma", level:"sec", chapitre:"Statistiques",
     recto:r`\text{Formule de l'écart-type }\sigma\text{ ?}`,
     verso:r`\sigma=\sqrt{V}=\sqrt{\dfrac{\sum x_i^2}{n}-\bar{x}^2}` },
@@ -22340,37 +22340,37 @@ const FLASHCARDS = [
     recto:r`a^0=\,?\qquad a^1=\,?\qquad a^{-m}=\,?`,
     verso:r`a^0=1\qquad a^1=a\qquad a^{-m}=\dfrac{1}{a^m}` },
   { id:"fc_puis_02", level:"sec", chapitre:"Puissances",
-    recto:r`a^n\times a^m=\,?\\[6pt]\dfrac{a^n}{a^m}=\,?`,
-    verso:r`a^{n+m}\\[8pt]a^{n-m}` },
+    recto:r`a^n\times a^m=\,?\\\dfrac{a^n}{a^m}=\,?`,
+    verso:r`a^{n+m}\\a^{n-m}` },
   { id:"fc_puis_03", level:"sec", chapitre:"Puissances",
-    recto:r`(a^n)^m=\,?\\[6pt](a\times b)^n=\,?`,
-    verso:r`a^{n\times m}\\[8pt]a^n\times b^n` },
+    recto:r`(a^n)^m=\,?\\(a\times b)^n=\,?`,
+    verso:r`a^{n\times m}\\a^n\times b^n` },
 
   // ── Racines carrées (sec, spe) ──────────────────────────────────────────────
   { id:"fc_rac_01", level:"sec", chapitre:"Racines carrées",
-    recto:r`\sqrt{a}\times\sqrt{b}=\,?\\[6pt]\dfrac{\sqrt{a}}{\sqrt{b}}=\,?`,
-    verso:r`\sqrt{a\times b}\\[8pt]\sqrt{\dfrac{a}{b}}` },
+    recto:r`\sqrt{a}\times\sqrt{b}=\,?\\\dfrac{\sqrt{a}}{\sqrt{b}}=\,?`,
+    verso:r`\sqrt{a\times b}\\\sqrt{\dfrac{a}{b}}` },
   { id:"fc_rac_02", level:"sec", chapitre:"Racines carrées",
-    recto:r`(\sqrt{a})^2=\,?\\[6pt]\sqrt{a^2}=\,?`,
-    verso:r`a\quad(a\geq0)\\[8pt]|a|\quad\text{(Ex : }\sqrt{(-3)^2}=3\text{)}` },
+    recto:r`(\sqrt{a})^2=\,?\\\sqrt{a^2}=\,?`,
+    verso:r`a\quad(a\geq0)\\|a|\quad\text{(Ex : }\sqrt{(-3)^2}=3\text{)}` },
   { id:"fc_rac_03", level:"sec", chapitre:"Racines carrées",
     recto:r`\sqrt{a}+\sqrt{b}=\sqrt{a+b}\text{ ?}`,
-    verso:r`\text{\textbf{Faux !}}\\[6pt]\sqrt{a}+\sqrt{b}\neq\sqrt{a+b}\\[4pt]\sqrt{a}-\sqrt{b}\neq\sqrt{a-b}\\[6pt]\text{Ex : }\sqrt{4}+\sqrt{9}=2+3=5\neq\sqrt{13}` },
+    verso:r`\text{\textbf{Faux !}}\\\sqrt{a}+\sqrt{b}\neq\sqrt{a+b}\\\sqrt{a}-\sqrt{b}\neq\sqrt{a-b}\\\text{Ex : }\sqrt{4}+\sqrt{9}=2+3=5\neq\sqrt{13}` },
   { id:"fc_rac_04", level:"spe", chapitre:"Racines carrées",
     recto:r`\text{Simplifier }\dfrac{k}{\sqrt{a}}\text{ (rationaliser)}`,
-    verso:r`\dfrac{k}{\sqrt{a}}=\dfrac{k\sqrt{a}}{a}\\[6pt]\text{Ex : }\dfrac{1}{\sqrt{2}}=\dfrac{\sqrt{2}}{2}` },
+    verso:r`\dfrac{k}{\sqrt{a}}=\dfrac{k\sqrt{a}}{a}\\\text{Ex : }\dfrac{1}{\sqrt{2}}=\dfrac{\sqrt{2}}{2}` },
   { id:"fc_val_abs", level:"spe", chapitre:"Calcul numérique",
     recto:r`|a|=\,?\quad\text{Définition et propriétés}`,
-    verso:r`|a|=\begin{cases}a&\text{si }a\geq0\\-a&\text{si }a<0\end{cases}\\[8pt]|a|\geq0\qquad|-a|=|a|\\[6pt]|a\times b|=|a|\times|b|\\[4pt]|a+b|\leq|a|+|b|\text{ (inégalité triangulaire)}` },
+    verso:r`|a|=\begin{cases}a&\text{si }a\geq0\\-a&\text{si }a<0\end{cases}\\|a|\geq0\qquad|-a|=|a|\\|a\times b|=|a|\times|b|\\|a+b|\leq|a|+|b|\text{ (inégalité triangulaire)}` },
   { id:"fc_eq_xa", level:"sec", chapitre:"Équations",
     recto:r`\text{Solutions de }x^2=a\text{ selon le signe de }a\text{ ?}`,
-    verso:r`a<0:\quad S=\varnothing\\[6pt]a=0:\quad S=\{0\}\\[6pt]a>0:\quad S=\{-\sqrt{a}\,;\,\sqrt{a}\}` },
+    verso:r`a<0:\quad S=\varnothing\\a=0:\quad S=\{0\}\\a>0:\quad S=\{-\sqrt{a}\,;\,\sqrt{a}\}` },
   { id:"fc_eq_prod_01", level:"sec", chapitre:"Équations",
-    recto:r`\text{Théorème produit :}\\[4pt]A\times B=0\Leftrightarrow\,?`,
-    verso:r`A=0\quad\text{ou}\quad B=0\\[8pt]\text{Un produit est nul}\\[2pt]\text{ssi l'un des facteurs est nul}` },
+    recto:r`\text{Théorème produit :}\\A\times B=0\Leftrightarrow\,?`,
+    verso:r`A=0\quad\text{ou}\quad B=0\\\text{Un produit est nul}\\\text{ssi l'un des facteurs est nul}` },
   { id:"fc_eq_quot_01", level:"sec", chapitre:"Équations",
     recto:r`\dfrac{A}{B}=0\Leftrightarrow\,?`,
-    verso:r`A=0\quad\text{et}\quad B\neq0\\[8pt]\text{Numérateur nul ET}\\[2pt]\text{dénominateur non nul}` },
+    verso:r`A=0\quad\text{et}\quad B\neq0\\\text{Numérateur nul ET}\\\text{dénominateur non nul}` },
 ];
 
 
@@ -24108,7 +24108,7 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
   const spec    = q.tvSpec || q.tsSpec;
   const specType= q.tvSpec?"tv":q.tsSpec?"ts":null;
   const isTab   = !!spec;
-  const hasVis  = !!(q.gspec || q.tspec || q.trespec || q.svg);
+  const hasVis  = !!(q.gspec || q.tspec || q.trespec || q.svg || q.img);
   const choices = React.useMemo(()=>q.choices?shuffle([...q.choices]):[],[idx]);
 
   // holes & correctness for tableau mode
@@ -24311,6 +24311,10 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
         width:"100%", boxSizing:"border-box",
       }}>
         {q.gspec   && <div style={{marginBottom:8}}><Graph spec={q.gspec}/></div>}
+        {q.img     && <div style={{marginBottom:8, display:"flex", justifyContent:"center", maxWidth:"100%", overflow:"hidden"}}>
+                            <img src={q.img} alt="figure de l'énoncé" loading="lazy"
+                                 style={{maxWidth:"100%", height:"auto", borderRadius:8, border:"1px solid #E2E8F0", display:"block"}}/>
+                      </div>}
         {q.svg     && <div style={{marginBottom:8, display:"flex", justifyContent:"center", maxWidth:"100%", overflow:"hidden"}}
                             dangerouslySetInnerHTML={{__html: q.svg}}/>}
         {q.trespec && <div style={{marginBottom:10}}><ProbaTree spec={q.trespec}/></div>}
@@ -27386,7 +27390,7 @@ function CoursMathEquations({onBack, onStartPractice}) {
           r`\text{S'il n'y a pas de solution on note }S=\varnothing`,
         ],
         ex:{qTex:r`\text{Résoudre }2x+4=-3-5x`,
-            a:r`\begin{gathered}2x+5x=-3-4\Rightarrow 7x=-7\\[4pt]x=-1\quad S=\{-1\}\end{gathered}`}},
+            a:r`\begin{gathered}2x+5x=-3-4\Rightarrow 7x=-7\\x=-1\quad S=\{-1\}\end{gathered}`}},
     ]},
     { emoji:"✖️", label:"Produit nul", color:"#DC2626", light:"#FEF2F2", rules:[
       { id:"eq2",num:"2",title:"Théorème produit nul",
@@ -27398,7 +27402,7 @@ function CoursMathEquations({onBack, onStartPractice}) {
         ],
         tipTex:r`\text{Un produit est nul ssi l'un des facteurs est nul (TRÈS IMPORTANT)}`,
         ex:{qTex:r`5(x+2)^2-(7x+3)(x+2)=0`,
-            a:r`\begin{gathered}(x+2)\bigl[5(x+2)-(7x+3)\bigr]=0\\[4pt](x+2)(-2x+7)=0\\[4pt]S=\{-2\,;\,3{,}5\}\end{gathered}`}},
+            a:r`\begin{gathered}(x+2)\bigl[5(x+2)-(7x+3)\bigr]=0\\(x+2)(-2x+7)=0\\S=\{-2\,;\,3{,}5\}\end{gathered}`}},
     ]},
     { emoji:"²", label:"x²=a", color:"#7C3AED", light:"#F5F3FF", rules:[
       { id:"eq3",num:"3",title:"Solutions de x²=a",
@@ -27409,7 +27413,7 @@ function CoursMathEquations({onBack, onStartPractice}) {
         ],
         tipTex:r`\text{Simplifier les radicaux : }\sqrt{72}=\sqrt{36\times2}=6\sqrt{2}`,
         ex:{qTex:r`x^2=72\quad\text{et}\quad x^2=-3`,
-            a:r`\begin{gathered}72>0\Rightarrow S_1=\{-6\sqrt{2}\,;\,6\sqrt{2}\}\\[4pt]-3<0\Rightarrow S_2=\varnothing\end{gathered}`}},
+            a:r`\begin{gathered}72>0\Rightarrow S_1=\{-6\sqrt{2}\,;\,6\sqrt{2}\}\\-3<0\Rightarrow S_2=\varnothing\end{gathered}`}},
     ]},
     { emoji:"➗", label:"Quotient", color:"#059669", light:"#F0FDF4", rules:[
       { id:"eq4",num:"4",title:"Théorème quotient",
@@ -27421,7 +27425,7 @@ function CoursMathEquations({onBack, onStartPractice}) {
         ],
         tipTex:r`\text{Un quotient est nul ssi le numérateur est nul et le dénominateur non nul}`,
         ex:{qTex:r`\dfrac{6x-13}{(x-1)(x-2)}=0`,
-            a:r`\begin{gathered}\text{Interdits : }x=1\text{ et }x=2\\[4pt]6x-13=0\Rightarrow x=\tfrac{13}{6}\\[4pt]\tfrac{13}{6}\notin\{1,2\}\Rightarrow S=\!\left\{\tfrac{13}{6}\right\}\end{gathered}`}},
+            a:r`\begin{gathered}\text{Interdits : }x=1\text{ et }x=2\\6x-13=0\Rightarrow x=\tfrac{13}{6}\\\tfrac{13}{6}\notin\{1,2\}\Rightarrow S=\!\left\{\tfrac{13}{6}\right\}\end{gathered}`}},
     ]},
     { emoji:"📊", label:"Inéquations", color:"#2563EB", light:"#EFF6FF", rules:[
       { id:"eq5",num:"5",title:"Signe de ax+b",
@@ -27432,7 +27436,7 @@ function CoursMathEquations({onBack, onStartPractice}) {
         ],
         tipTex:r`\text{Division par un nombre négatif : le sens de l'inégalité s'inverse !}`,
         ex:{qTex:r`-x+3>0`,
-            a:r`\begin{gathered}-x>-3\xRightarrow{\div(-1)\text{ (inversion)}}\\[4pt]x<3\quad S=\,]-\infty\,;\,3\,[\end{gathered}`}},
+            a:r`\begin{gathered}-x>-3\xRightarrow{\div(-1)\text{ (inversion)}}\\x<3\quad S=\,]-\infty\,;\,3\,[\end{gathered}`}},
       { id:"eq6",num:"6",title:"Inéquation produit/quotient",
         svgDiag:SIGN_EQ6,
         bltTex:[
@@ -27443,7 +27447,7 @@ function CoursMathEquations({onBack, onStartPractice}) {
         ],
         tipTex:r`\text{Pour un quotient : la valeur interdite n'est jamais incluse dans }S`,
         ex:{qTex:r`(-2x-1)(3x-2)>0`,
-            a:r`\begin{gathered}\text{Racines : }x=-\tfrac{1}{2}\text{ et }x=\tfrac{2}{3}\\[4pt]S=\left]-\tfrac{1}{2}\,;\,\tfrac{2}{3}\right[\end{gathered}`}},
+            a:r`\begin{gathered}\text{Racines : }x=-\tfrac{1}{2}\text{ et }x=\tfrac{2}{3}\\S=\left]-\tfrac{1}{2}\,;\,\tfrac{2}{3}\right[\end{gathered}`}},
     ]},
     { emoji:"🏋️", label:"S'entraîner", color:"#0F172A", light:"#F1F5F9", isPractice:true,
       practices:[
@@ -27585,7 +27589,7 @@ function CoursMathSecondDegre({onBack, onStartPractice}) {
           r`\text{En développant on retrouve la forme }ax^2+bx+c`,
         ],
         ex:{qTex:r`f(x)=2(x-2)(x+2)`,
-            a:r`\begin{gathered}=2(x^2-4)=2x^2-8\\[4pt]\text{forme }ax^2+b\ \text{avec}\ a=2,\ b=-8\end{gathered}`}},
+            a:r`\begin{gathered}=2(x^2-4)=2x^2-8\\\text{forme }ax^2+b\ \text{avec}\ a=2,\ b=-8\end{gathered}`}},
       { id:"sd4",num:"4",title:"Forme développée (générale)",
         fml:r`f(x)=ax^2+bx+c\quad(a\neq 0)`,
         bltTex:[
@@ -27622,7 +27626,7 @@ function CoursMathSecondDegre({onBack, onStartPractice}) {
         ],
         tipTex:r`\text{On suppose }x_1<x_2\text{ : « extérieur » = avant }x_1\text{ et après }x_2`,
         ex:{qTex:r`f(x)=-2(x-3)(x+2)\quad(a<0,\ \text{racines }-2\text{ et }3)`,
-            a:r`\begin{gathered}x<-2:\ f(x)<0\ ;\quad -2<x<3:\ f(x)>0\\[4pt]x>3:\ f(x)<0\end{gathered}`}},
+            a:r`\begin{gathered}x<-2:\ f(x)<0\ ;\quad -2<x<3:\ f(x)>0\\x>3:\ f(x)<0\end{gathered}`}},
     ]},
     { emoji:"²", label:"x²=a", color:"#D97706", light:"#FFFBEB", rules:[
       { id:"sd8",num:"8",title:"Résoudre x² = a",
@@ -27633,7 +27637,7 @@ function CoursMathSecondDegre({onBack, onStartPractice}) {
         ],
         tipTex:r`\text{Bien isoler }x^2\text{ d'un côté avant de conclure}`,
         ex:{qTex:r`x^2=5\ ;\quad 2x^2-128=0\ ;\quad 3x^2+15=0`,
-            a:r`\begin{gathered}S_1=\{-\sqrt5\,;\,\sqrt5\}\\[4pt]2x^2=128\Rightarrow x^2=64\Rightarrow S_2=\{-8\,;\,8\}\\[4pt]3x^2=-15\Rightarrow x^2=-5\Rightarrow S_3=\varnothing\end{gathered}`}},
+            a:r`\begin{gathered}S_1=\{-\sqrt5\,;\,\sqrt5\}\\2x^2=128\Rightarrow x^2=64\Rightarrow S_2=\{-8\,;\,8\}\\3x^2=-15\Rightarrow x^2=-5\Rightarrow S_3=\varnothing\end{gathered}`}},
     ]},
     { emoji:"🏋️", label:"S'entraîner", color:"#0F172A", light:"#F1F5F9", isPractice:true,
       practices:[
@@ -27769,7 +27773,7 @@ function CoursMathSuites({onBack, onStartPractice}) {
           r`\textbf{Avantage}\ :\ \text{on obtient n'importe quel terme directement}`,
         ],
         ex:{qTex:r`u_n=2n^2-1\quad\text{Calculer }u_0,\ u_2,\ u_{11}`,
-            a:r`\begin{gathered}u_0=2(0)^2-1=-1\\[4pt]u_2=2(2)^2-1=7\\[4pt]u_{11}=2(11)^2-1=241\end{gathered}`}},
+            a:r`\begin{gathered}u_0=2(0)^2-1=-1\\u_2=2(2)^2-1=7\\u_{11}=2(11)^2-1=241\end{gathered}`}},
       { id:"su4",num:"4",title:"Relation de récurrence (Catégorie 2)",
         fml:r`u_{n+1}=f(u_n)\quad(\text{avec un premier terme donné})`,
         bltTex:[
@@ -27789,7 +27793,7 @@ function CoursMathSuites({onBack, onStartPractice}) {
         ],
         tipTex:r`\text{On ne relie jamais les points : }n\text{ est un entier}`},
       { id:"su6",num:"6",title:"Suite croissante / décroissante",
-        fml:r`\begin{gathered}(u_n)\text{ croissante}:\ u_{n+1}\geq u_n\\[4pt](u_n)\text{ décroissante}:\ u_{n+1}\leq u_n\end{gathered}`,
+        fml:r`\begin{gathered}(u_n)\text{ croissante}:\ u_{n+1}\geq u_n\\(u_n)\text{ décroissante}:\ u_{n+1}\leq u_n\end{gathered}`,
         bltTex:[
           r`\text{L'inégalité doit être vraie }\textbf{pour tout }n`,
         ]},
@@ -27800,7 +27804,7 @@ function CoursMathSuites({onBack, onStartPractice}) {
           r`u_{n+1}-u_n<0\ \text{pour tout }n\ \Rightarrow\ \text{décroissante}`,
         ],
         ex:{qTex:r`v_n=4n+4\quad\text{Sens de variation ?}`,
-            a:r`\begin{gathered}v_{n+1}-v_n=4(n+1)+4-(4n+4)\\[4pt]=4>0\ \Rightarrow\ (v_n)\text{ croissante}\end{gathered}`}},
+            a:r`\begin{gathered}v_{n+1}-v_n=4(n+1)+4-(4n+4)\\=4>0\ \Rightarrow\ (v_n)\text{ croissante}\end{gathered}`}},
     ]},
     { emoji:"➕", label:"Arithmétiques", color:"#059669", light:"#ECFDF5", rules:[
       { id:"su8",num:"8",title:"Définition",
@@ -27999,7 +28003,7 @@ function CoursMathProbas({onBack, onStartPractice}) {
           r`\text{Card}(E)\text{ : effectif total}`,
         ]},
       { id:"pb2",num:"2",title:"Fréquences",
-        fml:r`\begin{gathered}f(A)=\dfrac{\text{Card}(A)}{\text{Card}(E)}\quad(\text{marginale})\\[6pt]f_A(B)=\dfrac{\text{Card}(A\cap B)}{\text{Card}(A)}\quad(\text{conditionnelle})\end{gathered}`,
+        fml:r`\begin{gathered}f(A)=\dfrac{\text{Card}(A)}{\text{Card}(E)}\quad(\text{marginale})\\f_A(B)=\dfrac{\text{Card}(A\cap B)}{\text{Card}(A)}\quad(\text{conditionnelle})\end{gathered}`,
         bltTex:[
           r`\text{Marginale : part de }A\text{ dans l'ensemble }E`,
           r`\text{Conditionnelle : part de }B\text{ parmi les individus de }A`,
