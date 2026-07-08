@@ -212,7 +212,35 @@ const GS = ({profile} = {}) => {
       --am-font-scale: ${scale};
     }
     *{box-sizing:border-box;margin:0;padding:0;}
+    html,body{
+      overscroll-behavior:none;            /* pas de rebond élastique ni pull-to-refresh */
+      touch-action:pan-x pan-y;            /* pas de double-tap zoom parasite */
+    }
     body{background:#dde1ea;display:flex;justify-content:center;align-items:center;min-height:100vh;font-family:'DM Sans',sans-serif;}
+    /* ── Mobile : plein écran natif (comme Ancrage) ─────────────────────
+       Le mockup téléphone (cadre + encoche) n'a de sens que sur desktop.
+       Sur mobile : l'app occupe tout l'écran, fixe sous le doigt,
+       seul le contenu interne scrolle. */
+    @media (max-width: 520px), (pointer:coarse) and (max-width: 1024px) {
+      html,body{
+        position:fixed; inset:0;
+        width:100%; height:100%;
+        overflow:hidden;
+      }
+      body{display:block;min-height:0;}
+      .am-phone{
+        width:100vw !important;
+        height:100dvh !important;          /* dvh : suit les barres du navigateur */
+        border-radius:0 !important;
+        box-shadow:none !important;
+      }
+      .am-notch{display:none !important;}
+      .am-content{padding-top:env(safe-area-inset-top, 0px) !important;}
+      .am-bottomnav{
+        height:calc(58px + env(safe-area-inset-bottom, 0px)) !important;
+        padding-bottom:env(safe-area-inset-bottom, 0px) !important;
+      }
+    }
     /* Taille de texte globale : appliquée au conteneur racine via transform scale.
        Ainsi TOUS les px hardcodés suivent proportionnellement. */
     .am-scale-wrapper {
@@ -29158,7 +29186,7 @@ function BottomNav({screen, onTab}) {
     {id:"parcours",  emoji:"📊", label:"Parcours",    active:screen==="parcours_detail"||screen==="collection"||screen==="vigilance"},
   ];
   return (
-    <div style={{position:"absolute",bottom:0,left:0,right:0,height:58,
+    <div className="am-bottomnav" style={{position:"absolute",bottom:0,left:0,right:0,height:58,
       background:"#fff",borderTop:"1px solid #E8ECF3",display:"flex",
       zIndex:50,boxShadow:"0 -2px 10px rgba(0,0,0,.06)"}}>
       {tabs.map(tab=>{
@@ -29984,15 +30012,15 @@ function AutoMaths() {
   return (
     <>
       <GS profile={profile}/>
-      <div style={{
+      <div className="am-phone" style={{
         width:390, height:760, background: th_main.bgLight,
         borderRadius:44, overflow:"hidden", position:"relative",
         boxShadow:"0 30px 80px rgba(0,0,0,.25), 0 0 0 10px #1E293B, 0 0 0 12px #334155",
       }}>
-        <div style={{position:"absolute",top:0,left:"50%",transform:"translateX(-50%)",
+        <div className="am-notch" style={{position:"absolute",top:0,left:"50%",transform:"translateX(-50%)",
           width:120,height:26,background:"#1E293B",borderRadius:"0 0 18px 18px",zIndex:10}}/>
         
-        <div style={{height:showBottomNav?"calc(100% - 58px)":"100%",overflowY:"auto",paddingTop:26,
+        <div className="am-content" style={{height:showBottomNav?"calc(100% - 58px)":"100%",overflowY:"auto",paddingTop:26,
           // Zoom via la propriété CSS `zoom` (supportée Chrome/Safari/Firefox).
           // Avantage vs transform:scale : ne casse pas les positionnements
           // absolus, les modales, les dropdowns. Simple et fiable.
