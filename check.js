@@ -170,6 +170,149 @@ if (!fs.existsSync(SW)) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────
+log('\n6. Cohérence logique des questions (via AST)');
+{
+  const parser = require('@babel/parser');
+  const ast = parser.parse(src, { sourceType: 'script', plugins: ['jsx'] });
+
+  function rawOf(node) {
+    if (!node) return null;
+    let tpl = null;
+    if (node.type === 'TemplateLiteral') tpl = node;
+    else if (node.type === 'TaggedTemplateExpression' && node.quasi) tpl = node.quasi;
+    if (tpl && tpl.quasis.length === 1) return tpl.quasis[0].value.raw;
+    if (node.type === 'StringLiteral') return node.value;
+    return null;
+  }
+  function numOf(node) {
+    if (!node) return null;
+    if (node.type === 'NumericLiteral') return node.value;
+    if (node.type === 'UnaryExpression' && node.operator === '-' && node.argument.type === 'NumericLiteral') return -node.argument.value;
+    return null;
+  }
+
+  let logicErrors = 0;
+
+  function checkQuestion(objNode) {
+    // Rassembler les propriétés utiles
+    const props = {};
+    for (const p of objNode.properties) {
+      if (p.type !== 'ObjectProperty') continue;
+      const k = p.key.name || p.key.value;
+      props[k] = p.value;
+    }
+    if (!props.choices || !props.a) return; // pas un QCM classique
+
+    const choices = [];
+    if (props.choices.type === 'ArrayExpression') {
+      for (const el of props.choices.elements) {
+        const r = rawOf(el);
+        if (r !== null) choices.push(r);
+      }
+    }
+    const answer = rawOf(props.a);
+    if (answer === null || choices.length === 0) return;
+
+    const qText = rawOf(props.q) || '(question sans texte)';
+    const qShort = JSON.stringify(qText.slice(0, 45));
+
+    // a) La réponse figure dans les choices
+    if (!choices.includes(answer)) {
+      err(`Réponse absente des choix : a=${JSON.stringify(answer.slice(0, 35))} — q=${qShort}`);
+      logicErrors++;
+    }
+    // b) Pas de doublons dans les choices
+    const set = new Set(choices);
+    if (set.size !== choices.length) {
+      err(`Choix en double — q=${qShort}`);
+      logicErrors++;
+    }
+  }
+
+  function checkTree(objNode, ctx) {
+    // trespec: { pA:[n,d], pCA:[n,d], pDA:[n,d], pCBarA:[n,d], pDBarA:[n,d] }
+    const fr = {};
+    for (const p of objNode.properties) {
+      if (p.type !== 'ObjectProperty') continue;
+      const k = p.key.name || p.key.value;
+      if (p.value.type === 'ArrayExpression' && p.value.elements.length === 2) {
+        const n = numOf(p.value.elements[0]), d = numOf(p.value.elements[1]);
+        if (n !== null && d !== null && d !== 0) fr[k] = n / d;
+      }
+    }
+    const pairs = [['pCA', 'pDA'], ['pCBarA', 'pDBarA']];
+    for (const [x, y] of pairs) {
+      if (fr[x] !== undefined && fr[y] !== undefined) {
+        const s = fr[x] + fr[y];
+        if (Math.abs(s - 1) > 1e-9) {
+          err(`Arbre : ${x}+${y} = ${s.toFixed(3)} ≠ 1 — ${ctx}`);
+          logicErrors++;
+        }
+      }
+    }
+    if (fr.pA !== undefined && (fr.pA < 0 || fr.pA > 1)) {
+      err(`Arbre : pA=${fr.pA} hors [0;1] — ${ctx}`);
+      logicErrors++;
+    }
+  }
+
+  function checkTable(objNode, ctx) {
+    // tspec: { rows, cols, data:[[...]] } — la dernière ligne/colonne = totaux
+    let data = null;
+    for (const p of objNode.properties) {
+      if (p.type !== 'ObjectProperty') continue;
+      const k = p.key.name || p.key.value;
+      if (k === 'data' && p.value.type === 'ArrayExpression') {
+        data = p.value.elements.map(row =>
+          row && row.type === 'ArrayExpression' ? row.elements.map(numOf) : null);
+      }
+    }
+    if (!data || data.some(r => !r || r.some(v => v === null))) return; // données non numériques : on passe
+    const R = data.length, C = data[0].length;
+    if (R < 2 || C < 2) return;
+    // total de chaque ligne = somme des cellules précédentes
+    for (let r = 0; r < R; r++) {
+      const s = data[r].slice(0, C - 1).reduce((a, b) => a + b, 0);
+      if (s !== data[r][C - 1]) {
+        err(`Tableau : ligne ${r + 1}, somme=${s} ≠ total=${data[r][C - 1]} — ${ctx}`);
+        logicErrors++;
+      }
+    }
+    for (let cIdx = 0; cIdx < C; cIdx++) {
+      const s = data.slice(0, R - 1).reduce((a, row) => a + row[cIdx], 0);
+      if (s !== data[R - 1][cIdx]) {
+        err(`Tableau : colonne ${cIdx + 1}, somme=${s} ≠ total=${data[R - 1][cIdx]} — ${ctx}`);
+        logicErrors++;
+      }
+    }
+  }
+
+  let nQ = 0, nTree = 0, nTable = 0;
+  function walk(node) {
+    if (!node || typeof node !== 'object') return;
+    if (Array.isArray(node)) { node.forEach(walk); return; }
+    if (node.type === 'ObjectExpression') {
+      const keys = node.properties
+        .filter(p => p.type === 'ObjectProperty')
+        .map(p => p.key.name || p.key.value);
+      if (keys.includes('q') && keys.includes('choices') && keys.includes('a')) { nQ++; checkQuestion(node); }
+    }
+    if (node.type === 'ObjectProperty' && node.key) {
+      const k = node.key.name || node.key.value;
+      if (k === 'trespec' && node.value.type === 'ObjectExpression') { nTree++; checkTree(node.value, `trespec #${nTree}`); }
+      if (k === 'tspec' && node.value.type === 'ObjectExpression') { nTable++; checkTable(node.value, `tspec #${nTable}`); }
+    }
+    for (const k in node) {
+      if (k === 'loc' || k === 'start' || k === 'end') continue;
+      walk(node[k]);
+    }
+  }
+  walk(ast);
+  if (logicErrors === 0) ok(`${nQ} QCM, ${nTree} arbres, ${nTable} tableaux vérifiés — cohérents`);
+  else log(`  → ${logicErrors} incohérence(s) logique(s)`);
+}
+
+// ─────────────────────────────────────────────────────────────────────────
 log('\n' + '─'.repeat(50));
 if (errors === 0) {
   console.log(`\x1b[32m✓ Tout est bon — prêt à pusher.\x1b[0m` + (warnings ? ` (${warnings} avertissement(s))` : ''));

@@ -587,7 +587,7 @@ function DragGraph({ spec, onConclude }) {
       {phase!=="drag"&&(
         <div style={{position:"absolute",top:5,right:5,
           background:"rgba(30,41,59,.85)",borderRadius:20,padding:"3px 8px",
-          fontSize:9,color:"#94A3B8",fontWeight:700,pointerEvents:"none"}}>
+          fontSize:10,color:"#94A3B8",fontWeight:700,pointerEvents:"none"}}>
           🔒 y = {kR}
         </div>
       )}
@@ -814,9 +814,9 @@ function TableauVarGrid({ spec, activeFill, fills, validated, onCellClick }) {
       {/* f(x) row */}
       <div style={{display:"grid",gridTemplateColumns:gridCols,minHeight:32}}>
         <div style={{display:"flex",alignItems:"center",justifyContent:"center",
-          fontWeight:700,fontSize:9,color:"#64748B",
+          fontWeight:700,fontSize:10,color:"#64748B",
           borderRight:"1.5px solid #CBD5E1",flexDirection:"column",lineHeight:1.2,padding:"2px"}}>
-          <span>f</span><span style={{fontSize:8}}>(x)</span>
+          <span>f</span><span style={{fontSize:10}}>(x)</span>
         </div>
         {cells.map((cell,i)=>(
           <div key={`fr${i}`} style={{
@@ -4450,7 +4450,7 @@ const DB = {
       // ── Cinéma table ──
       { q: r`P(\text{lit}\cap\text{cinéma})=?`,
         tspec: { ...T_CINEMA, hi:[{r:0,c:0},{r:2,c:2}] },
-        choices:[r`\dfrac{1}{5}`,r`\dfrac{2}{5}`,r`\dfrac{1}{2}`,r`\dfrac{2}{5}`],
+        choices:[r`\dfrac{1}{5}`,r`\dfrac{2}{5}`,r`\dfrac{1}{2}`,r`\dfrac{1}{4}`],
         a:r`\dfrac{1}{5}`, tip:r`\frac{4}{20}=\frac{1}{5}` },
 
       { q: r`P_{\text{cinéma}}(\text{lit})=?`,
@@ -5435,21 +5435,21 @@ const DB = {
           r`p(|M_{100}-E(X)|\geqslant 0{,}3)\leqslant 1`,
           r`p(|M_{100}-E(X)|\geqslant 0{,}3)\leqslant \dfrac{9}{100\times 0{,}09}=1`,
           r`p(|M_{100}-E(X)|\geqslant 0{,}3)\leqslant \dfrac{9}{9}=1`,
-          r`p(|M_{100}-E(X)|\geqslant 0{,}3)\leqslant \dfrac{9}{100\times 0{,}09}=1`
+          r`p(|M_{100}-E(X)|\geqslant 0{,}3)\leqslant \dfrac{9}{100\times 0{,}3}=0{,}3`
         ],
         a: r`p(|M_{100}-E(X)|\geqslant 0{,}3)\leqslant \dfrac{9}{100\times 0{,}09}=1`,
         tip: r`\dfrac{V(X)}{n\delta^2}=\dfrac{9}{100\times(0{,}3)^2}=\dfrac{9}{9}=1.\text{ Borne triviale : }\delta\text{ trop petit. Il faut augmenter }\delta\text{ ou }n\text{ pour obtenir une borne utile.}` },
 
       // gn_26 — Concentration utile — moyen
-      { q: r`V(X)=4,\ n=400.\\\text{ Majorer }p(|M_{400}-E(X)|\geqslant 0{,}1).`,
+      { q: r`V(X)=4,\ n=400.\\\text{ Majorer }p(|M_{400}-E(X)|\geqslant 0{,}2).`,
         choices: [
-          r`p(|M_{400}-E(X)|\geqslant 0{,}1)\leqslant \dfrac{4}{400\times 0{,}01}=1`,
-          r`p(|M_{400}-E(X)|\geqslant 0{,}1)\leqslant \dfrac{4}{4}=1`,
-          r`p(|M_{400}-E(X)|\geqslant 0{,}1)\leqslant \dfrac{4}{400\times 0{,}01}=1`,
-          r`p(|M_{400}-E(X)|\geqslant 0{,}1)\leqslant \dfrac{1}{4}=0{,}25`
+          r`p(|M_{400}-E(X)|\geqslant 0{,}2)\leqslant \dfrac{4}{400\times 0{,}04}=0{,}25`,
+          r`p(|M_{400}-E(X)|\geqslant 0{,}2)\leqslant \dfrac{4}{4}=1`,
+          r`p(|M_{400}-E(X)|\geqslant 0{,}2)\leqslant \dfrac{4}{400\times 0{,}2}=0{,}05`,
+          r`p(|M_{400}-E(X)|\geqslant 0{,}2)\leqslant \dfrac{1}{16}`
         ],
-        a: r`p(|M_{400}-E(X)|\geqslant 0{,}1)\leqslant \dfrac{1}{4}=0{,}25`,
-        tip: r`\dfrac{V(X)}{n\delta^2}=\dfrac{4}{400\times 0{,}01}=\dfrac{4}{4}=1.\text{ Hmm — borne triviale. Essayons }\delta=0{,}2:\dfrac{4}{400\times0{,}04}=\dfrac{4}{16}=\frac{1}{4}=0{,}25.\ \checkmark` },
+        a: r`p(|M_{400}-E(X)|\geqslant 0{,}2)\leqslant \dfrac{4}{400\times 0{,}04}=0{,}25`,
+        tip: r`\dfrac{V(X)}{n\delta^2}=\dfrac{4}{400\times(0{,}2)^2}=\dfrac{4}{16}=0{,}25.\text{ Attention à bien mettre }\delta\text{ au carré.}` },
 
       // gn_27 — Minorer l'intérieur avec concentration — moyen
       { q: r`V(X)=1,\ n=100.\\\text{ Minorer }p(|M_{100}-E(X)|<0{,}5).`,
@@ -15748,8 +15748,8 @@ function DiagnosticScreen({profile, onComplete}) {
             borderRadius:99,transition:'width .4s ease'}}/>
         </div>
         <div style={{display:'flex',justifyContent:'space-between',marginTop:4}}>
-          <span style={{color:'rgba(255,255,255,0.5)',fontSize:9}}>Question {idx+1}/{diagQ.length}</span>
-          <span style={{color:'rgba(255,255,255,0.5)',fontSize:9}}>{pct}%</span>
+          <span style={{color:'rgba(255,255,255,0.5)',fontSize:10}}>Question {idx+1}/{diagQ.length}</span>
+          <span style={{color:'rgba(255,255,255,0.5)',fontSize:10}}>{pct}%</span>
         </div>
       </div>
 
@@ -15856,7 +15856,7 @@ function DiagnosticResultScreen({profile, diagResults, onStart}) {
                 <div style={{flex:1}}>
                   <div style={{display:'flex',justifyContent:'space-between',marginBottom:3}}>
                     <span style={{fontSize:10,fontWeight:700,color:'#334155'}}>{cat.label}</span>
-                    <span style={{fontSize:9,color,fontWeight:700}}>{label}</span>
+                    <span style={{fontSize:10,color,fontWeight:700}}>{label}</span>
                   </div>
                   <div style={{height:5,background:'#F1F5F9',borderRadius:99,overflow:'hidden'}}>
                     <div style={{height:'100%',width:`${pct||5}%`,background:color,
@@ -15935,7 +15935,7 @@ function WeeklyProgramScreen({profile, program, allProg, onStartSession, onSkip}
         {/* Today's session highlighted */}
         {program.days[todayIdx] && (
           <div>
-            <div style={{fontSize:9,fontWeight:700,color:'#94A3B8',textTransform:'uppercase',letterSpacing:1,marginBottom:6}}>
+            <div style={{fontSize:10,fontWeight:700,color:'#94A3B8',textTransform:'uppercase',letterSpacing:1,marginBottom:6}}>
               🌟 Aujourd'hui
             </div>
             <div style={{background:'linear-gradient(135deg,#7C3AED,#5B21B6)',
@@ -15944,13 +15944,13 @@ function WeeklyProgramScreen({profile, program, allProg, onStartSession, onSkip}
               <div style={{display:'flex',alignItems:'center',gap:10}}>
                 <span style={{fontSize:24}}>{getCatInfo(program.days[todayIdx].catId)?.emoji||'📚'}</span>
                 <div style={{flex:1}}>
-                  <div style={{color:'rgba(255,255,255,0.6)',fontSize:9,fontWeight:700,textTransform:'uppercase'}}>
+                  <div style={{color:'rgba(255,255,255,0.6)',fontSize:10,fontWeight:700,textTransform:'uppercase'}}>
                     {program.days[todayIdx].type==='renforcement'?'🔧 Renforcement':'⚡ Consolidation'}
                   </div>
                   <div style={{color:'#fff',fontWeight:800,fontSize:13,fontFamily:"'Nunito',sans-serif"}}>
                     {getSubInfo(program.days[todayIdx].catId, program.days[todayIdx].subId)?.label||program.days[todayIdx].subId}
                   </div>
-                  <div style={{color:'rgba(255,255,255,0.5)',fontSize:9,marginTop:1}}>
+                  <div style={{color:'rgba(255,255,255,0.5)',fontSize:10,marginTop:1}}>
                     {getCatInfo(program.days[todayIdx].catId)?.label}
                   </div>
                 </div>
@@ -15966,7 +15966,7 @@ function WeeklyProgramScreen({profile, program, allProg, onStartSession, onSkip}
 
         {/* Full week plan */}
         <div>
-          <div style={{fontSize:9,fontWeight:700,color:'#94A3B8',textTransform:'uppercase',letterSpacing:1,marginBottom:7}}>
+          <div style={{fontSize:10,fontWeight:700,color:'#94A3B8',textTransform:'uppercase',letterSpacing:1,marginBottom:7}}>
             📅 La semaine
           </div>
           <div style={{background:'#fff',borderRadius:16,overflow:'hidden',
@@ -15994,7 +15994,7 @@ function WeeklyProgramScreen({profile, program, allProg, onStartSession, onSkip}
                     <div style={{fontSize:11,fontWeight:700,color:'#334155'}}>
                       {getSubInfo(day.catId,day.subId)?.label||day.subId}
                     </div>
-                    <div style={{fontSize:9,color:'#94A3B8'}}>
+                    <div style={{fontSize:10,color:'#94A3B8'}}>
                       {day.type==='renforcement'?'🔧 Renforcement':'⚡ Consolidation'}
                       {r!==null&&` · ${r}% de réussite`}
                     </div>
@@ -16009,7 +16009,7 @@ function WeeklyProgramScreen({profile, program, allProg, onStartSession, onSkip}
         {/* Error patterns */}
         {weakPats.length>0&&(
           <div>
-            <div style={{fontSize:9,fontWeight:700,color:'#94A3B8',textTransform:'uppercase',letterSpacing:1,marginBottom:7}}>
+            <div style={{fontSize:10,fontWeight:700,color:'#94A3B8',textTransform:'uppercase',letterSpacing:1,marginBottom:7}}>
               ⚠️ Sigma a repéré tes pièges
             </div>
             <div style={{background:'#FEF9C3',borderRadius:14,padding:'12px 14px',
@@ -16022,7 +16022,7 @@ function WeeklyProgramScreen({profile, program, allProg, onStartSession, onSkip}
                     <div style={{fontSize:11,fontWeight:700,color:'#92400E'}}>
                       {getSubInfo(w.catId,w.subId)?.label||w.subId}
                     </div>
-                    <div style={{fontSize:9,color:'#B45309'}}>
+                    <div style={{fontSize:10,color:'#B45309'}}>
                       Taux de réussite : {w.rate}% · {w.errors} erreur{w.errors>1?'s':''} au total
                     </div>
                   </div>
@@ -17326,10 +17326,10 @@ function MonParcoursScreen({profile, onBack, onStartPractice, onStartTest, onCol
                       <div style={{fontWeight:800,fontSize:12,color:"#1E293B",fontFamily:"'Nunito',sans-serif"}}>{cat?.label||catId}</div>
                       <div style={{display:"flex",alignItems:"center",gap:6,marginTop:3}}>
                         <div style={{flex:1}}><Prog pct={catPct} color={catPct>=80?"green":catPct>=50?"orange":"red"}/></div>
-                        <span style={{fontSize:8,color:"#94A3B8",fontWeight:600,flexShrink:0}}>{catStars}/{catMax}⭐</span>
+                        <span style={{fontSize:10,color:"#94A3B8",fontWeight:600,flexShrink:0}}>{catStars}/{catMax}⭐</span>
                       </div>
                     </div>
-                    <span style={{color:"#CBD5E1",fontSize:9,transform:isExp?"rotate(180deg)":"none",transition:".2s"}}>▼</span>
+                    <span style={{color:"#CBD5E1",fontSize:10,transform:isExp?"rotate(180deg)":"none",transition:".2s"}}>▼</span>
                   </button>
                   {isExp&&(
                     <div style={{borderTop:"1px solid #F1F5F9"}}>
@@ -17343,19 +17343,19 @@ function MonParcoursScreen({profile, onBack, onStartPractice, onStartTest, onCol
                             <div style={{display:"flex",alignItems:"center",gap:5,marginBottom:p.pt>0?4:5}}>
                               <span style={{fontSize:11,flexShrink:0}}>{statusIcon}</span>
                               <div style={{flex:1,fontSize:10,fontWeight:700,color:"#334155",lineHeight:1.3}}>{sl}</div>
-                              {r!==null&&<span style={{fontSize:9,color:"#64748B",fontWeight:700,flexShrink:0}}>{r}%</span>}
+                              {r!==null&&<span style={{fontSize:10,color:"#64748B",fontWeight:700,flexShrink:0}}>{r}%</span>}
                             </div>
                             {p.pt>0&&<div style={{marginBottom:5}}><Prog pct={r} color={r>=80?"green":r>=60?"orange":"red"}/></div>}
                             <div style={{display:"flex",gap:5}}>
                               <button onClick={()=>onStartPractice(catId,subId)}
                                 style={{flex:1,padding:"6px 2px",borderRadius:8,border:"none",
-                                  background:lvlReal.color,color:"#fff",fontSize:9,fontWeight:700,cursor:"pointer"}}>
+                                  background:lvlReal.color,color:"#fff",fontSize:10,fontWeight:700,cursor:"pointer"}}>
                                 ✏️ S'entraîner
                               </button>
                               <button onClick={()=>ct&&onStartTest(catId,subId)} disabled={!ct}
                                 style={{flex:1,padding:"6px 2px",borderRadius:8,border:"none",
                                   background:ct?"#10B981":"#E2E8F0",color:ct?"#fff":"#94A3B8",
-                                  fontSize:9,fontWeight:700,cursor:ct?"pointer":"not-allowed"}}>
+                                  fontSize:10,fontWeight:700,cursor:ct?"pointer":"not-allowed"}}>
                                 🎯 Tester
                               </button>
                             </div>
@@ -17395,7 +17395,7 @@ function MonParcoursScreen({profile, onBack, onStartPractice, onStartTest, onCol
                 </button>
               );
             })()}
-            <div style={{fontSize:9,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
+            <div style={{fontSize:10,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
               letterSpacing:1,marginBottom:8,marginTop:6}}>
               🎖️ Badges — {badgesLocal.filter(b=>BADGES.find(B=>B.id===b)).length}/{BADGES.filter(b=>!b.secret).length} débloqués
             </div>
@@ -17413,10 +17413,10 @@ function MonParcoursScreen({profile, onBack, onStartPractice, onStartTest, onCol
                       color:unlocked?"#1E293B":"#94A3B8",marginTop:4}}>
                       {isSecret?"🔒":b.label}
                     </div>
-                    <div style={{fontSize:9,color:"#CBD5E1",marginTop:2,lineHeight:1.3}}>
+                    <div style={{fontSize:10,color:"#CBD5E1",marginTop:2,lineHeight:1.3}}>
                       {isSecret?"Mission secrète...":b.desc}
                     </div>
-                    {unlocked&&<div style={{marginTop:6,fontSize:9,color:lvlReal.color,fontWeight:700}}>✓ Débloqué !</div>}
+                    {unlocked&&<div style={{marginTop:6,fontSize:10,color:lvlReal.color,fontWeight:700}}>✓ Débloqué !</div>}
                   </div>
                 );
               })}
@@ -18788,7 +18788,7 @@ function CardView({card, unlocked, size="normal"}) {
           <div style={{
             position:"absolute", top:4, right:4,
             background:"rgba(15,23,42,.85)", borderRadius:10,
-            padding:"3px 7px", fontSize:9, fontWeight:800, color:"#F59E0B",
+            padding:"3px 7px", fontSize:10, fontWeight:800, color:"#F59E0B",
             display:"flex", alignItems:"center", gap:3
           }}>🔒</div>
         )}
@@ -18808,15 +18808,15 @@ function CardView({card, unlocked, size="normal"}) {
             }}>"{card.quote}"</div>
             <div style={{display:"flex", gap:3, marginTop:4}}>
               <div style={{flex:1, background:"#EFF6FF", borderRadius:5, padding:"2px 0", textAlign:"center"}}>
-                <div style={{fontSize:7, color:"#2563EB", fontWeight:700}}>🧠</div>
+                <div style={{fontSize:10, color:"#2563EB", fontWeight:700}}>🧠</div>
                 <div style={{fontSize: size==="small"?8:10, fontWeight:900, color:"#2563EB"}}>{card.stats.brain}</div>
               </div>
               <div style={{flex:1, background:"#FFF7ED", borderRadius:5, padding:"2px 0", textAlign:"center"}}>
-                <div style={{fontSize:7, color:"#EA580C", fontWeight:700}}>⚡</div>
+                <div style={{fontSize:10, color:"#EA580C", fontWeight:700}}>⚡</div>
                 <div style={{fontSize: size==="small"?8:10, fontWeight:900, color:"#EA580C"}}>{card.stats.speed}</div>
               </div>
               <div style={{flex:1, background:"#ECFDF5", borderRadius:5, padding:"2px 0", textAlign:"center"}}>
-                <div style={{fontSize:7, color:"#047857", fontWeight:700}}>🛡️</div>
+                <div style={{fontSize:10, color:"#047857", fontWeight:700}}>🛡️</div>
                 <div style={{fontSize: size==="small"?8:10, fontWeight:900, color:"#047857"}}>{card.stats.shield}</div>
               </div>
             </div>
@@ -19082,7 +19082,7 @@ function VigilanceScreen({profile, qState, onBack, onRemediation, onWorkTheme, s
       {/* ── Erreurs récurrentes détectées (cross-session) ───────── */}
       {recurringErrors.length > 0 && (
         <div style={{marginBottom:12}}>
-          <div style={{fontSize:9,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
+          <div style={{fontSize:10,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
             letterSpacing:1,marginBottom:6}}>🔍 Ce que Sigma remarque</div>
           {recurringErrors.slice(0,3).map((e, i) => {
             const subLabel = (getSubInfo(e.catId, e.subId) && getSubInfo(e.catId, e.subId).label) || e.subId;
@@ -19100,7 +19100,7 @@ function VigilanceScreen({profile, qState, onBack, onRemediation, onWorkTheme, s
                       {e.conseil}
                     </div>
                   )}
-                  <div style={{fontSize:9,color:"#C2410C",marginTop:5,fontWeight:700}}>
+                  <div style={{fontSize:10,color:"#C2410C",marginTop:5,fontWeight:700}}>
                     Repéré {e.count} fois
                   </div>
                 </div>
@@ -19134,13 +19134,13 @@ function VigilanceScreen({profile, qState, onBack, onRemediation, onWorkTheme, s
       {/* ── Suggéré pour toi (depuis sigma) ─────────────────────── */}
       {suggested && (
         <div style={{marginBottom:12}}>
-          <div style={{fontSize:9,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
+          <div style={{fontSize:10,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
             letterSpacing:1,marginBottom:6}}>💡 Suggéré pour toi</div>
           <div style={{background:`linear-gradient(135deg,${lvlColor||"#7C3AED"},#5B21B6)`,
             borderRadius:14,padding:"13px",display:"flex",alignItems:"center",gap:10}}>
             <span style={{fontSize:22}}>{getCatInfo(suggested.c)?.emoji||"📚"}</span>
             <div style={{flex:1}}>
-              <div style={{color:"rgba(255,255,255,0.6)",fontSize:9,fontWeight:700,textTransform:"uppercase"}}>
+              <div style={{color:"rgba(255,255,255,0.6)",fontSize:10,fontWeight:700,textTransform:"uppercase"}}>
                 {getCatInfo(suggested.c)?.label||suggested.c}
               </div>
               <div style={{color:"#fff",fontWeight:800,fontSize:12,fontFamily:"'Nunito',sans-serif",marginTop:1}}>
@@ -19193,21 +19193,21 @@ function VigilanceScreen({profile, qState, onBack, onRemediation, onWorkTheme, s
                     <div style={{fontSize:10,color:"#64748B",marginTop:2}}>{cat?.label}</div>
                     <div style={{display:"flex",gap:5,marginTop:6,flexWrap:"wrap"}}>
                       {s.failedIdx.length > 0 && (
-                        <span style={{fontSize:9,fontWeight:700,
+                        <span style={{fontSize:10,fontWeight:700,
                           background:"#FEE2E2",color:"#991B1B",
                           borderRadius:99,padding:"2px 8px"}}>
                           ⚠️ {s.failedIdx.length} en difficulté
                         </span>
                       )}
                       {s.learning > 0 && (
-                        <span style={{fontSize:9,fontWeight:700,
+                        <span style={{fontSize:10,fontWeight:700,
                           background:"#FEF3C7",color:"#92400E",
                           borderRadius:99,padding:"2px 8px"}}>
                           {s.learning} à revoir
                         </span>
                       )}
                       {s.mastered > 0 && (
-                        <span style={{fontSize:9,fontWeight:700,
+                        <span style={{fontSize:10,fontWeight:700,
                           background:"#ECFDF5",color:"#065F46",
                           borderRadius:99,padding:"2px 8px"}}>
                           ✓ {s.mastered} acquises
@@ -19261,7 +19261,7 @@ function ApprendreHubScreen({onMode}) {
           <div style={{flex:1}}>
             <div style={{display:"flex",alignItems:"center",gap:7}}>
               <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:15,color:"#fff"}}>Cours interactifs</div>
-              <span style={{fontSize:8.5,fontWeight:900,color:"#FDE68A",
+              <span style={{fontSize:10,fontWeight:900,color:"#FDE68A",
                 background:"rgba(0,0,0,.25)",borderRadius:99,padding:"1.5px 7px"}}>🚧 BÊTA</span>
             </div>
             <div style={{color:"rgba(255,255,255,0.7)",fontSize:10,marginTop:3}}>Révise les notions · formules interactives</div>
@@ -19339,7 +19339,7 @@ function NotionDuJour() {
             </span>
           )}
         </div>
-        <span style={{fontSize:9,fontWeight:800,color:"rgba(255,255,255,.75)",
+        <span style={{fontSize:10,fontWeight:800,color:"rgba(255,255,255,.75)",
           background:"rgba(255,255,255,.15)",borderRadius:99,padding:"2px 8px",
           textTransform:"uppercase",letterSpacing:.6}}>
           {card.chapitre}
@@ -19351,7 +19351,7 @@ function NotionDuJour() {
         padding:"8px 14px 4px",background:"#F5F3FF"}}>
         {week7.map((d,i) => (
           <div key={i} style={{display:"flex",flexDirection:"column",alignItems:"center",gap:3}}>
-            <div style={{fontSize:8,fontWeight:700,color:"#7C3AED",
+            <div style={{fontSize:10,fontWeight:700,color:"#7C3AED",
               textTransform:"uppercase"}}>{d.label}</div>
             <div style={{width:18,height:18,borderRadius:"50%",
               border: d.isToday ? "2px solid #6366F1" : "none",
@@ -19360,8 +19360,8 @@ function NotionDuJour() {
                         : d.isToday        ? "rgba(99,102,241,.12)"
                         :                    "#E2E8F0",
               display:"flex",alignItems:"center",justifyContent:"center"}}>
-              {d.res==='known'  && <span style={{fontSize:9}}>✓</span>}
-              {d.res==='review' && <span style={{fontSize:9}}>↺</span>}
+              {d.res==='known'  && <span style={{fontSize:10}}>✓</span>}
+              {d.res==='review' && <span style={{fontSize:10}}>↺</span>}
             </div>
           </div>
         ))}
@@ -19556,10 +19556,10 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
                 </div>;
           })()}
           <div style={{flex:1,minWidth:0}}>
-            <div style={{color:"#64748B",fontSize:9,fontWeight:600}}>Bonjour 👋</div>
+            <div style={{color:"#64748B",fontSize:10,fontWeight:600}}>Bonjour 👋</div>
             <div style={{color:"#fff",fontSize:15,fontWeight:900,fontFamily:"'Nunito',sans-serif",lineHeight:1.1}}>{profile.name}</div>
             <span style={{background:"rgba(255,255,255,0.08)",borderRadius:99,padding:"1px 7px",
-              color:"#94A3B8",fontSize:9,fontWeight:600}}>{curr.emoji} {curr.label}</span>
+              color:"#94A3B8",fontSize:10,fontWeight:600}}>{curr.emoji} {curr.label}</span>
           </div>
           {/* Streak — icône seule */}
           {(profile.streak||0) > 0 && (
@@ -19580,8 +19580,8 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
         {/* Barre XP */}
         <div>
           <div style={{display:"flex",justifyContent:"space-between",marginBottom:3}}>
-            <span style={{color:"#94A3B8",fontSize:9,fontWeight:600}}>⚡ {xp} XP — {lvl.emoji} {lvl.label}</span>
-            {nextLvl&&<span style={{color:"#64748B",fontSize:9}}>{nextLvl.xpNeeded - xp} XP → {nextLvl.emoji} {nextLvl.label}</span>}
+            <span style={{color:"#94A3B8",fontSize:10,fontWeight:600}}>⚡ {xp} XP — {lvl.emoji} {lvl.label}</span>
+            {nextLvl&&<span style={{color:"#64748B",fontSize:10}}>{nextLvl.xpNeeded - xp} XP → {nextLvl.emoji} {nextLvl.label}</span>}
           </div>
           <div style={{height:5,background:"rgba(255,255,255,0.08)",borderRadius:99,overflow:"hidden"}}>
             <div style={{height:"100%",width:`${xpPct}%`,
@@ -19684,7 +19684,7 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
           )}
           {dailyDone && (
             <div style={{background:"rgba(255,255,255,0.15)",borderRadius:99,padding:"3px 10px",
-              color:"#fff",fontSize:9,fontWeight:700,flexShrink:0}}>Reviens demain 🌅</div>
+              color:"#fff",fontSize:10,fontWeight:700,flexShrink:0}}>Reviens demain 🌅</div>
           )}
         </div>
 
@@ -19702,7 +19702,7 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
         })()}
 
         {/* ══ APPRENDRE ═══════════════════════════════════════════════════════ */}
-        <div style={{fontSize:8.5,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
+        <div style={{fontSize:10,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
           letterSpacing:1.2,marginBottom:7}}>📖 Apprendre</div>
 
         <NotionDuJour/>
@@ -19733,7 +19733,7 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
           <div style={{flex:1}}>
             <div style={{display:"flex",alignItems:"center",gap:7}}>
               <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:15,color:"#fff",lineHeight:1.1}}>Cours interactifs</div>
-              <span style={{fontSize:8.5,fontWeight:900,color:"#FDE68A",
+              <span style={{fontSize:10,fontWeight:900,color:"#FDE68A",
                 background:"rgba(0,0,0,.25)",borderRadius:99,padding:"1.5px 7px",letterSpacing:.3}}>🚧 BÊTA</span>
             </div>
             <div style={{color:"rgba(255,255,255,0.7)",fontSize:10,marginTop:3}}>
@@ -19744,7 +19744,7 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
         </button>
 
         {/* ══ S'ENTRAÎNER ══════════════════════════════════════════════════════ */}
-        <div style={{fontSize:8.5,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
+        <div style={{fontSize:10,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
           letterSpacing:1.2,marginBottom:7}}>💪 S'entraîner</div>
 
         <button onClick={()=>onMode("entrainement")}
@@ -19814,7 +19814,7 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
         })()}
 
         {/* ══ S'ÉVALUER POUR LE BAC ════════════════════════════════════════════ */}
-        <div style={{fontSize:8.5,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
+        <div style={{fontSize:10,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
           letterSpacing:1.2,marginBottom:7}}>🎯 S'évaluer pour le Bac</div>
 
         <button onClick={()=>onMode("bac")}
@@ -19824,7 +19824,7 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
             display:"flex",alignItems:"center",gap:14,
             boxShadow:"0 5px 16px rgba(245,158,11,.35)",textAlign:"left"}}>
           {Date.now()<1781827200000&&<span style={{position:"absolute",top:8,right:12,
-            fontSize:8.5,fontWeight:900,color:"#fff",
+            fontSize:10,fontWeight:900,color:"#fff",
             background:"linear-gradient(135deg,#EF4444,#DC2626)",borderRadius:99,
             padding:"1.5px 6px",letterSpacing:0.5,
             boxShadow:"0 1px 4px rgba(0,0,0,.25)"}}>NEW</span>}
@@ -19841,7 +19841,7 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
         </button>
 
         {/* ══ DÉFI CHRONO ══════════════════════════════════════════════════════ */}
-        <div style={{fontSize:8.5,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
+        <div style={{fontSize:10,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
           letterSpacing:1.2,marginBottom:7}}>⚡ Défi chrono</div>
 
         <button onClick={()=>onMode("sprint")}
@@ -19924,10 +19924,10 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
                       <div style={{fontWeight:800,fontSize:12,color:"#1E293B",fontFamily:"'Nunito',sans-serif"}}>{cat?.label||catId}</div>
                       <div style={{display:"flex",alignItems:"center",gap:6,marginTop:3}}>
                         <div style={{flex:1}}><Prog pct={catPct} color={catPct>=80?"green":catPct>=50?"orange":"red"}/></div>
-                        <span style={{fontSize:8,color:"#94A3B8",fontWeight:600,flexShrink:0}}>{catStars}/{catMax}⭐</span>
+                        <span style={{fontSize:10,color:"#94A3B8",fontWeight:600,flexShrink:0}}>{catStars}/{catMax}⭐</span>
                       </div>
                     </div>
-                    <span style={{color:"#CBD5E1",fontSize:9,transform:isExp?"rotate(180deg)":"none",transition:".2s"}}>▼</span>
+                    <span style={{color:"#CBD5E1",fontSize:10,transform:isExp?"rotate(180deg)":"none",transition:".2s"}}>▼</span>
                   </button>
                   {isExp&&(
                     <div style={{borderTop:"1px solid #F1F5F9"}}>
@@ -19941,19 +19941,19 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
                             <div style={{display:"flex",alignItems:"center",gap:5,marginBottom:p.pt>0?4:5}}>
                               <span style={{fontSize:11,flexShrink:0}}>{statusIcon}</span>
                               <div style={{flex:1,fontSize:10,fontWeight:700,color:"#334155",lineHeight:1.3}}>{sl}</div>
-                              {r!==null&&<span style={{fontSize:9,color:"#64748B",fontWeight:700,flexShrink:0}}>{r}%</span>}
+                              {r!==null&&<span style={{fontSize:10,color:"#64748B",fontWeight:700,flexShrink:0}}>{r}%</span>}
                             </div>
                             {p.pt>0&&<div style={{marginBottom:5}}><Prog pct={r} color={r>=80?"green":r>=60?"orange":"red"}/></div>}
                             <div style={{display:"flex",gap:5}}>
                               <button onClick={()=>onStartPractice(catId,subId)}
                                 style={{flex:1,padding:"6px 2px",borderRadius:8,border:"none",
-                                  background:lvl.color,color:"#fff",fontSize:9,fontWeight:700,cursor:"pointer"}}>
+                                  background:lvl.color,color:"#fff",fontSize:10,fontWeight:700,cursor:"pointer"}}>
                                 ✏️ S'entraîner
                               </button>
                               <button onClick={()=>ct&&onStartTest(catId,subId)} disabled={!ct}
                                 style={{flex:1,padding:"6px 2px",borderRadius:8,border:"none",
                                   background:ct?"#10B981":"#E2E8F0",color:ct?"#fff":"#94A3B8",
-                                  fontSize:9,fontWeight:700,cursor:ct?"pointer":"not-allowed"}}>
+                                  fontSize:10,fontWeight:700,cursor:ct?"pointer":"not-allowed"}}>
                                 🎯 Tester
                               </button>
                             </div>
@@ -19996,7 +19996,7 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
             })()}
 
             {/* Section Badges complémentaires */}
-            <div style={{fontSize:9,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
+            <div style={{fontSize:10,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
               letterSpacing:1,marginBottom:8,marginTop:6}}>
               🎖️ Badges — {badges.filter(b=>BADGES.find(B=>B.id===b)).length}/{BADGES.filter(b=>!b.secret).length} débloqués
             </div>
@@ -20014,10 +20014,10 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
                       color:unlocked?"#1E293B":"#94A3B8",marginTop:4}}>
                       {isSecret?"🔒":b.label}
                     </div>
-                    <div style={{fontSize:9,color:"#CBD5E1",marginTop:2,lineHeight:1.3}}>
+                    <div style={{fontSize:10,color:"#CBD5E1",marginTop:2,lineHeight:1.3}}>
                       {isSecret?"Mission secrète...":b.desc}
                     </div>
-                    {unlocked&&<div style={{marginTop:6,fontSize:9,color:lvl.color,fontWeight:700}}>✓ Débloqué !</div>}
+                    {unlocked&&<div style={{marginTop:6,fontSize:10,color:lvl.color,fontWeight:700}}>✓ Débloqué !</div>}
                   </div>
                 );
               })}
@@ -20388,7 +20388,7 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onB
                     transition: "width .4s"
                   }}/>
                 </div>
-                <div style={{textAlign:"right",fontSize:9,fontWeight:700,
+                <div style={{textAlign:"right",fontSize:10,fontWeight:700,
                   color:"rgba(255,255,255,.5)",marginTop:3}}>
                   {streakBlock.todayCount}/{streakBlock.threshold}
                 </div>
@@ -20451,7 +20451,7 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onB
         <div style={{padding:"0 18px"}}>
 
           {/* ══ APPRENDRE ══════════════════════════════════════════════════ */}
-          <div style={{fontSize:8.5,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
+          <div style={{fontSize:10,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
             letterSpacing:1.2,marginBottom:7}}>📖 Apprendre</div>
 
           <NotionDuJour/>
@@ -20482,7 +20482,7 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onB
             <div style={{flex:1}}>
               <div style={{display:"flex",alignItems:"center",gap:7}}>
                 <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:15,color:"#fff"}}>Cours interactifs</div>
-                <span style={{fontSize:8.5,fontWeight:900,color:"#FDE68A",
+                <span style={{fontSize:10,fontWeight:900,color:"#FDE68A",
                   background:"rgba(0,0,0,.25)",borderRadius:99,padding:"1.5px 7px"}}>🚧 BÊTA</span>
               </div>
               <div style={{color:"rgba(255,255,255,0.7)",fontSize:10,marginTop:3}}>Révise les notions · formules interactives</div>
@@ -20491,7 +20491,7 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onB
           </button>
 
           {/* ══ S'ENTRAÎNER ════════════════════════════════════════════════ */}
-          <div style={{fontSize:8.5,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
+          <div style={{fontSize:10,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
             letterSpacing:1.2,marginBottom:7}}>💪 S'entraîner</div>
 
           <button onClick={()=>onMode("train")} className="pop-in"
@@ -20530,7 +20530,7 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onB
           </button>
 
           {/* ══ S'ÉVALUER POUR LE BAC ═══════════════════════════════════════ */}
-          <div style={{fontSize:8.5,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
+          <div style={{fontSize:10,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
             letterSpacing:1.2,marginBottom:7}}>🎯 S'évaluer pour le Bac</div>
 
           <button onClick={()=>onMode("bac")} className="pop-in"
@@ -20540,7 +20540,7 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onB
               display:"flex",alignItems:"center",gap:14,
               boxShadow:"0 5px 16px rgba(245,158,11,.32)",textAlign:"left",animationDelay:".1s"}}>
             {Date.now()<1781827200000&&<span style={{position:"absolute",top:8,right:12,
-              fontSize:8.5,fontWeight:900,color:"#fff",
+              fontSize:10,fontWeight:900,color:"#fff",
               background:"linear-gradient(135deg,#EF4444,#DC2626)",borderRadius:99,
               padding:"1.5px 6px",letterSpacing:0.5,
               boxShadow:"0 1px 4px rgba(0,0,0,.25)"}}>NEW</span>}
@@ -20557,7 +20557,7 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onB
           </button>
 
           {/* ══ DÉFI CHRONO ════════════════════════════════════════════════ */}
-          <div style={{fontSize:8.5,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
+          <div style={{fontSize:10,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
             letterSpacing:1.2,marginBottom:7}}>⚡ Défi chrono</div>
 
           <button onClick={()=>onMode("sprint")} className="pop-in"
@@ -20914,11 +20914,11 @@ function RacinesLevelScreen({catId, qCount, onStart, onBack}) {
                   <div style={{color:"#64748B",fontSize:11,marginTop:2}}>{lv.desc}</div>
                   <div style={{display:"flex",gap:5,marginTop:6,flexWrap:"wrap"}}>
                     {lv.tags.map(t=>(
-                      <span key={t} style={{fontSize:9,fontWeight:700,
+                      <span key={t} style={{fontSize:10,fontWeight:700,
                         background:`${lv.color}18`,color:lv.color,
                         borderRadius:99,padding:"2px 7px"}}>{t}</span>
                     ))}
-                    <span style={{fontSize:9,color:"#94A3B8",fontWeight:600,marginLeft:"auto"}}>
+                    <span style={{fontSize:10,color:"#94A3B8",fontWeight:600,marginLeft:"auto"}}>
                       {qs.length} questions
                     </span>
                   </div>
@@ -21251,7 +21251,7 @@ function SubcategoryScreen({catId,qCount,onStart,onBack,onLevelPicker,defaultNiv
                     const meta = typeMeta[t];
                     const isFiltered = typeFilter === t;
                     return (
-                      <span key={t} style={{fontSize:9,fontWeight:700,padding:"2px 7px",borderRadius:99,
+                      <span key={t} style={{fontSize:10,fontWeight:700,padding:"2px 7px",borderRadius:99,
                         background:isFiltered?meta.color:`${meta.color}18`,
                         color:isFiltered?"#fff":meta.color,
                         border:isFiltered?`1.5px solid ${meta.color}`:"none"}}>
@@ -21400,11 +21400,11 @@ function IdentitesLevelScreen({catId, qCount, onStart, onBack}) {
                     <div style={{color:"#64748B",fontSize:11,marginTop:2}}>{lv.desc}</div>
                     <div style={{display:"flex",gap:5,marginTop:6,flexWrap:"wrap"}}>
                       {lv.tags.map(t=>(
-                        <span key={t} style={{fontSize:9,fontWeight:700,
+                        <span key={t} style={{fontSize:10,fontWeight:700,
                           background:`${lv.color}18`,color:lv.color,
                           borderRadius:99,padding:"2px 7px"}}>{t}</span>
                       ))}
-                      <span style={{fontSize:9,color:"#94A3B8",fontWeight:600,marginLeft:"auto"}}>
+                      <span style={{fontSize:10,color:"#94A3B8",fontWeight:600,marginLeft:"auto"}}>
                         {qs.length} questions
                       </span>
                     </div>
@@ -21592,10 +21592,10 @@ function FactorisationLevelScreen({catId, qCount, onStart, onBack}) {
                     <div style={{color:"#64748B",fontSize:11,marginTop:2}}>{lv.desc}</div>
                     <div style={{display:"flex",gap:5,marginTop:6,flexWrap:"wrap"}}>
                       {lv.tags.map(t=>(
-                        <span key={t} style={{fontSize:9,fontWeight:700,
+                        <span key={t} style={{fontSize:10,fontWeight:700,
                           background:`${lv.color}18`,color:lv.color,borderRadius:99,padding:"2px 7px"}}>{t}</span>
                       ))}
-                      <span style={{fontSize:9,color:"#94A3B8",fontWeight:600,marginLeft:"auto"}}>{qs.length} questions</span>
+                      <span style={{fontSize:10,color:"#94A3B8",fontWeight:600,marginLeft:"auto"}}>{qs.length} questions</span>
                     </div>
                   </div>
                   <span style={{color:lv.color,fontSize:18,flexShrink:0}}>›</span>
@@ -22978,7 +22978,7 @@ function MissionThemeScreen({theme, missionId, onBack, onStart}) {
                   fontSize:15,color:"#1E293B"}}>Entraînement rapide</div>
                 <div style={{color:"#64748B",fontSize:11,marginTop:3}}>10 questions — ~3 minutes</div>
                 <div style={{display:"flex",gap:5,marginTop:7}}>
-                  <span style={{fontSize:9,fontWeight:700,
+                  <span style={{fontSize:10,fontWeight:700,
                     background:"#10B98118",color:"#10B981",
                     borderRadius:99,padding:"3px 8px"}}>Rapide</span>
                 </div>
@@ -23008,7 +23008,7 @@ function MissionThemeScreen({theme, missionId, onBack, onStart}) {
                   50 questions — ~15 minutes {allQuestions.length < 50 && `(${allQuestions.length} dispo)`}
                 </div>
                 <div style={{display:"flex",gap:5,marginTop:7}}>
-                  <span style={{fontSize:9,fontWeight:700,
+                  <span style={{fontSize:10,fontWeight:700,
                     background:"#7C3AED18",color:"#7C3AED",
                     borderRadius:99,padding:"3px 8px"}}>Intense</span>
                 </div>
@@ -23068,11 +23068,11 @@ function RelatifLevelScreen({catId, qCount, onStart, onBack}) {
                     <div style={{color:"#64748B",fontSize:11,marginTop:3}}>{lv.desc}</div>
                     <div style={{display:"flex",gap:5,marginTop:7,flexWrap:"wrap"}}>
                       {lv.tags.map(t=>(
-                        <span key={t} style={{fontSize:9,fontWeight:700,
+                        <span key={t} style={{fontSize:10,fontWeight:700,
                           background:`${lv.color}18`,color:lv.color,
                           borderRadius:99,padding:"3px 8px"}}>{t}</span>
                       ))}
-                      <span style={{fontSize:9,color:"#94A3B8",fontWeight:600,marginLeft:"auto"}}>
+                      <span style={{fontSize:10,color:"#94A3B8",fontWeight:600,marginLeft:"auto"}}>
                         {lv.count} questions
                       </span>
                     </div>
@@ -23134,11 +23134,11 @@ function ReductionLevelScreen({catId, qCount, onStart, onBack}) {
                     <div style={{color:"#64748B",fontSize:11,marginTop:3}}>{lv.desc}</div>
                     <div style={{display:"flex",gap:5,marginTop:7,flexWrap:"wrap"}}>
                       {lv.tags.map(t=>(
-                        <span key={t} style={{fontSize:9,fontWeight:700,
+                        <span key={t} style={{fontSize:10,fontWeight:700,
                           background:`${lv.color}18`,color:lv.color,
                           borderRadius:99,padding:"3px 8px"}}>{t}</span>
                       ))}
-                      <span style={{fontSize:9,color:"#94A3B8",fontWeight:600,marginLeft:"auto"}}>
+                      <span style={{fontSize:10,color:"#94A3B8",fontWeight:600,marginLeft:"auto"}}>
                         {lv.count} questions
                       </span>
                     </div>
@@ -23214,11 +23214,11 @@ function DenomLevelScreen({catId, qCount, onStart, onBack}) {
                     <div style={{color:"#64748B",fontSize:11,marginTop:3}}>{lv.desc}</div>
                     <div style={{display:"flex",gap:5,marginTop:7,flexWrap:"wrap"}}>
                       {lv.tags.map(t=>(
-                        <span key={t} style={{fontSize:9,fontWeight:700,
+                        <span key={t} style={{fontSize:10,fontWeight:700,
                           background:`${lv.color}18`,color:lv.color,
                           borderRadius:99,padding:"3px 8px"}}>{t}</span>
                       ))}
-                      <span style={{fontSize:9,color:"#94A3B8",fontWeight:600,marginLeft:"auto"}}>
+                      <span style={{fontSize:10,color:"#94A3B8",fontWeight:600,marginLeft:"auto"}}>
                         {qs.length} questions
                       </span>
                     </div>
@@ -23519,7 +23519,7 @@ function BacSubjectScreen({onStart, onBack}) {
                           <div style={{display:"flex",alignItems:"center",gap:6}}>
                             <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:700,
                               fontSize:12.5,color:isEmpty?"#94A3B8":"#1E293B"}}>{sub.label}</div>
-                            {sub.newUntil&&Date.now()<sub.newUntil&&<span style={{fontSize:8,fontWeight:900,color:"#fff",
+                            {sub.newUntil&&Date.now()<sub.newUntil&&<span style={{fontSize:10,fontWeight:900,color:"#fff",
                               background:"linear-gradient(135deg,#EF4444,#DC2626)",borderRadius:99,
                               padding:"1px 5px",letterSpacing:0.5,
                               boxShadow:"0 1px 4px rgba(239,68,68,.45)"}}>NEW</span>}
@@ -24346,7 +24346,7 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
         <div style={{background:"#FEF3C7",color:"#92400E",borderRadius:99,padding:"3px 9px",fontSize:11,fontWeight:700}}>🔥{streak}</div>
         <div style={{background:cat.light,color:cat.color,borderRadius:99,padding:"3px 9px",fontSize:11,fontWeight:700,border:`1px solid ${cat.border}`}}>
           {idx+1}/{sessionQueue.current.length}
-          {sessionQueue.current.length > questions.length && <span style={{fontSize:9,opacity:.7}}> 🔄</span>}
+          {sessionQueue.current.length > questions.length && <span style={{fontSize:10,opacity:.7}}> 🔄</span>}
         </div>
       </div>
 
@@ -24534,7 +24534,7 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
               background:"#FEF3C7", borderRadius:10, padding:"9px 12px",
               borderLeft:"3px solid #F59E0B", marginBottom: q.tip ? 7 : 0
             }}>
-              <div style={{fontSize:9, fontWeight:700, color:"#92400E",
+              <div style={{fontSize:10, fontWeight:700, color:"#92400E",
                 textTransform:"uppercase", letterSpacing:0.8, marginBottom:4}}>
                 Sigma a repéré
               </div>
@@ -24548,7 +24548,7 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
               background:wasCorrect?"rgba(16,185,129,0.08)":"rgba(239,68,68,0.06)",
               borderRadius:10,padding:"8px 11px",
               borderLeft:`3px solid ${wasCorrect?"#10B981":"#EF4444"}`,overflowX:"auto"}}>
-              <div style={{fontSize:9,fontWeight:700,color:"#94A3B8",
+              <div style={{fontSize:10,fontWeight:700,color:"#94A3B8",
                 textTransform:"uppercase",letterSpacing:0.8,marginBottom:5}}>
                 {wasCorrect?"Méthode":"Rappel — pourquoi ?"}
               </div>
@@ -24575,7 +24575,7 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
               background:wasCorrect?"rgba(16,185,129,0.08)":"rgba(239,68,68,0.06)",
               borderRadius:10,padding:"8px 11px",
               borderLeft:`3px solid ${wasCorrect?"#10B981":"#EF4444"}`,overflowX:"auto"}}>
-              <div style={{fontSize:9,fontWeight:700,color:"#94A3B8",
+              <div style={{fontSize:10,fontWeight:700,color:"#94A3B8",
                 textTransform:"uppercase",letterSpacing:0.8,marginBottom:5}}>
                 {wasCorrect?"Méthode":"Rappel — pourquoi ?"}
               </div>
@@ -24695,7 +24695,7 @@ function QuizScreen({questions,catId,subId,quizMode,onFinish,onBack}) {
         const currentFeedback = qFeedback[idx] || (qKey ? qFeedbackLoaded[qKey] : null);
         return (
           <div style={{display:"flex",alignItems:"center",gap:8,marginTop:8,flexShrink:0,justifyContent:"flex-end"}}>
-            <span style={{fontSize:9,color:"#94A3B8",fontWeight:600}}>Cette question :</span>
+            <span style={{fontSize:10,color:"#94A3B8",fontWeight:600}}>Cette question :</span>
             {["up","down"].map(dir => (
               <button key={dir} onClick={()=>handleQFeedback(dir)}
                 style={{
@@ -25462,7 +25462,7 @@ function CoursListScreen({onBack,onSelectCours}) {
               <div style={{flex:1}}>
                 <div style={{display:"flex",alignItems:"center",gap:7,marginBottom:4}}>
                   <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,color:"#1E293B"}}>{c.title}</span>
-                  <span style={{fontSize:8.5,fontWeight:900,color:"#fff",
+                  <span style={{fontSize:10,fontWeight:900,color:"#fff",
                     background:"linear-gradient(135deg,#EF4444,#DC2626)",
                     borderRadius:99,padding:"1.5px 7px",letterSpacing:.4}}>NEW</span>
                 </div>
@@ -29171,7 +29171,7 @@ function BottomNav({screen, onTab}) {
             {tab.badge&&<span style={{position:"absolute",top:5,right:"calc(50% - 18px)",
               width:7,height:7,borderRadius:"50%",background:"#EF4444",border:"1.5px solid #fff"}}/>}
             <span style={{fontSize:19,lineHeight:1,filter:tab.active?"none":"opacity(0.55)"}}>{tab.emoji}</span>
-            <span style={{fontSize:9.5,fontWeight:tab.active?800:600,color:c,
+            <span style={{fontSize:10,fontWeight:tab.active?800:600,color:c,
               fontFamily:"'Nunito',sans-serif",lineHeight:1}}>{tab.label}</span>
             {tab.active&&<div style={{position:"absolute",bottom:0,left:"50%",
               transform:"translateX(-50%)",width:18,height:2.5,
