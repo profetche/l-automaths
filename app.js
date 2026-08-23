@@ -15458,6 +15458,7 @@ async function _storage_list_all() {
     BAC_COMPLETED_K, REMEDIATION_COUNT_K, COMBO_MAX_K, MORNING_DONE_K,
     EVENING_DONE_K, IMPROVED_K, REMINDER_K, XP_K, BADGE_K, DAILY_K,
     SHIELD_K, SPRINT_BEST_K, RECENT_Q_K,
+    FLASHCARDS_DONE_K, COURS_SEEN_K, DAILY_COUNT_K,
   ];
   for (const k of flatKeys) { if (k) keys.push(k); }
   // Dédoublonner
@@ -17699,6 +17700,11 @@ const COMBO_MAX_K      = 'user:combo_max';       // record de bonnes réponses d
 const MORNING_DONE_K   = 'user:morning_done';    // bool : a joué avant 10h au moins une fois
 const EVENING_DONE_K   = 'user:evening_done';    // bool : a joué après 18h au moins une fois
 const IMPROVED_K       = 'user:improved';        // bool : a rattrapé un thème de <40% à >70%
+// Phase 1 — instrumentation des modes manquants (flashcards, cours, défi du jour)
+const FLASHCARDS_DONE_K = 'user:flashcards_done'; // nb de paquets de flashcards terminés en entier
+const COURS_SEEN_K      = 'user:cours_seen';      // liste des cours interactifs distincts ouverts
+const DAILY_COUNT_K     = 'user:daily_count';     // nb cumulé de défis du jour complétés
+// (notion du jour : compté à la volée depuis les clés localStorage "ndj_*", pas de clé dédiée)
 
 // Images placeholder (à remplacer par les PNG base64 quand reçus)
 const CARDS_IMAGES = {
@@ -17835,6 +17841,11 @@ function check_remediation_ge(n) { return function(c){ return (c.remediationCoun
 function check_activedays_ge(n) { return function(c){ return (c.activeDays||[]).length >= n; }; }
 function check_cats_visited_ge(n) { return function(c){ return (c.catsVisited||[]).length >= n; }; }
 function check_cats_visited_has(id) { return function(c){ return (c.catsVisited||[]).includes(id); }; }
+// Phase 1 — checks modes manquants
+function check_flashcards_ge(n) { return function(c){ return (c.flashcardsDone||0) >= n; }; }
+function check_cours_ge(n) { return function(c){ return (c.coursSeen||[]).length >= n; }; }
+function check_daily_ge(n) { return function(c){ return (c.dailyCount||0) >= n; }; }
+function check_notions_ge(n) { return function(c){ return (c.notionsDone||0) >= n; }; }
 function check_all_cats() { return function(c){
   // Joué dans toutes les catégories de son niveau (hors missions/bac qui sont des méta-catégories)
   try {
@@ -18043,117 +18054,111 @@ const CARDS = [
 ];
 
 const CARDS_OBJECTIVES = {
-  // ─── Objectifs série A : Histoire ───
-  "sigma_cromagnon": { label:"Fais ton 1er quiz", check:(c) => check_lifetime_ge(1)(c) },
+  // ═══ BRONZE (quelques semaines) ═══
+  "sigma_cromagnon": { label:"Réponds à ta 1re question", check:(c) => check_lifetime_ge(1)(c) },
   "sigma_pharaon": { label:"Cumule 50 bonnes réponses", check:(c) => check_lifetime_ge(50)(c) },
   "sigma_scribe": { label:"Cumule 150 bonnes réponses", check:(c) => check_lifetime_ge(150)(c) },
-  "sigma_philosophe": { label:"Cumule 300 bonnes réponses", check:(c) => check_lifetime_ge(300)(c) },
-  "sigma_legionnaire": { label:"Valide 3 jours de streak", check:(c) => check_streak_ge(3)(c) },
-  "sigma_viking": { label:"Valide 7 jours de streak", check:(c) => check_streak_ge(7)(c) },
-  "sigma_maya": { label:"Cumule 500 XP", check:(c) => check_xp_ge(500)(c) },
-  "sigma_samourai": { label:"Cumule 1500 XP", check:(c) => check_xp_ge(1500)(c) },
-  "sigma_gladiateur": { label:"Joue le matin avec 100 bonnes réponses au compteur", check:(c) => check_and(check_morning(), check_lifetime_ge(100))(c) },
-  "sigma_druide": { label:"Joue le soir avec un streak de 3 jours", check:(c) => check_and(check_evening(), check_streak_ge(3))(c) },
-  "sigma_chevalier": { label:"Valide 10 jours de streak", check:(c) => check_streak_ge(10)(c) },
-  "sigma_inventeur": { label:"Valide 14 jours de streak", check:(c) => check_streak_ge(14)(c) },
-  "sigma_alchimiste": { label:"Valide 21 jours de streak", check:(c) => check_streak_ge(21)(c) },
-  "sigma_mousquetaire": { label:"Cumule 750 bonnes réponses", check:(c) => check_lifetime_ge(750)(c) },
-  "sigma_pirate": { label:"Cumule 1500 bonnes réponses", check:(c) => check_lifetime_ge(1500)(c) },
-  "sigma_astronome": { label:"Cumule 3000 XP", check:(c) => check_xp_ge(3000)(c) },
-  "sigma_cowboy": { label:"Cumule 6000 XP", check:(c) => check_xp_ge(6000)(c) },
-  "sigma_explorateur": { label:"Joue un samedi avec 50 bonnes réponses au compteur", check:(c) => check_and(check_saturday(), check_lifetime_ge(50))(c) },
-  "sigma_moine": { label:"Joue un dimanche avec 150 bonnes réponses au compteur", check:(c) => check_and(check_sunday(), check_lifetime_ge(150))(c) },
-  "sigma_azat": { label:"3 weekends complets (sam+dim)", check:(c) => check_weekends_ge(3)(c) },
-  // ─── Objectifs série B : Voyage ───
-  "sigma_paris": { label:"Joue sur 3 catégories différentes", check:(c) => check_cats_visited_ge(3)(c) },
-  "sigma_london": { label:"Joue sur 5 catégories différentes", check:(c) => check_cats_visited_ge(5)(c) },
-  "sigma_newyork": { label:"Joue sur toutes les catégories", check:(c) => check_all_cats()(c) },
-  "sigma_tokyo": { label:"Maîtrise une catégorie entière", check:(c) => check_cat_complete_ge(1)(c) },
-  "sigma_rome": { label:"3 sessions Sprint", check:(c) => check_sprint_ge(3)(c) },
-  "sigma_cairo": { label:"5 sessions Sprint", check:(c) => check_sprint_ge(5)(c) },
-  "sigma_sydney": { label:"10 sessions Sprint", check:(c) => check_sprint_ge(10)(c) },
-  "sigma_moscow": { label:"20 quiz terminés", check:(c) => check_nbquiz_ge(20)(c) },
-  "sigma_rio": { label:"40 quiz terminés", check:(c) => check_nbquiz_ge(40)(c) },
-  "sigma_beijing": { label:"75 quiz terminés", check:(c) => check_nbquiz_ge(75)(c) },
-  "sigma_athens": { label:"20 sessions Sprint", check:(c) => check_sprint_ge(20)(c) },
-  "sigma_petra": { label:"40 sessions Sprint", check:(c) => check_sprint_ge(40)(c) },
-  "sigma_machupicchu": { label:"Cumule 2500 bonnes réponses", check:(c) => check_lifetime_ge(2500)(c) },
-  "sigma_venice": { label:"Cumule 8000 XP", check:(c) => check_xp_ge(8000)(c) },
-  "sigma_marrakech": { label:"Valide 30 jours de streak", check:(c) => check_streak_ge(30)(c) },
-  "sigma_agra": { label:"5 weekends complets (sam+dim)", check:(c) => check_weekends_ge(5)(c) },
-  "sigma_istanbul": { label:"Maîtrise 2 catégories entières", check:(c) => check_cat_complete_ge(2)(c) },
-  "sigma_berlin": { label:"3 sessions de remédiation", check:(c) => check_remediation_ge(3)(c) },
-  "sigma_amsterdam": { label:"150 quiz terminés", check:(c) => check_nbquiz_ge(150)(c) },
-  "sigma_kyoto": { label:"Cumule 15000 XP", check:(c) => check_xp_ge(15000)(c) },
-  // ─── Objectifs série A — Or ─────────────────────────────────────────────
-  "sigma_savant":      { label:"Valide 21 jours de streak",       check:(c) => check_streak_ge(21)(c) },
-  "sigma_aeronaute":   { label:"Valide 28 jours de streak",       check:(c) => check_streak_ge(28)(c) },
-  "sigma_sherlock":    { label:"Cumule 100 sessions Sprint",       check:(c) => check_sprint_ge(50)(c) },
-  "sigma_tesla":       { label:"Cumule 5000 bonnes réponses",      check:(c) => check_lifetime_ge(3000)(c) },
-  "sigma_mineur":      { label:"Joue 60 jours actifs cumulés",     check:(c) => check_activedays_ge(40)(c) },
-  "sigma_aviateur":    { label:"Cumule 10000 XP",                  check:(c) => check_xp_ge(7000)(c) },
-  "sigma_ouvrier":     { label:"10 sessions de remédiation",       check:(c) => check_remediation_ge(6)(c) },
-  "sigma_photographe": { label:"Maîtrise 5 sous-thèmes complets",  check:(c) => check_subtheme_complete_ge(3)(c) },
-  "sigma_jazzman":     { label:"200 quiz terminés",                 check:(c) => check_nbquiz_ge(100)(c) },
-  "sigma_genie_art":   { label:"Maîtrise 3 catégories entières",   check:(c) => check_cat_complete_ge(2)(c) },
-  // ─── Objectifs série B — Or ──────────────────────────────────────────────
-  "sigma_dubai":       { label:"200 sessions Sprint",              check:(c) => check_sprint_ge(50)(c) },
-  "sigma_singapore":   { label:"Maîtrise 500 questions",           check:(c) => check_mastered_ge(250)(c) },
-  "sigma_sanfrancisco":{ label:"Cumule 20000 XP",                  check:(c) => check_xp_ge(9000)(c) },
-  "sigma_capetown":    { label:"Valide 45 jours de streak",        check:(c) => check_streak_ge(32)(c) },
-  "sigma_seoul":       { label:"30 scores parfaits",               check:(c) => check_perfect_ge(15)(c) },
-  "sigma_barcelona":   { label:"100 jours actifs cumulés",         check:(c) => check_activedays_ge(50)(c) },
-  "sigma_mumbai":      { label:"5 sujets Bac complets",            check:(c) => check_bac_ge(3)(c) },
-  "sigma_toronto":     { label:"300 quiz terminés",                check:(c) => check_nbquiz_ge(120)(c) },
-  "sigma_lisbon":      { label:"10 sous-thèmes complets",          check:(c) => check_subtheme_complete_ge(5)(c) },
-  "sigma_prague":      { label:"Maîtrise 4 catégories entières",   check:(c) => check_cat_complete_ge(4)(c) },
-  // ─── Stubs Or / Diamant / Légendaire (cartes à venir) ───
-  // ─── Stubs Or / Diamant / Légendaire (cartes à venir) ───
-  // ─── Objectifs série A — Diamant (6-12 mois) ─────────────────────────────
-  "sigma_astronaute":    { label:"Valide 60 jours de streak",         check:(c) => check_streak_ge(60)(c) },
-  "sigma_hacker":        { label:"Cumule 7000 bonnes réponses",        check:(c) => check_lifetime_ge(7000)(c) },
-  "sigma_plongeur":      { label:"Cumule 15000 XP",                    check:(c) => check_xp_ge(15000)(c) },
-  "sigma_cybersamurai":  { label:"150 sessions Sprint",                check:(c) => check_sprint_ge(150)(c) },
-  "sigma_medecin":       { label:"80 jours actifs cumulés",            check:(c) => check_activedays_ge(80)(c) },
-  "sigma_pilote_f1":     { label:"300 quiz terminés",                  check:(c) => check_nbquiz_ge(300)(c) },
-  "sigma_architecte":    { label:"Maîtrise 4 catégories entières",     check:(c) => check_cat_complete_ge(4)(c) },
-  "sigma_reporter":      { label:"Maîtrise 600 questions",             check:(c) => check_mastered_ge(600)(c) },
-  "sigma_dj_futur":      { label:"8 sous-thèmes complets",             check:(c) => check_subtheme_complete_ge(8)(c) },
-  "sigma_shaman":        { label:"40 scores parfaits",                 check:(c) => check_perfect_ge(40)(c) },
-  // ─── Objectifs série A — Légendaire (1-2 ans d\'usage régulier) ──────────
-  "sigma_colon_mars":    { label:"Valide 100 jours de streak",         check:(c) => check_streak_ge(100)(c) },
-  "sigma_gardien_ia":    { label:"Cumule 15000 bonnes réponses",       check:(c) => check_lifetime_ge(15000)(c) },
-  "sigma_voyageur":      { label:"Cumule 30000 XP",                    check:(c) => check_xp_ge(30000)(c) },
-  "sigma_hologramme":    { label:"300 sessions Sprint",                check:(c) => check_sprint_ge(300)(c) },
-  "sigma_cyborg_alpha":  { label:"150 jours actifs cumulés",           check:(c) => check_activedays_ge(150)(c) },
-  "sigma_druide_spatial":{ label:"Maîtrise 6 catégories entières",     check:(c) => check_cat_complete_ge(6)(c) },
-  "sigma_maitre_atome":  { label:"Maîtrise 1000 questions",            check:(c) => check_mastered_ge(1000)(c) },
-  "sigma_explo_galaxie": { label:"500 quiz terminés",                  check:(c) => check_nbquiz_ge(500)(c) },
-  "sigma_dimensionnel":  { label:"15 sous-thèmes complets",            check:(c) => check_subtheme_complete_ge(15)(c) },
-  "sigma_eternel":       { label:"Maîtrise TOUT le curriculum",        check:(c) => check_curriculum_complete()(c) },
-  // ─── Objectifs série B — Diamant (6-12 mois) ─────────────────────────────
-  "sigma_atlantis":      { label:"Valide 60 jours de streak",          check:(c) => check_streak_ge(60)(c) },
-  "sigma_eldorado":      { label:"Cumule 18000 XP",                    check:(c) => check_xp_ge(18000)(c) },
-  "sigma_babylon":       { label:"Maîtrise 5 catégories entières",     check:(c) => check_cat_complete_ge(5)(c) },
-  "sigma_troy":          { label:"200 sessions Sprint",                check:(c) => check_sprint_ge(200)(c) },
-  "sigma_sparta":        { label:"100 jours actifs cumulés",           check:(c) => check_activedays_ge(100)(c) },
-  "sigma_pompeii":       { label:"Cumule 8000 bonnes réponses",        check:(c) => check_lifetime_ge(8000)(c) },
-  "sigma_angkor":        { label:"400 quiz terminés",                  check:(c) => check_nbquiz_ge(400)(c) },
-  "sigma_timbuktu":      { label:"Maîtrise 700 questions",             check:(c) => check_mastered_ge(700)(c) },
-  "sigma_carthage":      { label:"10 sous-thèmes complets",            check:(c) => check_subtheme_complete_ge(10)(c) },
-  "sigma_thebes":        { label:"60 scores parfaits",                 check:(c) => check_perfect_ge(60)(c) },
-  // ─── Objectifs série B — Légendaire (1-2 ans d\'usage régulier) ──────────
-  "sigma_moon_base":     { label:"Valide 150 jours de streak",         check:(c) => check_streak_ge(150)(c) },
-  "sigma_mars_city":     { label:"Cumule 25000 bonnes réponses",       check:(c) => check_lifetime_ge(25000)(c) },
-  "sigma_cloud_city":    { label:"Cumule 50000 XP",                    check:(c) => check_xp_ge(50000)(c) },
-  "sigma_cyber_tokyo":   { label:"500 sessions Sprint",                check:(c) => check_sprint_ge(500)(c) },
-  "sigma_neo_paris":     { label:"200 jours actifs cumulés",           check:(c) => check_activedays_ge(200)(c) },
-  "sigma_station_alpha": { label:"20 sous-thèmes complets",            check:(c) => check_subtheme_complete_ge(20)(c) },
-  "sigma_crystal_city":  { label:"100 scores parfaits",                check:(c) => check_perfect_ge(100)(c) },
-  "sigma_aqua_dome":     { label:"Maîtrise 1500 questions",            check:(c) => check_mastered_ge(1500)(c) },
-  "sigma_galactic_hub":  { label:"1000 quiz terminés",                 check:(c) => check_nbquiz_ge(1000)(c) },
-  "sigma_omega_point":   { label:"Maîtrise ABSOLUE — tout débloquer",  check:(c) => check_legendary_combined()(c) },
-
+  "sigma_philosophe": { label:"Termine 10 entraînements", check:(c) => check_nbquiz_ge(10)(c) },
+  "sigma_legionnaire": { label:"Décroche ton 1er 10/10", check:(c) => check_perfect_ge(1)(c) },
+  "sigma_viking": { label:"Décroche 3 scores parfaits", check:(c) => check_perfect_ge(3)(c) },
+  "sigma_maya": { label:"Maîtrise ton 1er sous-thème", check:(c) => check_subtheme_complete_ge(1)(c) },
+  "sigma_samourai": { label:"Maîtrise 30 questions", check:(c) => check_mastered_ge(30)(c) },
+  "sigma_gladiateur": { label:"Cumule 1500 XP", check:(c) => check_xp_ge(1500)(c) },
+  "sigma_druide": { label:"Réussis ta 1re mission", check:(c) => check_missions_done_ge(1)(c) },
+  "sigma_paris": { label:"Termine ta 1re flashcard", check:(c) => check_flashcards_ge(1)(c) },
+  "sigma_london": { label:"Ouvre ton 1er cours", check:(c) => check_cours_ge(1)(c) },
+  "sigma_newyork": { label:"Réponds à ta 1re notion du jour", check:(c) => check_notions_ge(1)(c) },
+  "sigma_tokyo": { label:"Fais ton 1er défi du jour", check:(c) => check_daily_ge(1)(c) },
+  "sigma_rome": { label:"Joue sur 3 catégories", check:(c) => check_cats_visited_ge(3)(c) },
+  "sigma_cairo": { label:"Valide 3 jours de streak", check:(c) => check_streak_ge(3)(c) },
+  "sigma_sydney": { label:"Termine 5 flashcards", check:(c) => check_flashcards_ge(5)(c) },
+  "sigma_moscow": { label:"Ouvre 3 cours", check:(c) => check_cours_ge(3)(c) },
+  "sigma_rio": { label:"Valide 7 jours de streak", check:(c) => check_streak_ge(7)(c) },
+  "sigma_beijing": { label:"Touche-à-tout : essaie les 5 modes", check:(c) => check_and(check_flashcards_ge(1),check_cours_ge(1),check_notions_ge(1),check_daily_ge(1),check_nbquiz_ge(1))(c) },
+  // ═══ ARGENT (au trimestre) ═══
+  "sigma_chevalier": { label:"Cumule 500 bonnes réponses", check:(c) => check_lifetime_ge(500)(c) },
+  "sigma_inventeur": { label:"Cumule 1000 bonnes réponses", check:(c) => check_lifetime_ge(1000)(c) },
+  "sigma_alchimiste": { label:"Termine 40 entraînements", check:(c) => check_nbquiz_ge(40)(c) },
+  "sigma_mousquetaire": { label:"Décroche 10 scores parfaits", check:(c) => check_perfect_ge(10)(c) },
+  "sigma_pirate": { label:"Maîtrise 5 sous-thèmes", check:(c) => check_subtheme_complete_ge(5)(c) },
+  "sigma_astronome": { label:"Maîtrise 80 questions", check:(c) => check_mastered_ge(80)(c) },
+  "sigma_cowboy": { label:"Cumule 8000 XP", check:(c) => check_xp_ge(8000)(c) },
+  "sigma_explorateur": { label:"Maîtrise 1 catégorie entière", check:(c) => check_cat_complete_ge(1)(c) },
+  "sigma_moine": { label:"Réussis 5 missions", check:(c) => check_missions_done_ge(5)(c) },
+  "sigma_azat": { label:"Fais 3 remédiations", check:(c) => check_remediation_ge(3)(c) },
+  "sigma_athens": { label:"Termine 20 flashcards", check:(c) => check_flashcards_ge(20)(c) },
+  "sigma_petra": { label:"Ouvre 6 cours", check:(c) => check_cours_ge(6)(c) },
+  "sigma_machupicchu": { label:"Joue sur toutes les catégories", check:(c) => check_all_cats()(c) },
+  "sigma_venice": { label:"Réponds à 10 notions du jour", check:(c) => check_notions_ge(10)(c) },
+  "sigma_marrakech": { label:"Fais 15 défis du jour", check:(c) => check_daily_ge(15)(c) },
+  "sigma_agra": { label:"Valide 14 jours de streak", check:(c) => check_streak_ge(14)(c) },
+  "sigma_istanbul": { label:"Valide 21 jours de streak", check:(c) => check_streak_ge(21)(c) },
+  "sigma_berlin": { label:"Joue 20 jours (cumulés)", check:(c) => check_activedays_ge(20)(c) },
+  "sigma_amsterdam": { label:"3 week-ends complets", check:(c) => check_weekends_ge(3)(c) },
+  "sigma_kyoto": { label:"Fais 10 sprints", check:(c) => check_sprint_ge(10)(c) },
+  // ═══ OR (2e semestre) ═══
+  "sigma_savant": { label:"Cumule 2500 bonnes réponses", check:(c) => check_lifetime_ge(2500)(c) },
+  "sigma_aeronaute": { label:"Termine 80 entraînements", check:(c) => check_nbquiz_ge(80)(c) },
+  "sigma_sherlock": { label:"Décroche 25 scores parfaits", check:(c) => check_perfect_ge(25)(c) },
+  "sigma_tesla": { label:"Maîtrise 12 sous-thèmes", check:(c) => check_subtheme_complete_ge(12)(c) },
+  "sigma_mineur": { label:"Maîtrise 120 questions", check:(c) => check_mastered_ge(120)(c) },
+  "sigma_aviateur": { label:"Cumule 20000 XP", check:(c) => check_xp_ge(20000)(c) },
+  "sigma_ouvrier": { label:"Fais 6 remédiations", check:(c) => check_remediation_ge(6)(c) },
+  "sigma_photographe": { label:"Maîtrise 3 catégories entières", check:(c) => check_cat_complete_ge(3)(c) },
+  "sigma_jazzman": { label:"Réussis 10 missions", check:(c) => check_missions_done_ge(10)(c) },
+  "sigma_genie_art": { label:"Complète 3 sujets Bac", check:(c) => check_bac_ge(3)(c) },
+  "sigma_dubai": { label:"Termine 50 flashcards", check:(c) => check_flashcards_ge(50)(c) },
+  "sigma_singapore": { label:"Ouvre les 15 cours", check:(c) => check_cours_ge(15)(c) },
+  "sigma_sanfrancisco": { label:"Réponds à 30 notions du jour", check:(c) => check_notions_ge(30)(c) },
+  "sigma_capetown": { label:"Fais 50 défis du jour", check:(c) => check_daily_ge(50)(c) },
+  "sigma_seoul": { label:"Valide 30 jours de streak", check:(c) => check_streak_ge(30)(c) },
+  "sigma_barcelona": { label:"Valide 45 jours de streak", check:(c) => check_streak_ge(45)(c) },
+  "sigma_mumbai": { label:"Joue 50 jours (cumulés)", check:(c) => check_activedays_ge(50)(c) },
+  "sigma_toronto": { label:"6 week-ends complets", check:(c) => check_weekends_ge(6)(c) },
+  "sigma_lisbon": { label:"Fais 40 sprints", check:(c) => check_sprint_ge(40)(c) },
+  "sigma_prague": { label:"Assidu confirmé (streak 30 + 50 jours + 30 notions)", check:(c) => check_and(check_streak_ge(30),check_activedays_ge(50),check_notions_ge(30))(c) },
+  // ═══ DIAMANT (6-12 mois) ═══
+  "sigma_astronaute": { label:"Cumule 5000 bonnes réponses", check:(c) => check_lifetime_ge(5000)(c) },
+  "sigma_hacker": { label:"Termine 150 entraînements", check:(c) => check_nbquiz_ge(150)(c) },
+  "sigma_plongeur": { label:"Décroche 50 scores parfaits", check:(c) => check_perfect_ge(50)(c) },
+  "sigma_cybersamurai": { label:"Maîtrise 20 sous-thèmes", check:(c) => check_subtheme_complete_ge(20)(c) },
+  "sigma_medecin": { label:"Maîtrise 4 catégories entières", check:(c) => check_cat_complete_ge(4)(c) },
+  "sigma_pilote_f1": { label:"Fais 100 sprints", check:(c) => check_sprint_ge(100)(c) },
+  "sigma_architecte": { label:"Maîtrise 5 catégories entières", check:(c) => check_cat_complete_ge(5)(c) },
+  "sigma_reporter": { label:"Cumule 45000 XP", check:(c) => check_xp_ge(45000)(c) },
+  "sigma_dj_futur": { label:"Réussis 20 missions", check:(c) => check_missions_done_ge(20)(c) },
+  "sigma_shaman": { label:"Complète 6 sujets Bac", check:(c) => check_bac_ge(6)(c) },
+  "sigma_atlantis": { label:"Termine 120 flashcards", check:(c) => check_flashcards_ge(120)(c) },
+  "sigma_eldorado": { label:"Réponds à 75 notions du jour", check:(c) => check_notions_ge(75)(c) },
+  "sigma_babylon": { label:"Fais 100 défis du jour", check:(c) => check_daily_ge(100)(c) },
+  "sigma_troy": { label:"Valide 60 jours de streak", check:(c) => check_streak_ge(60)(c) },
+  "sigma_sparta": { label:"Valide 90 jours de streak", check:(c) => check_streak_ge(90)(c) },
+  "sigma_pompeii": { label:"Joue 100 jours (cumulés)", check:(c) => check_activedays_ge(100)(c) },
+  "sigma_angkor": { label:"Joue 150 jours (cumulés)", check:(c) => check_activedays_ge(150)(c) },
+  "sigma_timbuktu": { label:"12 week-ends complets", check:(c) => check_weekends_ge(12)(c) },
+  "sigma_carthage": { label:"Fais 200 sprints", check:(c) => check_sprint_ge(200)(c) },
+  "sigma_thebes": { label:"Marathon (streak 60 + 100 jours + 50 flashcards + 15 cours)", check:(c) => check_and(check_streak_ge(60),check_activedays_ge(100),check_flashcards_ge(50),check_cours_ge(15))(c) },
+  // ═══ LÉGENDAIRE (1-2 ans) ═══
+  "sigma_colon_mars": { label:"Valide 100 jours de streak", check:(c) => check_streak_ge(100)(c) },
+  "sigma_gardien_ia": { label:"Cumule 10000 bonnes réponses", check:(c) => check_lifetime_ge(10000)(c) },
+  "sigma_voyageur": { label:"Termine 300 entraînements", check:(c) => check_nbquiz_ge(300)(c) },
+  "sigma_hologramme": { label:"Décroche 100 scores parfaits", check:(c) => check_perfect_ge(100)(c) },
+  "sigma_cyborg_alpha": { label:"Cumule 90000 XP", check:(c) => check_xp_ge(90000)(c) },
+  "sigma_druide_spatial": { label:"Maîtrise 6 catégories entières", check:(c) => check_cat_complete_ge(6)(c) },
+  "sigma_maitre_atome": { label:"Maîtrise TOUT ton programme", check:(c) => check_curriculum_complete()(c) },
+  "sigma_explo_galaxie": { label:"Termine 500 entraînements", check:(c) => check_nbquiz_ge(500)(c) },
+  "sigma_dimensionnel": { label:"Fais 300 sprints", check:(c) => check_sprint_ge(300)(c) },
+  "sigma_eternel": { label:"Perfection (150 scores parfaits + programme maîtrisé)", check:(c) => check_and(check_perfect_ge(150),check_curriculum_complete())(c) },
+  "sigma_moon_base": { label:"Valide 150 jours de streak", check:(c) => check_streak_ge(150)(c) },
+  "sigma_mars_city": { label:"Valide 250 jours de streak", check:(c) => check_streak_ge(250)(c) },
+  "sigma_cloud_city": { label:"Joue 200 jours (cumulés)", check:(c) => check_activedays_ge(200)(c) },
+  "sigma_cyber_tokyo": { label:"Joue 300 jours (cumulés)", check:(c) => check_activedays_ge(300)(c) },
+  "sigma_neo_paris": { label:"Réponds à 150 notions du jour", check:(c) => check_notions_ge(150)(c) },
+  "sigma_station_alpha": { label:"Fais 200 défis du jour", check:(c) => check_daily_ge(200)(c) },
+  "sigma_crystal_city": { label:"25 week-ends complets", check:(c) => check_weekends_ge(25)(c) },
+  "sigma_aqua_dome": { label:"Termine 300 flashcards", check:(c) => check_flashcards_ge(300)(c) },
+  "sigma_galactic_hub": { label:"Fais 500 sprints", check:(c) => check_sprint_ge(500)(c) },
+  "sigma_omega_point": { label:"Maîtrise ABSOLUE (programme + streak 150 + 100 flashcards + 15 cours + 6 bac + 10 missions)", check:(c) => check_and(check_curriculum_complete(),check_streak_ge(150),check_flashcards_ge(100),check_cours_ge(15),check_bac_ge(6),check_missions_done_ge(10))(c) },
 };
 
 // Helper : compte les questions en "mastered"
@@ -18250,6 +18255,17 @@ async function loadEveningDone() { try{const r=await _storage.get(EVENING_DONE_K
 async function saveEveningDone() { try{await _storage.set(EVENING_DONE_K,"1");}catch{} }
 async function loadImproved() { try{const r=await _storage.get(IMPROVED_K);return r?.value==="1";}catch{return false;} }
 async function saveImproved() { try{await _storage.set(IMPROVED_K,"1");}catch{} }
+// Phase 1 — helpers modes manquants
+async function loadFlashcardsDone() { try{const r=await _storage.get(FLASHCARDS_DONE_K);return r?.value?parseInt(r.value):0;}catch{return 0;} }
+async function saveFlashcardsDone(n) { try{await _storage.set(FLASHCARDS_DONE_K,String(n));}catch{} }
+async function incFlashcardsDone() { try{const n=await loadFlashcardsDone();await saveFlashcardsDone(n+1);return n+1;}catch{return 0;} }
+async function loadCoursSeen() { try{const r=await _storage.get(COURS_SEEN_K);return r?.value?JSON.parse(r.value):[];}catch{return [];} }
+async function saveCoursSeen(arr) { try{await _storage.set(COURS_SEEN_K,JSON.stringify(arr));}catch{} }
+async function addCoursSeen(id) { try{const a=await loadCoursSeen();if(!a.includes(id)){a.push(id);await saveCoursSeen(a);}return a;}catch{return [];} }
+async function loadDailyCount() { try{const r=await _storage.get(DAILY_COUNT_K);return r?.value?parseInt(r.value):0;}catch{return 0;} }
+async function saveDailyCount(n) { try{await _storage.set(DAILY_COUNT_K,String(n));}catch{} }
+// Notion du jour : compte les jours répondus (clés localStorage "ndj_YYYY-MM-DD")
+function countNotionsDone() { try{let n=0;for(let i=0;i<localStorage.length;i++){if((localStorage.key(i)||"").startsWith("ndj_"))n++;}return n;}catch{return 0;} }
 
 // Fonction centrale : évalue tous les objectifs et renvoie la liste des cartes débloquées
 // ET non encore enregistrées dans CARDS_UNLOCKED_K. Appelée après chaque événement pertinent.
@@ -19289,8 +19305,7 @@ function ApprendreHubScreen({onMode}) {
           <div style={{flex:1}}>
             <div style={{display:"flex",alignItems:"center",gap:7}}>
               <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:15,color:"#fff"}}>Cours interactifs</div>
-              <span style={{fontSize:10,fontWeight:900,color:"#FDE68A",
-                background:"rgba(0,0,0,.25)",borderRadius:99,padding:"1.5px 7px"}}>🚧 BÊTA</span>
+              
             </div>
             <div style={{color:"rgba(255,255,255,0.7)",fontSize:10,marginTop:3}}>Révise les notions · formules interactives</div>
           </div>
@@ -19761,8 +19776,7 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
           <div style={{flex:1}}>
             <div style={{display:"flex",alignItems:"center",gap:7}}>
               <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:15,color:"#fff",lineHeight:1.1}}>Cours interactifs</div>
-              <span style={{fontSize:10,fontWeight:900,color:"#FDE68A",
-                background:"rgba(0,0,0,.25)",borderRadius:99,padding:"1.5px 7px",letterSpacing:.3}}>🚧 BÊTA</span>
+              
             </div>
             <div style={{color:"rgba(255,255,255,0.7)",fontSize:10,marginTop:3}}>
               Révise les notions · formules interactives
@@ -19851,11 +19865,7 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
             borderRadius:16,padding:"15px 18px",marginBottom:14,border:"none",cursor:"pointer",
             display:"flex",alignItems:"center",gap:14,
             boxShadow:"0 5px 16px rgba(245,158,11,.35)",textAlign:"left"}}>
-          {Date.now()<1781827200000&&<span style={{position:"absolute",top:8,right:12,
-            fontSize:10,fontWeight:900,color:"#fff",
-            background:"linear-gradient(135deg,#EF4444,#DC2626)",borderRadius:99,
-            padding:"1.5px 6px",letterSpacing:0.5,
-            boxShadow:"0 1px 4px rgba(0,0,0,.25)"}}>NEW</span>}
+          
           <span style={{fontSize:30,flexShrink:0}}>🏆</span>
           <div style={{flex:1}}>
             <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,color:"#fff",lineHeight:1.1}}>
@@ -20510,8 +20520,7 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onB
             <div style={{flex:1}}>
               <div style={{display:"flex",alignItems:"center",gap:7}}>
                 <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:15,color:"#fff"}}>Cours interactifs</div>
-                <span style={{fontSize:10,fontWeight:900,color:"#FDE68A",
-                  background:"rgba(0,0,0,.25)",borderRadius:99,padding:"1.5px 7px"}}>🚧 BÊTA</span>
+                
               </div>
               <div style={{color:"rgba(255,255,255,0.7)",fontSize:10,marginTop:3}}>Révise les notions · formules interactives</div>
             </div>
@@ -20567,11 +20576,7 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onB
               borderRadius:16,padding:"15px 18px",marginBottom:14,border:"none",cursor:"pointer",
               display:"flex",alignItems:"center",gap:14,
               boxShadow:"0 5px 16px rgba(245,158,11,.32)",textAlign:"left",animationDelay:".1s"}}>
-            {Date.now()<1781827200000&&<span style={{position:"absolute",top:8,right:12,
-              fontSize:10,fontWeight:900,color:"#fff",
-              background:"linear-gradient(135deg,#EF4444,#DC2626)",borderRadius:99,
-              padding:"1.5px 6px",letterSpacing:0.5,
-              boxShadow:"0 1px 4px rgba(0,0,0,.25)"}}>NEW</span>}
+            
             <span style={{fontSize:30,flexShrink:0}}>🏆</span>
             <div style={{flex:1}}>
               <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,color:"#fff",lineHeight:1.1}}>
@@ -22655,7 +22660,7 @@ function FlashcardSetupScreen({ onStart, onBack }) {
 }
 
 // ── FlashcardScreen ─────────────────────────────────────────────────────────
-function FlashcardScreen({ cards, onBack }) {
+function FlashcardScreen({ cards, onBack, onFinish }) {
   const [idx, setIdx] = React.useState(0);
   const [flipped, setFlipped] = React.useState(false);
   const [known, setKnown] = React.useState([]);   // indices des cartes "je savais"
@@ -22665,6 +22670,10 @@ function FlashcardScreen({ cards, onBack }) {
   const [reviewCards, setReviewCards] = React.useState([]);
   const [reviewIdx, setReviewIdx] = React.useState(0);
   const [reviewFlipped, setReviewFlipped] = React.useState(false);
+  const finishedRef = React.useRef(false);
+  React.useEffect(() => {
+    if (done && !finishedRef.current) { finishedRef.current = true; onFinish && onFinish(); }
+  }, [done]);
 
   const activeCards = reviewMode ? reviewCards : cards;
   const activeIdx   = reviewMode ? reviewIdx   : idx;
@@ -23547,10 +23556,7 @@ function BacSubjectScreen({onStart, onBack}) {
                           <div style={{display:"flex",alignItems:"center",gap:6}}>
                             <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:700,
                               fontSize:12.5,color:isEmpty?"#94A3B8":"#1E293B"}}>{sub.label}</div>
-                            {sub.newUntil&&Date.now()<sub.newUntil&&<span style={{fontSize:10,fontWeight:900,color:"#fff",
-                              background:"linear-gradient(135deg,#EF4444,#DC2626)",borderRadius:99,
-                              padding:"1px 5px",letterSpacing:0.5,
-                              boxShadow:"0 1px 4px rgba(239,68,68,.45)"}}>NEW</span>}
+                            
                           </div>
                           <div style={{fontSize:10,color:"#94A3B8",marginTop:1}}>
                             {isEmpty?"🔧 Bientôt disponible":`${qs.length} question${qs.length>1?"s":""} · Automatismes Partie 1`}
@@ -25490,9 +25496,7 @@ function CoursListScreen({onBack,onSelectCours}) {
               <div style={{flex:1}}>
                 <div style={{display:"flex",alignItems:"center",gap:7,marginBottom:4}}>
                   <span style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:16,color:"#1E293B"}}>{c.title}</span>
-                  <span style={{fontSize:10,fontWeight:900,color:"#fff",
-                    background:"linear-gradient(135deg,#EF4444,#DC2626)",
-                    borderRadius:99,padding:"1.5px 7px",letterSpacing:.4}}>NEW</span>
+                  
                 </div>
                 <div style={{fontSize:12,color:"#64748B",lineHeight:1.4}}>{c.desc}</div>
               </div>
@@ -29299,6 +29303,11 @@ function AutoMaths() {
         loadBacCompleted(), loadRemediationCount(), loadComboMax(),
         loadMorningDone(), loadEveningDone(),
       ]);
+      // Phase 1 — compteurs des modes flashcards / cours / défi / notion
+      const [flashcardsDone, coursSeen, dailyCount] = await Promise.all([
+        loadFlashcardsDone(), loadCoursSeen(), loadDailyCount(),
+      ]);
+      const notionsDone = countNotionsDone();
       // Calcul de starsTotal à la volée depuis allProg
       let starsTotal = 0;
       try {
@@ -29327,6 +29336,8 @@ function AutoMaths() {
         bacCompleted: bacComp, remediationCount: remedCount,
         comboMax, morningDone: morning, eveningDone: evening,
         starsTotal,
+        // Phase 1 — modes flashcards / cours / défi / notion
+        flashcardsDone, coursSeen, dailyCount, notionsDone,
       };
       const newOnes = await checkNewUnlocks(ctx);
       if (newOnes.length > 0) {
@@ -29616,6 +29627,7 @@ function AutoMaths() {
         const dailyXP = await loadXP();
         await saveXP(dailyXP + XP_DAILY);
         await saveDaily({done:true, date:new Date().toDateString()});
+        await saveDailyCount((await loadDailyCount()) + 1);
         await checkAndUnlockBadge("daily3");
       } catch(e) {}
     }
@@ -30111,7 +30123,7 @@ function AutoMaths() {
             }
           }}/>}
           {screen==="apprendre"         && <ApprendreHubScreen onMode={hMode}/>}
-          {screen==="cours"             && <CoursListScreen onBack={()=>setScreen("apprendre")} onSelectCours={id=>setScreen("cours_"+id)}/>}
+          {screen==="cours"             && <CoursListScreen onBack={()=>setScreen("apprendre")} onSelectCours={async id=>{ setScreen("cours_"+id); await addCoursSeen(id); await runUnlockCheck(); }}/>}
           {screen==="cours_pourcentages" && <CoursMathScreen onBack={()=>setScreen("cours")} onStartPractice={hStartPractice} onOpen={()=>plsbl("Cours ouvert", {cours:"pourcentages"})}/>}
           {screen==="cours_calcul"        && <CoursMathCalcul  onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_reels"             && <CoursMathReels      onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
@@ -30129,7 +30141,7 @@ function AutoMaths() {
           {screen==="cours_expo_tc"           && <CoursMathExpoTC       onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="cours_stats_2var"        && <CoursMathStats2var    onBack={()=>setScreen("cours")} onStartPractice={hStartPractice}/>}
           {screen==="flashcard_setup" && <FlashcardSetupScreen onBack={()=>setScreen(profile?"dashboard":"home")} onStart={(cards)=>{ setPool(cards); plsbl("Flashcards lancées", {cartes: cards.length}); setScreen("flashcards"); }}/>}
-          {screen==="flashcards"    && <FlashcardScreen cards={pool} onBack={()=>setScreen("flashcard_setup")}/>}
+          {screen==="flashcards"    && <FlashcardScreen cards={pool} onBack={()=>setScreen("flashcard_setup")} onFinish={async()=>{ await incFlashcardsDone(); await runUnlockCheck(); }}/>}
           {screen==="mission_theme" && missionTheme && <MissionThemeScreen theme={missionTheme} missionId={missionId} onBack={()=>setScreen("mission_select")} onStart={(qs, themeId)=>{
             setPrevScreen("mission_theme");
             setQuestions(qs);
