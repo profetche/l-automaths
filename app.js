@@ -29319,7 +29319,6 @@ function AutoMaths() {
   const [cardsUnlocked, setCardsUnlocked] = useState([]);
   const [cardsToShow, setCardsToShow]     = useState([]); // cartes à afficher dans CardUnlockModal
   const [showPub, setShowPub] = useState(false); // pub éphémère au lancement
-  const pubCheckedRef = React.useRef(false);
 
   // Load profile on mount
   useEffect(() => {
@@ -29410,12 +29409,10 @@ function AutoMaths() {
 
   // ── Quiz helpers ──────────────────────────────────────────────────────────
   const [prevScreen, setPrevScreen] = useState("home");
+  // Pub éphémère : interstitiel affiché dès le lancement, par-dessus le splash (façon appli MacDo).
   React.useEffect(() => {
-    if (pubCheckedRef.current) return;
-    if ((screen === "dashboard" || screen === "home") && pubLyceeEligible()) {
-      pubCheckedRef.current = true; pubLyceeMarkShown(); setShowPub(true);
-    }
-  }, [screen]);
+    if (pubLyceeEligible()) { pubLyceeMarkShown(); setShowPub(true); }
+  }, []);
 
   const startQuiz = async (qs, n, from) => {
     // Récupère les questions récemment vues pour les déprioriser (sans les exclure totalement)
