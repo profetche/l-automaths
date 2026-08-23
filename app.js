@@ -20070,7 +20070,7 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
 
 
 // ── PostPracticeResultScreen ──────────────────────────────────────────────────
-function PostPracticeResultScreen({score, total, catId, subId, mode, prevStars, newStars, onRetry, onDashboard, onHome}) {
+function PostPracticeResultScreen({score, total, catId, subId, mode, prevStars, newStars, onRetry, onDashboard, onHome, onBackToCourse}) {
   const pct = Math.round(score/total*100);
   const ct = pct>=60&&total>=5;
   const gotStars = newStars>prevStars;
@@ -20148,12 +20148,21 @@ function PostPracticeResultScreen({score, total, catId, subId, mode, prevStars, 
             fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:800,cursor:"pointer"}}>
           🔄 Rejouer
         </button>
+        {onBackToCourse ? (
+        <button onClick={onBackToCourse}
+          style={{padding:"13px",borderRadius:14,border:"none",
+            background:"linear-gradient(135deg,#0EA5E9,#0369A1)",color:"#fff",
+            fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:800,cursor:"pointer"}}>
+          ↩︎ Retour au cours
+        </button>
+        ) : (
         <button onClick={onDashboard}
           style={{padding:"13px",borderRadius:14,border:"2px solid #E2E8F0",
             background:"#fff",color:"#334155",
             fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:800,cursor:"pointer"}}>
           📊 Mon tableau de bord
         </button>
+        )}
         <button onClick={onHome}
           style={{padding:"10px",borderRadius:14,border:"none",background:"transparent",
             color:"#94A3B8",fontFamily:"'Nunito',sans-serif",fontSize:12,fontWeight:600,cursor:"pointer"}}>
@@ -25446,6 +25455,7 @@ function CoursPracticeList({practices, onStartPractice, col}){
   );
 }
 
+let COURS_OPEN_PRACTICE = false;
 function CoursListScreen({onBack,onSelectCours}) {
   const NIVEAU_ORDER=["2nde","1ère TC","1ère Techno","1ère Spé","Terminale Spé"];
   const dispoNiveaux=NIVEAU_ORDER.filter(n=>COURS_CATALOG.some(c=>c.niveaux.includes(n)));
@@ -25523,6 +25533,7 @@ function CoursListScreen({onBack,onSelectCours}) {
 
 function CoursMathScreen({onBack, onOpen, onStartPractice}) {
   const [secIdx, setSecIdx] = React.useState(0);
+  React.useLayoutEffect(() => { if (COURS_OPEN_PRACTICE) { COURS_OPEN_PRACTICE = false; const _pi = SECS.findIndex(s => s.isPractice); if (_pi >= 0) setSecIdx(_pi); } }, []);
   React.useEffect(()=>{ if(onOpen) onOpen(); }, []);
   const [openMap, setOpenMap] = React.useState({});
   const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
@@ -25750,6 +25761,7 @@ function CoursMathScreen({onBack, onOpen, onStartPractice}) {
 // ── CoursMathCalcul — Calcul numérique (Chapitre 0) ──────────────────────────
 function CoursMathCalcul({onBack, onStartPractice}) {
   const [secIdx, setSecIdx] = React.useState(0);
+  React.useLayoutEffect(() => { if (COURS_OPEN_PRACTICE) { COURS_OPEN_PRACTICE = false; const _pi = SECS.findIndex(s => s.isPractice); if (_pi >= 0) setSecIdx(_pi); } }, []);
   const [openMap, setOpenMap] = React.useState({});
   const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
   const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
@@ -25940,6 +25952,7 @@ function CoursMathCalcul({onBack, onStartPractice}) {
 // ── CoursMathReels — Chapitre 1 : Manipuler les nombres réels ────────────────
 function CoursMathReels({onBack, onStartPractice}) {
   const [secIdx, setSecIdx] = React.useState(0);
+  React.useLayoutEffect(() => { if (COURS_OPEN_PRACTICE) { COURS_OPEN_PRACTICE = false; const _pi = SECS.findIndex(s => s.isPractice); if (_pi >= 0) setSecIdx(_pi); } }, []);
   const [openMap, setOpenMap] = React.useState({});
   const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
   const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
@@ -26115,6 +26128,7 @@ function CoursMathReels({onBack, onStartPractice}) {
 // ── CoursMathFonctions — Chapitre 2 : Fonctions affines · Équations · Inéquations ──
 function CoursMathFonctions({onBack, onStartPractice}) {
   const [secIdx, setSecIdx] = React.useState(0);
+  React.useLayoutEffect(() => { if (COURS_OPEN_PRACTICE) { COURS_OPEN_PRACTICE = false; const _pi = SECS.findIndex(s => s.isPractice); if (_pi >= 0) setSecIdx(_pi); } }, []);
   const [openMap, setOpenMap] = React.useState({});
   const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
   const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
@@ -26357,6 +26371,7 @@ function CoursMathFonctions({onBack, onStartPractice}) {
 // ── CoursMathFonctionsGen — Chapitre 4 : Généralités graphiques ───────────────
 function CoursMathFonctionsGen({onBack, onStartPractice}) {
   const [secIdx, setSecIdx] = React.useState(0);
+  React.useLayoutEffect(() => { if (COURS_OPEN_PRACTICE) { COURS_OPEN_PRACTICE = false; const _pi = SECS.findIndex(s => s.isPractice); if (_pi >= 0) setSecIdx(_pi); } }, []);
   const [openMap, setOpenMap] = React.useState({});
   const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
   const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
@@ -26834,6 +26849,7 @@ function CoursMathFonctionsGen({onBack, onStartPractice}) {
 // ── CoursMathLitteral — Chapitre 6 : Calcul littéral ─────────────────────────
 function CoursMathLitteral({onBack, onStartPractice}) {
   const [secIdx, setSecIdx] = React.useState(0);
+  React.useLayoutEffect(() => { if (COURS_OPEN_PRACTICE) { COURS_OPEN_PRACTICE = false; const _pi = SECS.findIndex(s => s.isPractice); if (_pi >= 0) setSecIdx(_pi); } }, []);
   const [openMap, setOpenMap] = React.useState({});
   const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
   const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
@@ -27033,6 +27049,7 @@ function CoursMathLitteral({onBack, onStartPractice}) {
 // ── CoursMathVecteurs — Les Vecteurs (Ch. 3, 6, 14) ──────────────────────────
 function CoursMathVecteurs({onBack, onStartPractice}) {
   const [secIdx, setSecIdx] = React.useState(0);
+  React.useLayoutEffect(() => { if (COURS_OPEN_PRACTICE) { COURS_OPEN_PRACTICE = false; const _pi = SECS.findIndex(s => s.isPractice); if (_pi >= 0) setSecIdx(_pi); } }, []);
   const [openMap, setOpenMap] = React.useState({});
   const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
   const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
@@ -27294,6 +27311,7 @@ function CoursMathVecteurs({onBack, onStartPractice}) {
 // ── CoursMathConfigs — Configurations planes (Ch. 5) ─────────────────────────
 function CoursMathConfigs({onBack, onStartPractice}) {
   const [secIdx, setSecIdx] = React.useState(0);
+  React.useLayoutEffect(() => { if (COURS_OPEN_PRACTICE) { COURS_OPEN_PRACTICE = false; const _pi = SECS.findIndex(s => s.isPractice); if (_pi >= 0) setSecIdx(_pi); } }, []);
   const [openMap, setOpenMap] = React.useState({});
   const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
   const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
@@ -27464,6 +27482,7 @@ function CoursMathConfigs({onBack, onStartPractice}) {
 // ── CoursMathEquations — Équations · Inéquations ─────────────────────────────
 function CoursMathEquations({onBack, onStartPractice}) {
   const [secIdx, setSecIdx] = React.useState(0);
+  React.useLayoutEffect(() => { if (COURS_OPEN_PRACTICE) { COURS_OPEN_PRACTICE = false; const _pi = SECS.findIndex(s => s.isPractice); if (_pi >= 0) setSecIdx(_pi); } }, []);
   const [openMap, setOpenMap] = React.useState({});
   const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
   const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
@@ -27639,6 +27658,7 @@ function CoursMathEquations({onBack, onStartPractice}) {
 // ── CoursMathSecondDegre — Polynômes du second degré (1ère Techno · Ch. 1) ────
 function CoursMathSecondDegre({onBack, onStartPractice}) {
   const [secIdx, setSecIdx] = React.useState(0);
+  React.useLayoutEffect(() => { if (COURS_OPEN_PRACTICE) { COURS_OPEN_PRACTICE = false; const _pi = SECS.findIndex(s => s.isPractice); if (_pi >= 0) setSecIdx(_pi); } }, []);
   const [openMap, setOpenMap] = React.useState({});
   const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
   const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
@@ -27829,6 +27849,7 @@ function CoursMathSecondDegre({onBack, onStartPractice}) {
 // ── CoursMathSuites — Les suites numériques (1ère Techno · Ch. 2) ─────────────
 function CoursMathSuites({onBack, onStartPractice}) {
   const [secIdx, setSecIdx] = React.useState(0);
+  React.useLayoutEffect(() => { if (COURS_OPEN_PRACTICE) { COURS_OPEN_PRACTICE = false; const _pi = SECS.findIndex(s => s.isPractice); if (_pi >= 0) setSecIdx(_pi); } }, []);
   const [openMap, setOpenMap] = React.useState({});
   const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
   const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
@@ -28072,6 +28093,7 @@ function CoursMathSuites({onBack, onStartPractice}) {
 // ── CoursMathProbas — Probabilités, 3 phases (1ère Techno) ───────────────────
 function CoursMathProbas({onBack, onStartPractice}) {
   const [secIdx, setSecIdx] = React.useState(0);
+  React.useLayoutEffect(() => { if (COURS_OPEN_PRACTICE) { COURS_OPEN_PRACTICE = false; const _pi = SECS.findIndex(s => s.isPractice); if (_pi >= 0) setSecIdx(_pi); } }, []);
   const [openMap, setOpenMap] = React.useState({});
   const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
   const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
@@ -28348,6 +28370,7 @@ function CoursMathProbas({onBack, onStartPractice}) {
 function CoursMathDerivation({onBack, onStartPractice}) {
   const r = String.raw;
   const [secIdx, setSecIdx] = React.useState(0);
+  React.useLayoutEffect(() => { if (COURS_OPEN_PRACTICE) { COURS_OPEN_PRACTICE = false; const _pi = SECS.findIndex(s => s.isPractice); if (_pi >= 0) setSecIdx(_pi); } }, []);
   const [openMap, setOpenMap] = React.useState({});
   const tabsRef = React.useRef(null);
   React.useEffect(() => {
@@ -28535,6 +28558,7 @@ function CoursMathDerivation({onBack, onStartPractice}) {
 // ── CoursMathExpoTC — Fonctions exponentielles de base a (1ère TC) ────────────
 function CoursMathExpoTC({onBack, onStartPractice}) {
   const [secIdx, setSecIdx] = React.useState(0);
+  React.useLayoutEffect(() => { if (COURS_OPEN_PRACTICE) { COURS_OPEN_PRACTICE = false; const _pi = SECS.findIndex(s => s.isPractice); if (_pi >= 0) setSecIdx(_pi); } }, []);
   const [openMap, setOpenMap] = React.useState({});
   const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
   const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
@@ -28777,6 +28801,7 @@ eq 1`,
 // ── CoursMathStats2var — Série statistiques à deux variables (1ère Techno) ──
 function CoursMathStats2var({onBack, onStartPractice}) {
   const [secIdx, setSecIdx] = React.useState(0);
+  React.useLayoutEffect(() => { if (COURS_OPEN_PRACTICE) { COURS_OPEN_PRACTICE = false; const _pi = SECS.findIndex(s => s.isPractice); if (_pi >= 0) setSecIdx(_pi); } }, []);
   const [openMap, setOpenMap] = React.useState({});
   const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
   const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
@@ -28961,6 +28986,7 @@ function CoursMathStats2var({onBack, onStartPractice}) {
 // ── CoursMathStats — Statistiques (Ch. 11) ───────────────────────────────────
 function CoursMathStats({onBack, onStartPractice}) {
   const [secIdx, setSecIdx] = React.useState(0);
+  React.useLayoutEffect(() => { if (COURS_OPEN_PRACTICE) { COURS_OPEN_PRACTICE = false; const _pi = SECS.findIndex(s => s.isPractice); if (_pi >= 0) setSecIdx(_pi); } }, []);
   const [openMap, setOpenMap] = React.useState({});
   const tog = k => setOpenMap(p=>({...p,[k]:p[k]===undefined?false:!p[k]}));
   const isOpen = (k,first) => openMap[k]===undefined?first:openMap[k];
@@ -29392,7 +29418,8 @@ function AutoMaths() {
     const prog = await loadProgA(cId, sId);
     setPrevStars(prog.stars||0);
     const qs = await buildPracticeQ(cId, sId);
-    setPrevScreen("dashboard");
+    const _origin = (screen && !["quiz","result","parcours_result","sprint","sprint_result"].includes(screen)) ? screen : prevScreen;
+    setPrevScreen(_origin);
     setPool(qs); setQuestions(qs); setScreen("quiz");
   };
 
@@ -29406,7 +29433,8 @@ function AutoMaths() {
     let avoidKeys = null;
     try { const recent = await loadRecentQ(); avoidKeys = new Set(recent); } catch {}
     const qs = progressiveShuffle(allQ, avoidKeys).slice(0, Math.min(15, allQ.length));
-    setPrevScreen("dashboard");
+    const _origin = (screen && !["quiz","result","parcours_result","sprint","sprint_result"].includes(screen)) ? screen : prevScreen;
+    setPrevScreen(_origin);
     setPool(qs); setQuestions(qs); setScreen("quiz");
   };
 
@@ -30157,9 +30185,9 @@ function AutoMaths() {
           {screen==="level_picker"  && levelType==="cercle_trigo"  && <CercleTrigoScreen onBack={()=>setScreen("subcategory")}/>}
           {screen==="bac_subjects"   && <BacSubjectScreen onStart={hBacStart} onBack={()=>setScreen(profile?"dashboard":"home")}/>}
           {screen==="count"         && <CountScreen     catId={mode==="bac"?null:(mode==="test_aleatoire"&&!catId?null:catId)} allMode={mode==="bac"||(mode==="test_aleatoire"&&!catId)} options={mode==="entrainement"||mode==="test_aleatoire"?[20,50]:[10,20]} onCount={hCount} onBack={()=>setScreen(mode==="entrainement"?"subcategory":mode==="test_aleatoire"?"test_aleatoire":mode==="bac"?"home":"category")}/>}
-          {screen==="quiz"          && <QuizScreen      questions={questions} catId={trackCat||catId||"fonctions"} subId={trackSub} quizMode={quizMode} onFinish={hFinish} onBack={()=>setScreen(prevScreen)}/>}
+          {screen==="quiz"          && <QuizScreen      questions={questions} catId={trackCat||catId||"fonctions"} subId={trackSub} quizMode={quizMode} onFinish={hFinish} onBack={()=>{ if(prevScreen.startsWith("cours_")) COURS_OPEN_PRACTICE=true; setScreen(prevScreen); }}/>}
           {screen==="result"        && <ResultScreen    score={score} total={questions.length} catId={catId||"fonctions"} onReplay={()=>{setStreakJustCompleted(false);hReplay();}} onHome={()=>{setStreakJustCompleted(false);hHome();}} streakJustCompleted={streakJustCompleted} streakCount={profile?.streak||0} masteryBonus={masteryBonus}/>}
-          {screen==="parcours_result"&&<PostPracticeResultScreen score={score} total={questions.length} catId={trackCat} subId={trackSub} mode={quizMode} prevStars={prevStars} newStars={newStars} onRetry={()=>quizMode==="practice"?hStartPractice(trackCat,trackSub):hStartTest(trackCat,trackSub)} onDashboard={hDashboard} onHome={hHome}/>}
+          {screen==="parcours_result"&&<PostPracticeResultScreen score={score} total={questions.length} catId={trackCat} subId={trackSub} mode={quizMode} prevStars={prevStars} newStars={newStars} onRetry={()=>quizMode==="practice"?hStartPractice(trackCat,trackSub):hStartTest(trackCat,trackSub)} onDashboard={hDashboard} onHome={hHome} onBackToCourse={prevScreen.startsWith("cours_") ? ()=>{ COURS_OPEN_PRACTICE=true; setScreen(prevScreen); } : null}/>}
 
         </div>
         {!showBottomNav&&<div style={{position:"absolute",bottom:8,left:"50%",transform:"translateX(-50%)",
