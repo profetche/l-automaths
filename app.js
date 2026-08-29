@@ -3355,6 +3355,200 @@ const DB = {
 
     ],
 
+    valeur_absolue: [
+
+      // ── DÉFINITION ───────────────────────────────────────────────────────
+
+      // va_01
+      { q: r`\text{Que représente }|x|\text{ ?}`,
+        choices: [r`\text{La distance de }x\text{ à }0`, r`\text{Toujours }x`, r`\text{Le carré de }x`, r`\text{L'opposé de }x`],
+        a: r`\text{La distance de }x\text{ à }0`,
+        tip: r`|x|\text{ est la distance entre }x\text{ et }0\text{ sur la droite graduée : toujours positive ou nulle.}` },
+
+      // va_02
+      { q: r`\text{Pour tout réel }x\text{, on a toujours :}`,
+        choices: [r`|x|>0`, r`|x|\geq0`, r`|x|\leq0`, r`|x|<0`],
+        a: r`|x|\geq0`,
+        tip: r`\text{Une distance n'est jamais négative : }|x|\geq0.\\\text{Égalité uniquement si }x=0.` },
+
+      // va_03
+      { q: r`\text{Pour tout réel }x\text{ : }|-x|=\,?`,
+        choices: [r`-|x|`, r`|x|`, r`-x`, r`x`],
+        a: r`|x|`,
+        tip: r`x\text{ et }-x\text{ sont à la même distance de }0\text{, donc }|-x|=|x|.` },
+
+      // va_04
+      { q: r`\text{Si }x<0\text{, alors }|x|=\,?`,
+        choices: [r`x`, r`-x`, r`0`, r`x^2`],
+        a: r`-x`,
+        tip: r`\text{Si }x<0\text{ alors }|x|=-x\ (>0).\\\text{Ex : }|-3|=-(-3)=3.` },
+
+      // va_05
+      { q: r`\text{Si }x\geq0\text{, alors }|x|=\,?`,
+        choices: [r`-x`, r`x`, r`0`, r`2x`],
+        a: r`x`,
+        tip: r`\text{Un nombre positif est égal à sa valeur absolue : }|x|=x\text{ pour }x\geq0.` },
+
+      // va_06
+      { q: r`\sqrt{x^2}=\,?`,
+        choices: [r`x`, r`|x|`, r`-x`, r`x^2`],
+        a: r`|x|`,
+        tip: r`\sqrt{x^2}=|x|\text{ (et non }x\text{ !).}\\\text{Ex : }\sqrt{(-4)^2}=\sqrt{16}=4=|-4|.` },
+
+      // ── PREMIERS CALCULS ─────────────────────────────────────────────────
+
+      // va_07
+      { q: r`|-5|=\,?`,
+        choices: [r`-5`, r`5`, r`0`, r`25`],
+        a: r`5`,
+        tip: r`|-5|\text{ = distance de }-5\text{ à }0=5.` },
+
+      // va_08
+      { q: r`|7|=\,?`,
+        choices: [r`-7`, r`7`, r`0`, r`14`],
+        a: r`7`,
+        tip: r`7\geq0\text{ donc }|7|=7.` },
+
+      // va_09
+      { q: r`|3-8|=\,?`,
+        choices: [r`5`, r`-5`, r`11`, r`-11`],
+        a: r`5`,
+        tip: r`3-8=-5\text{, puis }|-5|=5.` },
+
+      // va_10
+      { q: r`|-2|+|-3|=\,?`,
+        choices: [r`-5`, r`5`, r`1`, r`-1`],
+        a: r`5`,
+        tip: r`|-2|=2\text{ et }|-3|=3\text{, donc }2+3=5.` },
+
+      // va_11
+      { q: r`|2-7|-|-3|=\,?`,
+        choices: [r`2`, r`-2`, r`8`, r`-8`],
+        a: r`2`,
+        tip: r`|2-7|=|-5|=5\text{ et }|-3|=3\text{, donc }5-3=2.` },
+
+      // va_12
+      { q: r`\text{Pour }x=1\text{ : }|x-3|=\,?`,
+        choices: [r`-2`, r`2`, r`4`, r`-4`],
+        a: r`2`,
+        tip: r`|1-3|=|-2|=2\text{ : c'est la distance de }1\text{ à }3.` },
+
+      // ── DISTANCE & INTERPRÉTATION ────────────────────────────────────────
+
+      // va_13
+      { q: r`\text{Que représente }|x-3|\text{ ?}`,
+        choices: [r`\text{La distance de }x\text{ à }3`, r`\text{La distance de }x\text{ à }-3`, r`x-3`, r`\text{La distance de }3\text{ à }0`],
+        a: r`\text{La distance de }x\text{ à }3`,
+        tip: r`|x-a|\text{ = distance entre }x\text{ et }a.\\\text{Ici }a=3.` },
+
+      // va_14
+      { q: r`|x+2|\text{ représente la distance de }x\text{ à :}`,
+        choices: [r`2`, r`-2`, r`0`, r`-x`],
+        a: r`-2`,
+        tip: r`|x+2|=|x-(-2)|\text{ : distance de }x\text{ à }-2.` },
+
+      // va_15
+      { q: r`\text{La distance entre }5\text{ et }-1\text{ vaut :}`,
+        choices: [r`4`, r`6`, r`-6`, r`5`],
+        a: r`6`,
+        tip: r`|5-(-1)|=|6|=6\ \text{(ou }|-1-5|=6\text{).}` },
+
+      // va_16
+      { q: r`\text{« }x\text{ est à distance }4\text{ de }1\text{ » se traduit par :}`,
+        choices: [r`|x-1|=4`, r`|x+1|=4`, r`|x-4|=1`, r`x-1=4`],
+        a: r`|x-1|=4`,
+        tip: r`\text{Distance de }x\text{ à }1=|x-1|.\\\text{« à distance }4\text{ » }\Rightarrow|x-1|=4.` },
+
+      // va_17
+      { q: r`|x-2|\leq5\text{ signifie que }x\text{ est :}`,
+        choices: [r`\text{à distance au plus }5\text{ de }2`, r`\text{à distance au moins }5\text{ de }2`, r`\text{égal à }5`, r`\text{à distance }5\text{ de }0`],
+        a: r`\text{à distance au plus }5\text{ de }2`,
+        tip: r`|x-2|\leq5\text{ : }x\text{ est à une distance }\leq5\text{ de }2\text{, soit }x\in[-3\,;7].` },
+
+      // va_18
+      { q: r`\text{Les solutions de }|x-4|=r\text{ sont réparties autour de :}`,
+        choices: [r`0`, r`4`, r`r`, r`-4`],
+        a: r`4`,
+        tip: r`|x-4|\text{ mesure l'écart à }4\text{ : les solutions se placent de part et d'autre de }4.` },
+
+      // ── ÉQUATIONS (méthode : distance à un point) ────────────────────────
+
+      // va_19
+      { q: r`|x|=6\\\text{Solutions ?}`,
+        choices: [r`x=6`, r`x=-6`, r`x=6\text{ ou }x=-6`, r`\text{aucune}`],
+        a: r`x=6\text{ ou }x=-6`,
+        tip: r`|x|=6\text{ : les nombres à distance }6\text{ de }0\text{ sont }6\text{ et }-6.\\S=\{-6\,;6\}.` },
+
+      // va_20
+      { q: r`|x|=0\\\text{Solutions ?}`,
+        choices: [r`x=0`, r`x=0\text{ ou }x=-0`, r`\text{aucune}`, r`\text{tous les réels}`],
+        a: r`x=0`,
+        tip: r`\text{Seul }0\text{ est à distance }0\text{ de lui-même : }S=\{0\}.` },
+
+      // va_21
+      { q: r`|x|=-3\\\text{Solutions ?}`,
+        choices: [r`x=-3`, r`x=3\text{ ou }x=-3`, r`S=\emptyset`, r`x=0`],
+        a: r`S=\emptyset`,
+        tip: r`\text{Une valeur absolue est }\geq0\text{, jamais égale à }-3.\\\text{Donc }S=\emptyset.` },
+
+      // va_22
+      { q: r`|x-2|=3\\\text{Solutions ?}`,
+        choices: [r`x=5\text{ ou }x=-1`, r`x=5`, r`x=1\text{ ou }x=-1`, r`x=3\text{ ou }x=-3`],
+        a: r`x=5\text{ ou }x=-1`,
+        tip: r`\text{Points à distance }3\text{ de }2\text{ : }2+3=5\text{ et }2-3=-1.\\S=\{-1\,;5\}.` },
+
+      // va_23
+      { q: r`|x+1|=4\\\text{Solutions ?}`,
+        choices: [r`x=3\text{ ou }x=-5`, r`x=3\text{ ou }x=5`, r`x=-3\text{ ou }x=5`, r`x=4\text{ ou }x=-4`],
+        a: r`x=3\text{ ou }x=-5`,
+        tip: r`|x+1|=|x-(-1)|\text{ : distance de }x\text{ à }-1\text{ égale }4.\\-1+4=3\text{ et }-1-4=-5.\ S=\{-5\,;3\}.` },
+
+      // va_24
+      { q: r`\text{L'ensemble solution de }|x-3|=2\text{ est :}`,
+        choices: [r`S=\{1\,;5\}`, r`S=\{-1\,;5\}`, r`S=[1\,;5]`, r`S=\{5\}`],
+        a: r`S=\{1\,;5\}`,
+        tip: r`\text{Distance }2\text{ de }3\text{ : }3-2=1\text{ et }3+2=5.\\\text{Deux points isolés : }S=\{1\,;5\}.` },
+
+      // ── INÉQUATIONS (méthode : distance → intervalle) ────────────────────
+
+      // va_25
+      { q: r`|x|\leq4\\\text{Ensemble solution ?}`,
+        choices: [r`[-4\,;4]`, r`\left]-\infty\,;4\right]`, r`[0\,;4]`, r`\left]-4\,;4\right[`],
+        a: r`[-4\,;4]`,
+        tip: r`|x|\leq4\text{ : }x\text{ à distance }\leq4\text{ de }0\text{ (bornes incluses).}\\S=[-4\,;4].` },
+
+      // va_26
+      { q: r`|x|<3\\\text{Ensemble solution ?}`,
+        choices: [r`[-3\,;3]`, r`\left]-3\,;3\right[`, r`\left]-\infty\,;3\right[`, r`\left]3\,;+\infty\right[`],
+        a: r`\left]-3\,;3\right[`,
+        tip: r`\text{Inégalité stricte : bornes exclues.}\\S=\left]-3\,;3\right[.` },
+
+      // va_27
+      { q: r`|x|>2\\\text{Ensemble solution ?}`,
+        choices: [r`\left]-2\,;2\right[`, r`\left]-\infty\,;-2\right[\cup\left]2\,;+\infty\right[`, r`[-2\,;2]`, r`\left]2\,;+\infty\right[`],
+        a: r`\left]-\infty\,;-2\right[\cup\left]2\,;+\infty\right[`,
+        tip: r`|x|>2\text{ : }x\text{ à distance }>2\text{ de }0\text{, donc }x<-2\text{ ou }x>2.\\S=\left]-\infty\,;-2\right[\cup\left]2\,;+\infty\right[.` },
+
+      // va_28
+      { q: r`|x|\geq5\\\text{Ensemble solution ?}`,
+        choices: [r`[-5\,;5]`, r`\left]-\infty\,;-5\right]\cup\left[5\,;+\infty\right[`, r`\left[5\,;+\infty\right[`, r`\left]-\infty\,;-5\right[\cup\left]5\,;+\infty\right[`],
+        a: r`\left]-\infty\,;-5\right]\cup\left[5\,;+\infty\right[`,
+        tip: r`\text{Distance }\geq5\text{ de }0\text{ : }x\leq-5\text{ ou }x\geq5\text{ (bornes incluses).}` },
+
+      // va_29
+      { q: r`|x-1|<2\\\text{Ensemble solution ?}`,
+        choices: [r`\left]-1\,;3\right[`, r`\left]-3\,;3\right[`, r`[-1\,;3]`, r`\left]1\,;3\right[`],
+        a: r`\left]-1\,;3\right[`,
+        tip: r`\text{Distance }<2\text{ de }1\text{ : entre }1-2=-1\text{ et }1+2=3\text{ (exclus).}\\S=\left]-1\,;3\right[.` },
+
+      // va_30
+      { q: r`|x-2|\geq3\\\text{Ensemble solution ?}`,
+        choices: [r`[-1\,;5]`, r`\left]-\infty\,;-1\right]\cup\left[5\,;+\infty\right[`, r`\left]-1\,;5\right[`, r`\left]-\infty\,;5\right]`],
+        a: r`\left]-\infty\,;-1\right]\cup\left[5\,;+\infty\right[`,
+        tip: r`\text{Distance }\geq3\text{ de }2\text{ : }x\leq2-3=-1\text{ ou }x\geq2+3=5.\\S=\left]-\infty\,;-1\right]\cup\left[5\,;+\infty\right[.` },
+
+    ],
+
     decimaux_cm: [
       { q:r`3{,}7+1{,}8=?`, choices:[`5{,}5`,`4{,}5`,`5{,}15`,`5{,}55`], a:`5{,}5`, tip:r`3{,}7+1{,}8=5{,}5` },
       { q:r`12{,}4-5{,}7=?`, choices:[`6{,}7`,`7{,}3`,`6{,}3`,`7{,}7`], a:`6{,}7`, tip:r`12{,}4-5{,}7=6{,}7` },
@@ -14209,6 +14403,7 @@ const DB = {
 const CATS = [
   { id:"missions",     label:"Les missions", emoji:"🎯", color:"#1E40AF", grad:"linear-gradient(135deg,#1E40AF,#1E3A8A)", light:"#EFF6FF", border:"#BFDBFE",
     subs:[
+      {id:"mission_seconde_ga", label:"Seconde à GA",                levels:["sec"], isMission:true},
       {id:"mission_bases",      label:"Travailler mes bases",        levels:["sec","tc","spe"], isMission:true},
       {id:"mission_spe",        label:"Objectif : Prendre la spé en première", levels:["sec","tc","spe"], isMission:true},
       {id:"mission_stmg",       label:"Objectif Bac Techno",           levels:["stmg"], isMission:true},
@@ -14255,6 +14450,7 @@ const CATS = [
     subs:[
       {id:"ensembles_nombres", label:"Ensembles ℕ, ℤ, 𝔻, ℚ, ℝ", group:"seconde", levels:["sec"]},
       {id:"intervalles",       label:"Intervalles",                group:"seconde", levels:["sec"]},
+      {id:"valeur_absolue",    label:"Valeur absolue",             group:"seconde", levels:["sec"]},
       {id:"racines",      label:"Racines carrées",              group:"seconde", levels:["sec","tc","stmg","spe","term"], levelPicker:true},
       {id:"tables",       label:"Tables de multiplication",     group:"college", levels:["sec","tc","stmg"]},
       {id:"relatifs",     label:"Nombres relatifs",             group:"college", levels:["sec","tc","stmg","spe","term"], levelPicker:true, levelType:"relatifs"},
@@ -21819,6 +22015,15 @@ function buildBacBlancPool(poolKey, n = 30) {
   return shuffle(selected);
 }
 
+// ── Mission « Seconde à GA » — parcours de classe (guidage souple) ───────────
+// SECONDE_GA_PASSWORD : simple panneau « réservé à la classe », PAS une serrure
+// (le fichier app.js est public, le code y est lisible). Ne rien mettre de
+// sensible derrière. SECONDE_GA_CURRENT : numéro du chapitre en cours — à
+// incrémenter au fil de l'année, il déplace le surlignage « cette semaine ».
+const SECONDE_GA_PASSWORD = "203GA2027";
+const SECONDE_GA_UNLOCK_K = "user:ga_unlocked";
+const SECONDE_GA_CURRENT   = 0;
+
 const MISSIONS = {
   mission_bases: {
     id: "mission_bases",
@@ -21868,6 +22073,93 @@ const MISSIONS = {
     themes: [
       { id: "bac_blanc_term", label: "Bac blanc — 30 questions", emoji: "🎯", useBacBlanc: "term" },
     ]
+  },
+  // ── Parcours de classe : ordre des chapitres imposé par le prof ──
+  // hasContent:false → chapitre vu en classe mais sans automatisme AutoMaths
+  // (réels/intervalles, configurations planes, inverse/cube, systèmes).
+  mission_seconde_ga: {
+    id: "mission_seconde_ga",
+    label: "Seconde à GA",
+    emoji: "🧭",
+    desc: "Ton parcours d'automatismes, dans l'ordre des chapitres de la classe.",
+    color: "#0EA5E9",
+    grad: "linear-gradient(135deg,#0EA5E9,#0369A1)",
+    parcours: true,
+    chapters: [
+      { num:0,  title:"Calcul numérique",                    hasContent:true  },
+      { num:1,  title:"Réels, intervalles, valeur absolue",  hasContent:true  },
+      { num:2,  title:"Fonctions affines",                   hasContent:true  },
+      { num:3,  title:"Généralités graphiques",              hasContent:true  },
+      { num:4,  title:"Vecteurs I",                          hasContent:true  },
+      { num:5,  title:"Calcul littéral",                     hasContent:true  },
+      { num:6,  title:"Vecteurs II",                         hasContent:true  },
+      { num:7,  title:"Configurations planes",               hasContent:true  },
+      { num:8,  title:"Proportions & évolutions",            hasContent:true  },
+      { num:9,  title:"Équations – Inéquations",             hasContent:true  },
+      { num:10, title:"Statistiques",                        hasContent:true  },
+      { num:11, title:"Carrés & racines carrées",            hasContent:true  },
+      { num:12, title:"Fonction inverse et cube",            hasContent:false },
+      { num:13, title:"Probabilités",                        hasContent:true  },
+      { num:14, title:"Alignements – Parallélisme",          hasContent:true  },
+      { num:15, title:"Systèmes d'équations",                hasContent:false },
+    ],
+    themes: [
+      // Ch.0 — Calcul numérique
+      { id:"ga_decimaux_cm", chap:0, emoji:"🔢", label:"Décimaux & CM",   dbPath:"numerique.decimaux_cm" },
+      { id:"ga_fractions",   chap:0, emoji:"🔢", label:"Fractions",       dbPath:"numerique.fractions" },
+      { id:"ga_puissances",  chap:0, emoji:"🔢", label:"Puissances",      dbPath:"numerique.puissances" },
+      // Ch.1 — Réels, intervalles, valeur absolue
+      { id:"ga_ensembles",   chap:1, emoji:"🔢", label:"Ensembles de nombres", dbPath:"numerique.ensembles_nombres" },
+      { id:"ga_intervalles", chap:1, emoji:"[·]", label:"Intervalles",          dbPath:"numerique.intervalles" },
+      { id:"ga_valeur_absolue", chap:1, emoji:"|·|", label:"Valeur absolue",     dbPath:"numerique.valeur_absolue" },
+      // Ch.2 — Fonctions affines
+      { id:"ga_calcul_image",           chap:2, emoji:"📈", label:"Calcul d'image",                dbPath:"fonctions.calcul_image" },
+      { id:"ga_coeff_dir_calcul",       chap:2, emoji:"📈", label:"Coefficient directeur (calcul)",dbPath:"fonctions.coeff_directeur_calcul" },
+      { id:"ga_coeff_dir_lecture",      chap:2, emoji:"📈", label:"Coefficient directeur (lecture)",dbPath:"fonctions.coeff_directeur_lecture" },
+      { id:"ga_equation_droite",        chap:2, emoji:"📈", label:"Équation de droite",            dbPath:"fonctions.equation_droite_lecture" },
+      // Ch.3 — Généralités graphiques
+      { id:"ga_lecture_image",       chap:3, emoji:"👁️", label:"Image et antécédent",   dbPath:"fonctions.lecture_image" },
+      { id:"ga_resolution_graph",    chap:3, emoji:"👁️", label:"Résolution graphique",  dbPath:"fonctions.resolution_graphique" },
+      { id:"ga_tableau_variations",  chap:3, emoji:"👁️", label:"Tableau de variations", dbPath:"fonctions.tableau_variations" },
+      { id:"ga_tableau_signes",      chap:3, emoji:"👁️", label:"Tableau de signes",     dbPath:"fonctions.tableau_signes" },
+      { id:"ga_point_courbe",        chap:3, emoji:"✏️", label:"Point sur courbe",      dbPath:"fonctions.point_courbe" },
+      // Ch.4 — Vecteurs I
+      { id:"ga_vecteurs_bases", chap:4, emoji:"↗️", label:"Vecteurs : placement et égalité", dbPath:"geometrie.vecteurs_bases" },
+      { id:"ga_chasles",        chap:4, emoji:"➕", label:"Relation de Chasles",             dbPath:"geometrie.chasles" },
+      // Ch.5 — Calcul littéral
+      { id:"ga_developpement",   chap:5, emoji:"📐", label:"Développement",                    dbPath:"litteral.developpement" },
+      { id:"ga_id_remarquables", chap:5, emoji:"📐", label:"Identités remarquables",           dbPath:"litteral.id_remarquables" },
+      { id:"ga_facto_commun",    chap:5, emoji:"📐", label:"Factorisation (facteur commun)",   dbPath:"litteral.facto_commun" },
+      { id:"ga_facto_id",        chap:5, emoji:"📐", label:"Factorisation (identités)",        dbPath:"litteral.facto_id" },
+      { id:"ga_manipulation",    chap:5, emoji:"📐", label:"Manipulation de formules",         dbPath:"litteral.manipulation" },
+      // Ch.6 — Vecteurs II
+      { id:"ga_geom_analytique",    chap:6, emoji:"📏", label:"Distance & coordonnées", dbPath:"geometrie.geom_analytique" },
+      { id:"ga_vecteurs_colin",     chap:6, emoji:"⊥", label:"Vecteurs colinéaires",   dbPath:"geometrie.vecteurs_colineaires" },
+      // Ch.7 — Configurations planes
+      { id:"ga_config_cercle_med",   chap:7, emoji:"⭕", label:"Cercle & médiatrice",          dbPath:"geometrie.config_cercle_med" },
+      { id:"ga_config_point_droite", chap:7, emoji:"📐", label:"Distance point-droite",        dbPath:"geometrie.config_point_droite" },
+      { id:"ga_config_trigo",        chap:7, emoji:"📐", label:"Trigo du triangle rectangle",  dbPath:"geometrie.config_trigo" },
+      // Ch.8 — Proportions & évolutions
+      { id:"ga_proportions",  chap:8, emoji:"💹", label:"Proportions",             dbPath:"pourcentages.proportions" },
+      { id:"ga_taux_cm",      chap:8, emoji:"💹", label:"Taux ↔ CM",               dbPath:"pourcentages.taux_cm" },
+      { id:"ga_valeur_finale",chap:8, emoji:"💹", label:"Valeur finale / initiale",dbPath:"pourcentages.valeur_finale" },
+      // Ch.9 — Équations – Inéquations
+      { id:"ga_eq1",         chap:9, emoji:"🟰", label:"Équation 1er degré",   dbPath:"litteral.eq1" },
+      { id:"ga_produit_nul", chap:9, emoji:"🟰", label:"Équation produit nul", dbPath:"litteral.produit_nul" },
+      { id:"ga_inequation1", chap:9, emoji:"🟰", label:"Inéquation 1er degré", dbPath:"litteral.inequation1" },
+      // Ch.10 — Statistiques
+      { id:"ga_stat_centrale",   chap:10, emoji:"📊", label:"Moyenne & médiane",      dbPath:"statistiques.stat_centrale" },
+      { id:"ga_stat_dispersion", chap:10, emoji:"📊", label:"Quartiles & dispersion", dbPath:"statistiques.stat_dispersion" },
+      // Ch.11 — Carrés & racines carrées
+      { id:"ga_racines_n1", chap:11, emoji:"√", label:"Racines carrées", dbPath:"numerique.racines_n1" },
+      // Ch.13 — Probabilités
+      { id:"ga_proba_tableau",      chap:13, emoji:"🎲", label:"Tableau double entrée", dbPath:"probabilites.tableau" },
+      { id:"ga_proba_tableau_fill", chap:13, emoji:"🎲", label:"Tableau à compléter",   dbPath:"probabilites.tableau_fill" },
+      { id:"ga_proba_arbre",        chap:13, emoji:"🎲", label:"Arbre",                 dbPath:"probabilites.arbre" },
+      { id:"ga_proba_contraire",    chap:13, emoji:"🎲", label:"Événements contraires", dbPath:"probabilites.contraire" },
+      // Ch.14 — Alignements – Parallélisme (revoit la colinéarité du Ch.6)
+      { id:"ga_alignement", chap:14, emoji:"📏", label:"Alignement & parallélisme (colinéarité)", dbPath:"geometrie.vecteurs_colineaires" },
+    ],
   }
 };
 
@@ -22922,6 +23214,109 @@ function FlashcardScreen({ cards, onBack, onFinish }) {
 }
 
 // ── MissionScreen — Liste des missions disponibles ────────────────────────────
+// ── ParcoursList — rendu « guidage souple » de la mission Seconde à GA ────────
+// Chapitres dans l'ordre du prof ; celui d'index SECONDE_GA_CURRENT est mis en
+// avant (« cette semaine »), les précédents marqués ✓, les suivants estompés
+// mais RESTENT cliquables (souple, pas de verrou). Les chapitres sans
+// automatisme s'affichent en repère grisé.
+function ParcoursList({ mission, onSelectTheme }) {
+  return (
+    <>
+      {mission.chapters.map((ch) => {
+        const state = ch.num < SECONDE_GA_CURRENT ? "done"
+                    : ch.num === SECONDE_GA_CURRENT ? "current" : "upcoming";
+        const chThemes = mission.themes.filter(t => t.chap === ch.num);
+        return (
+          <div key={`ga_ch_${ch.num}`} style={{marginBottom:16}}>
+            <div style={{display:"flex",alignItems:"center",gap:8,margin:"2px 2px 8px"}}>
+              <span style={{fontSize:11,fontWeight:800,letterSpacing:0.6,textTransform:"uppercase",
+                color: state==="current" ? mission.color : "#94A3B8"}}>
+                Ch.{ch.num} · {ch.title}
+              </span>
+              {state==="current" && (
+                <span style={{fontSize:9,fontWeight:800,color:"#fff",background:mission.color,
+                  borderRadius:99,padding:"2px 8px"}}>cette semaine</span>
+              )}
+              {state==="done" && <span style={{fontSize:13,color:"#10B981"}}>✓</span>}
+            </div>
+
+            {ch.hasContent ? (
+              chThemes.map((theme, i) => (
+                <div key={theme.id} className="pop-in"
+                  style={{marginBottom:8, animationDelay:`${i*.05}s`, opacity: state==="upcoming" ? 0.55 : 1}}>
+                  <button onClick={() => onSelectTheme(theme)}
+                    style={{background:"#fff",
+                      border:`2px solid ${state==="current" ? mission.color+"66" : "#E2E8F0"}`,
+                      borderRadius:14,padding:"12px 14px",cursor:"pointer",textAlign:"left",
+                      boxShadow:"0 2px 10px rgba(0,0,0,.05)",width:"100%",
+                      display:"flex",alignItems:"center",gap:12}}>
+                    <div style={{fontSize:22,flexShrink:0}}>{theme.emoji}</div>
+                    <div style={{flex:1}}>
+                      <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:"#1E293B"}}>
+                        {theme.label}
+                      </div>
+                    </div>
+                    <span style={{color:mission.color,fontSize:18,flexShrink:0}}>›</span>
+                  </button>
+                </div>
+              ))
+            ) : (
+              <div style={{border:"2px dashed #E2E8F0",borderRadius:14,padding:"12px 14px",
+                color:"#94A3B8",fontSize:12,display:"flex",alignItems:"center",gap:8}}>
+                <span style={{fontSize:16}}>🗓️</span>
+                <span>Vu en classe — pas d'entraînement d'automatismes sur ce chapitre.</span>
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </>
+  );
+}
+
+// ── GaGateOverlay — panneau mot de passe de la mission Seconde à GA ───────────
+function GaGateOverlay({ onUnlock, onClose }) {
+  const [val, setVal] = useState("");
+  const [err, setErr] = useState(false);
+  const submit = () => {
+    if (val.trim() === SECONDE_GA_PASSWORD) onUnlock();
+    else setErr(true);
+  };
+  return (
+    <div onClick={onClose} style={{position:"fixed",inset:0,background:"rgba(15,23,42,0.72)",
+      display:"flex",alignItems:"center",justifyContent:"center",zIndex:2000,padding:20}}>
+      <div onClick={e=>e.stopPropagation()} style={{background:"#fff",borderRadius:20,
+        padding:"24px 22px",maxWidth:340,width:"100%",boxShadow:"0 20px 60px rgba(0,0,0,.3)"}}>
+        <div style={{fontSize:34,textAlign:"center",marginBottom:8}}>🧭</div>
+        <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:18,color:"#1E293B",textAlign:"center"}}>
+          Seconde à GA
+        </div>
+        <div style={{fontSize:12,color:"#64748B",textAlign:"center",margin:"6px 0 16px"}}>
+          Mission réservée à la classe. Entre le code donné par ton prof.
+        </div>
+        <input type="password" value={val} autoFocus
+          onChange={e=>{ setVal(e.target.value); setErr(false); }}
+          onKeyDown={e=>{ if(e.key==="Enter") submit(); }}
+          placeholder="Code d'accès"
+          style={{width:"100%",boxSizing:"border-box",padding:"12px 14px",borderRadius:12,
+            border:`2px solid ${err ? "#EF4444" : "#E2E8F0"}`,fontSize:15,outline:"none",fontFamily:"inherit"}} />
+        {err && <div style={{color:"#EF4444",fontSize:12,marginTop:8,textAlign:"center"}}>Code incorrect.</div>}
+        <button onClick={submit}
+          style={{width:"100%",marginTop:16,background:"linear-gradient(135deg,#0EA5E9,#0369A1)",color:"#fff",
+            border:"none",borderRadius:12,padding:"13px",fontWeight:800,fontSize:15,cursor:"pointer",
+            fontFamily:"'Nunito',sans-serif"}}>
+          Déverrouiller
+        </button>
+        <button onClick={onClose}
+          style={{width:"100%",marginTop:8,background:"none",border:"none",color:"#94A3B8",
+            fontSize:13,cursor:"pointer",padding:6}}>
+          Annuler
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function MissionScreen({missionId, onBack, onSelectTheme}) {
   const mission = MISSIONS[missionId];
   const cat = getCat("missions");
@@ -22947,7 +23342,9 @@ function MissionScreen({missionId, onBack, onSelectTheme}) {
       </div>
 
       <Scroll>
-        {mission.themes.length === 0 ? (
+        {mission.parcours ? (
+          <ParcoursList mission={mission} onSelectTheme={onSelectTheme} />
+        ) : mission.themes.length === 0 ? (
           <div style={{textAlign:"center",padding:"40px 20px",color:"#94A3B8"}}>
             <div style={{fontSize:48,marginBottom:12}}>🔒</div>
             <div style={{fontSize:14,fontWeight:600}}>Bientôt disponible</div>
@@ -29290,6 +29687,14 @@ function AutoMaths() {
   // ── Mission state ─────────────────────────────────────────────────────────
   const [missionId,    setMissionId]    = useState(null);
   const [missionTheme, setMissionTheme] = useState(null);
+  // ── Mission « Seconde à GA » : déverrouillage par mot de passe ──
+  const [gaUnlocked, setGaUnlocked] = useState(false);
+  const [gaGateOpen, setGaGateOpen] = useState(false);
+  useEffect(() => {
+    _storage.get(SECONDE_GA_UNLOCK_K)
+      .then(r => { const v = r?.value; if (v === "1" || v === 1 || v === true) setGaUnlocked(true); })
+      .catch(() => {});
+  }, []);
 
   // ── Parcours state ────────────────────────────────────────────────────────
   const [profile,   setProfile]   = useState(null);
@@ -29816,6 +30221,7 @@ function AutoMaths() {
   const [pendingPool, setPendingPool] = useState(null);
   const hLevelPicker = (_id, type) => { 
     if (type === 'mission') {
+      if (_id === "mission_seconde_ga" && !gaUnlocked) { setMissionId(_id); setGaGateOpen(true); return; }
       setMissionId(_id);
       setScreen("mission_select");
     } else {
@@ -30244,6 +30650,18 @@ function AutoMaths() {
         <CardUnlockModal
           cards={cardsToShow}
           onClose={() => { setCardsToShow([]); setScreen("collection"); }}
+        />
+      )}
+      {/* Panneau mot de passe — mission Seconde à GA */}
+      {gaGateOpen && (
+        <GaGateOverlay
+          onClose={() => setGaGateOpen(false)}
+          onUnlock={async () => {
+            setGaUnlocked(true);
+            setGaGateOpen(false);
+            try { await _storage.set(SECONDE_GA_UNLOCK_K, "1"); } catch {}
+            setScreen("mission_select");
+          }}
         />
       )}
     </>
