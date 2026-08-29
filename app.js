@@ -29814,10 +29814,7 @@ function AutoMaths() {
 
   // ── Quiz helpers ──────────────────────────────────────────────────────────
   const [prevScreen, setPrevScreen] = useState("home");
-  // Pub éphémère : interstitiel affiché dès le lancement, par-dessus le splash (façon appli MacDo).
-  React.useEffect(() => {
-    if (pubLyceeEligible()) { pubLyceeMarkShown(); setShowPub(true); }
-  }, []);
+  // Pub éphémère au lancement : désactivée (retirée à la demande).
 
   const startQuiz = async (qs, n, from) => {
     // Récupère les questions récemment vues pour les déprioriser (sans les exclure totalement)
@@ -30643,8 +30640,7 @@ function AutoMaths() {
           }}
         />
       )}
-      {/* Pub éphémère au lancement */}
-      {showPub && <PubModal onClose={() => setShowPub(false)} />}
+      {/* Pub éphémère au lancement — désactivée */}
       {/* Modal de déblocage de carte — overlay prioritaire sur tous les écrans */}
       {cardsToShow.length > 0 && (
         <CardUnlockModal
