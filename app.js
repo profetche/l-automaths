@@ -22108,6 +22108,7 @@ const MISSIONS = {
       { id:"ga_decimaux_cm", chap:0, emoji:"🔢", label:"Décimaux & CM",   dbPath:"numerique.decimaux_cm" },
       { id:"ga_fractions",   chap:0, emoji:"🔢", label:"Fractions",       dbPath:"numerique.fractions" },
       { id:"ga_puissances",  chap:0, emoji:"🔢", label:"Puissances",      dbPath:"numerique.puissances" },
+      { id:"ga_racines_ch0", chap:0, emoji:"√", label:"Racines carrées",  dbPath:"numerique.racines_n1" },
       // Ch.1 — Réels, intervalles, valeur absolue
       { id:"ga_ensembles",   chap:1, emoji:"🔢", label:"Ensembles de nombres", dbPath:"numerique.ensembles_nombres" },
       { id:"ga_intervalles", chap:1, emoji:"[·]", label:"Intervalles",          dbPath:"numerique.intervalles" },
@@ -22135,6 +22136,7 @@ const MISSIONS = {
       // Ch.6 — Vecteurs II
       { id:"ga_geom_analytique",    chap:6, emoji:"📏", label:"Distance & coordonnées", dbPath:"geometrie.geom_analytique" },
       { id:"ga_vecteurs_colin",     chap:6, emoji:"⊥", label:"Vecteurs colinéaires",   dbPath:"geometrie.vecteurs_colineaires" },
+      { id:"ga_racines_ch6",        chap:6, emoji:"√", label:"Racines carrées",       dbPath:"numerique.racines_n1" },
       // Ch.7 — Configurations planes
       { id:"ga_config_cercle_med",   chap:7, emoji:"⭕", label:"Cercle & médiatrice",          dbPath:"geometrie.config_cercle_med" },
       { id:"ga_config_point_droite", chap:7, emoji:"📐", label:"Distance point-droite",        dbPath:"geometrie.config_point_droite" },
