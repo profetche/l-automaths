@@ -30391,7 +30391,9 @@ function AutoMaths() {
   };
 
   // ── Profile handlers ──────────────────────────────────────────────────────
-  const hProfileComplete = (prof) => { setProfile(prof); setScreen("diagnostic"); };
+  // Test d'entrée (diagnostic) retiré à la création de compte : on va direct au
+  // dashboard. Le profil est déjà sauvegardé dans l'onboarding (saveProfA).
+  const hProfileComplete = (prof) => { setProfile(prof); setScreen("dashboard"); };
   const hDiagComplete = (results) => { setDiagResults(results); saveDiagResults(results).catch(()=>{}); setScreen("diag_result"); };
   const hDiagResultNext = async () => {
     const prog = allProgCache;
