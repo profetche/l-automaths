@@ -19496,7 +19496,89 @@ function VigilanceScreen({profile, qState, onBack, onRemediation, onWorkTheme, s
 
 // ── NotionDuJour — une formule à apprendre chaque jour ──────────────────────
 // ── ApprendreHubScreen ───────────────────────────────────────────────────────
-function ApprendreHubScreen({onMode}) {
+// Niveaux autorisés pour la notion du jour, à partir du code court du profil.
+// Même logique cumulative que le mode Flashcards (on peut réviser en dessous).
+function ndjAllowedLevels(shortLv) {
+  const ALL = ["sec","tc","stmg","spe","term"];
+  if (!shortLv) return ALL;
+  if (shortLv === "stmg") return ["sec","tc","stmg"];
+  const lo = ["sec","tc","spe","term"];
+  const i = lo.indexOf(shortLv);
+  return i < 0 ? ALL : lo.slice(0, i + 1);
+}
+
+// ── NotionConfigModal — l'élève choisit les thèmes de sa notion du jour ──────
+function NotionConfigModal({ chapters, excluded, onSave, onClose }) {
+  const [sel, setSel] = React.useState(() => new Set(excluded)); // ensemble des chapitres EXCLUS
+  const toggle = (ch) => setSel(prev => { const n = new Set(prev); n.has(ch) ? n.delete(ch) : n.add(ch); return n; });
+  const allOn  = () => setSel(new Set());
+  const allOff = () => setSel(new Set(chapters));
+  const nbOn = chapters.length - sel.size;
+  return (
+    <div onClick={onClose} style={{position:"fixed",inset:0,background:"rgba(15,23,42,.72)",
+      display:"flex",alignItems:"flex-end",justifyContent:"center",zIndex:2000}}>
+      <div onClick={e=>e.stopPropagation()} style={{background:"#fff",borderTopLeftRadius:22,
+        borderTopRightRadius:22,width:"100%",maxWidth:480,maxHeight:"82vh",display:"flex",flexDirection:"column"}}>
+        <div style={{padding:"18px 18px 12px",borderBottom:"1px solid #F1F5F9"}}>
+          <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:17,color:"#1E293B"}}>Paramétrer les notions</div>
+          <div style={{fontSize:11,color:"#94A3B8",marginTop:3}}>Coche les thèmes que tu veux voir dans ta notion du jour.</div>
+          <div style={{display:"flex",gap:8,marginTop:12}}>
+            <button onClick={allOn} style={{flex:1,background:"#EEF2FF",border:"none",borderRadius:10,padding:"8px 0",cursor:"pointer",color:"#4338CA",fontWeight:800,fontSize:11,fontFamily:"'Nunito',sans-serif"}}>Tout cocher</button>
+            <button onClick={allOff} style={{flex:1,background:"#F1F5F9",border:"none",borderRadius:10,padding:"8px 0",cursor:"pointer",color:"#64748B",fontWeight:800,fontSize:11,fontFamily:"'Nunito',sans-serif"}}>Tout décocher</button>
+          </div>
+        </div>
+        <div style={{flex:1,overflowY:"auto",padding:"8px 12px"}}>
+          {chapters.length === 0 && (
+            <div style={{padding:"24px 12px",textAlign:"center",color:"#94A3B8",fontSize:12}}>Aucun thème disponible pour ton niveau.</div>
+          )}
+          {chapters.map(ch => {
+            const on = !sel.has(ch);
+            return (
+              <button key={ch} onClick={()=>toggle(ch)}
+                style={{width:"100%",display:"flex",alignItems:"center",gap:12,padding:"11px 12px",
+                  marginBottom:4,borderRadius:12,border:"none",cursor:"pointer",
+                  background:on?"#F5F3FF":"#F8FAFC",textAlign:"left"}}>
+                <span style={{width:22,height:22,borderRadius:7,flexShrink:0,display:"flex",
+                  alignItems:"center",justifyContent:"center",background:on?"#6366F1":"#E2E8F0",
+                  color:"#fff",fontSize:13,fontWeight:900}}>{on?"✓":""}</span>
+                <span style={{flex:1,fontSize:13,fontWeight:700,color:on?"#1E293B":"#94A3B8",fontFamily:"'DM Sans',sans-serif"}}>{ch}</span>
+              </button>
+            );
+          })}
+        </div>
+        <div style={{padding:"12px 16px calc(14px + env(safe-area-inset-bottom))",borderTop:"1px solid #F1F5F9"}}>
+          <button onClick={()=>onSave(sel)} disabled={nbOn===0}
+            style={{width:"100%",color:"#fff",border:"none",borderRadius:14,padding:"13px",
+              background:nbOn===0?"#CBD5E1":"linear-gradient(135deg,#6366F1,#4338CA)",
+              fontWeight:800,fontSize:14,cursor:nbOn===0?"default":"pointer",fontFamily:"'Nunito',sans-serif"}}>
+            {nbOn===0 ? "Coche au moins un thème" : `Enregistrer (${nbOn} thème${nbOn>1?"s":""})`}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ApprendreHubScreen({onMode, profile}) {
+  const ndjShort = profile ? (LEVEL_MAP[profile.level] || null) : null;
+  const ndjAllowed = React.useMemo(() => ndjAllowedLevels(ndjShort), [ndjShort]);
+  const ndjChapters = React.useMemo(() => {
+    const s = new Set();
+    FLASHCARDS.filter(c => ndjAllowed.includes(c.level)).forEach(c => s.add(c.chapitre));
+    return [...s].sort((a,b) => a.localeCompare(b));
+  }, [ndjAllowed]);
+  const [ndjExcluded, setNdjExcluded] = React.useState(new Set());
+  const [ndjCfgOpen, setNdjCfgOpen]   = React.useState(false);
+  React.useEffect(() => {
+    _storage.get('user:ndj_excluded')
+      .then(r => { if (r?.value) { try { setNdjExcluded(new Set(JSON.parse(r.value))); } catch {} } })
+      .catch(() => {});
+  }, []);
+  const ndjSave = (set) => {
+    setNdjExcluded(new Set(set));
+    _storage.set('user:ndj_excluded', JSON.stringify([...set])).catch(() => {});
+    setNdjCfgOpen(false);
+  };
   return (
     <div style={{display:"flex",flexDirection:"column",height:"100%",background:"var(--am-bg-light)"}}>
       <div style={{padding:"20px 18px 14px",flexShrink:0}}>
@@ -19506,7 +19588,19 @@ function ApprendreHubScreen({onMode}) {
         <div style={{fontSize:12,color:"#94A3B8",marginTop:3}}>Formules, cours et notion du jour</div>
       </div>
       <div style={{flex:1,overflowY:"auto",padding:"0 14px 28px"}}>
-        <NotionDuJour/>
+        <NotionDuJour profile={profile} allowed={ndjAllowed} excluded={ndjExcluded}/>
+        <button onClick={() => setNdjCfgOpen(true)}
+          style={{width:"100%",background:"#fff",border:"2px solid #E0E7FF",borderRadius:14,
+            padding:"11px 16px",marginBottom:8,cursor:"pointer",display:"flex",alignItems:"center",
+            gap:10,textAlign:"left",boxShadow:"0 2px 8px rgba(99,102,241,.06)"}}>
+          <span style={{fontSize:18,flexShrink:0}}>⚙️</span>
+          <div style={{flex:1}}>
+            <div style={{fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:13,color:"#4338CA"}}>Paramétrer les notions</div>
+            <div style={{fontSize:10,color:"#94A3B8",marginTop:1}}>Choisis les thèmes de ta notion du jour</div>
+          </div>
+          <span style={{color:"#A5B4FC",fontSize:16}}>›</span>
+        </button>
+        {ndjCfgOpen && <NotionConfigModal chapters={ndjChapters} excluded={ndjExcluded} onSave={ndjSave} onClose={() => setNdjCfgOpen(false)}/>}
         <button onClick={()=>onMode("flashcards")}
           style={{width:"100%",background:"linear-gradient(135deg,#10B981,#047857)",
             borderRadius:16,padding:"15px 18px",marginBottom:8,border:"none",cursor:"pointer",
@@ -19540,10 +19634,25 @@ function ApprendreHubScreen({onMode}) {
 }
 
 
-function NotionDuJour() {
+function NotionDuJour({ profile, excluded: excludedProp } = {}) {
+  const ndjShort = profile ? (LEVEL_MAP[profile.level] || null) : null;
+  const allowed = React.useMemo(() => ndjAllowedLevels(ndjShort), [ndjShort]);
+  const [excludedState, setExcludedState] = React.useState(new Set());
+  React.useEffect(() => {
+    if (excludedProp) return; // fourni par le parent (mise à jour instantanée)
+    _storage.get('user:ndj_excluded')
+      .then(r => { if (r?.value) { try { setExcludedState(new Set(JSON.parse(r.value))); } catch {} } })
+      .catch(() => {});
+  }, [excludedProp]);
+  const excluded = excludedProp || excludedState;
+  const pool = React.useMemo(() => {
+    let p = FLASHCARDS.filter(c => allowed.includes(c.level));
+    if (excluded.size) { const p2 = p.filter(c => !excluded.has(c.chapitre)); if (p2.length) p = p2; }
+    return p.length ? p : FLASHCARDS;
+  }, [allowed, excluded]);
   const today = new Date().toISOString().slice(0,10);
   const dayN  = Math.floor((Date.now() - new Date(new Date().getFullYear(),0,0)) / 86400000);
-  const card  = FLASHCARDS[dayN % FLASHCARDS.length];
+  const card  = pool[dayN % pool.length];
 
   const doneKey = `ndj_${today}`;
   const [flipped, setFlipped] = React.useState(false);
@@ -19971,7 +20080,7 @@ function DashboardScreen({profile, onStartPractice, onStartTest, onGoHome, onMod
         <div style={{fontSize:10,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
           letterSpacing:1.2,marginBottom:7}}>📖 Apprendre</div>
 
-        <NotionDuJour/>
+        <NotionDuJour profile={profile}/>
 
         <button onClick={()=>onMode("flashcards")}
           style={{width:"100%",background:"linear-gradient(135deg,#10B981,#047857)",
@@ -20724,7 +20833,7 @@ function HomeScreen({onMode, profile, onDashboard, onSplash, streakProgress, onB
           <div style={{fontSize:10,fontWeight:700,color:"#94A3B8",textTransform:"uppercase",
             letterSpacing:1.2,marginBottom:7}}>📖 Apprendre</div>
 
-          <NotionDuJour/>
+          <NotionDuJour profile={profile}/>
 
           <button onClick={()=>onMode("flashcards")} className="pop-in"
             style={{width:"100%",background:"linear-gradient(135deg,#10B981,#047857)",
